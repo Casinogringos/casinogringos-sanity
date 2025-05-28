@@ -1,24 +1,25 @@
-type MenuItem = {
-  uri: string
-  id: string
-  label: string
-  parentId?: string
+export interface MenuItem {
+  uri: string;
+  id: string;
+  label: string;
+  title: string;
+  parentId?: string;
   connectedNode: {
     node: {
-      indexSlug: string
-    }
-  }
+      indexSlug: string;
+    };
+  };
   childItems?: {
-    edges: { node: MenuItem }[]
-  }
+    edges: { node: MenuItem }[];
+  };
 }
 
-export type Menu = {
-  __typename: 'Menu'
-  databaseId: number
-  id: string
-  menuId: number
+export interface Menu {
+  __typename: "Menu";
+  databaseId: number;
+  id: string;
+  menuId: number;
   menuItems: {
-    edges: { node: MenuItem }[]
-  }
+    edges: { node: MenuItem }[];
+  };
 }

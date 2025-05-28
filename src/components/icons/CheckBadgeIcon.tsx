@@ -1,4 +1,4 @@
-const CheckBadge = ({ className }: { className?: string }) => {
+const CheckBadgeIcon = ({ className }: { className?: string }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -14,7 +14,7 @@ const CheckBadge = ({ className }: { className?: string }) => {
         clipRule="evenodd"
       ></path>
     </svg>
-  )
-}
+  );
+};
 
-export default CheckBadge
+export default CheckBadgeIcon;

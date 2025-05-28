@@ -95,7 +95,7 @@ export async function getNodeByUri({
   }
 }
 
-export async function getPostPreviews({
+export async function getCasinoPreviews({
   count = 1000,
   category,
 }: {

@@ -4,8 +4,8 @@ import { type ReactNode } from "react";
 import {
   useAppDispatch,
   useAppSelector,
-} from "../../../../casinogringos-v3/src/store/hooks";
-import { toggleId } from "../../../../casinogringos-v3/src/store/toggleSlice";
+} from "../../../casinogringos-v3/src/store/hooks";
+import { toggleId } from "../../../casinogringos-v3/src/store/toggleSlice";
 
 const ToggleButton = ({
   id,

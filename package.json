@@ -11,6 +11,7 @@
   "dependencies": {
     "graphql-tag": "^2.12.6",
     "next": "15.3.2",
+    "next-plausible": "^3.12.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },

@@ -1,48 +1,49 @@
-import { FlamingoProsAndConsBlock } from "@/src/types/flamingoProsAndCons";
-import { FlamingoBonusBlockOld } from "@/src/types/flamingoBonusBlockOld";
-import { FlamingoCasinoBlockOld } from "@/src/types/flamingoCasinoBlockOld";
-import { FlamingoRatingBlock } from "@/src/types/flamingoRatingBlock";
-import { FlamingoBonusBlock } from "@/src/types/flamingoBonusBlock";
-import { FlamingoCasinoBlock } from "@/src/types/flamingoCasinoBlock";
-import { FlamingoHeadingBlock } from "@/src/types/flamingoHeadingBlock";
-import { FlamingoImageBlock } from "@/src/types/flamingoImageBlock";
-import { RenderedHtmlBlock } from "@/src/types/renderedHtmlBlock";
-import { FlamingoToggleBlock } from "@/src/types/flamingoToggleBlock";
-import { FlamingoAISummaryBlock } from "@/src/types/flamingoAISummaryBlock";
-import { BlockLabCasinoBlock } from "@/src/types/blockLabCasinoBlock";
-import { BlockLabAffiliateButtonBlock } from "@/src/types/blockLabAffiliateButtonBlock";
-import { CoreParagraphBlock } from "@/src/types/coreParagraphBlock";
-import { CoreHeadingBlock } from "@/src/types/coreHeadingBlock";
-import { CoreImageBlock } from "@/src/types/coreImageBlock";
-import { CoreEmbedBlock } from "@/src/types/coreEmbedBlock";
-import { GameProvider } from "@/src/types/gameProvider";
-import { PaymentProvider } from "@/src/types/paymentProvider";
-import { CoreColumnsBlock } from "@/src/types/coreColumnsBlock";
-import { CoreGroupBlock } from "@/src/types/coreGroupBlock";
-import { YoastHowToBlock } from "@/src/types/yoastHowToBlock";
-import { YoastFaqBlock } from "@/src/types/yoastFaqBlock";
-import { CoreColumnBlock } from "@/src/types/coreColumnBlock";
-import { FlamingoHowToBlock } from "@/src/types/flamingoHowToBlock";
-import { Blocks } from "@/src/types/blocks";
-import { AffiliateLink } from "@/src/types/affiliateLink";
-import { Guide } from "@/src/types/guide";
-import { Menu } from "@/src/types/menu";
-import { NodeWithPreview } from "@/src/types/node";
-import { News } from "@/src/types/news";
-import { Page } from "@/src/types/page";
-import { Post } from "@/src/types/post";
-import { Slot } from "@/src/types/slot";
-import { User } from "@/src/types/user";
-import { MediaItem } from "@/src/types/mediaItem";
-import { Seo } from "@/src/types/seo";
-import { UserSeo } from "@/src/types/userSeo";
-import { Category } from "@/src/types/category";
-import { Avatar } from "@/src/types/avatar";
-import { Faq } from "@/src/types/faq";
-import { PagePreview } from "@/src/types/pagePreview";
-import { UserPreview } from "@/src/types/userPreview";
-import { PostPreview } from "@/src/types/postPreview";
-import { FlamingoFaqBlock } from "@/src/types/flamingoFaqBlock";
+import { FlamingoProsAndConsBlock } from "@/types/flamingoProsAndCons";
+import { FlamingoBonusBlockOld } from "@/types/flamingoBonusBlockOld";
+import { FlamingoCasinoBlockOld } from "@/types/flamingoCasinoBlockOld";
+import { FlamingoRatingBlock } from "@/types/flamingoRatingBlock";
+import { FlamingoBonusBlock } from "@/types/flamingoBonusBlock";
+import { FlamingoCasinoBlock } from "@/types/flamingoCasinoBlock";
+import { FlamingoHeadingBlock } from "@/types/flamingoHeadingBlock";
+import { FlamingoImageBlock } from "@/types/flamingoImageBlock";
+import { RenderedHtmlBlock } from "@/types/renderedHtmlBlock";
+import { FlamingoToggleBlock } from "@/types/flamingoToggleBlock";
+import { FlamingoAISummaryBlock } from "@/types/flamingoAISummaryBlock";
+import { BlockLabCasinoBlock } from "@/types/blockLabCasinoBlock";
+import { BlockLabAffiliateButtonBlock } from "@/types/blockLabAffiliateButtonBlock";
+import { CoreParagraphBlock } from "@/types/coreParagraphBlock";
+import { CoreHeadingBlock } from "@/types/coreHeadingBlock";
+import { CoreImageBlock } from "@/types/coreImageBlock";
+import { CoreEmbedBlock } from "@/types/coreEmbedBlock";
+import { GameProvider } from "@/types/gameProvider";
+import { PaymentProvider } from "@/types/paymentProvider";
+import { CoreColumnsBlock } from "@/types/coreColumnsBlock";
+import { CoreGroupBlock } from "@/types/coreGroupBlock";
+import { YoastHowToBlock } from "@/types/yoastHowToBlock";
+import { YoastFaqBlock } from "@/types/yoastFaqBlock";
+import { CoreColumnBlock } from "@/types/coreColumnBlock";
+import { FlamingoHowToBlock } from "@/types/flamingoHowToBlock";
+import { Blocks } from "@/types/blocks";
+import { AffiliateLink } from "@/types/affiliateLink";
+import { Guide } from "@/types/guide";
+import { Menu } from "@/types/menu";
+import { MenuItem } from "@/types/menu";
+import { NodeWithPreview } from "@/types/node";
+import { News } from "@/types/news";
+import { Page } from "@/types/page";
+import { Post } from "@/types/post";
+import { Slot } from "@/types/slot";
+import { User } from "@/types/user";
+import { MediaItem } from "@/types/mediaItem";
+import { Seo } from "@/types/seo";
+import { UserSeo } from "@/types/userSeo";
+import { Category } from "@/types/category";
+import { Avatar } from "@/types/avatar";
+import { Faq } from "@/types/faq";
+import { PagePreview } from "@/types/pagePreview";
+import { UserPreview } from "@/types/userPreview";
+import { PostPreview } from "@/types/postPreview";
+import { FlamingoFaqBlock } from "@/types/flamingoFaqBlock";
 
 export type {
   FlamingoImageBlock,
@@ -82,6 +83,7 @@ export type {
   PagePreview,
   UserPreview,
   PostPreview,
+  MenuItem,
   FlamingoToggleBlock,
   FlamingoBonusBlockOld,
   FlamingoCasinoBlockOld,

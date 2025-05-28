@@ -1,6 +1,6 @@
 "use client";
 
-import { useAppSelector } from "../../../../casinogringos-v3/src/store/hooks";
+import { useAppSelector } from "../../../casinogringos-v3/src/store/hooks";
 import { type ReactNode } from "react";
 
 const ToggleItem = ({

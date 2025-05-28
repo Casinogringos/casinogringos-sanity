@@ -3,7 +3,7 @@
 import { ReactNode } from "react";
 import dynamic from "next/dynamic";
 const Overlay = dynamic(
-  () => import("../../../../casinogringos-v3/src/components/Overlay"),
+  () => import("../../../casinogringos-v3/src/components/Overlay"),
 );
 
 type CustomModalProps = {

@@ -1,11 +1,19 @@
-import Image from 'next/image'
-import Link from 'next/link'
+import Image from "next/image";
+import Link from "next/link";
+import { Menu } from "@/types";
+import { MenuItem } from "@/types";
+import { Post } from "@/types";
+
+interface IconProps {
+  className?: string;
+}
+
 const navigation = {
   social: [
     {
-      name: 'Facebook',
-      href: 'https://www.facebook.com/Casinogringos',
-      icon: (props) => (
+      name: "Facebook",
+      href: "https://www.facebook.com/Casinogringos",
+      icon: (props: IconProps) => (
         <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
           <path
             fillRule="evenodd"
@@ -16,9 +24,9 @@ const navigation = {
       ),
     },
     {
-      name: 'Instagram',
-      href: 'https://www.instagram.com/casinogringos/',
-      icon: (props) => (
+      name: "Instagram",
+      href: "https://www.instagram.com/casinogringos/",
+      icon: (props: IconProps) => (
         <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
           <path
             fillRule="evenodd"
@@ -29,18 +37,18 @@ const navigation = {
       ),
     },
     {
-      name: 'Twitter',
-      href: 'https://twitter.com/CasinoGringos',
-      icon: (props) => (
+      name: "Twitter",
+      href: "https://twitter.com/CasinoGringos",
+      icon: (props: IconProps) => (
         <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
           <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
         </svg>
       ),
     },
     {
-      name: 'Twitch',
-      href: 'https://www.twitch.tv/casinogringos',
-      icon: (props) => (
+      name: "Twitch",
+      href: "https://www.twitch.tv/casinogringos",
+      icon: (props: IconProps) => (
         <svg
           fill="currentColor"
           xmlns="http://www.w3.org/2000/svg"
@@ -56,9 +64,9 @@ const navigation = {
       ),
     },
     {
-      name: 'YouTube',
-      href: 'https://www.youtube.com/channel/UCeFbFMkDfTlLayuZmk_aXiA',
-      icon: (props) => (
+      name: "YouTube",
+      href: "https://www.youtube.com/channel/UCeFbFMkDfTlLayuZmk_aXiA",
+      icon: (props: IconProps) => (
         <svg fill="currentColor" viewBox="0 0 24 24" {...props}>
           <path
             fillRule="evenodd"
@@ -69,10 +77,18 @@ const navigation = {
       ),
     },
   ],
-}
+};
 
-export default function Footer({ menu, sites, posts }) {
-  const year = new Date().getFullYear()
+const Footer = ({
+  menu,
+  sites,
+  posts,
+}: {
+  menu: Menu["menuItems"];
+  sites: Menu["menuItems"];
+  posts: { edges: { node: Post }[] };
+}) => {
+  const year = new Date().getFullYear();
 
   return (
     <footer className="bg-dark" aria-labelledby="footer-heading">
@@ -87,7 +103,7 @@ export default function Footer({ menu, sites, posts }) {
                 Sidlänkar
               </span>
               <ul role="list" className="mt-6 space-y-4">
-                {menu?.edges.map(({ node }) => (
+                {menu?.edges.map(({ node }: { node: MenuItem }) => (
                   <li key={`menu-item-label-${node.label}`}>
                     <Link
                       href={node.uri}
@@ -105,7 +121,7 @@ export default function Footer({ menu, sites, posts }) {
                 Populära casinosidor
               </span>
               <ul role="list" className="mt-6 space-y-4">
-                {sites?.edges.map(({ node }) => (
+                {sites?.edges.map(({ node }: { node: MenuItem }) => (
                   <li key={`site-${node.label}`}>
                     <Link
                       href={node.uri}
@@ -123,7 +139,7 @@ export default function Footer({ menu, sites, posts }) {
                 Senaste recensionerna
               </span>
               <ul role="list" className="mt-6 space-y-4">
-                {posts?.edges.map(({ node }) => (
+                {posts?.edges.map(({ node }: { node: Post }) => (
                   <li key={`post-${node.title}`}>
                     <Link
                       href={node.uri}
@@ -169,7 +185,7 @@ export default function Footer({ menu, sites, posts }) {
                   src="/trustpilot.svg"
                   width={110}
                   height={50}
-                  alt="Trustpilot"
+                  alt="Casinogringos betyg på Trustpilot"
                 />
               </Link>
               <Link
@@ -181,7 +197,7 @@ export default function Footer({ menu, sites, posts }) {
               >
                 <Image
                   src="/co2neutral.svg"
-                  alt="CO2Neutral"
+                  alt="CO2Neutral certifikat för Casinogringos"
                   width="140"
                   height="70"
                 />
@@ -213,7 +229,7 @@ export default function Footer({ menu, sites, posts }) {
                 src="/stodlinjen.png"
                 width={150}
                 height={50}
-                alt="Stödlinjen"
+                alt="Stödlinjen.se"
               />
             </Link>
             <Image
@@ -257,5 +273,7 @@ export default function Footer({ menu, sites, posts }) {
         </div>
       </div>
     </footer>
-  )
-}
+  );
+};
+
+export default Footer;
