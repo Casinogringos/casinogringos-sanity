@@ -1,9 +1,11 @@
 import Image from 'next/image'
 
-import InternalLink from './InternalLink'
-export default function SlotComponent({ node }) {
+import Link from '@/src/components/atoms/Link'
+import { Slot } from '@/src/types'
+
+const SlotCard = ({ node }: { slot: Slot }) => {
   return (
-    <InternalLink prefetch={false} className="mb-6" href={node.uri}>
+    <Link prefetch={false} className="mb-6" href={node.uri}>
       <div className="relative mb-2 flex h-28 w-full overflow-hidden rounded-sm lg:h-40">
         <Image
           width={600}
@@ -17,6 +19,8 @@ export default function SlotComponent({ node }) {
       <div className="text-slate-500 text-xs font-medium">
         {node?.slotType?.speltillverkare?.edges[0].node.name}
       </div>
-    </InternalLink>
+    </Link>
   )
 }
+
+export default SlotCard

@@ -1,4 +1,4 @@
-export default function Loading({ color }) {
+const Loading = ({ color }: { color?: string }) => {
   const spinnerColor = color ? color : 'text-blue-400'
 
   return (
@@ -9,3 +9,5 @@ export default function Loading({ color }) {
     </div>
   )
 }
+
+export default Loading

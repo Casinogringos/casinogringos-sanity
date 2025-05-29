@@ -1,7 +1,7 @@
 'use client'
 
 import { slugify } from '../lib/helpers'
-import { ChevronDown } from './Icons'
+import { ChevronDown } from '../sin-bin/Icons'
 import { Book, BookOpen } from 'lucide-react'
 import { useState } from 'react'
 import Link from 'next/link'

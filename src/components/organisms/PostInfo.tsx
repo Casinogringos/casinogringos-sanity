@@ -1,33 +1,27 @@
-import { RatingCalculator, ratingKeys } from '@/components/RatingCalculator'
-import { Post } from '@/types/index'
+import { RatingCalculator, ratingKeys } from '@/src/sin-bin/RatingCalculator'
+import { Post } from '@/src/types'
 import { Mail, MessageCircle, Phone } from 'lucide-react'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import Link from 'next/link'
-import Container from './atoms/Container'
-import Heading from './atoms/Heading'
-import ProsAndCons from './ProsAndCons'
-import StarIcon from './icons/StarIcon'
-const ToggleBlock = dynamic(() => import('./blocks/ToggleBlock'))
-export default function PostInfo({
-  casino,
-  title,
-}: {
-  casino: Post
-  title: string
-}) {
+import Container from '../atoms/Container'
+import Heading from '../atoms/Heading'
+import ProsAndConsBlock from '../blocks/ProsAndConsBlock'
+import StarIcon from '../icons/StarIcon'
+const ToggleBlock = dynamic(() => import('@/src/components/blocks/ToggleBlock'))
+
+const PostInfo = ({ casino, title }: { casino: Post; title: string }) => {
   const { finalRating, validRatings, ratings } = RatingCalculator({
     item: casino,
   })
-
   const prosAndCons = {
     __typename: 'FlamingoProsAndCons',
     attributes: {
       pros: JSON.stringify(
-        casino.postType.fordelar?.map((item) => item.fordel) ?? []
+        casino.postType.fordelar?.map((fordel: string) => fordel) ?? []
       ),
       cons: JSON.stringify(
-        casino.postType.nackdelar?.map((item) => item.nackdel) ?? []
+        casino.postType.nackdelar?.map((nackdel: string) => nackdel) ?? []
       ),
       author: casino.author.node.name,
       product: casino.title,
@@ -49,7 +43,7 @@ export default function PostInfo({
       positiveNotes: {
         '@type': 'ItemList',
         itemListElement: JSON.parse(prosAndCons.attributes.pros).map(
-          (item, index) => ({
+          (item: string, index: number) => ({
             '@type': 'ListItem',
             position: index + 1,
             name: item,
@@ -59,7 +53,7 @@ export default function PostInfo({
       negativeNotes: {
         '@type': 'ItemList',
         itemListElement: JSON.parse(prosAndCons.attributes.cons).map(
-          (item, index) => ({
+          (item: string, index: number) => ({
             '@type': 'ListItem',
             position: index + 1,
             name: item,
@@ -124,7 +118,7 @@ export default function PostInfo({
             <div className="z-1 relative grid grid-cols-1 gap-x-8 gap-y-3 px-8 md:grid-cols-2 md:px-0">
               {ratingKeys.map(
                 ({ key, label, imgSrc }) =>
-                  ratings[key] > 0 && (
+                  ratings[key as keyof typeof ratings] > 0 && (
                     <div key={key}>
                       <span className="lg:text-md text-slate-600 mb-2 flex items-center gap-3 text-sm font-normal">
                         <Image
@@ -136,14 +130,17 @@ export default function PostInfo({
                         {label}
                         <p className="mb-0 ml-auto font-normal text-slate500">
                           <strong className="text-lg text-black">
-                            {ratings[key]}
+                            {ratings[key as keyof typeof ratings]}
                           </strong>
                           /5
                         </p>
                       </span>
                       <div className="flex h-2 overflow-hidden rounded-md bg-slate300 text-xs">
                         <div
-                          style={{ width: ratings[key] * 20 + '%' }}
+                          style={{
+                            width:
+                              ratings[key as keyof typeof ratings] * 20 + '%',
+                          }}
                           className="flex flex-col justify-center whitespace-nowrap bg-green500 text-center text-white shadow-none"
                         ></div>
                       </div>
@@ -214,7 +211,7 @@ export default function PostInfo({
             <span className="block">{casino.postType.minInsattningValue}</span>
           </div>
         </div>
-        <ProsAndCons block={prosAndCons} />
+        <ProsAndConsBlock block={prosAndCons} />
         {casino.postType.paymentprovidersNew && (
           <>
             <h2 className="mb-4 mt-6 text-xl">Betalningsmetoder</h2>
@@ -372,3 +369,5 @@ export default function PostInfo({
     </div>
   )
 }
+
+export default PostInfo

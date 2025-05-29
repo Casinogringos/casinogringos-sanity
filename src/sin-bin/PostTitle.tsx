@@ -1,4 +1,4 @@
-export default function PostTitle({ children }) {
+const PostTitle = ({ children }: { children: string }) => {
   return (
     <h1
       className="text-2xl lg:text-4xl font-bold leading-tight md:leading-none mb-4 md:text-left"
@@ -6,3 +6,5 @@ export default function PostTitle({ children }) {
     />
   )
 }
+
+export default PostTitle

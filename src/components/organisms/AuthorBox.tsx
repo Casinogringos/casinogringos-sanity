@@ -1,9 +1,9 @@
-import Date from "@/components/Date";
-import { Calendar, Linkedin, Mail } from "lucide-react";
-import Image from "next/image";
-import Link from "next/link";
-import CheckBadgeIcon from "../icons/CheckBadgeIcon";
-import InternalLink from "../InternalLink";
+import Date from '@/components/Date'
+import { Calendar, Linkedin, Mail } from 'lucide-react'
+import Image from 'next/image'
+import Link from 'next/link'
+import CheckBadgeIcon from '../icons/CheckBadgeIcon'
+import InternalLink from '../../sin-bin/InternalLink'
 export default function AuthorBox({ author, modified, reviewedBy }) {
   return (
     <div className="mx-auto mb-12 max-w-3xl rounded-md border border-blue100 bg-blue50 p-6">
@@ -23,7 +23,7 @@ export default function AuthorBox({ author, modified, reviewedBy }) {
             href={author?.node?.uri}
             className="font-semibold"
           >
-            {author?.node?.name}{" "}
+            {author?.node?.name}{' '}
             <CheckBadgeIcon className="-mt-1 inline-block h-5 w-5 text-blue500" />
           </InternalLink>
         </div>
@@ -74,13 +74,13 @@ export default function AuthorBox({ author, modified, reviewedBy }) {
       )}
       <div className="mt-5 flex flex-col lg:flex-row">
         <p className="flex items-center gap-2 text-xs text-slate700">
-          <Calendar className="h-3 w-3" /> Uppdaterad:{" "}
+          <Calendar className="h-3 w-3" /> Uppdaterad:{' '}
           <Date dateString={modified} />
         </p>
         {reviewedBy && (
           <div className="mt-2 flex gap-3 text-xs text-slate700 lg:ml-auto lg:mt-0">
             <p className="text-xs">
-              Faktakontrollerad av:{" "}
+              Faktakontrollerad av:{' '}
               <InternalLink
                 className="text-xs font-medium"
                 prefetch={false}
@@ -94,5 +94,5 @@ export default function AuthorBox({ author, modified, reviewedBy }) {
         )}
       </div>
     </div>
-  );
+  )
 }

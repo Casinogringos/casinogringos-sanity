@@ -1,8 +1,8 @@
-import Star from "@/components/icons/Star";
-import StarHalf from "@/components/icons/StarHalf";
-import CoverImage from "../../sin-bin/CoverImage";
-import dynamic from "next/dynamic";
-const AffiliateButton = dynamic(() => import("../../sin-bin/AffiliateButton"));
+import Star from '@/components/icons/Star'
+import StarHalf from '@/components/icons/StarHalf'
+import CoverImage from '../../sin-bin/CoverImage'
+import dynamic from 'next/dynamic'
+const AffiliateButton = dynamic(() => import('../../sin-bin/AffiliateButton'))
 
 export default function CasinoHero({
   title,
@@ -59,7 +59,7 @@ export default function CasinoHero({
               <AffiliateButton
                 affiliateLink={affiliateLink}
                 title={title}
-                place="CasinoRow recension"
+                place="CasinoCard recension"
               >
                 Till {title}
               </AffiliateButton>
@@ -89,5 +89,5 @@ export default function CasinoHero({
         )}
       </div>
     </div>
-  );
+  )
 }

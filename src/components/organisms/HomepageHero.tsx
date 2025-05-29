@@ -1,7 +1,7 @@
 import { ArrowRight, Gift, Star, Vibrate, Zap } from 'lucide-react'
 import Image from 'next/image'
 import Container from '@/src/components/atoms/Container'
-import InternalLink from '@/src/components/InternalLink'
+import InternalLink from '@/src/sin-bin/InternalLink'
 
 const HomepageHero = ({
   title,

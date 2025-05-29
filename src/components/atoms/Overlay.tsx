@@ -2,7 +2,13 @@
 
 import { useEffect, useState } from 'react'
 
-const Overlay = ({ closing, close }) => {
+const Overlay = ({
+  closing,
+  close,
+}: {
+  closing: boolean
+  close: () => void
+}) => {
   const [init, setInit] = useState(false)
   useEffect(() => {
     setInit(true)

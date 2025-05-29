@@ -15,8 +15,8 @@ import Columns from '../molecules/Columns'
 import Group from '../atoms/Group'
 import VideoWrapper from '../VideoWrapper'
 const Heading = dynamic(() => import('../atoms/Heading'))
-const RawHTML = dynamic(() => import('../RawHTML'))
-const Paragraph = dynamic(() => import('../Paragraph'))
+const RawHTML = dynamic(() => import('../atoms/RawHTML'))
+const Paragraph = dynamic(() => import('../atoms/Paragraph'))
 const YoastHowToBlock = dynamic(() => import('./YoastHowToBlock'))
 const Toggle = dynamic(() => import('../Toggle'))
 const Faq = dynamic(() => import('../Faq'))

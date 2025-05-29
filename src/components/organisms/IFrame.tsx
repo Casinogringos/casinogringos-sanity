@@ -2,7 +2,8 @@
 
 import { ChevronLeft, Maximize, X } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
-import InternalLink from './InternalLink'
+import InternalLink from '../../sin-bin/InternalLink'
+
 const IFrame = ({ url }: { url: string }) => {
   const iFrameRef = useRef<null | HTMLIFrameElement>(null)
   const [isFullScreen, setIsFullScreen] = useState(false)

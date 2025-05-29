@@ -1,8 +1,8 @@
-import InternalLink from "../components/InternalLink";
+import InternalLink from './InternalLink'
 export default function Drop({ item, toggle, dropdown, id, index }) {
-  const menuItems = item?.childItems?.nodes ? item?.childItems?.nodes : [];
+  const menuItems = item?.childItems?.nodes ? item?.childItems?.nodes : []
 
-  const transClass = dropdown && index === id ? "flex" : "hidden";
+  const transClass = dropdown && index === id ? 'flex' : 'hidden'
 
   return (
     <>
@@ -16,7 +16,7 @@ export default function Drop({ item, toggle, dropdown, id, index }) {
               prefetch={false}
               key={`menu-item-${item.uri}`}
               className="hover:text-zinc-500 px-4 py-1 hover:bg-zinc300"
-              href={item?.uri || ""}
+              href={item?.uri || ''}
               onClick={toggle}
             >
               {item.label}
@@ -25,5 +25,5 @@ export default function Drop({ item, toggle, dropdown, id, index }) {
         </ul>
       </div>
     </>
-  );
+  )
 }

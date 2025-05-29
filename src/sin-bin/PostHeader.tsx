@@ -1,6 +1,6 @@
-const Avatar = dynamic(() => import("./organisms/Avatar"));
-import PostTitle from "./PostTitle";
-import dynamic from "next/dynamic";
+const Avatar = dynamic(() => import('../components/organisms/Avatar'))
+import PostTitle from './PostTitle'
+import dynamic from 'next/dynamic'
 
 export default function PostHeader({
   title,
@@ -20,5 +20,5 @@ export default function PostHeader({
         date={null}
       />
     </>
-  );
+  )
 }

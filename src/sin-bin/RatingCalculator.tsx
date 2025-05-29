@@ -22,7 +22,7 @@ export const ratingKeys = [
   { key: 'supportRating', label: 'Kundtjänst', imgSrc: '/support.webp' },
 ]
 
-export function RatingCalculator({ item }) {
+const RatingCalculator = ({ item }) => {
   const ratings = {}
 
   const validRatings = ratingKeys.reduce<number[]>((acc, { key }) => {

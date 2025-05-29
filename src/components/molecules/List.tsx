@@ -1,5 +1,5 @@
 import dynamic from 'next/dynamic'
-const Paragraph = dynamic(() => import('@/components/Paragraph'))
+const Paragraph = dynamic(() => import('@/src/components/atoms/Paragraph'))
 
 const List = ({
   type,

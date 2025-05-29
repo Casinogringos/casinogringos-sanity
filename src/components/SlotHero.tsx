@@ -6,7 +6,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useState } from 'react'
 
-const IFrame = dynamic(() => import('./IFrame'))
+const IFrame = dynamic(() => import('./organisms/IFrame'))
 
 export default function SlotHero({ props }) {
   const [show, setShow] = useState(false)

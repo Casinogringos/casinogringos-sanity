@@ -1,7 +1,7 @@
-import { MediaItem } from '@/types/index'
+import { MediaItem } from '@/src/types'
 import Image from 'next/image'
 
-export default function ImageComponent({
+const ImageWrapper = ({
   image,
   width,
   className,
@@ -16,7 +16,7 @@ export default function ImageComponent({
   priority?: boolean
   altText?: string
   quality?: number
-}) {
+}) => {
   const aspectRatio = image?.mediaDetails?.width / image?.mediaDetails?.height
   const height = width / aspectRatio
   const customClass = className ? className : undefined
@@ -34,3 +34,5 @@ export default function ImageComponent({
     />
   )
 }
+
+export default ImageWrapper

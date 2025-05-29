@@ -1,24 +1,24 @@
-import he from "he";
-import { ChevronRight } from "lucide-react";
-import { extractSlugFromUrl } from "../../lib/helpers";
-import Container from "../atoms/Container";
-import InternalLink from "../InternalLink";
+import he from 'he'
+import { ChevronRight } from 'lucide-react'
+import { extractSlugFromUrl } from '../../lib/helpers'
+import Container from '../atoms/Container'
+import InternalLink from '../../sin-bin/InternalLink'
 export default function BreadCrumbs({
   items,
   index,
 }: {
-  items: { text?: string | undefined; url?: string | undefined }[];
-  index?: { text: string; url: string };
+  items: { text?: string | undefined; url?: string | undefined }[]
+  index?: { text: string; url: string }
 }) {
   const breadcrumbs = items
-    .filter((item) => item.text && item.text !== "Hem")
+    .filter((item) => item.text && item.text !== 'Hem')
     .map((item) => {
       return {
         text: he.decode(item.text),
         url: item.url ?? null,
-      };
-    });
-  if (index) breadcrumbs.unshift(index);
+      }
+    })
+  if (index) breadcrumbs.unshift(index)
   return (
     <div className="overflow-x-auto border-b border-b-gray200 bg-white py-2">
       <Container>
@@ -83,5 +83,5 @@ export default function BreadCrumbs({
         </nav>
       </Container>
     </div>
-  );
+  )
 }

@@ -1,7 +1,7 @@
-"use client";
+'use client'
 
-import Date from "@/components/Date";
-import { ArrowRightIcon, Linkedin, Mail } from "lucide-react";
+import Date from '@/components/Date'
+import { ArrowRightIcon, Linkedin, Mail } from 'lucide-react'
 import {
   FacebookIcon,
   FacebookShareButton,
@@ -9,11 +9,11 @@ import {
   TwitterShareButton,
   WhatsappIcon,
   WhatsappShareButton,
-} from "next-share";
-import Image from "next/image";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import InternalLink from "../InternalLink";
+} from 'next-share'
+import Image from 'next/image'
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+import InternalLink from '../../sin-bin/InternalLink'
 
 export default function Avatar({
   author,
@@ -22,13 +22,12 @@ export default function Avatar({
   shareTitle,
   date,
 }) {
-  const isAuthorHaveFullName =
-    author?.node?.firstName && author?.node?.lastName;
+  const isAuthorHaveFullName = author?.node?.firstName && author?.node?.lastName
   const name = isAuthorHaveFullName
     ? `${author.node.firstName} ${author.node.lastName}`
-    : author.node.name || null;
+    : author.node.name || null
 
-  const url = `${process.env.SITE_URL}${usePathname()}`;
+  const url = `${process.env.SITE_URL}${usePathname()}`
 
   return (
     <>
@@ -56,7 +55,7 @@ export default function Avatar({
                 {name}
               </InternalLink>
               <div className="tooltip text-gray-100 left-1/2 mx-auto hidden min-w-96 -translate-x-1/2 rounded-md border border-slate200 bg-gray50 p-5 text-sm opacity-100 shadow-sm transition-opacity md:block">
-                {" "}
+                {' '}
                 <div className="flex gap-4">
                   <div className="relative mt-0.5 h-12 w-12 flex-shrink-0 rounded-full">
                     <Image
@@ -68,7 +67,7 @@ export default function Avatar({
                     />
                   </div>
                   <div>
-                    <strong className="text-base font-medium">{name}</strong>{" "}
+                    <strong className="text-base font-medium">{name}</strong>{' '}
                     <div className="text-xs font-medium text-slate700">
                       {author?.node?.userType.role}
                     </div>
@@ -106,7 +105,7 @@ export default function Avatar({
                   prefetch={false}
                   className="mt-4 flex items-center gap-3 text-base font-medium underline decoration-dashed"
                 >
-                  Läs alla artiklar av {author?.node.name}{" "}
+                  Läs alla artiklar av {author?.node.name}{' '}
                   <ArrowRightIcon className="h-5 w-5" />
                 </InternalLink>
               </div>
@@ -141,7 +140,7 @@ export default function Avatar({
           </div>
         )}
         <div className="mt-4 hidden text-xs md:mt-0 md:block">
-          <span>{modified ? "Uppdaterad den" : "Publicerad den"}</span>
+          <span>{modified ? 'Uppdaterad den' : 'Publicerad den'}</span>
           <div className="text-[14px]">
             <time dateTime={modified ? modified : date}>
               <Date dateString={modified ? modified : date} />
@@ -180,5 +179,5 @@ export default function Avatar({
         </div>
       </div>
     </>
-  );
+  )
 }

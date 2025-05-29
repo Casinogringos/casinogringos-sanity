@@ -1,8 +1,8 @@
-"use client";
+'use client'
 
-import { AffiliateLink as AffiliateLinkType } from "@/types/index";
-import { usePlausible } from "next-plausible";
-import InternalLink from "../components/InternalLink";
+import { AffiliateLink as AffiliateLinkType } from '@/types/index'
+import { usePlausible } from 'next-plausible'
+import InternalLink from './InternalLink'
 const AffiliateLink = ({
   affLink,
   text,
@@ -10,13 +10,13 @@ const AffiliateLink = ({
   place,
   className,
 }: {
-  affLink: AffiliateLinkType;
-  text: string;
-  title?: string;
-  place?: string;
-  className?: string;
+  affLink: AffiliateLinkType
+  text: string
+  title?: string
+  place?: string
+  className?: string
 }) => {
-  const plausible = usePlausible();
+  const plausible = usePlausible()
 
   return (
     <InternalLink
@@ -25,7 +25,7 @@ const AffiliateLink = ({
       rel="nofollow noreferrer noopener"
       prefetch={false}
       onClick={() =>
-        plausible("AffiliateClick", {
+        plausible('AffiliateClick', {
           props: {
             buttonId: title,
             place: place,
@@ -36,7 +36,7 @@ const AffiliateLink = ({
     >
       {text}
     </InternalLink>
-  );
-};
+  )
+}
 
-export default AffiliateLink;
+export default AffiliateLink

@@ -1,6 +1,6 @@
-// import PostPreview from './post-preview'
+import { Post } from '@/src/types'
 
-export default function MoreStories() {
+const MoreStories = ({ posts }: { posts: Post[] }) => {
   return (
     <section>
       <h2 className="mb-8 text-3xl font-bold tracking-tighter leading-tight">
@@ -22,3 +22,5 @@ export default function MoreStories() {
     </section>
   )
 }
+
+export default MoreStories

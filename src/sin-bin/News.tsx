@@ -1,5 +1,5 @@
 import Date from '@/components/Date'
-import ImageComponent from './ImageComponent'
+import ImageWrapper from '../components/atoms/ImageWrapper'
 import InternalLink from './InternalLink'
 
 export default function News({ posts }) {
@@ -26,7 +26,7 @@ export default function News({ posts }) {
               }
             >
               <div className="relative flex h-36 w-full items-center overflow-hidden rounded-t-md">
-                <ImageComponent
+                <ImageWrapper
                   image={post?.node?.featuredImage?.node}
                   width={400}
                   className={'min-h-full min-w-full object-cover'}

@@ -1,9 +1,9 @@
-import { FlamingoProsAndConsBlock } from '@/types'
+import { FlamingoProsAndConsBlock } from '@/src/types'
 import { Check, MinusCircleIcon } from 'lucide-react'
 import dynamic from 'next/dynamic'
-const Heading = dynamic(() => import('@/components/Heading'))
+const Heading = dynamic(() => import('@/src/components/atoms/Heading'))
 
-const ProsAndCons = ({
+const ProsAndConsBlock = ({
   block,
   className,
 }: {
@@ -62,4 +62,4 @@ const ProsAndCons = ({
   )
 }
 
-export default ProsAndCons
+export default ProsAndConsBlock

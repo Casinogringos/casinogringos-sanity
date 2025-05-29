@@ -1,40 +1,40 @@
-"use client";
+'use client'
 
-import { Post } from "@/types/index";
-import { AlertCircle } from "lucide-react";
+import { Post } from '@/types/index'
+import { AlertCircle } from 'lucide-react'
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { useState } from "react";
-import CasinoRow from "./CasinoRow";
-import Container from "../atoms/Container";
-import CheckBadgeIcon from "../icons/CheckBadgeIcon";
-import ToggleBlock from "../blocks/ToggleBlock";
+import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+import { useState } from 'react'
+import CasinoCard from './CasinoCard'
+import Container from '../atoms/Container'
+import CheckBadgeIcon from '../icons/CheckBadgeIcon'
+import ToggleBlock from '../blocks/ToggleBlock'
 
 export default function CasinoList({
   casinos,
   title,
   casinoHelper = false,
 }: {
-  casinos: { node: Post }[];
-  title: string;
-  casinoHelper?: boolean;
-  showHeroAlert?: boolean;
+  casinos: { node: Post }[]
+  title: string
+  casinoHelper?: boolean
+  showHeroAlert?: boolean
 }) {
-  const year = new Date().getFullYear();
+  const year = new Date().getFullYear()
 
-  const [items, setItems] = useState(12);
-  const [hideAdInformation, setHideAdInformation] = useState(true);
+  const [items, setItems] = useState(12)
+  const [hideAdInformation, setHideAdInformation] = useState(true)
 
   const showMoreCasinos = () => {
-    setItems(casinos.length);
-  };
-  const showAdInformation = () => setHideAdInformation(!hideAdInformation);
-  const pathname = usePathname();
+    setItems(casinos.length)
+  }
+  const showAdInformation = () => setHideAdInformation(!hideAdInformation)
+  const pathname = usePathname()
 
   return (
     <>
-      <div className={`${!casinoHelper ? "bg-slate100" : ""} pb-12`}>
+      <div className={`${!casinoHelper ? 'bg-slate100' : ''} pb-12`}>
         <Container disabled={casinoHelper}>
           {!casinoHelper && (
             <button
@@ -47,7 +47,7 @@ export default function CasinoList({
           )}
           {!casinoHelper && (
             <>
-              <div className={hideAdInformation ? "hidden" : "block py-4"}>
+              <div className={hideAdInformation ? 'hidden' : 'block py-4'}>
                 <p className="rounded-md bg-white px-3 py-2 text-xs italic text-gray700">
                   Casinogringos.se är en jämförelsetjänst för online casinon och
                   sidan innehåller reklamlänkar. När du klickar dig vidare till
@@ -59,14 +59,14 @@ export default function CasinoList({
                   jämförelser.
                 </p>
               </div>
-              <ToggleBlock className="mt-3" title={"Varför oss?"}>
+              <ToggleBlock className="mt-3" title={'Varför oss?'}>
                 Allt vårt innehåll genomgår en noggrann och detaljerad process
                 för att säkerställa att all information vi publicerar stämmer
                 och är tillförlitlig. Varje artikel, guide och recension
-                granskas av våra{" "}
+                granskas av våra{' '}
                 <Link prefetch={false} href="/om-oss" className="text-blue500">
                   casinoexperter
-                </Link>{" "}
+                </Link>{' '}
                 med lång erfarenhet. Vi arbetar opartiskt och utan påverkan från
                 externa parter, vilket gör att vi kan erbjuda objektiva
                 bedömningar och rekommendationer som våra läsare kan lita på. Vi
@@ -89,7 +89,7 @@ export default function CasinoList({
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
             {casinos.slice(0, items).map((casino, i) => (
               <div key={`casino-${casino.node.id}--default`}>
-                <CasinoRow
+                <CasinoCard
                   pathname={pathname}
                   count={i + 1}
                   item={casino.node}
@@ -109,5 +109,5 @@ export default function CasinoList({
         </Container>
       </div>
     </>
-  );
+  )
 }

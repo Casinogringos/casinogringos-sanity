@@ -5,18 +5,18 @@ import {
   FileText,
   MessageCircle,
   X,
-} from "lucide-react";
-import ImageComponent from "../ImageComponent";
+} from 'lucide-react'
+import ImageWrapper from '../atoms/ImageWrapper'
 
-import { usePlausible } from "next-plausible";
-import Image from "next/image";
+import { usePlausible } from 'next-plausible'
+import Image from 'next/image'
 
-import InternalLink from "../InternalLink";
+import InternalLink from '../../sin-bin/InternalLink'
 const CasinoReadMore = ({ item, close }) => {
-  const plausible = usePlausible();
+  const plausible = usePlausible()
 
   return (
-    <div className={"flex h-full flex-col p-5"}>
+    <div className={'flex h-full flex-col p-5'}>
       <div className="relative flex items-center gap-6 border-b border-b-gray300 pb-5">
         <button
           onClick={() => close()}
@@ -26,7 +26,7 @@ const CasinoReadMore = ({ item, close }) => {
           <X className="h-6 w-6" aria-hidden="true" />
         </button>
         <div className="flex w-12 items-center overflow-hidden rounded-md lg:w-16">
-          <ImageComponent
+          <ImageWrapper
             image={item.featuredImage?.node}
             width={80}
             className={undefined}
@@ -150,7 +150,7 @@ const CasinoReadMore = ({ item, close }) => {
                   <h4 className="text-gray-900 mb-3 font-semibold">
                     Betalningsmetoder
                   </h4>
-                  <div className={"mb-2 flex flex-wrap items-center gap-x-1"}>
+                  <div className={'mb-2 flex flex-wrap items-center gap-x-1'}>
                     {item?.postType.paymentproviders.map(
                       (paymentProvider, i) => (
                         <Image
@@ -160,10 +160,10 @@ const CasinoReadMore = ({ item, close }) => {
                           height="30"
                           key={`${i}-paymentprovider`}
                           className={
-                            "rounded-md mr-1 border border-gray300 mb-1"
+                            'rounded-md mr-1 border border-gray300 mb-1'
                           }
                         />
-                      ),
+                      )
                     )}
                   </div>
                 </>
@@ -217,7 +217,7 @@ const CasinoReadMore = ({ item, close }) => {
                       <p className="font-semibold">
                         {item?.postType?.wagerinFreespins
                           ? item.postType.wageringFreespins
-                          : "0x"}
+                          : '0x'}
                       </p>
                     </div>
                   )}
@@ -282,10 +282,10 @@ const CasinoReadMore = ({ item, close }) => {
             href={`/go/${item?.postType.affiliateLink.node.slug}`}
             target="_blank"
             onClick={() =>
-              plausible("AffiliateClick", {
+              plausible('AffiliateClick', {
                 props: {
                   buttonId: item.slug,
-                  place: "CasinoReadMore",
+                  place: 'CasinoReadMore',
                 },
               })
             }
@@ -299,14 +299,14 @@ const CasinoReadMore = ({ item, close }) => {
           href={item.slug}
           // title={'Läs vår recension om ' + item.title}
           className={
-            "mt-3 inline-flex w-full justify-center rounded-md bg-white hover:bg-gray100 px-3 py-4 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray300 hover:bg-gray-50 sm:col-start-1 sm:mt-0"
+            'mt-3 inline-flex w-full justify-center rounded-md bg-white hover:bg-gray100 px-3 py-4 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray300 hover:bg-gray-50 sm:col-start-1 sm:mt-0'
           }
         >
           Läs recension
         </InternalLink>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default CasinoReadMore;
+export default CasinoReadMore

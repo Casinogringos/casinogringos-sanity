@@ -17,7 +17,7 @@ const HeroAlert = () => {
         })
       }
       target="_blank"
-      aria-label="Besök CasinoRow Epic"
+      aria-label="Besök CasinoCard Epic"
       href="/go/casino-epic"
       rel="noopener noreferrer nofollow"
       prefetch={false}
@@ -29,11 +29,11 @@ const HeroAlert = () => {
         width="35"
         height="35"
         className="rounded-full"
-        alt="CasinoRow Epic"
+        alt="CasinoCard Epic"
         src="https://content.casinogringos.se/wp-content/uploads/2025/03/Casinoepic-logga.webp"
       />
       <span className="mr-2 flex-auto text-left text-sm font-medium leading-5 md:font-semibold">
-        Få 200 free spins hos nylanserade CasinoRow Epic
+        Få 200 free spins hos nylanserade CasinoCard Epic
       </span>
       <svg
         className="h-5 w-5 flex-shrink-0 fill-white opacity-75"

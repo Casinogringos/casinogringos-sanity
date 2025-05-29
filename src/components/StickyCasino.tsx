@@ -1,38 +1,38 @@
-"use client";
+'use client'
 
-import { useState, useEffect } from "react";
-import ImageComponent from "./ImageComponent";
-import dynamic from "next/dynamic";
-const AffiliateLink = dynamic(() => import("../sin-bin/AffiliateLink"));
+import { useState, useEffect } from 'react'
+import ImageWrapper from './atoms/ImageWrapper'
+import dynamic from 'next/dynamic'
+const AffiliateLink = dynamic(() => import('../sin-bin/AffiliateLink'))
 
 function classNames(...classes) {
-  return classes.filter(Boolean).join(" ");
+  return classes.filter(Boolean).join(' ')
 }
 
 const StickyCasino = ({ item }) => {
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(false)
 
   useEffect(() => {
-    window.addEventListener("scroll", () => {
+    window.addEventListener('scroll', () => {
       if (window.scrollY > 300) {
-        setIsVisible(true);
+        setIsVisible(true)
       } else {
-        setIsVisible(false);
+        setIsVisible(false)
       }
-    });
-  }, []);
+    })
+  }, [])
 
   return (
     <div
       className={classNames(
-        isVisible ? "bottom-0 right-0 z-20" : "translate-y-96",
-        "bg-slate100 border-t border-t-slate200 p-3 lg:px-8 transition fixed w-full shadow-sm",
+        isVisible ? 'bottom-0 right-0 z-20' : 'translate-y-96',
+        'bg-slate100 border-t border-t-slate200 p-3 lg:px-8 transition fixed w-full shadow-sm'
       )}
     >
       <div className="max-w-4xl mx-auto lg:px-16 flex flex-col lg:flex-row gap-y-2 lg:gap-x-0 w-full items-center lg:justify-left justify-center">
         <div className="flex w-full items-center gap-x-4 lg:gap-x-6">
           <div className="flex h-12 w-20 items-center rounded-sm overflow-hidden">
-            <ImageComponent
+            <ImageWrapper
               image={item?.featuredImage?.node}
               width={100}
               className="object-cover w-full h-full"
@@ -59,7 +59,7 @@ const StickyCasino = ({ item }) => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default StickyCasino;
+export default StickyCasino
