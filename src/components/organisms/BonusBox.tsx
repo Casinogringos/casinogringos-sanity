@@ -5,7 +5,7 @@ import Image from 'next/image'
 const Paragraph = dynamic(() => import('@/components/Paragraph'))
 const AffiliateButton = dynamic(() => import('@/components/AffiliateButton'))
 
-const BonusBlock = ({
+const BonusBox = ({
   block,
   className,
 }: {
@@ -43,7 +43,7 @@ const BonusBlock = ({
       />
       <AffiliateButton
         affiliateLink={`go/${block.casino.trackerSlug}`}
-        place="Bonus block"
+        place="BonusBox block"
         title={block.buttonText}
         flex={false}
         className={'w-full'}
@@ -60,4 +60,4 @@ const BonusBlock = ({
   )
 }
 
-export default BonusBlock
+export default BonusBox

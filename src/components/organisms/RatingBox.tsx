@@ -5,7 +5,7 @@ import HalfStarIcon from '@/src/components/icons/HalfStarIcon'
 const Heading = dynamic(() => import('@/src/components/atoms/Heading'))
 const Paragraph = dynamic(() => import('@/src/components/atoms/Paragraph'))
 
-const RatingBlock = ({
+const RatingBox = ({
   block,
   className,
 }: {
@@ -54,4 +54,4 @@ const RatingBlock = ({
   )
 }
 
-export default RatingBlock
+export default RatingBox

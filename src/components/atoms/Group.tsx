@@ -1,10 +1,10 @@
-import BlocksMap from '../blocks/BlocksMap'
+import Content from '../organisms/Content'
 import { CoreGroupBlock } from '@/src/types/coreGroupBlock'
 
 const Group = ({ group }: { group: CoreGroupBlock }) => {
   return (
     <div className={`${group.attributes?.className} mb-4`}>
-      <BlocksMap blocks={group.innerBlocks} />
+      <Content blocks={group.innerBlocks} />
     </div>
   )
 }

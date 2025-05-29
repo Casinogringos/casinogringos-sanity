@@ -1,10 +1,10 @@
 'use client'
 
 import { ChevronDown } from '@/components/Icons'
-import { CircleHelp} from "lucide-react";
+import { CircleHelp } from 'lucide-react'
 import { useState } from 'react'
 
-const ToggleBlock = ({ children, className = '', title = '' }) => {
+const ToggleBox = ({ children, className = '', title = '' }) => {
   const [open, setOpen] = useState(false)
 
   return (
@@ -38,4 +38,4 @@ const ToggleBlock = ({ children, className = '', title = '' }) => {
   )
 }
 
-export default ToggleBlock
+export default ToggleBox

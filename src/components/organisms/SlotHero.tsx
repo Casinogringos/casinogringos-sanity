@@ -5,12 +5,11 @@ import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useState } from 'react'
+import { Slot } from '@/src/types/slot'
+const IFrame = dynamic(() => import('@/src/components/organisms/IFrame'))
 
-const IFrame = dynamic(() => import('./organisms/IFrame'))
-
-export default function SlotHero({ props }) {
+const SlotHero = ({ slot }: { slot: Slot }) => {
   const [show, setShow] = useState(false)
-
   const toggleGame = () => {
     setShow(!show)
   }
@@ -21,9 +20,9 @@ export default function SlotHero({ props }) {
         <Image
           priority={true}
           quality={1}
-          src={props.featuredImage?.node.sourceUrl}
+          src={slot.featuredImage?.node.sourceUrl}
           className="h-full w-full object-cover"
-          alt={props.featuredImage?.node.altText}
+          alt={slot.featuredImage?.node.altText}
           width={250}
           height={250}
         />
@@ -33,15 +32,15 @@ export default function SlotHero({ props }) {
           {!show && (
             <div className="flex h-72 w-full flex-col items-center justify-center lg:h-100">
               <span className="mb-2 text-2xl font-bold tracking-tight text-white lg:text-3xl">
-                {props.title}
+                {slot.title}
               </span>
               {props?.slotType?.speltillverkare && (
                 <p className="text-sm text-slate100">
-                  {props.slotType.speltillverkare.name}
+                  {slot.slotType.speltillverkare.name}
                 </p>
               )}
               <div className="mt-5 flex flex-col justify-center px-6 lg:mt-8 lg:flex-row lg:gap-4">
-                {props.slotType.demoUrl && (
+                {slot.slotType.demoUrl && (
                   <button
                     onClick={() => toggleGame()}
                     className="mb-4 flex items-center justify-center gap-2 rounded-sm bg-blue100 px-12 py-4 font-medium lg:mb-0"
@@ -49,7 +48,7 @@ export default function SlotHero({ props }) {
                     <PlayCircle className="h-6 w-6" /> Spela demo
                   </button>
                 )}
-                {props.slotType.casinos && (
+                {slot.slotType.casinos && (
                   <Link
                     href="#spela"
                     className="mb-4 flex items-center justify-center gap-2 rounded-sm bg-button px-8 py-4 font-medium text-white hover:bg-buttonHover lg:mb-0"
@@ -60,14 +59,14 @@ export default function SlotHero({ props }) {
               </div>
             </div>
           )}
-          {show && props.slotType.demoUrl && (
+          {show && slot.slotType.demoUrl && (
             <>
               <div className="mb-2">
                 <div className="flex items-center px-2 py-1">
                   <span className="lg:text-md py-1 text-sm text-gray200">
-                    Demo: {props.title}
+                    Demo: {slot.title}
                   </span>
-                  {props.slotType.casinos.length > 1 && (
+                  {slot.slotType.casinos.length > 1 && (
                     <Link
                       href="#spela"
                       className="hover:bg-gray-500 ml-auto flex items-center justify-center rounded-sm bg-button px-2 py-1.5 text-xs font-medium text-white"
@@ -77,7 +76,7 @@ export default function SlotHero({ props }) {
                   )}
                 </div>
               </div>
-              <IFrame url={props.slotType.demoUrl} />
+              <IFrame url={slot.slotType.demoUrl} />
             </>
           )}
         </section>
@@ -85,3 +84,5 @@ export default function SlotHero({ props }) {
     </div>
   )
 }
+
+export default SlotHero

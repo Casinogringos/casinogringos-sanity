@@ -3,7 +3,7 @@ import { Check, MinusCircleIcon } from 'lucide-react'
 import dynamic from 'next/dynamic'
 const Heading = dynamic(() => import('@/src/components/atoms/Heading'))
 
-const ProsAndConsBlock = ({
+const ProsAndCons = ({
   block,
   className,
 }: {
@@ -62,4 +62,4 @@ const ProsAndConsBlock = ({
   )
 }
 
-export default ProsAndConsBlock
+export default ProsAndCons

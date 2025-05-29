@@ -3,7 +3,7 @@ import dynamic from 'next/dynamic'
 import Image from 'next/image'
 const AffiliateButton = dynamic(() => import('../../sin-bin/AffiliateButton'))
 
-const CasinoBlock = ({ block }: { block: FlamingoCasinoBlock }) => {
+const CasinoBox = ({ block }: { block: FlamingoCasinoBlock }) => {
   const { casino, buttonText, offer, description } = block
   const brandDescription = description?.split('\n').join('<br>') ?? ''
   return (
@@ -45,4 +45,4 @@ const CasinoBlock = ({ block }: { block: FlamingoCasinoBlock }) => {
   )
 }
 
-export default CasinoBlock
+export default CasinoBox

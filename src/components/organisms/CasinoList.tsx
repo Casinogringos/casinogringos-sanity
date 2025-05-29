@@ -9,7 +9,7 @@ import { useState } from 'react'
 import CasinoCard from './CasinoCard'
 import Container from '../atoms/Container'
 import CheckBadgeIcon from '../icons/CheckBadgeIcon'
-import ToggleBlock from '../blocks/ToggleBlock'
+import ToggleBox from '../molecules/ToggleBox'
 
 export default function CasinoList({
   casinos,
@@ -59,7 +59,7 @@ export default function CasinoList({
                   jämförelser.
                 </p>
               </div>
-              <ToggleBlock className="mt-3" title={'Varför oss?'}>
+              <ToggleBox className="mt-3" title={'Varför oss?'}>
                 Allt vårt innehåll genomgår en noggrann och detaljerad process
                 för att säkerställa att all information vi publicerar stämmer
                 och är tillförlitlig. Varje artikel, guide och recension
@@ -72,7 +72,7 @@ export default function CasinoList({
                 bedömningar och rekommendationer som våra läsare kan lita på. Vi
                 strävar efter att hålla en hög standard för att ge den mest
                 transparenta och uppdaterade informationen inom området.
-              </ToggleBlock>
+              </ToggleBox>
               <div className="relative flex w-full flex-col-reverse lg:flex-row">
                 <div className="pr-8 lg:pr-0">
                   <h2 className="mb-0 mt-1 text-xl tracking-normal lg:text-2xl">

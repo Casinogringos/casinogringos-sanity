@@ -1,17 +1,19 @@
-const Heading = dynamic(() => import('@/components/Heading'))
-import List from '@/components/List'
+import Paragraph from '@/src/components/atoms/Paragraph'
+
+const Heading = dynamic(() => import('@/src/components/atoms/Heading'))
+import List from '@/src/components/molecules/List'
 import dynamic from 'next/dynamic'
 
 const Summary = ({
-  attributes,
+  title,
   content,
   className,
 }: {
-  attributes: { title: string }
-  content: string
+  title?: string
+  content: string | string[]
   className?: string
 }) => {
-  const { title } = attributes
+  const isList = Array.isArray(content)
 
   return (
     <div className={`${className} bg-slate100 p-4 rounded-md`}>
@@ -26,7 +28,11 @@ const Summary = ({
           }}
         />
       )}
-      <List type={'strings'} items={content.split('<br>')} />
+      {isList ? (
+        <List type={'strings'} items={content} />
+      ) : (
+        <Paragraph content={content} />
+      )}
     </div>
   )
 }

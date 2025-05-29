@@ -6,9 +6,11 @@ import Image from 'next/image'
 import Link from 'next/link'
 import Container from '../atoms/Container'
 import Heading from '../atoms/Heading'
-import ProsAndConsBlock from '../blocks/ProsAndConsBlock'
+import ProsAndCons from './ProsAndCons'
 import StarIcon from '../icons/StarIcon'
-const ToggleBlock = dynamic(() => import('@/src/components/blocks/ToggleBlock'))
+const ToggleBlock = dynamic(
+  () => import('@/src/components/molecules/ToggleBox')
+)
 
 const PostInfo = ({ casino, title }: { casino: Post; title: string }) => {
   const { finalRating, validRatings, ratings } = RatingCalculator({
@@ -211,7 +213,7 @@ const PostInfo = ({ casino, title }: { casino: Post; title: string }) => {
             <span className="block">{casino.postType.minInsattningValue}</span>
           </div>
         </div>
-        <ProsAndConsBlock block={prosAndCons} />
+        <ProsAndCons block={prosAndCons} />
         {casino.postType.paymentprovidersNew && (
           <>
             <h2 className="mb-4 mt-6 text-xl">Betalningsmetoder</h2>

@@ -9,16 +9,16 @@ import { Blocks as BlocksType } from '@/types'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import { Fragment } from 'react'
-import CasinoAffiliateButtonBlock from './CasinoAffiliateButtonBlock'
-import CasinoBlock from './CasinoBlock'
+import AffiliateButton from '../../sin-bin/AffiliateButton'
+import CasinoBox from './CasinoBox'
 import Columns from '../molecules/Columns'
 import Group from '../atoms/Group'
-import VideoWrapper from '../VideoWrapper'
+import VideoPlayerWrapper from '../atoms/VideoPlayerWrapper'
 const Heading = dynamic(() => import('../atoms/Heading'))
 const RawHTML = dynamic(() => import('../atoms/RawHTML'))
 const Paragraph = dynamic(() => import('../atoms/Paragraph'))
-const YoastHowToBlock = dynamic(() => import('./YoastHowToBlock'))
-const Toggle = dynamic(() => import('../Toggle'))
+const YoastHowToBlock = dynamic(() => import('../../sin-bin/YoastHowToBlock'))
+const Toggle = dynamic(() => import('./Toggle'))
 const Faq = dynamic(() => import('../Faq'))
 
 const parseJson = (json) => {
@@ -113,7 +113,7 @@ const renderBlock = (block, outerIndex, nested) => {
     }
     case 'FlamingoCasino': {
       const data = parseJson(block.renderedHtml)
-      return <CasinoBlock key={`casino-block-${block.clientId}`} block={data} />
+      return <CasinoBox key={`casino-block-${block.clientId}`} block={data} />
     }
     case 'FlamingoProsAndCons': {
       return <ProsAndCons className={'mb-3'} block={block} />
@@ -144,9 +144,9 @@ const renderBlock = (block, outerIndex, nested) => {
     case 'CoreGroup':
       return <Group group={block} />
     case 'BlockLabAffiliateButton':
-      return <CasinoAffiliateButtonBlock item={block} />
+      return <AffiliateButton item={block} />
     case 'FlamingoEmbed':
-      return <VideoWrapper attributes={block.attributes} />
+      return <VideoPlayerWrapper attributes={block.attributes} />
     case 'YoastHowToBlock':
       return <YoastHowToBlock attributes={block.attributes} />
     case 'CoreTable':
@@ -180,7 +180,7 @@ const renderBlock = (block, outerIndex, nested) => {
   }
 }
 
-const BlocksMap = ({
+const Content = ({
   blocks,
   className = '',
   nested,
@@ -212,4 +212,4 @@ const BlocksMap = ({
   )
 }
 
-export default BlocksMap
+export default Content

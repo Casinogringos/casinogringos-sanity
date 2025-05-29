@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-export default function TabComponent({ props }) {
+const TabComponent = ({ props }: { props: TabProps }) => {
   const [activeTab, setActiveTab] = useState(0)
 
   return (
@@ -108,3 +108,5 @@ export default function TabComponent({ props }) {
     </div>
   )
 }
+
+export default TabComponent

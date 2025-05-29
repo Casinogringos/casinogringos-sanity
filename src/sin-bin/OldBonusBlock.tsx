@@ -42,7 +42,7 @@ const BonusBlock = ({
       />
       <AffiliateButton
         affiliateLink={`${attributes.trackerUrl}`}
-        place="Bonus block"
+        place="BonusBox block"
         title={attributes.buttonText}
         flex={false}
         className={'w-full'}

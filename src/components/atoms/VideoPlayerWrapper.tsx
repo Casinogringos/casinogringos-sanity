@@ -1,8 +1,8 @@
-const VideoPlayer = dynamic(() => import('./VideoPlayer'))
-import { getYoutubeMetaData, getVimeoMetaData } from '../lib/api'
+const VideoPlayer = dynamic(() => import('../organisms/VideoPlayer'))
+import { getYoutubeMetaData, getVimeoMetaData } from '../../lib/api'
 import dynamic from 'next/dynamic'
 
-const VideoWrapper = async ({ attributes }) => {
+const VideoPlayerWrapper = async ({ attributes }) => {
   const { url, type, caption } = attributes
   let structuredData = {}
   if (type === 'youtube') {
@@ -51,4 +51,4 @@ const VideoWrapper = async ({ attributes }) => {
   )
 }
 
-export default VideoWrapper
+export default VideoPlayerWrapper

@@ -3,7 +3,7 @@ import dynamic from 'next/dynamic'
 import Image from 'next/image'
 const Paragraph = dynamic(() => import('@/src/components/atoms/Paragraph'))
 
-const HowToBlock = ({ block }: { block: FlamingoHowToBlock }) => {
+const HowTo = ({ block }: { block: FlamingoHowToBlock }) => {
   const {
     days,
     hours,
@@ -98,4 +98,4 @@ const HowToBlock = ({ block }: { block: FlamingoHowToBlock }) => {
   )
 }
 
-export default HowToBlock
+export default HowTo

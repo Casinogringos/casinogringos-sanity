@@ -4,10 +4,10 @@ import {
   CoreParagraphBlock,
   FlamingoHeadingBlock,
   FlamingoImageBlock,
-} from '@/types'
-import { ChevronDown } from '@/components/Icons'
+} from '@/src/types'
+import { ChevronDown } from 'lucide-react'
 import { useEffect, useState } from 'react'
-import Blocks from '@/components/Blocks'
+import Content from '@/src/components/organisms/Content'
 
 const Toggle = ({
   buttonTextOpen,
@@ -41,7 +41,7 @@ const Toggle = ({
             className={`bg-gradient-to-t from-white absolute inset-0 transition-opacity ease-in-out duration-300 ${isOpen ? 'opacity-0' : 'opacity-100'}`}
           />
         ) : null}
-        <Blocks blocks={innerBlocks} />
+        <Content blocks={innerBlocks} />
       </div>
       <button
         onClick={() => setIsOpen(!isOpen)}

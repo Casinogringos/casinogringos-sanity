@@ -3,7 +3,7 @@
 import ReactPlayer from 'react-player/lazy'
 import { useEffect, useState, memo } from 'react'
 
-const VideoPlayer = ({ url, caption }) => {
+const VideoPlayer = ({ url, caption }: { url: string; caption: string }) => {
   const [client, setClient] = useState(false)
   useEffect(() => {
     setClient(true)

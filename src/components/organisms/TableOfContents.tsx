@@ -1,13 +1,18 @@
 'use client'
 
-import { slugify } from '../lib/helpers'
-import { ChevronDown } from '../sin-bin/Icons'
+import { slugify } from '../../lib/helpers'
+import { ChevronDown } from '../../sin-bin/Icons'
 import { Book, BookOpen } from 'lucide-react'
 import { useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { FlamingoHeadingBlock } from '@/src/types/flamingoHeadingBlock'
 
-const TableOfContents = ({ headings }) => {
+const TableOfContents = ({
+  headings,
+}: {
+  headings: FlamingoHeadingBlock[]
+}) => {
   const [open, setOpen] = useState(false)
   const pathname = usePathname()
 
