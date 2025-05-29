@@ -1,7 +1,7 @@
 'use client'
 
-import Date from '@/components/Date'
-import CheckBadge from '@/components/icons/CheckBadge'
+import Date from '@/src/components/atoms/Date'
+import CheckBadge from '@/src/components/icons/CheckBadgeIcon'
 import { Calendar } from 'lucide-react'
 import {
   FacebookIcon,
@@ -13,8 +13,20 @@ import {
 } from 'next-share'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
-import InternalLink from './InternalLink'
-export default function HeroAvatar({ author, date, modified, shareTitle }) {
+import Link from '@/src/components/atoms/Link'
+import { User } from '@/src/types'
+
+const HeroAvatar = ({
+  author,
+  date,
+  modified,
+  shareTitle,
+}: {
+  author: User
+  date: string
+  modified: string
+  shareTitle: string
+}) => {
   const isAuthorHaveFullName = author?.node?.firstName && author?.node?.lastName
   const name = isAuthorHaveFullName
     ? `${author.node.firstName} ${author.node.lastName}`
@@ -36,7 +48,7 @@ export default function HeroAvatar({ author, date, modified, shareTitle }) {
           />
         </div>
         <div>
-          <InternalLink
+          <Link
             className="text-sm text-slate300"
             prefetch={false}
             href={author.node.uri}
@@ -47,7 +59,7 @@ export default function HeroAvatar({ author, date, modified, shareTitle }) {
             <div className="flex items-center gap-1 text-xs text-slate300">
               {author?.node.userType.role}
             </div>
-          </InternalLink>
+          </Link>
           <div className="flex w-full items-center gap-x-4 text-slate400">
             {modified ? (
               <div className="mt-0.5 flex items-center gap-2 text-xs">
@@ -80,3 +92,5 @@ export default function HeroAvatar({ author, date, modified, shareTitle }) {
     </>
   )
 }
+
+export default HeroAvatar

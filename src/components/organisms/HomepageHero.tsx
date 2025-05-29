@@ -1,37 +1,37 @@
-import { ArrowRight, Gift, Star, Vibrate, Zap } from "lucide-react";
-import Image from "next/image";
-import Container from "./atoms/Container";
-import InternalLink from "./InternalLink";
+import { ArrowRight, Gift, Star, Vibrate, Zap } from 'lucide-react'
+import Image from 'next/image'
+import Container from '@/src/components/atoms/Container'
+import InternalLink from '@/src/components/InternalLink'
 
-export default function HomepageHero({
+const HomepageHero = ({
   title,
   description,
 }: {
-  title: string;
-  description: string;
-}) {
+  title: string
+  description: string
+}) => {
   const menuItems = [
     {
-      label: "Nya casinon",
-      link: "/nya-casinon",
+      label: 'Nya casinon',
+      link: '/nya-casinon',
       icon: <Star size={24} className="text-primary" />,
     },
     {
-      label: "Casino med Swish",
-      link: "/casino-med-swish",
+      label: 'Casino med Swish',
+      link: '/casino-med-swish',
       icon: <Vibrate size={26} className="text-primary" />,
     },
     {
-      label: "Casino bonusar",
-      link: "/casino-bonus",
+      label: 'Casino bonusar',
+      link: '/casino-bonus',
       icon: <Gift size={24} className="text-primary" />,
     },
     {
-      label: "Snabba uttag",
-      link: "/casino-med-snabba-uttag",
+      label: 'Snabba uttag',
+      link: '/casino-med-snabba-uttag',
       icon: <Zap size={24} className="text-primary" />,
     },
-  ];
+  ]
 
   return (
     <div className="relative overflow-hidden bg-darklight">
@@ -65,7 +65,7 @@ export default function HomepageHero({
           </section>
           <Image
             src={
-              "https://content.casinogringos.se/wp-content/uploads/2025/03/gringo-bg.webp"
+              'https://content.casinogringos.se/wp-content/uploads/2025/03/gringo-bg.webp'
             }
             className="absolute -right-36 bottom-0 hidden size-[435px] opacity-50 lg:-right-12 lg:block lg:opacity-100"
             priority={true}
@@ -77,5 +77,7 @@ export default function HomepageHero({
         </div>
       </Container>
     </div>
-  );
+  )
 }
+
+export default HomepageHero

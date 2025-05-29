@@ -1,7 +1,7 @@
 'use client'
 
 import { JSX, createElement } from 'react'
-import { slugify } from '../lib/helpers'
+import { slugify } from '@/src/lib/helpers'
 
 const Heading = ({
   attributes,
@@ -29,8 +29,8 @@ const Heading = ({
   return createElement(Tag, {
     className:
       index === 0
-        ? `mt-0 relative`
-        : `${tagClasses[level]} relative text-dark ${className}`,
+        ? `mt-0 relative ${className}`
+        : `${tagClasses[level as keyof typeof tagClasses]} mt-10 ${className}`,
     dangerouslySetInnerHTML: { __html: html },
   })
 }

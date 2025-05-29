@@ -1,17 +1,18 @@
-"use client";
+'use client'
 
-import { usePlausible } from "next-plausible";
-import Image from "next/image";
-import InternalLink from "./InternalLink";
-export default function HeroAlert() {
-  const plausible = usePlausible();
+import { usePlausible } from 'next-plausible'
+import Image from 'next/image'
+import Link from '@/src/components/atoms/Link'
+
+const HeroAlert = () => {
+  const plausible = usePlausible()
   return (
-    <InternalLink
+    <Link
       className="my-4 inline-flex w-full items-center justify-between gap-6 rounded-md bg-[#37027e] px-2 py-1 pl-4 leading-none text-white shadow-2xl"
       onClick={() =>
-        plausible("Hero Alert", {
+        plausible('Hero Alert', {
           props: {
-            alert: "Casino Epic",
+            alert: 'Casino Epic',
           },
         })
       }
@@ -41,6 +42,8 @@ export default function HeroAlert() {
       >
         <path d="M12.95 10.707l.707-.707L8 4.343 6.586 5.757 10.828 10l-4.242 4.243L8 15.657l4.95-4.95z" />
       </svg>
-    </InternalLink>
-  );
+    </Link>
+  )
 }
+
+export default HeroAlert

@@ -1,7 +1,7 @@
-import Container from "./atoms/Container";
-import dynamic from "next/dynamic";
-import { User } from "@/types";
-const HeroAvatar = dynamic(() => import("./HeroAvatar"));
+import Container from '@/src/components/atoms/Container'
+import dynamic from 'next/dynamic'
+import { User } from '@/src/types'
+const HeroAvatar = dynamic(() => import('../organisms/HeroAvatar'))
 
 export default function Hero({
   title,
@@ -11,12 +11,12 @@ export default function Hero({
   modified,
   shareTitle,
 }: {
-  title: string;
-  description: string;
-  author?: User;
-  date?: string;
-  modified?: string;
-  shareTitle?: string;
+  title: string
+  description: string
+  author?: User
+  date?: string
+  modified?: string
+  shareTitle?: string
 }) {
   return (
     <div className="relative bg-darklight">
@@ -42,5 +42,5 @@ export default function Hero({
         </div>
       </Container>
     </div>
-  );
+  )
 }
