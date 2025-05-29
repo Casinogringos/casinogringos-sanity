@@ -1,13 +1,13 @@
-import Container from "./Container";
-import BlocksMap from "@/components/blocks/BlocksMap";
-import { Blocks } from "@/types/blocks";
+import Container from '../components/atoms/Container'
+import BlocksMap from '@/components/blocks/BlocksMap'
+import { Blocks } from '@/types/blocks'
 
 export default function Content({
   blocks,
-  className = "",
+  className = '',
 }: {
-  blocks: Blocks;
-  className?: string;
+  blocks: Blocks
+  className?: string
 }) {
   return (
     <Container>
@@ -17,5 +17,5 @@ export default function Content({
         <BlocksMap blocks={blocks} />
       </div>
     </Container>
-  );
+  )
 }

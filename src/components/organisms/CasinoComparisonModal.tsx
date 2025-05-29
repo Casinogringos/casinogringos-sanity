@@ -1,6 +1,6 @@
 import { CheckCircle, X, XCircle, Star } from 'lucide-react'
 
-import ImageWrapper from '../atoms/ImageWrapper'
+import ImageWrap from '../atoms/ImageWrap'
 import dynamic from 'next/dynamic'
 const AffiliateButton = dynamic(() => import('../../sin-bin/AffiliateButton'))
 
@@ -29,7 +29,7 @@ const CasinoComparisonModal = ({
             key={`casino-${node.id}`}
           >
             <div className={'relative flex-grow'}>
-              <ImageWrapper
+              <ImageWrap
                 image={node.featuredImage.node}
                 className={
                   'rounded-md h-14 md:h-32 w-full max-w-full object-cover'

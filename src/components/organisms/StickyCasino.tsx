@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import ImageWrapper from '../atoms/ImageWrapper'
+import ImageWrap from '../atoms/ImageWrap'
 import dynamic from 'next/dynamic'
 import { Post } from '@/src/types/post'
 const Link = dynamic(() => import('@/src/components/atoms/Link'))
@@ -25,7 +25,7 @@ const StickyCasino = ({ casino }: { casino: Post }) => {
       <div className="max-w-4xl mx-auto lg:px-16 flex flex-col lg:flex-row gap-y-2 lg:gap-x-0 w-full items-center lg:justify-left justify-center">
         <div className="flex w-full items-center gap-x-4 lg:gap-x-6">
           <div className="flex h-12 w-20 items-center rounded-sm overflow-hidden">
-            <ImageWrapper
+            <ImageWrap
               image={casino?.featuredImage?.node}
               width={100}
               className="object-cover w-full h-full"

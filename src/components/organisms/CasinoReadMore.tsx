@@ -6,7 +6,7 @@ import {
   MessageCircle,
   X,
 } from 'lucide-react'
-import ImageWrapper from '../atoms/ImageWrapper'
+import ImageWrap from '../atoms/ImageWrap'
 
 import { usePlausible } from 'next-plausible'
 import Image from 'next/image'
@@ -26,7 +26,7 @@ const CasinoReadMore = ({ item, close }) => {
           <X className="h-6 w-6" aria-hidden="true" />
         </button>
         <div className="flex w-12 items-center overflow-hidden rounded-md lg:w-16">
-          <ImageWrapper
+          <ImageWrap
             image={item.featuredImage?.node}
             width={80}
             className={undefined}

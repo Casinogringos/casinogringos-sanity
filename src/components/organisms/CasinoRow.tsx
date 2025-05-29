@@ -2,7 +2,7 @@
 
 import { usePlausible } from 'next-plausible'
 import Link from 'next/link'
-import ImageWrapper from '../atoms/ImageWrapper'
+import ImageWrap from '../atoms/ImageWrap'
 import InternalLink from '../../sin-bin/InternalLink'
 import { Post } from '@/src/types/post'
 
@@ -18,7 +18,7 @@ const CasinoRow = ({
   return (
     <>
       <div className="mt-2 flex w-full items-center rounded-md border border-blue100 bg-slate100 px-3 py-2.5">
-        <ImageWrapper
+        <ImageWrap
           image={casino?.featuredImage?.node}
           width={45}
           className="mr-3 rounded-full"

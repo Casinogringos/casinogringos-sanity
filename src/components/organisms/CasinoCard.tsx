@@ -4,7 +4,7 @@ import { Post } from '@/types/index'
 import Link from 'next/link'
 import AffiliateButton from '../../sin-bin/AffiliateButton'
 import CheckBadgeIcon from '../icons/CheckBadgeIcon'
-import ImageWrapper from '../atoms/ImageWrapper'
+import ImageWrap from '../atoms/ImageWrap'
 import InternalLink from '../../sin-bin/InternalLink'
 
 export default function CasinoCard({
@@ -34,7 +34,7 @@ export default function CasinoCard({
               </span>
             )}{' '}
             <div className="-mb-4 -mt-1.5 flex h-full w-full items-center justify-center">
-              <ImageWrapper
+              <ImageWrap
                 image={item.featuredImage?.node}
                 width={288}
                 quality={50}

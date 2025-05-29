@@ -1,8 +1,10 @@
-const VideoPlayer = dynamic(() => import('../organisms/VideoPlayer'))
+const VideoPlayer = dynamic(
+  () => import('@/src/components/organisms/VideoPlayer')
+)
 import { getYoutubeMetaData, getVimeoMetaData } from '../../lib/api'
 import dynamic from 'next/dynamic'
-
-const VideoPlayerWrapper = async ({ attributes }) => {
+// move this logic to the structured data methods. then i can just call them in the block map and delete this file
+const VideoPlayerWrap = async ({ attributes }) => {
   const { url, type, caption } = attributes
   let structuredData = {}
   if (type === 'youtube') {
@@ -51,4 +53,4 @@ const VideoPlayerWrapper = async ({ attributes }) => {
   )
 }
 
-export default VideoPlayerWrapper
+export default VideoPlayerWrap

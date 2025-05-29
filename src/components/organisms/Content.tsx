@@ -13,7 +13,7 @@ import AffiliateButton from '../../sin-bin/AffiliateButton'
 import CasinoBox from './CasinoBox'
 import Columns from '../molecules/Columns'
 import Group from '../atoms/Group'
-import VideoPlayerWrapper from '../atoms/VideoPlayerWrapper'
+import VideoPlayerWrap from '../atoms/VideoPlayerWrap'
 const Heading = dynamic(() => import('../atoms/Heading'))
 const RawHTML = dynamic(() => import('../atoms/RawHTML'))
 const Paragraph = dynamic(() => import('../atoms/Paragraph'))
@@ -146,7 +146,7 @@ const renderBlock = (block, outerIndex, nested) => {
     case 'BlockLabAffiliateButton':
       return <AffiliateButton item={block} />
     case 'FlamingoEmbed':
-      return <VideoPlayerWrapper attributes={block.attributes} />
+      return <VideoPlayerWrap attributes={block.attributes} />
     case 'YoastHowToBlock':
       return <YoastHowToBlock attributes={block.attributes} />
     case 'CoreTable':
@@ -200,7 +200,10 @@ const Content = ({
   // console.log('conflictingClientIds', conflictingClientIds)
   if (!blocks) return null
   return (
-    <div key={'blocks-wrapper'} className={`${className}`}>
+    <div
+      key={'blocks-wrapper'}
+      className={`${className} pb-8 pt-4 mx-auto prose prose-h2:text-3xl prose-p:text-text prose-headings:tracking-normal max-w-3xl text-grey-darker`}
+    >
       {blocks.map((block, outerIndex) => {
         return (
           <Fragment key={`block-${block.clientId}`}>

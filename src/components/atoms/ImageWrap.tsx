@@ -1,7 +1,7 @@
 import { MediaItem } from '@/src/types'
 import Image from 'next/image'
 
-const ImageWrapper = ({
+const ImageWrap = ({
   image,
   width,
   className,
@@ -35,4 +35,4 @@ const ImageWrapper = ({
   )
 }
 
-export default ImageWrapper
+export default ImageWrap
