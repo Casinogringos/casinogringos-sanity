@@ -1,6 +1,7 @@
-import Container from "../../../casinogringos-v3/src/components/Container";
-import Image from "next/image";
-import Link from "next/link";
+import Container from '@/src/components/atoms/Container'
+import Image from 'next/image'
+import Link from 'next/link'
+
 export default function NotFound() {
   return (
     <Container>
@@ -21,5 +22,5 @@ export default function NotFound() {
         </Link>
       </div>
     </Container>
-  );
+  )
 }

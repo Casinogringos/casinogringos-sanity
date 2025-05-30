@@ -1,0 +1,5 @@
+schema:
+  - https://x94s7hvk.api.sanity.io/v2023-08-01/graphql/production/default:
+      headers:
+        Authorization: Bearer skbGUYHfwTeS69grLxbY7UMimpFsDq51U9QThqCc7G8Lcl0Fre1s3zFEWL7EJDgDi0DvHeLAB7GZoN5omjFtXFhkNiqtAeS5RXpySBM7KMxcRAElgTVYFH7Z40R40bZzvGZh2oVtC6AigFRYGaRiuohvAQzV1PJTw7mwroGv9zixzhXuuV9r
+documents: 'data/**/*.ts'

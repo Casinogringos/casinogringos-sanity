@@ -1,7 +1,7 @@
-import { gql } from "graphql-tag";
+import { gql } from 'graphql-tag'
 import {
   flamingoImageBlockFragment,
-  flamingoHeadingBlockFragment,
+  headingBlockFragment,
   coreParagraphBlockFragment,
   flamingoHowToBlockFragment,
   flamingoFaqBlockFragment,
@@ -10,7 +10,7 @@ import {
   flamingoCasinoBlockFragment,
   flamingoCasinoBlockOldFragment,
   flamingoEmbedBlockFragment,
-} from "@/src/data/fragments/index";
+} from '@/src/data/fragments/index'
 
 export const flamingoToggleBlockFragment = gql`
   fragment FlamingoToggleBlockFragment on FlamingoToggle {
@@ -34,7 +34,7 @@ export const flamingoToggleBlockFragment = gql`
       ...FlamingoFaqBlockFragment
     }
   }
-  ${flamingoHeadingBlockFragment}
+  ${headingBlockFragment}
   ${coreParagraphBlockFragment}
   ${flamingoImageBlockFragment}
   ${flamingoHowToBlockFragment}
@@ -44,4 +44,4 @@ export const flamingoToggleBlockFragment = gql`
   ${flamingoCasinoBlockFragment}
   ${flamingoCasinoBlockOldFragment}
   ${flamingoEmbedBlockFragment}
-`;
+`

@@ -1,11 +1,11 @@
-import { gql } from "graphql-tag";
+import { gql } from 'graphql-tag'
 import {
   coreParagraphBlockFragment,
   flamingoImageBlockFragment,
-  flamingoHeadingBlockFragment,
+  headingBlockFragment,
   coreListBlockFragment,
   coreButtonsBlockFragment,
-} from "@/src/data/fragments/index";
+} from '@/src/data/fragments/index'
 
 export const coreColumnsBlockFragment = gql`
   fragment CoreColumnsBlockFragment on CoreColumns {
@@ -33,7 +33,7 @@ export const coreColumnsBlockFragment = gql`
   }
   ${coreParagraphBlockFragment}
   ${coreButtonsBlockFragment}
-  ${flamingoHeadingBlockFragment}
+  ${headingBlockFragment}
   ${flamingoImageBlockFragment}
   ${coreListBlockFragment}
-`;
+`

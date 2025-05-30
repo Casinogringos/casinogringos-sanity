@@ -1,4 +1,4 @@
-import BonusBlock from '@/components/BonusBlock'
+import BonusBlock from '@/src/components/organisms/BonusBox'
 import BonusBlockOld from '@/components/BonusBlockOld'
 import CasinoBlockOld from '@/components/CasinoBlockOld'
 import HowTo from '@/components/HowTo'

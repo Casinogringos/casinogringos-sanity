@@ -1,4 +1,4 @@
-import { gql } from "graphql-tag";
+import { gql } from 'graphql-tag'
 import {
   flamingoRatingBlockFragment,
   coreParagraphBlockFragment,
@@ -11,7 +11,7 @@ import {
   coreQuoteBlockFragment,
   coreShortcodeBlockFragment,
   coreTableBlockFragment,
-  flamingoHeadingBlockFragment,
+  headingBlockFragment,
   flamingoEmbedBlockFragment,
   flamingoImageBlockFragment,
   flamingoToggleBlockFragment,
@@ -24,57 +24,34 @@ import {
   flamingoCasinoBlockOldFragment,
   flamingoProsAndConsBlockFragment,
   coreButtonsBlockFragment,
-} from "@/src/data/fragments/index";
+} from '@/src/data/fragments/index'
 
 export const blockFragments = gql`
-  fragment BlockFragments on EditorBlock {
-    ...BlockLabCasinoBlockFragment
-    ...BlockLabAffiliateButtonBlockFragment
-    ...CoreParagraphBlockFragment
-    ...CoreColumnsBlockFragment
-    ...CoreGroupBlockFragment
-    ...YoastFaqBlockFragment
-    ...CoreQuoteBlockFragment
-    ...CoreShortcodeBlockFragment
-    ...CoreTableBlockFragment
+  fragment BlockFragments on Pages {
+    #    ...BlockLabCasinoBlockFragment
+    #    ...BlockLabAffiliateButtonBlockFragment
+    #    ...CoreParagraphBlockFragment
+    #    ...CoreColumnsBlockFragment
+    #    ...CoreGroupBlockFragment
+    #    ...YoastFaqBlockFragment
+    #    ...CoreQuoteBlockFragment
+    #    ...CoreShortcodeBlockFragment
+    #    ...CoreTableBlockFragment
     ...FlamingoHeadingBlockFragment
-    ...CoreListBlockFragment
-    ...FlamingoEmbedBlockFragment
-    ...FlamingoImageBlockFragment
-    ...FlamingoToggleBlockFragment
-    ...FlamingoAISummaryBlockFragment
-    ...FlamingoHowToBlockFragment
-    ...FlamingoCasinoBlockFragment
-    ...FlamingoBonusBlockFragment
-    ...FlamingoFaqBlockFragment
-    ...FlamingoRatingBlockFragment
-    ...FlamingoBonusBlockOldFragment
-    ...FlamingoCasinoBlockOldFragment
-    ...FlamingoProsAndConsBlockFragment
-    ...CoreButtonsBlockFragment
+    #    ...CoreListBlockFragment
+    #    ...FlamingoEmbedBlockFragment
+    #    ...FlamingoImageBlockFragment
+    #    ...FlamingoToggleBlockFragment
+    #    ...FlamingoAISummaryBlockFragment
+    #    ...FlamingoHowToBlockFragment
+    #    ...FlamingoCasinoBlockFragment
+    #    ...FlamingoBonusBlockFragment
+    #    ...FlamingoFaqBlockFragment
+    #    ...FlamingoRatingBlockFragment
+    #    ...FlamingoBonusBlockOldFragment
+    #    ...FlamingoCasinoBlockOldFragment
+    #    ...FlamingoProsAndConsBlockFragment
+    #    ...CoreButtonsBlockFragment
   }
-  ${blockLabCasinoBlockFragment}
-  ${blockLabAffiliateButtonBlockFragment}
-  ${coreParagraphBlockFragment}
-  ${coreColumnsBlockFragment}
-  ${coreGroupBlockFragment}
-  ${yoastFaqBlockFragment}
-  ${coreQuoteBlockFragment}
-  ${coreButtonsBlockFragment}
-  ${coreShortcodeBlockFragment}
-  ${coreListBlockFragment}
-  ${flamingoFaqBlockFragment}
-  ${coreTableBlockFragment}
-  ${flamingoHeadingBlockFragment}
-  ${flamingoEmbedBlockFragment}
-  ${flamingoImageBlockFragment}
-  ${flamingoToggleBlockFragment}
-  ${flamingoAISummaryBlockFragment}
-  ${flamingoHowToBlockFragment}
-  ${flamingoRatingBlockFragment}
-  ${flamingoCasinoBlockFragment}
-  ${flamingoBonusBlockFragment}
-  ${flamingoBonusBlockOldFragment}
-  ${flamingoCasinoBlockOldFragment}
-  ${flamingoProsAndConsBlockFragment}
-`;
+  ${headingBlockFragment}
+`

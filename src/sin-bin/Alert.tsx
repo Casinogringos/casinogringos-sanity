@@ -1,28 +1,28 @@
-import Container from "../atoms/Container";
-import { EXAMPLE_PATH } from "../../lib/constants";
-import Link from "next/link";
+import Container from '../components/atoms/Container'
+import { EXAMPLE_PATH } from '../lib/constants'
+import Link from 'next/link'
 
 export default function Alert({ preview }) {
   return (
     <div
-      className={`border-b bg-accent-7 border-accent-7 text-white ${preview ? "bg-accent-1 border-accent-2" : ""}`}
+      className={`border-b bg-accent-7 border-accent-7 text-white ${preview ? 'bg-accent-1 border-accent-2' : ''}`}
     >
       <Container>
         <div className="py-2 text-center text-sm">
           {preview ? (
             <>
-              This is a page preview.{" "}
+              This is a page preview.{' '}
               <Link
                 href="/api/exit-preview"
                 className="underline hover:text-cyan duration-200 transition-colors"
               >
                 Click here
-              </Link>{" "}
+              </Link>{' '}
               to exit preview mode.
             </>
           ) : (
             <>
-              The source code for this blog is{" "}
+              The source code for this blog is{' '}
               <a
                 href={`https://github.com/vercel/next.js/tree/canary/examples/${EXAMPLE_PATH}`}
                 className="underline hover:text-success duration-200 transition-colors"
@@ -35,5 +35,5 @@ export default function Alert({ preview }) {
         </div>
       </Container>
     </div>
-  );
+  )
 }

@@ -1,7 +1,7 @@
-import { gql } from "graphql-tag";
+import { gql } from 'graphql-tag'
 import {
   coreParagraphBlockFragment,
-  flamingoHeadingBlockFragment,
+  headingBlockFragment,
   flamingoImageBlockFragment,
   coreColumnsBlockFragment,
   flamingoBonusBlockOldFragment,
@@ -11,7 +11,7 @@ import {
   flamingoProsAndConsBlockFragment,
   coreButtonsBlockFragment,
   coreListBlockFragment,
-} from "@/src/data/fragments/index";
+} from '@/src/data/fragments/index'
 
 export const coreGroupBlockFragment = gql`
   fragment CoreGroupBlockFragment on CoreGroup {
@@ -35,7 +35,7 @@ export const coreGroupBlockFragment = gql`
     }
   }
   ${coreParagraphBlockFragment}
-  ${flamingoHeadingBlockFragment}
+  ${headingBlockFragment}
   ${flamingoImageBlockFragment}
   ${coreListBlockFragment}
   ${coreButtonsBlockFragment}
@@ -45,4 +45,4 @@ export const coreGroupBlockFragment = gql`
   ${flamingoCasinoBlockOldFragment}
   ${flamingoCasinoBlockFragment}
   ${flamingoProsAndConsBlockFragment}
-`;
+`

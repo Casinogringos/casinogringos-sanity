@@ -1,12 +1,9 @@
 import { gql } from 'graphql-tag'
 
-export const flamingoHeadingBlockFragment = gql`
-  fragment FlamingoHeadingBlockFragment on FlamingoHeading {
-    clientId
+export const headingBlockFragment = gql`
+  fragment headingBlockFragment on HeadingObject {
     __typename
-    attributes {
-      text
-      level
-    }
+    text
+    level
   }
 `

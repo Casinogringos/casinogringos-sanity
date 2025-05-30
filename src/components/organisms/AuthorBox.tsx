@@ -1,10 +1,19 @@
-import Date from '@/components/Date'
+import Date from '@/src/components/atoms/Date'
 import { Calendar, Linkedin, Mail } from 'lucide-react'
 import Image from 'next/image'
-import Link from 'next/link'
-import CheckBadgeIcon from '../icons/CheckBadgeIcon'
-import InternalLink from '../../sin-bin/InternalLink'
-export default function AuthorBox({ author, modified, reviewedBy }) {
+import CheckBadgeIcon from '@/src/components/icons/CheckBadgeIcon'
+import Link from '@/src/components/atoms/Link'
+import { User } from '@/src/types'
+
+const AuthorBox = ({
+  author,
+  modified,
+  reviewedBy,
+}: {
+  author: User
+  modified: string
+  reviewedBy: User
+}) => {
   return (
     <div className="mx-auto mb-12 max-w-3xl rounded-md border border-blue100 bg-blue50 p-6">
       <div className="flex items-start gap-3">
@@ -18,14 +27,14 @@ export default function AuthorBox({ author, modified, reviewedBy }) {
         </div>
         <div>
           <div className="text-sm text-slate700">Innehållsansvarig:</div>
-          <InternalLink
+          <Link
             prefetch={false}
             href={author?.node?.uri}
             className="font-semibold"
           >
             {author?.node?.name}{' '}
             <CheckBadgeIcon className="-mt-1 inline-block h-5 w-5 text-blue500" />
-          </InternalLink>
+          </Link>
         </div>
         <div className="ml-auto flex gap-2">
           {author?.node?.seo?.social?.linkedIn && (
@@ -61,14 +70,16 @@ export default function AuthorBox({ author, modified, reviewedBy }) {
         <section>
           <span className="mb-2 mt-5 block font-semibold">Expertområden</span>
           <div className="flex gap-2 rounded-md">
-            {author?.node?.userType?.expertise?.map((item, index) => (
-              <span
-                key={`author-${author.id}-expertise-${index}`}
-                className="rounded-sm bg-dark px-2 py-1 text-sm text-white"
-              >
-                {item.title}
-              </span>
-            ))}
+            {author?.node?.userType?.expertise?.map(
+              (item: { title: string }, index: number) => (
+                <span
+                  key={`author-${author.id}-expertise-${index}`}
+                  className="rounded-sm bg-dark px-2 py-1 text-sm text-white"
+                >
+                  {item.title}
+                </span>
+              )
+            )}
           </div>
         </section>
       )}
@@ -81,14 +92,14 @@ export default function AuthorBox({ author, modified, reviewedBy }) {
           <div className="mt-2 flex gap-3 text-xs text-slate700 lg:ml-auto lg:mt-0">
             <p className="text-xs">
               Faktakontrollerad av:{' '}
-              <InternalLink
+              <Link
                 className="text-xs font-medium"
                 prefetch={false}
                 href={`/om-oss/${reviewedBy?.slug}`}
               >
                 {reviewedBy?.username}
                 <CheckBadgeIcon className="ml-1 inline-block h-4 w-4 text-blue400" />
-              </InternalLink>
+              </Link>
             </p>
           </div>
         )}
@@ -96,3 +107,5 @@ export default function AuthorBox({ author, modified, reviewedBy }) {
     </div>
   )
 }
+
+export default AuthorBox

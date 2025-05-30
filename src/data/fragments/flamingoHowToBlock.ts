@@ -1,8 +1,8 @@
-import { gql } from "graphql-tag";
+import { gql } from 'graphql-tag'
 import {
-  flamingoHeadingBlockFragment,
+  headingBlockFragment,
   coreParagraphBlockFragment,
-} from "@/src/data/fragments/index";
+} from '@/src/data/fragments/index'
 
 export const flamingoHowToBlockFragment = gql`
   fragment FlamingoHowToBlockFragment on FlamingoHowTo {
@@ -19,6 +19,6 @@ export const flamingoHowToBlockFragment = gql`
       steps
     }
   }
-  ${flamingoHeadingBlockFragment}
+  ${headingBlockFragment}
   ${coreParagraphBlockFragment}
-`;
+`

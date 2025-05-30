@@ -1,14 +1,14 @@
-import HomePage from "@/src/app/HomePage";
-import { getGuidePreviews, getNodeByUri } from "@/lib/api";
-import { Page as PageType } from "@/types/index";
-import { Metadata } from "next";
-import { notFound } from "next/navigation";
+import HomePage from '@/src/app/HomePage'
+import { getGuidePreviews, getNodeByUri, getPageBySlug } from '@/src/lib/api'
+import { Page as PageType } from '@/src/types/index'
+import { Metadata } from 'next'
+import { notFound } from 'next/navigation'
 
 export async function generateMetadata() {
   const homepage = (await getNodeByUri({
-    uri: "/",
-  })) as PageType;
-  const siteURL = process.env.SITE_URL;
+    uri: '/',
+  })) as PageType
+  const siteURL = process.env.SITE_URL
   const metadata = {
     title: homepage.seo.title ?? homepage.title,
     description: homepage.seo.metaDesc,
@@ -19,29 +19,29 @@ export async function generateMetadata() {
       title: homepage.seo.title,
       description: homepage.seo.metaDesc,
       url: siteURL,
-      locale: "sv_SE",
+      locale: 'sv_SE',
       siteName: homepage.seo.opengraphSiteName,
       images: [
         {
-          url: homepage.seo.opengraphImage?.sourceUrl ?? "",
-          alt: homepage.seo.opengraphImage?.altText ?? "",
+          url: homepage.seo.opengraphImage?.sourceUrl ?? '',
+          alt: homepage.seo.opengraphImage?.altText ?? '',
           width: homepage.seo.opengraphImage?.mediaDetails.width ?? 1200,
           height: homepage.seo.opengraphImage?.mediaDetails.height ?? 630,
         },
       ],
     },
-  } as Metadata;
+  } as Metadata
 
-  return metadata;
+  return metadata
 }
 
 export default async function Page() {
-  const homepage = (await getNodeByUri({
-    uri: "/",
-  })) as PageType;
+  const homepage = await getPageBySlug({
+    slug: '/',
+  })
 
-  const guides = await getGuidePreviews({ count: 3 });
-  if (!homepage) return notFound();
+  const guides = await getGuidePreviews({ count: 3 })
+  if (!homepage) return notFound()
 
-  return <HomePage homePage={homepage} guides={guides.edges} />;
+  return <HomePage page={homepage} guides={guides.edges} />
 }

@@ -1,71 +1,16 @@
-import { gql } from "graphql-tag";
-import {
-  blockFragments,
-  seoFragment,
-  authorPreviewFragment,
-  pageInfoFragment,
-} from "@/src/data/fragments/index";
+import { gql } from 'graphql-tag'
+import { blockFragments } from '@/src/data/fragments/index'
 
 export const pageFragment = gql`
-  fragment PageFragment on Page {
-    slug
-    uri
-    id
-    menuOrder
-    editorBlocks(flat: false) {
+  fragment PageFragment on Pages {
+    slug {
+      current
+    }
+    content {
+      __typename
       ...BlockFragments
     }
     title
-    modified
-    date
-    seo {
-      ...SeoFragment
-    }
-    reviewer {
-      username
-      slug
-    }
-    author {
-      node {
-        ...AuthorPreviewFragment
-      }
-    }
-    pageType {
-      ...PageInfoFragment
-      faqSubtitle
-      faq {
-        faqSection {
-          faqAnswer
-          faqQuestion
-        }
-      }
-    }
-    children {
-      edges {
-        node {
-          id
-          slug
-          uri
-          ... on Page {
-            id
-            title
-          }
-        }
-      }
-    }
-    parent {
-      node {
-        id
-        slug
-        uri
-        ... on Page {
-          title
-        }
-      }
-    }
   }
   ${blockFragments}
-  ${seoFragment}
-  ${authorPreviewFragment}
-  ${pageInfoFragment}
-`;
+`
