@@ -1,4 +1,4 @@
-import List from '@/components/List'
+import List from '@/src/components/molecules/List'
 import { FlamingoBonusBlock } from '@/types'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'

@@ -4,7 +4,7 @@ const Heading = dynamic(() => import('@/src/components/atoms/Heading'))
 import List from '@/src/components/molecules/List'
 import dynamic from 'next/dynamic'
 
-const Summary = ({
+const SummaryBox = ({
   title,
   content,
   className,
@@ -37,4 +37,4 @@ const Summary = ({
   )
 }
 
-export default Summary
+export default SummaryBox

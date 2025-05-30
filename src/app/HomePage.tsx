@@ -1,7 +1,7 @@
 // import AuthorBox from '@/src/components/organisms/AuthorBox'
 // import CasinoList from '@/src/components/organisms/CasinoList'
 // import Container from '@/src/components/atoms/Container'
-import Content from '@/src/components/organisms/Content'
+import ModularContent from '@/src/components/organisms/ModularContent'
 // import {
 //   getBlockHeadings,
 //   replaceInternalLinkBaseUrls,
@@ -55,7 +55,7 @@ const HomePage = ({ page, guides }: { page: Page; guides: Guide[] }) => {
       {/*    </div>*/}
       {/*  </Container>*/}
       {/*)}*/}
-      <Content blocks={page.content} />
+      <ModularContent objects={page.content} />
       {/*{page.author && (*/}
       {/*  <Container>*/}
       {/*    <AuthorBox*/}

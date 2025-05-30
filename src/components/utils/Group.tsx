@@ -1,10 +1,10 @@
-import Content from '../organisms/Content'
+import ModularContent from '../organisms/ModularContent'
 import { CoreGroupBlock } from '@/src/types/coreGroupBlock'
 
 const Group = ({ group }: { group: CoreGroupBlock }) => {
   return (
     <div className={`${group.attributes?.className} mb-4`}>
-      <Content blocks={group.innerBlocks} />
+      <ModularContent objects={group.innerBlocks} />
     </div>
   )
 }

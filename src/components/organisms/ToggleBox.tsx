@@ -7,9 +7,9 @@ import {
 } from '@/src/types'
 import { ChevronDown } from 'lucide-react'
 import { useEffect, useState } from 'react'
-import Content from '@/src/components/organisms/Content'
+import ModularContent from '@/src/components/organisms/ModularContent'
 
-const Toggle = ({
+const ToggleBox = ({
   buttonTextOpen,
   buttonTextClose,
   innerBlocks,
@@ -41,7 +41,7 @@ const Toggle = ({
             className={`bg-gradient-to-t from-white absolute inset-0 transition-opacity ease-in-out duration-300 ${isOpen ? 'opacity-0' : 'opacity-100'}`}
           />
         ) : null}
-        <Content blocks={innerBlocks} />
+        <ModularContent objects={innerBlocks} />
       </div>
       <button
         onClick={() => setIsOpen(!isOpen)}
@@ -68,4 +68,4 @@ const Toggle = ({
   )
 }
 
-export default Toggle
+export default ToggleBox

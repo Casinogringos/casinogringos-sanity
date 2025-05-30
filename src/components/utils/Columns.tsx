@@ -1,4 +1,4 @@
-import Content from '../organisms/Content'
+import ModularContent from '../organisms/ModularContent'
 import type { CoreColumnsBlock } from '@/types'
 
 const Columns = ({ columns }: { columns: CoreColumnsBlock }) => {
@@ -23,7 +23,7 @@ const Columns = ({ columns }: { columns: CoreColumnsBlock }) => {
               column.attributes?.className ?? ''
             }`}
           >
-            <Content blocks={column.innerBlocks} />
+            <ModularContent objects={column.innerBlocks} />
           </div>
         )
       })}
