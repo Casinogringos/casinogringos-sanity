@@ -1,10 +1,10 @@
-import { gql } from "graphql-tag";
-import { postPreviewFragment } from "@/data/fragments";
+import { gql } from 'graphql-tag'
+import { postPreviewFragment } from '@/src/data/fragments'
 
 export const postPreviewsQuery = ({
   where,
 }: {
-  where?: Record<string, string>;
+  where?: Record<string, string>
 }) => {
   if (where) {
     return gql`
@@ -24,7 +24,7 @@ export const postPreviewsQuery = ({
         }
       }
       ${postPreviewFragment}
-    `;
+    `
   } else {
     return gql`
       query postPreviewsQuery($first: Int!) {
@@ -37,6 +37,6 @@ export const postPreviewsQuery = ({
         }
       }
       ${postPreviewFragment}
-    `;
+    `
   }
-};
+}

@@ -1,9 +1,9 @@
 import List from '@/src/components/molecules/List'
-import { FlamingoBonusBlock } from '@/types'
+import { FlamingoBonusBlock } from '@/src/types'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
-const Paragraph = dynamic(() => import('@/components/Paragraph'))
-const AffiliateButton = dynamic(() => import('@/components/AffiliateButton'))
+const Paragraph = dynamic(() => import('@/src/components/atoms/Paragraph'))
+const Button = dynamic(() => import('@/src/components/atoms/Button'))
 
 const BonusBox = ({
   block,
@@ -41,7 +41,7 @@ const BonusBox = ({
         type={'strings'}
         items={block.information}
       />
-      <AffiliateButton
+      <Button
         affiliateLink={`go/${block.casino.trackerSlug}`}
         place="BonusBox block"
         title={block.buttonText}
@@ -49,7 +49,7 @@ const BonusBox = ({
         className={'w-full'}
       >
         {block.buttonText}
-      </AffiliateButton>
+      </Button>
       {block.terms !== '' && (
         <Paragraph
           className={'mt-3 text-xs2 text-white'}

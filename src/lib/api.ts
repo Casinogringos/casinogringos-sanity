@@ -1,5 +1,6 @@
 import { removeFirstSlash } from './helpers'
 import { DocumentNode, print } from 'graphql'
+import { client } from '@/src/lib/client'
 import {
   AffiliateLink,
   Guide,
@@ -32,7 +33,7 @@ import {
   slotPreviewsQuery,
 } from '@/src/data/queries'
 import { gql } from 'graphql-tag'
-import { searchQuery } from '@/src/data/queries'
+// import { searchQuery } from '@/src/data/queries'
 import { pageBySlugQuery } from '@/src/data/queries'
 
 export async function fetchAPI({
@@ -55,6 +56,7 @@ export async function fetchAPI({
       }),
     })
     const json = await response.json()
+    console.log('json', json)
     return json.data
   } catch (e) {
     console.log(e)
@@ -63,11 +65,8 @@ export async function fetchAPI({
 
 export const getPageBySlug = async ({ slug }: { slug: string }) => {
   try {
-    const data = await fetchAPI({
-      query: pageBySlugQuery(),
-      variables: {
-        slug,
-      },
+    const data = await client.fetch(print(pageBySlugQuery()), {
+      slug,
     })
     console.log('data', data)
     return data.pageBySlug as Page
