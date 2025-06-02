@@ -1,4 +1,4 @@
-import { blockProjections } from '@/src/data/projections'
+import { objectProjections } from '@/src/data/projections'
 
 export const pageProjection = `
   _type,
@@ -9,7 +9,7 @@ export const pageProjection = `
   seoTitle,
   seoDescription,
   content {
-    {...blockProjections}
+    {...objectProjections}
   }
-  ${blockProjections}
+  ${objectProjections}
 `
