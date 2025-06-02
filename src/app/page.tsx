@@ -1,14 +1,14 @@
 import HomePage from '@/src/app/HomePage'
-import { getGuidePreviews, getNodeByUri, getPageBySlug } from '@/src/lib/api'
+import { getGuidePreviews, getPageBySlug } from '@/src/lib/api'
 import { Page as PageType } from '@/src/types/index'
 import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 
 export async function generateMetadata() {
-  const homepage = (await getNodeByUri({
-    uri: '/',
+  const homepage = (await getPageBySlug({
+    slug: '/',
   })) as PageType
-  const siteURL = process.env.SITE_URL
+  const siteURL = process.env.SITE_URLs
   const metadata = {
     title: homepage.seo.title ?? homepage.title,
     description: homepage.seo.metaDesc,
