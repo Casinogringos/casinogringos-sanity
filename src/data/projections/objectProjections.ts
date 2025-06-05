@@ -37,21 +37,23 @@ import { toggleObjectProjection } from '@/src/data/projections'
 // `
 
 export const objectProjections = [
-    casinoObjectProjection,
-    buttonsObjectProjection,
-    affiliateButtonObjectProjection,
-    aiSummaryObjectProjection,
-    bonusObjectProjection,
-    buttonObjectProjection,
-    embedObjectProjection,
-    faqObjectProjection,
-    groupObjectProjection,
-    columnObjectProjection,
-    columnsObjectProjection,
-    ratingObjectProjection,
-    headingObjectProjection,
-    listObjectProjection,
-    paragraphObjectProjection,
-    quoteObjectProjection,
-    toggleObjectProjection
-].map((projection) => projection.trim()).join(",\n")
+  casinoObjectProjection,
+  buttonsObjectProjection,
+  affiliateButtonObjectProjection,
+  aiSummaryObjectProjection,
+  bonusObjectProjection,
+  // buttonObjectProjection,
+  // embedObjectProjection,
+  // faqObjectProjection,
+  // groupObjectProjection,
+  // columnObjectProjection,
+  // columnsObjectProjection,
+  // ratingObjectProjection,
+  // headingObjectProjection,
+  // listObjectProjection,
+  // paragraphObjectProjection,
+  // quoteObjectProjection,
+  // toggleObjectProjection
+]
+  .map((projection) => projection.trim())
+  .join(',\n')

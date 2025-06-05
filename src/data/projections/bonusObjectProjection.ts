@@ -10,24 +10,18 @@ export const bonusObjectProjection = `
   _type == "bonus-object" => {
     _type,
     _id,
-    casino {
+    casino-> {
         ${casinoProjection}
     },
     message,
-    bonus {
+    bonus-> {
         ...select(
-            _type == "bonuses" => {
-                ${bonusProjection}
-            },
-            _type == "casino-bonuses" => {
-                ${casinoBonusProjection}
-            },
-            _type == "odds-bonuses" => {
-                ${oddsBonusProjection}
-            }
+            _type == "bonuses" => ${bonusProjection},
+            _type == "casino-bonuses" => ${casinoBonusProjection},
+            _type == "odds-bonuses" => ${oddsBonusProjection}
         )
     },
-    freespins {
+    freespins-> {
         ${freeSpinsProjection}
     },
     terms,

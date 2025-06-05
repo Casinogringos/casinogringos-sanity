@@ -1,5 +1,3 @@
-import { headingObjectProjection } from '@/src/data/projections'
-
 export const listObjectProjection = `
   _type == 'list-object' => {
     _type,
