@@ -1,13 +1,13 @@
 import { imageObjectProjection } from '@/src/data/projections'
 
 export const howToStepObjectProjection = `
-    _type
-    _id
-    message
+    _type,
+    _id,
+    message,
     image {
         ...imageObjectProjection
-    }
-    title
+    },
+    title,
     description
     ${imageObjectProjection}
 `

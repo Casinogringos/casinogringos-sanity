@@ -1,7 +1,6 @@
 'use client'
 
-import { ChevronDown } from '@/components/Icons'
-import { CircleHelp } from 'lucide-react'
+import { CircleHelp, ChevronDown } from 'lucide-react'
 import { useState } from 'react'
 
 const ToggleBox = ({ children, className = '', title = '' }) => {

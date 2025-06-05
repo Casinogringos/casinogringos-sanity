@@ -1,7 +1,9 @@
 export const paragraphObjectProjection = `
-    _type
-    _id
-    className
-    content
+  _type == 'paragraph-object' => {
+    _type,
+    _id,
+    className,
+    content,
     message
+  }
 `

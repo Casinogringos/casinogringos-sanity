@@ -1,6 +1,6 @@
 'use client'
 
-import Date from '@/components/Date'
+import Date from '@/src/components/atoms/Date'
 import { ArrowRightIcon, Linkedin, Mail } from 'lucide-react'
 import {
   FacebookIcon,

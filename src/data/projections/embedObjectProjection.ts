@@ -1,7 +1,9 @@
 export const embedObjectProjection = `
-    _type
-    _id
-    url
-    provider
+  _type == 'embed-object' => {
+    _type,
+    _id,
+    url,
+    provider,
     message
+  }
 `

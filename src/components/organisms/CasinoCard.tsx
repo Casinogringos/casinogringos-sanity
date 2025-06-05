@@ -1,11 +1,12 @@
-import Star from '@/components/icons/Star'
-import { RatingCalculator } from '@/components/RatingCalculator'
-import { Post } from '@/types/index'
+import Star from '@/src/components/icons/StarIcon'
+import CasinoService from '@/src/services/CasinoService'
+import { Post } from '@/src/types'
 import Link from 'next/link'
-import AffiliateButton from '../../sin-bin/AffiliateButton'
+import Button from '@/src/components/atoms/Button'
 import CheckBadgeIcon from '../icons/CheckBadgeIcon'
 import ImageWrap from '../atoms/ImageWrap'
 import InternalLink from '../../sin-bin/InternalLink'
+import AffiliateLink from '@/src/sin-bin/AffiliateLink'
 
 export default function CasinoCard({
   item,
@@ -18,7 +19,8 @@ export default function CasinoCard({
   hidePopup?: boolean
   pathname?: string
 }) {
-  const { finalRating } = RatingCalculator({ item: item })
+  const casinoService = new CasinoService()
+  const { finalRating } = casinoService.getCasinoRating({ casino: item })
 
   return (
     <>
@@ -111,15 +113,14 @@ export default function CasinoCard({
             {' '}
             Läs recension
           </InternalLink>
-          <AffiliateButton
-            className="w-full !py-3.5 !text-base"
-            title={item.title}
-            affiliateLink={item.postType?.affiliateLink?.node?.slug}
-            pathname={pathname}
-            place="Regular toplist"
-          >
-            Till {item.title}
-          </AffiliateButton>
+          {/*<AffiliateLink*/}
+          {/*  className="w-full !py-3.5 !text-base"*/}
+          {/*  affiliateLink={item.postType?.affiliateLink?.node?.slug}*/}
+          {/*  pathname={pathname}*/}
+          {/*  place="Regular toplist"*/}
+          {/*>*/}
+          {/*  Till {item.title}*/}
+          {/*</AffiliateLink>*/}
         </div>
       </div>
       {item.postType?.disclaimer ? (

@@ -1,24 +1,23 @@
-import { getBlockHeadings, replaceInternalLinkBaseUrls } from "@/lib/helpers";
-import { Page as PageType } from "@/types/index";
-import dynamic from "next/dynamic";
-
-import AuthorBox from "../../../casinogringos-v3/src/components/AuthorBox";
-import BreadCrumbs from "../../../casinogringos-v3/src/components/BreadCrumbs";
-import CasinoList from "../../../casinogringos-v3/src/components/CasinoList";
-import Container from "../../../casinogringos-v3/src/components/Container";
-import Content from "../../../casinogringos-v3/src/components/Content";
-import Hero from "../../../casinogringos-v3/src/components/Hero";
-
+import {
+  getBlockHeadings,
+  replaceInternalLinkBaseUrls,
+} from '@/src/lib/helpers'
+import { Page as PageType } from '@/src/types'
+import dynamic from 'next/dynamic'
+import AuthorBox from '@/src/components/organisms/AuthorBox'
+import BreadCrumbs from '@/src/components/organisms/BreadCrumbs'
+import CasinoList from '@/src/components/organisms/CasinoList'
+import Container from '@/src/components/atoms/Container'
+import ModularContent from '@/src/components/organisms/ModularContent'
+import Hero from '@/src/components/molecules/Hero'
 const TableOfContents = dynamic(
-  () => import("../../../casinogringos-v3/src/components/TableOfContents"),
-);
-const Accordion = dynamic(
-  () => import("../../../casinogringos-v3/src/components/Accordian"),
-);
+  () => import('@/src/components/organisms/TableOfContents')
+)
+const Accordion = dynamic(() => import('@/src/components/organisms/Accordion'))
 
 export default function SubPage({ page }: { page: PageType }) {
-  const casinos = page.pageType.category?.edges[0].node.posts.edges ?? [];
-  const headings = getBlockHeadings(page?.editorBlocks);
+  const casinos = page.pageType.category?.edges[0].node.posts.edges ?? []
+  const headings = getBlockHeadings(page?.editorBlocks)
 
   return (
     <div>
@@ -45,21 +44,21 @@ export default function SubPage({ page }: { page: PageType }) {
         <div className="mb-16 bg-dark px-4 py-16 md:px-0">
           <Container>
             <Accordion
-              questionsAnswers={page?.pageType.faq[0].faqSection}
+              items={page?.pageType.faq[0].faqSection}
               subtitle={page?.pageType?.faqSubtitle}
             />
           </Container>
         </div>
       )}
       {headings.length > 1 && (
-        <div className={page?.pageType?.faq ? "" : "mt-16"}>
+        <div className={page?.pageType?.faq ? '' : 'mt-16'}>
           <Container>
             <TableOfContents headings={headings} />
           </Container>
         </div>
       )}
-      <Content
-        blocks={page.preview ? page.preview.editorBlocks : page.editorBlocks}
+      <ModularContent
+        objects={page.preview ? page.preview.editorBlocks : page.editorBlocks}
       />
       {page?.author && (
         <Container>
@@ -71,5 +70,5 @@ export default function SubPage({ page }: { page: PageType }) {
         </Container>
       )}
     </div>
-  );
+  )
 }

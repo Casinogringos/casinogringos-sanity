@@ -8,8 +8,7 @@ export const pageProjection = `
   publishedAt,
   seoTitle,
   seoDescription,
-  content {
-    {...objectProjections}
+  content[] {
+    ${objectProjections}
   }
-  ${objectProjections}
 `

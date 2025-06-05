@@ -16,42 +16,42 @@ import { quoteObjectProjection } from '@/src/data/projections'
 import { ratingObjectProjection } from '@/src/data/projections'
 import { toggleObjectProjection } from '@/src/data/projections'
 
-export const objectProjections = `
-    {...casinoObjectProjection}
-    {...affiliateButtonObjectProjection}
-    {...aiSummaryObjectProjection}
-    {...bonusObjectProjection}
-    {...buttonObjectProjection}
-    {...buttonsObjectProjection}   
-    {...columnsObjectProjection}
-    {...columnObjectProjection}   
-    {...embedObjectProjection}
-    {...faqObjectProjection}
-    {...groupObjectProjection} 
-    {...headingObjectProjection}
-    {...howToObjectProjection}
-    {...imageObjectProjection}
-    {...listObjectProjection}
-    {...paragraphObjectProjection}
-    {...prosAndConsObjectProjection}
-    {...quoteObjectProjection} 
-    {...ratingObjectProjection}
-    {...toggleObjectProjection}
-    ${casinoObjectProjection}
-    ${buttonsObjectProjection}
-    ${affiliateButtonObjectProjection}
-    ${aiSummaryObjectProjection}
-    ${bonusObjectProjection}
-    ${buttonObjectProjection}
-    ${embedObjectProjection}
-    ${faqObjectProjection}
-    ${groupObjectProjection}
-    ${columnObjectProjection}
-    ${columnsObjectProjection}
-    ${ratingObjectProjection}
-    ${headingObjectProjection}
-    ${listObjectProjection}
-    ${paragraphObjectProjection}
-    ${quoteObjectProjection}
-    ${toggleObjectProjection}
-`
+// export const objectProjections = `
+//     ${casinoObjectProjection},
+//     ${buttonsObjectProjection},
+//     ${affiliateButtonObjectProjection},
+//     ${aiSummaryObjectProjection},
+//     ${bonusObjectProjection},
+//     ${buttonObjectProjection},
+//     ${embedObjectProjection},
+//     ${faqObjectProjection},
+//     ${groupObjectProjection},
+//     ${columnObjectProjection},
+//     ${columnsObjectProjection},
+//     ${ratingObjectProjection},
+//     ${headingObjectProjection},
+//     ${listObjectProjection},
+//     ${paragraphObjectProjection},
+//     ${quoteObjectProjection},
+//     ${toggleObjectProjection}
+// `
+
+export const objectProjections = [
+    casinoObjectProjection,
+    buttonsObjectProjection,
+    affiliateButtonObjectProjection,
+    aiSummaryObjectProjection,
+    bonusObjectProjection,
+    buttonObjectProjection,
+    embedObjectProjection,
+    faqObjectProjection,
+    groupObjectProjection,
+    columnObjectProjection,
+    columnsObjectProjection,
+    ratingObjectProjection,
+    headingObjectProjection,
+    listObjectProjection,
+    paragraphObjectProjection,
+    quoteObjectProjection,
+    toggleObjectProjection
+].map((projection) => projection.trim()).join(",\n")

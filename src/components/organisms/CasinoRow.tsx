@@ -4,13 +4,13 @@ import { usePlausible } from 'next-plausible'
 import Link from 'next/link'
 import ImageWrap from '../atoms/ImageWrap'
 import InternalLink from '../../sin-bin/InternalLink'
-import { Post } from '@/src/types/post'
+import { Casino } from '@/src/types/casino'
 
 const CasinoRow = ({
   casino,
   pathname,
 }: {
-  casino: Post
+  casino: Casino
   pathname: string
 }) => {
   const plausible = usePlausible()

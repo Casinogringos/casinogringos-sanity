@@ -1,20 +1,38 @@
+import {
+  casinoProjection,
+  bonusProjection,
+  casinoBonusProjection,
+  oddsBonusProjection,
+  freeSpinsProjection,
+} from '@/src/data/projections'
+
 export const bonusObjectProjection = `
-    _type
-    _id
+  _type == "bonus-object" => {
+    _type,
+    _id,
     casino {
-        ...casinoProjection
-    }
-    message
+        ${casinoProjection}
+    },
+    message,
     bonus {
-        ...bonusProjection
-        ...casinoBonusProjection
-        ...oddsBonusProjection
-    }
+        ...select(
+            _type == "bonuses" => {
+                ${bonusProjection}
+            },
+            _type == "casino-bonuses" => {
+                ${casinoBonusProjection}
+            },
+            _type == "odds-bonuses" => {
+                ${oddsBonusProjection}
+            }
+        )
+    },
     freespins {
-        ...freeSpinsProjection
-    }
-    terms
-    title
-    information
+        ${freeSpinsProjection}
+    },
+    terms,
+    title,
+    information,
     buttonText
+  }
 `

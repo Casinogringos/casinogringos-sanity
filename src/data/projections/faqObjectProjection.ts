@@ -1,12 +1,13 @@
 import { faqItemObjectProjection } from '@/src/data/projections'
 
 export const faqObjectProjection = `
-    _type
-    _id
-    description
+  _type == 'faq-object' => {
+    _type,
+    _id,
+    description,
     items {
-        ...faqItemObjectProjection
-    }
+        ${faqItemObjectProjection}
+    },
     message
-    ${faqItemObjectProjection}
+  }
 `

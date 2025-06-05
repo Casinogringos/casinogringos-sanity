@@ -1,8 +1,12 @@
+import { casinoProjection } from '@/src/data/projections'
+
 export const affiliateButtonObjectProjection = `
-    _type
-    _id
+  _type == 'affiliate-button-object' => {
+    _type,
+    _id,
     casino {
-        ...casinoProjection
-    }
+        ${casinoProjection}
+    },
     message
+  }
 `

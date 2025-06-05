@@ -3,6 +3,7 @@ import { pageBySlugQuery } from '@/src/data/queries'
 
 export const getPageBySlug = async ({ slug }: { slug: string }) => {
   try {
+    console.log('pageBySlugQuery', pageBySlugQuery({ slug }))
     const data = await client.fetch(pageBySlugQuery({ slug }))
     console.log('data', data)
     return

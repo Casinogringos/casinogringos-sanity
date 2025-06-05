@@ -1,6 +1,8 @@
 export const quoteObjectProjection = `
-    _type
-    _id
-    content
+  _type == 'quote-object' => {
+    _type,
+    _id,
+    content,
     message
+  }
 `

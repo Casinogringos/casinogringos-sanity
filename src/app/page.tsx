@@ -1,5 +1,5 @@
 import HomePage from '@/src/app/HomePage'
-import { getGuidePreviews, getPageBySlug } from '@/src/lib/api'
+import { getPageBySlug } from '@/src/lib/api'
 import { Page as PageType } from '@/src/types/index'
 import { Metadata } from 'next'
 import { notFound } from 'next/navigation'

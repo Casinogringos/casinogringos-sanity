@@ -1,7 +1,7 @@
 export const faqItemObjectProjection = `
-    _type
-    _id
-    question
-    answer
+    _type,
+    _id,
+    question,
+    answer,
     message
 `

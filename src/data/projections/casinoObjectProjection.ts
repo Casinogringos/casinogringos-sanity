@@ -1,11 +1,15 @@
+import { casinoProjection } from '@/src/data/projections'
+
 export const casinoObjectProjection = `
-    _type
-    _id
+  _type == 'casino-object' => {
+    _type,
+    _id,
     casino {
-        ...casinoProjection
-    }
-    message
-    offer
-    description
+        ${casinoProjection}
+    },
+    message,
+    offer,
+    description,
     buttonText
+  }
 `

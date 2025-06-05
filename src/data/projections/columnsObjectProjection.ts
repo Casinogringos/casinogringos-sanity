@@ -1,11 +1,12 @@
 import { columnObjectProjection } from '@/src/data/projections'
 
 export const columnsObjectProjection = `
-    _type
-    _id
+  _type == 'columns-object' => {
+    _type,
+    _id,
     columns {
-        ...columnObjectProjection
-    }
-    message
-    ${columnObjectProjection}
+        ${columnObjectProjection}
+    },
+    message  
+  }
 `

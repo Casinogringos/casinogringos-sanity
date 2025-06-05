@@ -3,10 +3,10 @@
 import { useState, useEffect } from 'react'
 import ImageWrap from '../atoms/ImageWrap'
 import dynamic from 'next/dynamic'
-import { Post } from '@/src/types/post'
+import { Casino } from '@/src/types/casino'
 const Link = dynamic(() => import('@/src/components/atoms/Link'))
 
-const StickyCasino = ({ casino }: { casino: Post }) => {
+const StickyCasino = ({ casino }: { casino: Casino }) => {
   const [isVisible, setIsVisible] = useState(false)
   useEffect(() => {
     window.addEventListener('scroll', () => {

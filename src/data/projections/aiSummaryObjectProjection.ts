@@ -1,7 +1,9 @@
 export const aiSummaryObjectProjection = `
-    _type
-    _id
-    title
-    content
+  _type == 'ai-summary-object' => {
+    _type,
+    _id,
+    title,
+    content,
     message
+  }
 `

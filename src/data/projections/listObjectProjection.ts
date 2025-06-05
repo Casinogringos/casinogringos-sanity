@@ -1,11 +1,25 @@
-import { listItemObjectProjection } from '@/src/data/projections'
+import { headingObjectProjection } from '@/src/data/projections'
 
 export const listObjectProjection = `
-    _type
-    _id
-    message
+  _type == 'list-object' => {
+    _type,
+    _id,
+    message,
     items {
-        ...listItemObjectProjection
-    }
-    ${listItemObjectProjection}
+        _type,
+        _id,
+        message,
+        content {
+            _type == 'heading-object' => {
+                _type,
+                _id,
+                anchor,
+                level,
+                className,
+                text,
+                message
+            }
+        }
+    }   
+  }
 `
