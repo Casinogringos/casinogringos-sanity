@@ -1,15 +1,11 @@
-import {
-  CoreParagraphBlock,
-  FlamingoHeadingBlock,
-  FlamingoImageBlock,
-} from "@/src/types/index";
+import { ParagraphObject, HeadingObject, ImageObject } from '@/src/types/index'
 
 export type FlamingoToggleBlock = {
-  __typename: "FlamingoToggle";
-  clientId: string;
+  __typename: 'FlamingoToggle'
+  clientId: string
   attributes: {
-    buttonTextOpen: string;
-    buttonTextClose: string;
-  };
-  innerBlocks: [FlamingoImageBlock, FlamingoHeadingBlock, CoreParagraphBlock];
-};
+    buttonTextOpen: string
+    buttonTextClose: string
+  }
+  innerBlocks: [ImageObject, HeadingObject, ParagraphObject]
+}

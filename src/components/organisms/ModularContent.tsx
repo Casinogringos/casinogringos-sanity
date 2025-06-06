@@ -9,14 +9,14 @@ import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import { Fragment } from 'react'
 import Columns from '@/src/components/utils/Columns'
-import Group from '@/src/components/utils/Group'
+import GroupObject from '@/src/components/utils/GroupObject'
 import VideoPlayerWrap from '@/src/components/utils/VideoPlayerWrap'
 import { Blocks } from '@/src/types/blocks'
 import { PortableText } from 'next-sanity'
 import Container from '@/src/components/atoms/Container'
 import { useNextSanityImage } from 'next-sanity-image'
 import { client } from '@/src/lib/client'
-import SanityImage from '@/src/components/atoms/SanityImage'
+import ImageObject from '@/src/components/atoms/SanityImage'
 const Heading = dynamic(() => import('@/src/components/atoms/Heading'))
 const RawHTML = dynamic(() => import('@/src/components/atoms/RawHTML'))
 const Paragraph = dynamic(() => import('@/src/components/atoms/Paragraph'))
@@ -71,10 +71,9 @@ const renderObject = (object: ObjectType, outerIndex, nested) => {
         </Tag>
       )
     case 'image-object': {
-      console.log('image-object', object)
       return (
         <Tag>
-          <SanityImage image={object.image} alt={object.altText} />
+          <ImageObject object={object} />
         </Tag>
       )
     }
@@ -117,8 +116,13 @@ const renderObject = (object: ObjectType, outerIndex, nested) => {
     //       innerBlocks={object.innerBlocks}
     //     />
     //   )
-    // case 'CoreGroup':
-    //   return <Group group={object} />
+    case 'group-object': {
+      return (
+        <Tag>
+          <GroupObject object={object} />
+        </Tag>
+      )
+    }
     // case 'BlockLabAffiliateButton':
     //   return <AffiliateButton item={object} />
     // case 'FlamingoEmbed':
@@ -175,6 +179,7 @@ const ModularContent = ({
   // }, [])
   // console.log('conflictingClientIds', conflictingClientIds)
   if (!objects) return null
+  console.log('objects', objects)
   return (
     <div
       key={'objects-wrapper'}

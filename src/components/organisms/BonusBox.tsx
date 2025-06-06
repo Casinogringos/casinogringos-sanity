@@ -1,5 +1,5 @@
 import List from '@/src/components/molecules/List'
-import { FlamingoBonusBlock } from '@/src/types'
+import { BonusObject } from '@/src/types'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
 const Paragraph = dynamic(() => import('@/src/components/atoms/Paragraph'))
@@ -9,7 +9,7 @@ const BonusBox = ({
   block,
   className,
 }: {
-  block: FlamingoBonusBlock
+  block: BonusObject
   className?: string
 }) => {
   const bonus = block.title ? block.title : (block.casino.bonus ?? '')

@@ -3,20 +3,20 @@ import {
   CoreImageBlock,
   CoreHeadingBlock,
   YoastHowToBlock,
-  CoreParagraphBlock,
-} from "@/src/types/index";
+  ParagraphObject,
+} from '@/src/types/index'
 
 export type CoreColumnBlock = {
-  __typename: "CoreColumn";
+  __typename: 'CoreColumn'
   attributes: {
-    columnWidth: number;
-    className: string;
-  };
+    columnWidth: number
+    className: string
+  }
   innerBlocks: [
-    CoreParagraphBlock,
+    ParagraphObject,
     CoreHeadingBlock,
     RenderedHtmlBlock,
     CoreImageBlock,
     YoastHowToBlock,
-  ];
-};
+  ]
+}

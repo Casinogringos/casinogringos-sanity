@@ -1,4 +1,4 @@
-import { FlamingoProsAndConsBlock } from '@/src/types'
+import { ProsAndConsObject } from '@/src/types'
 import { Check, MinusCircleIcon } from 'lucide-react'
 import dynamic from 'next/dynamic'
 const Heading = dynamic(() => import('@/src/components/atoms/Heading'))
@@ -7,7 +7,7 @@ const ProsAndConsBox = ({
   block,
   className,
 }: {
-  block: FlamingoProsAndConsBlock
+  block: ProsAndConsObject
   className?: string
 }) => {
   const pros = JSON.parse(block.attributes.pros)

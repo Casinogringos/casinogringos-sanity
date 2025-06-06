@@ -2,43 +2,43 @@ import {
   RenderedHtmlBlock,
   BlockLabCasinoBlock,
   BlockLabAffiliateButtonBlock,
-  CoreParagraphBlock,
+  ParagraphObject,
   CoreHeadingBlock,
   CoreImageBlock,
   CoreEmbedBlock,
-  CoreColumnsBlock,
+  ColumnsObject,
   CoreGroupBlock,
   YoastHowToBlock,
   YoastFaqBlock,
-  FlamingoFaqBlock,
-  FlamingoHeadingBlock,
-  FlamingoImageBlock,
+  FAQObject,
+  HeadingObject,
+  ImageObject,
   FlamingoAISummaryBlock,
   FlamingoToggleBlock,
-  FlamingoHowToBlock,
+  HowToObject,
   FlamingoCasinoBlock,
-  FlamingoBonusBlock,
-} from "@/src/types/index";
+  BonusObject,
+} from '@/src/types/index'
 
 export type Blocks = Array<
   | RenderedHtmlBlock
   | BlockLabCasinoBlock
   | BlockLabAffiliateButtonBlock
-  | CoreParagraphBlock
+  | ParagraphObject
   | CoreHeadingBlock
   | CoreImageBlock
   | CoreEmbedBlock
-  | CoreColumnsBlock
+  | ColumnsObject
   | CoreGroupBlock
   | YoastHowToBlock
   | YoastFaqBlock
-  | FlamingoFaqBlock
-  | FlamingoHeadingBlock
-  | FlamingoImageBlock
+  | FAQObject
+  | HeadingObject
+  | ImageObject
   | FlamingoAISummaryBlock
   | FlamingoToggleBlock
-  | FlamingoHowToBlock
+  | HowToObject
   | FlamingoCasinoBlock
   | BlockLabAffiliateButtonBlock
-  | FlamingoBonusBlock
->;
+  | BonusObject
+>

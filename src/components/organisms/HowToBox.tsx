@@ -1,9 +1,9 @@
-import { FlamingoHowToBlock } from '@/src/types'
+import { HowToObject } from '@/src/types'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
 const Paragraph = dynamic(() => import('@/src/components/atoms/Paragraph'))
 
-const HowToBox = ({ block }: { block: FlamingoHowToBlock }) => {
+const HowToBox = ({ block }: { block: HowToObject }) => {
   const {
     days,
     hours,

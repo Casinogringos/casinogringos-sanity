@@ -1,10 +1,10 @@
-import { CoreParagraphBlock } from "@/src/types/index";
+import { ParagraphObject } from '@/src/types/index'
 
 export type FlamingoAISummaryBlock = {
-  __typename: "FlamingoAISummary";
-  clientId: string;
+  __typename: 'FlamingoAISummary'
+  clientId: string
   attributes: {
-    title: string;
-  };
-  innerBlocks: CoreParagraphBlock[];
-};
+    title: string
+  }
+  innerBlocks: ParagraphObject[]
+}
