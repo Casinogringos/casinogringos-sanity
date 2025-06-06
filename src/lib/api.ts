@@ -1,5 +1,6 @@
-import { client } from '@/src/lib/client'
+import { getClient } from '@/src/lib/client'
 import { pageBySlugQuery } from '@/src/data/queries'
+const client = getClient()
 
 export const getPageBySlug = async ({ slug }: { slug: string }) => {
   try {

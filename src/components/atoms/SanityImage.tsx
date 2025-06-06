@@ -1,0 +1,21 @@
+'use client'
+
+import { useNextSanityImage } from 'next-sanity-image'
+import { getClient } from '@/src/lib/client'
+import Image from 'next/image'
+const client = getClient()
+
+const SanityImage = ({ image, alt }: { image: Image; alt: string }) => {
+  const imageProps = useNextSanityImage(client, image)
+  console.log('image', image)
+  return (
+    <Image
+      {...imageProps}
+      alt={alt}
+      style={{ width: '100%', height: 'auto' }}
+      sizes="(max-width: 800px) 100vw, 800px"
+    />
+  )
+}
+
+export default SanityImage

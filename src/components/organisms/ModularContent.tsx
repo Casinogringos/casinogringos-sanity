@@ -14,6 +14,9 @@ import VideoPlayerWrap from '@/src/components/utils/VideoPlayerWrap'
 import { Blocks } from '@/src/types/blocks'
 import { PortableText } from 'next-sanity'
 import Container from '@/src/components/atoms/Container'
+import { useNextSanityImage } from 'next-sanity-image'
+import { client } from '@/src/lib/client'
+import SanityImage from '@/src/components/atoms/SanityImage'
 const Heading = dynamic(() => import('@/src/components/atoms/Heading'))
 const RawHTML = dynamic(() => import('@/src/components/atoms/RawHTML'))
 const Paragraph = dynamic(() => import('@/src/components/atoms/Paragraph'))
@@ -67,42 +70,14 @@ const renderObject = (object: ObjectType, outerIndex, nested) => {
           <PortableText value={object.content} />
         </Tag>
       )
-    // case 'FlamingoImage': {
-    //   const rawWidth = object.attributes.width
-    //   const rawHeight = object.attributes.height
-    //   const aspectRatio = rawWidth / rawHeight
-    //   const width = nested ? 300 : 768
-    //   const height = width / aspectRatio
-    //   return (
-    //     <>
-    //       <Image
-    //         key={`image-block-${object.clientId}`}
-    //         src={`${process.env.WORDPRESS_BASE_URL}${
-    //           object.attributes?.src?.startsWith('http')
-    //             ? new URL(object.attributes.src).pathname
-    //             : (object.attributes?.src ?? '')
-    //         }`}
-    //         alt={object.attributes.alt}
-    //         width={width}
-    //         overrideSrc={`${process.env.WORDPRESS_BASE_URL}${
-    //           object.attributes?.src?.startsWith('http')
-    //             ? new URL(object.attributes.src).pathname
-    //             : (object.attributes?.src ?? '')
-    //         }`}
-    //         height={height > 0 ? height : 400}
-    //         sizes={'(max-width: 1024px) 80vw, 768px'}
-    //         quality={65}
-    //         className={`!mb-3 !mt-6`}
-    //         style={{ marginLeft: 'auto', marginRight: 'auto' }}
-    //       />
-    //       {object?.attributes?.caption && (
-    //         <div className="text-center text-xs text-gray600">
-    //           {object.attributes.caption}
-    //         </div>
-    //       )}
-    //     </>
-    //   )
-    // }
+    case 'image-object': {
+      console.log('image-object', object)
+      return (
+        <Tag>
+          <SanityImage image={object.image} alt={object.altText} />
+        </Tag>
+      )
+    }
     // case 'CoreColumns':
     //   return <Columns columns={object} />
     // case 'FlamingoHowTo':

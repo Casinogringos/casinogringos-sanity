@@ -1,7 +1,7 @@
 export const imageObjectProjection = `
   _type == 'image-object' => {
     _type,
-    _id,
+    _key,
     image,
     caption,
     altText,
