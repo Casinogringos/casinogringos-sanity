@@ -1,25 +1,15 @@
 export interface MenuItem {
-  uri: string;
-  id: string;
-  label: string;
-  title: string;
-  parentId?: string;
-  connectedNode: {
-    node: {
-      indexSlug: string;
-    };
-  };
-  childItems?: {
-    edges: { node: MenuItem }[];
-  };
+  _type: 'menu-item-object'
+  _id: string
+  label?: string
+  page: {
+    slug: string
+  }
+  children?: MenuItem[]
 }
 
 export interface Menu {
-  __typename: "Menu";
-  databaseId: number;
-  id: string;
-  menuId: number;
-  menuItems: {
-    edges: { node: MenuItem }[];
-  };
+  _type: 'menus'
+  _id: string
+  items: MenuItem[]
 }

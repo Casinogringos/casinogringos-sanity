@@ -1,11 +1,8 @@
 'use client'
 
 import { type ReactNode } from 'react'
-import {
-  useAppDispatch,
-  useAppSelector,
-} from '../../../../casinogringos-v3/src/store/hooks'
-import { toggleId } from '../../../../casinogringos-v3/src/store/toggleSlice'
+import { useAppDispatch, useAppSelector } from '@/src/store/hooks'
+import { toggleId } from '@/src/store/toggleSlice'
 
 const ToggleButton = ({
   id,

@@ -1,12 +1,9 @@
-"use client";
+'use client'
 
-import { Menu, X } from "lucide-react";
-import ClientFallback from "../../../../casinogringos-v3/src/components/ClientFallback";
-import { useCallback, useState } from "react";
-import {
-  useAppDispatch,
-  useAppSelector,
-} from "../../../../casinogringos-v3/src/store/hooks";
+import { Menu, X } from 'lucide-react'
+import ClientFallback from '@/src/components/utils/ClientFallback'
+import { useCallback, useState } from 'react'
+import { useAppDispatch, useAppSelector } from '@/src/store/hooks'
 import {
   closedMainMenu,
   closeMainMenu,
@@ -14,32 +11,32 @@ import {
   closeSearch as closeSearchAction,
   closingMainMenu,
   openMainMenu,
-} from "../../../../casinogringos-v3/src/store/menuSlice";
+} from '@/src/store/menuSlice'
 
 const MenuButton = () => {
-  const dispatch = useAppDispatch();
-  const { isMainMenuOpen } = useAppSelector((state) => state.menu);
-  const [menuSidebarClosing] = useState(false);
+  const dispatch = useAppDispatch()
+  const { isMainMenuOpen } = useAppSelector((state) => state.menu)
+  const [menuSidebarClosing] = useState(false)
   const openMenuSidebar = useCallback(() => {
-    dispatch(openMainMenu());
-    dispatch(closeSearchAction());
-    dispatch(closeNotificationMenu());
-  }, [dispatch]);
+    dispatch(openMainMenu())
+    dispatch(closeSearchAction())
+    dispatch(closeNotificationMenu())
+  }, [dispatch])
   const closeMenuSidebar = useCallback(() => {
-    dispatch(closingMainMenu());
+    dispatch(closingMainMenu())
     setTimeout(() => {
-      dispatch(closeMainMenu());
-      dispatch(closedMainMenu());
-    }, 300);
-    document.body.classList.remove("overflow-hidden");
-  }, [dispatch]);
+      dispatch(closeMainMenu())
+      dispatch(closedMainMenu())
+    }, 300)
+    document.body.classList.remove('overflow-hidden')
+  }, [dispatch])
   const handleToggleSidebar = useCallback(() => {
     if (isMainMenuOpen) {
-      closeMenuSidebar();
+      closeMenuSidebar()
     } else {
-      openMenuSidebar();
+      openMenuSidebar()
     }
-  }, [isMainMenuOpen, closeMenuSidebar, openMenuSidebar]);
+  }, [isMainMenuOpen, closeMenuSidebar, openMenuSidebar])
 
   return (
     <ClientFallback
@@ -77,7 +74,7 @@ const MenuButton = () => {
         </div>
       }
     />
-  );
-};
+  )
+}
 
-export default MenuButton;
+export default MenuButton

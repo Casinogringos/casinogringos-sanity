@@ -1,11 +1,8 @@
-"use client";
+'use client'
 
-import { Search as SearchIcon, X } from "lucide-react";
-import { useCallback } from "react";
-import {
-  useAppSelector,
-  useAppDispatch,
-} from "../../../../casinogringos-v3/src/store/hooks";
+import { Search as SearchIcon, X } from 'lucide-react'
+import { useCallback } from 'react'
+import { useAppSelector, useAppDispatch } from '@/src/store/hooks'
 import {
   closedSearch,
   closeMainMenu,
@@ -13,32 +10,32 @@ import {
   closeSearch as closeSearchAction,
   closingSearch,
   openSearch as openSearchAction,
-} from "../../../../casinogringos-v3/src/store/menuSlice";
+} from '@/src/store/menuSlice'
 
 const SearchButton = () => {
-  const dispatch = useAppDispatch();
-  const { isSearchOpen } = useAppSelector((state) => state.menu);
+  const dispatch = useAppDispatch()
+  const { isSearchOpen } = useAppSelector((state) => state.menu)
   const openSearch = useCallback(() => {
-    dispatch(openSearchAction());
-    dispatch(closeMainMenu());
-    dispatch(closeNotificationMenu());
-  }, [dispatch]);
+    dispatch(openSearchAction())
+    dispatch(closeMainMenu())
+    dispatch(closeNotificationMenu())
+  }, [dispatch])
 
   const closeSearch = useCallback(() => {
-    dispatch(closingSearch());
+    dispatch(closingSearch())
     setTimeout(() => {
-      dispatch(closeSearchAction());
-      dispatch(closedSearch());
-    }, 300);
-    document.body.classList.remove("overflow-hidden");
-  }, [dispatch]);
+      dispatch(closeSearchAction())
+      dispatch(closedSearch())
+    }, 300)
+    document.body.classList.remove('overflow-hidden')
+  }, [dispatch])
   const handleToggleSearch = useCallback(() => {
     if (isSearchOpen) {
-      closeSearch();
+      closeSearch()
     } else {
-      openSearch();
+      openSearch()
     }
-  }, [isSearchOpen, closeSearch, openSearch]);
+  }, [isSearchOpen, closeSearch, openSearch])
 
   return (
     <button
@@ -57,7 +54,7 @@ const SearchButton = () => {
       )}
       <span className="ml-2 text-xs font-semibold">SÖK</span>
     </button>
-  );
-};
+  )
+}
 
-export default SearchButton;
+export default SearchButton

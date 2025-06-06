@@ -1,6 +1,5 @@
-import Footer from '@/src/components/organisms/Footer'
 import Navigation from '@/src/components/organisms/Navigation'
-import { getMenuById, getCasinoPreviews } from '@/src/lib/api'
+import { getMenuById } from '@/src/lib/api'
 import Provider from '@/src/store/provider'
 import '@/src/styles/index.css'
 import '@/src/styles/styles.scss'
@@ -34,8 +33,12 @@ export default async function RootLayout({
 }: {
   children: ReactNode
 }) {
-  // const headerNav = await getMenuById({ id: 'dGVybToxMDE4Mg==' })
-  // const sidebarNav = await getMenuById({ id: 'dGVybTo3NA==' })
+  const headerMenu = await getMenuById({
+    id: '44b803d0-621c-4c3f-9c2c-69fb774489bb',
+  })
+  const sidebarMenu = await getMenuById({
+    id: 'a88836bc-b13a-474e-a2f5-ff59513b526a',
+  })
   // const footerNav = await getMenuById({ id: 'dGVybToxNA==' })
   // const footerSites = await getMenuById({
   //   id: 'dGVybToxNzMx',
@@ -53,12 +56,7 @@ export default async function RootLayout({
       <link rel="icon" href="/favicon.ico" sizes="any" />
       <body className={`${jakarta.variable} ${inter.variable}`}>
         <Provider>
-          {/*<Navigation*/}
-          {/*  headerNav={headerNav}*/}
-          {/*  sidebarPosts={sidebarPosts}*/}
-          {/*  sidebarNav={sidebarNav}*/}
-          {/*  searchData={searchData}*/}
-          {/*/>*/}
+          <Navigation headerMenu={headerMenu} sidebarMenu={sidebarMenu} />
           <main className={'relative'}>{children}</main>
           {/*<Footer menu={footerNav} sites={footerSites} posts={footerCasinos} />*/}
           <ScrollToTop />

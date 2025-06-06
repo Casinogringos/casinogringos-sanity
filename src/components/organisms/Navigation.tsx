@@ -1,31 +1,28 @@
-import { isCurrentPath } from "../../../../casinogringos-v3/src/lib/helpers";
-import dynamic from "next/dynamic";
-import Image from "next/image";
-import Container from "../../../../casinogringos-v3/src/components/Container";
-import InternalLink from "../../../../casinogringos-v3/src/components/InternalLink";
-import NotificationButton from "@/app/components/navigation/NotificationButton";
-import NotificationModal from "@/app/components/navigation/NotificationModal";
-import Menu from "@/app/components/navigation/Menu";
-import SidebarPost from "../../../../casinogringos-v3/src/components/SidebarPost";
-import MenuButton from "@/app/components/navigation/MenuButton";
-import SearchButton from "@/app/components/navigation/SearchButton";
-import SearchModal from "@/app/components/navigation/SearchModal";
-import { headers } from "next/headers";
-import MenuModal from "@/app/components/navigation/MenuModal";
-const Search = dynamic(
-  () => import("../../../../casinogringos-v3/src/components/Search"),
-);
+import { isCurrentPath } from '@/src/lib/helpers'
+import dynamic from 'next/dynamic'
+import Image from 'next/image'
+import Container from '@/src/components/atoms/Container'
+import Link from '@/src/components/atoms/Link'
+import NotificationButton from '@/src/components/molecules/NotificationButton'
+import NotificationModal from '@/src/components/molecules/NotificationModal'
+import Menu from '@/src/components/organisms/Menu'
+import type { Menu as MenuType, MenuItem as MenuItemType } from '@/src/types'
+import MenuButton from '@/src/components/molecules/MenuButton'
+import SearchButton from '@/src/components/molecules/SearchButton'
+import { headers } from 'next/headers'
+import MenuModal from '@/src/components/molecules/MenuModal'
 
 export default async function Navigation({
-  topNav,
-  sidebarNav,
-  sidebarPosts,
-  searchData,
+  headerMenu,
+  sidebarMenu,
+}: {
+  headerMenu: MenuType
+  sidebarMenu: MenuType
 }) {
-  const headersList = await headers();
-  const pathname = headersList.get("x-pathname") || headersList.get("x-url");
-  const parentRoute = pathname?.split("/")[1];
-  if (parentRoute === "go") return null;
+  const headersList = await headers()
+  const pathname = headersList.get('x-pathname') || headersList.get('x-url')
+  const parentRoute = pathname?.split('/')[1]
+  if (parentRoute === 'go') return null
 
   return (
     <>
@@ -37,12 +34,12 @@ export default async function Navigation({
       >
         <Container>
           <div className="flex items-center gap-x-12 lg:px-0">
-            <InternalLink
+            <Link
               href="/public"
               prefetch={false}
-              aria-current={isCurrentPath(pathname, "/") ? "page" : undefined}
+              aria-current={isCurrentPath(pathname, '/') ? 'page' : undefined}
               className={`${
-                isCurrentPath(pathname, "/") ? "text-primary" : "text-white"
+                isCurrentPath(pathname, '/') ? 'text-primary' : 'text-white'
               }`}
             >
               <span className="sr-only">Casinogringos.se</span>
@@ -54,33 +51,33 @@ export default async function Navigation({
                 width={80}
                 height={40}
               />
-            </InternalLink>
+            </Link>
             <ul
               role="menubar"
               className="ml-auto hidden space-x-8 lg:-mt-[3px] lg:flex lg:items-center"
             >
-              {topNav.menuItems.edges.map(({ node }) => (
-                <li key={`menu-item-${node.label}`} role="none">
-                  <InternalLink
-                    href={node.uri}
+              {headerMenu.items.map((item: MenuItemType) => (
+                <li key={`menu-item-${item.label}`} role="none">
+                  <Link
+                    href={item.page.slug}
                     role="menuitem"
                     aria-current={
-                      isCurrentPath(pathname, node.uri) ? "page" : undefined
+                      isCurrentPath(pathname, item.slug) ? 'page' : undefined
                     }
                     className={`text-nav uppercase tracking-wider font-medium font-inter hover:text-primary transition ${
-                      isCurrentPath(pathname, node.uri)
-                        ? "text-primary"
-                        : "text-white"
+                      isCurrentPath(pathname, item.slug)
+                        ? 'text-primary'
+                        : 'text-white'
                     }`}
                   >
-                    {node.label}
-                  </InternalLink>
+                    {item.label}
+                  </Link>
                 </li>
               ))}
             </ul>
             <div className="ml-auto flex items-center gap-3">
-              {sidebarPosts.edges.length > 0 && (
-                <NotificationButton count={sidebarPosts.edges.length} />
+              {sidebarMenu.items.length > 0 && (
+                <NotificationButton count={sidebarMenu.items.length} />
               )}
               <SearchButton />
               <MenuButton />
@@ -88,26 +85,26 @@ export default async function Navigation({
           </div>
         </Container>
       </nav>
-      <SearchModal>
-        <Search data={searchData} />
-      </SearchModal>
+      {/*<SearchModal>*/}
+      {/*  <Search data={searchData} />*/}
+      {/*</SearchModal>*/}
       <MenuModal>
-        <Menu menu={sidebarNav} pathname={pathname} />
+        <Menu menu={sidebarMenu} pathname={pathname} />
       </MenuModal>
-      <NotificationModal>
-        <section>
-          <div className="relative mt-6 text-lg font-medium">
-            Populära erbjudanden
-          </div>
-          {sidebarPosts.edges.map(({ node }) => (
-            <SidebarPost
-              item={node}
-              key={`review-${node.id}`}
-              pathname={pathname}
-            />
-          ))}
-        </section>
-      </NotificationModal>
+      {/*<NotificationModal>*/}
+      {/*  <section>*/}
+      {/*    <div className="relative mt-6 text-lg font-medium">*/}
+      {/*      Populära erbjudanden*/}
+      {/*    </div>*/}
+      {/*    {sidebarPosts.edges.map(({ node }) => (*/}
+      {/*      <SidebarPost*/}
+      {/*        item={node}*/}
+      {/*        key={`review-${node.id}`}*/}
+      {/*        pathname={pathname}*/}
+      {/*      />*/}
+      {/*    ))}*/}
+      {/*  </section>*/}
+      {/*</NotificationModal>*/}
     </>
-  );
+  )
 }

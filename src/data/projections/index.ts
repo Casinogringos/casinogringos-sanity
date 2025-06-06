@@ -29,9 +29,11 @@ import { casinoBonusProjection } from '@/src/data/projections/casinoBonusProject
 import { oddsBonusProjection } from '@/src/data/projections/oddsBonusProjection'
 import { freeSpinsProjection } from '@/src/data/projections/freeSpinsProjection'
 import { pageProjection } from '@/src/data/projections/pageProjection'
+import { menuProjection } from '@/src/data/projections/menuProjection'
 
 export {
   imageObjectProjection,
+  menuProjection,
   objectProjections,
   freeSpinsProjection,
   casinoProjection,
