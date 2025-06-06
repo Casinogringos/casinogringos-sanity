@@ -1,4 +1,4 @@
-import { RatingCalculator, ratingKeys } from '@/src/sin-bin/RatingCalculator'
+// import { RatingCalculator, ratingKeys } from '@/src/sin-bin/RatingCalculator'
 import { Post } from '@/src/types'
 import { Mail, MessageCircle, Phone } from 'lucide-react'
 import dynamic from 'next/dynamic'
@@ -8,13 +8,15 @@ import Container from '../atoms/Container'
 import Heading from '../atoms/Heading'
 import ProsAndConsBox from './ProsAndConsBox'
 import StarIcon from '../icons/StarIcon'
+import CasinoService from '@/src/services/CasinoService'
 const ToggleBlock = dynamic(
   () => import('@/src/components/molecules/ToggleBox')
 )
 
 const PostInfo = ({ casino, title }: { casino: Post; title: string }) => {
-  const { finalRating, validRatings, ratings } = RatingCalculator({
-    item: casino,
+  const casinoService = new CasinoService()
+  const { finalRating, validRatings, ratings } = casinoService.getCasinoRating({
+    casino,
   })
   const prosAndCons = {
     __typename: 'FlamingoProsAndCons',
@@ -79,7 +81,8 @@ const PostInfo = ({ casino, title }: { casino: Post; title: string }) => {
             <div className="relative mb-8 gap-6 overflow-hidden rounded-t-md bg-darklight p-5 md:overflow-visible md:rounded-md">
               <Heading
                 className={'-mt-1 text-lg text-white'}
-                attributes={{ level: 2, text: 'Vårt betyg' }}
+                text={'Vårt betyg'}
+                level={2}
               />
               <div className="mt-2 flex items-start text-white">
                 <strong className="text-5xl">{finalRating}</strong>

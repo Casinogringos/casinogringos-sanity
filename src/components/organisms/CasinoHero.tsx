@@ -1,8 +1,7 @@
-import Star from '@/components/icons/Star'
-import StarHalf from '@/components/icons/StarHalf'
+import Star from '@/src/components/icons/StarIcon'
+import StarHalf from '@/src/components/icons/HalfStarIcon'
 import CoverImage from '../../sin-bin/CoverImage'
 import dynamic from 'next/dynamic'
-const AffiliateButton = dynamic(() => import('../../sin-bin/AffiliateButton'))
 
 export default function CasinoHero({
   title,

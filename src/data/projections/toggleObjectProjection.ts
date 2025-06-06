@@ -9,9 +9,9 @@ export const toggleObjectProjection = `
     buttonTextOpen,
     buttonTextClose,
     message,
-    content {
-        ${headingObjectProjection}
-        ${paragraphObjectProjection}
+    content[] {
+        ${headingObjectProjection},
+        ${paragraphObjectProjection},
         ${imageObjectProjection}
     }
   }

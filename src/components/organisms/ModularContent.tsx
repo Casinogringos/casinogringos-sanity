@@ -12,6 +12,7 @@ import Columns from '@/src/components/utils/Columns'
 import Group from '@/src/components/utils/Group'
 import VideoPlayerWrap from '@/src/components/utils/VideoPlayerWrap'
 import { Blocks } from '@/src/types/blocks'
+import { PortableText } from 'next-sanity'
 import Container from '@/src/components/atoms/Container'
 const Heading = dynamic(() => import('@/src/components/atoms/Heading'))
 const RawHTML = dynamic(() => import('@/src/components/atoms/RawHTML'))
@@ -22,7 +23,7 @@ const Accordion = dynamic(() => import('@/src/components/organisms/Accordion'))
 const renderObject = (object: ObjectType, outerIndex, nested) => {
   if (!object) return null
   const Tag = nested ? 'div' : Container
-  switch (object.__type) {
+  switch (object._type) {
     // case 'CoreButtons':
     //   if (!object.innerBlocks || object.innerBlocks.length === 0)
     //     return <RawHTML html={object.renderedHtml} className={'mb-4'} />
@@ -44,12 +45,14 @@ const renderObject = (object: ObjectType, outerIndex, nested) => {
     //   )
     // case 'CoreQuote':
     //   return <RawHTML html={object.renderedHtml} />
-    case 'FlamingoHeading':
+    case 'heading-object': {
+      console.log('heading-object', object)
       return (
         <Tag>
           <Heading text={object.text} level={object.level} index={outerIndex} />
         </Tag>
       )
+    }
     // case 'FlamingoAiSummary':
     //   return (
     //     <SummaryBox
@@ -58,10 +61,10 @@ const renderObject = (object: ObjectType, outerIndex, nested) => {
     //       className={'mb-4'}
     //     />
     //   )
-    case 'CoreParagraph':
+    case 'paragraph-object':
       return (
         <Tag>
-          <Paragraph content={object.content} />
+          <PortableText value={object.content} />
         </Tag>
       )
     // case 'FlamingoImage': {
@@ -203,8 +206,10 @@ const ModularContent = ({
       className={`${className} pb-8 pt-4 mx-auto prose prose-h2:text-3xl prose-p:text-text prose-headings:tracking-normal max-w-3xl text-grey-darker`}
     >
       {objects.map((object: ObjectType, outerIndex: number) => {
+        console.log('object', object)
+        if (!object._key) return null
         return (
-          <Fragment key={`block-${object.id}`}>
+          <Fragment key={`block-${object._key}`}>
             {renderObject(object, outerIndex, nested)}
           </Fragment>
         )
