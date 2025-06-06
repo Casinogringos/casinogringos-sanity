@@ -7,7 +7,13 @@ const menuItemProjection = `
         slug
     }
     children[] {
-        ${menuItemProjection}
+        _type,
+        _id,
+        label
+        page {
+            _type,
+            slug
+        }
     }
 `
 
