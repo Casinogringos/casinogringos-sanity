@@ -49,7 +49,6 @@ const renderObject = (object: ObjectType, outerIndex, nested) => {
     // case 'CoreQuote':
     //   return <RawHTML html={object.renderedHtml} />
     case 'heading-object': {
-      console.log('heading-object', object)
       return (
         <Tag>
           <Heading text={object.text} level={object.level} index={outerIndex} />
@@ -179,14 +178,12 @@ const ModularContent = ({
   // }, [])
   // console.log('conflictingClientIds', conflictingClientIds)
   if (!objects) return null
-  console.log('objects', objects)
   return (
     <div
       key={'objects-wrapper'}
       className={`${className} pb-8 pt-4 mx-auto prose prose-h2:text-3xl prose-p:text-text prose-headings:tracking-normal max-w-3xl text-grey-darker`}
     >
       {objects.map((object: ObjectType, outerIndex: number) => {
-        console.log('object', object)
         if (!object._key) return null
         return (
           <Fragment key={`block-${object._key}`}>

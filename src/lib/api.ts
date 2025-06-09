@@ -19,7 +19,7 @@ export const getMenuById = async ({ id }: { id: string }) => {
     console.log('getMenuById', id)
     const data = await client.fetch(menuByIdQuery({ id }))
     console.log('data', data)
-    return data[0]
+    return data
   } catch (e) {
     console.log(e)
     throw Error(`Failed to fetch menu by id: ${id}`)

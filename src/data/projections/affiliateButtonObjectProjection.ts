@@ -4,7 +4,7 @@ export const affiliateButtonObjectProjection = `
   _type == 'affiliate-button-object' => {
     _type,
     _id,
-    casino {
+    casino-> {
         ${casinoProjection}
     },
     message

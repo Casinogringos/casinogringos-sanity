@@ -18,7 +18,7 @@ const Menu = ({
         {menu.items.map((level1Item: MenuItemType, i: number) => (
           <li
             className={`flex items-center justify-between flex-wrap border-b-gray100 py-4 ${
-              menu.menuItems.edges.length - 1 !== i ? 'border-b' : ''
+              menu.items.length - 1 !== i ? 'border-b' : ''
             }`}
             key={`level-1-item-${level1Item.id}`}
             role={'none'}
@@ -30,7 +30,7 @@ const Menu = ({
                 isCurrentPath(pathname, level1Item.uri) ? 'page' : undefined
               }
               className={`flex items-center flex-grow overflow-ellipsis overflow-hidden font-medium text-lg whitespace-nowrap text-dark/90 hover:text-primary max-w-[calc(100%-24px)]`}
-              href={level1Item.connectedNode.node.indexSlug ?? level1Item.uri}
+              href={level1Item.slug}
             >
               {level1Item.label}
             </Link>

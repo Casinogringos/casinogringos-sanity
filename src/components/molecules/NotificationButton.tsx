@@ -1,11 +1,8 @@
-"use client";
+'use client'
 
-import { Bell } from "lucide-react";
-import { useCallback, useEffect, useState } from "react";
-import {
-  useAppSelector,
-  useAppDispatch,
-} from "../../../../casinogringos-v3/src/store/hooks";
+import { Bell } from 'lucide-react'
+import { useCallback, useEffect, useState } from 'react'
+import { useAppSelector, useAppDispatch } from '@/src/store/hooks'
 import {
   closedNotificationMenu,
   closeMainMenu,
@@ -13,45 +10,42 @@ import {
   closeSearch as closeSearchAction,
   closingNotificationMenu,
   openNotificationMenu,
-} from "../../../../casinogringos-v3/src/store/menuSlice";
-import {
-  getSessionToken,
-  setSessionToken,
-} from "../../../../casinogringos-v3/src/lib/helpers";
+} from '@/src/store/menuSlice'
+import { getSessionToken, setSessionToken } from '@/src/lib/helpers'
 
 const NotificationButton = ({ count }: { count: number }) => {
-  const dispatch = useAppDispatch();
-  const [pendingNotifications, setPendingNotifications] = useState(false);
+  const dispatch = useAppDispatch()
+  const [pendingNotifications, setPendingNotifications] = useState(false)
   useEffect(() => {
-    setPendingNotifications(getSessionToken("notificationSession") === null);
-  }, []);
-  const { isNotificationMenuOpen } = useAppSelector((state) => state.menu);
+    setPendingNotifications(getSessionToken('notificationSession') === null)
+  }, [])
+  const { isNotificationMenuOpen } = useAppSelector((state) => state.menu)
   const closeNotificationSidebar = useCallback(() => {
-    dispatch(closingNotificationMenu());
+    dispatch(closingNotificationMenu())
     setTimeout(() => {
-      dispatch(closeNotificationMenu());
-      dispatch(closedNotificationMenu());
-    }, 300);
-    document.body.classList.remove("overflow-hidden");
-  }, [dispatch]);
+      dispatch(closeNotificationMenu())
+      dispatch(closedNotificationMenu())
+    }, 300)
+    document.body.classList.remove('overflow-hidden')
+  }, [dispatch])
   const openNotificationSidebar = useCallback(() => {
-    dispatch(openNotificationMenu());
-    dispatch(closeMainMenu());
-    dispatch(closeSearchAction());
-    setSessionToken("notificationSession", "true");
-    setPendingNotifications(false);
-  }, [dispatch, setPendingNotifications]);
+    dispatch(openNotificationMenu())
+    dispatch(closeMainMenu())
+    dispatch(closeSearchAction())
+    setSessionToken('notificationSession', 'true')
+    setPendingNotifications(false)
+  }, [dispatch, setPendingNotifications])
   const handleToggleNotificationSidebar = useCallback(() => {
     if (isNotificationMenuOpen) {
-      closeNotificationSidebar();
+      closeNotificationSidebar()
     } else {
-      openNotificationSidebar();
+      openNotificationSidebar()
     }
   }, [
     isNotificationMenuOpen,
     closeNotificationSidebar,
     openNotificationSidebar,
-  ]);
+  ])
 
   return (
     <button
@@ -66,8 +60,8 @@ const NotificationButton = ({ count }: { count: number }) => {
         </span>
       )}
     </button>
-  );
-};
+  )
+}
 
-NotificationButton.displayName = "NotificationButton";
-export default NotificationButton;
+NotificationButton.displayName = 'NotificationButton'
+export default NotificationButton

@@ -4,7 +4,7 @@ export const casinoObjectProjection = `
   _type == 'casino-object' => {
     _type,
     _id,
-    casino {
+    casino-> {
         ${casinoProjection}
     },
     message,
