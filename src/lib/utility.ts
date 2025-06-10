@@ -1,22 +1,13 @@
-export const getCasinoRating = ({ casino }: { casino: Casino }) => {
-  const ratings: Partial<Ratings> = {}
-  const validRatings = ratingKeys.reduce<number[]>((acc, { key }) => {
-    const ratingValue = casino.postType?.ratings?.[key as keyof Ratings]
-    ratings[key as keyof Ratings] = ratingValue
-    if (ratingValue != null && ratingValue > 0) {
-      acc.push(ratingValue)
-    }
-    return acc
-  }, [])
-  const totalRating = validRatings.reduce((sum, rating) => sum + rating, 0)
-  const maxValidRatings = validRatings.length * 5
-  const overallScore =
-    validRatings.length > 0
-      ? validRatings.every((rating) => rating === 5)
-        ? 5
-        : ((totalRating / maxValidRatings) * 5).toFixed(1)
-      : 0
-  const finalRating =
-    validRatings.length >= 5 ? overallScore : casino?.postType?.rating
-  return { finalRating, validRatings, ratings }
+export const formatPageSlug = (slug: string) => {
+  if (slug.startsWith('/') && !slug.endsWith('/')) {
+    return slug
+  }
+  let newSlug = slug
+  if (!slug.startsWith('/')) {
+    newSlug = `/${newSlug}`
+  }
+  if (slug.endsWith('/')) {
+    newSlug = newSlug.slice(0, -1)
+  }
+  return newSlug
 }

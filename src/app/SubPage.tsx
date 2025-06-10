@@ -18,59 +18,57 @@ const Accordion = dynamic(
 )
 
 export default function SubPage({ page }: { page: PageType }) {
-  const casinos = page.pageType.category?.edges[0].node.posts.edges ?? []
-  const headings = getBlockHeadings(page?.editorBlocks)
+  // const casinos = page.pageType.category?.edges[0].node.posts.edges ?? []
+  // const headings = getBlockHeadings(page?.editorBlocks)
 
   return (
     <div>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: replaceInternalLinkBaseUrls(page?.seo?.schema?.raw),
-        }}
-        key="homepage-data"
-      />
-      <Hero
-        title={page?.title}
-        shareTitle={page?.seo?.title}
-        author={page?.author}
-        date={page?.date}
-        modified={page?.modified}
-        description={page?.pageType?.bannerText}
-      />
-      {page?.seo?.breadcrumbs && <BreadCrumbs items={page.seo?.breadcrumbs} />}
-      {casinos.length ? (
-        <CasinoList casinos={casinos} title={page?.pageType?.subtitle} />
-      ) : null}
-      {page?.pageType.faq && (
-        <div className="mb-16 bg-dark px-4 py-16 md:px-0">
-          <Container>
-            <Accordion
-              items={page?.pageType.faq[0].faqSection}
-              subtitle={page?.pageType?.faqSubtitle}
-            />
-          </Container>
-        </div>
-      )}
-      {headings.length > 1 && (
-        <div className={page?.pageType?.faq ? '' : 'mt-16'}>
-          <Container>
-            <TableOfContents headings={headings} />
-          </Container>
-        </div>
-      )}
-      <ModularContent
-        objects={page.preview ? page.preview.editorBlocks : page.editorBlocks}
-      />
-      {page?.author && (
-        <Container>
-          <AuthorBox
-            author={page?.author}
-            modified={page?.modified}
-            reviewedBy={page?.reviewer}
-          />
-        </Container>
-      )}
+      {/*<script*/}
+      {/*  type="application/ld+json"*/}
+      {/*  dangerouslySetInnerHTML={{*/}
+      {/*    __html: replaceInternalLinkBaseUrls(page?.seo?.schema?.raw),*/}
+      {/*  }}*/}
+      {/*  key="homepage-data"*/}
+      {/*/>*/}
+      {/*<Hero*/}
+      {/*  title={page?.title}*/}
+      {/*  shareTitle={page?.seo?.title}*/}
+      {/*  author={page?.author}*/}
+      {/*  date={page?.date}*/}
+      {/*  modified={page?.modified}*/}
+      {/*  description={page?.pageType?.bannerText}*/}
+      {/*/>*/}
+      {/*{page?.seo?.breadcrumbs && <BreadCrumbs items={page.seo?.breadcrumbs} />}*/}
+      {/*{casinos.length ? (*/}
+      {/*  <CasinoList casinos={casinos} title={page?.pageType?.subtitle} />*/}
+      {/*) : null}*/}
+      {/*{page?.pageType.faq && (*/}
+      {/*  <div className="mb-16 bg-dark px-4 py-16 md:px-0">*/}
+      {/*    <Container>*/}
+      {/*      <Accordion*/}
+      {/*        items={page?.pageType.faq[0].faqSection}*/}
+      {/*        subtitle={page?.pageType?.faqSubtitle}*/}
+      {/*      />*/}
+      {/*    </Container>*/}
+      {/*  </div>*/}
+      {/*)}*/}
+      {/*{headings.length > 1 && (*/}
+      {/*  <div className={page?.pageType?.faq ? '' : 'mt-16'}>*/}
+      {/*    <Container>*/}
+      {/*      <TableOfContents headings={headings} />*/}
+      {/*    </Container>*/}
+      {/*  </div>*/}
+      {/*)}*/}
+      <ModularContent objects={page.content} />
+      {/*{page?.author && (*/}
+      {/*  <Container>*/}
+      {/*    <AuthorBox*/}
+      {/*      author={page?.author}*/}
+      {/*      modified={page?.modified}*/}
+      {/*      reviewedBy={page?.reviewer}*/}
+      {/*    />*/}
+      {/*  </Container>*/}
+      {/*)}*/}
     </div>
   )
 }

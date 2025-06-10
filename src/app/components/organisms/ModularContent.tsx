@@ -30,6 +30,7 @@ const Accordion = dynamic(
 const renderObject = (object: ObjectType, outerIndex, nested) => {
   if (!object) return null
   const Tag = nested ? 'div' : Container
+  console.log('objecthello', object)
   switch (object._type) {
     // case 'CoreButtons':
     //   if (!object.innerBlocks || object.innerBlocks.length === 0)

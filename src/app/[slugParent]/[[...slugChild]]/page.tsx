@@ -5,7 +5,8 @@ import CasinoPage from '@/src/app/CasinoPage'
 import { extractSlugFromUrl } from '@/src/lib/helpers'
 import { Metadata } from 'next'
 import { Post as PostType, Page as PageType } from '@/src/types'
-import { getPageBySlug } from '@/src/lib/api'
+import { getCasinoPageBySlug, getPageBySlug } from '@/src/lib/api'
+import { formatPageSlug } from '@/src/lib/utility'
 
 type Params = Promise<{
   slugParent: string
@@ -90,21 +91,23 @@ export default async function Page(props: { params: Params }) {
   if (Array.isArray(slugChild) && slugChild.length > 0) {
     pageUri = `${pageUri}${slugChild.join('/')}/`
   }
-  const page = (await getPageBySlug({ slug: pageUri })) as PageType
-  if (page?.__typename === 'Page') {
+  const page = (await getPageBySlug({
+    slug: formatPageSlug(pageUri),
+  })) as PageType
+  if (page?._type === 'pages') {
     return <SubPage page={page} />
   }
-  const post = (await getPageBySlug({
-    slug: slugParent,
+  const casinoPage = (await getCasinoPageBySlug({
+    slug: formatPageSlug(slugParent),
   })) as PostType
-  if (!post) {
+  if (!casinoPage) {
     return notFound()
   }
   // const posts = await getPostPreviews({ count: 5 })
   // const similarPosts = post
   //   ? posts.edges.filter(({ node }) => node.id !== post.id).splice(0, 4)
   //   : null
-  // if (post?.__typename === 'Post') {
-  //   return <CasinoPage post={post} similarPosts={similarPosts} />
-  // }
+  if (casinoPage?._type === 'casino-pages') {
+    return <CasinoPage page={casinoPage} />
+  }
 }

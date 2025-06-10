@@ -29,6 +29,7 @@ import { quoteObjectProjection } from '@/src/data/projections/quoteObjectProject
 import { toggleObjectProjection } from '@/src/data/projections/toggleObjectProjection'
 import { objectProjections } from '@/src/data/projections/objectProjections'
 import { pageProjection } from '@/src/data/projections/pageProjection'
+import { casinoPageProjection } from '@/src/data/projections/casinoPageProjection'
 import { menuProjection } from '@/src/data/projections/menuProjection'
 
 export {
@@ -38,6 +39,7 @@ export {
   freeSpinsProjection,
   casinoProjection,
   oddsBonusProjection,
+  casinoPageProjection,
   bonusProjection,
   casinoBonusProjection,
   pageProjection,

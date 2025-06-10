@@ -32,7 +32,7 @@ const Menu = ({
                   : undefined
               }
               className={`flex items-center flex-grow overflow-ellipsis overflow-hidden font-medium text-lg whitespace-nowrap text-dark hover:text-primary max-w-[calc(100%-24px)]`}
-              href={level1Item.page.slug}
+              href={level1Item.page.slug.current}
             >
               {level1Item.page.title}
             </Link>
@@ -56,7 +56,6 @@ const Menu = ({
                   <ul className={'basis-full pl-3 mt-1'} role={'menu'}>
                     {level1Item.children
                       .filter((child) => {
-                        console.log('child', child)
                         return child.page
                       })
                       .map((level2Item: MenuItemType) => (
