@@ -1,4 +1,4 @@
-const Avatar = dynamic(() => import('../components/organisms/Avatar'))
+const Avatar = dynamic(() => import('@/src/app/components/organisms/Avatar'))
 import PostTitle from './PostTitle'
 import dynamic from 'next/dynamic'
 

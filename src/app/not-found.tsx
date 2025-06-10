@@ -1,4 +1,4 @@
-import Container from '@/src/components/atoms/Container'
+import Container from '@/src/app/components/atoms/Container'
 import Image from 'next/image'
 import Link from 'next/link'
 

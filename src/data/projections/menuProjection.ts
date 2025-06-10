@@ -1,19 +1,22 @@
 const menuItemProjection = `
     _type,
     _id,
+    _key,
     label,
     page-> {
         _type,
-        slug
+        slug,
+        title
     },
-    children[]-> {
+    children[] {
         _type,
         _id,
         label,
         page-> {           
             _type,
-            slug       
-        }
+            slug,      
+            title
+        },
     }
 `
 

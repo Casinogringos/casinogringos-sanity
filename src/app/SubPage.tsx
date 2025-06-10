@@ -4,16 +4,18 @@ import {
 } from '@/src/lib/helpers'
 import { Page as PageType } from '@/src/types'
 import dynamic from 'next/dynamic'
-import AuthorBox from '@/src/components/organisms/AuthorBox'
-import BreadCrumbs from '@/src/components/organisms/BreadCrumbs'
-import CasinoList from '@/src/components/organisms/CasinoList'
-import Container from '@/src/components/atoms/Container'
-import ModularContent from '@/src/components/organisms/ModularContent'
-import Hero from '@/src/components/molecules/Hero'
+import AuthorBox from '@/src/app/components/organisms/AuthorBox'
+import BreadCrumbs from '@/src/app/components/organisms/BreadCrumbs'
+import CasinoList from '@/src/app/components/organisms/CasinoList'
+import Container from '@/src/app/components/atoms/Container'
+import ModularContent from '@/src/app/components/organisms/ModularContent'
+import Hero from '@/src/app/components/molecules/Hero'
 const TableOfContents = dynamic(
-  () => import('@/src/components/organisms/TableOfContents')
+  () => import('@/src/app/components/organisms/TableOfContents')
 )
-const Accordion = dynamic(() => import('@/src/components/organisms/Accordion'))
+const Accordion = dynamic(
+  () => import('@/src/app/components/organisms/Accordion')
+)
 
 export default function SubPage({ page }: { page: PageType }) {
   const casinos = page.pageType.category?.edges[0].node.posts.edges ?? []

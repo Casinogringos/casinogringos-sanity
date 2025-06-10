@@ -1,15 +1,15 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { getBlockHeadings } from '../lib/helpers'
-import CasinoHero from '@/src/components/organisms/CasinoHero'
-import ModularContent from '@/src/components/organisms/ModularContent'
-import AuthorBox from '@/src/components/organisms/AuthorBox'
-import Avatar from '@/src/components/organisms/Avatar'
-import BreadCrumbs from '@/src/components/organisms/BreadCrumbs'
-import Container from '@/src/components/atoms/Container'
-import PostInfo from '@/src/components/organisms/PostInfo'
-import StickyCasino from '@/src/components/organisms/StickyCasino'
-import TableOfContents from '@/src/components/organisms/TableOfContents'
+import CasinoHero from '@/src/app/components/organisms/CasinoHero'
+import ModularContent from '@/src/app/components/organisms/ModularContent'
+import AuthorBox from '@/src/app/components/organisms/AuthorBox'
+import Avatar from '@/src/app/components/organisms/Avatar'
+import BreadCrumbs from '@/src/app/components/organisms/BreadCrumbs'
+import Container from '@/src/app/components/atoms/Container'
+import PostInfo from '@/src/app/components/organisms/PostInfo'
+import StickyCasino from '@/src/app/components/organisms/StickyCasino'
+import TableOfContents from '@/src/app/components/organisms/TableOfContents'
 import CasinoService from '@/src/services/CasinoService'
 import { Casino } from '@/src/types/casino'
 
@@ -82,11 +82,11 @@ export default function CasinoPage({
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-        key="homepage-data"
-      />
+      {/*<script*/}
+      {/*  type="application/ld+json"*/}
+      {/*  dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}*/}
+      {/*  key="homepage-data"*/}
+      {/*/>*/}
       <article>
         <CasinoHero
           title={casino?.title}

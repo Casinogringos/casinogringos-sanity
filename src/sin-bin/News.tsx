@@ -1,5 +1,5 @@
 import Date from '@/components/Date'
-import ImageWrap from '../components/atoms/ImageWrap'
+import ImageWrap from '@/src/app/components/atoms/ImageWrap'
 import InternalLink from './InternalLink'
 
 export default function News({ posts }) {

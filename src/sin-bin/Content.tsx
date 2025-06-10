@@ -1,4 +1,4 @@
-import Container from '../components/atoms/Container'
+import Container from '@/src/app/components/atoms/Container'
 import BlocksMap from '@/components/blocks/BlocksMap'
 import { Blocks } from '@/types/blocks'
 

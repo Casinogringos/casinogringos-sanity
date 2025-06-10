@@ -1,4 +1,4 @@
-import Container from '../components/atoms/Container'
+import Container from '@/src/app/components/atoms/Container'
 import { EXAMPLE_PATH } from '../lib/constants'
 import Link from 'next/link'
 

@@ -1,4 +1,4 @@
-import Navigation from '@/src/components/organisms/Navigation'
+import Navigation from '@/src/app/components/organisms/Navigation'
 import { getMenuById } from '@/src/lib/api'
 import Provider from '@/src/store/provider'
 import '@/src/styles/index.css'
@@ -9,7 +9,7 @@ import { Inter, Plus_Jakarta_Sans } from 'next/font/google'
 import { ReactNode } from 'react'
 
 const ScrollToTop = dynamic(
-  () => import('@/src/components/molecules/ScrollToTop')
+  () => import('@/src/app/components/molecules/ScrollToTop')
 )
 const inter = Inter({
   subsets: ['latin'],
@@ -24,9 +24,9 @@ const jakarta = Plus_Jakarta_Sans({
   weight: ['700'],
 })
 
-export const metadata = {
-  metadataBase: new URL(process.env.SITE_URL as string),
-}
+// export const metadata = {
+//   metadataBase: new URL(process.env.SITE_URL as string),
+// }
 
 export default async function RootLayout({
   children,
@@ -58,7 +58,6 @@ export default async function RootLayout({
         <Provider>
           <Navigation headerMenu={headerMenu} sidebarMenu={sidebarMenu} />
           <main className={'relative'}>{children}</main>
-          {/*<Footer menu={footerNav} sites={footerSites} posts={footerCasinos} />*/}
           <ScrollToTop />
         </Provider>
       </body>

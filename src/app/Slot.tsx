@@ -1,87 +1,87 @@
-import Image from "next/image";
-import Link from "next/link";
+import Image from 'next/image'
+import Link from 'next/link'
 
-import Star from "@/components/icons/Star";
-import StarHalf from "@/components/icons/StarHalf";
-import { getBlockHeadings } from "../lib/helpers";
+import Star from '@/components/icons/Star'
+import StarHalf from '@/components/icons/StarHalf'
+import { getBlockHeadings } from '../lib/helpers'
 
-import Content from "../../../casinogringos-v3/src/components/Content";
-import Avatar from "../../../casinogringos-v3/src/components/Avatar";
-import BreadCrumbs from "../../../casinogringos-v3/src/components/BreadCrumbs";
-import Casino from "../../../casinogringos-v3/src/components/Casino";
-import Container from "../../../casinogringos-v3/src/components/Container";
-import SlotHero from "../../../casinogringos-v3/src/components/SlotHero";
-import TableOfContents from "../../../casinogringos-v3/src/components/TableOfContents";
+import Content from '../../../casinogringos-v3/src/components/Content'
+import Avatar from '../../../casinogringos-v3/src/components/Avatar'
+import BreadCrumbs from '../../../casinogringos-v3/src/components/BreadCrumbs'
+import Casino from '../../../casinogringos-v3/src/components/Casino'
+import Container from '../../../casinogringos-v3/src/components/Container'
+import SlotHero from '../../../casinogringos-v3/src/components/SlotHero'
+import TableOfContents from '../../../casinogringos-v3/src/components/TableOfContents'
 
 export default function Slot({ slot, similarSlots }) {
-  const author = slot?.author?.node;
-  const siteURL = process.env.SITE_URL;
+  const author = slot?.author?.node
+  const siteURL = process.env.SITE_URL
   const structuredData = {
-    "@context": "https://schema.org/",
-    "@type": "Review",
+    '@context': 'https://schema.org/',
+    '@type': 'Review',
     itemReviewed: {
-      "@type": "Game",
+      '@type': 'Game',
       image: slot?.featuredImage?.node
         ? slot.featuredImage.node.sourceUrl
         : null,
       name: slot?.title,
     },
     reviewRating: {
-      "@type": "Rating",
+      '@type': 'Rating',
       ratingValue: slot?.slotType?.rating,
-      bestRating: "5",
-      worstRating: "1",
+      bestRating: '5',
+      worstRating: '1',
     },
     author: {
-      "@type": "Person",
+      '@type': 'Person',
       name: author?.name,
       url: siteURL + author?.uri,
       email: author?.userType?.email,
-      jobTitle: author?.userType?.role ? author.userType.role : "Skribent",
+      jobTitle: author?.userType?.role ? author.userType.role : 'Skribent',
       sameAs: author?.seo?.social?.linkedIn,
       image: {
-        "@type": "ImageObject",
-        inLanguage: "sv-SE",
-        id: "https://casinogringos.se/#/schema/person/image/",
+        '@type': 'ImageObject',
+        inLanguage: 'sv-SE',
+        id: 'https://casinogringos.se/#/schema/person/image/',
         url: author?.avatar?.url,
         caption: author?.name,
       },
     },
     publisher: {
-      "@type": "Organization",
-      name: "Casinogringos",
+      '@type': 'Organization',
+      name: 'Casinogringos',
       url: siteURL,
       sameAs: [
-        "https://www.facebook.com/Casinogringos",
-        "https://www.instagram.com/casinogringos/",
-        "https://www.youtube.com/channel/UCeFbFMkDfTlLayuZmk_aXiA",
-        "https://www.twitch.tv/casinogringos",
-        "https://twitter.com/CasinoGringos",
+        'https://www.facebook.com/Casinogringos',
+        'https://www.instagram.com/casinogringos/',
+        'https://www.youtube.com/channel/UCeFbFMkDfTlLayuZmk_aXiA',
+        'https://www.twitch.tv/casinogringos',
+        'https://twitter.com/CasinoGringos',
       ],
     },
     isPartOf: [
       {
         id: `${siteURL}/#website`,
-        "@type": "WebSite",
-        name: "Casinogringos.se",
+        '@type': 'WebSite',
+        name: 'Casinogringos.se',
         url: siteURL,
-        inLanguage: "sv-se",
+        inLanguage: 'sv-se',
       },
     ],
-  };
-  const headings = getBlockHeadings(slot?.editorBlocks);
-  const convertedRating = parseInt(slot?.slotType?.rating);
-  const rating = slot.slotType?.rating?.toString();
+  }
+  const headings = getBlockHeadings(slot?.editorBlocks)
+  const convertedRating = parseInt(slot?.slotType?.rating)
+  const rating = slot.slotType?.rating?.toString()
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(structuredData),
-        }}
-        key="slot-data"
-      />
+      {/*<script*/}
+      {/*  type="application/ld+json"*/}
+      {/*  dangerouslySetInnerHTML={{*/}
+      {/*    __html: JSON.stringify(structuredData),*/}
+      {/*  }}*/}
+      {/*  key="slot-data"*/}
+      {/*/>*/}
       <div>
         <SlotHero props={slot} />
         <div className="bg-dark">
@@ -111,12 +111,12 @@ export default function Slot({ slot, similarSlots }) {
                       .fill(null)
                       .map(
                         (_, index) =>
-                          rating.indexOf(".") !== -1 && (
+                          rating.indexOf('.') !== -1 && (
                             <StarHalf
                               key={`rating-star-${index}`}
                               className="h-4 w-4 text-yellow400"
                             />
-                          ),
+                          )
                       )}
                   </div>
                 )}
@@ -204,7 +204,7 @@ export default function Slot({ slot, similarSlots }) {
           <BreadCrumbs
             items={slot?.seo?.breadcrumbs}
             index={{
-              text: "Slots",
+              text: 'Slots',
               url: `${process.env.SITE_URL}/slots`,
             }}
           />
@@ -219,7 +219,7 @@ export default function Slot({ slot, similarSlots }) {
           />
         </div>
         {headings.length > 1 && (
-          <div className={"px-4 lg:px-0"}>
+          <div className={'px-4 lg:px-0'}>
             <TableOfContents headings={headings} />
           </div>
         )}
@@ -248,30 +248,30 @@ export default function Slot({ slot, similarSlots }) {
           </section>
         )}
         {similarSlots && (
-          <section className={"bg-gray100 py-10"}>
+          <section className={'bg-gray100 py-10'}>
             <Container>
-              <h3 className={"mb-4 text-2xl text-gray700"}>Fler slots</h3>
-              <div className={"grid grid-cols-2 gap-4 lg:grid-cols-4"}>
+              <h3 className={'mb-4 text-2xl text-gray700'}>Fler slots</h3>
+              <div className={'grid grid-cols-2 gap-4 lg:grid-cols-4'}>
                 {similarSlots.map(({ node }) => (
                   <Link
                     href={`/slots/${node.slug}`}
                     key={`slot-${node.id}`}
-                    className={"flex flex-col"}
+                    className={'flex flex-col'}
                   >
-                    <div className={"mb-3 flex overflow-hidden rounded-md"}>
+                    <div className={'mb-3 flex overflow-hidden rounded-md'}>
                       <Image
                         src={node.featuredImage?.node.sourceUrl}
                         alt={node.featuredImage?.node.altText}
                         style={{
-                          minWidth: "100%",
-                          minHeight: "100%",
+                          minWidth: '100%',
+                          minHeight: '100%',
                         }}
                         width={500}
                         height={300}
                         className="h-28 object-cover sm:h-48 md:h-56 lg:h-40"
                       />
                     </div>
-                    <h4 className={"text-gray700"}>{node.title}</h4>
+                    <h4 className={'text-gray700'}>{node.title}</h4>
                   </Link>
                 ))}
               </div>
@@ -280,5 +280,5 @@ export default function Slot({ slot, similarSlots }) {
         )}
       </div>
     </>
-  );
+  )
 }
