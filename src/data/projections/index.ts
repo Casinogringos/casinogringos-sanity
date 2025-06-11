@@ -31,12 +31,14 @@ import { objectProjections } from '@/src/data/projections/objectProjections'
 import { newsPageProjection } from '@/src/data/projections/newsPageProjection'
 import { pageProjection } from '@/src/data/projections/pageProjection'
 import { guidePageProjection } from '@/src/data/projections/guidePageProjection'
+import { slotPageProjection } from '@/src/data/projections/slotPageProjection'
 import { casinoPageProjection } from '@/src/data/projections/casinoPageProjection'
 import { menuProjection } from '@/src/data/projections/menuProjection'
 
 export {
   imageObjectProjection,
   menuProjection,
+  slotPageProjection,
   objectProjections,
   guidePageProjection,
   freeSpinsProjection,

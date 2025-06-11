@@ -3,6 +3,7 @@ import {
   pageBySlugQuery,
   menuByIdQuery,
   newsPageBySlugQuery,
+  slotPageBySlugQuery,
 } from '@/src/data/queries'
 import { casinoPageBySlugQuery } from '@/src/data/queries/casinoPageBySlugQuery'
 import { guidePageBySlugQuery } from '@/src/data/queries/guidePageBySlugQuery'
@@ -24,6 +25,18 @@ export const getGuidePageBySlug = async ({ slug }: { slug: string }) => {
   try {
     console.log('pageBySlugQuery', pageBySlugQuery({ slug }))
     const data = await client.fetch(guidePageBySlugQuery({ slug }))
+    // console.log('data', data)
+    return data[0]
+  } catch (e) {
+    console.log(e)
+    throw Error(`Failed to fetch page by slug: ${slug}`)
+  }
+}
+
+export const getSlotPageBySlug = async ({ slug }: { slug: string }) => {
+  try {
+    console.log('pageBySlugQuery', pageBySlugQuery({ slug }))
+    const data = await client.fetch(slotPageBySlugQuery({ slug }))
     // console.log('data', data)
     return data[0]
   } catch (e) {
