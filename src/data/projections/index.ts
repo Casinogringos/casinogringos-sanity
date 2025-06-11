@@ -28,6 +28,7 @@ import { prosAndConsObjectProjection } from '@/src/data/projections/prosAndConsO
 import { quoteObjectProjection } from '@/src/data/projections/quoteObjectProjection'
 import { toggleObjectProjection } from '@/src/data/projections/toggleObjectProjection'
 import { objectProjections } from '@/src/data/projections/objectProjections'
+import { newsPageProjection } from '@/src/data/projections/newsPageProjection'
 import { pageProjection } from '@/src/data/projections/pageProjection'
 import { casinoPageProjection } from '@/src/data/projections/casinoPageProjection'
 import { menuProjection } from '@/src/data/projections/menuProjection'
@@ -39,6 +40,7 @@ export {
   freeSpinsProjection,
   casinoProjection,
   oddsBonusProjection,
+  newsPageProjection,
   casinoPageProjection,
   bonusProjection,
   casinoBonusProjection,

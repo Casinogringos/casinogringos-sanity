@@ -1,5 +1,9 @@
 import { getClient } from '@/src/lib/client'
-import { pageBySlugQuery, menuByIdQuery } from '@/src/data/queries'
+import {
+  pageBySlugQuery,
+  menuByIdQuery,
+  newsPageBySlugQuery,
+} from '@/src/data/queries'
 import { casinoPageBySlugQuery } from '@/src/data/queries/casinoPageBySlugQuery'
 const client = getClient()
 
@@ -19,6 +23,18 @@ export const getCasinoPageBySlug = async ({ slug }: { slug: string }) => {
   try {
     console.log('pageBySlugQuery', pageBySlugQuery({ slug }))
     const data = await client.fetch(casinoPageBySlugQuery({ slug }))
+    // console.log('data', data)
+    return data[0]
+  } catch (e) {
+    console.log(e)
+    throw Error(`Failed to fetch page by slug: ${slug}`)
+  }
+}
+
+export const getNewsPageBySlug = async ({ slug }: { slug: string }) => {
+  try {
+    console.log('pageBySlugQuery', pageBySlugQuery({ slug }))
+    const data = await client.fetch(newsPageBySlugQuery({ slug }))
     // console.log('data', data)
     return data[0]
   } catch (e) {

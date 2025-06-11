@@ -1,19 +1,19 @@
-import { getGuidePreviews, getNodeByUri, getStaticParams } from "@/lib/api";
-import { notFound } from "next/navigation";
-import Article from "@/src/app/Article";
-import BreadCrumbs from "../../../../../casinogringos-v3/src/components/BreadCrumbs";
-import { extractSlugFromUrl } from "@/lib/helpers";
-import { Metadata } from "next";
-import { Guide } from "@/types/index";
+import { getGuidePreviews, getNodeByUri, getStaticParams } from '@/lib/api'
+import { notFound } from 'next/navigation'
+import NewsPage from '@/src/app/NewsPage'
+import BreadCrumbs from '../../../../../casinogringos-v3/src/components/BreadCrumbs'
+import { extractSlugFromUrl } from '@/lib/helpers'
+import { Metadata } from 'next'
+import { Guide } from '@/types/index'
 
-type Params = Promise<{ slug: string }>;
+type Params = Promise<{ slug: string }>
 
 export async function generateMetadata(props: { params: Params }) {
-  const params = await props.params;
+  const params = await props.params
   const item = (await getNodeByUri({
     uri: `/guider/${params?.slug}`,
-  })) as Guide;
-  const siteURL = (process.env.SITE_URL as string) + item.uri;
+  })) as Guide
+  const siteURL = (process.env.SITE_URL as string) + item.uri
   const metadata = {
     title: item.seo.title ?? item.title,
     description: item.seo.metaDesc,
@@ -24,51 +24,51 @@ export async function generateMetadata(props: { params: Params }) {
       title: item.title,
       description: item.seo.metaDesc,
       url: siteURL,
-      locale: "sv_SE",
+      locale: 'sv_SE',
       siteName: item.seo.opengraphSiteName,
       type: item.seo.opengraphType,
       images: [
         {
-          url: item.seo.opengraphImage?.sourceUrl ?? "",
-          alt: item.seo.opengraphImage?.altText ?? "",
+          url: item.seo.opengraphImage?.sourceUrl ?? '',
+          alt: item.seo.opengraphImage?.altText ?? '',
           width: item.seo.opengraphImage?.mediaDetails.width ?? 1200,
           height: item.seo.opengraphImage?.mediaDetails.height ?? 630,
         },
       ],
     },
-  };
+  }
 
-  return metadata as Metadata;
+  return metadata as Metadata
 }
 
 export default async function Page(props: {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ slug: string }>
 }) {
-  const params = await props.params;
+  const params = await props.params
   const article = (await getNodeByUri({
     uri: `/guider/${params.slug}`,
-  })) as Guide;
-  if (!article?.slug) return notFound();
-  const articles = await getGuidePreviews({ count: 5 });
+  })) as Guide
+  if (!article?.slug) return notFound()
+  const articles = await getGuidePreviews({ count: 5 })
   const similarArticles = articles.edges
     .filter(({ node }) => node.id !== article.id)
-    .splice(0, 4);
+    .splice(0, 4)
 
   return (
     <>
       {article.seo.breadcrumbs && (
         <BreadCrumbs
           items={article.seo.breadcrumbs}
-          index={{ text: "Guider", url: `${process.env.SITE_URL}/guider` }}
+          index={{ text: 'Guider', url: `${process.env.SITE_URL}/guider` }}
         />
       )}
-      <Article article={article} similarArticles={similarArticles} />
+      <NewsPage article={article} similarArticles={similarArticles} />
     </>
-  );
+  )
 }
 
 export async function generateStaticParams() {
-  const allGuides = await getStaticParams("guide");
+  const allGuides = await getStaticParams('guide')
 
-  return allGuides.map(({ node }) => ({ slug: node.slug }));
+  return allGuides.map(({ node }) => ({ slug: node.slug }))
 }

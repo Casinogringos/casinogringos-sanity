@@ -1,5 +1,3 @@
-'use client'
-
 import Date from '@/src/app/components/atoms/Date'
 import { ArrowRightIcon, Linkedin, Mail } from 'lucide-react'
 import {
@@ -13,7 +11,7 @@ import {
 import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import InternalLink from '../../../sin-bin/InternalLink'
+import LinkComponent from '@/src/app/components/atoms/Link'
 
 export default function Avatar({
   author,
@@ -47,13 +45,13 @@ export default function Avatar({
               {author?.node?.userType.role}
             </div>
             <div className="has-tooltip relative block w-fit items-center gap-1 text-sm">
-              <InternalLink
+              <LinkComponent
                 className="flex w-fit text-[15px] font-medium"
                 href={author?.node?.uri}
                 prefetch={false}
               >
                 {name}
-              </InternalLink>
+              </LinkComponent>
               <div className="tooltip text-gray-100 left-1/2 mx-auto hidden min-w-96 -translate-x-1/2 rounded-md border border-slate200 bg-gray50 p-5 text-sm opacity-100 shadow-sm transition-opacity md:block">
                 {' '}
                 <div className="flex gap-4">
@@ -100,14 +98,14 @@ export default function Avatar({
                 <div className="mt-4 text-sm font-normal text-slate600">
                   {author?.node?.description}
                 </div>
-                <InternalLink
+                <LinkComponent
                   href={author?.node?.uri}
                   prefetch={false}
                   className="mt-4 flex items-center gap-3 text-base font-medium underline decoration-dashed"
                 >
                   Läs alla artiklar av {author?.node.name}{' '}
                   <ArrowRightIcon className="h-5 w-5" />
-                </InternalLink>
+                </LinkComponent>
               </div>
               {/* <CheckBadgeIcon className="h-4 w-4 text-blue400" /> */}
             </div>
@@ -130,13 +128,13 @@ export default function Avatar({
         {reviewedBy && (
           <div className="text-xs">
             <span>Faktakontrollerad av</span>
-            <InternalLink
+            <LinkComponent
               href={`/om-oss/${reviewedBy.slug}`}
               className="block text-[15px] font-medium"
               prefetch={false}
             >
               {reviewedBy.username}
-            </InternalLink>
+            </LinkComponent>
           </div>
         )}
         <div className="mt-4 hidden text-xs md:mt-0 md:block">

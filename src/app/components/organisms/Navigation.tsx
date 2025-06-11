@@ -76,9 +76,9 @@ export default async function Navigation({
               ))}
             </ul>
             <div className="ml-auto flex items-center gap-3">
-              {sidebarMenu.items.length > 0 && (
-                <NotificationButton count={sidebarMenu.items.length} />
-              )}
+              {/*{sidebarMenu.items.length > 0 ? (*/}
+              {/*  <NotificationButton count={sidebarMenu.items.length} />*/}
+              {/*) : null}*/}
               <SearchButton />
               <MenuButton />
             </div>
