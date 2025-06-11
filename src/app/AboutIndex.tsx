@@ -1,19 +1,25 @@
-import { Linkedin, Mail } from "lucide-react";
-import Image from "next/image";
-import Link from "next/link";
-import BreadCrumbs from "../../../casinogringos-v3/src/components/BreadCrumbs";
-import Content from "../../../casinogringos-v3/src/components/Content";
-import Hero from "../../../casinogringos-v3/src/components/Hero";
-import { replaceInternalLinkBaseUrls } from "../lib/helpers";
+import { Linkedin, Mail } from 'lucide-react'
+import Image from 'next/image'
+import Link from 'next/link'
+import BreadCrumbs from '@/src/app/components/organisms/BreadCrumbs'
+import ModularContent from '@/src/app/components/organisms/ModularContent'
+import Hero from '@/src/app/components/molecules/Hero'
+import { replaceInternalLinkBaseUrls } from '../lib/helpers'
 
-export default function Page({ page, authors }) {
+export default function AboutIndex({
+  page,
+  authors,
+}: {
+  page: Page
+  authors: Author[]
+}) {
   const breadcrumbItems = [
     {},
     {
-      text: "Om Oss",
+      text: 'Om Oss',
       url: `${process.env.SITE_URL}/om-oss`,
     },
-  ];
+  ]
 
   return (
     <>
@@ -26,7 +32,7 @@ export default function Page({ page, authors }) {
         key="homepage-data"
       />
       <BreadCrumbs items={breadcrumbItems} />
-      <Content
+      <ModularContent
         blocks={page.preview ? page.preview.editorBlocks : page.editorBlocks}
       />
       <div className="bg-hero px-4 py-12">
@@ -90,5 +96,5 @@ export default function Page({ page, authors }) {
         </div>
       </div>
     </>
-  );
+  )
 }

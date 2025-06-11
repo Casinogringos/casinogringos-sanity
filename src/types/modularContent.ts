@@ -20,7 +20,7 @@ import {
   BonusObject,
 } from '@/src/types/index'
 
-export type Blocks = Array<
+export type ModularContent = Array<
   | RenderedHtmlBlock
   | BlockLabCasinoBlock
   | BlockLabAffiliateButtonBlock

@@ -1,9 +1,13 @@
-import Date from "../../../casinogringos-v3/src/components/Date";
-import Link from "next/link";
-import Container from "../../../casinogringos-v3/src/components/Container";
-import ImageComponent from "../../../casinogringos-v3/src/components/ImageComponent";
+import Date from '../../../casinogringos-v3/src/components/Date'
+import Link from 'next/link'
+import Container from '../../../casinogringos-v3/src/components/Container'
+import ImageComponent from '../../../casinogringos-v3/src/components/ImageComponent'
 
-export default function GuidesIndex({ guides }) {
+export default function GuidesIndex({ guides }: { guides: Guide[] }) {
+  if (!guides) {
+    return null
+  }
+
   return (
     <Container className="py-6 lg:py-12">
       <h1 className="text-3xl font-bold">Guider</h1>
@@ -17,7 +21,7 @@ export default function GuidesIndex({ guides }) {
               <ImageComponent
                 image={post?.node?.featuredImage?.node}
                 width={400}
-                className={"min-h-full min-w-full object-cover"}
+                className={'min-h-full min-w-full object-cover'}
               />
             </div>
             <div className="mt-3 flex items-center gap-x-4 text-xs">
@@ -34,5 +38,5 @@ export default function GuidesIndex({ guides }) {
         ))}
       </div>
     </Container>
-  );
+  )
 }
