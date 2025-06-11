@@ -5,12 +5,25 @@ import {
   newsPageBySlugQuery,
 } from '@/src/data/queries'
 import { casinoPageBySlugQuery } from '@/src/data/queries/casinoPageBySlugQuery'
+import { guidePageBySlugQuery } from '@/src/data/queries/guidePageBySlugQuery'
 const client = getClient()
 
 export const getPageBySlug = async ({ slug }: { slug: string }) => {
   try {
     console.log('pageBySlugQuery', pageBySlugQuery({ slug }))
     const data = await client.fetch(pageBySlugQuery({ slug }))
+    // console.log('data', data)
+    return data[0]
+  } catch (e) {
+    console.log(e)
+    throw Error(`Failed to fetch page by slug: ${slug}`)
+  }
+}
+
+export const getGuidePageBySlug = async ({ slug }: { slug: string }) => {
+  try {
+    console.log('pageBySlugQuery', pageBySlugQuery({ slug }))
+    const data = await client.fetch(guidePageBySlugQuery({ slug }))
     // console.log('data', data)
     return data[0]
   } catch (e) {
