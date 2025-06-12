@@ -1,4 +1,4 @@
-import { SubPage } from '@/src/types'
+import { CasinoPage, GuidePage, NewsPage, SlotPage, SubPage } from '@/src/types'
 
 export type ButtonObject = {
   _type: 'button-object'

@@ -1,5 +1,5 @@
-export type Sport = {
-  _type: 'sports'
+export type Game = {
+  _type: 'games'
   _key: string
   name: string
   slug: {

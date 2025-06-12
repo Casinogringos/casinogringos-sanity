@@ -1,5 +1,5 @@
-export type Sport = {
-  _type: 'sports'
+export type GameProviderFeatures = {
+  _type: 'game-provider-features'
   _key: string
   name: string
   slug: {

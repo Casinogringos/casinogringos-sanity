@@ -1,11 +1,11 @@
-import { CasinoBonus, OddsBonus, Bonus, FreeSpins, Casino } from '@/src/types'
+import { CasinoBonus, OddsBonus, FreeSpins, Casino } from '@/src/types'
 
 export type BonusObject = {
   _type: 'bonus-object'
   _key: string
   message: string
   casino: Casino
-  bonus: Bonus | CasinoBonus | OddsBonus
+  bonus: CasinoBonus | OddsBonus
   freeSpins: FreeSpins
   terms: string
   title: string

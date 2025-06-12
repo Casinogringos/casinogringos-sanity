@@ -5,10 +5,10 @@ import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useState } from 'react'
-import { Slot } from '@/src/types/slot'
+import { SlotPage } from '@/src/types/slotPage'
 const IFrame = dynamic(() => import('@/src/app/components/organisms/IFrame'))
 
-const SlotHero = ({ slot }: { slot: Slot }) => {
+const SlotHero = ({ slot }: { slot: SlotPage }) => {
   const [show, setShow] = useState(false)
   const toggleGame = () => {
     setShow(!show)

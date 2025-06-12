@@ -1,9 +1,9 @@
 import Image from 'next/image'
 
 import Link from '@/src/app/components/atoms/Link'
-import { Slot } from '@/src/types'
+import { SlotPage } from '@/src/types'
 
-const SlotCard = ({ node }: { slot: Slot }) => {
+const SlotCard = ({ node }: { slot: SlotPage }) => {
   return (
     <Link prefetch={false} className="mb-6" href={node.uri}>
       <div className="relative mb-2 flex h-28 w-full overflow-hidden rounded-sm lg:h-40">

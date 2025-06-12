@@ -1,19 +1,24 @@
+import {
+  DashboardImageObject,
+  GameProviderFeatures,
+  GameType,
+} from '@/src/types'
+
 export type GameProvider = {
-  __typename: 'GameproviderNew'
-  id: string
-  title: string
-  slug: string
-  gameProviderType: {
-    siteLink: {
-      nodes: {
-        uri: string
-      }[]
-    }
+  _type: 'game-providers'
+  _key: string
+  name: string
+  slug: {
+    current: string
   }
-  featuredImage: {
-    node: {
-      altText: string
-      sourceUrl: string
-    }
-  }
+  yearLaunched: number
+  headquarters: string
+  swedishLicense: boolean
+  featuredImage: DashboardImageObject
+  typesOfGames: GameType[]
+  numberOfGames: number
+  uniqueFeatures: GameProviderFeatures[]
+  advantages: string[]
+  disadvantages: string[]
+  publishedAt: string
 }

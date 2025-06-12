@@ -1,5 +1,5 @@
-export type Sport = {
-  _type: 'sports'
+export type FreeSpinsType = {
+  _type: 'free-spins-types'
   _key: string
   name: string
   slug: {

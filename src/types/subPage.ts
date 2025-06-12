@@ -1,12 +1,9 @@
-import { ModularContent } from '@/src/types'
+import { ModularContent, BasePage } from '@/src/types'
 
-export type SubPage<C = true> = {
+export type SubPage<C = true> = BasePage & {
   _type: 'sub-page'
-  _key: string
-  title: string
-  slug: string
 } & (C extends true
-  ? {
-      content: ModularContent
-    }
-  : null)
+    ? {
+        content: ModularContent
+      }
+    : null)
