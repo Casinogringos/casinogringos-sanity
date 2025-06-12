@@ -26,11 +26,12 @@ const ToggleBox = dynamic(
 const Accordion = dynamic(
   () => import('@/src/app/components/organisms/Accordion')
 )
+import List from '@/src/app/components/molecules/List'
+import ListObject from '@/src/app/components/organisms/ListObject'
 
 const renderObject = (object: ObjectType, outerIndex, nested) => {
   if (!object) return null
   const Tag = nested ? 'div' : Container
-  console.log('objecthello', object)
   switch (object._type) {
     // case 'CoreButtons':
     //   if (!object.innerBlocks || object.innerBlocks.length === 0)
@@ -78,6 +79,13 @@ const renderObject = (object: ObjectType, outerIndex, nested) => {
       return (
         <Tag>
           <ImageObject object={object} />
+        </Tag>
+      )
+    }
+    case 'list-object': {
+      return (
+        <Tag>
+          <ListObject object={object} />
         </Tag>
       )
     }
@@ -183,10 +191,11 @@ const ModularContent = ({
   // }, [])
   // console.log('conflictingClientIds', conflictingClientIds)
   if (!objects) return null
+  console.log('objects', objects)
   return (
     <div
       key={'objects-wrapper'}
-      className={`${className} pb-8 pt-4 mx-auto prose prose-h2:text-3xl prose-p:text-text prose-headings:tracking-normal max-w-3xl text-grey-darker`}
+      className={`${className} ${nested ? '' : 'pb-8 pt-4 mx-auto prose prose-h2:text-3xl prose-p:text-text prose-headings:tracking-normal max-w-3xl text-grey-darker'}`}
     >
       {objects.map((object: ObjectType, outerIndex: number) => {
         if (!object._key) return null
