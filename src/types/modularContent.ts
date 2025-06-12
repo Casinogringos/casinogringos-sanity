@@ -1,44 +1,43 @@
 import {
-  RenderedHtmlBlock,
-  BlockLabCasinoBlock,
-  BlockLabAffiliateButtonBlock,
-  ParagraphObject,
-  CoreHeadingBlock,
-  CoreImageBlock,
-  CoreEmbedBlock,
-  ColumnsObject,
-  CoreGroupBlock,
-  YoastHowToBlock,
-  YoastFaqBlock,
-  FAQObject,
-  HeadingObject,
   ImageObject,
-  FlamingoAISummaryBlock,
-  FlamingoToggleBlock,
+  AISummaryObject,
+  ButtonsObject,
+  CasinoObject,
+  ColumnsObject,
+  FAQObject,
+  GroupObject,
+  HeadingObject,
   HowToObject,
-  FlamingoCasinoBlock,
+  ListObject,
+  ParagraphObject,
   BonusObject,
-} from '@/src/types/index'
+  ProsAndConsObject,
+  QuoteObject,
+  RatingObject,
+  ToggleObject,
+  TableObject,
+  ShortcodeObject,
+  AffiliateButtonObject,
+} from '@/src/types'
 
 export type ModularContent = Array<
-  | RenderedHtmlBlock
-  | BlockLabCasinoBlock
-  | BlockLabAffiliateButtonBlock
-  | ParagraphObject
-  | CoreHeadingBlock
-  | CoreImageBlock
-  | CoreEmbedBlock
-  | ColumnsObject
-  | CoreGroupBlock
-  | YoastHowToBlock
-  | YoastFaqBlock
-  | FAQObject
-  | HeadingObject
+  | AffiliateButtonObject
   | ImageObject
-  | FlamingoAISummaryBlock
-  | FlamingoToggleBlock
-  | HowToObject
-  | FlamingoCasinoBlock
-  | BlockLabAffiliateButtonBlock
+  | AISummaryObject
+  | ButtonsObject
+  | CasinoObject
   | BonusObject
+  | ColumnsObject
+  | FAQObject
+  | GroupObject
+  | HeadingObject
+  | HowToObject
+  | ListObject
+  | ParagraphObject
+  | ProsAndConsObject
+  | QuoteObject
+  | RatingObject
+  | ToggleObject
+  | TableObject
+  | ShortcodeObject
 >

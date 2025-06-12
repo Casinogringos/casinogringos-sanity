@@ -1,4 +1,5 @@
 import { PortableTextBlock } from 'next-sanity'
+import { Author } from '@/src/types'
 
 export interface ProsAndConsObject {
   _type: 'pros-and-cons-object'
