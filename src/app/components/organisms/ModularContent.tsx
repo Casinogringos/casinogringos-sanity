@@ -1,5 +1,5 @@
 import BonusBox from '@/src/app/components/organisms/BonusBox'
-import CasinoBox from '@/src/app/components/organisms/CasinoBox'
+import CasinoObject from '@/src/app/components/organisms/CasinoObject'
 import HowToObject from '@/src/app/components/organisms/HowToObject'
 import ProsAndConsBox from '@/src/app/components/organisms/ProsAndConsBox'
 import RatingBox from '@/src/app/components/organisms/RatingBox'
@@ -30,6 +30,7 @@ import List from '@/src/app/components/molecules/List'
 import ListObject from '@/src/app/components/organisms/ListObject'
 import { writeDataToTestFile } from '@/src/lib/actions'
 import ColumnsObject from '@/src/app/components/utils/ColumnsObject'
+import Placeholder from '@/src/app/components/atoms/Placeholder'
 
 const renderObject = (object: ObjectType, outerIndex, nested) => {
   if (!object) return null
@@ -105,6 +106,20 @@ const renderObject = (object: ObjectType, outerIndex, nested) => {
       return (
         <Tag>
           <ColumnsObject object={object} />
+        </Tag>
+      )
+    }
+    case 'casino-object': {
+      return (
+        <Tag>
+          <CasinoObject object={object} />
+        </Tag>
+      )
+    }
+    case 'shortcode-object': {
+      return (
+        <Tag>
+          <Placeholder message={'Shortcode Object: Missing shortcode'} />
         </Tag>
       )
     }

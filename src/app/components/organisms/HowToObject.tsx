@@ -75,7 +75,7 @@ const HowToObject = ({ object }: { object: HowToObjectType }) => {
                     </div>
                   )}
                 </div>
-                {row.image.asset && (
+                {row.image && (
                   <div className={'mt-4 min-h-[176px] lg:mt-0'}>
                     <SanityImage
                       key={`how-to-image-${rowIndex}`}

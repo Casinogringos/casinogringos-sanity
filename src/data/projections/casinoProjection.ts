@@ -1,5 +1,9 @@
 export const casinoProjection = `
     _type,
     _id,
-    slug
+    _key,
+    slug {
+        _type,
+        current
+    },
 `

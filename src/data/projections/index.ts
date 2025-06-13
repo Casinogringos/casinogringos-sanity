@@ -19,6 +19,7 @@ import { embedObjectProjection } from '@/src/data/projections/embedObjectProject
 import { faqItemObjectProjection } from '@/src/data/projections/faqItemObjectProjection'
 import { faqObjectProjection } from '@/src/data/projections/faqObjectProjection'
 import { columnObjectProjection } from '@/src/data/projections/columnObjectProjection'
+import { shortcodeObjectProjection } from '@/src/data/projections/shortcodeObjectProjection'
 import { columnsObjectProjection } from '@/src/data/projections/columnsObjectProjection'
 import { groupObjectProjection } from '@/src/data/projections/groupObjectProjection'
 import { casinoObjectProjection } from '@/src/data/projections/casinoObjectProjection'
@@ -45,6 +46,7 @@ export {
   freeSpinsProjection,
   casinoProjection,
   oddsBonusProjection,
+  shortcodeObjectProjection,
   newsPageProjection,
   casinoPageProjection,
   bonusProjection,

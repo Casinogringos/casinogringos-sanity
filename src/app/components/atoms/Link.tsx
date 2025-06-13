@@ -8,6 +8,7 @@ const Link = ({
   children,
   prefetch,
   role,
+  place,
 }: {
   href: string
   rel?: string
@@ -16,6 +17,7 @@ const Link = ({
   children: ReactNode
   prefetch?: boolean
   role?: string
+  place?: string
 }) => {
   return (
     <Link
@@ -25,6 +27,7 @@ const Link = ({
       target={target}
       className={className}
       prefetch={prefetch}
+      place={place}
     >
       {children}
     </Link>
