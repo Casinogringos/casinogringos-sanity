@@ -4,7 +4,8 @@ export const columnsObjectProjection = `
   _type == 'columns-object' => {
     _type,
     _id,
-    columns {
+    _key,
+    columns[] {
         ${columnObjectProjection}
     },
     message  

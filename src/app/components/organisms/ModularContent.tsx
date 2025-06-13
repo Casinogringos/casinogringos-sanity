@@ -1,6 +1,6 @@
 import BonusBox from '@/src/app/components/organisms/BonusBox'
 import CasinoBox from '@/src/app/components/organisms/CasinoBox'
-import HowToBox from '@/src/app/components/organisms/HowToBox'
+import HowToObject from '@/src/app/components/organisms/HowToObject'
 import ProsAndConsBox from '@/src/app/components/organisms/ProsAndConsBox'
 import RatingBox from '@/src/app/components/organisms/RatingBox'
 import SummaryBox from '@/src/app/components/molecules/SummaryBox'
@@ -16,7 +16,7 @@ import { PortableText } from 'next-sanity'
 import Container from '@/src/app/components/atoms/Container'
 import { useNextSanityImage } from 'next-sanity-image'
 import { client } from '@/src/lib/client'
-import ImageObject from '@/src/app/components/atoms/SanityImage'
+import ImageObject from '@/src/app/components/atoms/ImageObject'
 const Heading = dynamic(() => import('@/src/app/components/atoms/Heading'))
 const RawHTML = dynamic(() => import('@/src/app/components/atoms/RawHTML'))
 const Paragraph = dynamic(() => import('@/src/app/components/atoms/Paragraph'))
@@ -28,11 +28,16 @@ const Accordion = dynamic(
 )
 import List from '@/src/app/components/molecules/List'
 import ListObject from '@/src/app/components/organisms/ListObject'
+import { writeDataToTestFile } from '@/src/lib/actions'
+import ColumnsObject from '@/src/app/components/utils/ColumnsObject'
 
 const renderObject = (object: ObjectType, outerIndex, nested) => {
   if (!object) return null
+  console.log('objecthello', object)
   const Tag = nested ? 'div' : Container
-  switch (object._type) {
+  switch (
+    object._type // TODO: add all object types
+  ) {
     // case 'CoreButtons':
     //   if (!object.innerBlocks || object.innerBlocks.length === 0)
     //     return <RawHTML html={object.renderedHtml} className={'mb-4'} />
@@ -86,6 +91,20 @@ const renderObject = (object: ObjectType, outerIndex, nested) => {
       return (
         <Tag>
           <ListObject object={object} />
+        </Tag>
+      )
+    }
+    case 'how-to-object': {
+      return (
+        <Tag>
+          <HowToObject object={object} />
+        </Tag>
+      )
+    }
+    case 'columns-object': {
+      return (
+        <Tag>
+          <ColumnsObject object={object} />
         </Tag>
       )
     }
@@ -172,7 +191,7 @@ const renderObject = (object: ObjectType, outerIndex, nested) => {
   }
 }
 
-const ModularContent = ({
+const ModularContent = async ({
   objects,
   className = '',
   nested,
@@ -190,8 +209,8 @@ const ModularContent = ({
   //   return acc
   // }, [])
   // console.log('conflictingClientIds', conflictingClientIds)
+  if (!nested) await writeDataToTestFile(objects)
   if (!objects) return null
-  console.log('objects', objects)
   return (
     <div
       key={'objects-wrapper'}

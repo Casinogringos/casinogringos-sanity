@@ -35,7 +35,7 @@ const ToggleBox = ({
             className={`bg-gradient-to-t from-white absolute inset-0 transition-opacity ease-in-out duration-300 ${isOpen ? 'opacity-0' : 'opacity-100'}`}
           />
         ) : null}
-        <ModularContent objects={innerBlocks} />
+        <ModularContent objects={innerBlocks} nested={true} />
       </div>
       <button
         onClick={() => setIsOpen(!isOpen)}

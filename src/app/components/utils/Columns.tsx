@@ -23,7 +23,7 @@ const Columns = ({ columns }: { columns: CoreColumnsBlock }) => {
               column.attributes?.className ?? ''
             }`}
           >
-            <ModularContent objects={column.innerBlocks} />
+            <ModularContent objects={column.innerBlocks} nested={true} />
           </div>
         )
       })}

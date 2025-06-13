@@ -4,13 +4,14 @@ import Link from 'next/link'
 import BreadCrumbs from '@/src/app/components/organisms/BreadCrumbs'
 import ModularContent from '@/src/app/components/organisms/ModularContent'
 import Hero from '@/src/app/components/molecules/Hero'
-import { replaceInternalLinkBaseUrls } from '../lib/helpers'
+import { replaceInternalLinkBaseUrls } from '@/src/lib/helpers'
+import { Author, SubPage } from '@/src/types'
 
 export default function AboutIndex({
   page,
   authors,
 }: {
-  page: Page
+  page: SubPage<true>
   authors: Author[]
 }) {
   const breadcrumbItems = [

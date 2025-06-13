@@ -1,3 +1,4 @@
+import { imageProjection } from '@/src/data/projections/imageProjection'
 import { paragraphObjectProjection } from '@/src/data/projections/paragraphObjectProjection'
 import { ratingObjectProjection } from '@/src/data/projections/ratingObjectProjection'
 import { authorProjection } from '@/src/data/projections/authorProjection'
@@ -7,7 +8,9 @@ import { oddsBonusProjection } from '@/src/data/projections/oddsBonusProjection'
 import { casinoProjection } from '@/src/data/projections/casinoProjection'
 import { imageObjectProjection } from '@/src/data/projections/imageObjectProjection'
 import { casinoBonusProjection } from '@/src/data/projections/casinoBonusProjection'
+import { listItemObjectProjection } from '@/src/data/projections/listItemObjectProjection'
 import { bonusProjection } from '@/src/data/projections/bonusProjection'
+import { listObjectProjection } from '@/src/data/projections/listObjectProjection'
 import { affiliateButtonObjectProjection } from '@/src/data/projections/affiliateButtonObjectProjection'
 import { bonusObjectProjection } from '@/src/data/projections/bonusObjectProjection'
 import { buttonObjectProjection } from '@/src/data/projections/buttonObjectProjection'
@@ -15,15 +18,13 @@ import { buttonsObjectProjection } from '@/src/data/projections/buttonsObjectPro
 import { embedObjectProjection } from '@/src/data/projections/embedObjectProjection'
 import { faqItemObjectProjection } from '@/src/data/projections/faqItemObjectProjection'
 import { faqObjectProjection } from '@/src/data/projections/faqObjectProjection'
-import { groupObjectProjection } from '@/src/data/projections/groupObjectProjection'
-import { casinoObjectProjection } from '@/src/data/projections/casinoObjectProjection'
 import { columnObjectProjection } from '@/src/data/projections/columnObjectProjection'
 import { columnsObjectProjection } from '@/src/data/projections/columnsObjectProjection'
+import { groupObjectProjection } from '@/src/data/projections/groupObjectProjection'
+import { casinoObjectProjection } from '@/src/data/projections/casinoObjectProjection'
 import { howToStepObjectProjection } from '@/src/data/projections/howToStepObjectProjection'
 import { howToObjectProjection } from '@/src/data/projections/howToObjectProjection'
 import { aiSummaryObjectProjection } from '@/src/data/projections/aiSummaryObjectProjection'
-import { listItemObjectProjection } from '@/src/data/projections/listItemObjectProjection'
-import { listObjectProjection } from '@/src/data/projections/listObjectProjection'
 import { prosAndConsObjectProjection } from '@/src/data/projections/prosAndConsObjectProjection'
 import { quoteObjectProjection } from '@/src/data/projections/quoteObjectProjection'
 import { toggleObjectProjection } from '@/src/data/projections/toggleObjectProjection'
@@ -65,6 +66,7 @@ export {
   faqObjectProjection,
   toggleObjectProjection,
   faqItemObjectProjection,
+  imageProjection,
   aiSummaryObjectProjection,
   buttonObjectProjection,
   buttonsObjectProjection,

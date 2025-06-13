@@ -5,9 +5,8 @@ export const howToStepObjectProjection = `
     _id,
     message,
     image {
-        ...imageObjectProjection
+        ${imageObjectProjection}
     },
     title,
     description
-    ${imageObjectProjection}
 `

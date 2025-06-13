@@ -1,4 +1,7 @@
-import { headingObjectProjection } from '@/src/data/projections'
+import {
+  headingObjectProjection,
+  listObjectProjection,
+} from '@/src/data/projections'
 
 export const groupObjectProjection = `
   _type == 'group-object' => {
@@ -7,7 +10,8 @@ export const groupObjectProjection = `
     width,
     className,
     content[] {
-         ${headingObjectProjection}
+         ${headingObjectProjection},
+         ${listObjectProjection},
     },
     message
   }

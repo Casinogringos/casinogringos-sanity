@@ -1,24 +1,24 @@
-import { HowToObject } from '@/src/types'
-import dynamic from 'next/dynamic'
-import Image from 'next/image'
-const Paragraph = dynamic(() => import('@/src/app/components/atoms/Paragraph'))
+import type {
+  HowToObject as HowToObjectType,
+  SanityImage as SanityImageType,
+} from '@/src/types'
+import SanityImage from '@/src/app/components/atoms/SanityImage'
+import { PortableText, PortableTextBlock } from 'next-sanity'
 
-const HowToBox = ({ block }: { block: HowToObject }) => {
+const HowToObject = ({ object }: { object: HowToObjectType }) => {
   const {
-    days,
+    message,
+    description,
+    steps,
+    unorderedList,
+    hasDuration,
     hours,
     minutes,
     seconds,
-    description: descriptionRaw,
-    unorderedList,
-    steps,
-  } = block.attributes
-  const description = descriptionRaw
-    .replaceAll('&lt;', '<')
-    .replaceAll('&lt;', '<')
+    days,
+  } = object
   const Tag = unorderedList ? 'ul' : 'ol'
-  const data = JSON.parse(steps)
-
+  console.log('how to object', object)
   return (
     <section>
       <meta />
@@ -32,15 +32,15 @@ const HowToBox = ({ block }: { block: HowToObject }) => {
         </span>
       </p>
       <div>
-        <Paragraph content={description} />
+        <PortableText value={description} />
       </div>
       <Tag className="-ml-7">
-        {data.map(
+        {steps.map(
           (
             row: {
               title: string
-              description: string
-              image: { src: string; alt: string }
+              description: PortableTextBlock[]
+              image: SanityImageType
             },
             rowIndex: number
           ) => (
@@ -49,7 +49,7 @@ const HowToBox = ({ block }: { block: HowToObject }) => {
               className={'mb-6 list-none rounded-md bg-slate100 p-5 lg:mb-8'}
             >
               <div
-                className={`grid grid-cols-1 ${row.image.src ? 'lg:grid-cols-2 gap-x-6' : ''}`}
+                className={`grid grid-cols-1 ${row.image ? 'lg:grid-cols-2 gap-x-6' : ''}`}
               >
                 <div>
                   {row.title && (
@@ -67,25 +67,20 @@ const HowToBox = ({ block }: { block: HowToObject }) => {
                     </strong>
                   )}
                   {row.description && (
-                    <div>
-                      <Paragraph
+                    <div className={'not-prose'}>
+                      <PortableText
                         key={`how-to-paragraph-${rowIndex}`}
-                        content={row.description}
-                        className={'not-prose mb-0'}
+                        value={row.description}
                       />
                     </div>
                   )}
                 </div>
-                {row.image.src && (
+                {row.image.asset && (
                   <div className={'mt-4 min-h-[176px] lg:mt-0'}>
-                    <Image
-                      src={`${process.env.WORDPRESS_BASE_URL}${row.image.src}`}
-                      alt={row.image.alt}
-                      width={200}
-                      height={1000}
-                      priority={true}
-                      className={'w-full'}
-                      itemProp="image"
+                    <SanityImage
+                      key={`how-to-image-${rowIndex}`}
+                      image={row.image}
+                      altText={row.title ?? ''}
                     />
                   </div>
                 )}
@@ -98,4 +93,4 @@ const HowToBox = ({ block }: { block: HowToObject }) => {
   )
 }
 
-export default HowToBox
+export default HowToObject

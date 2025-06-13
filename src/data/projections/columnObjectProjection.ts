@@ -1,13 +1,22 @@
-import { headingObjectProjection } from '@/src/data/projections'
+import {
+  headingObjectProjection,
+  imageObjectProjection,
+  listObjectProjection,
+  paragraphObjectProjection,
+} from '@/src/data/projections'
 
 export const columnObjectProjection = `
   _type == 'column-object' => {
     _type,
     _id,
+    _key,
     width,
     className,
-    column {
-        ${headingObjectProjection}
+    column[] {
+        ${headingObjectProjection},
+        ${imageObjectProjection},
+        ${paragraphObjectProjection},
+        ${listObjectProjection},
     },
     message
   }

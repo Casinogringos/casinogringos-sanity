@@ -13,7 +13,7 @@ const GroupObject = ({ object }: { object: GroupObjectType }) => {
 
   return (
     <div className={`${className()} mb-4`}>
-      <ModularContent objects={object.content} />
+      <ModularContent objects={object.content} nested={true} />
     </div>
   )
 }
