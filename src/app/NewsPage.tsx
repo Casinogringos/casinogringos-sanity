@@ -1,6 +1,7 @@
 import ModularContent from '@/src/app/components/organisms/ModularContent'
+import { NewsPage as NewsPageType } from '@/src/types'
 
-export default function NewsPage({ page }: { page: PageType }) {
+export default function NewsPage({ page }: { page: NewsPageType }) {
   // const headings = getBlockHeadings(page?.editorBlocks);
 
   return (

@@ -1,25 +1,7 @@
-import Image from 'next/image'
-import Link from 'next/link'
-import { getBlockHeadings } from '../lib/helpers'
-import CasinoHero from '@/src/app/components/organisms/CasinoHero'
 import ModularContent from '@/src/app/components/organisms/ModularContent'
-import AuthorBox from '@/src/app/components/organisms/AuthorBox'
-import Avatar from '@/src/app/components/organisms/Avatar'
-import BreadCrumbs from '@/src/app/components/organisms/BreadCrumbs'
-import Container from '@/src/app/components/atoms/Container'
-import PostInfo from '@/src/app/components/organisms/PostInfo'
-import StickyCasino from '@/src/app/components/organisms/StickyCasino'
-import TableOfContents from '@/src/app/components/organisms/TableOfContents'
-import CasinoService from '@/src/services/CasinoService'
-import { Casino } from '@/src/types/casino'
+import { CasinoPage as CasinoPageType } from '@/src/types'
 
-export default function CasinoPage({
-  page,
-  similarCasinos,
-}: {
-  page: Casino
-  similarCasinos: Casino[]
-}) {
+export default function CasinoPage({ page }: { page: CasinoPageType }) {
   // const author = page?.author.node
   // const siteURL = process.env.SITE_URL
   // const headings = getBlockHeadings(page?.editorBlocks)

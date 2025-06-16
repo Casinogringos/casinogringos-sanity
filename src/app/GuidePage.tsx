@@ -1,6 +1,7 @@
 import ModularContent from '@/src/app/components/organisms/ModularContent'
+import { GuidePage as GuidePageType } from '@/src/types'
 
-export default function GuidePage({ page }: { page: PageType }) {
+export default function GuidePage({ page }: { page: GuidePageType }) {
   // const headings = getBlockHeadings(page?.editorBlocks);
 
   return (

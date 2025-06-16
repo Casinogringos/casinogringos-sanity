@@ -1,23 +1,7 @@
-import {
-  getBlockHeadings,
-  replaceInternalLinkBaseUrls,
-} from '@/src/lib/helpers'
-import { Page as PageType } from '@/src/types'
-import dynamic from 'next/dynamic'
-import AuthorBox from '@/src/app/components/organisms/AuthorBox'
-import BreadCrumbs from '@/src/app/components/organisms/BreadCrumbs'
-import CasinoList from '@/src/app/components/organisms/CasinoList'
-import Container from '@/src/app/components/atoms/Container'
+import { SubPage as SubPageType } from '@/src/types'
 import ModularContent from '@/src/app/components/organisms/ModularContent'
-import Hero from '@/src/app/components/molecules/Hero'
-const TableOfContents = dynamic(
-  () => import('@/src/app/components/organisms/TableOfContents')
-)
-const Accordion = dynamic(
-  () => import('@/src/app/components/organisms/Accordion')
-)
 
-export default function SubPage({ page }: { page: PageType }) {
+export default function SubPage({ page }: { page: SubPageType }) {
   // const casinos = page.pageType.category?.edges[0].node.posts.edges ?? []
   // const headings = getBlockHeadings(page?.editorBlocks)
 

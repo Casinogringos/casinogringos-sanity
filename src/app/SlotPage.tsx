@@ -1,16 +1,7 @@
-import Image from 'next/image'
-import Link from 'next/link'
-import Star from '@/src/app/components/icons/StarIcon'
-import StarHalf from '@/src/app/components/icons/HalfStarIcon'
 import ModularContent from '@/src/app/components/organisms/ModularContent'
-import Avatar from '@/src/app/components/organisms/Avatar'
-import BreadCrumbs from '@/src/app/components/organisms/BreadCrumbs'
-import CasinoRow from '@/src/app/components/organisms/CasinoRow'
-import Container from '@/src/app/components/atoms/Container'
-import SlotHero from '@/src/app/components/organisms/SlotHero'
-import TableOfContents from '@/src/app/components/organisms/TableOfContents'
+import { SlotPage as SlotPageType } from '@/src/types'
 
-export default function SlotPage({ page }: { page: Page<Slot> }) {
+export default function SlotPage({ page }: { page: SlotPageType }) {
   // const author = slot?.author?.node
   // const siteURL = process.env.SITE_URL
   // const structuredData = {

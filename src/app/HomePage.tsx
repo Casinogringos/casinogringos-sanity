@@ -6,14 +6,14 @@ import ModularContent from '@/src/app/components/organisms/ModularContent'
 //   getBlockHeadings,
 //   replaceInternalLinkBaseUrls,
 // } from '@/src/lib/helpers'
-import { Guide, Page } from '@/src/types'
+import { SubPage } from '@/src/types'
 // import dynamic from 'next/dynamic'
 // const TableOfContents = dynamic(
 //   () => import('@/src/components/organisms/TableOfContents')
 // )
 // const Faq = dynamic(() => import('@/src/components/organisms/Accordian'))
 
-const HomePage = ({ page, guides }: { page: Page; guides: Guide[] }) => {
+const HomePage = ({ page }: { page: SubPage }) => {
   return (
     <>
       {/*<script*/}
