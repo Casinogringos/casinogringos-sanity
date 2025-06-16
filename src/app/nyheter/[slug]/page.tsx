@@ -1,9 +1,6 @@
 import { notFound } from 'next/navigation'
 import NewsPage from '@/src/app/NewsPage'
-import BreadCrumbs from '@/src/app/components/organisms/BreadCrumbs'
-import { extractSlugFromUrl } from '@/src/lib/helpers'
-import { Metadata } from 'next'
-import { News as NewsType } from '@/src/types'
+import { NewsPage as NewsPageType } from '@/src/types'
 import { getNewsPageBySlug } from '@/src/lib/api'
 import { formatPageSlug } from '@/src/lib/utility'
 
@@ -48,7 +45,7 @@ export default async function Page(props: { params: Params }) {
   const params = await props.params
   const newsPage = (await getNewsPageBySlug({
     slug: `/nyheter${formatPageSlug(params?.slug)}`,
-  })) as NewsType
+  })) as NewsPageType
   // const articles = await getAllNews({})
   // const similarArticles = articles?.edges3
   //   .filter(({ node }) => node.id !== article?.id)

@@ -2,7 +2,6 @@ import { getSlotPageBySlug } from '@/src/lib/api'
 import { notFound } from 'next/navigation'
 import SlotPage from '@/src/app/SlotPage'
 import { SlotPage as SlotType } from '@/src/types'
-import { Metadata } from 'next'
 import { formatPageSlug } from '@/src/lib/utility'
 
 type Params = Promise<{ slug: string }>

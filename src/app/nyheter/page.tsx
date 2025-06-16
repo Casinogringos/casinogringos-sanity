@@ -1,10 +1,10 @@
-import { getPageBySlug } from '@/src/lib/api'
-import NewsIndex from '@/src/app/NewsIndex'
-import Pagination from '@/src/app/components/organisms/Pagination'
-import BreadCrumbs from '@/src/app/components/organisms/BreadCrumbs'
-import { extractSlugFromUrl } from '@/src/lib/helpers'
-import { Metadata } from 'next'
-import { Page as PageType } from '@/src/types'
+// import { getPageBySlug } from '@/src/lib/api'
+// import NewsIndex from '@/src/app/NewsIndex'
+// import Pagination from '@/src/app/components/organisms/Pagination'
+// import BreadCrumbs from '@/src/app/components/organisms/BreadCrumbs'
+// import { extractSlugFromUrl } from '@/src/lib/helpers'
+// import { Metadata } from 'next'
+// import { Page as PageType } from '@/src/types'
 
 // export async function generateMetadata() {
 //   const item = (await getNodeByUri({
@@ -37,32 +37,3 @@ import { Page as PageType } from '@/src/types'
 //
 //   return metadata as Metadata
 // }
-
-export default async function Page() {
-  // const news = await getAllNews({})
-  // const newsCount = news.edges.length
-  // const pageCount = Math.ceil(newsCount / 24)
-  const breadcrumbItems = [
-    {},
-    {
-      text: 'Nyheter',
-      url: `${process.env.SITE_URL}/nyheter`,
-    },
-  ]
-
-  return (
-    <>
-      <BreadCrumbs items={breadcrumbItems} />
-      <NewsIndex />
-      {/*{pageCount > 1 && (*/}
-      {/*  <Pagination*/}
-      {/*    currentPage={1}*/}
-      {/*    numPages={pageCount}*/}
-      {/*    pathPrefix={'nyheter'}*/}
-      {/*  />*/}
-      {/*)}*/}
-    </>
-  )
-}
-
-export const dynamic = 'force-static'
