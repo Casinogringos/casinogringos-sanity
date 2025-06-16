@@ -42,6 +42,7 @@ import { SlotPage } from '@/src/types/slotPage'
 import { FreeSpins } from '@/src/types/freeSpins'
 import { Casino } from '@/src/types/casino'
 import { FreeSpinsType } from '@/src/types/freeSpinsType'
+import { Object } from '@/src/types/object'
 import { Game } from '@/src/types/game'
 import { CasinoPage } from '@/src/types/casinoPage'
 import { FAQObject } from '@/src/types/faqObject'
@@ -54,6 +55,7 @@ export type {
   BasePage,
   GuidePage,
   ListObject,
+  Object,
   ListItemObject,
   Sport,
   Game,
