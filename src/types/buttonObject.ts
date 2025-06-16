@@ -5,7 +5,9 @@ export type ButtonObject = {
   _key: string
   message: string
   title: string
-  uri: string
+  uri: {
+    current: string
+  }
   page:
     | SubPage<false>
     | CasinoPage<false>

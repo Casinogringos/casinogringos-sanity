@@ -1,9 +1,9 @@
 import { BasePage, ModularContent } from '@/src/types'
 
 export type GuidePage<C = true> = BasePage & {
-  _type: 'guide-page'
+  _type: 'guide-pages'
 } & (C extends true
     ? {
         content: ModularContent
       }
-    : null)
+    : {})

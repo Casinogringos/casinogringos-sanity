@@ -6,4 +6,4 @@ export type CasinoPage<C = true> = BasePage & {
     ? {
         content: ModularContent
       }
-    : null)
+    : {})

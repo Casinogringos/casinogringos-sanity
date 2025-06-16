@@ -2,11 +2,16 @@ export const buttonObjectProjection = `
   _type == 'button-object' => {
     _type,
     _id,
+    _key,
     title,
     uri,
-    page {
-        current {
-            slug
+    page-> {
+        _type,
+        _id,
+        _key,
+        slug {
+            _type,
+            current
         }
     },
     message

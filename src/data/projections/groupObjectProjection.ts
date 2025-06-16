@@ -1,6 +1,10 @@
 import {
+  buttonObjectProjection,
+  buttonsObjectProjection,
   headingObjectProjection,
+  imageObjectProjection,
   listObjectProjection,
+  paragraphObjectProjection,
 } from '@/src/data/projections'
 
 export const groupObjectProjection = `
@@ -12,6 +16,10 @@ export const groupObjectProjection = `
     content[] {
          ${headingObjectProjection},
          ${listObjectProjection},
+         ${paragraphObjectProjection},
+         ${imageObjectProjection},
+         ${buttonObjectProjection},
+         ${buttonsObjectProjection},
     },
     message
   }

@@ -1,5 +1,5 @@
-import ModularContent from '../organisms/ModularContent'
 import { GroupObject as GroupObjectType } from '@/src/types'
+import ModularContent from '@/src/app/components/organisms/ModularContent'
 
 const GroupObject = ({ object }: { object: GroupObjectType }) => {
   const className = () => {

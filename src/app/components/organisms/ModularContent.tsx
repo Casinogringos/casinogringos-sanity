@@ -1,36 +1,18 @@
-import BonusBox from '@/src/app/components/organisms/BonusBox'
 import CasinoObject from '@/src/app/components/organisms/CasinoObject'
 import HowToObject from '@/src/app/components/organisms/HowToObject'
-import ProsAndConsBox from '@/src/app/components/organisms/ProsAndConsBox'
-import RatingBox from '@/src/app/components/organisms/RatingBox'
-import SummaryBox from '@/src/app/components/molecules/SummaryBox'
-import { Blocks as ObjectsType } from '@/src/types'
 import dynamic from 'next/dynamic'
-import Image from 'next/image'
 import { Fragment } from 'react'
-import Columns from '@/src/app/components/utils/Columns'
 import GroupObject from '@/src/app/components/utils/GroupObject'
-import VideoPlayerWrap from '@/src/app/components/utils/VideoPlayerWrap'
-import { ModularContent } from '@/src/types/modularContent'
 import { PortableText } from 'next-sanity'
 import Container from '@/src/app/components/atoms/Container'
-import { useNextSanityImage } from 'next-sanity-image'
-import { client } from '@/src/lib/client'
 import ImageObject from '@/src/app/components/atoms/ImageObject'
 const Heading = dynamic(() => import('@/src/app/components/atoms/Heading'))
-const RawHTML = dynamic(() => import('@/src/app/components/atoms/RawHTML'))
-const Paragraph = dynamic(() => import('@/src/app/components/atoms/Paragraph'))
-const ToggleBox = dynamic(
-  () => import('@/src/app/components/organisms/ToggleBox')
-)
-const Accordion = dynamic(
-  () => import('@/src/app/components/organisms/Accordion')
-)
-import List from '@/src/app/components/molecules/List'
 import ListObject from '@/src/app/components/organisms/ListObject'
 import { writeDataToTestFile } from '@/src/lib/actions'
 import ColumnsObject from '@/src/app/components/utils/ColumnsObject'
 import Placeholder from '@/src/app/components/atoms/Placeholder'
+import ButtonObject from '@/src/app/components/molecules/ButtonObject'
+import ButtonsObject from '@/src/app/components/molecules/ButtonsObject'
 
 const renderObject = (object: ObjectType, outerIndex, nested) => {
   if (!object) return null
@@ -120,6 +102,20 @@ const renderObject = (object: ObjectType, outerIndex, nested) => {
       return (
         <Tag>
           <Placeholder message={'Shortcode Object: Missing shortcode'} />
+        </Tag>
+      )
+    }
+    case 'button-object': {
+      return (
+        <Tag>
+          <ButtonObject object={object} />
+        </Tag>
+      )
+    }
+    case 'buttons-object': {
+      return (
+        <Tag>
+          <ButtonsObject object={object} />
         </Tag>
       )
     }

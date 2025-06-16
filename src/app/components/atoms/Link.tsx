@@ -1,4 +1,5 @@
 import { ReactNode } from 'react'
+import NextLink from 'next/link'
 
 const Link = ({
   href,
@@ -20,17 +21,16 @@ const Link = ({
   place?: string
 }) => {
   return (
-    <Link
+    <NextLink
       role={role}
       href={href}
       rel={rel}
       target={target}
       className={className}
       prefetch={prefetch}
-      place={place}
     >
       {children}
-    </Link>
+    </NextLink>
   )
 }
 

@@ -6,4 +6,4 @@ export type SlotPage<C = true> = BasePage & {
     ? {
         content: ModularContent
       }
-    : null)
+    : {})
