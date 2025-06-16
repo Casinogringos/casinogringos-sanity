@@ -4,15 +4,15 @@ export const prosAndConsObjectProjection = `
   _type == 'pros-and-cons-object' => {
     _type,
     _id,
+    _key,
     message,
     author {
-        ...authorProjection
+        ${authorProjection}
     },
     consTitle,
     prosTitle,
     cons,
     pros,
     product
-    ${authorProjection}
   }
 `

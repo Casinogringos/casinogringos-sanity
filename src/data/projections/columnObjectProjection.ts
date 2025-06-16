@@ -1,4 +1,6 @@
 import {
+  buttonObjectProjection,
+  buttonsObjectProjection,
   headingObjectProjection,
   imageObjectProjection,
   listObjectProjection,
@@ -17,6 +19,8 @@ export const columnObjectProjection = `
         ${imageObjectProjection},
         ${paragraphObjectProjection},
         ${listObjectProjection},
+        ${buttonObjectProjection},
+        ${buttonsObjectProjection},
     },
     message
   }

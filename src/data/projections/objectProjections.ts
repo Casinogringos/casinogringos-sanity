@@ -18,6 +18,8 @@ import { toggleObjectProjection } from '@/src/data/projections'
 import { imageObjectProjection } from '@/src/data/projections'
 import { howToObjectProjection } from '@/src/data/projections'
 import { shortcodeObjectProjection } from '@/src/data/projections'
+import { tableObjectProjection } from '@/src/data/projections'
+import { prosAndConsObjectProjection } from '@/src/data/projections'
 
 // export const objectProjections = `
 //     ${casinoObjectProjection},
@@ -60,6 +62,8 @@ export const objectProjections = [
   imageObjectProjection,
   howToObjectProjection,
   shortcodeObjectProjection,
+  tableObjectProjection,
+  prosAndConsObjectProjection,
 ]
   .map((projection) => projection.trim())
   .join(',\n')

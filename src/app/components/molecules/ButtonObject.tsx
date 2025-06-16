@@ -5,7 +5,7 @@ const ButtonObject = ({ object }: { object: ButtonObjectType }) => {
   console.log('button object', object)
   const getHref = () => {
     if (!object.page) {
-      return `/${object.uri.current}`
+      return `${object.uri.current}`
     }
     switch (object.page._type) {
       case 'casino-pages':
@@ -16,7 +16,7 @@ const ButtonObject = ({ object }: { object: ButtonObjectType }) => {
         return `/nyheter/${object.page.slug.current}`
       case 'slot-pages':
         return `/slots/${object.page.slug.current}`
-      case 'sub-pages':
+      case 'pages':
         return `/${object.page.slug.current}`
     }
   }

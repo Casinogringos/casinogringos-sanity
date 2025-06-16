@@ -18,6 +18,7 @@ import { buttonsObjectProjection } from '@/src/data/projections/buttonsObjectPro
 import { embedObjectProjection } from '@/src/data/projections/embedObjectProjection'
 import { faqItemObjectProjection } from '@/src/data/projections/faqItemObjectProjection'
 import { faqObjectProjection } from '@/src/data/projections/faqObjectProjection'
+import { tableObjectProjection } from '@/src/data/projections/tableObjectProjection'
 import { columnObjectProjection } from '@/src/data/projections/columnObjectProjection'
 import { shortcodeObjectProjection } from '@/src/data/projections/shortcodeObjectProjection'
 import { columnsObjectProjection } from '@/src/data/projections/columnsObjectProjection'
@@ -51,6 +52,7 @@ export {
   casinoPageProjection,
   bonusProjection,
   casinoBonusProjection,
+  tableObjectProjection,
   pageProjection,
   authorProjection,
   casinoObjectProjection,

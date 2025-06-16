@@ -13,6 +13,7 @@ import ColumnsObject from '@/src/app/components/utils/ColumnsObject'
 import Placeholder from '@/src/app/components/atoms/Placeholder'
 import ButtonObject from '@/src/app/components/molecules/ButtonObject'
 import ButtonsObject from '@/src/app/components/molecules/ButtonsObject'
+import ProsAndConsObject from '@/src/app/components/organisms/ProsAndConsObject'
 
 const renderObject = (object: ObjectType, outerIndex, nested) => {
   if (!object) return null
@@ -105,6 +106,13 @@ const renderObject = (object: ObjectType, outerIndex, nested) => {
         </Tag>
       )
     }
+    case 'table-object': {
+      return (
+        <Tag>
+          <Placeholder message={'Table Object: Missing table'} />
+        </Tag>
+      )
+    }
     case 'button-object': {
       return (
         <Tag>
@@ -116,6 +124,13 @@ const renderObject = (object: ObjectType, outerIndex, nested) => {
       return (
         <Tag>
           <ButtonsObject object={object} />
+        </Tag>
+      )
+    }
+    case 'pros-and-cons-object': {
+      return (
+        <Tag>
+          <ProsAndConsObject object={object} />
         </Tag>
       )
     }
