@@ -1,5 +1,6 @@
 import { DashboardImageObject } from '@/src/types/dashboardImageObject'
 import { ListItemObject } from '@/src/types/listItemObject'
+import { TOCItem } from '@/src/types/tocItem'
 import { ListObject } from '@/src/types/listObject'
 import { ProsAndConsObject } from '@/src/types/prosAndConsObject'
 import { GameType } from '@/src/types/gameType'
@@ -96,6 +97,7 @@ export type {
   CasinoObject,
   ModularContent,
   NewsPage,
+  TOCItem,
   HowToStepObject,
   AISummaryObject,
   HowToObject,

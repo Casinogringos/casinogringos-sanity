@@ -33,6 +33,7 @@ import { toggleObjectProjection } from '@/src/data/projections/toggleObjectProje
 import { objectProjections } from '@/src/data/projections/objectProjections'
 import { newsPageProjection } from '@/src/data/projections/newsPageProjection'
 import { pageProjection } from '@/src/data/projections/pageProjection'
+import { slotPagePreviewProjection } from '@/src/data/projections/slotPagePreviewProjection'
 import { guidePageProjection } from '@/src/data/projections/guidePageProjection'
 import { slotPageProjection } from '@/src/data/projections/slotPageProjection'
 import { casinoPageProjection } from '@/src/data/projections/casinoPageProjection'
@@ -41,6 +42,7 @@ import { menuProjection } from '@/src/data/projections/menuProjection'
 export {
   imageObjectProjection,
   menuProjection,
+  slotPagePreviewProjection,
   slotPageProjection,
   objectProjections,
   guidePageProjection,

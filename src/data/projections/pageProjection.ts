@@ -11,6 +11,7 @@ export const pageProjection = `
   slug,
   publishedAt,
   seoTitle,
+  intro,
   seoDescription,
   faqs[] {
     ${faqItemObjectProjection}
