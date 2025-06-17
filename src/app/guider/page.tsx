@@ -1,10 +1,10 @@
-import { getPageBySlug } from '@/src/lib/api'
-import GuidesIndex from '@/src/app/GuidesIndex'
-import Pagination from '@/src/app/components/organisms/Pagination'
-import BreadCrumbs from '@/src/app/components/organisms/BreadCrumbs'
-import { extractSlugFromUrl } from '@/src/lib/helpers'
-import { Metadata } from 'next'
-import { Guide } from '@/src/types'
+// import { getPageBySlug } from '@/src/lib/api'
+// import GuidesIndex from '@/src/app/GuidesIndex'
+// import Pagination from '@/src/app/components/organisms/Pagination'
+// import BreadCrumbs from '@/src/app/components/organisms/BreadCrumbs'
+// import { extractSlugFromUrl } from '@/src/lib/helpers'
+// import { Metadata } from 'next'
+// import { Guide } from '@/src/types'
 
 // export async function generateMetadata() {
 //   const item = (await getNodeByUri({ uri: '/guider' })) as Guide
@@ -36,31 +36,31 @@ import { Guide } from '@/src/types'
 //   return metadata as Metadata
 // }
 
-export default async function Page() {
-  // const allGuides = await getAllGuidePreviews({})
-  // const guidesCount = allGuides.edges.length
-  // const pageCount = Math.ceil(guidesCount / 24)
-  const breadcrumbItems = [
-    {
-      text: 'Guider',
-      url: `${process.env.SITE_URL}/guider`,
-    },
-  ]
-
-  return (
-    <>
-      <BreadCrumbs items={breadcrumbItems} />
-      <GuidesIndex guides={undefined} />
-      {/*{pageCount > 1 && (*/}
-      {/*  <Pagination*/}
-      {/*    currentPage={1}*/}
-      {/*    numPages={pageCount}*/}
-      {/*    pathPrefix={'guider'}*/}
-      {/*    className={'font'}*/}
-      {/*  />*/}
-      {/*)}*/}
-    </>
-  )
-}
-
-export const dynamic = 'force-static'
+// export default async function Page() {
+//   // const allGuides = await getAllGuidePreviews({})
+//   // const guidesCount = allGuides.edges.length
+//   // const pageCount = Math.ceil(guidesCount / 24)
+//   const breadcrumbItems = [
+//     {
+//       text: 'Guider',
+//       url: `${process.env.SITE_URL}/guider`,
+//     },
+//   ]
+//
+//   return (
+//     <>
+//       <BreadCrumbs items={breadcrumbItems} />
+//       <GuidesIndex guides={undefined} />
+//       {/*{pageCount > 1 && (*/}
+//       {/*  <Pagination*/}
+//       {/*    currentPage={1}*/}
+//       {/*    numPages={pageCount}*/}
+//       {/*    pathPrefix={'guider'}*/}
+//       {/*    className={'font'}*/}
+//       {/*  />*/}
+//       {/*)}*/}
+//     </>
+//   )
+// }
+//
+// export const dynamic = 'force-static'
