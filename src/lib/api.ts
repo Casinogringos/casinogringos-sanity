@@ -8,6 +8,8 @@ import {
 } from '@/src/data/queries'
 import { casinoPageBySlugQuery } from '@/src/data/queries/casinoPageBySlugQuery'
 import { guidePageBySlugQuery } from '@/src/data/queries/guidePageBySlugQuery'
+import { guidePagePreviewsQuery } from '@/src/data/queries/guidePagePreviewsQuery'
+import { guidePageCountQuery } from '@/src/data/queries/guidePageCountQuery'
 const client = getClient()
 
 export const getPageBySlug = async ({ slug }: { slug: string }) => {
@@ -22,6 +24,17 @@ export const getPageBySlug = async ({ slug }: { slug: string }) => {
   }
 }
 
+export const getGuidePageCount = async () => {
+  try {
+    const data = await client.fetch(guidePageCountQuery())
+    // console.log('data', data)
+    return data
+  } catch (e) {
+    console.log(e)
+    throw Error(`Failed to fetch guide page count`)
+  }
+}
+
 export const getSlotPagePreviews = async ({ count }: { count?: number }) => {
   try {
     const data = await client.fetch(slotPagePreviewsQuery({ count }))
@@ -30,6 +43,23 @@ export const getSlotPagePreviews = async ({ count }: { count?: number }) => {
   } catch (e) {
     console.log(e)
     throw Error(`Failed to fetch slot page previews`)
+  }
+}
+
+export const getGuidePagePreviews = async ({
+  count,
+  offset,
+}: {
+  count?: number
+  offset?: number
+}) => {
+  try {
+    const data = await client.fetch(guidePagePreviewsQuery({ count, offset }))
+    // console.log('data', data)
+    return data
+  } catch (e) {
+    console.log(e)
+    throw Error(`Failed to fetch guide previews`)
   }
 }
 

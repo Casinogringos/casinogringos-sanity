@@ -38,10 +38,12 @@ import { guidePageProjection } from '@/src/data/projections/guidePageProjection'
 import { slotPageProjection } from '@/src/data/projections/slotPageProjection'
 import { casinoPageProjection } from '@/src/data/projections/casinoPageProjection'
 import { menuProjection } from '@/src/data/projections/menuProjection'
+import { guidePagePreviewProjection } from '@/src/data/projections/guidePagePreviewProjection'
 
 export {
   imageObjectProjection,
   menuProjection,
+  guidePagePreviewProjection,
   slotPagePreviewProjection,
   slotPageProjection,
   objectProjections,

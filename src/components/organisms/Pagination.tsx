@@ -1,6 +1,6 @@
 import { ChevronLeft, ChevronRight } from 'lucide-react'
-import Container from '../atoms/Container'
-import InternalLink from '../../../sin-bin/InternalLink'
+import Container from '@/src/components/atoms/Container'
+import Link from '@/src/components/atoms/Link'
 
 const Pagination = ({
   currentPage,
@@ -25,7 +25,7 @@ const Pagination = ({
         </h2>
         <div className={'flex justify-start'}>
           {currentPage > 1 && (
-            <InternalLink
+            <Link
               className={
                 'flex items-center bg-gray200 rounded-md pl-2 pr-5 py-2 hover:bg-gray400 hover:text-white'
               }
@@ -38,12 +38,12 @@ const Pagination = ({
             >
               <ChevronLeft />
               <span>Föregående</span>
-            </InternalLink>
+            </Link>
           )}
         </div>
         <div className={'hidden items-center justify-center lg:flex'}>
           {Array.from({ length: numPages }, (_, i) => (
-            <InternalLink
+            <Link
               className={`bg-gray200 mx-2 px-3 py-1 rounded-md hover:bg-gray400 hover:text-white ${
                 currentPage === i + 1 ? 'bg-gray400 text-white' : ''
               }`}
@@ -55,12 +55,12 @@ const Pagination = ({
               prefetch={false}
             >
               {i + 1}
-            </InternalLink>
+            </Link>
           ))}
         </div>
         <div className={'flex justify-end'}>
           {numPages > currentPage && (
-            <InternalLink
+            <Link
               className={
                 'flex items-center bg-gray200 rounded-md pr-2 pl-5 py-2 hover:bg-gray400 hover:text-white'
               }
@@ -71,7 +71,7 @@ const Pagination = ({
             >
               <span>Nästa</span>
               <ChevronRight />
-            </InternalLink>
+            </Link>
           )}
         </div>
       </nav>

@@ -1,5 +1,5 @@
 // import { getPageBySlug } from '@/src/lib/api'
-// import GuidesIndex from '@/src/app/GuidesIndex'
+import GuidesIndex from '@/src/app/GuidesIndex'
 // import Pagination from '@/src/app/components/organisms/Pagination'
 // import BreadCrumbs from '@/src/app/components/organisms/BreadCrumbs'
 // import { extractSlugFromUrl } from '@/src/lib/helpers'
@@ -36,31 +36,38 @@
 //   return metadata as Metadata
 // }
 
-// export default async function Page() {
-//   // const allGuides = await getAllGuidePreviews({})
-//   // const guidesCount = allGuides.edges.length
-//   // const pageCount = Math.ceil(guidesCount / 24)
-//   const breadcrumbItems = [
-//     {
-//       text: 'Guider',
-//       url: `${process.env.SITE_URL}/guider`,
-//     },
-//   ]
-//
-//   return (
-//     <>
-//       <BreadCrumbs items={breadcrumbItems} />
-//       <GuidesIndex guides={undefined} />
-//       {/*{pageCount > 1 && (*/}
-//       {/*  <Pagination*/}
-//       {/*    currentPage={1}*/}
-//       {/*    numPages={pageCount}*/}
-//       {/*    pathPrefix={'guider'}*/}
-//       {/*    className={'font'}*/}
-//       {/*  />*/}
-//       {/*)}*/}
-//     </>
-//   )
-// }
+import { getGuidePageCount, getGuidePagePreviews } from '@/src/lib/api'
+import Pagination from '@/src/components/organisms/Pagination'
+
+const Page = async () => {
+  const guides = await getGuidePagePreviews({ count: 24, offset: 0 })
+  const guidesCount = await getGuidePageCount()
+  console.log('guidesCount', guidesCount)
+  // const guidesCount = allGuides.edges.length
+  const pageCount = Math.ceil(guidesCount / 24)
+  // const breadcrumbItems = [
+  //   {
+  //     text: 'Guider',
+  //     url: `${process.env.SITE_URL}/guider`,
+  //   },
+  // ]
+
+  return (
+    <>
+      {/*<BreadCrumbs items={breadcrumbItems} />*/}
+      <GuidesIndex guides={guides} />
+      {pageCount > 1 && (
+        <Pagination
+          currentPage={1}
+          numPages={pageCount}
+          pathPrefix={'guider'}
+          className={'font'}
+        />
+      )}
+    </>
+  )
+}
+
+export default Page
 //
 // export const dynamic = 'force-static'
