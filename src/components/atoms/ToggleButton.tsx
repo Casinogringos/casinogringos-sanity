@@ -40,7 +40,7 @@ const ToggleButton = ({
         role={role}
         onClick={handleToggle}
       >
-        <div>{children}</div>
+        <div className={'w-full'}>{children}</div>
       </label>
     </>
   )

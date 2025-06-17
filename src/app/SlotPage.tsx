@@ -1,5 +1,11 @@
 import ModularContent from '@/src/components/organisms/ModularContent'
 import { SlotPage as SlotPageType } from '@/src/types'
+import TableOfContents from '@/src/components/organisms/TableOfContents'
+import { Object as ObjectType } from '@/src/types'
+
+interface Heading {
+  text: string
+}
 
 export default function SlotPage({ page }: { page: SlotPageType }) {
   // const author = slot?.author?.node
@@ -57,7 +63,15 @@ export default function SlotPage({ page }: { page: SlotPageType }) {
   //     },
   //   ],
   // }
-  // const headings = getBlockHeadings(slot?.editorBlocks)
+  const headings = page.content.reduce((acc: Heading[], curr: ObjectType) => {
+    if (curr._type === 'heading-object') {
+      acc.push({
+        text: curr.text,
+      })
+    }
+    return acc
+  }, [])
+  console.log('headings', headings)
   // const convertedRating = parseInt(slot?.slotType?.rating)
   // const rating = slot.slotType?.rating?.toString()
 
@@ -206,11 +220,11 @@ export default function SlotPage({ page }: { page: SlotPageType }) {
         {/*    reviewedBy={null}*/}
         {/*  />*/}
         {/*</div>*/}
-        {/*{headings.length > 1 && (*/}
-        {/*  <div className={'px-4 lg:px-0'}>*/}
-        {/*    <TableOfContents headings={headings} />*/}
-        {/*  </div>*/}
-        {/*)}*/}
+        {headings.length > 1 && (
+          <div className={'px-4 lg:px-0'}>
+            <TableOfContents headings={headings} />
+          </div>
+        )}
         <ModularContent objects={page.content} />
         {/*{slot.slotType && slot.slotType.casinos && (*/}
         {/*  <section id="spela" className="bg-normal py-12 lg:pb-16 lg:pt-20">*/}

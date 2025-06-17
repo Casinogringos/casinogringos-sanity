@@ -10,7 +10,7 @@ const Heading = ({
   className = '',
   children,
 }: {
-  text: string
+  text?: string
   level: number
   index?: number
   className?: string
