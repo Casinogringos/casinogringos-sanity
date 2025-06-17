@@ -1,5 +1,5 @@
 import { SubPage as SubPageType } from '@/src/types'
-import ModularContent from '@/src/app/components/organisms/ModularContent'
+import ModularContent from '@/src/components/organisms/ModularContent'
 
 export default function SubPage({ page }: { page: SubPageType }) {
   // const casinos = page.pageType.category?.edges[0].node.posts.edges ?? []

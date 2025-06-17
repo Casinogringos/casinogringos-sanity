@@ -1,4 +1,4 @@
-import ModularContent from '@/src/app/components/organisms/ModularContent'
+import ModularContent from '@/src/components/organisms/ModularContent'
 import { CasinoPage as CasinoPageType } from '@/src/types'
 
 export default function CasinoPage({ page }: { page: CasinoPageType }) {

@@ -1,7 +1,7 @@
 // import AuthorBox from '@/src/components/organisms/AuthorBox'
 // import CasinoList from '@/src/components/organisms/CasinoList'
 // import Container from '@/src/components/atoms/Container'
-import ModularContent from '@/src/app/components/organisms/ModularContent'
+import ModularContent from '@/src/components/organisms/ModularContent'
 // import {
 //   getBlockHeadings,
 //   replaceInternalLinkBaseUrls,

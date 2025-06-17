@@ -1,7 +1,7 @@
 import { getGuidePageBySlug } from '@/src/lib/api'
 import { notFound } from 'next/navigation'
 import NewsPage from '@/src/app/NewsPage'
-import BreadCrumbs from '@/src/app/components/organisms/BreadCrumbs'
+import BreadCrumbs from '@/src/components/organisms/BreadCrumbs'
 import { extractSlugFromUrl } from '@/src/lib/helpers'
 import { Metadata } from 'next'
 import { Guide } from '@/src/types'

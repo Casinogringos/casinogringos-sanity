@@ -5,4 +5,9 @@ export interface BasePage {
   slug: {
     current: string
   }
+  faqs: {
+    question: string
+    answer: string
+    message: string
+  }[]
 }

@@ -1,4 +1,4 @@
-import ModularContent from '@/src/app/components/organisms/ModularContent'
+import ModularContent from '@/src/components/organisms/ModularContent'
 import { GuidePage as GuidePageType } from '@/src/types'
 
 export default function GuidePage({ page }: { page: GuidePageType }) {

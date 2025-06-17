@@ -1,4 +1,4 @@
-import ModularContent from '@/src/app/components/organisms/ModularContent'
+import ModularContent from '@/src/components/organisms/ModularContent'
 import { SlotPage as SlotPageType } from '@/src/types'
 
 export default function SlotPage({ page }: { page: SlotPageType }) {

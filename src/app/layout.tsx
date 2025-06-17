@@ -1,4 +1,4 @@
-import Navigation from '@/src/app/components/organisms/Navigation'
+import Navigation from '@/src/components/organisms/Navigation'
 import { getMenuById } from '@/src/lib/api'
 import Provider from '@/src/store/provider'
 import '@/src/styles/index.css'
@@ -9,7 +9,7 @@ import { Inter, Plus_Jakarta_Sans } from 'next/font/google'
 import { ReactNode } from 'react'
 
 const ScrollToTop = dynamic(
-  () => import('@/src/app/components/molecules/ScrollToTop')
+  () => import('@/src/components/molecules/ScrollToTop')
 )
 const inter = Inter({
   subsets: ['latin'],
