@@ -1,5 +1,7 @@
 // import { getPageBySlug } from '@/src/lib/api'
-// import NewsIndex from '@/src/app/NewsIndex'
+import NewsIndex from '@/src/app/NewsIndex'
+import Pagination from '@/src/components/organisms/Pagination'
+import { getNewsPageCount, getNewsPagePreviews } from '@/src/lib/api'
 // import Pagination from '@/src/app/components/organisms/Pagination'
 // import BreadCrumbs from '@/src/app/components/organisms/BreadCrumbs'
 // import { extractSlugFromUrl } from '@/src/lib/helpers'
@@ -37,3 +39,31 @@
 //
 //   return metadata as Metadata
 // }
+const Page = async () => {
+  const news = await getNewsPagePreviews({ count: 24, offset: 0 })
+  const newsCount = await getNewsPageCount()
+  const pageCount = Math.ceil(newsCount / 24)
+  const breadcrumbItems = [
+    {},
+    {
+      text: 'Nyheter',
+      url: `${process.env.SITE_URL}/nyheter`,
+    },
+  ]
+
+  return (
+    <>
+      {/*<BreadCrumbs items={breadcrumbItems} />*/}
+      <NewsIndex news={news} />
+      {pageCount > 1 && (
+        <Pagination
+          currentPage={1}
+          numPages={pageCount}
+          pathPrefix={'nyheter'}
+        />
+      )}
+    </>
+  )
+}
+
+export default Page

@@ -13,6 +13,7 @@ import { bonusProjection } from '@/src/data/projections/bonusProjection'
 import { listObjectProjection } from '@/src/data/projections/listObjectProjection'
 import { affiliateButtonObjectProjection } from '@/src/data/projections/affiliateButtonObjectProjection'
 import { bonusObjectProjection } from '@/src/data/projections/bonusObjectProjection'
+import { newsPagePreviewProjection } from '@/src/data/projections/newsPagePreviewProjection'
 import { buttonObjectProjection } from '@/src/data/projections/buttonObjectProjection'
 import { buttonsObjectProjection } from '@/src/data/projections/buttonsObjectProjection'
 import { embedObjectProjection } from '@/src/data/projections/embedObjectProjection'
@@ -49,6 +50,7 @@ export {
   objectProjections,
   guidePageProjection,
   freeSpinsProjection,
+  newsPagePreviewProjection,
   casinoProjection,
   oddsBonusProjection,
   shortcodeObjectProjection,
