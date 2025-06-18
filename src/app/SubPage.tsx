@@ -1,7 +1,8 @@
 import { SubPage as SubPageType } from '@/src/types'
 import ModularContent from '@/src/components/organisms/ModularContent'
+import SubPageHero from '@/src/components/molecules/SubPageHero'
 
-export default function SubPage({ page }: { page: SubPageType }) {
+export default function SubPage({ page }: { page: SubPageType<true> }) {
   // const casinos = page.pageType.category?.edges[0].node.posts.edges ?? []
   // const headings = getBlockHeadings(page?.editorBlocks)
 
@@ -14,14 +15,7 @@ export default function SubPage({ page }: { page: SubPageType }) {
       {/*  }}*/}
       {/*  key="homepage-data"*/}
       {/*/>*/}
-      {/*<Hero*/}
-      {/*  title={page?.title}*/}
-      {/*  shareTitle={page?.seo?.title}*/}
-      {/*  author={page?.author}*/}
-      {/*  date={page?.date}*/}
-      {/*  modified={page?.modified}*/}
-      {/*  description={page?.pageType?.bannerText}*/}
-      {/*/>*/}
+      <SubPageHero page={page} />
       {/*{page?.seo?.breadcrumbs && <BreadCrumbs items={page.seo?.breadcrumbs} />}*/}
       {/*{casinos.length ? (*/}
       {/*  <CasinoList casinos={casinos} title={page?.pageType?.subtitle} />*/}

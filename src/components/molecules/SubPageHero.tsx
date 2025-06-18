@@ -3,9 +3,11 @@ import dynamic from 'next/dynamic'
 import { Author, SubPage } from '@/src/types'
 import { PortableText } from 'next-sanity'
 import Heading from '@/src/components/atoms/Heading'
-const HeroAvatar = dynamic(() => import('../organisms/HeroAvatar'))
+const HeroAvatar = dynamic(
+  () => import('@/src/components/organisms/HeroAvatar')
+)
 
-const PageHero = ({ page }: { page: SubPage<true> }) => {
+const SubPageHero = ({ page }: { page: SubPage<true> }) => {
   const { title } = page
 
   return (
@@ -34,4 +36,4 @@ const PageHero = ({ page }: { page: SubPage<true> }) => {
   )
 }
 
-export default PageHero
+export default SubPageHero

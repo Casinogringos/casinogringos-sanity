@@ -2,7 +2,7 @@ import { SlotPage, SubPage, TOCItem, Object } from '@/src/types'
 import ModularContent from '@/src/components/organisms/ModularContent'
 import TableOfContents from '@/src/components/organisms/TableOfContents'
 import Container from '@/src/components/atoms/Container'
-import PageHero from '@/src/components/molecules/PageHero'
+import SubPageHero from '@/src/components/molecules/SubPageHero'
 import Heading from '@/src/components/atoms/Heading'
 import SlotCard from '@/src/components/molecules/SlotCard'
 
@@ -24,7 +24,7 @@ export default function SlotIndex({
   return (
     <>
       <div>
-        <PageHero page={page} />
+        <SubPageHero page={page} />
         {/*  <BreadCrumbs items={breadcrumbItems} />*/}
         <div className="pb-12 pt-8 lg:pt-10">
           <Container>
