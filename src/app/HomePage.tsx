@@ -7,6 +7,7 @@ import ModularContent from '@/src/components/organisms/ModularContent'
 //   replaceInternalLinkBaseUrls,
 // } from '@/src/lib/helpers'
 import { SubPage } from '@/src/types'
+import HomePageHero from '@/src/components/organisms/HomePageHero'
 // import dynamic from 'next/dynamic'
 // const TableOfContents = dynamic(
 //   () => import('@/src/components/organisms/TableOfContents')
@@ -23,7 +24,7 @@ const HomePage = ({ page }: { page: SubPage }) => {
       {/*  }}*/}
       {/*  key="homepage-data"*/}
       {/*/>*/}
-      {/*<Hero title={page.title} description={page.pageType.bannerText} />*/}
+      <HomePageHero page={page} />
       {/*<CasinoList*/}
       {/*  casinos={casinos}*/}
       {/*  key={'casino-list'}*/}
