@@ -4,6 +4,7 @@ import Link from 'next/link'
 import type { Menu as MenuType, MenuItem as MenuItemType } from '@/src/types'
 import ToggleButton from '@/src/components/atoms/ToggleButton'
 import ToggleItem from '@/src/components/atoms/ToggleItem'
+import ToggleSpin from '@/src/components/atoms/ToggleSpin'
 
 const Menu = ({
   menu,
@@ -43,11 +44,13 @@ const Menu = ({
                   label={'Öppna undermeny'}
                   role={'menuitemcheckbox'}
                 >
-                  <ChevronDown
-                    aria-label={'hidden'}
-                    size={24}
-                    className={'stroke-dark'}
-                  />
+                  <ToggleSpin id={`menu-toggle-${i}-${level1Item._key}`}>
+                    <ChevronDown
+                      aria-label={'hidden'}
+                      size={24}
+                      className={'stroke-dark'}
+                    />
+                  </ToggleSpin>
                 </ToggleButton>
                 <ToggleItem
                   id={`menu-toggle-${i}-${level1Item._key}`}

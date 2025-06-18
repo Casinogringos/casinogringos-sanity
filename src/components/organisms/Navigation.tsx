@@ -4,24 +4,33 @@ import Container from '@/src/components/atoms/Container'
 import Link from 'next/link'
 import NotificationButton from '@/src/components/molecules/NotificationButton'
 import Menu from '@/src/components/organisms/Menu'
-import type { Menu as MenuType, MenuItem as MenuItemType } from '@/src/types'
+import type {
+  Casino,
+  Menu as MenuType,
+  MenuItem as MenuItemType,
+} from '@/src/types'
 import MenuButton from '@/src/components/molecules/MenuButton'
 import SearchButton from '@/src/components/molecules/SearchButton'
 import { headers } from 'next/headers'
 import MenuModal from '@/src/components/molecules/MenuModal'
+import NotificationModal from '@/src/components/molecules/NotificationModal'
+import CasinoRow from '@/src/components/organisms/CasinoRow'
 
 export default async function Navigation({
   headerMenu,
   sidebarMenu,
+  sidebarCasinos,
 }: {
   headerMenu: MenuType
   sidebarMenu: MenuType
+  sidebarCasinos: Casino[]
 }) {
-  // const headersList = await headers()
-  // const pathname = headersList.get('x-pathname') || headersList.get('x-url')
-  // const parentRoute = pathname?.split('/')[1]
-  // if (parentRoute === 'go') return null
-  const pathname = '/'
+  const headersList = await headers()
+  const pathname =
+    headersList.get('x-pathname') || headersList.get('x-url') || ''
+  const parentRoute = pathname?.split('/')[1]
+
+  if (parentRoute === 'go') return null
   return (
     <>
       <nav
@@ -76,9 +85,9 @@ export default async function Navigation({
               ))}
             </ul>
             <div className="ml-auto flex items-center gap-3">
-              {/*{sidebarMenu.items.length > 0 ? (*/}
-              {/*  <NotificationButton count={sidebarMenu.items.length} />*/}
-              {/*) : null}*/}
+              {sidebarMenu.items.length > 0 ? (
+                <NotificationButton count={sidebarMenu.items.length} />
+              ) : null}
               <SearchButton />
               <MenuButton />
             </div>
@@ -91,20 +100,20 @@ export default async function Navigation({
       <MenuModal>
         <Menu menu={sidebarMenu} pathname={pathname} />
       </MenuModal>
-      {/*<NotificationModal>*/}
-      {/*  <section>*/}
-      {/*    <div className="relative mt-6 text-lg font-medium">*/}
-      {/*      Populära erbjudanden*/}
-      {/*    </div>*/}
-      {/*    {sidebarPosts.edges.map(({ node }) => (*/}
-      {/*      <SidebarPost*/}
-      {/*        item={node}*/}
-      {/*        key={`review-${node.id}`}*/}
-      {/*        pathname={pathname}*/}
-      {/*      />*/}
-      {/*    ))}*/}
-      {/*  </section>*/}
-      {/*</NotificationModal>*/}
+      <NotificationModal>
+        <section>
+          <div className="relative mt-6 text-lg font-medium">
+            Populära erbjudanden
+          </div>
+          {sidebarCasinos.map((casino) => (
+            <CasinoRow
+              casino={casino}
+              key={`casino-${casino._key}`}
+              pathname={pathname}
+            />
+          ))}
+        </section>
+      </NotificationModal>
     </>
   )
 }

@@ -1,3 +1,6 @@
+'use client'
+
+import { usePlausible } from 'next-plausible'
 import { ReactNode } from 'react'
 import NextLink from 'next/link'
 
@@ -13,6 +16,8 @@ const Link = ({
   label,
   current,
   replace,
+  plausible,
+  variant,
 }: {
   href: string
   rel?: string
@@ -25,7 +30,22 @@ const Link = ({
   label?: string
   current?: string
   replace?: boolean
+  plausible?: {
+    eventName: string
+    props: Record<string, string>
+  }
+  variant?: 'affiliate'
 }) => {
+  const plausibleMethod = usePlausible()
+  const getClassName = () => {
+    switch (variant) {
+      case 'affiliate':
+        return 'rounded-md bg-dark px-4 py-2 text-xs text-white'
+      default:
+        return 'rounded-md bg-button px-4 py-2 text-xs text-white'
+    }
+  }
+
   return (
     <NextLink
       role={role}
@@ -33,9 +53,15 @@ const Link = ({
       rel={rel}
       replace={replace}
       target={target}
-      className={className}
+      className={`${className} ${getClassName()}`}
       prefetch={prefetch}
       aria-label={label}
+      onClick={() => {
+        if (!plausible) return
+        plausibleMethod(plausible.eventName, {
+          props: plausible.props,
+        })
+      }}
     >
       {children}
     </NextLink>

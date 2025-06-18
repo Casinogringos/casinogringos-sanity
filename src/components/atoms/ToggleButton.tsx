@@ -29,7 +29,7 @@ const ToggleButton = ({
 
   return (
     <>
-      <input type="checkbox" className={'toggle-visibility-button'} id={id} />
+      <input type="checkbox" className={'hidden'} id={id} />
       <label
         htmlFor={id}
         className={`cursor-pointer ${className}`}

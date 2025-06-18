@@ -1,9 +1,5 @@
-'use client'
-
-import { usePlausible } from 'next-plausible'
-import Link from 'next/link'
-import ImageWrap from '../atoms/ImageWrap'
-import InternalLink from '../../../sin-bin/InternalLink'
+import Link from '@/src/components/atoms/Link'
+import Image from 'next/image'
 import { Casino } from '@/src/types/casino'
 
 const CasinoRow = ({
@@ -13,40 +9,41 @@ const CasinoRow = ({
   casino: Casino
   pathname: string
 }) => {
-  const plausible = usePlausible()
+  console.log('casino', casino)
 
   return (
     <>
       <div className="mt-2 flex w-full items-center rounded-md border border-blue100 bg-slate100 px-3 py-2.5">
-        <ImageWrap
-          image={casino?.featuredImage?.node}
+        <Image
+          src={casino.logo.src}
+          alt={casino.logo.altText}
           width={45}
+          height={45}
           className="mr-3 rounded-full"
         />
         <div>
           <span className="text-xs font-medium text-slate900">
-            {item.title}
+            {casino.name}
           </span>
-          <p className="pr-4 text-sm font-medium">{casino?.postType?.title}</p>
         </div>
-        <InternalLink
-          href={`/go/${casino.postType.affiliateLink.node.slug}`}
+        <Link
+          href={`/go/${casino.slug.current}`}
           target="_blank"
           rel="noopener noreferrer nofollow"
           prefetch={false}
-          className="ml-auto rounded-md bg-button px-4 py-2 text-xs text-white"
-          onClick={() =>
-            plausible('AffiliateClick', {
-              props: {
-                buttonId: casino.title,
-                place: 'Sidebar',
-                pathname: pathname,
-              },
-            })
-          }
+          variant={'affiliate'}
+          className="ml-auto"
+          plausible={{
+            eventName: 'AffiliateClick',
+            props: {
+              buttonId: casino.name,
+              place: 'Sidebar',
+              pathname: pathname,
+            },
+          }}
         >
           Besök
-        </InternalLink>
+        </Link>
       </div>
       <div className="rounded-b-md bg-white pt-1 text-center text-xs3 text-gray400 lg:text-left">
         18+ | Spela ansvarsfullt |{' '}

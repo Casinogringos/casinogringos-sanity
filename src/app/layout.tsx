@@ -1,5 +1,5 @@
 import Navigation from '@/src/components/organisms/Navigation'
-import { getMenuById } from '@/src/lib/api'
+import { getCasinoPreviews, getMenuById } from '@/src/lib/api'
 import Provider from '@/src/store/provider'
 import '@/src/styles/index.css'
 import '@/src/styles/styles.scss'
@@ -39,6 +39,9 @@ export default async function RootLayout({
   const sidebarMenu = await getMenuById({
     id: 'a88836bc-b13a-474e-a2f5-ff59513b526a',
   })
+  const sidebarCasinos = await getCasinoPreviews({
+    count: 8,
+  })
   // const footerNav = await getMenuById({ id: 'dGVybToxNA==' })
   // const footerSites = await getMenuById({
   //   id: 'dGVybToxNzMx',
@@ -56,7 +59,11 @@ export default async function RootLayout({
       <link rel="icon" href="/favicon.ico" sizes="any" />
       <body className={`${jakarta.variable} ${inter.variable}`}>
         <Provider>
-          <Navigation headerMenu={headerMenu} sidebarMenu={sidebarMenu} />
+          <Navigation
+            headerMenu={headerMenu}
+            sidebarMenu={sidebarMenu}
+            sidebarCasinos={sidebarCasinos}
+          />
           <main className={'relative'}>{children}</main>
           <ScrollToTop />
         </Provider>

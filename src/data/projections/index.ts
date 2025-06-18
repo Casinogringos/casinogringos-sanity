@@ -26,6 +26,7 @@ import { columnsObjectProjection } from '@/src/data/projections/columnsObjectPro
 import { groupObjectProjection } from '@/src/data/projections/groupObjectProjection'
 import { casinoObjectProjection } from '@/src/data/projections/casinoObjectProjection'
 import { howToStepObjectProjection } from '@/src/data/projections/howToStepObjectProjection'
+import { casinoPreviewProjection } from '@/src/data/projections/casinoPreviewProjection'
 import { howToObjectProjection } from '@/src/data/projections/howToObjectProjection'
 import { aiSummaryObjectProjection } from '@/src/data/projections/aiSummaryObjectProjection'
 import { prosAndConsObjectProjection } from '@/src/data/projections/prosAndConsObjectProjection'
@@ -51,6 +52,7 @@ export {
   guidePageProjection,
   freeSpinsProjection,
   newsPagePreviewProjection,
+  casinoPreviewProjection,
   casinoProjection,
   oddsBonusProjection,
   shortcodeObjectProjection,

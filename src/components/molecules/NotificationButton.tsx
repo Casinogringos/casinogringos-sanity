@@ -53,7 +53,7 @@ const NotificationButton = ({ count }: { count: number }) => {
       aria-label="Notifikationer"
       className="mr-2 lg:mr-2.5 relative mt-1 lg:mt-0"
     >
-      <Bell aria-hidden="true" className="text-slate100 w-5 h-5" />
+      <Bell aria-hidden="true" className="text-white w-5 h-5" />
       {pendingNotifications && (
         <span className="absolute -top-2 lg:-top-2.5 text-white -right-2.5 w-5 h-5 text-xs flex items-center justify-center bg-red600 rounded-full">
           {count}

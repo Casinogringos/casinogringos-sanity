@@ -1,16 +1,13 @@
 'use client'
 
 import { ReactNode, useCallback } from 'react'
-import {
-  useAppSelector,
-  useAppDispatch,
-} from '../../../../../casinogringos-v3/src/store/hooks'
+import { useAppSelector, useAppDispatch } from '@/src/store/hooks'
 import {
   closedNotificationMenu,
   closeNotificationMenu,
   closingNotificationMenu,
-} from '../../../../../casinogringos-v3/src/store/menuSlice'
-import ModalSidebar from '@/app/components/ui/ModalSidebar'
+} from '@/src/store/menuSlice'
+import ModalSidebar from '@/src/components/organisms/ModalSidebar'
 
 const NotificationModel = ({ children }: { children: ReactNode }) => {
   const dispatch = useAppDispatch()

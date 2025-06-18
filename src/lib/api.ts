@@ -12,6 +12,7 @@ import { guidePageBySlugQuery } from '@/src/data/queries'
 import { guidePagePreviewsQuery } from '@/src/data/queries'
 import { guidePageCountQuery } from '@/src/data/queries'
 import { newsPagePreviewsQuery } from '@/src/data/queries'
+import { casinoPreviewsQuery } from '@/src/data/queries/casinoPreviewsQuery'
 const client = getClient()
 
 export const getPageBySlug = async ({ slug }: { slug: string }) => {
@@ -150,5 +151,16 @@ export const getMenuById = async ({ id }: { id: string }) => {
   } catch (e) {
     console.log(e)
     throw Error(`Failed to fetch menu by id: ${id}`)
+  }
+}
+
+export const getCasinoPreviews = async ({ count }: { count: number }) => {
+  try {
+    const data = await client.fetch(casinoPreviewsQuery({ count }))
+    console.log('casinoPreviewsQuery', data)
+    return data
+  } catch (e) {
+    console.log(e)
+    throw Error(`Failed to fetch casino previews`)
   }
 }
