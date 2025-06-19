@@ -82,7 +82,7 @@ export default function CasinoList({
         </ToggleItem>
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
           {casinos.map((casino) => (
-            <ItemComponent key={casino._key} casino={casino} />
+            <ItemComponent key={casino._id} casino={casino} />
           ))}
         </div>
       </Container>

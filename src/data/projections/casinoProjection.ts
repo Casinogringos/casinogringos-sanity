@@ -1,3 +1,5 @@
+import { dashboardImageProjection } from '@/src/data/projections'
+
 export const casinoProjection = `
     _type,
     _id,
@@ -7,4 +9,8 @@ export const casinoProjection = `
         current
     },
     brandColor,
+    name,
+    logo {
+      ${dashboardImageProjection}
+    },
 `

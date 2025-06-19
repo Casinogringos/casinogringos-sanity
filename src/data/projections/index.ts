@@ -5,6 +5,7 @@ import { authorProjection } from '@/src/data/projections/authorProjection'
 import { headingObjectProjection } from '@/src/data/projections/headingObjectProjection'
 import { freeSpinsProjection } from '@/src/data/projections/freeSpinsProjection'
 import { oddsBonusProjection } from '@/src/data/projections/oddsBonusProjection'
+import { dashboardImageProjection } from '@/src/data/projections/dashboardImageProjection'
 import { casinoProjection } from '@/src/data/projections/casinoProjection'
 import { imageObjectProjection } from '@/src/data/projections/imageObjectProjection'
 import { casinoBonusProjection } from '@/src/data/projections/casinoBonusProjection'
@@ -63,6 +64,7 @@ export {
   bonusProjection,
   casinoBonusProjection,
   tableObjectProjection,
+  dashboardImageProjection,
   pageProjection,
   authorProjection,
   casinoObjectProjection,
