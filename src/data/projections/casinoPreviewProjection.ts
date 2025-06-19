@@ -12,4 +12,5 @@ export const casinoPreviewProjection = `
         src,
         altText
     },
+    brandColor
 `

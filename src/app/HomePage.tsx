@@ -8,6 +8,8 @@ import ModularContent from '@/src/components/organisms/ModularContent'
 // } from '@/src/lib/helpers'
 import { SubPage } from '@/src/types'
 import HomePageHero from '@/src/components/organisms/HomePageHero'
+import CasinoList from '@/src/components/organisms/CasinoList'
+import CasinoCard from '@/src/components/organisms/CasinoCard'
 // import dynamic from 'next/dynamic'
 // const TableOfContents = dynamic(
 //   () => import('@/src/components/organisms/TableOfContents')
@@ -25,11 +27,12 @@ const HomePage = ({ page }: { page: SubPage }) => {
       {/*  key="homepage-data"*/}
       {/*/>*/}
       <HomePageHero page={page} />
-      {/*<CasinoList*/}
-      {/*  casinos={casinos}*/}
-      {/*  key={'casino-list'}*/}
-      {/*  title={page.pageType.subtitle}*/}
-      {/*/>*/}
+      <CasinoList
+        casinos={page.toplist.casinos}
+        title={page.toplist.title}
+        description={page.toplist.description}
+        itemComponent={CasinoCard}
+      />
       {/*<News posts={guides} />*/}
       {/*{page.pageType.faq && (*/}
       {/*  <div className="bg-dark pb-6 pt-12 lg:py-20">*/}

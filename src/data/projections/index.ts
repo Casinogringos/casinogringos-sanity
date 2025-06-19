@@ -29,6 +29,7 @@ import { howToStepObjectProjection } from '@/src/data/projections/howToStepObjec
 import { casinoPreviewProjection } from '@/src/data/projections/casinoPreviewProjection'
 import { howToObjectProjection } from '@/src/data/projections/howToObjectProjection'
 import { aiSummaryObjectProjection } from '@/src/data/projections/aiSummaryObjectProjection'
+import { toplistProjection } from '@/src/data/projections/toplistProjection'
 import { prosAndConsObjectProjection } from '@/src/data/projections/prosAndConsObjectProjection'
 import { quoteObjectProjection } from '@/src/data/projections/quoteObjectProjection'
 import { toggleObjectProjection } from '@/src/data/projections/toggleObjectProjection'
@@ -47,6 +48,7 @@ export {
   menuProjection,
   guidePagePreviewProjection,
   slotPagePreviewProjection,
+  toplistProjection,
   slotPageProjection,
   objectProjections,
   guidePageProjection,

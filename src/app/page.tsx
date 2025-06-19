@@ -37,6 +37,7 @@ export default async function Page() {
   const homepage = await getPageBySlug({
     slug: '/',
   })
+  console.log('homepage', homepage)
 
   // const guides = await getGuidePreviews({ count: 3 })
   if (!homepage) return notFound()

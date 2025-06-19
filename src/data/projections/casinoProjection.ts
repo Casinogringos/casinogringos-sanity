@@ -6,4 +6,5 @@ export const casinoProjection = `
         _type,
         current
     },
+    brandColor,
 `

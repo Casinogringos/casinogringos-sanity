@@ -1,4 +1,5 @@
 import { PortableTextBlock } from 'next-sanity'
+import { Toplist } from '@/src/types'
 
 export interface BasePage {
   _id: string
@@ -14,4 +15,5 @@ export interface BasePage {
     answer: string
     message: string
   }[]
+  toplist: Toplist
 }

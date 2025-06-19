@@ -10,7 +10,7 @@ import ProsAndConsBox from './ProsAndConsBox'
 import StarIcon from '../icons/StarIcon'
 import CasinoService from '@/src/services/CasinoService'
 const ToggleBlock = dynamic(
-  () => import('@/src/components/molecules/ToggleBox')
+  () => import('@/src/components/molecules/ToggleObject')
 )
 
 const PostInfo = ({ casino, title }: { casino: Post; title: string }) => {

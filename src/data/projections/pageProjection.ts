@@ -1,6 +1,7 @@
 import {
   objectProjections,
   faqItemObjectProjection,
+  toplistProjection,
 } from '@/src/data/projections'
 
 export const pageProjection = `
@@ -15,6 +16,9 @@ export const pageProjection = `
   seoDescription,
   faqs[] {
     ${faqItemObjectProjection}
+  },
+  toplist-> {
+    ${toplistProjection}
   },
   content[] {
     ${objectProjections}

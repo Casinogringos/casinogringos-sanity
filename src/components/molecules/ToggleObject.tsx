@@ -3,7 +3,7 @@
 import { CircleHelp, ChevronDown } from 'lucide-react'
 import { useState } from 'react'
 
-const ToggleBox = ({ children, className = '', title = '' }) => {
+const ToggleObject = ({ children, className = '', title = '' }) => {
   const [open, setOpen] = useState(false)
 
   return (
@@ -37,4 +37,4 @@ const ToggleBox = ({ children, className = '', title = '' }) => {
   )
 }
 
-export default ToggleBox
+export default ToggleObject
