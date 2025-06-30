@@ -1,6 +1,6 @@
 import { ChevronDown } from 'lucide-react'
 import { isCurrentPath } from '@/src/lib/helpers'
-import Link from 'next/link'
+import Link from '@/src/components/atoms/Link'
 import type { Menu as MenuType, MenuItem as MenuItemType } from '@/src/types'
 import ToggleButton from '@/src/components/atoms/ToggleButton'
 import ToggleItem from '@/src/components/atoms/ToggleItem'
@@ -18,13 +18,14 @@ const Menu = ({
       <ul role={'menubar'}>
         {menu.items.map((level1Item: MenuItemType, i: number) => (
           <li
-            className={`flex items-center justify-between flex-wrap border-b-gray100 py-4 ${
+            className={`flex items-center justify-between flex-wrap border-b-gray-100 py-4 ${
               menu.items.length - 1 !== i ? 'border-b' : ''
             }`}
             key={`level-1-item-${level1Item._key}`}
             role={'none'}
           >
             <Link
+              variant={'ghost'}
               role={'menuitem'}
               prefetch={false}
               aria-current={
@@ -32,7 +33,7 @@ const Menu = ({
                   ? 'page'
                   : undefined
               }
-              className={`flex items-center flex-grow overflow-ellipsis overflow-hidden font-medium text-lg whitespace-nowrap text-dark hover:text-primary max-w-[calc(100%-24px)]`}
+              className={`flex items-center flex-grow truncate font-medium text-lg whitespace-nowrap hover:text-primary max-w-[calc(100%-34px)]`}
               href={level1Item.page.slug.current}
             >
               {level1Item.page.title}
@@ -67,14 +68,8 @@ const Menu = ({
                           role={'none'}
                         >
                           <Link
-                            className={`mt-3 block text-dark lg:hover:text-primary ${
-                              isCurrentPath(
-                                pathname,
-                                level2Item.page.slug.current
-                              )
-                                ? 'text-primary'
-                                : ''
-                            }`}
+                            variant={'ghost'}
+                            className={`mt-3 block text-dark lg:hover:text-primary`}
                             prefetch={false}
                             href={level2Item.page.slug.current}
                             role={'menuitem'}

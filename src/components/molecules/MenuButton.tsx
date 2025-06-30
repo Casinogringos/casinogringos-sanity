@@ -42,7 +42,7 @@ const MenuButton = () => {
     <ClientFallback
       content={
         <button
-          className="z-50 ml-auto flex cursor-pointer items-center rounded-full bg-lightBlue2 px-3 py-2 text-white lg:h-9 lg:px-4"
+          className="z-50 ml-auto flex cursor-pointer items-center rounded-full bg-darklight px-3 py-2 text-white lg:h-9 lg:px-4"
           onClick={handleToggleSidebar}
         >
           {isMainMenuOpen && !menuSidebarClosing ? (
@@ -59,7 +59,7 @@ const MenuButton = () => {
         </button>
       }
       fallback={
-        <div className="z-50 ml-auto flex cursor-pointer items-center rounded-full bg-lightBlue2 px-3 py-2 text-white lg:h-9 lg:px-4">
+        <div className="z-50 ml-auto flex cursor-pointer items-center rounded-full bg-darklight px-3 py-2 text-white lg:h-9 lg:px-4">
           {isMainMenuOpen && !menuSidebarClosing ? (
             <X className="h-5 w-5" aria-hidden="true" />
           ) : (

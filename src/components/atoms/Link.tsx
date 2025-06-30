@@ -3,6 +3,8 @@
 import { usePlausible } from 'next-plausible'
 import { ReactNode } from 'react'
 import NextLink from 'next/link'
+import { usePathname } from 'next/navigation'
+import { isCurrentPath } from '@/src/lib/helpers'
 
 const Link = ({
   href,
@@ -34,15 +36,17 @@ const Link = ({
     eventName: string
     props: Record<string, string>
   }
-  variant?: 'affiliate'
+  variant?: 'affiliate' | 'ghost'
 }) => {
   const plausibleMethod = usePlausible()
+  const pathname = usePathname()
+  const isActive = isCurrentPath(pathname, href)
   const getClassName = () => {
     switch (variant) {
       case 'affiliate':
         return 'rounded-md bg-dark px-4 py-2 text-xs text-white'
       default:
-        return 'rounded-md bg-button px-4 py-2 text-xs text-white'
+        return `${isActive ? 'text-primary' : 'hover:text-primary'}`
     }
   }
 

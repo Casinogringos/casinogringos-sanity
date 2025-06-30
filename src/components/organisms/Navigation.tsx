@@ -20,14 +20,17 @@ export default async function Navigation({
   headerMenu,
   sidebarMenu,
   sidebarCasinos,
+  pathname,
 }: {
   headerMenu: MenuType
   sidebarMenu: MenuType
   sidebarCasinos: Casino[]
+  pathname: string | null
 }) {
-  const headersList = await headers()
-  const pathname =
-    headersList.get('x-pathname') || headersList.get('x-url') || ''
+  // const headersList = await headers()
+  // const pathname =
+  //   headersList.get('x-pathname') || headersList.get('x-url') || ''
+  // console.log('pathname', pathname)
   const parentRoute = pathname?.split('/')[1]
 
   if (parentRoute === 'go') return null
@@ -73,7 +76,7 @@ export default async function Navigation({
                         ? 'page'
                         : undefined
                     }
-                    className={`text-nav uppercase tracking-wider font-medium font-inter hover:text-primary transition ${
+                    className={`text-nav text-sm uppercase tracking-wider font-medium font-inter hover:text-primary transition ${
                       isCurrentPath(pathname, item.page.slug.current)
                         ? 'text-primary'
                         : 'text-white'

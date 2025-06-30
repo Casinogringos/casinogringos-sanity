@@ -6,6 +6,7 @@ import '@/src/styles/styles.scss'
 import PlausibleProvider from 'next-plausible'
 import dynamic from 'next/dynamic'
 import { Inter, Plus_Jakarta_Sans } from 'next/font/google'
+import { headers } from 'next/headers'
 import { ReactNode } from 'react'
 
 const ScrollToTop = dynamic(
@@ -42,6 +43,10 @@ export default async function RootLayout({
   const sidebarCasinos = await getCasinoPreviews({
     count: 8,
   })
+  const headersList = await headers()
+  const pathname =
+    headersList.get('x-pathname') || headersList.get('x-url') || ''
+  console.log('pathname', pathname)
   // const footerNav = await getMenuById({ id: 'dGVybToxNA==' })
   // const footerSites = await getMenuById({
   //   id: 'dGVybToxNzMx',
@@ -63,6 +68,7 @@ export default async function RootLayout({
             headerMenu={headerMenu}
             sidebarMenu={sidebarMenu}
             sidebarCasinos={sidebarCasinos}
+            pathname={pathname}
           />
           <main className={'relative'}>{children}</main>
           <ScrollToTop />

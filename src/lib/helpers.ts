@@ -113,6 +113,7 @@ export const getBlockHeadings = (blocks) => {
 // }
 
 export const isCurrentPath = (currentPath, path) => {
+  console.log('currentPath', currentPath)
   console.log('path', path)
   if (!currentPath || !path) return false
   return currentPath.replaceAll('/', '') === path.replaceAll('/', '')
