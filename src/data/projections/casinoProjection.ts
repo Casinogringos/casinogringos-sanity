@@ -13,4 +13,8 @@ export const casinoProjection = `
     logo {
       ${dashboardImageProjection}
     },
+    overallRating,
+    casinoRatings[] {
+      ${casinoRatingProjection}
+    },
 `

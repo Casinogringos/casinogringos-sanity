@@ -5,22 +5,22 @@ import Image from 'next/image'
 import Link from '@/src/components/atoms/Link'
 import { PortableText } from 'next-sanity'
 
-const CasinoCard = ({ casino }: { casino: Casino }) => {
+const CasinoCard = ({ casino, index }: { casino: Casino; index: number }) => {
   const casinoService = new CasinoService()
   const { finalRating } = casinoService.getCasinoRating({ casino })
-  // console.log('casinoCard', casino)
+  console.log('finalRating', finalRating)
 
   return (
-    <>
+    <div>
       <div className="rounded-t-md border-b border-b-gray100 bg-white p-3.5 shadow-2xl">
         <div className="flex flex-col gap-x-8 gap-y-2">
           <div
             className="relative h-28 flex-col items-center overflow-hidden rounded-md p-4"
             style={{ background: casino.brandColor ?? '' }}
           >
-            {/*<span className="absolute left-0 top-0 flex h-7 w-7 items-center justify-center rounded-br-md bg-slate200/20 text-sm font-medium text-slate100">*/}
-            {/*  {count}*/}
-            {/*</span>*/}
+            <span className="absolute left-0 top-0 flex h-7 w-7 items-center justify-center rounded-br-md bg-slate-200/20 text-sm font-medium text-slate-100">
+              {index + 1}
+            </span>
             <div className="-mb-4 -mt-1.5 flex h-full w-full items-center justify-center">
               <Image
                 src={casino.logo.src}
@@ -137,7 +137,7 @@ const CasinoCard = ({ casino }: { casino: Casino }) => {
           | Regler och villkor gäller
         </div>
       )}
-    </>
+    </div>
   )
 }
 

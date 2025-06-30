@@ -56,7 +56,9 @@ class CasinoService {
   getCasinoRating({ casino }: { casino: Casino }) {
     const ratings: Partial<Ratings> = {}
     const validRatings = this.ratingKeys.reduce<number[]>((acc, { key }) => {
-      const ratingValue = casino.postType?.ratings?.[key as keyof Ratings]
+      const ratingValue = casino.casinoRatings?.find(
+        (rating) => rating.ratingType === key
+      )?.rating
       ratings[key as keyof Ratings] = ratingValue
       if (ratingValue != null && ratingValue > 0) {
         acc.push(ratingValue)

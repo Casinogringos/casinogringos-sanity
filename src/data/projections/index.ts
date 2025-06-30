@@ -27,6 +27,7 @@ import { columnsObjectProjection } from '@/src/data/projections/columnsObjectPro
 import { groupObjectProjection } from '@/src/data/projections/groupObjectProjection'
 import { casinoObjectProjection } from '@/src/data/projections/casinoObjectProjection'
 import { howToStepObjectProjection } from '@/src/data/projections/howToStepObjectProjection'
+import { casinoRatingProjection } from '@/src/data/projections/casinoRatingProjection'
 import { casinoPreviewProjection } from '@/src/data/projections/casinoPreviewProjection'
 import { howToObjectProjection } from '@/src/data/projections/howToObjectProjection'
 import { aiSummaryObjectProjection } from '@/src/data/projections/aiSummaryObjectProjection'
@@ -49,6 +50,7 @@ export {
   menuProjection,
   guidePagePreviewProjection,
   slotPagePreviewProjection,
+  casinoRatingProjection,
   toplistProjection,
   slotPageProjection,
   objectProjections,

@@ -1,16 +1,14 @@
 import { AlertCircle } from 'lucide-react'
 import Link from 'next/link'
 import Heading from '@/src/components/atoms/Heading'
-import { ComponentType } from 'react'
 import CasinoCard from './CasinoCard'
 import Container from '../atoms/Container'
 import CheckBadgeIcon from '../icons/CheckBadgeIcon'
 import ToggleObject from '../molecules/ToggleObject'
-import { Casino } from '@/src/types'
+import { CasinoPage } from '@/src/types'
 import { PortableTextBlock } from 'next-sanity'
 import ToggleButton from '@/src/components/atoms/ToggleButton'
 import ToggleItem from '@/src/components/atoms/ToggleItem'
-import Paragraph from '@/src/components/atoms/Paragraph'
 
 export default function CasinoList({
   casinos,
@@ -18,13 +16,14 @@ export default function CasinoList({
   description,
   itemComponent,
 }: {
-  casinos: Casino[]
+  casinos: CasinoPage[]
   title: string
   description: PortableTextBlock[]
-  itemComponent: ComponentType<{ casino: Casino }>
+  itemComponent: typeof CasinoCard
 }) {
   console.log('title', title)
   console.log('description', description)
+  console.log('casinos', casinos)
   const year = new Date().getFullYear()
   const ItemComponent = itemComponent
 
@@ -81,8 +80,12 @@ export default function CasinoList({
           </div>
         </div>
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {casinos.map((casino) => (
-            <ItemComponent key={casino._id} casino={casino} />
+          {casinos.map(({ casino }, index) => (
+            <ItemComponent
+              key={`casino-${casino._id}-${index}`}
+              casino={casino}
+              index={index}
+            />
           ))}
         </div>
       </Container>
