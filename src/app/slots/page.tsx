@@ -38,7 +38,7 @@ export default async function Page() {
   if (!page) {
     return notFound()
   }
-  console.log('page@', page)
+  // console.log('page@', page)
 
   return <SlotIndex page={page} slots={slots} />
 }

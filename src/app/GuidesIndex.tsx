@@ -12,7 +12,7 @@ const GuidesIndex = ({ guides }: { guides: GuidePage<false>[] }) => {
   if (!guides) {
     return null
   }
-  console.log('guides', guides)
+  // console.log('guides', guides)
   return (
     <Container className="py-6 lg:py-12">
       <Heading level={1} className="text-3xl font-bold">

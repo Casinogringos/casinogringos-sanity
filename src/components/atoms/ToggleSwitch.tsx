@@ -23,7 +23,7 @@ const ToggleSwitch = ({
   const handleToggle = () => {
     dispatch(toggleId(id))
   }
-  console.log('toggle ids', toggleIds)
+  // console.log('toggle ids', toggleIds)
 
   return <>{isOpen ? open : close}</>
 }

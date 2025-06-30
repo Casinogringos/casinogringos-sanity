@@ -42,7 +42,7 @@ import Pagination from '@/src/components/organisms/Pagination'
 const Page = async () => {
   const guides = await getGuidePagePreviews({ count: 24, offset: 0 })
   const guidesCount = await getGuidePageCount()
-  console.log('guidesCount', guidesCount)
+  // console.log('guidesCount', guidesCount)
   // const guidesCount = allGuides.edges.length
   const pageCount = Math.ceil(guidesCount / 24)
   // const breadcrumbItems = [

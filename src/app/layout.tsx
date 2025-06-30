@@ -46,7 +46,7 @@ export default async function RootLayout({
   const headersList = await headers()
   const pathname =
     headersList.get('x-pathname') || headersList.get('x-url') || ''
-  console.log('pathname', pathname)
+  // console.log('pathname', pathname)
   // const footerNav = await getMenuById({ id: 'dGVybToxNA==' })
   // const footerSites = await getMenuById({
   //   id: 'dGVybToxNzMx',
@@ -70,7 +70,7 @@ export default async function RootLayout({
             sidebarCasinos={sidebarCasinos}
             pathname={pathname}
           />
-          <main className={'relative'}>{children}</main>
+          <main className={'relative bg-slate-100'}>{children}</main>
           <ScrollToTop />
         </Provider>
       </body>

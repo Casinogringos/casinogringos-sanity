@@ -8,7 +8,7 @@ const ToggleObject = ({ children, className = '', title = '' }) => {
 
   return (
     <div
-      className={`${className} border border-slate200 mb-3 rounded-md relative`}
+      className={`${className} border border-slate-200 mb-3 rounded-md relative`}
     >
       <button
         onClick={() => setOpen(!open)}
@@ -19,7 +19,7 @@ const ToggleObject = ({ children, className = '', title = '' }) => {
             'flex-grow flex items-center not-prose font-semibold text-left text-sm'
           }
         >
-          <CircleHelp className="h-4 w-4 mr-2 mt-0.5 text-slate500" />
+          <CircleHelp className="h-4 w-4 mr-2 mt-0.5 text-slate-500" />
           {title ? title : 'Varför oss?'}
         </h2>
         <div className={`${open ? 'rotate-180' : ''} transition `}>
@@ -31,7 +31,7 @@ const ToggleObject = ({ children, className = '', title = '' }) => {
           open ? 'max-h-[600px]' : 'max-h-0'
         } overflow-y-auto transition-mh origin-top`}
       >
-        <p className="pt-2 pb-4 px-4 text-sm text-slate600">{children}</p>
+        <p className="pt-2 pb-4 px-4 text-sm text-slate-600">{children}</p>
       </div>
     </div>
   )

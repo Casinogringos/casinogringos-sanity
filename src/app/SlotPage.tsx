@@ -71,7 +71,7 @@ export default function SlotPage({ page }: { page: SlotPageType }) {
     }
     return acc
   }, [])
-  console.log('headings', headings)
+  // console.log('headings', headings)
   // const convertedRating = parseInt(slot?.slotType?.rating)
   // const rating = slot.slotType?.rating?.toString()
 

@@ -15,7 +15,7 @@ const SanityImage = ({
   altText: string
 }) => {
   const imageProps = useNextSanityImage(client, image)
-  console.log('image', image)
+  // console.log('image', image)
   if (!imageProps) {
     return <Placeholder message={'Sanity Image: Missing image'} />
   }

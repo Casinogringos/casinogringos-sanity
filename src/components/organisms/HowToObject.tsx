@@ -18,7 +18,7 @@ const HowToObject = ({ object }: { object: HowToObjectType }) => {
     days,
   } = object
   const Tag = unorderedList ? 'ul' : 'ol'
-  console.log('how to object', object)
+  // console.log('how to object', object)
   return (
     <section>
       <meta />

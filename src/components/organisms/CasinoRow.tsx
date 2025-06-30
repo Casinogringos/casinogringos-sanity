@@ -9,7 +9,7 @@ const CasinoRow = ({
   casino: Casino
   pathname: string
 }) => {
-  console.log('casino', casino)
+  // console.log('casino', casino)
 
   return (
     <>

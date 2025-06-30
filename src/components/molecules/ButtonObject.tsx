@@ -2,7 +2,7 @@ import { ButtonObject as ButtonObjectType } from '@/src/types'
 import Link from '@/src/components/atoms/Link'
 
 const ButtonObject = ({ object }: { object: ButtonObjectType }) => {
-  console.log('button object', object)
+  // console.log('button object', object)
   const getHref = () => {
     if (!object.page) {
       return `${object.uri.current}`

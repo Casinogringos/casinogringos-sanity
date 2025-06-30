@@ -96,7 +96,7 @@ export const getNewsPageCount = async () => {
 
 export const getGuidePageBySlug = async ({ slug }: { slug: string }) => {
   try {
-    console.log('pageBySlugQuery', pageBySlugQuery({ slug }))
+    // console.log('pageBySlugQuery', pageBySlugQuery({ slug }))
     const data = await client.fetch(guidePageBySlugQuery({ slug }))
     // console.log('data', data)
     return data[0]
@@ -108,7 +108,7 @@ export const getGuidePageBySlug = async ({ slug }: { slug: string }) => {
 
 export const getSlotPageBySlug = async ({ slug }: { slug: string }) => {
   try {
-    console.log('pageBySlugQuery', pageBySlugQuery({ slug }))
+    // console.log('pageBySlugQuery', pageBySlugQuery({ slug }))
     const data = await client.fetch(slotPageBySlugQuery({ slug }))
     // console.log('data', data)
     return data[0]
@@ -144,7 +144,7 @@ export const getNewsPageBySlug = async ({ slug }: { slug: string }) => {
 
 export const getMenuById = async ({ id }: { id: string }) => {
   try {
-    console.log('getMenuById', id)
+    // console.log('getMenuById', id)
     const data = await client.fetch(menuByIdQuery({ id }))
     console.log('data', data)
     return data
@@ -157,7 +157,7 @@ export const getMenuById = async ({ id }: { id: string }) => {
 export const getCasinoPreviews = async ({ count }: { count: number }) => {
   try {
     const data = await client.fetch(casinoPreviewsQuery({ count }))
-    console.log('casinoPreviewsQuery', data)
+    // console.log('casinoPreviewsQuery', data)
     return data
   } catch (e) {
     console.log(e)

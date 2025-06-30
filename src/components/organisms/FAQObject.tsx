@@ -7,7 +7,7 @@ import { ChevronDown } from 'lucide-react'
 import ToggleSpin from '@/src/components/atoms/ToggleSpin'
 
 const FAQObject = ({ object }: { object: FAQObjectType }) => {
-  console.log('faq object', object)
+  // console.log('faq object', object)
   return (
     <section>
       <PortableText value={object.description} />
