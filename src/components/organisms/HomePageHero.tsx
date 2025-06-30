@@ -31,7 +31,7 @@ const HomePageHero = ({ page }: { page: SubPage<false> }) => {
   ]
 
   return (
-    <div className="relative overflow-hidden bg-dark">
+    <div className="relative overflow-hidden bg-darklight">
       <Container>
         <div className="relative z-10 flex flex-col gap-4 pb-4 pt-6 lg:pb-16 lg:pt-12">
           <section className="relative z-10">
