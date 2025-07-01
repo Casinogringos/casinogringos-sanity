@@ -15,9 +15,11 @@ const ToggleBlock = dynamic(
 
 const PostInfo = ({ casino, title }: { casino: Post; title: string }) => {
   const casinoService = new CasinoService()
-  const { finalRating, validRatings, ratings } = casinoService.getCasinoRating({
-    casino,
-  })
+  const { finalRating, validRatings, ratings } = casinoService.getCasinoRatings(
+    {
+      casino,
+    }
+  )
   const prosAndCons = {
     __typename: 'FlamingoProsAndCons',
     attributes: {

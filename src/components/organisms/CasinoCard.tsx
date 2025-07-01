@@ -7,7 +7,7 @@ import { PortableText } from 'next-sanity'
 
 const CasinoCard = ({ casino, index }: { casino: Casino; index: number }) => {
   const casinoService = new CasinoService()
-  const { finalRating } = casinoService.getCasinoRating({ casino })
+  const { finalRating } = casinoService.getCasinoRatings({ casino })
   console.log('finalRating', finalRating)
 
   return (

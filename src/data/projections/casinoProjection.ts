@@ -1,4 +1,7 @@
-import { dashboardImageProjection } from '@/src/data/projections'
+import {
+  dashboardImageProjection,
+  casinoRatingProjection,
+} from '@/src/data/projections'
 
 export const casinoProjection = `
     _type,
@@ -14,7 +17,7 @@ export const casinoProjection = `
       ${dashboardImageProjection}
     },
     overallRating,
-    casinoRatings[] {
+    casinoRatings[]-> {
       ${casinoRatingProjection}
     },
 `

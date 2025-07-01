@@ -9,18 +9,5 @@ export const casinoRatingProjection = `
     name,
     ratingType,
     rating,
-    bonusAmountRange,
-    bonusPercentage,
-    minimumDeposit,
-    wageringRequirements,
-    wageringOn,
-    validityPeriod,
-    gameRestrictions[],
-    maximumBetDuringWagering,
-    terms,
-    maxWinLimit,
-    excludedPaymentMethods[] {
-      ${paymentMethodProjection}
-    },
     publishedAt,
 `
