@@ -1,5 +1,7 @@
 export const casinoBonusProjection = `
     _type,
     _id,
-    slug
+    slug,
+    bonusAmountRange,
+    wageringRequirements
 `

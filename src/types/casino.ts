@@ -1,4 +1,4 @@
-import { DashboardImageObject } from '@/src/types'
+import { CasinoBonus, DashboardImageObject, FreeSpins } from '@/src/types'
 
 export type Casino = {
   _type: 'casinos'
@@ -11,4 +11,8 @@ export type Casino = {
   }
   name: string
   brandColor: string
+  overallRating: number
+  casinoBonuses: CasinoBonus[]
+  freeSpins: FreeSpins[]
+  advantages: string[]
 }

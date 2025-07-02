@@ -1,4 +1,8 @@
 // import { getAllAuthorPreviews, getNodeByUri } from '@/lib/api'
+const Page = async () => {
+  return <div>om-oss</div>
+}
+export default Page
 // import About from '@/src/app/AboutIndex'
 // import { extractSlugFromUrl } from '@/lib/helpers'
 // import { Metadata } from 'next'

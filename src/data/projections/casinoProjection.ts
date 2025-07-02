@@ -1,6 +1,6 @@
 import {
   dashboardImageProjection,
-  casinoRatingProjection,
+  casinoRatingProjection, casinoBonusProjection, freeSpinsProjection,
 } from '@/src/data/projections'
 
 export const casinoProjection = `
@@ -20,4 +20,11 @@ export const casinoProjection = `
     casinoRatings[]-> {
       ${casinoRatingProjection}
     },
+    casinoBonuses[]-> {
+      ${casinoBonusProjection}
+    },
+    freeSpins[]-> {
+      ${freeSpinsProjection}
+    },
+    advantages[]
 `

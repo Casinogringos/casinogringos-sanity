@@ -1,3 +1,7 @@
+const Page = async () => {
+  return <div>casinohjalpen</div>
+}
+export default Page
 // import { fetchAPI } from "@/lib/api";
 // import { allCasinoCardsQuery } from "@/data/queries";
 // import { Post } from "@/types";

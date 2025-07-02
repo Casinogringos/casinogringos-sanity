@@ -1,3 +1,7 @@
+const Page = async () => {
+  return <div>go</div>
+}
+export default Page
 // import { notFound } from "next/navigation";
 // import { getNodeByUri, getStaticParams } from "@/lib/api";
 // import dynamicComponent from "next/dynamic";
