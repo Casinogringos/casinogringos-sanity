@@ -1,8 +1,8 @@
-import { BasePage } from '@/src/types'
+import { SubPage } from '@/src/types'
 import PageService from '@/src/services/PageService'
 const pageService = new PageService()
 
-const getArticleStructuredData = (page: BasePage) => {
+const getArticleStructuredData = (page: SubPage) => {
   return {
     "@type": "Article",
     "@id": "https://casinogringos.se/#article",
