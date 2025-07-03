@@ -8,6 +8,7 @@ import { NewsPage } from '@/src/types/newsPage'
 import { AffiliateButtonObject } from '@/src/types/affiliateButtonObject'
 import { BonusObject } from '@/src/types/bonusObject'
 import { ButtonsObject } from '@/src/types/buttonsObject'
+import {Breadcrumbs} from '@/src/types/breadcrumbs'
 import { PaymentMethodType } from '@/src/types/paymentMethodType'
 import { PaymentMethod } from '@/src/types/paymentMethod'
 import { RatingObject } from '@/src/types/ratingObject'
@@ -98,6 +99,7 @@ export type {
   ToggleObject,
   CasinoObject,
   ModularContent,
+  Breadcrumbs,
   NewsPage,
   TOCItem,
   HowToStepObject,

@@ -2,8 +2,7 @@
 // import CasinoList from '@/src/components/organisms/CasinoList'
 // import Container from '@/src/components/atoms/Container'
 import ModularContent from '@/src/components/organisms/ModularContent'
-import { GuidePage } from '@/src/types'
-import { SubPage } from '@/src/types'
+import { GuidePage, Breadcrumbs as BreadcrumbsType, SubPage } from '@/src/types'
 import HomePageHero from '@/src/components/organisms/HomePageHero'
 import CasinoList from '@/src/components/organisms/CasinoList'
 import CasinoCard from '@/src/components/organisms/CasinoCard'
@@ -13,10 +12,15 @@ import NewsList from '@/src/components/organisms/NewsList'
 //   () => import('@/src/components/organisms/TableOfContents')
 // )
 // const Faq = dynamic(() => import('@/src/components/organisms/Accordian'))
-import Breadcrumbs from '@/src/components/organisms/BreadCrumbs'
+import getArticleStructuredData from '@/src/structured-data/articleStructuredData'
+import { getWebPageStructuredData } from '@/src/structured-data/webPageStructuredData'
+import { getBreadcrumbListStructuredData } from '@/src/structured-data/breadcrumbListStructuredData'
+import { getWebSiteStructuredData } from '@/src/structured-data/webSiteStructuredData'
+import { getOrganizationStructuredData } from '@/src/structured-data/organizationStructuredData'
+import { getPersonStructuredData } from '@/src/structured-data/personStructuredData'
 
 
-const HomePage = ({ page, guides, breadcrumbs }: { page: SubPage; guides: GuidePage[]; breadcrumbs: Breadcrumbs }) => {
+const HomePage = ({ page, guides, breadcrumbs }: { page: SubPage; guides: GuidePage[]; breadcrumbs: BreadcrumbsType }) => {
   const schema = {
     '@context': 'https://schema.org',
     '@graph': [
@@ -25,19 +29,19 @@ const HomePage = ({ page, guides, breadcrumbs }: { page: SubPage; guides: GuideP
       getBreadcrumbListStructuredData(breadcrumbs),
       getWebSiteStructuredData(),
       getOrganizationStructuredData(),
-      getPersonStructuredData(page),
+      getPersonStructuredData(page.author),
     ],
   }
 
   return (
     <>
-      {/*<script*/}
-      {/*  type="application/ld+json"*/}
-      {/*  dangerouslySetInnerHTML={{*/}
-      {/*    __html: replaceInternalLinkBaseUrls(page.seo.schema.raw),*/}
-      {/*  }}*/}
-      {/*  key="homepage-data"*/}
-      {/*/>*/}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(schema),
+        }}
+        key="homepage-structured-data"
+      />
       <HomePageHero page={page} />
       <CasinoList
         casinos={page.toplist.casinos}

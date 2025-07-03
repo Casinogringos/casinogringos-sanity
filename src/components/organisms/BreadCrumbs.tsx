@@ -4,12 +4,13 @@
 import Container from '../atoms/Container'
 import Link from 'next/link'
 import { ChevronRight } from 'lucide-react'
+import { Breadcrumbs } from '@/src/types/breadcrumbs'
 // import InternalLink from '../../../sin-bin/InternalLink'
 export default function BreadCrumbs({
   items,
   index,
 }: {
-  items: { text?: string | undefined; url?: string | undefined }[]
+  items: Breadcrumbs
   index?: { text: string; url: string }
 }) {
   const breadcrumbs = items
