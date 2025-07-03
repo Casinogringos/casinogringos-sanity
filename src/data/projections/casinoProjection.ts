@@ -26,5 +26,6 @@ export const casinoProjection = `
     freeSpins[]-> {
       ${freeSpinsProjection}
     },
-    advantages[]
+    advantages[],
+    terms
 `

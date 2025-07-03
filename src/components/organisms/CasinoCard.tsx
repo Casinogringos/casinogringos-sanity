@@ -3,13 +3,12 @@ import CasinoService from '@/src/services/CasinoService'
 import { Casino } from '@/src/types'
 import Image from 'next/image'
 import Link from '@/src/components/atoms/Link'
-import { PortableText } from 'next-sanity'
 import CheckBadgeIcon from '@/src/components/icons/CheckBadgeIcon'
+import Paragraph from '@/src/components/atoms/Paragraph'
 
 const CasinoCard = ({ casino, index }: { casino: Casino; index: number }) => {
   const casinoService = new CasinoService()
   const { finalRating } = casinoService.getCasinoRatings({ casino })
-  console.log('CASINO', casino)
 
   return (
     <div>
@@ -110,9 +109,9 @@ const CasinoCard = ({ casino, index }: { casino: Casino; index: number }) => {
           {/*</AffiliateLink>*/}
         </div>
       </div>
-      {casino.disclaimer ? (
+      {casino.terms ? (
         <div className="h-[37px] overflow-y-auto rounded-b-md bg-white px-4 py-2 text-xs3 text-gray-400">
-          <PortableText value={casino.disclaimer} />
+          <Paragraph content={casino.terms}/>
         </div>
       ) : (
         <div className="rounded-b-md bg-white px-2 py-3 text-center text-xs text-gray-400">

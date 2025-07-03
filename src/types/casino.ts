@@ -15,4 +15,5 @@ export type Casino = {
   casinoBonuses: CasinoBonus[]
   freeSpins: FreeSpins[]
   advantages: string[]
+  terms: string
 }

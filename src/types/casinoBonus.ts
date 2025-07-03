@@ -4,7 +4,7 @@ export type CasinoBonus = {
   _type: 'casino-bonuses'
   name: string
   bonusType: BonusType
-  bonusAmountRange: number[]
+  bonusAmountRange: {max: number, min: number}
   bonusPercentage: number
   minimumDeposit: number
   wageringRequirements: number

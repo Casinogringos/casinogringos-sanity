@@ -2,21 +2,33 @@
 // import CasinoList from '@/src/components/organisms/CasinoList'
 // import Container from '@/src/components/atoms/Container'
 import ModularContent from '@/src/components/organisms/ModularContent'
-// import {
-//   getBlockHeadings,
-//   replaceInternalLinkBaseUrls,
-// } from '@/src/lib/helpers'
+import { GuidePage } from '@/src/types'
 import { SubPage } from '@/src/types'
 import HomePageHero from '@/src/components/organisms/HomePageHero'
 import CasinoList from '@/src/components/organisms/CasinoList'
 import CasinoCard from '@/src/components/organisms/CasinoCard'
+import NewsList from '@/src/components/organisms/NewsList'
 // import dynamic from 'next/dynamic'
 // const TableOfContents = dynamic(
 //   () => import('@/src/components/organisms/TableOfContents')
 // )
 // const Faq = dynamic(() => import('@/src/components/organisms/Accordian'))
+import Breadcrumbs from '@/src/components/organisms/BreadCrumbs'
 
-const HomePage = ({ page }: { page: SubPage }) => {
+
+const HomePage = ({ page, guides, breadcrumbs }: { page: SubPage; guides: GuidePage[]; breadcrumbs: Breadcrumbs }) => {
+  const schema = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      getArticleStructuredData(page),
+      getWebPageStructuredData(page),
+      getBreadcrumbListStructuredData(breadcrumbs),
+      getWebSiteStructuredData(),
+      getOrganizationStructuredData(),
+      getPersonStructuredData(page),
+    ],
+  }
+
   return (
     <>
       {/*<script*/}
@@ -33,7 +45,7 @@ const HomePage = ({ page }: { page: SubPage }) => {
         description={page.toplist.description}
         itemComponent={CasinoCard}
       />
-      {/*<News posts={guides} />*/}
+      <NewsList itemComponent={NewsCard} items={guides} />
       {/*{page.pageType.faq && (*/}
       {/*  <div className="bg-dark pb-6 pt-12 lg:py-20">*/}
       {/*    <div className="mx-auto max-w-4xl px-4 lg:px-0">*/}
