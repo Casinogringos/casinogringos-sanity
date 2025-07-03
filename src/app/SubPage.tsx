@@ -1,52 +1,78 @@
-import { SubPage as SubPageType } from '@/src/types'
+import { Breadcrumbs, SubPage as SubPageType } from '@/src/types'
 import ModularContent from '@/src/components/organisms/ModularContent'
 import SubPageHero from '@/src/components/molecules/SubPageHero'
+import getArticleStructuredData from '@/src/structured-data/articleStructuredData'
+import { getWebPageStructuredData } from '@/src/structured-data/webPageStructuredData'
+import { getWebSiteStructuredData } from '@/src/structured-data/webSiteStructuredData'
+import { getOrganizationStructuredData } from '@/src/structured-data/organizationStructuredData'
+import { getPersonStructuredData } from '@/src/structured-data/personStructuredData'
+import { getBreadcrumbListStructuredData } from '@/src/structured-data/breadcrumbListStructuredData'
+import BreadCrumbs from '@/src/components/organisms/BreadCrumbs'
+import CasinoList from '@/src/components/organisms/CasinoList'
+import CasinoCard from '@/src/components/organisms/CasinoCard'
+import Container from '@/src/components/atoms/Container'
+import FAQ from '@/src/components/organisms/FAQ'
+import { TableOfContents } from 'lucide-react'
+import AuthorBox from '@/src/components/organisms/AuthorBox'
 
-export default function SubPage({ page }: { page: SubPageType<true> }) {
+export default function SubPage({ page, breadcrumbs }: { page: SubPageType<true>; breadcrumbs: Breadcrumbs }) {
   // const casinos = page.pageType.category?.edges[0].node.posts.edges ?? []
   // const headings = getBlockHeadings(page?.editorBlocks)
+  const {toplist, faqs, author, modifiedAt, reviewer} = page
+  const headingObjects = getHeadingObjectsByPage({objects: page.content})
+  const schema = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      getArticleStructuredData(page),
+      getWebPageStructuredData(page),
+      getBreadcrumbListStructuredData(breadcrumbs),
+      getWebSiteStructuredData(),
+      getOrganizationStructuredData(),
+      getPersonStructuredData(page.author),
+    ],
+  }
 
   return (
     <div>
-      {/*<script*/}
-      {/*  type="application/ld+json"*/}
-      {/*  dangerouslySetInnerHTML={{*/}
-      {/*    __html: replaceInternalLinkBaseUrls(page?.seo?.schema?.raw),*/}
-      {/*  }}*/}
-      {/*  key="homepage-data"*/}
-      {/*/>*/}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(schema),
+        }}
+        key="subpage-data"
+      />
       <SubPageHero page={page} />
-      {/*{page?.seo?.breadcrumbs && <BreadCrumbs items={page.seo?.breadcrumbs} />}*/}
-      {/*{casinos.length ? (*/}
-      {/*  <CasinoList casinos={casinos} title={page?.pageType?.subtitle} />*/}
-      {/*) : null}*/}
-      {/*{page?.pageType.faq && (*/}
-      {/*  <div className="mb-16 bg-dark px-4 py-16 md:px-0">*/}
-      {/*    <Container>*/}
-      {/*      <Accordion*/}
-      {/*        items={page?.pageType.faq[0].faqSection}*/}
-      {/*        subtitle={page?.pageType?.faqSubtitle}*/}
-      {/*      />*/}
-      {/*    </Container>*/}
-      {/*  </div>*/}
-      {/*)}*/}
-      {/*{headings.length > 1 && (*/}
-      {/*  <div className={page?.pageType?.faq ? '' : 'mt-16'}>*/}
-      {/*    <Container>*/}
-      {/*      <TableOfContents headings={headings} />*/}
-      {/*    </Container>*/}
-      {/*  </div>*/}
-      {/*)}*/}
+      {breadcrumbs && <BreadCrumbs items={breadcrumbs} />}
+      {toplist.casinos.length ? (
+        <CasinoList itemComponent={CasinoCard} casinos={toplist.casinos} title={toplist.title} description={toplist.description} />
+      ) : null}
+      {faqs.length > 0 && (
+        <div className="mb-16 bg-dark px-4 py-16 md:px-0">
+          <Container>
+            <FAQ
+              items={faqs}
+              // subtitle={faqs.title}
+            />
+          </Container>
+        </div>
+      )}
+      {headings.length > 1 && (
+        <div className={faqs.length > 0 ? '' : 'mt-16'}>
+          <Container>
+            <TableOfContents headings={headings} />
+          </Container>
+        </div>
+      )}
       <ModularContent objects={page.content} />
-      {/*{page?.author && (*/}
-      {/*  <Container>*/}
-      {/*    <AuthorBox*/}
-      {/*      author={page?.author}*/}
-      {/*      modified={page?.modified}*/}
-      {/*      reviewedBy={page?.reviewer}*/}
-      {/*    />*/}
-      {/*  </Container>*/}
-      {/*)}*/}
+      {author && (
+        <Container>
+          <AuthorBox
+            author={author}
+            modified={modifiedAt}
+            reviewedBy={reviewer}
+          />
+        </Container>
+      )}
     </div>
   )
 }

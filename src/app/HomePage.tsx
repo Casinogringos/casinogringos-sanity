@@ -1,26 +1,25 @@
-// import AuthorBox from '@/src/components/organisms/AuthorBox'
-// import CasinoList from '@/src/components/organisms/CasinoList'
-// import Container from '@/src/components/atoms/Container'
 import ModularContent from '@/src/components/organisms/ModularContent'
-import { GuidePage, Breadcrumbs as BreadcrumbsType, SubPage } from '@/src/types'
+import { Breadcrumbs as BreadcrumbsType, SubPage, NewsPage } from '@/src/types'
 import HomePageHero from '@/src/components/organisms/HomePageHero'
 import CasinoList from '@/src/components/organisms/CasinoList'
 import CasinoCard from '@/src/components/organisms/CasinoCard'
 import NewsList from '@/src/components/organisms/NewsList'
-// import dynamic from 'next/dynamic'
-// const TableOfContents = dynamic(
-//   () => import('@/src/components/organisms/TableOfContents')
-// )
-// const Faq = dynamic(() => import('@/src/components/organisms/Accordian'))
+import Container from '@/src/components/atoms/Container'
+import TableOfContents from '@/src/components/organisms/TableOfContents'
 import getArticleStructuredData from '@/src/structured-data/articleStructuredData'
 import { getWebPageStructuredData } from '@/src/structured-data/webPageStructuredData'
 import { getBreadcrumbListStructuredData } from '@/src/structured-data/breadcrumbListStructuredData'
 import { getWebSiteStructuredData } from '@/src/structured-data/webSiteStructuredData'
 import { getOrganizationStructuredData } from '@/src/structured-data/organizationStructuredData'
 import { getPersonStructuredData } from '@/src/structured-data/personStructuredData'
+import FAQ from '@/src/components/organisms/FAQ'
+import AuthorBox from '@/src/components/organisms/AuthorBox'
+import NewsCard from '@/src/components/organisms/NewsCard'
+import { getHeadingObjectsByPage } from '@/src/lib/helpers'
 
-
-const HomePage = ({ page, guides, breadcrumbs }: { page: SubPage; guides: GuidePage[]; breadcrumbs: BreadcrumbsType }) => {
+const HomePage = ({ page, news, breadcrumbs }: { page: SubPage; news: NewsPage[]; breadcrumbs: BreadcrumbsType }) => {
+  const {faqs, author, modifiedAt, reviewer} = page
+  const headingObjects = getHeadingObjectsByPage({objects: page.content})
   const schema = {
     '@context': 'https://schema.org',
     '@graph': [
@@ -49,42 +48,33 @@ const HomePage = ({ page, guides, breadcrumbs }: { page: SubPage; guides: GuideP
         description={page.toplist.description}
         itemComponent={CasinoCard}
       />
-      <NewsList itemComponent={NewsCard} items={guides} />
-      {/*{page.pageType.faq && (*/}
-      {/*  <div className="bg-dark pb-6 pt-12 lg:py-20">*/}
-      {/*    <div className="mx-auto max-w-4xl px-4 lg:px-0">*/}
-      {/*      <Faq*/}
-      {/*        isBlock={false}*/}
-      {/*        data={{*/}
-      {/*          attributes: {*/}
-      {/*            description: page.pageType.faqSubtitle,*/}
-      {/*            items: page.pageType.faq[0].faqSection.map((item) => ({*/}
-      {/*              question: item.faqQuestion,*/}
-      {/*              answer: item.faqAnswer,*/}
-      {/*            })),*/}
-      {/*          },*/}
-      {/*        }}*/}
-      {/*      />*/}
-      {/*    </div>*/}
-      {/*  </div>*/}
-      {/*)}*/}
-      {/*{headings.length > 0 && (*/}
-      {/*  <Container>*/}
-      {/*    <div className="pt-12 lg:pt-16">*/}
-      {/*      <TableOfContents headings={headings} />*/}
-      {/*    </div>*/}
-      {/*  </Container>*/}
-      {/*)}*/}
+      <NewsList itemComponent={NewsCard} items={news} />
+      {faqs.length > 0 && (
+        <div className="bg-dark pb-6 pt-12 lg:py-20">
+          <div className="mx-auto max-w-4xl px-4 lg:px-0">
+            <FAQ
+              items={faqs}
+            />
+          </div>
+        </div>
+      )}
+      {headingObjects.length > 0 && (
+        <Container>
+          <div className="pt-12 lg:pt-16">
+            <TableOfContents headings={headingObjects} />
+          </div>
+        </Container>
+      )}
       <ModularContent objects={page.content} />
-      {/*{page.author && (*/}
-      {/*  <Container>*/}
-      {/*    <AuthorBox*/}
-      {/*      author={page.author}*/}
-      {/*      modified={page?.modified}*/}
-      {/*      reviewedBy={page?.reviewer}*/}
-      {/*    />*/}
-      {/*  </Container>*/}
-      {/*)}*/}
+      {author && (
+        <Container>
+          <AuthorBox
+            author={author}
+            modified={modifiedAt}
+            reviewedBy={reviewer}
+          />
+        </Container>
+      )}
     </>
   )
 }

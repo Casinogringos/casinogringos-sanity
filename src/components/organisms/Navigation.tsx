@@ -66,7 +66,7 @@ export default async function Navigation({
               role="menubar"
               className="ml-auto hidden space-x-8 lg:-mt-[3px] lg:flex lg:items-center"
             >
-              {headerMenu.items.map((item: MenuItemType) => (
+              {headerMenu.items?.map((item: MenuItemType) => (
                 <li key={`menu-item-${item._key}`} role="none">
                   <Link
                     href={item.page.slug.current}
@@ -88,7 +88,7 @@ export default async function Navigation({
               ))}
             </ul>
             <div className="ml-auto flex items-center gap-3">
-              {sidebarMenu.items.length > 0 ? (
+              {sidebarMenu.items?.length > 0 ? (
                 <NotificationButton count={sidebarMenu.items.length} />
               ) : null}
               <SearchButton />

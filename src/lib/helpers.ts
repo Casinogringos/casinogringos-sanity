@@ -1,4 +1,5 @@
 // import { parseDocument } from 'htmlparser2'
+import { Object as ObjectType } from '@/src/types'
 
 export const removeLeadingSubString = (str, subStr) => {
   if (str) {
@@ -199,4 +200,10 @@ export const getSessionToken = (key) => {
 export const setSessionToken = (key, value) => {
   if (typeof window === 'undefined') return
   window.sessionStorage.setItem(key, value)
+}
+
+export const getHeadingObjectsByPage = ({ objects }: { objects: ObjectType[] }) => {
+  return objects.filter((object) => {
+    return object._type === 'heading-object'
+  })
 }

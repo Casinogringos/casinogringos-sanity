@@ -1,4 +1,6 @@
 import { BasePage } from '@/src/types'
+import PageService from '@/src/services/PageService'
+const pageService = new PageService()
 
 const getArticleStructuredData = (page: BasePage) => {
   return {
@@ -9,7 +11,7 @@ const getArticleStructuredData = (page: BasePage) => {
     },
     "author": {
       "name": page.author.name,
-      "@id": `https://casinogringos.se/#/schema/person/${page.author.id}`,
+      "@id": `https://casinogringos.se/#/schema/person/${page.author._id}`,
     },
     "headline": page.title,
     "datePublished": page.publishedAt,
@@ -17,14 +19,14 @@ const getArticleStructuredData = (page: BasePage) => {
     "mainEntityOfPage": {
       "@id": "https://casinogringos.se/"
     },
-    "wordCount": page.stats.wordCount,
+    "wordCount": pageService.getWordCount(page),
     "publisher": {
       "@id": "https://casinogringos.se/#organization"
     },
     "image": {
       "@id": "https://casinogringos.se/#primaryimage"
     },
-    "thumbnailUrl": page.featuredImage.image.url,
+    "thumbnailUrl": page.featuredImage.image.asset.url,
     "inLanguage": "sv-SE"
   }
 }
