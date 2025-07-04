@@ -21,9 +21,6 @@ export default function CasinoList({
   description: PortableTextBlock[]
   itemComponent: typeof CasinoCard
 }) {
-  console.log('title', title)
-  console.log('description', description)
-  console.log('casinos', casinos)
   const year = new Date().getFullYear()
   const ItemComponent = itemComponent
 

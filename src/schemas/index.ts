@@ -38,6 +38,7 @@ import { ShortcodeObjectSchema, ShortcodeObjectSchemaType } from './shortcodeObj
 import { TableObjectSchema, TableObjectSchemaType } from './tableObject';
 import { ToggleObjectSchema, ToggleObjectSchemaType } from './toggleObject';
 import { ToplistSchema, ToplistSchemaType } from './toplist';
+import { SubPageSchema, SubPageSchemaType } from './subPage';
 
 export {
     AffiliateButtonObjectSchema,
@@ -80,6 +81,7 @@ export {
     TableObjectSchema,
     ToggleObjectSchema,
     ToplistSchema,
+    SubPageSchema,
 };
 
 export type {
@@ -123,4 +125,5 @@ export type {
     TableObjectSchemaType,
     ToggleObjectSchemaType,
     ToplistSchemaType,
+    SubPageSchemaType,
 };

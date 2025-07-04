@@ -54,7 +54,6 @@ class CasinoService {
   }
 
   getCasinoRatings({ casino }: { casino: Casino }) {
-    console.log('casino@', casino)
     const ratings: Partial<Ratings> = {}
     const validRatings = this.ratingKeys.reduce<number[]>((acc, { key }) => {
       const ratingValue = casino.casinoRatings?.find(
@@ -66,7 +65,6 @@ class CasinoService {
       }
       return acc
     }, [])
-    console.log('validRatings', validRatings)
     const totalRating = validRatings.reduce((sum, rating) => sum + rating, 0)
     const maxValidRatings = validRatings.length * 5
     const overallScore =

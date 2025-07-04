@@ -17,7 +17,7 @@ const client = getClient()
 
 export const getPageBySlug = async ({ slug }: { slug: string }) => {
   try {
-    console.log('pageBySlugQuery', pageBySlugQuery({ slug }))
+    // console.log('pageBySlugQuery', pageBySlugQuery({ slug }))
     const data = await client.fetch(pageBySlugQuery({ slug }))
     // console.log('data', data)
     return data[0]
@@ -120,7 +120,7 @@ export const getSlotPageBySlug = async ({ slug }: { slug: string }) => {
 
 export const getCasinoPageBySlug = async ({ slug }: { slug: string }) => {
   try {
-    console.log('pageBySlugQuery', pageBySlugQuery({ slug }))
+    // console.log('pageBySlugQuery', pageBySlugQuery({ slug }))
     const data = await client.fetch(casinoPageBySlugQuery({ slug }))
     // console.log('data', data)
     return data[0]
