@@ -2,6 +2,7 @@ import {
   objectProjections,
   faqItemObjectProjection,
   toplistProjection, imageObjectProjection,
+  authorProjection
 } from '@/src/data/projections'
 
 export const pageProjection = `
@@ -13,6 +14,9 @@ export const pageProjection = `
   publishedAt,
   seoTitle,
   intro,
+  author {
+    ${authorProjection}
+  },
   featuredImage {
     ${imageObjectProjection}
   },

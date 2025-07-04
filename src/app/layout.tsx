@@ -64,12 +64,12 @@ export default async function RootLayout({
       <link rel="icon" href="/favicon.ico" sizes="any" />
       <body className={`${jakarta.variable} ${inter.variable}`}>
         <Provider>
-          <Navigation
+          {/* <Navigation
             headerMenu={headerMenu}
             sidebarMenu={sidebarMenu}
             sidebarCasinos={sidebarCasinos}
             pathname={pathname}
-          />
+          /> */}
           <main className={'relative bg-slate-100'}>{children}</main>
           <ScrollToTop />
         </Provider>
