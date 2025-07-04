@@ -19,6 +19,7 @@ import { FreeSpinsSchema, FreeSpinsSchemaType } from './freeSpins';
 import { FreeSpinsTypeSchema, FreeSpinsTypeSchemaType } from './freeSpinsType';
 import { GameSchema, GameSchemaType } from './game';
 import { GroupObjectSchema, GroupObjectSchemaType } from './groupObject';
+import { BreadcrumbsSchema, BreadcrumbsSchemaType } from './breadcrumbs';
 import { HeadingObjectSchema, HeadingObjectSchemaType } from './headingObject';
 import { HowToObjectSchema, HowToObjectSchemaType } from './howToObject';
 import { HowToStepObjectSchema, HowToStepObjectSchemaType } from './howToStepObject';
@@ -62,6 +63,7 @@ export {
     FreeSpinsTypeSchema,
     GameSchema,
     GroupObjectSchema,
+    BreadcrumbsSchema,
     HeadingObjectSchema,
     HowToObjectSchema,
     HowToStepObjectSchema,
@@ -106,6 +108,7 @@ export type {
     FreeSpinsTypeSchemaType,
     GameSchemaType,
     GroupObjectSchemaType,
+    BreadcrumbsSchemaType,
     HeadingObjectSchemaType,
     HowToObjectSchemaType,
     HowToStepObjectSchemaType,

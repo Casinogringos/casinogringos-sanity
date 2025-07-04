@@ -1,13 +1,21 @@
-const getVideoStructuredData = (video: VideoObjectType) => {
+import { VideoObjectSchemaType } from "@/src/schemas/videoObject"
+import VideoService from "@/src/services/VideoService"
+
+const videoService = new VideoService()
+
+export const getVideoStructuredData = (videoObject: VideoObjectSchemaType) => {
+  const isValid = videoService.validateSchema(videoObject)
+  if (!isValid) return null
+
   return {
     '@context': 'https://schema.org',
     '@type': 'VideoObject',
-    name: video.title,
-    description: video.description,
-    thumbnailUrl: video.thumbnail.asset.url,
-    uploadDate: video.publishedAt,
-    duration: video.duration,
-    contentUrl: video.url,
-    embedUrl: video.url,
+    name: videoObject.title,
+    description: videoObject.description,
+    thumbnailUrl: videoObject.thumbnailUrl,
+    uploadDate: videoObject.uploadDate,
+    duration: videoObject.duration,
+    contentUrl: videoObject.contentUrl,
+    embedUrl: videoObject.embedUrl,
   }
 }

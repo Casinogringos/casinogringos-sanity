@@ -18,8 +18,8 @@ import NewsCard from '@/src/components/organisms/NewsCard'
 import { getHeadingObjectsByPage } from '@/src/lib/helpers'
 
 const HomePage = ({ page, news, breadcrumbs }: { page: SubPage; news: NewsPage[]; breadcrumbs: BreadcrumbsType }) => {
-  const {faqs, author, modifiedAt, reviewer} = page
-  const headingObjects = getHeadingObjectsByPage({objects: page.content})
+  const { faqs, author, modifiedAt, reviewer } = page
+  const headingObjects = getHeadingObjectsByPage({ objects: page.content })
   const schema = {
     '@context': 'https://schema.org',
     '@graph': [
@@ -42,12 +42,13 @@ const HomePage = ({ page, news, breadcrumbs }: { page: SubPage; news: NewsPage[]
         key="homepage-structured-data"
       />
       <HomePageHero page={page} />
-      <CasinoList
-        casinos={page.toplist.casinos}
-        title={page.toplist.title}
-        description={page.toplist.description}
-        itemComponent={CasinoCard}
-      />
+      {page.toplist.casinos.length > 0 &&
+        <CasinoList
+          casinos={page.toplist.casinos}
+          title={page.toplist.title}
+          description={page.toplist.description}
+          itemComponent={CasinoCard}
+        />}
       <NewsList itemComponent={NewsCard} items={news} />
       {faqs.length > 0 && (
         <div className="bg-dark pb-6 pt-12 lg:py-20">

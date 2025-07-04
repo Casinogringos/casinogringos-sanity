@@ -1,9 +1,15 @@
-import { Author } from '@/src/types'
+import AuthorService from '@/src/services/AuthorService
+import { AuthorSchemaType } from '@/src/schemas'
 
-export const getPersonStructuredData = (author: Author) => {
+const authorService = new AuthorService()
+
+export const getPersonStructuredData = (author: AuthorSchemaType) => {
+  const isValid = authorService.validateSchema(author)
+  if (!isValid) return null
+
   return {
     "@type": "Person",
-    "@id": `https://casinogringos.se/#/schema/person/${author.id}`,
+    "@id": `https://casinogringos.se/#/schema/person/${author._id}`,
     "name": author.name,
     "image": {
       "@type": "ImageObject",
