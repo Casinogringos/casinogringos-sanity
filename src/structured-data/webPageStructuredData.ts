@@ -1,6 +1,12 @@
-import { BasePage } from '@/src/types'
+import { SubPageSchemaType, CasinoPageSchemaType } from '@/src/schemas'
+import PageService from '@/src/services/PageService'
 
-export const getWebPageStructuredData = (page: BasePage) => {
+const pageService = new PageService()
+
+export const getWebPageStructuredData = (page: SubPageSchemaType | CasinoPageSchemaType) => {
+  const isValid = pageService.validateSchema(page)
+  if (!isValid) return null
+
   return {
     "@type": "WebPage",
     "@id": "https://casinogringos.se/",
