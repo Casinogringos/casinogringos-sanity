@@ -1,5 +1,5 @@
 import HomePage from '@/src/app/HomePage'
-import { getPageBySlug } from '@/src/lib/api'
+import { getNewsPagePreviews, getPageBySlug } from '@/src/lib/api'
 import { notFound } from 'next/navigation'
 
 // export async function generateMetadata() {
@@ -40,7 +40,13 @@ export default async function Page() {
   // console.log('homepage', homepage)
 
   // const guides = await getGuidePreviews({ count: 3 })
+  const news = await getNewsPagePreviews({ count: 3, offset: 0 })
+  const breadcrumbs = [
+    {
+      url: '/',
+    },
+  ]
   if (!homepage) return notFound()
 
-  return <HomePage page={homepage} />
+  return <HomePage page={homepage} news={news} breadcrumbs={breadcrumbs} />
 }

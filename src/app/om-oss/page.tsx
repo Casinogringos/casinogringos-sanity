@@ -1,8 +1,4 @@
 // import { getAllAuthorPreviews, getNodeByUri } from '@/lib/api'
-const Page = async () => {
-  return <div>om-oss</div>
-}
-export default Page
 // import About from '@/src/app/AboutIndex'
 // import { extractSlugFromUrl } from '@/lib/helpers'
 // import { Metadata } from 'next'
@@ -40,13 +36,25 @@ export default Page
 //   return metadata as Metadata
 // }
 //
-// export default async function Page() {
-//   const aboutPage = (await getNodeByUri({
-//     uri: '/om-oss',
-//   })) as PageType
-//   const authors = await getAllAuthorPreviews()
-//
-//   return <About page={aboutPage} authors={authors} />
-// }
+import { getPageBySlug } from '@/src/lib/api'
+import Author from '@/src/app/AuthorIndex'
+
+const Page = async () => {
+  const page = await getPageBySlug({
+    slug: '/om-oss',
+  })
+  const authors = await getAllAuthorPreviews()
+  const breadcrumbs = [
+    {},
+    {
+      text: 'Om Oss',
+      url: `${process.env.SITE_URL}/om-oss`,
+    },
+  ]
+
+  return <Author page={page} authors={authors} breadcrumbs={breadcrumbs} />
+}
+
+export default Page
 //
 // export const dynamic = 'force-static'

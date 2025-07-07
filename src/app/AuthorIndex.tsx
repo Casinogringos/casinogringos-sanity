@@ -1,40 +1,115 @@
-// import Container from "../../../casinogringos-v3/src/components/Container";
-// import Image from "next/image";
-// import Link from "next/link";
-//
-// export default function AuthorIndex({ authors }) {
-//   return (
-//     <Container>
-//       <div className="py-12">
-//         <h1 className="text-3xl font-bold">Skribenter</h1>
-//         <div className="mx-auto mt-8 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-10 lg:mx-0 lg:max-w-none lg:grid-cols-3">
-//           {authors.edges.map((author) => (
-//             <article
-//               key={`author-${author.node.id}`}
-//               className="flex flex-col items-start justify-between"
-//             >
-//               <div className="relative flex h-40 w-full items-center overflow-hidden rounded-sm">
-//                 <Image
-//                   src={author?.node?.avatar?.url}
-//                   width={author?.node?.avatar?.width}
-//                   height={author?.node?.avatar?.height}
-//                   alt={author?.node?.name}
-//                 />
-//               </div>
-//               <div className="max-w-xl">
-//                 <div className="group relative">
-//                   <h3 className="text-gray-900 group-hover:text-gray-600 mt-1 text-lg font-semibold leading-6">
-//                     <Link prefetch={false} href={author?.node?.uri}>
-//                       <span className="absolute inset-0" />
-//                       {author?.node?.name}
-//                     </Link>
-//                   </h3>
-//                 </div>
-//               </div>
-//             </article>
-//           ))}
-//         </div>
-//       </div>
-//     </Container>
-//   );
-// }
+import { Linkedin, Mail } from 'lucide-react'
+import Link from 'next/link'
+import BreadCrumbs from '@/src/components/organisms/BreadCrumbs'
+import ModularContent from '@/src/components/organisms/ModularContent'
+import SubPageHero from '@/src/components/molecules/SubPageHero'
+import { Author, Breadcrumbs, SubPage } from '@/src/types'
+import getArticleStructuredData from '@/src/structured-data/articleStructuredData'
+import { getWebPageStructuredData } from '@/src/structured-data/webPageStructuredData'
+import { getBreadcrumbListStructuredData } from '@/src/structured-data/breadcrumbListStructuredData'
+import { getWebSiteStructuredData } from '@/src/structured-data/webSiteStructuredData'
+import { getOrganizationStructuredData } from '@/src/structured-data/organizationStructuredData'
+import { getPersonStructuredData } from '@/src/structured-data/personStructuredData'
+import SanityImage from '@/src/components/atoms/SanityImage'
+import { PortableText } from 'next-sanity'
+
+const AuthorIndex = ({
+  page,
+  authors,
+  breadcrumbs,
+}: {
+  page: SubPage<true>
+  authors: Author[]
+  breadcrumbs: Breadcrumbs
+}) => {
+  const schema = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      getArticleStructuredData(page),
+      getWebPageStructuredData(page),
+      getBreadcrumbListStructuredData(breadcrumbs),
+      getWebSiteStructuredData(),
+      getOrganizationStructuredData(),
+      getPersonStructuredData(page.author),
+    ],
+  }
+
+  return (
+    <>
+      <SubPageHero page={page} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(schema),
+        }}
+        key="about-index-structured-data"
+      />
+      <BreadCrumbs items={breadcrumbs} />
+      <ModularContent
+        objects={page.content}
+      />
+      <div className="bg-hero px-4 py-12">
+        <div className="mx-auto max-w-3xl">
+          <h2 className="mb-6 text-2xl">Vi som jobbar på Casinogringos</h2>
+          {authors.map((author) => (
+            <div
+              key={`author-${author._key}`}
+              className="mb-4 rounded-md bg-white p-6"
+            >
+              <div className="mb-4 flex items-center gap-4">
+                <div className="mt-1 overflow-hidden rounded-full">
+                  <SanityImage
+                    image={author.avatar.image}
+                    altText={author.name}
+                    width={50}
+                  />
+                </div>
+                <div>
+                  <Link prefetch={false} href={`/om-oss/${author.slug}`}>
+                    <span className="block font-medium">
+                      {author.name}
+                    </span>
+                  </Link>
+                  <span className="text-slate-500 block text-sm">
+                    {author.role}
+                  </span>
+                </div>
+                <div className="ml-auto mt-2 flex gap-2">
+                  {author?.linkedIn && (
+                    <Link
+                      className="rounded-md bg-dark p-1 text-white"
+                      href={author?.linkedIn}
+                      title="LinkedIn"
+                      prefetch={false}
+                      target="_blank"
+                      rel="nofollow noopener noreferrer"
+                    >
+                      <Linkedin className="h-4 w-4" />
+                    </Link>
+                  )}
+                  {author?.email && (
+                    <Link
+                      className="rounded-md bg-dark p-1 text-white"
+                      href={`mailto:${author?.email}`}
+                      title="E-post"
+                      target="_blank"
+                      prefetch={false}
+                      rel="nofollow noopener noreferrer"
+                    >
+                      <Mail className="h-4 w-4" />
+                    </Link>
+                  )}
+                </div>
+              </div>
+              <div className={'text-slate-700'}>
+                <PortableText value={author.about} />
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </>
+  )
+}
+
+export default AuthorIndex

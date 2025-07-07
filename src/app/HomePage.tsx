@@ -42,7 +42,7 @@ const HomePage = ({ page, news, breadcrumbs }: { page: SubPage; news: NewsPage[]
         key="homepage-structured-data"
       />
       <HomePageHero page={page} />
-      {page.toplist.casinos.length > 0 &&
+      {page.toplist?.casinos.length > 0 &&
         <CasinoList
           casinos={page.toplist.casinos}
           title={page.toplist.title}

@@ -12,12 +12,11 @@ import CasinoList from '@/src/components/organisms/CasinoList'
 import CasinoCard from '@/src/components/organisms/CasinoCard'
 import Container from '@/src/components/atoms/Container'
 import FAQ from '@/src/components/organisms/FAQ'
-import { TableOfContents } from 'lucide-react'
+import TableOfContents from '@/src/components/organisms/TableOfContents'
 import AuthorBox from '@/src/components/organisms/AuthorBox'
+import { getHeadingObjectsByPage } from '@/src/lib/helpers'
 
 export default function SubPage({ page, breadcrumbs }: { page: SubPageType<true>; breadcrumbs: Breadcrumbs }) {
-  // const casinos = page.pageType.category?.edges[0].node.posts.edges ?? []
-  // const headings = getBlockHeadings(page?.editorBlocks)
   const {toplist, faqs, author, modifiedAt, reviewer} = page
   const headingObjects = getHeadingObjectsByPage({objects: page.content})
   const schema = {
@@ -56,10 +55,10 @@ export default function SubPage({ page, breadcrumbs }: { page: SubPageType<true>
           </Container>
         </div>
       )}
-      {headings.length > 1 && (
+      {headingObjects.length > 1 && (
         <div className={faqs.length > 0 ? '' : 'mt-16'}>
           <Container>
-            <TableOfContents headings={headings} />
+            <TableOfContents headings={headingObjects} />
           </Container>
         </div>
       )}

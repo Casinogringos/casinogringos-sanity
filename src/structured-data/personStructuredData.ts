@@ -1,4 +1,4 @@
-import AuthorService from '@/src/services/AuthorService
+import AuthorService from '@/src/services/AuthorService'
 import { AuthorSchemaType } from '@/src/schemas'
 
 const authorService = new AuthorService()

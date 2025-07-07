@@ -20,6 +20,7 @@ const Link = ({
   replace,
   plausible,
   variant,
+  title
 }: {
   href: string
   rel?: string
@@ -27,6 +28,7 @@ const Link = ({
   className?: string
   children: ReactNode
   prefetch?: boolean
+  title?: string
   role?: string
   place?: string
   label?: string
@@ -60,6 +62,7 @@ const Link = ({
       className={`${className} ${getClassName()}`}
       prefetch={prefetch}
       aria-label={label}
+      title={title}
       onClick={() => {
         if (!plausible) return
         plausibleMethod(plausible.eventName, {
