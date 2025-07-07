@@ -45,3 +45,5 @@ export const ModularContentItemSchema = z.discriminatedUnion('_type', [
 export const ModularContentSchema = z.array(ModularContentItemSchema);
 
 export type ModularContentSchemaType = z.infer<typeof ModularContentSchema>;
+
+export type ModularContentItemSchemaType = z.infer<typeof ModularContentItemSchema>;

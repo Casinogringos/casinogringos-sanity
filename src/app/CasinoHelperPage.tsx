@@ -1,22 +1,16 @@
 // "use client";
 //
 // import { useEffect, useState } from "react";
-// import { Post } from "@/types";
-// import Container from "../../../casinogringos-v3/src/components/Container";
+// import { Casino } from "@/src/types";
+// import Container from "@/src/components/atoms/Container";
 // import { ChevronLeft } from "lucide-react";
-// import dynamic from "next/dynamic";
-// const Paragraph = dynamic(
-//   () => import("../../../casinogringos-v3/src/components/Paragraph"),
-// );
-// const Button = dynamic(
-//   () => import("../../../casinogringos-v3/src/components/Button"),
-// );
-// const CasinoList = dynamic(
-//   () => import("../../../casinogringos-v3/src/components/CasinoList"),
-// );
+// import Paragraph from "@/src/components/atoms/Paragraph";
+// import Button from "@/src/components/atoms/Button";
+// import CasinoList from "@/src/components/organisms/CasinoList";
 //
-// const CasinoHelperPage = ({ initialCasinos }: { initialCasinos: Post[] }) => {
-//   const [casinos, setCasinos] = useState<Post[] | null>(initialCasinos);
+//
+// const CasinoHelperPage = ({ initialCasinos }: { initialCasinos: Casino[] }) => {
+//   const [casinos, setCasinos] = useState<Casino[] | null>(initialCasinos);
 //   const [index, setIndex] = useState<number>(0);
 //   const [category, setCategory] = useState<"casino" | "betting" | null>(null);
 //   const [history, setHistory] = useState<{ index: number; state: string[] }[]>(
@@ -33,7 +27,7 @@
 //       text: string;
 //       nextIndex: number;
 //       previousIndex: number;
-//       callback: ((items: Post[] | null) => Post[] | null) | null;
+//       callback: ((items: Casino[] | null) => Casino[] | null) | null;
 //     };
 //     index: number;
 //   }) => {
@@ -57,9 +51,9 @@
 //         {
 //           text: "Betting",
 //           nextIndex: 1,
-//           callback: (items) => {
+//           callback: (items: Casino[]) => {
 //             setCategory("betting");
-//             return items.filter((item) =>
+//             return items.filter((item: Casino) =>
 //               item.categories.edges.some(
 //                 ({ node }) => node.slug === "bettingsidor",
 //               ),
@@ -336,7 +330,7 @@
 //                           .map((id) =>
 //                             initialCasinos.find((item) => item.id === id),
 //                           )
-//                           .filter((item) => item !== undefined) as Post[],
+//                           .filter((item) => item !== undefined) as Casino[],
 //                       );
 //                       setIndex(history[history.length - 1].index);
 //                       setHistory((prev) => prev.slice(0, history.length - 1));

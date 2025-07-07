@@ -23,8 +23,8 @@ export default function SubPage({ page, breadcrumbs }: { page: SubPageType<true>
     '@context': 'https://schema.org',
     '@graph': [
       getArticleStructuredData(page),
-      getWebPageStructuredData(page),
       getBreadcrumbListStructuredData(breadcrumbs),
+      getWebPageStructuredData(page),
       getWebSiteStructuredData(),
       getOrganizationStructuredData(),
       getPersonStructuredData(page.author),

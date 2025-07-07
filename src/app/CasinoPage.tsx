@@ -1,74 +1,29 @@
 import ModularContent from '@/src/components/organisms/ModularContent'
-import { CasinoPage as CasinoPageType } from '@/src/types'
+import getReviewStructuredData from '@/src/structured-data/reviewStructuredData'
+import { CasinoPageSchemaType } from '@/src/schemas'
+import getProductStructuredData from '@/src/structured-data/productStructuredData'
 
-export default function CasinoPage({ page }: { page: CasinoPageType }) {
+const CasinoPage = ({ page }: { page: CasinoPageSchemaType }) => {
   // const author = page?.author.node
   // const siteURL = process.env.SITE_URL
   // const headings = getBlockHeadings(page?.editorBlocks)
   // const casinoService = new CasinoService()
   // const { finalRating } = casinoService.getCasinoRating({ page: page })
-
-  // const structuredData = {
-  //   '@context': 'https://schema.org/',
-  //   '@type': 'Review',
-  //   itemReviewed: {
-  //     '@type': 'Organization',
-  //     image: page?.featuredImage
-  //       ? page?.featuredImage.node.sourceUrl
-  //       : null,
-  //     name: page?.title,
-  //   },
-  //   reviewRating: {
-  //     '@type': 'Rating',
-  //     ratingValue: finalRating,
-  //     bestRating: '5',
-  //     worstRating: '1',
-  //   },
-  //   author: {
-  //     '@type': 'Person',
-  //     name: author?.name,
-  //     url: siteURL + author.uri,
-  //     email: author?.userType?.email,
-  //     jobTitle: author?.userType?.role ? author.userType.role : 'Skribent',
-  //     sameAs: author?.seo?.social?.linkedIn,
-  //     image: {
-  //       '@type': 'ImageObject',
-  //       inLanguage: 'sv-SE',
-  //       id: 'https://casinogringos.se/#/schema/person/image/',
-  //       url: author?.avatar?.url,
-  //       caption: author?.avatar?.altText,
-  //     },
-  //   },
-  //   publisher: {
-  //     '@type': 'Organization',
-  //     name: 'Casinogringos',
-  //     url: siteURL,
-  //     sameAs: [
-  //       'https://www.facebook.com/Casinogringos',
-  //       'https://www.instagram.com/casinogringos/',
-  //       'https://www.youtube.com/channel/UCeFbFMkDfTlLayuZmk_aXiA',
-  //       'https://www.twitch.tv/casinogringos',
-  //       'https://twitter.com/CasinoGringos',
-  //     ],
-  //   },
-  //   isPartOf: [
-  //     {
-  //       id: `${siteURL}/#website`,
-  //       '@type': 'WebSite',
-  //       name: 'Casinogringos.se',
-  //       url: siteURL,
-  //       inLanguage: 'sv-se',
-  //     },
-  //   ],
-  // }
+  const schema = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      getReviewStructuredData({page}),
+      getProductStructuredData({ product: page.casino, author: page.author }),
+    ],
+  }
 
   return (
     <>
-      {/*<script*/}
-      {/*  type="application/ld+json"*/}
-      {/*  dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}*/}
-      {/*  key="homepage-data"*/}
-      {/*/>*/}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+        key="casino-page-structured-data"
+      />
       <article>
         {/*<CasinoHero*/}
         {/*  title={page?.title}*/}
@@ -104,7 +59,7 @@ export default function CasinoPage({ page }: { page: CasinoPageType }) {
         {/*    </div>*/}
         {/*  )}*/}
         {/*</div>*/}
-        <ModularContent objects={page.content} />
+        {page.content && <ModularContent objects={page.content} />}
         {/*{page?.author && (*/}
         {/*  <div className="mx-4 lg:mx-0">*/}
         {/*    <AuthorBox*/}
@@ -152,3 +107,5 @@ export default function CasinoPage({ page }: { page: CasinoPageType }) {
     </>
   )
 }
+
+export default CasinoPage

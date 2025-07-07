@@ -17,11 +17,12 @@ import ProsAndConsObject from '@/src/components/organisms/ProsAndConsObject'
 import AISummaryObject from '@/src/components/organisms/AISummaryObject'
 import QuoteObject from '@/src/components/organisms/QuoteObject'
 import RatingObject from '@/src/components/organisms/RatingObject'
-import { Object as ObjectType } from '@/src/types'
 import FAQObject from '@/src/components/organisms/FAQObject'
+import { ModularContentSchemaType } from '@/src/schemas'
+import { ModularContentItemSchemaType } from '@/src/schemas/modularContent'
 
 const renderObject = (
-  object: ObjectType,
+  object: ModularContentItemSchemaType,
   outerIndex: number,
   nested = false
 ) => {
@@ -156,7 +157,7 @@ const ModularContent = async ({
   className = '',
   nested,
 }: {
-  objects: ObjectType[]
+  objects: ModularContentSchemaType
   className?: string
   nested?: boolean
 }) => {
@@ -167,7 +168,7 @@ const ModularContent = async ({
       key={'objects-wrapper'}
       className={`${className} ${nested ? '' : 'pb-8 pt-4 mx-auto prose prose-h2:text-3xl prose-p:text-text prose-headings:tracking-normal max-w-3xl text-grey-darker'}`}
     >
-      {objects.map((object: ObjectType, outerIndex: number) => {
+      {objects.map((object: ModularContentItemSchemaType, outerIndex: number) => {
         if (!object._key) return null
         return (
           <Fragment key={`object-${object._key}`}>

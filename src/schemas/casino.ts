@@ -19,6 +19,10 @@ export const CasinoSchema = z.object({
   casinoBonuses: z.array(CasinoBonusSchema),
   freeSpins: z.array(FreeSpinsSchema),
   advantages: z.array(z.string()),
+  casinoRatings: z.array(z.object({
+    ratingType: z.string(),
+    rating: z.number(),
+  })),
   terms: z.string(),
 });
 

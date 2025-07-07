@@ -1,4 +1,6 @@
 import { Casino } from '@/src/types/casino'
+import { CasinoPageSchema, CasinoPageSchemaType, CasinoSchemaType } from '@/src/schemas'
+import fs from 'fs'
 
 interface Ratings {
   bonus_rating: number
@@ -52,8 +54,16 @@ class CasinoService {
       { key: 'support_rating', label: 'Kundtjänst', imgSrc: '/support.webp' },
     ]
   }
-
-  getCasinoRatings({ casino }: { casino: Casino }) {
+  validateCasinoPageSchema({ casinoPage }: { casinoPage: CasinoPageSchemaType }) {
+    const parse = CasinoPageSchema.safeParse(casinoPage)
+    if (!parse.success) {
+      console.error(`Invalid casino page schema:\n${casinoPage.title}\n`, parse.error)
+      fs.writeFileSync('structuredDataError.log', `\n\n${casinoPage.title}\n${JSON.stringify(parse.error)}`)
+      return false
+    }
+    return true
+  }
+  getCasinoRatings({ casino }: { casino: CasinoSchemaType }) {
     const ratings: Partial<Ratings> = {}
     const validRatings = this.ratingKeys.reduce<number[]>((acc, { key }) => {
       const ratingValue = casino.casinoRatings?.find(
