@@ -33,6 +33,7 @@ export const BasePageSchema = z.object({
       message: z.string().optional(),
     })
   ).optional(),
+  content: z.array(PortableTextBlockSchema),
   toplist: ToplistPlaceholder.optional(),
 });
 

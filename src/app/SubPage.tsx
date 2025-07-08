@@ -17,13 +17,12 @@ import AuthorBox from '@/src/components/organisms/AuthorBox'
 import { getHeadingObjectsByPage } from '@/src/lib/helpers'
 
 export default function SubPage({ page, breadcrumbs }: { page: SubPageType<true>; breadcrumbs: Breadcrumbs }) {
-  const {toplist, faqs, author, modifiedAt, reviewer} = page
-  const headingObjects = getHeadingObjectsByPage({objects: page.content})
+  const { toplist, faqs, author, modifiedAt, reviewer } = page
+  const headingObjects = getHeadingObjectsByPage({ objects: page.content })
   const schema = {
     '@context': 'https://schema.org',
     '@graph': [
       getArticleStructuredData(page),
-      getBreadcrumbListStructuredData(breadcrumbs),
       getWebPageStructuredData(page),
       getWebSiteStructuredData(),
       getOrganizationStructuredData(),
@@ -50,7 +49,7 @@ export default function SubPage({ page, breadcrumbs }: { page: SubPageType<true>
           <Container>
             <FAQ
               items={faqs}
-              // subtitle={faqs.title}
+            // subtitle={faqs.title}
             />
           </Container>
         </div>

@@ -1,18 +1,25 @@
 import ModularContent from '@/src/components/organisms/ModularContent'
-import { GuidePage as GuidePageType } from '@/src/types'
+import { GuidePageSchemaType } from '@/src/schemas/guidePage'
+import { getBlogPostingStructuredData } from '@/src/structured-data/blogPostingStructuredData'
 
-export default function GuidePage({ page }: { page: GuidePageType }) {
+export default function GuidePage({ page }: { page: GuidePageSchemaType }) {
   // const headings = getBlockHeadings(page?.editorBlocks);
+  const schema = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      getBlogPostingStructuredData({ page }),
+    ],
+  }
 
   return (
     <>
-      {/*<script*/}
-      {/*  type="application/ld+json"*/}
-      {/*  dangerouslySetInnerHTML={{*/}
-      {/*    __html: replaceInternalLinkBaseUrls(page?.seo?.schema?.raw),*/}
-      {/*  }}*/}
-      {/*  key="homepage-data"*/}
-      {/*/>*/}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(schema),
+        }}
+        key="guide-page-structured-data"
+      />
       {/*<div className="mx-auto mb-0 max-w-3xl px-4 pt-6 lg:px-0">*/}
       {/*{page?.featuredImage && (*/}
       {/*  <div className="mb-4 flex h-auto items-start overflow-hidden rounded-md lg:mb-8 lg:mt-8 lg:h-96">*/}
