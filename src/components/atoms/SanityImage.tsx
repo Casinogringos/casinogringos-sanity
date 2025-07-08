@@ -10,7 +10,7 @@ const client = getClient()
 const SanityImage = ({
   image,
   altText,
-                       width,
+  width,
   className,
 }: {
   image: SanityImageType
@@ -29,7 +29,7 @@ const SanityImage = ({
       alt={altText}
       style={{ width: '100%', height: 'auto' }}
       sizes="(max-width: 800px) 100vw, 800px"
-      width={width}
+      // width={width}
       className={className}
     />
   )

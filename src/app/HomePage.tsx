@@ -1,5 +1,5 @@
 import ModularContent from '@/src/components/organisms/ModularContent'
-import { Breadcrumbs as BreadcrumbsType, SubPage, NewsPage } from '@/src/types'
+import { Breadcrumbs as BreadcrumbsType } from '@/src/types'
 import HomePageHero from '@/src/components/organisms/HomePageHero'
 import CasinoList from '@/src/components/organisms/CasinoList'
 import CasinoCard from '@/src/components/organisms/CasinoCard'
@@ -16,8 +16,9 @@ import FAQ from '@/src/components/organisms/FAQ'
 import AuthorBox from '@/src/components/organisms/AuthorBox'
 import NewsCard from '@/src/components/organisms/NewsCard'
 import { getHeadingObjectsByPage } from '@/src/lib/helpers'
+import { SubPageSchemaType, NewsPageSchemaType } from '@/src/schemas'
 
-const HomePage = ({ page, news, breadcrumbs }: { page: SubPage; news: NewsPage[]; breadcrumbs: BreadcrumbsType }) => {
+const HomePage = ({ page, news, breadcrumbs }: { page: SubPageSchemaType; news: NewsPageSchemaType[]; breadcrumbs: BreadcrumbsType }) => {
   const { faqs, author, modifiedAt, reviewer } = page
   const headingObjects = getHeadingObjectsByPage({ objects: page.content })
   const schema = {
@@ -50,16 +51,7 @@ const HomePage = ({ page, news, breadcrumbs }: { page: SubPage; news: NewsPage[]
           itemComponent={CasinoCard}
         />}
       <NewsList itemComponent={NewsCard} items={news} />
-      {faqs.length > 0 && (
-        <div className="bg-dark pb-6 pt-12 lg:py-20">
-          <div className="mx-auto max-w-4xl px-4 lg:px-0">
-            <FAQ
-              items={faqs}
-            />
-          </div>
-        </div>
-      )}
-      {headingObjects.length > 0 && (
+      {headingObjects && headingObjects.length > 0 && (
         <Container>
           <div className="pt-12 lg:pt-16">
             <TableOfContents headings={headingObjects} />
@@ -75,6 +67,15 @@ const HomePage = ({ page, news, breadcrumbs }: { page: SubPage; news: NewsPage[]
             reviewedBy={reviewer}
           />
         </Container>
+      )}
+      {faqs && faqs.length > 0 && (
+        <div className="bg-dark pb-6 pt-12 lg:py-20">
+          <div className="mx-auto max-w-4xl px-4 lg:px-0">
+            <FAQ
+              items={faqs}
+            />
+          </div>
+        </div>
       )}
     </>
   )

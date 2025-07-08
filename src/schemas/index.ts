@@ -16,12 +16,15 @@ import { DashboardImageObjectSchema, DashboardImageObjectSchemaType } from './da
 import { FAQObjectSchema, FAQObjectSchemaType } from './faqObject';
 import { FaqItemObjectSchema, FaqItemObjectSchemaType } from './faqItemObject';
 import { FreeSpinsSchema, FreeSpinsSchemaType } from './freeSpins';
+import { GuidePageSchema, GuidePageSchemaType } from './guidePage';
 import { FreeSpinsTypeSchema, FreeSpinsTypeSchemaType } from './freeSpinsType';
 import { GameSchema, GameSchemaType } from './game';
 import { GroupObjectSchema, GroupObjectSchemaType } from './groupObject';
 import { BreadcrumbsSchema, BreadcrumbsSchemaType } from './breadcrumbs';
 import { HeadingObjectSchema, HeadingObjectSchemaType } from './headingObject';
+import { PortableTextBlockSchema, PortableTextBlockSchemaType } from './portableTextBlock';
 import { HowToObjectSchema, HowToObjectSchemaType } from './howToObject';
+import { NewsPageSchema, NewsPageSchemaType } from './newsPage';
 import { HowToStepObjectSchema, HowToStepObjectSchemaType } from './howToStepObject';
 import { ImageObjectSchema, ImageObjectSchemaType } from './imageObject';
 import { ListItemObjectSchema, ListItemObjectSchemaType } from './listItemObject';
@@ -51,6 +54,7 @@ export {
     ButtonObjectSchema,
     ButtonsObjectSchema,
     CasinoSchema,
+    GuidePageSchema,
     CasinoObjectSchema,
     CasinoBonusSchema,
     CasinoPageSchema,
@@ -66,6 +70,7 @@ export {
     BreadcrumbsSchema,
     HeadingObjectSchema,
     HowToObjectSchema,
+    PortableTextBlockSchema,
     HowToStepObjectSchema,
     ImageObjectSchema,
     ListItemObjectSchema,
@@ -81,9 +86,11 @@ export {
     SanityImageSchema,
     ShortcodeObjectSchema,
     TableObjectSchema,
+    NewsPageSchema,
     ToggleObjectSchema,
     ToplistSchema,
     SubPageSchema,
+
 };
 
 export type {
@@ -91,6 +98,7 @@ export type {
     AISummaryObjectSchemaType,
     AuthorSchemaType,
     BasePageSchemaType,
+    NewsPageSchemaType,
     BonusObjectSchemaType,
     BonusTypeSchemaType,
     ButtonObjectSchemaType,
@@ -106,12 +114,14 @@ export type {
     FaqItemObjectSchemaType,
     FreeSpinsSchemaType,
     FreeSpinsTypeSchemaType,
+    GuidePageSchemaType,
     GameSchemaType,
     GroupObjectSchemaType,
     BreadcrumbsSchemaType,
     HeadingObjectSchemaType,
     HowToObjectSchemaType,
     HowToStepObjectSchemaType,
+    PortableTextBlockSchemaType,
     ImageObjectSchemaType,
     ListItemObjectSchemaType,
     ListObjectSchemaType,

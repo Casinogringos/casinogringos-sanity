@@ -3,11 +3,11 @@ import { BasePageSchema } from './basePage';
 import { PortableTextBlockSchema } from '@/src/schemas';
 import { ImageObjectSchema } from './imageObject';
 
-export const GuidePageSchema = BasePageSchema.merge(
+export const NewsPageSchema = BasePageSchema.merge(
     z.object({
         featuredImage: ImageObjectSchema,
         excerpt: z.array(PortableTextBlockSchema),
     })
 );
 
-export type GuidePageSchemaType = z.infer<typeof GuidePageSchema>;
+export type NewsPageSchemaType = z.infer<typeof NewsPageSchema>;

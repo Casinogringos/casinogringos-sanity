@@ -17,7 +17,7 @@ export default function BreadCrumbs({
     .filter((item) => item.text && item.text !== 'Hem')
     .map((item) => {
       return {
-        text: he.decode(item.text),
+        text: item.text,
         url: item.url ?? null,
       }
     })

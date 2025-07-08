@@ -3,6 +3,7 @@ import { BasePage } from '../types/basePage';
 import { AuthorSchema } from './author';
 import { ImageObjectSchema } from './imageObject';
 import { PortableTextBlockSchema } from './portableTextBlock';
+import { SanityImageSchema } from '@/src/schemas';
 
 // We'll define Toplist schema later to avoid circular dependencies
 const ToplistPlaceholder = z.object({
@@ -14,18 +15,18 @@ const ToplistPlaceholder = z.object({
 export const BasePageSchema = z.object({
   _id: z.string(),
   _type: z.string(),
-  _key: z.string(),
   title: z.string(),
-  publishedAt: z.string(),
   slug: z.object({
     current: z.string(),
   }),
-  excerpt: z.array(PortableTextBlockSchema),
-  featuredImage: ImageObjectSchema,
+  seoImage: SanityImageSchema,
+  seoDescription: z.string(),
+  seoTitle: z.string(),
   intro: z.array(PortableTextBlockSchema),
-  author: AuthorSchema,
-  modifiedAt: z.string(),
-  reviewer: AuthorSchema,
+  author: AuthorSchema.optional(),
+  _createdAt: z.string(),
+  _updatedAt: z.string(),
+  reviewer: AuthorSchema.optional(),
   faqs: z.array(
     z.object({
       question: z.string(),

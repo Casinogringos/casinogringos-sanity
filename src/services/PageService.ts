@@ -1,16 +1,20 @@
 import { SubPage } from '@/src/types'
 import { Object as ObjectType } from '@/src/types'
-import { SubPageSchema, SubPageSchemaType } from '@/src/schemas'
-import { CasinoPageSchema, CasinoPageSchemaType } from '@/src/schemas'
+import { GuidePageSchemaType, SubPageSchema, SubPageSchemaType, CasinoPageSchemaType, NewsPageSchemaType, GuidePageSchema, CasinoPageSchema, NewsPageSchema } from '@/src/schemas'
+
 import fs from 'fs'
 
 class PageService {
-  validateSchema(page: SubPageSchemaType | CasinoPageSchemaType): boolean {
+  validateSchema(page: SubPageSchemaType | CasinoPageSchemaType | GuidePageSchemaType | NewsPageSchemaType): boolean {
     let parse = null
     if (page._type === 'pages') {
       parse = SubPageSchema.safeParse(page)
     } else if (page._type === 'casino-pages') {
       parse = CasinoPageSchema.safeParse(page)
+    } else if (page._type === 'guide-pages') {
+      parse = GuidePageSchema.safeParse(page)
+    } else if (page._type === 'news-pages') {
+      parse = NewsPageSchema.safeParse(page)
     }
     if (!parse) return false
     if (!parse.success) {
@@ -20,13 +24,13 @@ class PageService {
     }
     return true
   }
-  getHeadingObjects(page: SubPage) {
+  getHeadingObjects(page: SubPageSchemaType | CasinoPageSchemaType | GuidePageSchemaType | NewsPageSchemaType) {
     const { content } = page
     return content.filter((object: ObjectType) => {
       return object._type === 'heading-object'
     })
   }
-  getWordCount(page: SubPage) {
+  getWordCount(page: SubPageSchemaType | CasinoPageSchemaType | GuidePageSchemaType | NewsPageSchemaType) {
     const { content } = page
     return content.reduce((acc, object: ObjectType) => {
       if (object._type === 'heading-object') {

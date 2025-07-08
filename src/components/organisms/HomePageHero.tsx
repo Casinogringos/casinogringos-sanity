@@ -2,11 +2,11 @@ import { ArrowRight, Gift, Star, Vibrate, Zap } from 'lucide-react'
 import Image from 'next/image'
 import Container from '@/src/components/atoms/Container'
 import Link from '@/src/components/atoms/Link'
-import { SubPage } from '@/src/types'
+import { SubPageSchemaType } from '@/src/schemas'
 import { PortableText } from 'next-sanity'
 import Heading from '@/src/components/atoms/Heading'
 
-const HomePageHero = ({ page }: { page: SubPage<false> }) => {
+const HomePageHero = ({ page }: { page: SubPageSchemaType }) => {
   const menuItems = [
     {
       label: 'Nya casinon',

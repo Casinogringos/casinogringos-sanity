@@ -1,16 +1,11 @@
-import { SubPage } from '@/src/types'
+import { SubPageSchemaType } from '@/src/schemas'
 import PageService from '@/src/services/PageService'
-import { SubPageSchema } from '@/src/schemas'
-import fs from 'fs'
 const pageService = new PageService()
 
-const getArticleStructuredData = (page: SubPage) => {
-  const parse = SubPageSchema.safeParse(page)
-  if (!parse.success) {
-    console.error(`Invalid article structured data:\n${page.title}\n`, parse.error)
-    fs.writeFileSync('structuredDataError.log', `\n\n${page.title}\n${JSON.stringify(parse.error)}`)
-    return null
-  }
+const getArticleStructuredData = (page: SubPageSchemaType) => {
+  const isValid = pageService.validateSchema(page)
+  if (!isValid) return null
+  if (!page.author) return null
 
   return {
     "@type": "Article",
@@ -23,8 +18,8 @@ const getArticleStructuredData = (page: SubPage) => {
       "@id": `https://casinogringos.se/#/schema/person/${page.author._id}`,
     },
     "headline": page.title,
-    "datePublished": page.publishedAt,
-    "dateModified": page.modifiedAt,
+    "datePublished": page._createdAt,
+    "dateModified": page._updatedAt,
     "mainEntityOfPage": {
       "@id": "https://casinogringos.se/"
     },

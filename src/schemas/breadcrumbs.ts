@@ -1,7 +1,7 @@
 import { z } from "zod"
 
 export const BreadcrumbsSchema = z.array(z.object({
-    text: z.string(),
+    text: z.string().optional(),
     url: z.string()
 }))
 

@@ -6,6 +6,7 @@ export const toggleObjectProjection = `
   _type == 'toggle-object' => {
     _type,
     _id,
+    _key,
     buttonTextOpen,
     buttonTextClose,
     message,

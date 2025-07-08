@@ -1,11 +1,13 @@
 import { SubPageSchemaType, CasinoPageSchemaType } from '@/src/schemas'
 import PageService from '@/src/services/PageService'
+import { urlFor } from '@/src/lib/client'
 
 const pageService = new PageService()
 
 export const getWebPageStructuredData = (page: SubPageSchemaType | CasinoPageSchemaType) => {
   const isValid = pageService.validateSchema(page)
   if (!isValid) return null
+  if (!page.reviewer) return null
 
   return {
     "@type": "WebPage",
@@ -24,9 +26,9 @@ export const getWebPageStructuredData = (page: SubPageSchemaType | CasinoPageSch
     "image": {
       "@id": "https://casinogringos.se/#primaryimage"
     },
-    "thumbnailUrl": page.featuredImage.image.url,
-    "datePublished": page.publishedAt,
-    "dateModified": page.modifiedAt,
+    "thumbnailUrl": urlFor(page.seoImage).url(),
+    "datePublished": page._createdAt,
+    "dateModified": page._updatedAt,
     "description": page.seoDescription,
     "breadcrumb": {
       "@id": "https://casinogringos.se/#breadcrumb"
