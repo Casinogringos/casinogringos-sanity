@@ -80,6 +80,7 @@ const HowToObject = ({ object }: { object: HowToObjectType }) => {
                     <SanityImage
                       key={`how-to-image-${rowIndex}`}
                       image={row.image}
+                      width={600}
                       altText={row.title ?? ''}
                     />
                   </div>

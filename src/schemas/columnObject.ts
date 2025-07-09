@@ -4,7 +4,6 @@ import { ColumnObject } from '../types/columnObject';
 export const ColumnObjectSchema = z.object({
   _type: z.literal('column-object'),
   _key: z.string(),
-  message: z.string(),
   width: z.string(),
   className: z.string(),
   column: z.lazy(() => {

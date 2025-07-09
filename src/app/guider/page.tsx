@@ -38,6 +38,7 @@ import GuidesIndex from '@/src/app/GuidesIndex'
 
 import { getGuidePageCount, getGuidePagePreviews } from '@/src/lib/api'
 import Pagination from '@/src/components/organisms/Pagination'
+import BreadCrumbs from '@/src/components/organisms/BreadCrumbs'
 
 const Page = async () => {
   const guides = await getGuidePagePreviews({ count: 24, offset: 0 })
@@ -45,16 +46,16 @@ const Page = async () => {
   // console.log('guidesCount', guidesCount)
   // const guidesCount = allGuides.edges.length
   const pageCount = Math.ceil(guidesCount / 24)
-  // const breadcrumbItems = [
-  //   {
-  //     text: 'Guider',
-  //     url: `${process.env.SITE_URL}/guider`,
-  //   },
-  // ]
+  const breadcrumbItems = [
+    {
+      text: 'Guider',
+      url: `${process.env.SITE_URL}/guider`,
+    },
+  ]
 
   return (
     <>
-      {/*<BreadCrumbs items={breadcrumbItems} />*/}
+      <BreadCrumbs items={breadcrumbItems} />
       <GuidesIndex guides={guides} />
       {pageCount > 1 && (
         <Pagination

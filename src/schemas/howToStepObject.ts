@@ -13,7 +13,6 @@ const PortableTextBlockSchema = z.object({
 
 export const HowToStepObjectSchema = z.object({
   _type: z.literal('how-to-step-object'),
-  message: z.string(),
   image: SanityImageSchema,
   title: z.string(),
   description: z.array(PortableTextBlockSchema),

@@ -8,7 +8,6 @@ import { OddsBonusSchema } from './oddsBonus';
 export const BonusObjectSchema = z.object({
   _type: z.literal('bonus-object'),
   _key: z.string(),
-  message: z.string(),
   casino: CasinoSchema,
   bonus: z.union([CasinoBonusSchema, OddsBonusSchema]),
   freeSpins: FreeSpinsSchema,

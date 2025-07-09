@@ -52,7 +52,7 @@ const HomePage = ({ page, news, breadcrumbs }: { page: SubPageSchemaType; news: 
         />}
       <NewsList itemComponent={NewsCard} items={news} />
       {headingObjects && headingObjects.length > 0 && (
-        <Container>
+        <Container narrow>
           <div className="pt-12 lg:pt-16">
             <TableOfContents headings={headingObjects} />
           </div>

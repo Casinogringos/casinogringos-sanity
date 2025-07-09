@@ -14,7 +14,7 @@ const NewsList = ({
   const ItemComponent = itemComponent
 
   return (
-    <div className={`bg-blue100 py-10 sm:py-20`}>
+    <div className={`bg-blue-100 py-10 sm:py-20`}>
       <div className="mx-auto max-w-6xl px-6 lg:px-8">
         <Heading level={2} text={'Senaste casinonyheter'} className="text-gray-900 text-3xl font-bold tracking-tight" />
         <p className="mt-4 text-slate600">

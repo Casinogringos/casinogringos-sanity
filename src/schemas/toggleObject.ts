@@ -4,7 +4,6 @@ import { ToggleObject } from '../types/toggleObject';
 export const ToggleObjectSchema = z.object({
   _type: z.literal('toggle-object'),
   _key: z.string(),
-  message: z.string(),
   buttonTextOpen: z.string(),
   buttonTextClose: z.string(),
   buttonText: z.string(),

@@ -1,10 +1,13 @@
-import { objectProjections } from '@/src/data/projections'
+import { imageObjectProjection, objectProjections } from '@/src/data/projections'
 
 export const newsPageProjection = `
   _type,
   _id,
   title,
   slug,
+  featuredImage {
+    ${imageObjectProjection}
+  },
   publishedAt,
   seoTitle,
   seoDescription,

@@ -13,7 +13,6 @@ const PortableTextBlockSchema = z.object({
 export const QuoteObjectSchema = z.object({
   _type: z.literal('quote-object'),
   _key: z.string(),
-  message: z.string(),
   content: z.array(PortableTextBlockSchema),
 });
 

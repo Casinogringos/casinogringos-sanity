@@ -1,5 +1,6 @@
 // import { getPageBySlug } from '@/src/lib/api'
 import NewsIndex from '@/src/app/NewsIndex'
+import BreadCrumbs from '@/src/components/organisms/BreadCrumbs'
 import Pagination from '@/src/components/organisms/Pagination'
 import { getNewsPageCount, getNewsPagePreviews } from '@/src/lib/api'
 // import Pagination from '@/src/app/components/organisms/Pagination'
@@ -53,8 +54,8 @@ const Page = async () => {
 
   return (
     <>
-      {/*<BreadCrumbs items={breadcrumbItems} />*/}
-      <NewsIndex news={news} />
+      <BreadCrumbs items={breadcrumbItems} />
+      <NewsIndex newsPages={news} />
       {pageCount > 1 && (
         <Pagination
           currentPage={1}

@@ -5,8 +5,7 @@ import { PortableTextBlockSchema } from './portableTextBlock';
 export const ParagraphObjectSchema = z.object({
   _type: z.literal('paragraph-object'),
   _key: z.string(),
-  message: z.string(),
-  className: z.string(),
+  className: z.string().optional(),
   content: z.array(PortableTextBlockSchema),
 });
 

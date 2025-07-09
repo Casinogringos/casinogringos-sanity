@@ -15,12 +15,12 @@ interface Heading {
 
 const TableOfContents = async ({ headings }: { headings: Heading[] }) => {
   const headerList = await headers()
-  const pathname = headerList.get('x-current-path')
+  const pathname = await headerList.get('x-current-path')
 
   return (
     <section
       className={
-        'bg-slate100 max-w-3xl mb-3 mx-auto rounded-md overflow-hidden relative'
+        'bg-slate-200 mb-3 mx-auto rounded-md overflow-hidden relative'
       }
     >
       <ToggleButton
@@ -33,12 +33,12 @@ const TableOfContents = async ({ headings }: { headings: Heading[] }) => {
           <div className={'flex items-center'}>
             <ToggleSwitch
               id={'table-of-contents'}
-              open={<BookOpen className="h-4 w-4 mr-2 mt-0.5 text-slate500" />}
-              close={<Book className="h-4 w-4 mr-2 text-slate500" />}
+              open={<BookOpen className="h-4 w-4 mr-2 mt-0.5 text-slate-500" />}
+              close={<Book className="h-4 w-4 mr-2 text-slate-500" />}
             />
             <Heading
               className={
-                'flex-grow flex items-center not-prose font-semibold text-left text-lg'
+                'flex-grow flex items-center not-prose !mt-0 font-semibold text-left text-lg'
               }
               level={3}
               text={'Innehåll'}
@@ -61,12 +61,12 @@ const TableOfContents = async ({ headings }: { headings: Heading[] }) => {
             <li
               key={`heading-${slugify(heading.text)}`}
               className={
-                'py-2 last-of-type:border-0 text-slate600 last-of-type:pb-0 border-b border-b-slate200'
+                'py-2 last-of-type:border-0 text-slate-600 last-of-type:pb-0 border-b border-b-slate-200'
               }
             >
               <Link
                 className="hover:text-dark font-medium"
-                href={`${pathname}/#${slugify(heading.text)}`}
+                href={`/${pathname}/#${slugify(heading.text)}`}
               >
                 {heading.text}
               </Link>

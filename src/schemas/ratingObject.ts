@@ -13,7 +13,6 @@ const PortableTextBlockSchema = z.object({
 export const RatingObjectSchema = z.object({
   _type: z.literal('rating-object'),
   _key: z.string(),
-  message: z.string(),
   rating: z.string(),
   motivation: z.array(PortableTextBlockSchema),
   title: z.string(),

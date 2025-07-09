@@ -1,4 +1,4 @@
-import { Breadcrumbs, SubPage as SubPageType } from '@/src/types'
+import { SubPageSchemaType, BreadcrumbsSchemaType } from '@/src/schemas'
 import ModularContent from '@/src/components/organisms/ModularContent'
 import SubPageHero from '@/src/components/molecules/SubPageHero'
 import getArticleStructuredData from '@/src/structured-data/articleStructuredData'
@@ -15,8 +15,15 @@ import FAQ from '@/src/components/organisms/FAQ'
 import TableOfContents from '@/src/components/organisms/TableOfContents'
 import AuthorBox from '@/src/components/organisms/AuthorBox'
 import { getHeadingObjectsByPage } from '@/src/lib/helpers'
+import PageService from '@/src/services/PageService'
 
-export default function SubPage({ page, breadcrumbs }: { page: SubPageType<true>; breadcrumbs: Breadcrumbs }) {
+const pageService = new PageService()
+
+export default function SubPage({ page, breadcrumbs }: { page: SubPageSchemaType; breadcrumbs: BreadcrumbsSchemaType }) {
+  const isValid = pageService.validateSchema(page)
+  if (!isValid) {
+    return null
+  }
   const { toplist, faqs, author, modifiedAt, reviewer } = page
   const headingObjects = getHeadingObjectsByPage({ objects: page.content })
   const schema = {
@@ -41,10 +48,10 @@ export default function SubPage({ page, breadcrumbs }: { page: SubPageType<true>
       />
       <SubPageHero page={page} />
       {breadcrumbs && <BreadCrumbs items={breadcrumbs} />}
-      {toplist.casinos.length ? (
+      {toplist?.casinos?.length ? (
         <CasinoList itemComponent={CasinoCard} casinos={toplist.casinos} title={toplist.title} description={toplist.description} />
       ) : null}
-      {faqs.length > 0 && (
+      {faqs?.length > 0 && (
         <div className="mb-16 bg-dark px-4 py-16 md:px-0">
           <Container>
             <FAQ

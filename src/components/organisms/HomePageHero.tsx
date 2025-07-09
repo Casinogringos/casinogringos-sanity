@@ -55,7 +55,7 @@ const HomePageHero = ({ page }: { page: SubPageSchemaType }) => {
                   >
                     {item.icon}
                     {item.label}
-                    <div className="ml-auto rounded-full bg-blue100 p-1.5 group-hover:bg-dark group-hover:text-white">
+                    <div className="ml-auto rounded-full bg-blue-100 p-1.5 group-hover:bg-dark group-hover:text-white">
                       <ArrowRight className="size-5" />
                     </div>
                   </Link>

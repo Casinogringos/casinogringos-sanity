@@ -14,7 +14,6 @@ const PortableTextBlockSchema = z.object({
 export const HowToObjectSchema = z.object({
   _type: z.literal('how-to-object'),
   _key: z.string(),
-  message: z.string(),
   description: PortableTextBlockSchema,
   steps: z.array(HowToStepObjectSchema),
   unorderedList: z.boolean(),

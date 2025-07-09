@@ -6,7 +6,6 @@ export const AISummaryObjectSchema = z.object({
   _type: z.literal('ai-summary-object'),
   _key: z.string(),
   title: z.string(),
-  message: z.string(),
   content: z.array(PortableTextBlockSchema),
 });
 

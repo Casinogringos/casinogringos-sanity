@@ -1,11 +1,6 @@
-import AuthorService from '@/src/services/AuthorService'
 import { AuthorSchemaType } from '@/src/schemas'
 
-const authorService = new AuthorService()
-
 export const getPersonStructuredData = (author: AuthorSchemaType) => {
-  const isValid = authorService.validateSchema(author)
-  if (!isValid) return null
 
   return {
     "@type": "Person",

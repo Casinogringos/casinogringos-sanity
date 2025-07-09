@@ -6,7 +6,6 @@ import { PortableTextBlockSchema } from './portableTextBlock';
 export const FAQObjectSchema = z.object({
   _type: z.literal('faq-object'),
   _key: z.string(),
-  message: z.string(),
   description: PortableTextBlockSchema,
   items: z.array(FaqItemObjectSchema),
 });

@@ -14,7 +14,6 @@ const PageReferenceSchema = z.object({
 export const ButtonObjectSchema = z.object({
   _type: z.literal('button-object'),
   _key: z.string(),
-  message: z.string(),
   title: z.string(),
   uri: z.object({
     current: z.string(),

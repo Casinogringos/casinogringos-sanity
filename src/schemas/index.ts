@@ -6,6 +6,7 @@ import { BonusObjectSchema, BonusObjectSchemaType } from './bonusObject';
 import { BonusTypeSchema, BonusTypeSchemaType } from './bonusType';
 import { ButtonObjectSchema, ButtonObjectSchemaType } from './buttonObject';
 import { ButtonsObjectSchema, ButtonsObjectSchemaType } from './buttonsObject';
+import { BasePagePreviewSchema, BasePagePreviewSchemaType } from './basePagePreview'
 import { CasinoSchema, CasinoSchemaType } from './casino';
 import { CasinoObjectSchema, CasinoObjectSchemaType } from './casinoObject';
 import { CasinoBonusSchema, CasinoBonusSchemaType } from './casinoBonus';
@@ -32,6 +33,7 @@ import { ListObjectSchema, ListObjectSchemaType } from './listObject';
 import { ModularContentSchema, ModularContentSchemaType } from './modularContent';
 import { OddsBonusSchema, OddsBonusSchemaType } from './oddsBonus';
 import { ParagraphObjectSchema, ParagraphObjectSchemaType } from './paragraphObject';
+import { NewsPagePreviewSchema, NewsPagePreviewSchemaType } from './newsPagePreview'
 import { PaymentMethodSchema, PaymentMethodSchemaType } from './paymentMethod';
 import { PaymentMethodTypeSchema, PaymentMethodTypeSchemaType } from './paymentMethodType';
 import { ProsAndConsObjectSchema, ProsAndConsObjectSchemaType } from './prosAndConsObject';
@@ -54,6 +56,8 @@ export {
     ButtonObjectSchema,
     ButtonsObjectSchema,
     CasinoSchema,
+    NewsPagePreviewSchema,
+    BasePagePreviewSchema,
     GuidePageSchema,
     CasinoObjectSchema,
     CasinoBonusSchema,
@@ -105,6 +109,8 @@ export type {
     ButtonsObjectSchemaType,
     CasinoSchemaType,
     CasinoObjectSchemaType,
+    NewsPagePreviewSchemaType,
+    BasePagePreviewSchemaType,
     CasinoBonusSchemaType,
     CasinoPageSchemaType,
     ColumnObjectSchemaType,

@@ -5,7 +5,6 @@ import { CasinoSchema } from './casino';
 export const AffiliateButtonObjectSchema = z.object({
   _type: z.literal('affiliate-button-object'),
   _key: z.string(),
-  message: z.string(),
   casino: CasinoSchema,
 });
 

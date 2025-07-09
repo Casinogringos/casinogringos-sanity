@@ -1,9 +1,7 @@
 import { z } from 'zod';
-import { BasePage } from '../types/basePage';
 import { AuthorSchema } from './author';
-import { ImageObjectSchema } from './imageObject';
 import { PortableTextBlockSchema } from './portableTextBlock';
-import { SanityImageSchema } from '@/src/schemas';
+import { ModularContentSchema, SanityImageSchema } from '@/src/schemas';
 
 // We'll define Toplist schema later to avoid circular dependencies
 const ToplistPlaceholder = z.object({
@@ -25,7 +23,9 @@ export const BasePageSchema = z.object({
   intro: z.array(PortableTextBlockSchema),
   author: AuthorSchema.optional(),
   _createdAt: z.string(),
+  originalPublishedAt: z.string().optional(),
   _updatedAt: z.string(),
+  originalModifiedAt: z.string().optional(),
   reviewer: AuthorSchema.optional(),
   faqs: z.array(
     z.object({
@@ -34,7 +34,7 @@ export const BasePageSchema = z.object({
       message: z.string().optional(),
     })
   ).optional(),
-  content: z.array(PortableTextBlockSchema),
+  content: ModularContentSchema,
   toplist: ToplistPlaceholder.optional(),
 });
 

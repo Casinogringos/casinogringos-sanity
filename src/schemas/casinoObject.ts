@@ -6,7 +6,6 @@ import { PortableTextBlockSchema } from './portableTextBlock';
 export const CasinoObjectSchema = z.object({
   _type: z.literal('casino-object'),
   _key: z.string(),
-  message: z.string(),
   casino: CasinoSchema,
   offer: PortableTextBlockSchema,
   description: PortableTextBlockSchema,
