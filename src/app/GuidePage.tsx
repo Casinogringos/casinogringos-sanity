@@ -1,14 +1,21 @@
 import ModularContent from '@/src/components/organisms/ModularContent'
 import { GuidePageSchemaType } from '@/src/schemas/guidePage'
 import { getBlogPostingStructuredData } from '@/src/structured-data/blogPostingStructuredData'
+import SanityImage from '@/src/components/atoms/SanityImage'
+import PostHeader from '@/src/components/molecules/PostHeader'
+import PageService from '@/src/services/PageService'
+
+const pageService = new PageService()
 
 export default function GuidePage({ page }: { page: GuidePageSchemaType }) {
+  const isValid = pageService.validateSchema(page)
+  if (!isValid) {
+    return null
+  }
   // const headings = getBlockHeadings(page?.editorBlocks);
   const schema = {
     '@context': 'https://schema.org',
-    '@graph': [
-      getBlogPostingStructuredData({ page }),
-    ],
+    '@graph': [getBlogPostingStructuredData({ page })],
   }
 
   return (
@@ -20,25 +27,20 @@ export default function GuidePage({ page }: { page: GuidePageSchemaType }) {
         }}
         key="guide-page-structured-data"
       />
-      {/*<div className="mx-auto mb-0 max-w-3xl px-4 pt-6 lg:px-0">*/}
-      {/*{page?.featuredImage && (*/}
-      {/*  <div className="mb-4 flex h-auto items-start overflow-hidden rounded-md lg:mb-8 lg:mt-8 lg:h-96">*/}
-      {/*    <ImageComponent*/}
-      {/*      image={page?.featuredImage?.node}*/}
-      {/*      priority={true}*/}
-      {/*      width={768}*/}
-      {/*      className="h-full w-full object-cover"*/}
-      {/*    />{" "}*/}
-      {/*  </div>*/}
-      {/*)}*/}
-      {/*<PostHeader*/}
-      {/*  title={page.title}*/}
-      {/*  author={page.author}*/}
-      {/*  modified={page.modified}*/}
-      {/*  shareTitle={page?.seo?.title}*/}
-      {/*  reviewedBy={page?.reviewer}*/}
-      {/*/>*/}
-      {/*</div>*/}
+      <div className="mx-auto mb-0 max-w-3xl px-4 pt-6 lg:px-0">
+        {page.featuredImage && (
+          <div className="mb-4 flex h-auto items-start overflow-hidden rounded-md lg:mb-8 lg:mt-8 lg:h-96">
+            <SanityImage
+              image={page.featuredImage.image}
+              altText={page.featuredImage.altText}
+              priority={true}
+              width={768}
+              className="h-full w-full object-cover"
+            />{' '}
+          </div>
+        )}
+        <PostHeader post={page} />
+      </div>
       {/*{headings.length > 2 && (*/}
       {/*  <div className="-mb-6 mt-4 px-4 lg:mt-5 lg:px-0">*/}
       {/*    <TableOfContents headings={headings} />*/}
