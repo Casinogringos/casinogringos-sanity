@@ -8,10 +8,10 @@ import {
   WhatsappIcon,
   WhatsappShareButton,
 } from 'next-share'
-import { usePathname } from 'next/navigation'
 import Link from '@/src/components/atoms/Link'
 import { AuthorSchemaType } from '@/src/schemas'
 import SanityImage from '@/src/components/atoms/SanityImage'
+import ShareButtons from '@/src/components/molecules/ShareButtons'
 
 const Avatar = ({
   author,
@@ -19,14 +19,16 @@ const Avatar = ({
   modified,
   shareTitle,
   date,
+  pathname,
 }: {
   author: AuthorSchemaType
   reviewer: AuthorSchemaType
   modified: string
   shareTitle: string
   date: string
+  pathname: string
 }) => {
-  const url = `${process.env.SITE_URL}${usePathname()}`
+  const url = `${process.env.SITE_URL}${pathname}`
 
   return (
     <>
@@ -102,7 +104,8 @@ const Avatar = ({
                   prefetch={false}
                   className="mt-4 flex items-center gap-3 text-base font-medium underline decoration-dashed"
                 >
-                  Läs alla artiklar av {`${author.firstName} ${author.lastName}`}{' '}
+                  Läs alla artiklar av{' '}
+                  {`${author.firstName} ${author.lastName}`}{' '}
                   <ArrowRightIcon className="h-5 w-5" />
                 </Link>
               </div>
@@ -146,15 +149,7 @@ const Avatar = ({
         </div>
         <div className="hidden items-center gap-x-1 md:flex">
           <span className="mr-1 text-xs">Dela:</span>
-          <FacebookShareButton url={url} quote={shareTitle} title={shareTitle}>
-            <FacebookIcon size={24} round />
-          </FacebookShareButton>
-          <TwitterShareButton url={url} title={shareTitle}>
-            <TwitterIcon size={24} round />
-          </TwitterShareButton>
-          <WhatsappShareButton url={url} title={shareTitle}>
-            <WhatsappIcon size={24} round />
-          </WhatsappShareButton>
+          <ShareButtons url={url} title={shareTitle} />
         </div>
       </div>
       <div className="mt-3 flex items-center gap-1 rounded-sm border border-gray200 px-3 py-2.5 text-xs text-slate700 md:mt-0 md:hidden">
@@ -164,15 +159,7 @@ const Avatar = ({
         </time>
         <div className="ml-auto flex items-center gap-x-1 md:hidden">
           <span className="mr-1">Dela:</span>
-          <FacebookShareButton url={url} quote={shareTitle} title={shareTitle}>
-            <FacebookIcon size={20} round />
-          </FacebookShareButton>
-          <TwitterShareButton url={url} title={shareTitle}>
-            <TwitterIcon size={20} round />
-          </TwitterShareButton>
-          <WhatsappShareButton url={url} title={shareTitle}>
-            <WhatsappIcon size={20} round />
-          </WhatsappShareButton>
+          <ShareButtons url={url} title={shareTitle} />
         </div>
       </div>
     </>
