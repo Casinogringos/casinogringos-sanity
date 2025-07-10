@@ -5,6 +5,7 @@ import type { SanityImage as SanityImageType } from '@/src/types'
 import { getClient } from '@/src/lib/client'
 import Image from 'next/image'
 import Placeholder from '@/src/components/atoms/Placeholder'
+import { SanityImageSchemaType } from '@/src/schemas'
 const client = getClient()
 
 const SanityImage = ({
@@ -12,11 +13,13 @@ const SanityImage = ({
   altText,
   width,
   className,
+  priority = false,
 }: {
-  image: SanityImageType
+  image: SanityImageSchemaType
   altText: string
   width: number
   className?: string
+  priority?: boolean
 }) => {
   const imageProps = useNextSanityImage(client, image)
   // console.log('image', image)
@@ -31,6 +34,7 @@ const SanityImage = ({
       sizes="(max-width: 800px) 100vw, 800px"
       // width={width}
       className={className}
+      priority={priority}
     />
   )
 }

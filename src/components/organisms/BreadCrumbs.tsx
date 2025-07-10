@@ -23,7 +23,7 @@ export default function BreadCrumbs({
     })
   if (index) breadcrumbs.unshift(index)
   return (
-    <div className="overflow-x-auto border-b border-b-gray200 bg-white py-2">
+    <div className="overflow-x-auto border-b border-b-gray-200 bg-white py-2">
       <Container>
         <nav id="breadcrumb" aria-label="Breadcrumb">
           <ol
@@ -42,7 +42,7 @@ export default function BreadCrumbs({
                 itemProp="item"
                 itemType="https://schema.org/WebPage"
                 prefetch={false}
-                className="mr-2 block text-xs font-medium leading-7 text-gray700 hover:text-primary"
+                className="mr-2 block text-xs font-medium leading-7 text-gray-700 hover:text-primary"
               >
                 <span itemProp="name">Hem</span>
               </Link>
@@ -57,7 +57,7 @@ export default function BreadCrumbs({
                 className="!ml-0 flex items-center"
               >
                 <ChevronRight
-                  className="ml-0 size-4 flex-shrink-0 pl-0 text-gray400"
+                  className="ml-0 size-4 flex-shrink-0 pl-0 text-gray-400"
                   aria-hidden="true"
                 />
                 {item.url ? (
@@ -66,7 +66,7 @@ export default function BreadCrumbs({
                     itemProp="item"
                     itemType="https://schema.org/WebPage"
                     prefetch={false}
-                    className="lg:m-l3 hover:text-slate-500 mx-2 text-xs text-gray500"
+                    className="lg:m-l3 hover:text-slate-500 mx-2 text-xs text-gray-500"
                   >
                     <span itemProp="name">{item.text}</span>
                   </Link>
@@ -74,7 +74,7 @@ export default function BreadCrumbs({
                   <div
                     itemProp="item"
                     itemType="https://schema.org/WebPage"
-                    className="lg:m-l3 hover:text-slate-500 ml-2 text-xs text-gray500"
+                    className="lg:m-l3 hover:text-slate-500 ml-2 text-xs text-gray-500"
                   >
                     <span itemProp="name">{item.text}</span>
                   </div>

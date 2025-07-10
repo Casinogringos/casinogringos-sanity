@@ -7,7 +7,20 @@ export const AuthorSchema = z.object({
   slug: z.object({
     current: z.string(),
   }),
+  firstName: z.string(),
+  lastName: z.string(),
   name: z.string(),
+  description: z.string().optional(),
+  userType: z.object({
+    role: z.string(),
+    email: z.string().optional(),
+  }),
+  seo: z.object({
+    social: z.object({
+      linkedIn: z.string().optional(),
+    }),
+  }),
+  role: z.string(),
   linkedIn: z.string().optional(),
   avatar: ImageObjectSchema,
   email: z.string().optional(),

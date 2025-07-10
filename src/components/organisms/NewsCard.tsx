@@ -24,7 +24,7 @@ const NewsCard = ({ item }: { item: NewsPageSchemaType }) => {
       </div>
       <div className="px-4">
         <div className="mt-4 flex items-center gap-x-4 text-xs text-slate500">
-          <Date dateString={item._createdAt} />
+          <Date dateString={item.originalPublishedAt ?? item._createdAt} />
         </div>
         <h3 className="text-gray900 group-hover:text-gray-600 mt-2 text-lg font-medium leading-6">
           <span />

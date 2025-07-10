@@ -1,5 +1,7 @@
 // import { parseDocument } from 'htmlparser2'
 import { Object as ObjectType } from '@/src/types'
+import { ObjectSchemaType } from '@sanity/types'
+import { ModularContentSchemaType } from '@/src/schemas'
 
 export const removeLeadingSubString = (str, subStr) => {
   if (str) {
@@ -202,7 +204,7 @@ export const setSessionToken = (key, value) => {
   window.sessionStorage.setItem(key, value)
 }
 
-export const getHeadingObjectsByPage = ({ objects }: { objects: ObjectType[] }) => {
+export const getHeadingObjectsByPage = ({ objects }: { objects: ModularContentSchemaType }) => {
   return objects.filter((object) => {
     return object._type === 'heading-object'
   })

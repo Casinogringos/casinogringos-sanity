@@ -8,23 +8,24 @@ import {
   WhatsappIcon,
   WhatsappShareButton,
 } from 'next-share'
-import Image from 'next/image'
-import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import LinkComponent from '@/src/components/atoms/Link'
+import Link from '@/src/components/atoms/Link'
+import { AuthorSchemaType } from '@/src/schemas'
+import SanityImage from '@/src/components/atoms/SanityImage'
 
-export default function Avatar({
+const Avatar = ({
   author,
-  reviewedBy,
+  reviewer,
   modified,
   shareTitle,
   date,
-}) {
-  const isAuthorHaveFullName = author?.node?.firstName && author?.node?.lastName
-  const name = isAuthorHaveFullName
-    ? `${author.node.firstName} ${author.node.lastName}`
-    : author.node.name || null
-
+}: {
+  author: AuthorSchemaType
+  reviewer: AuthorSchemaType
+  modified: string
+  shareTitle: string
+  date: string
+}) => {
   const url = `${process.env.SITE_URL}${usePathname()}`
 
   return (
@@ -32,48 +33,46 @@ export default function Avatar({
       <div className="flex gap-x-6 border-b border-t border-gray100 py-4 md:justify-between lg:mt-5">
         <div className="flex gap-3">
           <div className="relative h-10 w-10 rounded-full">
-            <Image
-              src={author.node.avatar.url}
+            <SanityImage
+              image={author.avatar.image}
               width={96}
-              height={96}
               className="rounded-full"
-              alt={name}
+              altText={author.avatar.altText}
             />
           </div>
           <div>
             <div className="text-xs font-medium text-slate700">
-              {author?.node?.userType.role}
+              {author.role}
             </div>
             <div className="has-tooltip relative block w-fit items-center gap-1 text-sm">
-              <LinkComponent
+              <Link
                 className="flex w-fit text-[15px] font-medium"
-                href={author?.node?.uri}
+                href={`/om-oss/${author.slug}`}
                 prefetch={false}
               >
-                {name}
-              </LinkComponent>
+                <span>{author.name}</span>
+              </Link>
               <div className="tooltip text-gray-100 left-1/2 mx-auto hidden min-w-96 -translate-x-1/2 rounded-md border border-slate200 bg-gray50 p-5 text-sm opacity-100 shadow-sm transition-opacity md:block">
                 {' '}
                 <div className="flex gap-4">
                   <div className="relative mt-0.5 h-12 w-12 flex-shrink-0 rounded-full">
-                    <Image
-                      src={author.node.avatar.url}
+                    <SanityImage
+                      image={author.avatar.image}
                       width={96}
-                      height={96}
                       className="rounded-full"
-                      alt={name}
+                      altText={`${author.firstName} ${author.lastName}`}
                     />
                   </div>
                   <div>
-                    <strong className="text-base font-medium">{name}</strong>{' '}
+                    <strong className="text-base font-medium">{`${author.firstName} ${author.lastName}`}</strong>{' '}
                     <div className="text-xs font-medium text-slate700">
-                      {author?.node?.userType.role}
+                      {author.role}
                     </div>
                     <div className="ml-auto mt-1 flex gap-1.5">
-                      {author?.node?.seo?.social?.linkedIn && (
+                      {author.linkedIn && (
                         <Link
                           className="rounded-md bg-slate200 p-1 text-slate500"
-                          href={author?.node.seo?.social?.linkedIn}
+                          href={author.linkedIn}
                           title="LinkedIn"
                           target="_blank"
                           rel="nofollow noopener noreferrer"
@@ -81,10 +80,10 @@ export default function Avatar({
                           <Linkedin className="h-4 w-4" />
                         </Link>
                       )}
-                      {author?.node.userType?.email && (
+                      {author.email && (
                         <Link
                           className="rounded-md bg-slate200 p-1 text-slate500"
-                          href={`mailto:${author?.node.userType?.email}`}
+                          href={`mailto:${author.email}`}
                           title="E-post"
                           target="_blank"
                           rel="nofollow noopener noreferrer"
@@ -96,16 +95,16 @@ export default function Avatar({
                   </div>
                 </div>
                 <div className="mt-4 text-sm font-normal text-slate600">
-                  {author?.node?.description}
+                  {author.description}
                 </div>
-                <LinkComponent
-                  href={author?.node?.uri}
+                <Link
+                  href={`/om-oss/${author.slug}`}
                   prefetch={false}
                   className="mt-4 flex items-center gap-3 text-base font-medium underline decoration-dashed"
                 >
-                  Läs alla artiklar av {author?.node.name}{' '}
+                  Läs alla artiklar av {`${author.firstName} ${author.lastName}`}{' '}
                   <ArrowRightIcon className="h-5 w-5" />
-                </LinkComponent>
+                </Link>
               </div>
               {/* <CheckBadgeIcon className="h-4 w-4 text-blue400" /> */}
             </div>
@@ -125,16 +124,16 @@ export default function Avatar({
             )}
           </div> */}
         </div>
-        {reviewedBy && (
+        {reviewer && (
           <div className="text-xs">
             <span>Faktakontrollerad av</span>
-            <LinkComponent
-              href={`/om-oss/${reviewedBy.slug}`}
+            <Link
+              href={`/om-oss/${reviewer.slug}`}
               className="block text-[15px] font-medium"
               prefetch={false}
             >
-              {reviewedBy.username}
-            </LinkComponent>
+              {`${reviewer.firstName} ${reviewer.lastName}`}
+            </Link>
           </div>
         )}
         <div className="mt-4 hidden text-xs md:mt-0 md:block">
@@ -179,3 +178,5 @@ export default function Avatar({
     </>
   )
 }
+
+export default Avatar
