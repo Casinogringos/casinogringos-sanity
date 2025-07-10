@@ -17,7 +17,7 @@ const SanityImage = ({
 }: {
   image: SanityImageSchemaType
   altText: string
-  width: number
+  width?: number
   className?: string
   priority?: boolean
 }) => {
@@ -30,11 +30,9 @@ const SanityImage = ({
     <Image
       {...imageProps}
       alt={altText}
-      style={{ width: '100%', height: 'auto' }}
-      sizes="(max-width: 800px) 100vw, 800px"
-      // width={width}
       className={className}
       priority={priority}
+      width={width}
     />
   )
 }

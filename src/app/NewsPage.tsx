@@ -3,19 +3,22 @@ import Container from '@/src/components/atoms/Container'
 import SanityImage from '@/src/components/atoms/SanityImage'
 import PostHeader from '@/src/components/molecules/PostHeader'
 import Heading from '@/src/components/atoms/Heading'
-import { NewsPageSchemaType } from '@/src/schemas'
+import { BreadcrumbsSchemaType, NewsPageSchemaType } from '@/src/schemas'
 import { getHeadingObjectsByPage } from '@/src/lib/helpers'
 import TableOfContents from '@/src/components/organisms/TableOfContents'
 import AuthorBox from '@/src/components/organisms/AuthorBox'
 import NewsCard from '@/src/components/organisms/NewsCard'
 import getNewsArticleStructuredData from '@/src/structured-data/newsArticleStructuredData'
+import BreadCrumbs from '@/src/components/organisms/BreadCrumbs'
 
 export default function NewsPage({
   page,
   similarNews,
+  breadcrumbs,
 }: {
   page: NewsPageSchemaType
   similarNews: NewsPageSchemaType[]
+  breadcrumbs: BreadcrumbsSchemaType
 }) {
   const headingObjects = getHeadingObjectsByPage({ objects: page.content })
   const schema = {
@@ -31,24 +34,27 @@ export default function NewsPage({
         }}
         key="news-page-structured-data"
       />
-      <div className="mx-auto mb-0 max-w-3xl px-4 pt-6 lg:px-0">
+      <BreadCrumbs items={breadcrumbs} />
+      <Container narrow>
         {page.featuredImage && (
-          <div className="mb-4 flex h-auto items-start overflow-hidden rounded-md lg:mb-8 lg:mt-8 lg:h-96">
+          <div className="mb-4 flex h-auto items-start overflow-hidden rounded-md lg:mb-8 lg:mt-8 lg:h-96 relative">
             <SanityImage
               image={page.featuredImage.image}
               altText={page.featuredImage.altText}
               priority={true}
               width={768}
-              className="h-full w-full object-cover"
+              className={'object-cover h-full w-full'}
             />{' '}
           </div>
         )}
         <PostHeader post={page} />
-      </div>
+      </Container>
       {headingObjects.length > 2 && (
-        <div className="-mb-6 mt-4 px-4 lg:mt-5 lg:px-0">
-          <TableOfContents headings={headingObjects} />
-        </div>
+        <Container narrow>
+          <div className="mt-4 px-4 lg:mt-5 lg:px-0">
+            <TableOfContents headings={headingObjects} />
+          </div>
+        </Container>
       )}
       <ModularContent objects={page.content} />
       {page.author && (
@@ -61,7 +67,7 @@ export default function NewsPage({
         </div>
       )}
       {similarNews && (
-        <section className={'bg-gray100 py-10'}>
+        <section className={'bg-gray-100 py-10'}>
           <Container>
             <Heading level={3} className={'mb-4 text-2xl text-gray700'}>
               <span>Fler nyheter</span>

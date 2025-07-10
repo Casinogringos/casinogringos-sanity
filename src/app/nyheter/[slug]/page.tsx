@@ -50,7 +50,19 @@ export default async function Page(props: { params: Params }) {
   // const similarArticles = articles?.edges3
   //   .filter(({ node }) => node.id !== article?.id)
   //   .splice(0, 4)
-
+  const breadcrumbs = [
+    {
+      text: 'Hem',
+      url: '/',
+    },
+    {
+      text: 'Nyheter',
+      url: '/nyheter',
+    },
+    {
+      text: newsPage.title,
+    },
+  ]
   if (!newsPage) return notFound()
 
   return (
@@ -61,7 +73,7 @@ export default async function Page(props: { params: Params }) {
       {/*    index={{ text: 'Nyheter', url: `${process.env.SITE_URL}/nyheter` }}*/}
       {/*  />*/}
       {/*)}*/}
-      <NewsPage page={newsPage} />
+      <NewsPage page={newsPage} breadcrumbs={breadcrumbs} />
     </>
   )
 }
