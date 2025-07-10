@@ -1,4 +1,4 @@
-import GuidesIndex from '@/src/app/GuidesIndex'
+import GuideIndex from '@/src/app/GuideIndex'
 import Pagination from '@/src/components/organisms/Pagination'
 import { getGuidePageCount, getGuidePagePreviews } from '@/src/lib/api'
 
@@ -21,7 +21,7 @@ export default async function Page(props: {
   return (
     <>
       {/*<BreadCrumbs items={breadcrumbItems} />*/}
-      <GuidesIndex guides={guides} />
+      <GuideIndex guidePages={guides} />
       <Pagination
         currentPage={pageNumber}
         numPages={Math.ceil(guidesCount / 24)}

@@ -11,8 +11,11 @@ import { NewsPagePreviewSchemaType } from '@/src/schemas'
 import PageService from '@/src/services/PageService'
 const pageService = new PageService()
 
-const NewsIndex = ({ newsPages }: { newsPages: NewsPagePreviewSchemaType[] }) => {
-  console.log('newsPages', newsPages)
+const NewsIndex = ({
+  newsPages,
+}: {
+  newsPages: NewsPagePreviewSchemaType[]
+}) => {
   const isValid = () => {
     for (const page of newsPages) {
       if (!pageService.validateSchema(page, true)) {

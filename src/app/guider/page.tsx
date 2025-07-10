@@ -1,5 +1,5 @@
 // import { getPageBySlug } from '@/src/lib/api'
-import GuidesIndex from '@/src/app/GuidesIndex'
+import GuideIndex from '@/src/app/GuideIndex'
 // import Pagination from '@/src/app/components/organisms/Pagination'
 // import BreadCrumbs from '@/src/app/components/organisms/BreadCrumbs'
 // import { extractSlugFromUrl } from '@/src/lib/helpers'
@@ -36,13 +36,18 @@ import GuidesIndex from '@/src/app/GuidesIndex'
 //   return metadata as Metadata
 // }
 
-import { getGuidePageCount, getGuidePagePreviews } from '@/src/lib/api'
+import {
+  getGuidePageCount,
+  getGuidePagePreviews,
+  getPageBySlug,
+} from '@/src/lib/api'
 import Pagination from '@/src/components/organisms/Pagination'
 import BreadCrumbs from '@/src/components/organisms/BreadCrumbs'
 
 const Page = async () => {
   const guides = await getGuidePagePreviews({ count: 24, offset: 0 })
   const guidesCount = await getGuidePageCount()
+  const page = await getPageBySlug({ slug: '/guider' })
   // console.log('guidesCount', guidesCount)
   // const guidesCount = allGuides.edges.length
   const pageCount = Math.ceil(guidesCount / 24)
@@ -56,7 +61,7 @@ const Page = async () => {
   return (
     <>
       <BreadCrumbs items={breadcrumbItems} />
-      <GuidesIndex guides={guides} />
+      <GuideIndex guidePages={guides} page={page} />
       {pageCount > 1 && (
         <Pagination
           currentPage={1}
