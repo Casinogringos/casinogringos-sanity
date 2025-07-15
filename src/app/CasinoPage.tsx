@@ -4,7 +4,13 @@ import { CasinoPageSchemaType } from '@/src/schemas'
 import getProductStructuredData from '@/src/structured-data/productStructuredData'
 import { getOrganizationStructuredData } from '../structured-data/organizationStructuredData'
 
-const CasinoPage = ({ page }: { page: CasinoPageSchemaType }) => {
+const CasinoPage = ({
+  casinoPage,
+  similarCasinoPages,
+}: {
+  casinoPage: CasinoPageSchemaType
+  similarCasinoPages: CasinoPageSchemaType[]
+}) => {
   // const author = page?.author.node
   // const siteURL = process.env.SITE_URL
   // const headings = getBlockHeadings(page?.editorBlocks)
@@ -12,7 +18,7 @@ const CasinoPage = ({ page }: { page: CasinoPageSchemaType }) => {
   // const { finalRating } = casinoService.getCasinoRating({ page: page })
   const schema = {
     '@context': 'https://schema.org',
-    '@graph': [getProductStructuredData({ productPage: page })],
+    '@graph': [getProductStructuredData({ productPage: casinoPage })],
   }
 
   return (
@@ -57,7 +63,7 @@ const CasinoPage = ({ page }: { page: CasinoPageSchemaType }) => {
         {/*    </div>*/}
         {/*  )}*/}
         {/*</div>*/}
-        {page.content && <ModularContent objects={page.content} />}
+        {casinoPage.content && <ModularContent objects={casinoPage.content} />}
         {/*{page?.author && (*/}
         {/*  <div className="mx-4 lg:mx-0">*/}
         {/*    <AuthorBox*/}

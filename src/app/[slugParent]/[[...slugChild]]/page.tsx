@@ -1,88 +1,96 @@
 import SubPage from '@/src/app/SubPage'
-// import { getPostPreviews, getPageBySlug, getStaticParams } from '@/src/lib/api'
 import { notFound } from 'next/navigation'
 import CasinoPage from '@/src/app/CasinoPage'
-import { extractSlugFromUrl } from '@/src/lib/helpers'
 import { Metadata } from 'next'
-import { Post as PostType, Page as PageType } from '@/src/types'
-import { getCasinoPageBySlug, getPageBySlug } from '@/src/lib/api'
+import {
+  getCasinoPageBySlug,
+  getPageBySlug,
+  getSimilarCasinoPages,
+  getStaticParams,
+} from '@/src/lib/api'
 import { formatPageSlug } from '@/src/lib/utility'
+import { CasinoPageSchemaType, SubPageSchemaType } from '@/src/schemas'
+import { urlFor } from '@/src/lib/client'
 
 type Params = Promise<{
   slugParent: string
   slugChild: string[]
 }>
 
-// export async function generateStaticParams() {
-//   const allPages = await getStaticParams('page')
-//   const allPosts = await getStaticParams('post')
-//   const allParams = [
-//     ...allPages.filter(({ node }) => {
-//       return (
-//         node.uri !== '/' &&
-//         node.uri !== '/guider' &&
-//         node.uri !== '/nyheter' &&
-//         node.uri !== '/slots' &&
-//         node.uri !== '/om-oss'
-//       )
-//     }),
-//     ...allPosts,
-//   ]
-//
-//   return allParams.map(({ node }) => {
-//     console.log('node', node)
-//     if (!node.uri) return
-//     const slugs = node.uri.split('/').filter((slug) => slug !== '')
-//     const parentSlug = slugs[0]
-//     const childSlugs = slugs.splice(1, slugs.length - 1)
-//     return { slugParent: parentSlug, slugChild: childSlugs ?? [] }
-//   })
-// }
+export async function generateStaticParams() {
+  const allPages: SubPageSchemaType[] = await getStaticParams('pages')
+  const allCasinoPages: CasinoPageSchemaType[] =
+    await getStaticParams('casino-pages')
+  const allParams = [
+    ...allPages.filter((page) => {
+      return (
+        page.slug.current !== '/' &&
+        page.slug.current !== '/guider' &&
+        page.slug.current !== '/nyheter' &&
+        page.slug.current !== '/slots' &&
+        page.slug.current !== '/om-oss'
+      )
+    }),
+    ...allCasinoPages,
+  ]
 
-// const metadataObject = (page: PostType | PageType) => {
-//   const siteURL = process.env.SITE_URL
-//
-//   return {
-//     title: page.seo.title,
-//     description: page.seo.metaDesc,
-//     locale: 'sv_SE',
-//     alternates: {
-//       canonical: process.env.SITE_URL + extractSlugFromUrl(page.seo.canonical),
-//     },
-//     openGraph: {
-//       title: page.seo.title,
-//       description: page.seo.metaDesc,
-//       url: `${siteURL}${page.uri}`,
-//       siteName: page.seo.opengraphSiteName,
-//       images: [
-//         {
-//           url: page.seo.opengraphImage?.sourceUrl ?? '',
-//           alt: page.seo.opengraphImage?.altText ?? '',
-//           width: page.seo.opengraphImage?.mediaDetails.width ?? 1200,
-//           height: page.seo.opengraphImage?.mediaDetails.height ?? 630,
-//         },
-//       ],
-//     },
-//   }
-// }
+  return allParams.map((param) => {
+    if (!param.slug?.current) return
+    const slugs = param.slug.current.split('/').filter((slug) => slug !== '')
+    const parentSlug = slugs[0]
+    const childSlugs = slugs.splice(1, slugs.length - 1)
+    return { slugParent: parentSlug, slugChild: childSlugs ?? [] }
+  })
+}
 
-// export async function generateMetadata(props: { params: Params }) {
-//   const params = await props.params
-//   const { slugParent, slugChild } = params
-//   let pageUri = `/${slugParent}/`
-//   if (Array.isArray(slugChild) && slugChild.length > 0) {
-//     pageUri = `${pageUri}${slugChild.join('/')}/`
-//   }
-//   const page = await getNodeByUri({ uri: pageUri })
-//   if (page?.__typename === 'Page') {
-//     return metadataObject(page) as Metadata
-//   }
-//   const post = await getNodeByUri({ uri: slugParent })
-//   if (post?.__typename === 'Post') {
-//     return metadataObject(post) as Metadata
-//   }
-//   return notFound()
-// }
+const metadataObject = (page: CasinoPageSchemaType | SubPageSchemaType) => {
+  const siteURL = process.env.SITE_URL
+
+  return {
+    title: page.seoTitle,
+    description: page.seoDescription,
+    locale: 'sv_SE',
+    alternates: {
+      canonical: new URL(page.canonical ?? ''),
+    },
+    openGraph: {
+      title: page.seoTitle,
+      description: page.seoDescription,
+      url: new URL(`${siteURL}${page.slug.current}`),
+      siteName: 'Casinogringos',
+      images: [
+        {
+          url: urlFor(page.seoImage),
+          alt: page.seoImage.alt,
+          width: page.seoImage.asset?.metadata.dimensions.width ?? 1200,
+          height: page.seoImage.asset?.metadata.dimensions.height ?? 630,
+        },
+      ],
+    },
+  }
+}
+
+export async function generateMetadata(props: { params: Params }) {
+  const params = await props.params
+  const { slugParent, slugChild } = params
+  let pageUri = `/${slugParent}/`
+  if (Array.isArray(slugChild) && slugChild.length > 0) {
+    pageUri = `${pageUri}${slugChild.join('/')}/`
+  }
+  const page: SubPageSchemaType = await getPageBySlug({
+    slug: formatPageSlug(pageUri),
+  })
+  if (page?._type === 'pages') {
+    return metadataObject(page)
+  }
+  const casinoPage: CasinoPageSchemaType = await getCasinoPageBySlug({
+    slug: formatPageSlug(slugParent),
+  })
+  if (casinoPage?._type === 'casino-pages') {
+    return metadataObject(casinoPage)
+  }
+  return notFound()
+}
 
 export default async function Page(props: { params: Params }) {
   const params = await props.params
@@ -91,23 +99,35 @@ export default async function Page(props: { params: Params }) {
   if (Array.isArray(slugChild) && slugChild.length > 0) {
     pageUri = `${pageUri}${slugChild.join('/')}/`
   }
-  const page = (await getPageBySlug({
+  const page: SubPageSchemaType = await getPageBySlug({
     slug: formatPageSlug(pageUri),
-  })) as PageType
+  })
+  const breadcrumbs = [
+    {
+      text: 'Hem',
+      url: '/',
+    },
+  ]
   if (page?._type === 'pages') {
-    return <SubPage page={page} />
+    return <SubPage page={page} breadcrumbs={breadcrumbs} />
   }
-  const casinoPage = (await getCasinoPageBySlug({
+  const casinoPage: CasinoPageSchemaType = await getCasinoPageBySlug({
     slug: formatPageSlug(slugParent),
-  })) as PostType
+  })
   if (!casinoPage) {
     return notFound()
   }
-  // const posts = await getPostPreviews({ count: 5 })
-  // const similarPosts = post
-  //   ? posts.edges.filter(({ node }) => node.id !== post.id).splice(0, 4)
-  //   : null
+  const similarCasinoPages: CasinoPageSchemaType[] =
+    await getSimilarCasinoPages({
+      id: casinoPage._id,
+      count: 5,
+    })
   if (casinoPage?._type === 'casino-pages') {
-    return <CasinoPage page={casinoPage} />
+    return (
+      <CasinoPage
+        casinoPage={casinoPage}
+        similarCasinoPages={similarCasinoPages}
+      />
+    )
   }
 }

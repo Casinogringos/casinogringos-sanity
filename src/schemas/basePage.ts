@@ -1,14 +1,14 @@
-import { z } from 'zod';
-import { AuthorSchema } from './author';
-import { PortableTextBlockSchema } from './portableTextBlock';
-import { ModularContentSchema, SanityImageSchema } from '@/src/schemas';
+import { z } from 'zod'
+import { AuthorSchema } from './author'
+import { PortableTextBlockSchema } from './portableTextBlock'
+import { ModularContentSchema, SanityImageSchema } from '@/src/schemas'
 
 // We'll define Toplist schema later to avoid circular dependencies
 const ToplistPlaceholder = z.object({
   title: z.string(),
   description: z.array(PortableTextBlockSchema),
   casinos: z.array(z.any()), // Will be replaced with CasinoPageSchema
-});
+})
 
 export const BasePageSchema = z.object({
   _id: z.string(),
@@ -20,6 +20,7 @@ export const BasePageSchema = z.object({
   seoImage: SanityImageSchema,
   seoDescription: z.string(),
   seoTitle: z.string(),
+  canonical: z.string().optional(),
   intro: z.array(PortableTextBlockSchema),
   author: AuthorSchema.optional(),
   _createdAt: z.string(),
@@ -27,15 +28,17 @@ export const BasePageSchema = z.object({
   _updatedAt: z.string(),
   originalModifiedAt: z.string().optional(),
   reviewer: AuthorSchema.optional(),
-  faqs: z.array(
-    z.object({
-      question: z.string(),
-      answer: z.string(),
-      message: z.string().optional(),
-    })
-  ).optional(),
+  faqs: z
+    .array(
+      z.object({
+        question: z.string(),
+        answer: z.string(),
+        message: z.string().optional(),
+      })
+    )
+    .optional(),
   content: ModularContentSchema,
   toplist: ToplistPlaceholder.optional(),
-});
+})
 
-export type BasePageSchemaType = z.infer<typeof BasePageSchema>;
+export type BasePageSchemaType = z.infer<typeof BasePageSchema>

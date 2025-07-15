@@ -13,6 +13,8 @@ import { guidePagePreviewsQuery } from '@/src/data/queries'
 import { guidePageCountQuery } from '@/src/data/queries'
 import { newsPagePreviewsQuery } from '@/src/data/queries'
 import { casinoPreviewsQuery } from '@/src/data/queries/casinoPreviewsQuery'
+import { staticParamsQuery } from '@/src/data/queries/staticParamsQuery'
+import { similarCasinoPagesQuery } from '@/src/data/queries/similarCasinoPagesQuery'
 const client = getClient()
 
 export const getPageBySlug = async ({ slug }: { slug: string }) => {
@@ -162,5 +164,31 @@ export const getCasinoPreviews = async ({ count }: { count: number }) => {
   } catch (e) {
     console.log(e)
     throw Error(`Failed to fetch casino previews`)
+  }
+}
+
+export const getStaticParams = async (type: 'pages' | 'casino-pages') => {
+  try {
+    const data = await client.fetch(staticParamsQuery({ type }))
+    return data
+  } catch (e) {
+    console.log(e)
+    throw Error(`Failed to fetch static params`)
+  }
+}
+
+export const getSimilarCasinoPages = async ({
+  id,
+  count = 5,
+}: {
+  id: string
+  count?: number
+}) => {
+  try {
+    const data = await client.fetch(similarCasinoPagesQuery({ id, count }))
+    return data
+  } catch (e) {
+    console.log(e)
+    throw Error(`Failed to fetch similar casino pages`)
   }
 }
