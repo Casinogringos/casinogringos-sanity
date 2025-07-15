@@ -13,19 +13,19 @@ export const getBlogPostingStructuredData = ({
   return {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
-    headline: page.title,
-    description: page.excerpt,
+    headline: page.seoTitle,
+    description: page.seoDescription,
     image: urlFor(page.seoImage),
     author: {
       '@type': 'Person',
       name: page.author.name,
-      url: `https://casinogringos.se/experter/${page.author.slug.current}`,
+      url: `https://casinogringos.se/om-oss/${page.author.slug.current}`,
       sameAs: [page.author.linkedIn],
     },
     reviewedBy: {
       '@type': 'Person',
       name: page.reviewer.name,
-      url: `https://casinogringos.se/experter/${page.reviewer.slug.current}`,
+      url: `https://casinogringos.se/om-oss/${page.reviewer.slug.current}`,
       sameAs: [page.reviewer.linkedIn],
     },
     publisher: {
@@ -33,14 +33,14 @@ export const getBlogPostingStructuredData = ({
       name: 'Casinogringos',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://casinogringos.se/images/logo.png',
+        url: 'https://casinogringos.se/casinogringos.webp',
       },
     },
     mainEntityOfPage: {
       '@type': 'WebPage',
-      '@id': 'https://casinogringos.se/blogg/uttag-leovegas',
+      '@id': `https://casinogringos.se/${page._type === 'guide-page' ? 'guider' : 'nyheter'}/${page.slug.current}`,
     },
-    datePublished: page._createdAt,
-    dateModified: page._updatedAt,
+    datePublished: page.originalPublishedAt ?? page._createdAt,
+    dateModified: page._updatedAt ?? page.originalModifiedAt,
   }
 }

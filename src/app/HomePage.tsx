@@ -17,20 +17,26 @@ import AuthorBox from '@/src/components/organisms/AuthorBox'
 import NewsCard from '@/src/components/organisms/NewsCard'
 import { getHeadingObjectsByPage } from '@/src/lib/helpers'
 import { SubPageSchemaType, NewsPageSchemaType } from '@/src/schemas'
+import PageService from '@/src/services/PageService'
 
-const HomePage = ({ page, news, breadcrumbs }: { page: SubPageSchemaType; news: NewsPageSchemaType[]; breadcrumbs: BreadcrumbsType }) => {
-  const { faqs, author, modifiedAt, reviewer } = page
+const pageService = new PageService()
+
+const HomePage = ({
+  page,
+  news,
+  breadcrumbs,
+}: {
+  page: SubPageSchemaType
+  news: NewsPageSchemaType[]
+  breadcrumbs: BreadcrumbsType
+}) => {
+  const isValid = pageService.validateSchema(page)
+  if (!isValid) return null
+  const { faqs, author, _updatedAt, reviewer } = page
   const headingObjects = getHeadingObjectsByPage({ objects: page.content })
   const schema = {
     '@context': 'https://schema.org',
-    '@graph': [
-      getArticleStructuredData(page),
-      getWebPageStructuredData(page),
-      getBreadcrumbListStructuredData(breadcrumbs),
-      getWebSiteStructuredData(),
-      getOrganizationStructuredData(),
-      getPersonStructuredData(page.author),
-    ],
+    '@graph': [getWebSiteStructuredData(), getOrganizationStructuredData()],
   }
 
   return (
@@ -43,13 +49,14 @@ const HomePage = ({ page, news, breadcrumbs }: { page: SubPageSchemaType; news: 
         key="homepage-structured-data"
       />
       <HomePageHero page={page} />
-      {page.toplist?.casinos.length > 0 &&
+      {page.toplist?.casinos.length > 0 && (
         <CasinoList
           casinos={page.toplist.casinos}
           title={page.toplist.title}
           description={page.toplist.description}
           itemComponent={CasinoCard}
-        />}
+        />
+      )}
       <NewsList itemComponent={NewsCard} items={news} />
       {headingObjects && headingObjects.length > 0 && (
         <Container narrow>
@@ -71,9 +78,7 @@ const HomePage = ({ page, news, breadcrumbs }: { page: SubPageSchemaType; news: 
       {faqs && faqs.length > 0 && (
         <div className="bg-dark pb-6 pt-12 lg:py-20">
           <div className="mx-auto max-w-4xl px-4 lg:px-0">
-            <FAQ
-              items={faqs}
-            />
+            <FAQ items={faqs} />
           </div>
         </div>
       )}

@@ -1,67 +1,59 @@
-import { AuthorSchemaType, CasinoSchema, CasinoSchemaType } from '@/src/schemas'
+import { CasinoPageSchemaType } from '@/src/schemas'
 import CasinoService from '@/src/services/CasinoService'
-import fs from 'fs'
+import { urlFor } from '@/src/lib/client'
 
 const casinoService = new CasinoService()
 
-const getProductStructuredData = ({product, author}: { product: CasinoSchemaType; author: AuthorSchemaType }) => {
-  const parse = CasinoSchema.safeParse(product)
-  const { finalRating } = casinoService.getCasinoRatings({ casino: product })
-  if (!parse.success) {
-    console.error(`Invalid product structured data:\n${product.name}\n`, parse.error)
-    fs.writeFileSync('structuredDataError.log', `\n\n${product.name}\n${JSON.stringify(parse.error)}`)
-    return null
-  }
+const getProductStructuredData = ({
+  productPage,
+}: {
+  productPage: CasinoPageSchemaType
+}) => {
+  const { casino } = productPage
+  const { finalRating } = casinoService.getCasinoRatings({
+    casino,
+  })
 
   return {
-    "@context": "https://schema.org/",
-    "@type": "Review",
-    "itemReviewed": {
-      "@type": "Organization",
-      "image": product.logo.src,
-      "name": product.name
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: casino.name,
+    image: urlFor(productPage.seoImage),
+    description: productPage.seoDescription,
+    brand: {
+      '@type': 'Brand',
+      name: casino.name,
     },
-    "reviewRating": {
-      "@type": "Rating",
-      "ratingValue": finalRating,
-      "bestRating": "5",
-      "worstRating": "1"
+    review: {
+      '@type': 'Review',
+      author: {
+        '@type': 'Person',
+        name: productPage.reviewer.name,
+        url: `https://casinogringos.se/experter/${productPage.reviewer.slug.current}`,
+      },
+      datePublished: productPage.originalPublishedAt ?? productPage._createdAt,
+      dateModified: productPage._updatedAt ?? productPage.originalModifiedAt,
+      reviewBody: casino.review,
+      reviewRating: {
+        '@type': 'Rating',
+        ratingValue: finalRating,
+        bestRating: '5',
+        worstRating: '1',
+      },
     },
-    "author": {
-      "@type": "Person",
-      "name": author.name,
-      "url": `https://casinogringos.se/om-oss/${author.slug.current}`,
-      "email": null,
-      "jobTitle": "Skribent",
-      "sameAs": author.linkedIn,
-      "image": {
-        "@type": "ImageObject",
-        "inLanguage": "sv-SE",
-        "id": "https://casinogringos.se/#/schema/person/image/",
-        "url": author.avatar.image.asset.url
-      }
+    author: {
+      '@type': 'Person',
+      name: productPage.author.name,
     },
-    "publisher": {
-      "@type": "Organization",
-      "name": "Casinogringos",
-      "url": "https://casinogringos.se",
-      "sameAs": [
-        "https://www.facebook.com/Casinogringos",
-        "https://www.instagram.com/casinogringos/",
-        "https://www.youtube.com/channel/UCeFbFMkDfTlLayuZmk_aXiA",
-        "https://www.twitch.tv/casinogringos",
-        "https://twitter.com/CasinoGringos"
-      ]
+    publisher: {
+      '@type': 'Organization',
+      name: 'Casinogringos',
+      url: 'https://casinogringos.se',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://casinogringos.se/casinogringos.webp',
+      },
     },
-    "isPartOf": [
-      {
-        "id": "https://casinogringos.se/#website",
-        "@type": "WebSite",
-        "name": "Casinogringos.se",
-        "url": "https://casinogringos.se",
-        "inLanguage": "sv-se"
-      }
-    ]
   }
 }
 

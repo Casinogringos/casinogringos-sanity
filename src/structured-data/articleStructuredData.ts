@@ -1,37 +1,33 @@
 import { SubPageSchemaType } from '@/src/schemas'
 import PageService from '@/src/services/PageService'
-const pageService = new PageService()
+import { urlFor } from '@/src/lib/client'
 
 const getArticleStructuredData = (page: SubPageSchemaType) => {
-  const isValid = pageService.validateSchema(page)
-  if (!isValid) return null
   if (!page.author) return null
 
   return {
-    "@type": "Article",
-    "@id": "https://casinogringos.se/#article",
-    "isPartOf": {
-      "@id": "https://casinogringos.se/"
+    '@type': 'Article',
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': `https://casinogringos.se/${page.slug.current}`,
     },
-    "author": {
-      "name": page.author.name,
-      "@id": `https://casinogringos.se/#/schema/person/${page.author._id}`,
+    headline: page.seoTitle,
+    description: page.seoDescription,
+    image: urlFor(page.seoImage),
+    author: {
+      '@type': 'Organization',
+      name: 'Casinogringos',
     },
-    "headline": page.title,
-    "datePublished": page._createdAt,
-    "dateModified": page._updatedAt,
-    "mainEntityOfPage": {
-      "@id": "https://casinogringos.se/"
+    publisher: {
+      '@type': 'Organization',
+      name: 'Casinogringos',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://casinogringos.se/casinogringos.webp',
+      },
     },
-    "wordCount": pageService.getWordCount(page),
-    "publisher": {
-      "@id": "https://casinogringos.se/#organization"
-    },
-    "image": {
-      "@id": "https://casinogringos.se/#primaryimage"
-    },
-    "thumbnailUrl": page.featuredImage.image.asset.url,
-    "inLanguage": "sv-SE"
+    datePublished: page.originalPublishedAt,
+    dateModified: page._updatedAt ?? page.originalModifiedAt,
   }
 }
 

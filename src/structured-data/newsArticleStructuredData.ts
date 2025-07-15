@@ -16,9 +16,9 @@ const getNewsArticleStructuredData = (page: NewsPageSchemaType) => {
     dateModified: page._updatedAt ?? page.originalModifiedAt,
     author: {
       '@type': 'Person',
-      name: `${page.author.firstName} ${page.author.lastName}`,
-      url: 'https://casinogringos.se/experter/lisa-andersson',
-      sameAs: ['https://www.linkedin.com/in/lisaandersson'],
+      name: page.author.name,
+      url: `https://casinogringos.se/om-oss/${page.author.slug.current}`,
+      sameAs: [page.author.linkedIn],
     },
     publisher: {
       '@type': 'Organization',
@@ -26,7 +26,7 @@ const getNewsArticleStructuredData = (page: NewsPageSchemaType) => {
       url: 'https://casinogringos.se',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://casinogringos.se/images/logo.png',
+        url: 'https://casinogringos.se/casinogringos.webp',
       },
     },
     mainEntityOfPage: {

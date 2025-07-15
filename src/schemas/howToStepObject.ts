@@ -1,21 +1,23 @@
-import { z } from 'zod';
-import { HowToStepObject } from '../types/howToStepObject';
-import { SanityImageSchema } from './sanityImage';
+import { z } from 'zod'
+import { HowToStepObject } from '../types/howToStepObject'
+import { SanityImageSchema } from './sanityImage'
 
 // Create a simple schema for PortableTextBlock since it's from an external library
-const PortableTextBlockSchema = z.object({
-  _type: z.string().optional(),
-  _key: z.string().optional(),
-  style: z.string().optional(),
-  markDefs: z.array(z.any()).optional(),
-  children: z.array(z.any()).optional(),
-}).passthrough();
+const PortableTextBlockSchema = z
+  .object({
+    _type: z.string().optional(),
+    _key: z.string().optional(),
+    style: z.string().optional(),
+    markDefs: z.array(z.any()).optional(),
+    children: z.array(z.any()).optional(),
+  })
+  .passthrough()
 
 export const HowToStepObjectSchema = z.object({
   _type: z.literal('how-to-step-object'),
-  image: SanityImageSchema,
+  image: SanityImageSchema.optional(),
   title: z.string(),
-  description: z.array(PortableTextBlockSchema),
-});
+  description: z.array(PortableTextBlockSchema).optional(),
+})
 
-export type HowToStepObjectSchemaType = z.infer<typeof HowToStepObjectSchema>;
+export type HowToStepObjectSchemaType = z.infer<typeof HowToStepObjectSchema>

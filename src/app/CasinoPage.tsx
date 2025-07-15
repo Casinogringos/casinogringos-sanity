@@ -1,5 +1,5 @@
 import ModularContent from '@/src/components/organisms/ModularContent'
-import getReviewStructuredData from '@/src/structured-data/reviewStructuredData'
+import getReviewStructuredData from '@/src/structured-data/casinoReviewStructuredData'
 import { CasinoPageSchemaType } from '@/src/schemas'
 import getProductStructuredData from '@/src/structured-data/productStructuredData'
 import { getOrganizationStructuredData } from '../structured-data/organizationStructuredData'
@@ -12,11 +12,7 @@ const CasinoPage = ({ page }: { page: CasinoPageSchemaType }) => {
   // const { finalRating } = casinoService.getCasinoRating({ page: page })
   const schema = {
     '@context': 'https://schema.org',
-    '@graph': [
-      getReviewStructuredData({ page }),
-      getProductStructuredData({ product: page.casino, author: page.author }),
-      getOrganizationStructuredData(),
-    ],
+    '@graph': [getProductStructuredData({ productPage: page })],
   }
 
   return (

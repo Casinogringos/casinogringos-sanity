@@ -19,7 +19,13 @@ import PageService from '@/src/services/PageService'
 
 const pageService = new PageService()
 
-export default function SubPage({ page, breadcrumbs }: { page: SubPageSchemaType; breadcrumbs: BreadcrumbsSchemaType }) {
+export default function SubPage({
+  page,
+  breadcrumbs,
+}: {
+  page: SubPageSchemaType
+  breadcrumbs: BreadcrumbsSchemaType
+}) {
   const isValid = pageService.validateSchema(page)
   if (!isValid) {
     return null
@@ -28,13 +34,7 @@ export default function SubPage({ page, breadcrumbs }: { page: SubPageSchemaType
   const headingObjects = getHeadingObjectsByPage({ objects: page.content })
   const schema = {
     '@context': 'https://schema.org',
-    '@graph': [
-      getArticleStructuredData(page),
-      getWebPageStructuredData(page),
-      getWebSiteStructuredData(),
-      getOrganizationStructuredData(),
-      getPersonStructuredData(page.author),
-    ],
+    '@graph': [getArticleStructuredData(page)],
   }
 
   return (
@@ -49,21 +49,23 @@ export default function SubPage({ page, breadcrumbs }: { page: SubPageSchemaType
       <SubPageHero page={page} />
       {breadcrumbs && <BreadCrumbs items={breadcrumbs} />}
       {toplist?.casinos?.length ? (
-        <CasinoList itemComponent={CasinoCard} casinos={toplist.casinos} title={toplist.title} description={toplist.description} />
+        <CasinoList
+          itemComponent={CasinoCard}
+          casinos={toplist.casinos}
+          title={toplist.title}
+          description={toplist.description}
+        />
       ) : null}
       {faqs?.length > 0 && (
         <div className="mb-16 bg-dark px-4 py-16 md:px-0">
           <Container>
-            <FAQ
-              items={faqs}
-            // subtitle={faqs.title}
-            />
+            <FAQ items={faqs} title={faqs.title} />
           </Container>
         </div>
       )}
       {headingObjects.length > 1 && (
         <div className={faqs.length > 0 ? '' : 'mt-16'}>
-          <Container>
+          <Container narrow>
             <TableOfContents headings={headingObjects} />
           </Container>
         </div>
