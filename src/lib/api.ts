@@ -6,6 +6,7 @@ import {
   slotPageBySlugQuery,
   slotPagePreviewsQuery,
   newsPageCountQuery,
+  sitemapQuery,
 } from '@/src/data/queries'
 import { casinoPageBySlugQuery } from '@/src/data/queries'
 import { guidePageBySlugQuery } from '@/src/data/queries'
@@ -15,6 +16,7 @@ import { newsPagePreviewsQuery } from '@/src/data/queries'
 import { casinoPreviewsQuery } from '@/src/data/queries/casinoPreviewsQuery'
 import { staticParamsQuery } from '@/src/data/queries/staticParamsQuery'
 import { similarCasinoPagesQuery } from '@/src/data/queries/similarCasinoPagesQuery'
+import { casinoPagesQuery } from '@/src/data/queries/casinoPagesQuery'
 const client = getClient()
 
 export const getPageBySlug = async ({ slug }: { slug: string }) => {
@@ -190,5 +192,27 @@ export const getSimilarCasinoPages = async ({
   } catch (e) {
     console.log(e)
     throw Error(`Failed to fetch similar casino pages`)
+  }
+}
+
+export const getSitemap = async (type: 'authors' | 'pages') => {
+  try {
+    const data = await client.fetch(sitemapQuery(type))
+    return data
+  } catch (e) {
+    console.log(e)
+    throw Error(`Failed to fetch sitemap`)
+  }
+}
+
+export const getAllCasinoPages = async () => {
+  try {
+    const data = await client.fetch(
+      casinoPagesQuery({ count: 1000, content: false })
+    )
+    return data
+  } catch (e) {
+    console.log(e)
+    throw Error(`Failed to fetch all casino pages`)
   }
 }

@@ -9,6 +9,7 @@ import { casinoPageBySlugQuery } from '@/src/data/queries/casinoPageBySlugQuery'
 import { guidePageBySlugQuery } from '@/src/data/queries/guidePageBySlugQuery'
 import { guidePageCountQuery } from '@/src/data/queries/guidePageCountQuery'
 import { guidePagePreviewsQuery } from '@/src/data/queries/guidePagePreviewsQuery'
+import { sitemapQuery } from '@/src/data/queries/sitemapQuery'
 
 export {
   pageBySlugQuery,
@@ -17,6 +18,7 @@ export {
   casinoPageBySlugQuery,
   newsPagePreviewsQuery,
   guidePageCountQuery,
+  sitemapQuery,
   guidePagePreviewsQuery,
   menuByIdQuery,
   slotPagePreviewsQuery,

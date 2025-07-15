@@ -43,7 +43,9 @@ export async function generateStaticParams() {
   })
 }
 
-const metadataObject = (page: CasinoPageSchemaType | SubPageSchemaType) => {
+const metadataObject = (
+  page: CasinoPageSchemaType | SubPageSchemaType
+): Metadata => {
   const siteURL = process.env.SITE_URL
 
   return {
@@ -60,7 +62,7 @@ const metadataObject = (page: CasinoPageSchemaType | SubPageSchemaType) => {
       siteName: 'Casinogringos',
       images: [
         {
-          url: urlFor(page.seoImage),
+          url: urlFor(page.seoImage).url(),
           alt: page.seoImage.alt,
           width: page.seoImage.asset?.metadata.dimensions.width ?? 1200,
           height: page.seoImage.asset?.metadata.dimensions.height ?? 630,
