@@ -7,7 +7,13 @@ import PageService from '@/src/services/PageService'
 
 const pageService = new PageService()
 
-export default function GuidePage({ page }: { page: GuidePageSchemaType }) {
+export default function GuidePage({
+  page,
+  similarGuidePages,
+}: {
+  page: GuidePageSchemaType
+  similarGuidePages: GuidePageSchemaType[]
+}) {
   const isValid = pageService.validateSchema(page)
   if (!isValid) {
     return null

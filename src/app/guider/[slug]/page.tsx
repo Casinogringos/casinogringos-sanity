@@ -1,47 +1,49 @@
-import { getGuidePageBySlug } from '@/src/lib/api'
+import {
+  getGuidePageBySlug,
+  getSimilarGuidePages,
+  getStaticParams,
+} from '@/src/lib/api'
 import { notFound } from 'next/navigation'
-import NewsPage from '@/src/app/NewsPage'
-import BreadCrumbs from '@/src/components/organisms/BreadCrumbs'
-import { extractSlugFromUrl } from '@/src/lib/helpers'
-import { Metadata } from 'next'
-import { Guide } from '@/src/types'
 import { formatPageSlug } from '@/src/lib/utility'
 import GuidePage from '@/src/app/GuidePage'
+import { Metadata } from 'next'
+import { GuidePageSchemaType } from '@/src/schemas'
+import { urlFor } from '@/src/lib/client'
 
 type Params = Promise<{ slug: string }>
 
-// export async function generateMetadata(props: { params: Params }) {
-//   const params = await props.params
-//   const item = (await getNodeByUri({
-//     uri: `/guider/${params?.slug}`,
-//   })) as Guide
-//   const siteURL = (process.env.SITE_URL as string) + item.uri
-//   const metadata = {
-//     title: item.seo.title ?? item.title,
-//     description: item.seo.metaDesc,
-//     alternates: {
-//       canonical: process.env.SITE_URL + extractSlugFromUrl(item.seo.canonical),
-//     },
-//     openGraph: {
-//       title: item.title,
-//       description: item.seo.metaDesc,
-//       url: siteURL,
-//       locale: 'sv_SE',
-//       siteName: item.seo.opengraphSiteName,
-//       type: item.seo.opengraphType,
-//       images: [
-//         {
-//           url: item.seo.opengraphImage?.sourceUrl ?? '',
-//           alt: item.seo.opengraphImage?.altText ?? '',
-//           width: item.seo.opengraphImage?.mediaDetails.width ?? 1200,
-//           height: item.seo.opengraphImage?.mediaDetails.height ?? 630,
-//         },
-//       ],
-//     },
-//   }
-//
-//   return metadata as Metadata
-// }
+export async function generateMetadata(props: { params: Params }) {
+  const params = await props.params
+  const guidePage: GuidePageSchemaType = (await getGuidePageBySlug({
+    slug: params.slug,
+  })) as Guide
+  const siteURL = (process.env.SITE_URL as string) + guidePage.slug.current
+  const metadata: Metadata = {
+    title: guidePage.seoTitle,
+    description: guidePage.seoDescription,
+    alternates: {
+      canonical: guidePage.canonical,
+    },
+    openGraph: {
+      title: guidePage.seoTitle,
+      description: guidePage.seoDescription,
+      url: siteURL,
+      locale: 'sv_SE',
+      siteName: 'Casinogringos',
+      type: guidePage.opengraphType,
+      images: [
+        {
+          url: urlFor(guidePage.seoImage).url(),
+          alt: guidePage.seoImage.alt,
+          width: guidePage.seoImage.asset?.metadata.dimensions.width ?? 1200,
+          height: guidePage.seoImage.asset?.metadata.dimensions.height ?? 630,
+        },
+      ],
+    },
+  }
+
+  return metadata
+}
 
 export default async function Page(props: {
   params: Promise<{ slug: string }>
@@ -51,26 +53,17 @@ export default async function Page(props: {
     slug: `/guider${formatPageSlug(params?.slug)}`,
   })) as Guide
   if (!guidePage) return notFound()
-  // const articles = await getGuidePreviews({ count: 5 })
-  // const similarArticles = articles.edges
-  //   .filter(({ node }) => node.id !== article.id)
-  //   .splice(0, 4)
+  const similarGuidePages = await getSimilarGuidePages({
+    id: guidePage.id,
+    count: 5,
+  })
 
-  return (
-    <>
-      {/*{article.seo.breadcrumbs && (*/}
-      {/*  <BreadCrumbs*/}
-      {/*    items={article.seo.breadcrumbs}*/}
-      {/*    index={{ text: 'Guider', url: `${process.env.SITE_URL}/guider` }}*/}
-      {/*  />*/}
-      {/*)}*/}
-      <GuidePage page={guidePage} />
-    </>
-  )
+  return <GuidePage page={guidePage} similarGuidePages={similarGuidePages} />
 }
 
-// export async function generateStaticParams() {
-//   const allGuides = await getStaticParams('guide')
-//
-//   return allGuides.map(({ node }) => ({ slug: node.slug }))
-// }
+export async function generateStaticParams() {
+  const allGuidesPages: GuidePageSchemaType[] =
+    await getStaticParams('guide-pages')
+
+  return allGuidesPages.map((page) => ({ slug: page.slug.current }))
+}

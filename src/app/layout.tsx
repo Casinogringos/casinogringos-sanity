@@ -1,5 +1,9 @@
 import Navigation from '@/src/components/organisms/Navigation'
-import { getCasinoPreviews, getMenuById } from '@/src/lib/api'
+import {
+  getCasinoPagePreviews,
+  getCasinoPreviews,
+  getMenuById,
+} from '@/src/lib/api'
 import Provider from '@/src/store/provider'
 import '@/src/styles/index.css'
 import '@/src/styles/styles.scss'
@@ -40,7 +44,7 @@ export default async function RootLayout({
   const sidebarMenu = await getMenuById({
     id: 'a88836bc-b13a-474e-a2f5-ff59513b526a',
   })
-  const sidebarCasinos = await getCasinoPreviews({
+  const sidebarCasinos = await getCasinoPagePreviews({
     count: 8,
   })
   const headersList = await headers()

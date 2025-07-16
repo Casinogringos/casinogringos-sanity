@@ -13,10 +13,11 @@ import { guidePageBySlugQuery } from '@/src/data/queries'
 import { guidePagePreviewsQuery } from '@/src/data/queries'
 import { guidePageCountQuery } from '@/src/data/queries'
 import { newsPagePreviewsQuery } from '@/src/data/queries'
-import { casinoPreviewsQuery } from '@/src/data/queries/casinoPreviewsQuery'
-import { staticParamsQuery } from '@/src/data/queries/staticParamsQuery'
-import { similarCasinoPagesQuery } from '@/src/data/queries/similarCasinoPagesQuery'
-import { casinoPagesQuery } from '@/src/data/queries/casinoPagesQuery'
+import { staticParamsQuery } from '@/src/data/queries'
+import { similarCasinoPagesQuery } from '@/src/data/queries'
+import { casinoPagesQuery } from '@/src/data/queries'
+import { similarGuidePagesQuery } from '@/src/data/queries'
+import { casinoPagePreviewsQuery } from '@/src/data/queries/casinoPagePreviewsQuery'
 const client = getClient()
 
 export const getPageBySlug = async ({ slug }: { slug: string }) => {
@@ -158,9 +159,9 @@ export const getMenuById = async ({ id }: { id: string }) => {
   }
 }
 
-export const getCasinoPreviews = async ({ count }: { count: number }) => {
+export const getCasinoPagePreviews = async ({ count }: { count: number }) => {
   try {
-    const data = await client.fetch(casinoPreviewsQuery({ count }))
+    const data = await client.fetch(casinoPagePreviewsQuery({ count }))
     // console.log('casinoPreviewsQuery', data)
     return data
   } catch (e) {
@@ -169,7 +170,9 @@ export const getCasinoPreviews = async ({ count }: { count: number }) => {
   }
 }
 
-export const getStaticParams = async (type: 'pages' | 'casino-pages') => {
+export const getStaticParams = async (
+  type: 'pages' | 'casino-pages' | 'guide-pages'
+) => {
   try {
     const data = await client.fetch(staticParamsQuery({ type }))
     return data
@@ -192,6 +195,22 @@ export const getSimilarCasinoPages = async ({
   } catch (e) {
     console.log(e)
     throw Error(`Failed to fetch similar casino pages`)
+  }
+}
+
+export const getSimilarGuidePages = async ({
+  id,
+  count = 5,
+}: {
+  id: string
+  count?: number
+}) => {
+  try {
+    const data = await client.fetch(similarGuidePagesQuery({ id, count }))
+    return data
+  } catch (e) {
+    console.log(e)
+    throw Error(`Failed to fetch similar guide pages`)
   }
 }
 

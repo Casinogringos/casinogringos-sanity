@@ -1,4 +1,4 @@
-import { z } from 'zod'
+import { z, ZodAny } from 'zod'
 import { AuthorSchema } from './author'
 import { PortableTextBlockSchema } from './portableTextBlock'
 import { ModularContentSchema, SanityImageSchema } from '@/src/schemas'
@@ -20,7 +20,8 @@ export const BasePageSchema = z.object({
   seoImage: SanityImageSchema,
   seoDescription: z.string(),
   seoTitle: z.string(),
-  canonical: z.string().optional(),
+  canonical: z.string(),
+  opengraphType: z.any(),
   intro: z.array(PortableTextBlockSchema),
   author: AuthorSchema.optional(),
   _createdAt: z.string(),

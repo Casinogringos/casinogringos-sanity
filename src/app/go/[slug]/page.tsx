@@ -1,5 +1,5 @@
 import { notFound } from 'next/navigation'
-import { getCasinoPageBySlug } from '@/lib/api'
+import { getCasinoPageBySlug } from '@/src/lib/api'
 import dynamicComponent from 'next/dynamic'
 import { getStaticParams } from '@/src/lib/api'
 import { CasinoPageSchemaType } from '@/src/schemas'
