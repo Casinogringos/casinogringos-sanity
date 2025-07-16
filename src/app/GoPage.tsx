@@ -4,13 +4,12 @@ import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import { useEffect } from 'react'
 import Container from '@/src/components/atoms/Container'
-import { CasinoPage } from '@/src/types'
-import SanityImage from '@/src/components/atoms/SanityImage'
+import { CasinoPageSchemaType } from '@/src/schemas'
 
-const GoItem = ({ item }: { item: CasinoPage}) => {
+const GoPage = ({ casinoPage }: { casinoPage: CasinoPageSchemaType }) => {
   const router = useRouter()
   const goToOperator = () => {
-    router.push(item.affiliateLink)
+    router.push(casinoPage.affiliateLink)
   }
   useEffect(() => {
     setTimeout(function () {
@@ -83,12 +82,16 @@ const GoItem = ({ item }: { item: CasinoPage}) => {
                 'h-28 w-28 md:h-32 md:w-32 relative rounded-md overflow-hidden'
               }
             >
-              <SanityImage image={item.featuredImage.image} altText={item.title} width={160} />
+              <Image
+                src={casinoPage.casino.logo.src}
+                alt={casinoPage.casino.logo.altText}
+                width={160}
+              />
             </div>
           </div>
           <p className={'text-center text-lg text-slate400'}>
             Om du inte blir skickad vidare till{' '}
-            <span className={'italic text-white'}>{item.title}</span> kan
+            <span className={'italic text-white'}>{casinoPage.title}</span> kan
             du&nbsp;
             <span
               className={'cursor-pointer text-primary'}
@@ -104,4 +107,4 @@ const GoItem = ({ item }: { item: CasinoPage}) => {
   )
 }
 
-export default GoItem
+export default GoPage

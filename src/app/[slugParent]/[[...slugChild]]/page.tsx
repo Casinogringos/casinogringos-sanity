@@ -45,7 +45,7 @@ export async function generateStaticParams() {
 
 const metadataObject = (
   page: CasinoPageSchemaType | SubPageSchemaType
-): Metadata => {
+): Metadata & { locale: string } => {
   const siteURL = process.env.SITE_URL
 
   return {

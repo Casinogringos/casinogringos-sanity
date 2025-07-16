@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import { z } from 'zod'
 
 export const BasePagePreviewSchema = z.object({
   _id: z.string(),
@@ -9,6 +9,8 @@ export const BasePagePreviewSchema = z.object({
   }),
   _createdAt: z.string(),
   _updatedAt: z.string(),
-});
+  originalPublishedAt: z.string().optional(),
+  originalModifiedAt: z.string().optional(),
+})
 
-export type BasePagePreviewSchemaType = z.infer<typeof BasePagePreviewSchema>;
+export type BasePagePreviewSchemaType = z.infer<typeof BasePagePreviewSchema>

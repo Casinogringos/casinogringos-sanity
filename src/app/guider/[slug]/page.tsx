@@ -14,9 +14,9 @@ type Params = Promise<{ slug: string }>
 
 export async function generateMetadata(props: { params: Params }) {
   const params = await props.params
-  const guidePage: GuidePageSchemaType = (await getGuidePageBySlug({
+  const guidePage: GuidePageSchemaType = await getGuidePageBySlug({
     slug: params.slug,
-  })) as Guide
+  })
   const siteURL = (process.env.SITE_URL as string) + guidePage.slug.current
   const metadata: Metadata = {
     title: guidePage.seoTitle,
@@ -49,9 +49,9 @@ export default async function Page(props: {
   params: Promise<{ slug: string }>
 }) {
   const params = await props.params
-  const guidePage = (await getGuidePageBySlug({
+  const guidePage = await getGuidePageBySlug({
     slug: `/guider${formatPageSlug(params?.slug)}`,
-  })) as Guide
+  })
   if (!guidePage) return notFound()
   const similarGuidePages = await getSimilarGuidePages({
     id: guidePage.id,

@@ -8,4 +8,4 @@ export const GuidePagePreviewSchema = BasePagePreviewSchema.merge(
   })
 )
 
-export type GuidePageSchemaType = z.infer<typeof GuidePagePreviewSchema>
+export type GuidePagePreviewSchemaType = z.infer<typeof GuidePagePreviewSchema>

@@ -1,11 +1,15 @@
-import { GuidePageSchema, GuidePageSchemaType } from '@/src/schemas'
+import {
+  GuidePagePreviewSchemaType,
+  GuidePageSchema,
+  GuidePageSchemaType,
+} from '@/src/schemas'
 
 import fs from 'fs'
 import { GuidePagePreviewSchema } from '@/src/schemas/guidePagePreview'
 
 class GuideService {
   validateGuidesList(
-    guidePages: GuidePageSchemaType[],
+    guidePages: GuidePageSchemaType[] | GuidePagePreviewSchemaType[],
     preview: boolean = false
   ): boolean {
     let parse = null

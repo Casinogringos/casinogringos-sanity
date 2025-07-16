@@ -214,7 +214,7 @@ export const getSimilarGuidePages = async ({
   }
 }
 
-export const getSitemap = async (type: 'authors' | 'pages') => {
+export const getSitemap = async (type: 'authors' | 'pages' | 'guide-pages') => {
   try {
     const data = await client.fetch(sitemapQuery(type))
     return data

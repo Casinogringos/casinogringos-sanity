@@ -1,6 +1,11 @@
 import GuideIndex from '@/src/app/GuideIndex'
 import Pagination from '@/src/components/organisms/Pagination'
-import { getGuidePageCount, getGuidePagePreviews } from '@/src/lib/api'
+import {
+  getGuidePageCount,
+  getGuidePagePreviews,
+  getPageBySlug,
+  getStaticParams,
+} from '@/src/lib/api'
 
 export default async function Page(props: {
   params: Promise<{ page: string }>
@@ -10,8 +15,12 @@ export default async function Page(props: {
   const offset = (pageNumber - 1) * 24
   const guides = await getGuidePagePreviews({ count: 24, offset })
   const guidesCount = await getGuidePageCount()
-  const breadcrumbItems = [
-    {},
+  const page = await getPageBySlug({ slug: params.page })
+  const breadcrumbs = [
+    {
+      text: 'Hem',
+      url: `${process.env.SITE_URL}/`,
+    },
     {
       text: 'Guider',
       url: `${process.env.SITE_URL}/guider/page/${pageNumber}`,
@@ -20,8 +29,7 @@ export default async function Page(props: {
 
   return (
     <>
-      {/*<BreadCrumbs items={breadcrumbItems} />*/}
-      <GuideIndex guidePages={guides} />
+      <GuideIndex guidePages={guides} breadcrumbs={breadcrumbs} page={page} />
       <Pagination
         currentPage={pageNumber}
         numPages={Math.ceil(guidesCount / 24)}
@@ -30,13 +38,13 @@ export default async function Page(props: {
     </>
   )
 }
-//
-// export async function generateStaticParams() {
-//   const guides = await getStaticParams("guide");
-//   const guidesCount = guides.length;
-//   const pagesCount = Math.ceil(guidesCount / 24);
-//
-//   return Array.from({ length: pagesCount }).map((_, i) => ({
-//     page: `${i + 1}`,
-//   }));
-// }
+
+export async function generateStaticParams() {
+  const guidePages = await getStaticParams('guide-pages')
+  const guidesCount = guidePages.length
+  const pagesCount = Math.ceil(guidesCount / 24)
+
+  return Array.from({ length: pagesCount }).map((_, i) => ({
+    page: `${i + 1}`,
+  }))
+}
