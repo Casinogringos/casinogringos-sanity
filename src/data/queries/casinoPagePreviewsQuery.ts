@@ -1,18 +1,7 @@
-import { casinoProjection, objectProjections } from '@/src/data/projections'
+import { casinoPagePreviewProjection } from '@/src/data/projections'
 
-export const casinoPagePreviewsQuery = ({
-  count,
-  content = true,
-}: {
-  count: number
-  content?: boolean
-}) => `
+export const casinoPagePreviewsQuery = ({ count }: { count: number }) => `
   *[_type == 'casino-pages' && [0...${count}] {
-    casino-> {
-      ${casinoProjection}
-    }
-    content[] {
-      ${content ? objectProjections : ''}
-    }
+      ${casinoPagePreviewProjection}
   }
 `

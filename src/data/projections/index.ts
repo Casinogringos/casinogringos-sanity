@@ -30,6 +30,7 @@ import { howToStepObjectProjection } from '@/src/data/projections/howToStepObjec
 import { casinoRatingProjection } from '@/src/data/projections/casinoRatingProjection'
 import { casinoPreviewProjection } from '@/src/data/projections/casinoPreviewProjection'
 import { howToObjectProjection } from '@/src/data/projections/howToObjectProjection'
+import { casinoPagePreviewProjection } from '@/src/data/projections/casinoPagePreviewProjection'
 import { aiSummaryObjectProjection } from '@/src/data/projections/aiSummaryObjectProjection'
 import { toplistProjection } from '@/src/data/projections/toplistProjection'
 import { prosAndConsObjectProjection } from '@/src/data/projections/prosAndConsObjectProjection'
@@ -64,6 +65,7 @@ export {
   newsPageProjection,
   casinoPageProjection,
   bonusProjection,
+  casinoPagePreviewProjection,
   casinoBonusProjection,
   tableObjectProjection,
   dashboardImageProjection,

@@ -4,6 +4,6 @@ export const imageProjection = `
     asset {
       _type,
       _ref,
-      url
     }
+    altText,
 `

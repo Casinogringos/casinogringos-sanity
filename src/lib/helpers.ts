@@ -110,10 +110,10 @@ export const getBlockHeadings = (blocks) => {
   return headings.flat().filter((heading) => heading)
 }
 
-// export const getImagesFromContent = (content) => {
-//   const parsedDocument = parseDocument(content)
-//   return findImages(parsedDocument.children)
-// }
+export const getImagesFromContent = (content) => {
+  const parsedDocument = parseDocument(content)
+  return findImages(parsedDocument.children)
+}
 
 export const isCurrentPath = (currentPath, path) => {
   if (!currentPath || !path) return false
@@ -204,7 +204,11 @@ export const setSessionToken = (key, value) => {
   window.sessionStorage.setItem(key, value)
 }
 
-export const getHeadingObjectsByPage = ({ objects }: { objects: ModularContentSchemaType }) => {
+export const getHeadingObjectsByPage = ({
+  objects,
+}: {
+  objects: ModularContentSchemaType
+}) => {
   return objects.filter((object) => {
     return object._type === 'heading-object'
   })

@@ -1,7 +1,6 @@
 import Navigation from '@/src/components/organisms/Navigation'
 import {
   getCasinoPagePreviews,
-  getCasinoPreviews,
   getMenuById,
 } from '@/src/lib/api'
 import Provider from '@/src/store/provider'
