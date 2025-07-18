@@ -1,9 +1,5 @@
 import { z } from 'zod'
-import {
-  AffiliateButtonObjectSchema,
-  ColumnObjectSchema,
-  ColumnsObjectSchema,
-} from '@/src/schemas'
+import { AffiliateButtonObjectSchema, ColumnsObjectSchema } from '@/src/schemas'
 import { AISummaryObjectSchema } from '@/src/schemas'
 import { BonusObjectSchema } from '@/src/schemas'
 import { ButtonsObjectSchema } from '@/src/schemas'

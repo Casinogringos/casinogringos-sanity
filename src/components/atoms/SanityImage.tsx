@@ -10,13 +10,11 @@ const client = getClient()
 
 const SanityImage = ({
   image,
-  altText,
   width,
   className,
   priority = false,
 }: {
   image: SanityImageSchemaType
-  altText: string
   width?: number
   className?: string
   priority?: boolean
@@ -26,10 +24,13 @@ const SanityImage = ({
   if (!imageProps) {
     return <Placeholder message={'Sanity Image: Missing image'} />
   }
+  if (!image.alt) {
+    return <Placeholder message={'Sanity Image: Missing altText'} />
+  }
   return (
     <Image
       {...imageProps}
-      alt={altText}
+      alt={image.alt}
       className={className}
       priority={priority}
       width={width}

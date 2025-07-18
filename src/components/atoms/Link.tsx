@@ -5,6 +5,7 @@ import { ReactNode } from 'react'
 import NextLink from 'next/link'
 import { usePathname } from 'next/navigation'
 import { isCurrentPath } from '@/src/lib/helpers'
+import Placeholder from '@/src/components/atoms/Placeholder'
 
 const Link = ({
   href,
@@ -20,7 +21,7 @@ const Link = ({
   replace,
   plausible,
   variant,
-  title
+  title,
 }: {
   href: string
   rel?: string
@@ -51,6 +52,7 @@ const Link = ({
         return `${isActive ? 'text-primary' : 'hover:text-primary'}`
     }
   }
+  if (!href) return <Placeholder message={'Link component missing the href'} />
 
   return (
     <NextLink

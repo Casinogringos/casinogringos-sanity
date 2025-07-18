@@ -5,19 +5,16 @@ import { NewsPageSchemaType } from '@/src/schemas'
 import { PortableText } from 'next-sanity'
 
 const NewsCard = ({ item }: { item: NewsPageSchemaType }) => {
-
   return (
     <Link
       href={item.slug.current}
       prefetch={false}
-      className={
-        'flex h-full bg-white pb-4 rounded-md flex-col items-start'
-      }
+      className={'flex h-full bg-white pb-4 rounded-md flex-col items-start'}
     >
       <div className="relative flex h-36 w-full items-center overflow-hidden rounded-t-md">
         <SanityImage
           image={item?.featuredImage.image}
-          altText={item?.featuredImage.altText}
+          altText={item?.featuredImage.image.alt}
           width={400}
           className={'min-h-full min-w-full object-cover'}
         />
@@ -30,9 +27,7 @@ const NewsCard = ({ item }: { item: NewsPageSchemaType }) => {
           <span />
           {item.title}
         </h3>
-        {item?.excerpt && (
-          <PortableText value={item.excerpt} />
-        )}
+        {item?.excerpt && <PortableText value={item.excerpt} />}
       </div>
     </Link>
   )

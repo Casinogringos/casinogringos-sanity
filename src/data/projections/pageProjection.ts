@@ -1,9 +1,10 @@
 import {
   objectProjections,
   faqItemObjectProjection,
-  toplistProjection, imageObjectProjection,
+  toplistProjection,
+  imageObjectProjection,
   authorProjection,
-  imageProjection
+  imageProjection,
 } from '@/src/data/projections'
 
 export const pageProjection = `
@@ -19,8 +20,9 @@ export const pageProjection = `
   seoImage {
     ${imageProjection}
   },
+  canonical,
   intro,
-  author {
+  author-> {
     ${authorProjection}
   },
   featuredImage {

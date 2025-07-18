@@ -18,6 +18,7 @@ import { newsPagePreviewProjection } from '@/src/data/projections/newsPagePrevie
 import { buttonObjectProjection } from '@/src/data/projections/buttonObjectProjection'
 import { buttonsObjectProjection } from '@/src/data/projections/buttonsObjectProjection'
 import { embedObjectProjection } from '@/src/data/projections/embedObjectProjection'
+import { bonusTypeProjection } from '@/src/data/projections/bonusTypeProjection'
 import { faqItemObjectProjection } from '@/src/data/projections/faqItemObjectProjection'
 import { faqObjectProjection } from '@/src/data/projections/faqObjectProjection'
 import { tableObjectProjection } from '@/src/data/projections/tableObjectProjection'
@@ -25,6 +26,8 @@ import { columnObjectProjection } from '@/src/data/projections/columnObjectProje
 import { shortcodeObjectProjection } from '@/src/data/projections/shortcodeObjectProjection'
 import { columnsObjectProjection } from '@/src/data/projections/columnsObjectProjection'
 import { groupObjectProjection } from '@/src/data/projections/groupObjectProjection'
+import { paymentMethodProjection } from '@/src/data/projections/paymentMethodProjection'
+import { paymentMethodTypeProjection } from '@/src/data/projections/paymentMethodTypeProjection'
 import { casinoObjectProjection } from '@/src/data/projections/casinoObjectProjection'
 import { howToStepObjectProjection } from '@/src/data/projections/howToStepObjectProjection'
 import { casinoRatingProjection } from '@/src/data/projections/casinoRatingProjection'
@@ -58,7 +61,10 @@ export {
   guidePageProjection,
   freeSpinsProjection,
   newsPagePreviewProjection,
+  paymentMethodProjection,
+  paymentMethodTypeProjection,
   casinoPreviewProjection,
+  bonusTypeProjection,
   casinoProjection,
   oddsBonusProjection,
   shortcodeObjectProjection,

@@ -7,7 +7,6 @@ export const imageObjectProjection = `
         ${imageProjection}
     },
     caption,
-    altText,
     message,
     internalLink {
         slug

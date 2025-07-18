@@ -1,6 +1,6 @@
 import { CheckCircle, X, XCircle, Star } from 'lucide-react'
 
-import ImageWrap from '../atoms/ImageWrap'
+import ImageWrap from '../../sin-bin/ImageWrap'
 import dynamic from 'next/dynamic'
 const AffiliateButton = dynamic(
   () => import('../../../sin-bin/AffiliateButton')

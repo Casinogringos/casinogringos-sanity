@@ -4,13 +4,15 @@ import Image from 'next/image'
 import CheckBadgeIcon from '@/src/components/icons/CheckBadgeIcon'
 import Link from '@/src/components/atoms/Link'
 import { User } from '@/src/types'
+import { AuthorSchemaType } from '@/src/schemas'
+import SanityImage from '@/src/components/atoms/SanityImage'
 
 const AuthorBox = ({
   author,
   modified,
   reviewedBy,
 }: {
-  author: User
+  author: AuthorSchemaType
   modified: string
   reviewedBy: User
 }) => {
@@ -18,11 +20,11 @@ const AuthorBox = ({
     <div className="mx-auto mb-12 max-w-3xl rounded-md border border-blue100 bg-blue50 p-6">
       <div className="flex items-start gap-3">
         <div className="overflow-hidden rounded-full">
-          <Image
-            src={author?.node?.avatar.url}
-            width="45"
-            height="45"
-            alt={author?.node?.name}
+          <SanityImage
+            image={author.avatar}
+            width={45}
+            height={45}
+            alt={author?.avatar?.altText}
           />
         </div>
         <div>

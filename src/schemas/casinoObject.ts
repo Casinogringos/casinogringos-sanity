@@ -1,5 +1,4 @@
 import { z } from 'zod'
-import { CasinoObject } from '../types/casinoObject'
 import { CasinoSchema } from './casino'
 import { PortableTextBlockSchema } from './portableTextBlock'
 

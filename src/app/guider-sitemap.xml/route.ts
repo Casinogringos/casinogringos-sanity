@@ -28,7 +28,9 @@ export async function GET() {
   })
   const indexPage = () => {
     const featuredImage = urlFor(guidesIndexPage.seoImage).url()
-    const contentImages = getImagesFromModularContent(guidesIndexPage.content)
+    const contentImages = imageService.getImagesFromModularContent(
+      guidesIndexPage.content
+    )
     const allImages = featuredImage
       ? [featuredImage, ...contentImages]
       : contentImages

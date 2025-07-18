@@ -1,12 +1,11 @@
 import { z } from 'zod'
 
 export const SanityImageSchema = z.object({
-  _type: z.string(),
   alt: z.string(),
-  asset: z
-    .object({
-      _ref: z.string(),
-      metadata: z.object({
+  asset: z.object({
+    _ref: z.string(),
+    metadata: z
+      .object({
         dimensions: z.object({
           aspectRatio: z.number(),
           aspectRatioRaw: z.string(),
@@ -15,9 +14,9 @@ export const SanityImageSchema = z.object({
         }),
         pixelDensities: z.array(z.number()),
         size: z.number(),
-      }),
-    })
-    .optional(),
+      })
+      .optional(),
+  }),
 })
 
 export type SanityImageSchemaType = z.infer<typeof SanityImageSchema>

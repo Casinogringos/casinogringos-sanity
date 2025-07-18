@@ -1,13 +1,13 @@
-import type {
-  HowToObject as HowToObjectType,
-  SanityImage as SanityImageType,
-} from '@/src/types'
 import SanityImage from '@/src/components/atoms/SanityImage'
-import { PortableText, PortableTextBlock } from 'next-sanity'
+import { PortableText } from 'next-sanity'
+import {
+  HowToObjectSchemaType,
+  PortableTextBlockSchemaType,
+  SanityImageSchemaType,
+} from '@/src/schemas'
 
-const HowToObject = ({ object }: { object: HowToObjectType }) => {
+const HowToObject = ({ object }: { object: HowToObjectSchemaType }) => {
   const {
-    message,
     description,
     steps,
     unorderedList,
@@ -39,8 +39,8 @@ const HowToObject = ({ object }: { object: HowToObjectType }) => {
           (
             row: {
               title: string
-              description: PortableTextBlock[]
-              image: SanityImageType
+              description?: PortableTextBlockSchemaType
+              image?: SanityImageSchemaType
             },
             rowIndex: number
           ) => (
@@ -81,7 +81,6 @@ const HowToObject = ({ object }: { object: HowToObjectType }) => {
                       key={`how-to-image-${rowIndex}`}
                       image={row.image}
                       width={600}
-                      altText={row.title ?? ''}
                     />
                   </div>
                 )}

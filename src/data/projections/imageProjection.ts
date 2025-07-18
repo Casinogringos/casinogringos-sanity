@@ -1,9 +1,15 @@
 export const imageProjection = `
-    _type,
     _key,
     asset {
       _type,
       _ref,
-    }
-    altText,
+      metadata {
+        dimensions {
+          aspectRatio,
+          height,
+          width
+        },
+      }
+    },
+    alt
 `

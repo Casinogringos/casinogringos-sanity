@@ -21,7 +21,6 @@ const ArticleCard = ({
       <div className="relative flex h-36 w-full items-center overflow-hidden rounded-t-md">
         <SanityImage
           image={item?.featuredImage.image}
-          altText={item?.featuredImage.altText}
           width={400}
           className={'min-h-full min-w-full object-cover'}
         />

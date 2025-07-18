@@ -6,7 +6,7 @@ import {
   MessageCircle,
   X,
 } from 'lucide-react'
-import ImageWrap from '../atoms/ImageWrap'
+import ImageWrap from '../../sin-bin/ImageWrap'
 
 import { usePlausible } from 'next-plausible'
 import Image from 'next/image'
