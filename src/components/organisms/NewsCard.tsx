@@ -1,10 +1,9 @@
 import Link from 'next/link'
 import SanityImage from '@/src/components/atoms/SanityImage'
 import Date from '@/src/components/atoms/Date'
-import { NewsPageSchemaType } from '@/src/schemas'
-import { PortableText } from 'next-sanity'
+import { NewsPagePreviewSchemaType } from '@/src/schemas'
 
-const NewsCard = ({ item }: { item: NewsPageSchemaType }) => {
+const NewsCard = ({ item }: { item: NewsPagePreviewSchemaType }) => {
   return (
     <Link
       href={item.slug.current}
@@ -14,7 +13,6 @@ const NewsCard = ({ item }: { item: NewsPageSchemaType }) => {
       <div className="relative flex h-36 w-full items-center overflow-hidden rounded-t-md">
         <SanityImage
           image={item?.featuredImage.image}
-          altText={item?.featuredImage.image.alt}
           width={400}
           className={'min-h-full min-w-full object-cover'}
         />
@@ -27,7 +25,6 @@ const NewsCard = ({ item }: { item: NewsPageSchemaType }) => {
           <span />
           {item.title}
         </h3>
-        {item?.excerpt && <PortableText value={item.excerpt} />}
       </div>
     </Link>
   )

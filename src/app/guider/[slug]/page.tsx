@@ -35,8 +35,8 @@ export async function generateMetadata(props: { params: Params }) {
         {
           url: urlFor(guidePage.seoImage).url(),
           alt: guidePage.seoImage.alt,
-          width: guidePage.seoImage.asset?.metadata.dimensions.width ?? 1200,
-          height: guidePage.seoImage.asset?.metadata.dimensions.height ?? 630,
+          width: guidePage.seoImage.asset?.metadata?.dimensions?.width ?? 1200,
+          height: guidePage.seoImage.asset?.metadata?.dimensions?.height ?? 630,
         },
       ],
     },

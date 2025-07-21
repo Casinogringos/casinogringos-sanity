@@ -147,6 +147,13 @@ const renderObject = (
         </Tag>
       )
     }
+    case 'old-table-object': {
+      return (
+        <Tag>
+          <HTMLObject object={object} />
+        </Tag>
+      )
+    }
     default:
       return null
   }

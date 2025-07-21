@@ -1,41 +1,4 @@
-// import { getPageBySlug } from '@/src/lib/api'
 import GuideIndex from '@/src/app/GuideIndex'
-// import Pagination from '@/src/app/components/organisms/Pagination'
-// import BreadCrumbs from '@/src/app/components/organisms/BreadCrumbs'
-// import { extractSlugFromUrl } from '@/src/lib/helpers'
-// import { Metadata } from 'next'
-// import { Guide } from '@/src/types'
-
-// export async function generateMetadata() {
-//   const item = (await getNodeByUri({ uri: '/guider' })) as Guide
-//   const siteURL = (process.env.SITE_URL as string) + item.uri
-//   const metadata = {
-//     title: item.seo.title ?? item.title,
-//     description: item.seo.metaDesc,
-//     alternates: {
-//       canonical: process.env.SITE_URL + extractSlugFromUrl(item.seo.canonical),
-//     },
-//     openGraph: {
-//       title: item.title,
-//       description: item.seo.metaDesc,
-//       url: siteURL,
-//       locale: 'sv_SE',
-//       siteName: item.seo.opengraphSiteName,
-//       type: item.seo.opengraphType,
-//       images: [
-//         {
-//           url: item.seo.opengraphImage?.sourceUrl ?? '',
-//           alt: item.seo.opengraphImage?.altText ?? '',
-//           width: item.seo.opengraphImage?.mediaDetails.width ?? 1200,
-//           height: item.seo.opengraphImage?.mediaDetails.height ?? 630,
-//         },
-//       ],
-//     },
-//   }
-//
-//   return metadata as Metadata
-// }
-
 import {
   getGuidePageCount,
   getGuidePagePreviews,
@@ -43,15 +6,49 @@ import {
 } from '@/src/lib/api'
 import Pagination from '@/src/components/organisms/Pagination'
 import BreadCrumbs from '@/src/components/organisms/BreadCrumbs'
+import { urlFor } from '@/src/lib/client'
+import { Metadata } from 'next'
+
+export async function generateMetadata() {
+  const page = await getPageBySlug({ slug: '/guider' })
+  const siteURL = (process.env.SITE_URL as string) + page.slug.current
+  const metadata: Metadata = {
+    title: page.seoTitle,
+    description: page.seoDescription,
+    alternates: {
+      canonical: page.canonical,
+    },
+    openGraph: {
+      title: page.seoTitle,
+      description: page.seoDescription,
+      url: siteURL,
+      locale: 'sv_SE',
+      siteName: 'Casinogringos',
+      type: page.opengraphType,
+      images: [
+        {
+          url: urlFor(page.seoImage).url(),
+          alt: page.seoImage.alt,
+          width: page.seoImage.asset?.metadata?.dimensions?.width ?? 1200,
+          height: page.seoImage.asset?.metadata?.dimensions?.height ?? 630,
+        },
+      ],
+    },
+  }
+
+  return metadata
+}
 
 const Page = async () => {
   const guides = await getGuidePagePreviews({ count: 24, offset: 0 })
   const guidesCount = await getGuidePageCount()
   const page = await getPageBySlug({ slug: '/guider' })
-  // console.log('guidesCount', guidesCount)
-  // const guidesCount = allGuides.edges.length
   const pageCount = Math.ceil(guidesCount / 24)
   const breadcrumbItems = [
+    {
+      text: 'Hem',
+      url: `${process.env.SITE_URL}/`,
+    },
     {
       text: 'Guider',
       url: `${process.env.SITE_URL}/guider`,
@@ -61,7 +58,7 @@ const Page = async () => {
   return (
     <>
       <BreadCrumbs items={breadcrumbItems} />
-      <GuideIndex guidePages={guides} page={page} />
+      <GuideIndex guidePages={guides} page={page} breadcrumbs={breadcrumbItems} />
       {pageCount > 1 && (
         <Pagination
           currentPage={1}

@@ -10,6 +10,7 @@ import { AuthorSchema, AuthorSchemaType } from './author'
 import { BasePageSchema, BasePageSchemaType } from './basePage'
 import { BonusObjectSchema, BonusObjectSchemaType } from './bonusObject'
 import { BonusTypeSchema, BonusTypeSchemaType } from './bonusType'
+import { HTMLObjectSchema, HTMLObjectSchemaType } from './htmlObject'
 import {
   GuidePagePreviewSchema,
   GuidePagePreviewSchemaType,
@@ -125,6 +126,7 @@ export {
   ListObjectSchema,
   ModularContentSchema,
   OddsBonusSchema,
+  HTMLObjectSchema,
   ParagraphObjectSchema,
   PaymentMethodSchema,
   PaymentMethodTypeSchema,
@@ -176,6 +178,7 @@ export type {
   ListObjectSchemaType,
   ModularContentSchemaType,
   OddsBonusSchemaType,
+  HTMLObjectSchemaType,
   ParagraphObjectSchemaType,
   PaymentMethodSchemaType,
   GuidePagePreviewSchemaType,

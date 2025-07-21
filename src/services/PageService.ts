@@ -9,6 +9,7 @@ import {
   CasinoPageSchema,
   NewsPageSchema,
   NewsPagePreviewSchema,
+  NewsPagePreviewSchemaType,
 } from '@/src/schemas'
 import fs from 'fs'
 
@@ -18,7 +19,8 @@ class PageService {
       | SubPageSchemaType
       | CasinoPageSchemaType
       | GuidePageSchemaType
-      | NewsPageSchemaType,
+      | NewsPageSchemaType
+      | NewsPagePreviewSchemaType,
     preview: boolean = false
   ): boolean {
     let parse = null

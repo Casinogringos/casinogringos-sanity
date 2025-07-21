@@ -1,14 +1,9 @@
-// import Date from '@/src/app/components/atoms/Date'
-// import { News } from '@/src/types/index'
-// import Link from 'next/link'
 import Container from '@/src/components/atoms/Container'
 import Heading from '@/src/components/atoms/Heading'
-import Link from '@/src/components/atoms/Link'
-// import SanityImage from '@/src/app/components/atoms/SanityImage'
-//
 import NewsCard from '@/src/components/organisms/NewsCard'
 import { NewsPagePreviewSchemaType } from '@/src/schemas'
 import PageService from '@/src/services/PageService'
+import BreadCrumbs from '@/src/components/organisms/BreadCrumbs'
 const pageService = new PageService()
 
 const NewsIndex = ({
@@ -24,41 +19,44 @@ const NewsIndex = ({
     }
     return true
   }
+  const breadcrumbItems = [
+    {
+      text: 'Hem',
+      url: `${process.env.SITE_URL}/`,
+    },
+    {
+      text: 'Nyheter',
+      url: `${process.env.SITE_URL}/nyheter`,
+    },
+  ]
+
   if (!isValid()) {
     return null
   }
   return (
-    <Container className="py-6 lg:py-12">
-      <Heading
-        level={1}
-        className="text-3xl font-bold"
-        text={'Casinonyheter'}
-      />
-      <p className="mt-4 text-lg text-gray600">
-        Här hittar du de senaste nyheterna gällande de nätcasinon som vi listar
-        på våran sida. Vi skriver om allt från nya bonuserbjudanden till vilka
-        kampanjer som för tillfället är aktiva. Nyhetsflödet uppdateras löpande
-        så håll utkik på denna sidan för att inte missa grymma kampanjer.
-      </p>
-      <div className="mx-auto mt-8 grid max-w-2xl grid-cols-2 gap-x-4 gap-y-6 lg:mx-0 lg:max-w-none lg:grid-cols-3 lg:gap-y-10">
-        {newsPages.map((post) => (
-          <div key={`news-${post._id}`}>
-            {/*{post.featuredImage && (*/}
-            {/*  <div className="relative flex h-32 w-full items-center overflow-hidden rounded-md lg:h-44">*/}
-            {/*    <SanityImage object={post.featuredImage} />*/}
-            {/*  </div>*/}
-            {/*)}*/}
-            {/*<div className="mt-3 flex items-center gap-x-4 text-xs">*/}
-            {/*  <time dateTime={post.date} className="text-gray500">*/}
-            {/*    <Date dateString={post.date} />*/}
-            {/*  </time>*/}
-            {/*</div>*/}
-            <NewsCard item={post} />
-            {/* <p className="text-gray-600 mt-5 line-clamp-3 text-sm leading-6">{post.description}</p> */}
-          </div>
-        ))}
-      </div>
-    </Container>
+    <>
+      <BreadCrumbs items={breadcrumbItems} />
+      <Container className="py-6 lg:py-12">
+        <Heading
+          level={1}
+          className="text-3xl font-bold"
+          text={'Casinonyheter'}
+        />
+        <p className="mt-4 text-lg text-gray600">
+          Här hittar du de senaste nyheterna gällande de nätcasinon som vi listar
+          på våran sida. Vi skriver om allt från nya bonuserbjudanden till vilka
+          kampanjer som för tillfället är aktiva. Nyhetsflödet uppdateras löpande
+          så håll utkik på denna sidan för att inte missa grymma kampanjer.
+        </p>
+        <div className="mx-auto mt-8 grid max-w-2xl grid-cols-2 gap-x-4 gap-y-6 lg:mx-0 lg:max-w-none lg:grid-cols-3 lg:gap-y-10">
+          {newsPages.map((post) => (
+            <div key={`news-${post._id}`}>
+              <NewsCard item={post} />
+            </div>
+          ))}
+        </div>
+      </Container>
+    </>
   )
 }
 

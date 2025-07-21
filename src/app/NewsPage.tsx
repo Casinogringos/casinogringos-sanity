@@ -3,7 +3,7 @@ import Container from '@/src/components/atoms/Container'
 import SanityImage from '@/src/components/atoms/SanityImage'
 import PostHeader from '@/src/components/molecules/PostHeader'
 import Heading from '@/src/components/atoms/Heading'
-import { BreadcrumbsSchemaType, NewsPageSchemaType } from '@/src/schemas'
+import { BreadcrumbsSchemaType, NewsPagePreviewSchemaType, NewsPageSchemaType } from '@/src/schemas'
 import { getHeadingObjectsByPage } from '@/src/lib/helpers'
 import TableOfContents from '@/src/components/organisms/TableOfContents'
 import AuthorBox from '@/src/components/organisms/AuthorBox'
@@ -14,16 +14,28 @@ import BreadCrumbs from '@/src/components/organisms/BreadCrumbs'
 export default function NewsPage({
   page,
   similarNews,
-  breadcrumbs,
 }: {
   page: NewsPageSchemaType
-  similarNews: NewsPageSchemaType[]
-  breadcrumbs: BreadcrumbsSchemaType
+  similarNews: NewsPagePreviewSchemaType[]
 }) {
   const headingObjects = getHeadingObjectsByPage({ objects: page.content })
   const schema = {
     ...getNewsArticleStructuredData(page),
   }
+  const breadcrumbs = [
+    {
+      text: 'Hem',
+      url: '/',
+    },
+    {
+      text: 'Nyheter',
+      url: '/nyheter',
+    },
+    {
+      text: page.title,
+      url: `/nyheter/${page.slug.current}`,
+    },
+  ]
 
   return (
     <>
@@ -40,7 +52,6 @@ export default function NewsPage({
           <div className="mb-4 flex h-auto items-start overflow-hidden rounded-md lg:mb-8 lg:mt-8 lg:h-96 relative">
             <SanityImage
               image={page.featuredImage.image}
-              altText={page.featuredImage.altText}
               priority={true}
               width={768}
               className={'object-cover h-full w-full'}

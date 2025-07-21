@@ -18,6 +18,7 @@ import { similarCasinoPagesQuery } from '@/src/data/queries'
 import { casinoPagesQuery } from '@/src/data/queries'
 import { similarGuidePagesQuery } from '@/src/data/queries'
 import { casinoPagePreviewsQuery } from '@/src/data/queries/casinoPagePreviewsQuery'
+import { similarNewsPagesQuery } from '../data/queries/similarNewsPagesQuery'
 const client = getClient()
 
 export const getPageBySlug = async ({ slug }: { slug: string }) => {
@@ -171,7 +172,7 @@ export const getCasinoPagePreviews = async ({ count }: { count: number }) => {
 }
 
 export const getStaticParams = async (
-  type: 'pages' | 'casino-pages' | 'guide-pages'
+  type: 'pages' | 'casino-pages' | 'guide-pages' | 'news-pages'
 ) => {
   try {
     const data = await client.fetch(staticParamsQuery({ type }))
@@ -211,6 +212,22 @@ export const getSimilarGuidePages = async ({
   } catch (e) {
     console.log(e)
     throw Error(`Failed to fetch similar guide pages`)
+  }
+}
+
+export const getSimilarNewsPages = async ({
+  id,
+  count = 5,
+}: {
+  id: string
+  count?: number
+}) => {
+  try {
+    const data = await client.fetch(similarNewsPagesQuery({ id, count }))
+    return data
+  } catch (e) {
+    console.log(e)
+    throw Error(`Failed to fetch similar news pages`)
   }
 }
 
