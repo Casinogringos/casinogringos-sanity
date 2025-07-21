@@ -1,8 +1,7 @@
-import { Author } from '@/src/types'
-import { AuthorSchema } from '@/src/schemas'
+import { AuthorSchema, AuthorSchemaType } from '@/src/schemas'
 import fs from 'fs'
 
-const getProfileStructuredData = (author: Author) => {
+const getProfileStructuredData = (author: AuthorSchemaType) => {
   const parse = AuthorSchema.safeParse(author)
   if (!parse.success) {
     console.error(`Invalid profile structured data:\n${author.name}\n`, parse.error)

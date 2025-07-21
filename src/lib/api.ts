@@ -7,6 +7,7 @@ import {
   slotPagePreviewsQuery,
   newsPageCountQuery,
   sitemapQuery,
+  authorBySlugQuery,
 } from '@/src/data/queries'
 import { casinoPageBySlugQuery } from '@/src/data/queries'
 import { guidePageBySlugQuery } from '@/src/data/queries'
@@ -172,7 +173,7 @@ export const getCasinoPagePreviews = async ({ count }: { count: number }) => {
 }
 
 export const getStaticParams = async (
-  type: 'pages' | 'casino-pages' | 'guide-pages' | 'news-pages'
+  type: 'pages' | 'casino-pages' | 'guide-pages' | 'news-pages' | 'authors'
 ) => {
   try {
     const data = await client.fetch(staticParamsQuery({ type }))
@@ -231,7 +232,7 @@ export const getSimilarNewsPages = async ({
   }
 }
 
-export const getSitemap = async (type: 'authors' | 'pages' | 'guide-pages') => {
+export const getSitemap = async (type: 'authors' | 'pages' | 'guide-pages' | 'news-pages') => {
   try {
     const data = await client.fetch(sitemapQuery(type))
     return data
@@ -250,5 +251,15 @@ export const getAllCasinoPages = async () => {
   } catch (e) {
     console.log(e)
     throw Error(`Failed to fetch all casino pages`)
+  }
+}
+
+export const getAuthorBySlug = async ({ slug }: { slug: string }) => {
+  try {
+    const data = await client.fetch(authorBySlugQuery({ slug }))
+    return data[0]
+  } catch (e) {
+    console.log(e)
+    throw Error(`Failed to fetch author by slug: ${slug}`)
   }
 }

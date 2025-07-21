@@ -7,6 +7,7 @@ import { newsPageCountQuery } from '@/src/data/queries/newsPageCountQuery'
 import { newsPagePreviewsQuery } from '@/src/data/queries/newsPagePreviewsQuery'
 import { casinoPageBySlugQuery } from '@/src/data/queries/casinoPageBySlugQuery'
 import { guidePageBySlugQuery } from '@/src/data/queries/guidePageBySlugQuery'
+import { authorBySlugQuery } from '@/src/data/queries/authorBySlugQuery'
 import { guidePageCountQuery } from '@/src/data/queries/guidePageCountQuery'
 import { guidePagePreviewsQuery } from '@/src/data/queries/guidePagePreviewsQuery'
 import { sitemapQuery } from '@/src/data/queries/sitemapQuery'
@@ -18,6 +19,7 @@ import { similarCasinoPagesQuery } from '@/src/data/queries/similarCasinoPagesQu
 export {
   pageBySlugQuery,
   casinoPagesQuery,
+  authorBySlugQuery,
   staticParamsQuery,
   guidePageBySlugQuery,
   similarGuidePagesQuery,

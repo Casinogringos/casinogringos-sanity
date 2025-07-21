@@ -2,7 +2,7 @@ import { ModularContentSchemaType } from '@/src/schemas'
 import { urlFor } from '@/src/lib/client'
 
 class ImageService {
-  getImageXML = (images: string[]) => {
+  getImagesXML = (images: string[]) => {
     return images.map((url) => {
       try {
         return { loc: new URL(url) }
