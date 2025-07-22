@@ -64,8 +64,8 @@ const metadataObject = (
         {
           url: urlFor(page.seoImage).url(),
           alt: page.seoImage.alt,
-          width: page.seoImage.asset?.metadata.dimensions.width ?? 1200,
-          height: page.seoImage.asset?.metadata.dimensions.height ?? 630,
+          width: page.seoImage.asset?.metadata?.dimensions?.width ?? 1200,
+          height: page.seoImage.asset?.metadata?.dimensions?.height ?? 630,
         },
       ],
     },

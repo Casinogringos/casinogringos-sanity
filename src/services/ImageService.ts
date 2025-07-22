@@ -24,6 +24,7 @@ class ImageService {
   }): string => {
     const originalFileName = urlFor(image).url().split('/').pop()?.split('.')[0]
     const stub = getVanityStub(originalFileName, image.vanityFileName)
+    console.log('stub', stub)
     const url = `https://cdn.sanity.io/images/your-project-id/production/${stub}?w=${width}&q=${quality || 75}`
     return url
   }

@@ -14,7 +14,8 @@ import {
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import Link from '@/src/components/atoms/Link'
-import { User } from '@/src/types'
+import SanityImage from '../atoms/SanityImage'
+import { AuthorSchemaType } from '@/src/schemas'
 
 const HeroAvatar = ({
   author,
@@ -22,42 +23,35 @@ const HeroAvatar = ({
   modified,
   shareTitle,
 }: {
-  author: User
+  author: AuthorSchemaType
   date: string
   modified: string
   shareTitle: string
 }) => {
-  const isAuthorHaveFullName = author?.node?.firstName && author?.node?.lastName
-  const name = isAuthorHaveFullName
-    ? `${author.node.firstName} ${author.node.lastName}`
-    : author.node.name || null
-
   const url = `${process.env.SITE_URL}${usePathname()}`
 
   return (
     <>
       <div className="flex items-start gap-3 lg:mt-8">
         <div className="relative mt-1 flex h-11 w-11 rounded-full">
-          <Image
-            src={author.node.avatar.url}
-            width={50}
-            height={50}
+          <SanityImage
+            image={author.avatar}
             priority={true}
             className="rounded-full"
-            alt={name}
           />
         </div>
         <div>
           <Link
             className="text-sm text-slate300"
             prefetch={false}
-            href={author.node.uri}
+            href={`/om-oss/${author.slug.current}`}
           >
             <span className="flex items-center gap-1 font-medium">
-              {name} <CheckBadge className="h-4 w-4 rounded-full text-sky400" />
+              {author.firstName} {author.lastName}
+              <CheckBadge className="h-4 w-4 rounded-full text-sky400" />
             </span>
             <div className="flex items-center gap-1 text-xs text-slate300">
-              {author?.node.userType.role}
+              {author.role}
             </div>
           </Link>
           <div className="flex w-full items-center gap-x-4 text-slate400">

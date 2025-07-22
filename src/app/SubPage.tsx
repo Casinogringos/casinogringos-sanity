@@ -64,7 +64,7 @@ export default function SubPage({
         </div>
       )}
       {headingObjects.length > 1 && (
-        <div className={faqs.length > 0 ? '' : 'mt-16'}>
+        <div className={faqs?.length > 0 ? '' : 'mt-16'}>
           <Container narrow>
             <TableOfContents headings={headingObjects} />
           </Container>
@@ -75,7 +75,7 @@ export default function SubPage({
         <Container>
           <AuthorBox
             author={author}
-            modified={modifiedAt}
+            modified={page._updatedAt ?? page.originalModifiedAt}
             reviewedBy={reviewer}
           />
         </Container>
