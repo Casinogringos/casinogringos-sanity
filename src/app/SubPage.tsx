@@ -27,10 +27,10 @@ export default function SubPage({
   breadcrumbs: BreadcrumbsSchemaType
 }) {
   const isValid = pageService.validateSchema(page)
-  if (!isValid) {
-    return null
-  }
-  const { toplist, faqs, author, modifiedAt, reviewer } = page
+  // if (!isValid) {
+  //   return null
+  // }
+  const { toplist, faqs, author, _createdAt, reviewer } = page
   const headingObjects = getHeadingObjectsByPage({ objects: page.content })
   const schema = {
     '@context': 'https://schema.org',

@@ -2,6 +2,7 @@ import { z } from 'zod'
 
 export const SanityImageSchema = z.object({
   alt: z.string(),
+  vanityFileName: z.string(),
   asset: z.object({
     _ref: z.string(),
     metadata: z

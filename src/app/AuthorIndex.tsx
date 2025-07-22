@@ -3,7 +3,6 @@ import Link from 'next/link'
 import BreadCrumbs from '@/src/components/organisms/BreadCrumbs'
 import ModularContent from '@/src/components/organisms/ModularContent'
 import SubPageHero from '@/src/components/molecules/SubPageHero'
-import { Author, Breadcrumbs, SubPage } from '@/src/types'
 import getArticleStructuredData from '@/src/structured-data/articleStructuredData'
 import { getWebPageStructuredData } from '@/src/structured-data/webPageStructuredData'
 import { getBreadcrumbListStructuredData } from '@/src/structured-data/breadcrumbListStructuredData'
@@ -12,16 +11,24 @@ import { getOrganizationStructuredData } from '@/src/structured-data/organizatio
 import { getPersonStructuredData } from '@/src/structured-data/personStructuredData'
 import SanityImage from '@/src/components/atoms/SanityImage'
 import { PortableText } from 'next-sanity'
+import { AuthorSchemaType, SubPageSchemaType } from '../schemas'
 
 const AuthorIndex = ({
   page,
   authors,
-  breadcrumbs,
 }: {
-  page: SubPage<true>
-  authors: Author[]
-  breadcrumbs: Breadcrumbs
+  page: SubPageSchemaType
+  authors: AuthorSchemaType[]
 }) => {
+  const breadcrumbs = [
+    {
+      text: 'Hem',
+      url: `${process.env.SITE_URL}/`,
+    },
+    {
+      text: 'Om Oss',
+    },
+  ]
   const schema = {
     '@context': 'https://schema.org',
     '@graph': [
@@ -53,21 +60,20 @@ const AuthorIndex = ({
           <h2 className="mb-6 text-2xl">Vi som jobbar på Casinogringos</h2>
           {authors.map((author) => (
             <div
-              key={`author-${author._key}`}
+              key={`author-${author._id}`}
               className="mb-4 rounded-md bg-white p-6"
             >
               <div className="mb-4 flex items-center gap-4">
                 <div className="mt-1 overflow-hidden rounded-full">
                   <SanityImage
-                    image={author.avatar.image}
-                    altText={author.name}
+                    image={author.avatar}
                     width={50}
                   />
                 </div>
                 <div>
                   <Link prefetch={false} href={`/om-oss/${author.slug}`}>
                     <span className="block font-medium">
-                      {author.name}
+                      {author.firstName} {author.lastName}
                     </span>
                   </Link>
                   <span className="text-slate-500 block text-sm">
@@ -102,7 +108,7 @@ const AuthorIndex = ({
                 </div>
               </div>
               <div className={'text-slate-700'}>
-                <PortableText value={author.about} />
+                <PortableText value={author.description} />
               </div>
             </div>
           ))}

@@ -3,15 +3,15 @@ import Link from '@/src/components/atoms/Link'
 import { Linkedin, Mail } from "lucide-react";
 import BreadCrumbs from '@/src/components/organisms/BreadCrumbs'
 import Container from '@/src/components/atoms/Container'
-import { Author as AuthorType, Breadcrumbs } from '@/src/types'
 import { getWebSiteStructuredData } from '@/src/structured-data/webSiteStructuredData'
 import { getOrganizationStructuredData } from '@/src/structured-data/organizationStructuredData'
 import { getPersonStructuredData } from '@/src/structured-data/personStructuredData'
 import getProfileStructuredData from '@/src/structured-data/profileStructuredData'
 import SanityImage from '@/src/components/atoms/SanityImage'
 import { PortableText } from 'next-sanity'
+import { AuthorSchemaType } from '@/src/schemas'
 
-const Author = ({ author, breadcrumbs }: { author: AuthorType; breadcrumbs: Breadcrumbs }) => {
+const Author = ({ author }: { author: AuthorSchemaType }) => {
   const schema = {
     '@context': 'https://schema.org',
     '@graph': [
@@ -21,6 +21,20 @@ const Author = ({ author, breadcrumbs }: { author: AuthorType; breadcrumbs: Brea
       getPersonStructuredData(author),
     ],
   }
+  const breadcrumbs = [
+    {
+      text: 'Hem',
+      url: `${process.env.SITE_URL}/`,
+    },
+    {
+      text: 'Om Oss',
+      url: `${process.env.SITE_URL}/om-oss`,
+    },
+    {
+      text: author.firstName + ' ' + author.lastName,
+      url: `${process.env.SITE_URL}/om-oss/${author.slug.current}`,
+    },
+  ]
 
   return (
     <>
@@ -35,10 +49,12 @@ const Author = ({ author, breadcrumbs }: { author: AuthorType; breadcrumbs: Brea
         <Container>
           <div className="flex flex-col items-start gap-10 lg:flex-row">
             <div className="overflow-hidden rounded-full lg:w-1/5">
-              <SanityImage image={author.avatar.image} altText={author.name} width={400} />
+              <SanityImage image={author.avatar} width={400} />
             </div>
             <div className="lg:w-3/4">
-              <h1 className="mb-1 text-3xl font-bold">{author.name}</h1>
+              <h1 className="mb-1 text-3xl font-bold">
+                {author.firstName} {author.lastName}
+              </h1>
               <span className="text-slate-600">{author.role}</span>
               <div className="ml-auto mt-2 flex gap-2">
                 {author.linkedIn && (
@@ -65,7 +81,7 @@ const Author = ({ author, breadcrumbs }: { author: AuthorType; breadcrumbs: Brea
                 )}
               </div>
               <div className={'text-slate-700 mt-6'}>
-                <PortableText value={author.about} />
+                <PortableText value={author.description} />
               </div>
               {author.expertise && (
                 <section>
@@ -73,7 +89,7 @@ const Author = ({ author, breadcrumbs }: { author: AuthorType; breadcrumbs: Brea
                   <div className="flex gap-2 rounded-md">
                     {author.expertise?.map((item, index) => (
                       <span
-                        key={`author-${author._key}-expertise-${index}`}
+                        key={`author-${author._id}-expertise-${index}`}
                         className="rounded-sm bg-dark px-2 py-1 text-sm text-white"
                       >
                         {item.title}
@@ -90,7 +106,7 @@ const Author = ({ author, breadcrumbs }: { author: AuthorType; breadcrumbs: Brea
                   <ul>
                     {author.experience?.map((item, index) => (
                       <li
-                        key={`author-${author._key}-experience-${index}`}
+                        key={`author-${author._id}-experience-${index}`}
                         className="border-b border-b-blue100 py-2"
                       >
                         <strong className="text-dark">{item.title}</strong>
@@ -111,11 +127,10 @@ const Author = ({ author, breadcrumbs }: { author: AuthorType; breadcrumbs: Brea
             <h2 className="my-10 text-3xl">
               Artiklar som författaren bidgragit till
             </h2>
-            {/* <h3 className="mb-4 text-2xl">Senaste artiklar och recensioner</h3> */}
             <div className="grid grid-cols-2 gap-6 md:grid-cols-3 lg:grid-cols-4">
-              {author.news.map((item, index) => (
+              {author.newsPagePreviews.map((item, index) => (
                 <Link
-                  key={`author-${author._key}-post-${index}`}
+                  key={`author-${author._id}-post-${index}`}
                   className="font-medium no-underline"
                   href={`/nyheter/${item.slug.current}`}
                   prefetch={false}
@@ -123,7 +138,6 @@ const Author = ({ author, breadcrumbs }: { author: AuthorType; breadcrumbs: Brea
                   <SanityImage
                     image={item.featuredImage.image}
                     width={600}
-                    altText={item.title}
                     className="h-32 w-full rounded-sm object-cover lg:h-36"
                   />
                   <div>
@@ -136,22 +150,22 @@ const Author = ({ author, breadcrumbs }: { author: AuthorType; breadcrumbs: Brea
               ))}
             </div>
           </section>
-          {/* <section>
+          <section>
             <h2 className="mb-4 text-2xl">Senaste sidor</h2>
             <ul>
-              {author?.pages?.nodes.map((item) => (
+              {author?.subPagePreviews?.map((item) => (
                 <li key={`author-${item.id}`}>
-                  <InternalLink
+                  <Link
                     className="decoration-transparent font-medium"
                     href={item?.uri}
                     prefetch={false}
                   >
                     {item?.title}
-                  </InternalLink>
+                  </Link>
                 </li>
               ))}
             </ul>
-          </section> */}
+          </section>
         </div>
       </Container>
     </>

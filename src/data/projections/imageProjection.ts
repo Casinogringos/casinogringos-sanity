@@ -11,5 +11,6 @@ export const imageProjection = `
         },
       }
     },
-    alt
+    alt,
+    vanityFileName
 `

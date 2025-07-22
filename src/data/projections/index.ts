@@ -47,6 +47,7 @@ import { guidePageProjection } from '@/src/data/projections/guidePageProjection'
 import { slotPageProjection } from '@/src/data/projections/slotPageProjection'
 import { casinoPageProjection } from '@/src/data/projections/casinoPageProjection'
 import { menuProjection } from '@/src/data/projections/menuProjection'
+import { pagePreviewByAuthorProjection } from '@/src/data/projections/pagePreviewProjection'
 import { guidePagePreviewProjection } from '@/src/data/projections/guidePagePreviewProjection'
 
 export {
@@ -55,6 +56,7 @@ export {
   guidePagePreviewProjection,
   casinoRatingProjection,
   slotPagePreviewProjection,
+  pagePreviewByAuthorProjection,
   toplistProjection,
   slotPageProjection,
   objectProjections,

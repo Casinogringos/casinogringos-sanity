@@ -1,5 +1,6 @@
-import { ModularContentSchemaType } from '@/src/schemas'
+import { ModularContentSchemaType, SanityImageSchemaType } from '@/src/schemas'
 import { urlFor } from '@/src/lib/client'
+import { getVanityStub } from '@sanity/asset-utils'
 
 class ImageService {
   getImagesXML = (images: string[]) => {
@@ -11,6 +12,20 @@ class ImageService {
         return null
       }
     })
+  }
+  vanityImageLoader = ({
+    image,
+    width,
+    quality,
+  }: {
+    image: SanityImageSchemaType,
+    width: number,
+    quality?: number,
+  }): string => {
+    const originalFileName = urlFor(image).url().split('/').pop()?.split('.')[0]
+    const stub = getVanityStub(originalFileName, image.vanityFileName)
+    const url = `https://cdn.sanity.io/images/your-project-id/production/${stub}?w=${width}&q=${quality || 75}`
+    return url
   }
   getImagesFromModularContent = (
     modularContent: ModularContentSchemaType,

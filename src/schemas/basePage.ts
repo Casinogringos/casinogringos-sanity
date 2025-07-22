@@ -23,7 +23,7 @@ export const BasePageSchema = z.object({
   canonical: z.string(),
   opengraphType: z.any(),
   intro: z.array(PortableTextBlockSchema),
-  author: AuthorSchema.optional(),
+  author: AuthorSchema,
   _createdAt: z.string(),
   originalPublishedAt: z.string().optional(),
   _updatedAt: z.string(),

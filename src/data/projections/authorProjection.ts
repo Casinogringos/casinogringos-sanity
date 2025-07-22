@@ -1,4 +1,4 @@
-import { imageProjection } from '@/src/data/projections'
+import { imageProjection, newsPagePreviewProjection, pagePreviewByAuthorProjection, pagePreviewProjection } from '@/src/data/projections'
 
 export const authorProjection = `
     _type,
@@ -15,5 +15,11 @@ export const authorProjection = `
     linkedIn,
     avatar {
       ${imageProjection}
+    },
+    "newsPagePreviews": *[_type == "news-pages" && author._ref == ^._id] {
+      ${newsPagePreviewProjection}
+    },
+    "subPagePreviews": *[_type == "pages" && author._ref == ^._id] {
+      ${pagePreviewByAuthorProjection}
     },
 `

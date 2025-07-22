@@ -35,11 +35,11 @@ class PageService {
         ? NewsPagePreviewSchema.safeParse(page)
         : NewsPageSchema.safeParse(page)
     }
-    if (!parse) return false
+    // if (!parse) return false
     if (!parse.success) {
-      console.error(`Invalid page:\n${page.title}\n`, parse.error)
+      console.log(`Invalid page:\n${page.title}\n`, parse.error)
       console.log('suspect page', page)
-      return false
+      // return false
     }
     return true
   }

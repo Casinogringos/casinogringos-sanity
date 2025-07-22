@@ -24,7 +24,7 @@ export async function generateMetadata(props: { params: Params }) {
             images: [
                 {
                     url: urlFor(author.avatar).url(),
-                    alt: author.name,
+                    alt: author.firstName + ' ' + author.lastName,
                     width: author.avatar.asset?.metadata?.dimensions?.width ?? 1200,
                     height: author.avatar.asset?.metadata?.dimensions?.height ?? 630,
                 },
