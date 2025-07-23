@@ -1,45 +1,45 @@
-import { getSlotPageBySlug, getStaticParams, getSimilarSlotPages } from '@/src/lib/api'
+import { getSlotPageBySlug, getStaticParams, getSimilarSlotPages, getCasinoPagesByCasinos } from '@/src/lib/api'
 import { notFound } from 'next/navigation'
 import SlotPage from '@/src/app/SlotPage'
-import { SlotPageSchemaType } from '@/src/schemas'
+import { CasinoPageSchemaType, SlotPageSchemaType, CasinoSchemaType } from '@/src/schemas'
 import { formatPageSlug } from '@/src/lib/utility'
+import { Metadata } from 'next'
+import { urlFor } from '@/src/lib/client'
 
 type Params = Promise<{ slug: string }>
 
-// export async function generateMetadata(props: { params: Params }) {
-//   const params = await props.params;
-//   const item = (await getNodeByUri({
-//     uri: `/slots/${params?.slug}`,
-//   })) as SlotType;
-//   const siteURL = (process.env.SITE_URL as string) + item.uri;
-//   if (!item?.seo?.opengraphImage) throw new Error("SEO is missing");
-//   const metadata = {
-//     title: item?.seo?.title ? item?.seo?.title : item?.title,
-//     description: item?.seo?.metaDesc,
-//     alternates: {
-//       canonical:
-//         process.env.SITE_URL + extractSlugFromUrl(item?.seo?.canonical),
-//     },
-//     openGraph: {
-//       title: item?.seo?.title,
-//       description: item?.seo?.metaDesc,
-//       url: siteURL,
-//       locale: "sv_SE",
-//       siteName: item?.seo?.opengraphSiteName,
-//       type: item?.seo?.opengraphType,
-//       images: [
-//         {
-//           url: item?.seo?.opengraphImage?.sourceUrl ?? "",
-//           alt: item?.seo?.opengraphImage?.altText ?? "",
-//           width: item?.seo?.opengraphImage?.mediaDetails?.width ?? 1200,
-//           height: item?.seo?.opengraphImage?.mediaDetails?.height ?? 630,
-//         },
-//       ],
-//     },
-//   };
-//
-//   return metadata as Metadata;
-// }
+export async function generateMetadata(props: { params: Params }) {
+  const params = await props.params;
+  const slotPage: SlotPageSchemaType = (await getSlotPageBySlug({
+    slug: `/slots${formatPageSlug(params?.slug)}`,
+  }))
+  const siteURL = (process.env.SITE_URL as string) + slotPage.slug.current;
+  const metadata: Metadata = {
+    title: slotPage.seoTitle,
+    description: slotPage.seoDescription,
+    alternates: {
+      canonical: slotPage.canonical,
+    },
+    openGraph: {
+      title: slotPage.seoTitle,
+      description: slotPage.seoDescription,
+      url: siteURL,
+      locale: "sv_SE",
+      siteName: 'Casinogringos',
+      type: slotPage.opengraphType,
+      images: [
+        {
+          url: urlFor(slotPage.featuredImage.image).url(),
+          alt: slotPage.featuredImage.image.alt,
+          width: slotPage.featuredImage.image.asset?.metadata?.dimensions?.width ?? 1200,
+          height: slotPage.featuredImage.image.asset?.metadata?.dimensions?.height ?? 630,
+        },
+      ],
+    },
+  };
+
+  return metadata
+}
 
 export default async function Page(props: { params: Params }) {
   const params = await props.params
@@ -47,12 +47,13 @@ export default async function Page(props: { params: Params }) {
     slug: `/slots${formatPageSlug(params?.slug)}`,
   }))
   const similarSlotPages = await getSimilarSlotPages({
-    id: slotPage.id,
+    id: slotPage._id,
     count: 5,
   })
+  const casinoPages: CasinoPageSchemaType[] = await getCasinoPagesByCasinos({ casinoIds: slotPage.slot.casinos.map((casino: CasinoSchemaType) => casino._id) })
 
   if (slotPage) {
-    return <SlotPage page={slotPage} similarSlotPages={similarSlotPages} />
+    return <SlotPage slotPage={slotPage} similarSlotPages={similarSlotPages} casinoPages={casinoPages} />
   } else return notFound()
 }
 

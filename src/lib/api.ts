@@ -20,6 +20,8 @@ import { casinoPagesQuery } from '@/src/data/queries'
 import { similarGuidePagesQuery } from '@/src/data/queries'
 import { casinoPagePreviewsQuery } from '@/src/data/queries/casinoPagePreviewsQuery'
 import { similarNewsPagesQuery } from '../data/queries/similarNewsPagesQuery'
+import { similarSlotPagesQuery } from '../data/queries/similarSlotPagesQuery'
+import { SlotPageSchemaType } from '../schemas'
 const client = getClient()
 
 export const getPageBySlug = async ({ slug }: { slug: string }) => {
@@ -261,5 +263,35 @@ export const getAuthorBySlug = async ({ slug }: { slug: string }) => {
   } catch (e) {
     console.log(e)
     throw Error(`Failed to fetch author by slug: ${slug}`)
+  }
+}
+
+export const getSimilarSlotPages = async ({
+  id,
+  count = 5,
+}: {
+  id: string
+  count?: number
+}) => {
+  try {
+    const data = await client.fetch(similarSlotPagesQuery({ id, count }))
+    return data
+  } catch (e) {
+    console.log(e)
+    throw Error(`Failed to fetch similar slot pages`)
+  }
+}
+
+export const getCasinoPagesByCasinos = async ({
+  casinoIds,
+}: {
+  casinoIds: string[]
+}) => {
+  try {
+    const data = await client.fetch(casinoPagesByCasinosQuery({ casinoIds }))
+    return data
+  } catch (e) {
+    console.log(e)
+    throw Error(`Failed to fetch casino pages by casinos`)
   }
 }

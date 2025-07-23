@@ -10,6 +10,7 @@ import { AuthorSchema, AuthorSchemaType } from './author'
 import { BasePageSchema, BasePageSchemaType } from './basePage'
 import { BonusObjectSchema, BonusObjectSchemaType } from './bonusObject'
 import { BonusTypeSchema, BonusTypeSchemaType } from './bonusType'
+import { SlotSchema, SlotSchemaType } from './slot'
 import { HTMLObjectSchema, HTMLObjectSchemaType } from './htmlObject'
 import {
   GuidePagePreviewSchema,
@@ -27,6 +28,7 @@ import { CasinoBonusSchema, CasinoBonusSchemaType } from './casinoBonus'
 import { CasinoPageSchema, CasinoPageSchemaType } from './casinoPage'
 import { ColumnObjectSchema, ColumnObjectSchemaType } from './columnObject'
 import { ColumnsObjectSchema, ColumnsObjectSchemaType } from './columnsObject'
+import { SlotPageSchema, SlotPageSchemaType } from './slotPage'
 import {
   DashboardImageObjectSchema,
   DashboardImageObjectSchemaType,
@@ -114,6 +116,7 @@ export {
   FreeSpinsSchema,
   FreeSpinsTypeSchema,
   GameSchema,
+  SlotSchema,
   GroupObjectSchema,
   BreadcrumbsSchema,
   HeadingObjectSchema,
@@ -133,6 +136,7 @@ export {
   ProsAndConsObjectSchema,
   QuoteObjectSchema,
   RatingObjectSchema,
+  SlotPageSchema,
   SanityImageSchema,
   ShortcodeObjectSchema,
   TableObjectSchema,
@@ -149,10 +153,12 @@ export type {
   BasePageSchemaType,
   NewsPageSchemaType,
   BonusObjectSchemaType,
+  SlotSchemaType,
   BonusTypeSchemaType,
   ButtonObjectSchemaType,
   ButtonsObjectSchemaType,
   CasinoSchemaType,
+  SlotPageSchemaType,
   CasinoObjectSchemaType,
   NewsPagePreviewSchemaType,
   BasePagePreviewSchemaType,

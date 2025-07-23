@@ -22,7 +22,7 @@ export const BasePageSchema = z.object({
   seoTitle: z.string(),
   canonical: z.string(),
   opengraphType: z.any(),
-  intro: z.array(PortableTextBlockSchema),
+  intro: PortableTextBlockSchema,
   author: AuthorSchema,
   _createdAt: z.string(),
   originalPublishedAt: z.string().optional(),

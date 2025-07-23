@@ -1,68 +1,69 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import Star from '@/src/components/icons/StarIcon'
-import HalfStar from '@/src/components/icons/HalfStarIcon'
+import HalfStarIcon from '@/src/components/icons/HalfStarIcon'
 import ModularContent from '@/src/components/organisms/ModularContent'
 import Avatar from '@/src/components/organisms/Avatar'
 import BreadCrumbs from '@/src/components/organisms/BreadCrumbs'
 import Container from '@/src/components/atoms/Container'
 import SlotHero from '@/src/components/organisms/SlotHero'
 import TableOfContents from '@/src/components/organisms/TableOfContents'
-import { SlotPageSchemaType } from '@/src/schemas'
+import { CasinoPageSchemaType, SlotPageSchemaType } from '@/src/schemas'
 import getSlotReviewStructuredData from '@/src/structured-data/slotReviewStructuredData'
 import SlotService from '@/src/services/SlotService'
+import SanityImage from '../components/atoms/SanityImage'
+import Heading from '../components/atoms/Heading'
+import { PortableText } from 'next-sanity'
 
 const slotService = new SlotService()
 
-export default function Slot({ slotPage, similarSlotPages }: { slotPage: SlotPageSchemaType, similarSlotPages: SlotPageSchemaType[] }) {
+export default async function Slot({ slotPage, similarSlotPages, casinoPages }: { slotPage: SlotPageSchemaType, similarSlotPages: SlotPageSchemaType[], casinoPages: CasinoPageSchemaType[] }) {
+  const isValid = slotService.validatePage(slotPage)
   const schema = {
     '@context': 'https://schema.org',
-    '@graph': [getSlotReviewStructuredData(slotPage)],
+    '@graph': [getSlotReviewStructuredData({ page: slotPage })],
   }
-  const headings = slotService.getBlockHeadings(slotPage?.editorBlocks)
-  const convertedRating = parseInt(slot?.slotType?.rating)
-  const rating = slot.slotType?.rating?.toString()
+  const headings = slotService.getHeadingObjects(slotPage)
+  const { slot } = slotPage
 
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(structuredData),
+          __html: JSON.stringify(schema),
         }}
         key="slot-data"
       />
       <div>
-        <SlotHero props={slot} />
+        <SlotHero slotPage={slotPage} casinoPages={casinoPages} />
         <div className="bg-dark">
           <Container>
             <div className="flex flex-col gap-4 pb-6 pt-4 lg:flex-row lg:gap-12 lg:px-8 lg:pb-12 lg:pt-12">
               <div className="lg:mt-2 lg:w-1/4">
-                {slot?.featuredImage && (
-                  <Image
+                {slotPage?.featuredImage && (
+                  <SanityImage
                     className="rounded-sm"
                     width={600}
-                    height={600}
-                    src={slot.featuredImage.node.sourceUrl}
-                    alt={slot.featuredImage.node.altText}
+                    image={slotPage.featuredImage.image}
                   />
                 )}
               </div>
               <div className="text-white lg:w-3/4">
-                {rating && (
+                {slot.rating && (
                   <div className="mt-2 flex">
-                    {new Array(convertedRating).fill(null).map((_, index) => (
+                    {new Array(slot.rating).fill(null).map((_, index) => (
                       <Star
                         key={`rating-star-${index}`}
                         className="h-4 w-4 text-yellow400"
                       />
                     ))}
-                    {new Array(rating)
+                    {new Array(slot.rating)
                       .fill(null)
                       .map(
                         (_, index) =>
-                          rating.indexOf('.') !== -1 && (
-                            <StarHalf
+                          slot.rating.indexOf('.') !== -1 && (
+                            <HalfStarIcon
                               key={`rating-star-${index}`}
                               className="h-4 w-4 text-yellow400"
                             />
@@ -70,31 +71,20 @@ export default function Slot({ slotPage, similarSlotPages }: { slotPage: SlotPag
                       )}
                   </div>
                 )}
-                <h1 className="mb-0 mt-1 text-3xl font-bold text-white">
-                  {slot?.title}
-                </h1>
+                <Heading level={1} className="mb-0 mt-1 text-3xl font-bold text-white">
+                  <span>{slotPage.title}</span>
+                </Heading>
                 <p className="text-slate300">
-                  {slot?.slotType?.speltillverkare?.name}
+                  {slot.provider.name}
                 </p>
-                <p className="text-slate-200 mt-4">
-                  {slot?.slotType?.introduction}
-                </p>
-                {/* <OldTable item={slot?.slotType} /> */}
+                <PortableText value={slotPage.intro} />
                 <section className="mt-6 grid grid-cols-2 gap-3">
-                  {/* <div className="rounded-md bg-normal px-4 py-3">
-                <span className="text-sm font-medium text-slate200">
-                  Lanserades:
-                </span>
-                <div className="text-2xl font-semibold text-primary">
-                  {slot?.slotType?.lanseringsar}
-                </div>
-              </div> */}
                   <div className="rounded-md bg-normal px-4 py-3">
                     <span className="text-sm font-medium text-slate200">
                       RTP:
                     </span>
                     <div className="text-2xl font-semibold text-green500">
-                      {slot?.slotType?.rtp}
+                      {slot.rtp}
                     </div>
                   </div>
                   <div className="rounded-md bg-normal px-4 py-3">
