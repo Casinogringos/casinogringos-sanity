@@ -32,10 +32,7 @@ const GuideIndex = ({
 
   return (
     <>
-      <Breadcrumbs
-        index={{ text: page.title, url: page.slug.current }}
-        items={breadcrumbs}
-      />
+      <Breadcrumbs items={breadcrumbs} />
       <Container className="py-6 lg:py-12">
         <Heading level={1} className="text-3xl font-bold" text={page.title} />
         <PortableText value={page.intro} />

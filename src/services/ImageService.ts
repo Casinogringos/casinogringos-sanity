@@ -22,6 +22,7 @@ class ImageService {
     width: number,
     quality?: number,
   }): string => {
+    if (!image) return ''
     const originalFileName = urlFor(image).url().split('/').pop()?.split('.')[0]
     const stub = getVanityStub(originalFileName, image.vanityFileName)
     console.log('stub', stub)

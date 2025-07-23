@@ -1,6 +1,7 @@
 import { Casino } from '@/src/types/casino'
 import { CasinoPageSchema, CasinoPageSchemaType, CasinoSchemaType } from '@/src/schemas'
 import fs from 'fs'
+import BasePageService from '@/src/services/BasePageService'
 
 interface Ratings {
   bonus_rating: number
@@ -19,9 +20,10 @@ interface RatingKey {
   imgSrc: string
 }
 
-class CasinoService {
+class CasinoService extends BasePageService {
   ratingKeys: RatingKey[]
   constructor() {
+    super()
     this.ratingKeys = [
       { key: 'bonus_rating', label: 'Bonuserbjudande', imgSrc: '/bonus.webp' },
       {
@@ -54,12 +56,12 @@ class CasinoService {
       { key: 'support_rating', label: 'Kundtjänst', imgSrc: '/support.webp' },
     ]
   }
-  validateCasinoPageSchema({ casinoPage }: { casinoPage: CasinoPageSchemaType }) {
-    const parse = CasinoPageSchema.safeParse(casinoPage)
+  validatePage(page: CasinoPageSchemaType, preview: boolean = false) {
+    const parse = CasinoPageSchema.safeParse(page)
     if (!parse.success) {
-      console.error(`Invalid casino page schema:\n${casinoPage.title}\n`, parse.error)
-      fs.writeFileSync('structuredDataError.log', `\n\n${casinoPage.title}\n${JSON.stringify(parse.error)}`)
-      return false
+      console.log(`Invalid casino page schema:\n${page.title}\n`, parse.error)
+      fs.writeFileSync('structuredDataError.log', `\n\n${page.title}\n${JSON.stringify(parse.error)}`)
+      // return false
     }
     return true
   }

@@ -2,4 +2,4 @@
 
 Vanliga problem med casino bonusar
 Invalid Guide Page
-{"issues":[{"code":"invalid_type","expected":"string","received":"undefined","path":["featuredImage","image","alt"],"message":"Required"}],"name":"ZodError"}
+{"issues":[{"code":"invalid_type","expected":"string","received":"undefined","path":["featuredImage","image","alt"],"message":"Required"},{"code":"invalid_type","expected":"string","received":"undefined","path":["featuredImage","image","vanityFileName"],"message":"Required"}],"name":"ZodError"}

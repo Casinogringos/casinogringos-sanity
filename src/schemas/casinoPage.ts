@@ -5,7 +5,7 @@ import { CasinoSchema } from './casino'
 
 export const CasinoPageSchema = BasePageSchema.extend({
   _type: z.literal('casino-pages'),
-  content: ModularContentSchema.optional(),
+  content: ModularContentSchema,
   casino: CasinoSchema,
   affiliateLink: z.string(),
 })

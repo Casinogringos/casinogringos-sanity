@@ -1,7 +1,7 @@
-import { getSlotPageBySlug } from '@/src/lib/api'
+import { getSlotPageBySlug, getStaticParams, getSimilarSlotPages } from '@/src/lib/api'
 import { notFound } from 'next/navigation'
 import SlotPage from '@/src/app/SlotPage'
-import { SlotPage as SlotType } from '@/src/types'
+import { SlotPageSchemaType } from '@/src/schemas'
 import { formatPageSlug } from '@/src/lib/utility'
 
 type Params = Promise<{ slug: string }>
@@ -43,21 +43,21 @@ type Params = Promise<{ slug: string }>
 
 export default async function Page(props: { params: Params }) {
   const params = await props.params
-  const slotPage = (await getSlotPageBySlug({
+  const slotPage: SlotPageSchemaType = (await getSlotPageBySlug({
     slug: `/slots${formatPageSlug(params?.slug)}`,
-  })) as SlotType
-  // const slots = await getSlotPreviews({ count: 5 })
-  // const similarSlots = slot
-  //   ? slots.edges.filter(({ node }) => node.id !== slot.id).splice(0, 4)
-  //   : null
+  }))
+  const similarSlotPages = await getSimilarSlotPages({
+    id: slotPage.id,
+    count: 5,
+  })
 
   if (slotPage) {
-    return <SlotPage page={slotPage} />
+    return <SlotPage page={slotPage} similarSlotPages={similarSlotPages} />
   } else return notFound()
 }
 
-// export async function generateStaticParams() {
-//   const allSlots = await getStaticParams('slot')
-//
-//   return allSlots.map(({ node }) => ({ slug: node.slug }))
-// }
+export async function generateStaticParams() {
+  const allSlotPages: SlotPageSchemaType[] = await getStaticParams('slot-pages')
+
+  return allSlotPages.map((page) => ({ slug: page.slug.current }))
+}

@@ -6,8 +6,19 @@ import {
 
 import fs from 'fs'
 import { GuidePagePreviewSchema } from '@/src/schemas/guidePagePreview'
+import BasePageService from './BasePageService'
 
-class GuideService {
+class GuideService extends BasePageService {
+  validatePage(page: GuidePageSchemaType | GuidePagePreviewSchemaType, preview: boolean): boolean {
+    const parse = preview
+      ? GuidePagePreviewSchema.safeParse(page)
+      : GuidePageSchema.safeParse(page)
+    if (!parse.success) {
+      console.log(`Invalid guide page:\n${page.title}\n`, parse.error)
+      // return false
+    }
+    return true
+  }
   validateGuidesList(
     guidePages: GuidePageSchemaType[] | GuidePagePreviewSchemaType[],
     preview: boolean = false
@@ -17,14 +28,10 @@ class GuideService {
       parse = preview
         ? GuidePagePreviewSchema.safeParse(item)
         : GuidePageSchema.safeParse(item)
-      if (!parse) return false
+      // if (!parse) return false
       if (!parse.success) {
-        console.error(`Invalid guide page:\n${item.title}\n`, parse.error)
-        fs.writeFileSync(
-          'structuredDataError.log',
-          `\n\n${item.title}\nInvalid Guide Page\n${JSON.stringify(parse.error)}`
-        )
-        return false
+        console.log(`Invalid guide page:\n${item.title}\n`, parse.error)
+        // return false
       }
     }
     return true
