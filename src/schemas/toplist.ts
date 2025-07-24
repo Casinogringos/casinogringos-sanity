@@ -1,5 +1,4 @@
 import { z } from 'zod';
-import { Toplist } from '../types/toplist';
 import { CasinoPageSchema } from './casinoPage';
 import { PortableTextBlockSchema } from './portableTextBlock';
 

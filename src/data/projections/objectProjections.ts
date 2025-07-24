@@ -20,6 +20,7 @@ import { howToObjectProjection } from '@/src/data/projections'
 import { shortcodeObjectProjection } from '@/src/data/projections'
 import { tableObjectProjection } from '@/src/data/projections'
 import { prosAndConsObjectProjection } from '@/src/data/projections'
+import { casinoListObjectProjection } from '@/src/data/projections'
 
 // export const objectProjections = `
 //     ${casinoObjectProjection},
@@ -49,6 +50,7 @@ export const objectProjections = [
   bonusObjectProjection,
   buttonObjectProjection,
   embedObjectProjection,
+  casinoListObjectProjection,
   faqObjectProjection,
   groupObjectProjection,
   columnObjectProjection,

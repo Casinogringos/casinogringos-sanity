@@ -1,12 +1,12 @@
 import { z } from 'zod'
-import { SanityImageSchema } from './sanityImage'
 import { PortableTextBlockSchema } from '@/src/schemas/portableTextBlock'
 
 export const ImageObjectSchema = z.object({
   _type: z.literal('image-object'),
   _key: z.string().optional(),
   _id: z.string().optional(),
-  image: SanityImageSchema,
+  src: z.string(),
+  alt: z.string(),
   caption: PortableTextBlockSchema.optional(),
   internalLink: z
     .object({

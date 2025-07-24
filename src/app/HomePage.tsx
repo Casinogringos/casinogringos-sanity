@@ -30,7 +30,7 @@ const HomePage = ({
   news: NewsPageSchemaType[]
   breadcrumbs: BreadcrumbsType
 }) => {
-  const isValid = pageService.validateSchema(page)
+  const isValid = pageService.validatePage(page)
   if (!isValid) return null
   const { faqs, author, _updatedAt, reviewer } = page
   const headingObjects = getHeadingObjectsByPage({ objects: page.content })

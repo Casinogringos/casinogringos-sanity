@@ -1,11 +1,10 @@
 import { z } from 'zod';
-import { BasePageSchema } from './basePage';
+import { FAQSchema, BasePageSchema, ToplistSchema } from '@/src/schemas';
 
 export const SubPageSchema = BasePageSchema.merge(
     z.object({
-        // Add/override fields specific to SubPageSchema here if needed
-        faqs: z.array(z.any()).optional(),
-        toplist: z.any().optional(),
+        faqs: FAQSchema.optional(),
+        toplist: ToplistSchema.optional(),
     })
 );
 

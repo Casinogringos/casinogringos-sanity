@@ -20,6 +20,7 @@ import RatingObject from '@/src/components/organisms/RatingObject'
 import FAQObject from '@/src/components/organisms/FAQObject'
 import { ModularContentSchemaType } from '@/src/schemas'
 import { ModularContentItemSchemaType } from '@/src/schemas/modularContent'
+import CasinoListObject from './CasinoListObject'
 
 const renderObject = (
   object: ModularContentItemSchemaType,
@@ -77,10 +78,10 @@ const renderObject = (
         </Tag>
       )
     }
-    case 'shortcode-object': {
+    case 'casino-list-object': {
       return (
         <Tag>
-          <Placeholder message={'Shortcode Object: Missing shortcode'} />
+          <CasinoListObject object={object} />
         </Tag>
       )
     }

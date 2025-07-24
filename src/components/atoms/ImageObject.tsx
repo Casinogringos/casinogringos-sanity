@@ -1,8 +1,9 @@
-import { ImageObject as ImageObjectType } from '@/src/types'
+import { ImageObjectSchemaType } from '@/src/schemas'
 import SanityImage from '@/src/components/atoms/SanityImage'
 
-const ImageObject = ({ object }: { object: ImageObjectType }) => {
-  return <SanityImage image={object.image} altText={object.altText} />
+const ImageObject = ({ object }: { object: ImageObjectSchemaType }) => {
+  console.log('object', object)
+  return <SanityImage image={object} />
 }
 
 export default ImageObject

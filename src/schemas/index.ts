@@ -6,12 +6,17 @@ import {
   AISummaryObjectSchema,
   AISummaryObjectSchemaType,
 } from './aiSummaryObject'
+import {
+  FAQSchema,
+  FAQSchemaType,
+} from './faq'
 import { AuthorSchema, AuthorSchemaType } from './author'
 import { BasePageSchema, BasePageSchemaType } from './basePage'
 import { BonusObjectSchema, BonusObjectSchemaType } from './bonusObject'
 import { BonusTypeSchema, BonusTypeSchemaType } from './bonusType'
 import { SlotSchema, SlotSchemaType } from './slot'
 import { HTMLObjectSchema, HTMLObjectSchemaType } from './htmlObject'
+import { CasinoListObjectSchema, CasinoListObjectSchemaType } from './casinoListObject'
 import {
   GuidePagePreviewSchema,
   GuidePagePreviewSchemaType,
@@ -129,10 +134,12 @@ export {
   ListObjectSchema,
   ModularContentSchema,
   OddsBonusSchema,
+  FAQSchema,
   HTMLObjectSchema,
   ParagraphObjectSchema,
   PaymentMethodSchema,
   PaymentMethodTypeSchema,
+  CasinoListObjectSchema,
   ProsAndConsObjectSchema,
   QuoteObjectSchema,
   RatingObjectSchema,
@@ -152,6 +159,7 @@ export type {
   AuthorSchemaType,
   BasePageSchemaType,
   NewsPageSchemaType,
+  CasinoListObjectSchemaType,
   BonusObjectSchemaType,
   SlotSchemaType,
   BonusTypeSchemaType,
@@ -184,6 +192,7 @@ export type {
   ListObjectSchemaType,
   ModularContentSchemaType,
   OddsBonusSchemaType,
+  FAQSchemaType,
   HTMLObjectSchemaType,
   ParagraphObjectSchemaType,
   PaymentMethodSchemaType,

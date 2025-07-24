@@ -1,44 +1,35 @@
-'use client'
-
-import { useNextSanityImage } from 'next-sanity-image'
-import type { SanityImage as SanityImageType } from '@/src/types'
-import { getClient, urlFor } from '@/src/lib/client'
 import Image from 'next/image'
 import Placeholder from '@/src/components/atoms/Placeholder'
-import { SanityImageSchemaType } from '@/src/schemas'
-import ImageService from '@/src/services/ImageService'
-const imageService = new ImageService()
-const client = getClient()
+import { ImageObjectSchemaType, SanityImageSchemaType } from '@/src/schemas'
 
 const SanityImage = ({
   image,
-  width,
+  width = 600,
+  height = 600,
   className,
   priority = false,
 }: {
-  image: SanityImageSchemaType
+  image: ImageObjectSchemaType
   width?: number
+  height?: number
   className?: string
   priority?: boolean
 }) => {
-  const imageProps = useNextSanityImage(client, image)
-  // console.log('image', image)
-  if (!imageProps) {
-    return <Placeholder message={'Sanity Image: Missing image'} />
+  console.log('image', image)
+  if (!image?.src) {
+    return <Placeholder message={'Sanity Image: Missing image src'} />
   }
-  if (!image.alt) {
+  if (!image?.alt) {
     return <Placeholder message={'Sanity Image: Missing altText'} />
   }
   return (
     <Image
-      {...imageProps}
-      loader={({ width, quality }) =>
-        imageService.vanityImageLoader({ image, width, quality })
-      }
+      src={image.src}
       alt={image.alt}
       className={className}
       priority={priority}
       width={width}
+      height={height}
     />
   )
 }

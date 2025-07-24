@@ -41,7 +41,7 @@ export default async function Slot({ slotPage, similarSlotPages, casinoPages }: 
           <Container>
             <div className="flex flex-col gap-4 pb-6 pt-4 lg:flex-row lg:gap-12 lg:px-8 lg:pb-12 lg:pt-12">
               <div className="lg:mt-2 lg:w-1/4">
-                {slotPage?.featuredImage && (
+                {slotPage.featuredImage && (
                   <SanityImage
                     className="rounded-sm"
                     width={600}

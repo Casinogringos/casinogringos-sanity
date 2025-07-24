@@ -10,6 +10,7 @@ import { casinoBonusProjection } from '@/src/data/projections/casinoBonusProject
 import { casinoProjection } from '@/src/data/projections/casinoProjection'
 import { imageObjectProjection } from '@/src/data/projections/imageObjectProjection'
 import { listItemObjectProjection } from '@/src/data/projections/listItemObjectProjection'
+import { casinoListObjectProjection } from '@/src/data/projections/casinoListObjectProjection'
 import { bonusProjection } from '@/src/data/projections/bonusProjection'
 import { listObjectProjection } from '@/src/data/projections/listObjectProjection'
 import { affiliateButtonObjectProjection } from '@/src/data/projections/affiliateButtonObjectProjection'
@@ -57,6 +58,7 @@ export {
   casinoRatingProjection,
   slotPagePreviewProjection,
   pagePreviewByAuthorProjection,
+  casinoListObjectProjection,
   toplistProjection,
   slotPageProjection,
   objectProjections,
