@@ -17,6 +17,7 @@ import { BonusTypeSchema, BonusTypeSchemaType } from './bonusType'
 import { SlotSchema, SlotSchemaType } from './slot'
 import { HTMLObjectSchema, HTMLObjectSchemaType } from './htmlObject'
 import { CasinoListObjectSchema, CasinoListObjectSchemaType } from './casinoListObject'
+import { CasinoPagePreviewSchema, CasinoPagePreviewSchemaType } from './casinoPagePreview'
 import {
   GuidePagePreviewSchema,
   GuidePagePreviewSchemaType,
@@ -92,7 +93,7 @@ import {
   ShortcodeObjectSchema,
   ShortcodeObjectSchemaType,
 } from './shortcodeObject'
-import { TableObjectSchema, TableObjectSchemaType } from './tableObject'
+import { OldTableObjectSchema, OldTableObjectSchemaType } from './oldTableObject'
 import { ToggleObjectSchema, ToggleObjectSchemaType } from './toggleObject'
 import { ToplistSchema, ToplistSchemaType } from './toplist'
 import { SubPageSchema, SubPageSchemaType } from './subPage'
@@ -124,6 +125,7 @@ export {
   SlotSchema,
   GroupObjectSchema,
   BreadcrumbsSchema,
+  CasinoPagePreviewSchema,
   HeadingObjectSchema,
   HowToObjectSchema,
   GuidePagePreviewSchema,
@@ -146,7 +148,7 @@ export {
   SlotPageSchema,
   SanityImageSchema,
   ShortcodeObjectSchema,
-  TableObjectSchema,
+  OldTableObjectSchema,
   NewsPageSchema,
   ToggleObjectSchema,
   ToplistSchema,
@@ -157,6 +159,7 @@ export type {
   AffiliateButtonObjectSchemaType,
   AISummaryObjectSchemaType,
   AuthorSchemaType,
+  CasinoPagePreviewSchemaType,
   BasePageSchemaType,
   NewsPageSchemaType,
   CasinoListObjectSchemaType,
@@ -203,7 +206,7 @@ export type {
   RatingObjectSchemaType,
   SanityImageSchemaType,
   ShortcodeObjectSchemaType,
-  TableObjectSchemaType,
+  OldTableObjectSchemaType,
   ToggleObjectSchemaType,
   ToplistSchemaType,
   SubPageSchemaType,

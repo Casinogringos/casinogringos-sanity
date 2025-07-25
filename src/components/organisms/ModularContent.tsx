@@ -21,6 +21,7 @@ import FAQObject from '@/src/components/organisms/FAQObject'
 import { ModularContentSchemaType } from '@/src/schemas'
 import { ModularContentItemSchemaType } from '@/src/schemas/modularContent'
 import CasinoListObject from './CasinoListObject'
+import HTMLObject from '@/src/components/organisms/HTMLObject'
 
 const renderObject = (
   object: ModularContentItemSchemaType,

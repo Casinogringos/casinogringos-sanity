@@ -16,7 +16,7 @@ import { ProsAndConsObjectSchema } from '@/src/schemas/prosAndConsObject'
 import { QuoteObjectSchema } from '@/src/schemas/quoteObject'
 import { RatingObjectSchema } from '@/src/schemas/ratingObject'
 import { ShortcodeObjectSchema } from '@/src/schemas/shortcodeObject'
-import { TableObjectSchema } from '@/src/schemas/tableObject'
+import { TableObjectSchema } from '@/src/schemas/oldTableObject'
 import { ToggleObjectSchema } from '@/src/schemas/toggleObject'
 
 export const ColumnObjectSchema = z.object({

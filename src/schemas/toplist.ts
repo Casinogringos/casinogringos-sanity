@@ -1,11 +1,11 @@
 import { z } from 'zod';
-import { CasinoPageSchema } from './casinoPage';
+import { CasinoPagePreviewSchema } from './casinoPagePreview'
 import { PortableTextBlockSchema } from './portableTextBlock';
 
 export const ToplistSchema = z.object({
   title: z.string(),
   description: z.array(PortableTextBlockSchema),
-  casinos: z.array(CasinoPageSchema),
+  casinos: z.array(CasinoPagePreviewSchema),
 });
 
 export type ToplistSchemaType = z.infer<typeof ToplistSchema>;

@@ -62,10 +62,10 @@ const metadataObject = (
       siteName: 'Casinogringos',
       images: [
         {
-          url: urlFor(page.seoImage).url(),
+          url: page.seoImage.src,
           alt: page.seoImage.alt,
-          width: page.seoImage.asset?.metadata?.dimensions?.width ?? 1200,
-          height: page.seoImage.asset?.metadata?.dimensions?.height ?? 630,
+          width: 600,
+          height: 400,
         },
       ],
     },

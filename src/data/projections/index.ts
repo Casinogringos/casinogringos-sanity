@@ -22,7 +22,6 @@ import { embedObjectProjection } from '@/src/data/projections/embedObjectProject
 import { bonusTypeProjection } from '@/src/data/projections/bonusTypeProjection'
 import { faqItemObjectProjection } from '@/src/data/projections/faqItemObjectProjection'
 import { faqObjectProjection } from '@/src/data/projections/faqObjectProjection'
-import { tableObjectProjection } from '@/src/data/projections/tableObjectProjection'
 import { columnObjectProjection } from '@/src/data/projections/columnObjectProjection'
 import { shortcodeObjectProjection } from '@/src/data/projections/shortcodeObjectProjection'
 import { columnsObjectProjection } from '@/src/data/projections/columnsObjectProjection'
@@ -37,6 +36,7 @@ import { howToObjectProjection } from '@/src/data/projections/howToObjectProject
 import { casinoPagePreviewProjection } from '@/src/data/projections/casinoPagePreviewProjection'
 import { aiSummaryObjectProjection } from '@/src/data/projections/aiSummaryObjectProjection'
 import { toplistProjection } from '@/src/data/projections/toplistProjection'
+import { oldTableObjectProjection } from '@/src/data/projections/oldTableObjectProjection'
 import { prosAndConsObjectProjection } from '@/src/data/projections/prosAndConsObjectProjection'
 import { quoteObjectProjection } from '@/src/data/projections/quoteObjectProjection'
 import { toggleObjectProjection } from '@/src/data/projections/toggleObjectProjection'
@@ -57,6 +57,7 @@ export {
   guidePagePreviewProjection,
   casinoRatingProjection,
   slotPagePreviewProjection,
+  oldTableObjectProjection,
   pagePreviewByAuthorProjection,
   casinoListObjectProjection,
   toplistProjection,
@@ -77,7 +78,6 @@ export {
   bonusProjection,
   casinoPagePreviewProjection,
   casinoBonusProjection,
-  tableObjectProjection,
   dashboardImageProjection,
   pageProjection,
   authorProjection,

@@ -3,6 +3,7 @@ import {
   SubPageSchemaType,
 } from '@/src/schemas'
 import BasePageService from '@/src/services/BasePageService'
+import _ from 'lodash'
 
 class PageService extends BasePageService {
   validatePage(
@@ -11,8 +12,14 @@ class PageService extends BasePageService {
   ): boolean {
     const parse = SubPageSchema.safeParse(page)
     if (!parse.success) {
-      console.log(`Invalid page:\n${page.title}\n`, parse.error)
+      console.log(`Invalid page:\n${page.title}\n`, parse.error.format())
       console.log('suspect page', page)
+      for (const err of parse.error.errors) {
+        if (err.code === 'invalid_union_discriminator') {
+          const offendingObject = _.get(page, err.path);
+          console.log('Offending object:', offendingObject);
+        }
+      }
       // return false
     }
     return true

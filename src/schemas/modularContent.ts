@@ -15,8 +15,9 @@ import { ProsAndConsObjectSchema } from '@/src/schemas'
 import { QuoteObjectSchema } from '@/src/schemas'
 import { RatingObjectSchema } from '@/src/schemas'
 import { ShortcodeObjectSchema } from '@/src/schemas'
-import { TableObjectSchema } from '@/src/schemas'
+import { OldTableObjectSchema } from '@/src/schemas'
 import { ToggleObjectSchema } from '@/src/schemas'
+import { CasinoListObjectSchema } from '@/src/schemas'
 
 // This is a discriminated union of all the possible content types
 export const ModularContentItemSchema = z.discriminatedUnion('_type', [
@@ -36,9 +37,10 @@ export const ModularContentItemSchema = z.discriminatedUnion('_type', [
   QuoteObjectSchema,
   RatingObjectSchema,
   ShortcodeObjectSchema,
-  TableObjectSchema,
+  OldTableObjectSchema,
   ToggleObjectSchema,
   ColumnsObjectSchema,
+  CasinoListObjectSchema,
   // ColumnsObjectSchema references this schema, so we can't include it here
 ])
 

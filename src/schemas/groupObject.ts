@@ -10,12 +10,13 @@ import {
   HowToObjectSchema,
   ImageObjectSchema,
   ListObjectSchema,
-  ModularContentSchema,
   ParagraphObjectSchema,
   ProsAndConsObjectSchema,
   QuoteObjectSchema,
   RatingObjectSchema,
-  ShortcodeObjectSchema, TableObjectSchema, ToggleObjectSchema,
+  ShortcodeObjectSchema,
+  OldTableObjectSchema,
+  ToggleObjectSchema,
 } from '@/src/schemas'
 
 export const GroupObjectSchema = z.object({
@@ -38,7 +39,7 @@ export const GroupObjectSchema = z.object({
     QuoteObjectSchema,
     RatingObjectSchema,
     ShortcodeObjectSchema,
-    TableObjectSchema,
+    OldTableObjectSchema,
     ToggleObjectSchema,
     // ColumnsObjectSchema references this schema, so we can't include it here
   ])

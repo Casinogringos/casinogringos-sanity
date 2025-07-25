@@ -26,7 +26,7 @@ export default function SubPage({
   page: SubPageSchemaType
   breadcrumbs: BreadcrumbsSchemaType
 }) {
-  const isValid = pageService.validateSchema(page)
+  const isValid = pageService.validatePage(page)
   // if (!isValid) {
   //   return null
   // }
@@ -56,7 +56,7 @@ export default function SubPage({
           description={toplist.description}
         />
       ) : null}
-      {faqs?.length > 0 && (
+      {faqs && faqs.length > 0 && (
         <div className="mb-16 bg-dark px-4 py-16 md:px-0">
           <Container>
             <FAQ items={faqs} title={faqs.title} />
