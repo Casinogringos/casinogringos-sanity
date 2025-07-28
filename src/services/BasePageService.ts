@@ -5,6 +5,8 @@ import { ModularContentItemSchemaType } from '@/src/schemas/modularContent';
 abstract class BasePageService<PageType> {
     abstract validatePage(page: PageType, preview: boolean): boolean
 
+    abstract validateList(pages: PageType[], preview: boolean): boolean
+
     getHeadingObjects(
         page: PageType
     ) {

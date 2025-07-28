@@ -10,7 +10,7 @@ export async function generateMetadata() {
     slug: '/nyheter',
   }))
   const siteURL = (process.env.SITE_URL as string) + page.slug.current
-  const metadata: Metadata = {
+  let metadata: Metadata = {
     title: page.seoTitle,
     description: page.seoDescription,
     alternates: {
@@ -22,16 +22,19 @@ export async function generateMetadata() {
       url: siteURL,
       locale: 'sv_SE',
       siteName: 'Casinogringos',
-      type: page.opengraphType,
-      images: [
-        {
-          url: urlFor(page.seoImage).url(),
-          alt: page.seoImage.alt,
-          width: page.seoImage.asset?.metadata?.dimensions?.width ?? 1200,
-          height: page.seoImage.asset?.metadata?.dimensions?.height ?? 630,
-        },
-      ],
+      type: page.opengraphType ?? 'website',
+      images: [],
     },
+  }
+  if (page.seoImage?.src && metadata.openGraph) {
+    metadata.openGraph.images = [
+      {
+        url: page.seoImage.src,
+        alt: page.seoImage.alt,
+        width: 1200,
+        height: 630,
+      },
+    ]
   }
 
   return metadata

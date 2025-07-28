@@ -4,7 +4,6 @@ import { getNewsPageBySlug, getStaticParams, getSimilarNewsPages } from '@/src/l
 import { formatPageSlug } from '@/src/lib/utility'
 import { NewsPageSchemaType, NewsPagePreviewSchemaType } from '@/src/schemas'
 import { extractSlugFromUrl } from '@/src/lib/helpers'
-import { urlFor } from '@/src/lib/client'
 import { Metadata } from 'next'
 
 type Params = Promise<{ slug: string }>
@@ -16,7 +15,7 @@ export async function generateMetadata(props: { params: Params }) {
   })
   if (!newsPage) return null
 
-  const siteURL = (process.env.SITE_URL as string) + newsPage?.slug.current
+  const siteURL = (process.env.SITE_URL as string) + newsPage.slug.current
   const metadata: Metadata = {
     title: newsPage.seoTitle ?? newsPage.title,
     description: newsPage.seoDescription,
@@ -32,10 +31,10 @@ export async function generateMetadata(props: { params: Params }) {
       type: newsPage.opengraphType,
       images: [
         {
-          url: urlFor(newsPage.seoImage).url(),
+          url: newsPage.seoImage.src,
           alt: newsPage.seoImage.alt,
-          width: newsPage.seoImage.asset?.metadata?.dimensions?.width ?? 1200,
-          height: newsPage.seoImage.asset?.metadata?.dimensions?.height ?? 630,
+          width: 1200,
+          height: 630,
         },
       ],
     },

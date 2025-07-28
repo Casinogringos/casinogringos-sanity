@@ -5,7 +5,7 @@ import {
 import BasePageService from '@/src/services/BasePageService'
 import _ from 'lodash'
 
-class PageService extends BasePageService<SubPageSchemaType> {
+class SubPageService extends BasePageService<SubPageSchemaType> {
   validatePage(
     page: SubPageSchemaType,
     preview: boolean = false
@@ -24,6 +24,19 @@ class PageService extends BasePageService<SubPageSchemaType> {
     }
     return true
   }
+
+  validateList(pages: SubPageSchemaType[], preview: boolean = false): boolean {
+    let parse = null
+    for (const page of pages) {
+      parse = SubPageSchema.safeParse(page)
+      // if (!parse) return false
+      if (!parse.success) {
+        console.log(`Invalid page:\n${page.title}\n`, parse.error)
+        // return false
+      }
+    }
+    return true
+  }
 }
 
-export default PageService
+export default SubPageService

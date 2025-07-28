@@ -91,7 +91,7 @@ export default function GuidePage({
             <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
               {similarGuidePages.map((guidePage) => (
                 <Link
-                  href={`/guider/${guidePage.slug.current}`}
+                  href={guidePage.slug.current}
                   key={`guide-page-${guidePage._id}`}
                   className="flex flex-col"
                 >

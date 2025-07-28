@@ -1,15 +1,15 @@
 import ModularContent from '@/src/components/organisms/ModularContent'
 import Container from '@/src/components/atoms/Container'
-import SanityImage from '@/src/components/atoms/SanityImage'
 import PostHeader from '@/src/components/molecules/PostHeader'
 import Heading from '@/src/components/atoms/Heading'
-import { BreadcrumbsSchemaType, NewsPagePreviewSchemaType, NewsPageSchemaType } from '@/src/schemas'
+import { NewsPagePreviewSchemaType, NewsPageSchemaType } from '@/src/schemas'
 import { getHeadingObjectsByPage } from '@/src/lib/helpers'
 import TableOfContents from '@/src/components/organisms/TableOfContents'
 import AuthorBox from '@/src/components/organisms/AuthorBox'
 import NewsCard from '@/src/components/organisms/NewsCard'
 import getNewsArticleStructuredData from '@/src/structured-data/newsArticleStructuredData'
 import BreadCrumbs from '@/src/components/organisms/BreadCrumbs'
+import Image from 'next/image'
 
 export default function NewsPage({
   page,
@@ -50,10 +50,11 @@ export default function NewsPage({
       <Container narrow>
         {page.featuredImage && (
           <div className="mb-4 flex h-auto items-start overflow-hidden rounded-md lg:mb-8 lg:mt-8 lg:h-96 relative">
-            <SanityImage
-              image={page.featuredImage.image}
-              priority={true}
+            <Image
+              src={page.featuredImage.src}
+              alt={page.featuredImage.alt}
               width={768}
+              height={400}
               className={'object-cover h-full w-full'}
             />{' '}
           </div>

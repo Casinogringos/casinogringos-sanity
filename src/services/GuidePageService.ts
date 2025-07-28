@@ -19,12 +19,13 @@ class GuidePageService extends BasePageService<GuidePageSchemaType | GuidePagePr
     }
     return true
   }
-  validateGuidesList(
-    guidePages: GuidePageSchemaType[] | GuidePagePreviewSchemaType[],
+
+  validateList(
+    pages: GuidePageSchemaType[] | GuidePagePreviewSchemaType[],
     preview: boolean = false
   ): boolean {
     let parse = null
-    for (const item of guidePages) {
+    for (const item of pages) {
       parse = preview
         ? GuidePagePreviewSchema.safeParse(item)
         : GuidePageSchema.safeParse(item)

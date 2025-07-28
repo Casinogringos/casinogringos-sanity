@@ -2,23 +2,16 @@ import Container from '@/src/components/atoms/Container'
 import Heading from '@/src/components/atoms/Heading'
 import NewsCard from '@/src/components/organisms/NewsCard'
 import { NewsPagePreviewSchemaType } from '@/src/schemas'
-import PageService from '@/src/services/PageService'
+import NewsPageService from '@/src/services/NewsPageService'
 import BreadCrumbs from '@/src/components/organisms/BreadCrumbs'
-const pageService = new PageService()
+const newsPageService = new NewsPageService()
 
 const NewsIndex = ({
   newsPages,
 }: {
   newsPages: NewsPagePreviewSchemaType[]
 }) => {
-  const isValid = () => {
-    for (const page of newsPages) {
-      if (!pageService.validateSchema(page, true)) {
-        return false
-      }
-    }
-    return true
-  }
+  const isValid = newsPageService.validateList(newsPages, true)
   const breadcrumbItems = [
     {
       text: 'Hem',
@@ -30,9 +23,6 @@ const NewsIndex = ({
     },
   ]
 
-  if (!isValid()) {
-    return null
-  }
   return (
     <>
       <BreadCrumbs items={breadcrumbItems} />

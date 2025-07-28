@@ -14,7 +14,7 @@ import {
 } from '@/src/schemas'
 import BasePageService from './BasePageService'
 
-class SlotService extends BasePageService {
+class SlotPageService extends BasePageService<SlotPageSchemaType> {
   validatePage(
     page: SlotPageSchemaType,
     preview: boolean = false
@@ -27,6 +27,19 @@ class SlotService extends BasePageService {
     }
     return true
   }
+
+  validateList(pages: SlotPageSchemaType[], preview: boolean = false): boolean {
+    let parse = null
+    for (const page of pages) {
+      parse = SlotPageSchema.safeParse(page)
+      // if (!parse) return false
+      if (!parse.success) {
+        console.log(`Invalid slot page:\n${page.title}\n`, parse.error)
+        // return false
+      }
+    }
+    return true
+  }
 }
 
-export default SlotService
+export default SlotPageService

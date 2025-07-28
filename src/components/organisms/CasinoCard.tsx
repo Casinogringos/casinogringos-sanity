@@ -1,5 +1,5 @@
 import Star from '@/src/components/icons/StarIcon'
-import CasinoService from '@/src/services/CasinoService'
+import CasinoService from '@/src/services/CasinoPageService'
 import { Casino } from '@/src/types'
 import Image from 'next/image'
 import Link from '@/src/components/atoms/Link'
@@ -111,7 +111,7 @@ const CasinoCard = ({ casino, index }: { casino: Casino; index: number }) => {
       </div>
       {casino.terms ? (
         <div className="h-[37px] overflow-y-auto rounded-b-md bg-white px-4 py-2 text-xs3 text-gray-400">
-          <Paragraph content={casino.terms}/>
+          <Paragraph content={casino.terms} />
         </div>
       ) : (
         <div className="rounded-b-md bg-white px-2 py-3 text-center text-xs text-gray-400">

@@ -1,10 +1,10 @@
 import { CasinoPageSchema, CasinoPageSchemaType } from '@/src/schemas'
-import CasinoService from '@/src/services/CasinoService'
+import CasinoService from '@/src/services/CasinoPageService'
 import fs from 'fs'
 
 const casinoService = new CasinoService()
 
-const getReviewStructuredData = ({ page }: {page: CasinoPageSchemaType}) => {
+const getReviewStructuredData = ({ page }: { page: CasinoPageSchemaType }) => {
   const parse = CasinoPageSchema.safeParse(page)
   const { finalRating } = casinoService.getCasinoRatings({
     casino: page.casino,
