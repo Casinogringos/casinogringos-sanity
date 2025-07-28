@@ -5,7 +5,7 @@ import {
 import BasePageService from '@/src/services/BasePageService'
 import _ from 'lodash'
 
-class PageService extends BasePageService {
+class PageService extends BasePageService<SubPageSchemaType> {
   validatePage(
     page: SubPageSchemaType,
     preview: boolean = false

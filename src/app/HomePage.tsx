@@ -18,6 +18,7 @@ import NewsCard from '@/src/components/organisms/NewsCard'
 import { getHeadingObjectsByPage } from '@/src/lib/helpers'
 import { SubPageSchemaType, NewsPageSchemaType } from '@/src/schemas'
 import PageService from '@/src/services/PageService'
+import ArticleCard from '../components/molecules/ArticleCard'
 
 const pageService = new PageService()
 
@@ -57,7 +58,7 @@ const HomePage = ({
           itemComponent={CasinoCard}
         />
       )}
-      <NewsList itemComponent={NewsCard} items={news} />
+      <NewsList itemComponent={ArticleCard} items={news} />
       {headingObjects && headingObjects.length > 0 && (
         <Container narrow>
           <div className="pt-12 lg:pt-16">

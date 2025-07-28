@@ -8,7 +8,7 @@ import fs from 'fs'
 import { GuidePagePreviewSchema } from '@/src/schemas/guidePagePreview'
 import BasePageService from './BasePageService'
 
-class GuideService extends BasePageService {
+class GuidePageService extends BasePageService<GuidePageSchemaType | GuidePagePreviewSchemaType> {
   validatePage(page: GuidePageSchemaType | GuidePagePreviewSchemaType, preview: boolean): boolean {
     const parse = preview
       ? GuidePagePreviewSchema.safeParse(page)
@@ -38,4 +38,4 @@ class GuideService extends BasePageService {
   }
 }
 
-export default GuideService
+export default GuidePageService

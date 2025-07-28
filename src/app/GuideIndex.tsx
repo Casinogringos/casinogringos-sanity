@@ -1,4 +1,4 @@
-import GuideService from '@/src/services/GuideService'
+import GuideService from '@/src/services/GuidePageService'
 const guideService = new GuideService()
 import Container from '@/src/components/atoms/Container'
 import Heading from '@/src/components/atoms/Heading'

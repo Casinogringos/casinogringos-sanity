@@ -1,4 +1,4 @@
-import { objectProjections } from '@/src/data/projections'
+import { authorProjection, imageObjectProjection, objectProjections } from '@/src/data/projections'
 
 export const guidePageProjection = `
   _type,
@@ -8,7 +8,19 @@ export const guidePageProjection = `
   publishedAt,
   seoTitle,
   seoDescription,
+  seoImage {
+    ${imageObjectProjection}
+  },
+  canonical,
+  author-> {
+    ${authorProjection}
+  },
+  featuredImage {
+    ${imageObjectProjection}
+  },
   content[] {
     ${objectProjections}
-  }
+  },
+  _createdAt,
+  _updatedAt,
 `

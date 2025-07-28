@@ -12,6 +12,7 @@ const ArticleCard = ({
 }: {
   item: NewsPagePreviewSchemaType | GuidePagePreviewSchemaType
 }) => {
+  console.log('item', item)
   return (
     <Link
       href={item.slug.current}

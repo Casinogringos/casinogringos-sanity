@@ -14,8 +14,8 @@ type Params = Promise<{ slug: string }>
 
 export async function generateMetadata(props: { params: Params }) {
   const params = await props.params
-  const guidePage: GuidePageSchemaType = await getGuidePageBySlug({
-    slug: params.slug,
+  const guidePage = await getGuidePageBySlug({
+    slug: `/guider${formatPageSlug(params?.slug)}`,
   })
   const siteURL = (process.env.SITE_URL as string) + guidePage.slug.current
   const metadata: Metadata = {
@@ -30,13 +30,13 @@ export async function generateMetadata(props: { params: Params }) {
       url: siteURL,
       locale: 'sv_SE',
       siteName: 'Casinogringos',
-      type: guidePage.opengraphType,
+      type: guidePage.opengraphType ?? 'website',
       images: [
         {
-          url: urlFor(guidePage.seoImage).url(),
+          url: guidePage.seoImage.url,
           alt: guidePage.seoImage.alt,
-          width: guidePage.seoImage.asset?.metadata?.dimensions?.width ?? 1200,
-          height: guidePage.seoImage.asset?.metadata?.dimensions?.height ?? 630,
+          width: 1200,
+          height: 630,
         },
       ],
     },

@@ -1,39 +1,31 @@
+import { toPlainText } from '@portabletext/react';
 import { CasinoPageSchemaType, GuidePageSchemaType, ModularContentSchemaType, NewsPageSchemaType, SubPageSchemaType, SlotPageSchemaType } from "@/src/schemas"
+import { ModularContentItemSchemaType } from '@/src/schemas/modularContent';
 
-abstract class BasePageService {
-    abstract validatePage(page: SlotPageSchemaType | SubPageSchemaType | CasinoPageSchemaType | GuidePageSchemaType | NewsPageSchemaType, preview: boolean): boolean
+abstract class BasePageService<PageType> {
+    abstract validatePage(page: PageType, preview: boolean): boolean
 
     getHeadingObjects(
-        page:
-            | SubPageSchemaType
-            | CasinoPageSchemaType
-            | GuidePageSchemaType
-            | NewsPageSchemaType
-            | SlotPageSchemaType
+        page: PageType
     ) {
-        const { content }: { content: ModularContentSchemaType } = page
+        const { content }: { content: ModularContentSchemaType } = page as GuidePageSchemaType | SubPageSchemaType | SlotPageSchemaType | NewsPageSchemaType | CasinoPageSchemaType
         return content.filter((object) => {
             return object._type === 'heading-object'
         })
     }
 
     getWordCount(
-        page:
-            | SubPageSchemaType
-            | CasinoPageSchemaType
-            | GuidePageSchemaType
-            | NewsPageSchemaType
-            | SlotPageSchemaType
+        page: PageType
     ) {
-        const { content }: { content: ModularContentSchemaType } = page
-        return content.reduce((acc, object) => {
+        const { content }: { content: ModularContentSchemaType } = page as GuidePageSchemaType | SubPageSchemaType | SlotPageSchemaType | NewsPageSchemaType | CasinoPageSchemaType
+        return content.reduce((acc: number, object: ModularContentItemSchemaType) => {
             if (object._type === 'heading-object') {
-                return acc + object.text
+                return acc + object.text.split(' ').length
             }
             if (object._type === 'paragraph-object') {
-                return acc + this.getParagraphWordCount(object)
+                const plainText = toPlainText(object.content)
+                return acc + plainText.split(' ').length
             }
-            // etc...
             return acc
         }, 0)
     }

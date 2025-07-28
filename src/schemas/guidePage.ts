@@ -1,12 +1,10 @@
 import { z } from 'zod';
 import { BasePageSchema } from './basePage';
-import { PortableTextBlockSchema } from '@/src/schemas';
 import { ImageObjectSchema } from './imageObject';
 
 export const GuidePageSchema = BasePageSchema.merge(
     z.object({
         featuredImage: ImageObjectSchema,
-        excerpt: z.array(PortableTextBlockSchema),
     })
 );
 
