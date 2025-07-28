@@ -6,7 +6,6 @@ import {
 } from '@/src/lib/api'
 import Pagination from '@/src/components/organisms/Pagination'
 import BreadCrumbs from '@/src/components/organisms/BreadCrumbs'
-import { urlFor } from '@/src/lib/client'
 import { Metadata } from 'next'
 
 export async function generateMetadata() {
@@ -24,16 +23,18 @@ export async function generateMetadata() {
       url: siteURL,
       locale: 'sv_SE',
       siteName: 'Casinogringos',
-      type: page.opengraphType,
-      images: [
-        {
-          url: urlFor(page.seoImage).url(),
-          alt: page.seoImage.alt,
-          width: page.seoImage.asset?.metadata?.dimensions?.width ?? 1200,
-          height: page.seoImage.asset?.metadata?.dimensions?.height ?? 630,
-        },
-      ],
+      type: page.opengraphType ?? 'website',
     },
+  }
+  if (metadata.openGraph && page.seoImage) {
+    metadata.openGraph.images = [
+      {
+        url: page.seoImage.src,
+        alt: page.seoImage.alt,
+        width: 1200,
+        height: 630,
+      },
+    ]
   }
 
   return metadata
@@ -44,33 +45,9 @@ const Page = async () => {
   const guidesCount = await getGuidePageCount()
   const page = await getPageBySlug({ slug: '/guider' })
   const pageCount = Math.ceil(guidesCount / 24)
-  const breadcrumbItems = [
-    {
-      text: 'Hem',
-      url: `${process.env.SITE_URL}/`,
-    },
-    {
-      text: 'Guider',
-      url: `${process.env.SITE_URL}/guider`,
-    },
-  ]
 
-  return (
-    <>
-      <BreadCrumbs items={breadcrumbItems} />
-      <GuideIndex guidePages={guides} page={page} breadcrumbs={breadcrumbItems} />
-      {pageCount > 1 && (
-        <Pagination
-          currentPage={1}
-          numPages={pageCount}
-          pathPrefix={'guider'}
-          className={'font'}
-        />
-      )}
-    </>
-  )
+
+  return <GuideIndex guidePages={guides} page={page} pageCount={pageCount} currentPage={1} />
 }
 
 export default Page
-//
-// export const dynamic = 'force-static'

@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import SanityImage from '@/src/components/atoms/SanityImage'
+import Image from 'next/image'
 import Date from '@/src/components/atoms/Date'
 import {
   GuidePagePreviewSchemaType,
@@ -19,10 +19,12 @@ const ArticleCard = ({
       className={'flex h-full bg-white pb-4 rounded-md flex-col items-start'}
     >
       <div className="relative flex h-36 w-full items-center overflow-hidden rounded-t-md">
-        <SanityImage
-          image={item?.featuredImage.image}
+        <Image
+          src={item.featuredImage.src}
+          alt={item.featuredImage.alt}
           width={400}
-          className={'min-h-full min-w-full object-cover'}
+          height={200}
+          className="object-cover"
         />
       </div>
       <div className="px-4">

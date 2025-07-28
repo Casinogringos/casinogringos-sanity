@@ -22,6 +22,7 @@ const Link = ({
   plausible,
   variant,
   title,
+  disabled,
 }: {
   href: string
   rel?: string
@@ -40,6 +41,7 @@ const Link = ({
     props: Record<string, string>
   }
   variant?: 'affiliate' | 'ghost'
+  disabled?: boolean
 }) => {
   const plausibleMethod = usePlausible()
   const pathname = usePathname()

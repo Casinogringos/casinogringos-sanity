@@ -10,29 +10,38 @@ import {
 } from '@/src/schemas'
 import ArticleCard from '@/src/components/molecules/ArticleCard'
 import { PortableText } from 'next-sanity'
+import { getGuidePageCount, getPageBySlug } from '@/src/lib/api'
+import Pagination from '@/src/components/organisms/Pagination'
 
 const GuideIndex = ({
   page,
   guidePages,
-  breadcrumbs,
+  pageCount,
+  currentPage,
 }: {
   page: SubPageSchemaType
   guidePages: GuidePagePreviewSchemaType[]
-  breadcrumbs: BreadcrumbsSchemaType
+  pageCount: number
+  currentPage: number
 }) => {
-  const isValid = () => {
-    if (!guideService.validateGuidesList(guidePages, true)) {
-      return false
-    }
-    return true
-  }
-  if (!isValid()) {
+  const isValid = guideService.validateGuidesList(guidePages, true)
+  if (!isValid) {
     return null
   }
+  const breadcrumbItems = [
+    {
+      text: 'Hem',
+      url: `${process.env.SITE_URL}/`,
+    },
+    {
+      text: 'Guider',
+      url: `${process.env.SITE_URL}/guider`,
+    },
+  ]
 
   return (
     <>
-      <Breadcrumbs items={breadcrumbs} />
+      <Breadcrumbs items={breadcrumbItems} />
       <Container className="py-6 lg:py-12">
         <Heading level={1} className="text-3xl font-bold" text={page.title} />
         <PortableText value={page.intro} />
@@ -41,6 +50,14 @@ const GuideIndex = ({
             <ArticleCard key={`guide-${guide._id}`} item={guide} />
           ))}
         </div>
+        {pageCount > 1 && (
+          <Pagination
+            currentPage={currentPage}
+            numPages={pageCount}
+            pathPrefix={'guider'}
+            className={'font'}
+          />
+        )}
       </Container>
     </>
   )

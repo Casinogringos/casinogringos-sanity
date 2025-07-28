@@ -1,5 +1,4 @@
 import GuideIndex from '@/src/app/GuideIndex'
-import Pagination from '@/src/components/organisms/Pagination'
 import {
   getGuidePageCount,
   getGuidePagePreviews,
@@ -15,28 +14,9 @@ export default async function Page(props: {
   const offset = (pageNumber - 1) * 24
   const guides = await getGuidePagePreviews({ count: 24, offset })
   const guidesCount = await getGuidePageCount()
-  const page = await getPageBySlug({ slug: params.page })
-  const breadcrumbs = [
-    {
-      text: 'Hem',
-      url: `${process.env.SITE_URL}/`,
-    },
-    {
-      text: 'Guider',
-      url: `${process.env.SITE_URL}/guider/page/${pageNumber}`,
-    },
-  ]
+  const page = await getPageBySlug({ slug: '/guider' })
 
-  return (
-    <>
-      <GuideIndex guidePages={guides} breadcrumbs={breadcrumbs} page={page} />
-      <Pagination
-        currentPage={pageNumber}
-        numPages={Math.ceil(guidesCount / 24)}
-        pathPrefix={'guider'}
-      />
-    </>
-  )
+  return <GuideIndex guidePages={guides} page={page} pageCount={Math.ceil(guidesCount / 24)} currentPage={pageNumber} />
 }
 
 export async function generateStaticParams() {
