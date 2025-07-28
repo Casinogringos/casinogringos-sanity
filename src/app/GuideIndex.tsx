@@ -24,7 +24,7 @@ const GuideIndex = ({
   pageCount: number
   currentPage: number
 }) => {
-  const isValid = guideService.validateGuidesList(guidePages, true)
+  const isValid = guideService.validateList(guidePages, true)
   if (!isValid) {
     return null
   }

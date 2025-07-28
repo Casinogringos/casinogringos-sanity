@@ -13,7 +13,6 @@ const Pagination = ({
   pathPrefix: string
   className?: string
 }) => {
-  console.log('currentPage', currentPage)
   return (
     <Container>
       <nav
@@ -43,7 +42,7 @@ const Pagination = ({
         <div className={'hidden items-center justify-center lg:flex'}>
           {Array.from({ length: numPages }, (_, i) => (
             <Link
-              className={`bg-gray-200 mx-2 px-3 py-1 rounded-md hover:bg-gray-400 hover:text-white ${currentPage === i ? 'bg-gray-400 text-white' : ''
+              className={`bg-gray-200 mx-2 px-3 py-1 rounded-md hover:bg-gray-400 hover:text-white ${currentPage === i + 1 ? 'bg-gray-400 text-white' : ''
                 }`}
               current={currentPage === i ? 'page' : undefined}
               label={`Sida ${i}`}
