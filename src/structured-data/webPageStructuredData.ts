@@ -1,5 +1,5 @@
 import { SubPageSchemaType, CasinoPageSchemaType } from '@/src/schemas'
-import PageService from '@/src/services/PageService'
+import PageService from '@/src/services/SubPageService'
 import { urlFor } from '@/src/lib/client'
 
 const pageService = new PageService()

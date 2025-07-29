@@ -15,7 +15,7 @@ import FAQ from '@/src/components/organisms/FAQ'
 import TableOfContents from '@/src/components/organisms/TableOfContents'
 import AuthorBox from '@/src/components/organisms/AuthorBox'
 import { getHeadingObjectsByPage } from '@/src/lib/helpers'
-import PageService from '@/src/services/PageService'
+import PageService from '@/src/services/SubPageService'
 
 const pageService = new PageService()
 

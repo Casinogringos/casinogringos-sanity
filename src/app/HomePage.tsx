@@ -17,7 +17,7 @@ import AuthorBox from '@/src/components/organisms/AuthorBox'
 import NewsCard from '@/src/components/organisms/NewsCard'
 import { getHeadingObjectsByPage } from '@/src/lib/helpers'
 import { SubPageSchemaType, NewsPageSchemaType } from '@/src/schemas'
-import PageService from '@/src/services/PageService'
+import PageService from '@/src/services/SubPageService'
 import ArticleCard from '../components/molecules/ArticleCard'
 
 const pageService = new PageService()
