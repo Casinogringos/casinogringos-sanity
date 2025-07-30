@@ -11,10 +11,12 @@ import {
   NewsPagePreviewSchema,
   SlotPageSchema,
   SlotPageSchemaType,
+  SlotPagePreviewSchema,
+  SlotPagePreviewSchemaType,
 } from '@/src/schemas'
 import BasePageService from './BasePageService'
 
-class SlotPageService extends BasePageService<SlotPageSchemaType> {
+class SlotPageService extends BasePageService<SlotPageSchemaType | SlotPagePreviewSchemaType> {
   validatePage(
     page: SlotPageSchemaType,
     preview: boolean = false
@@ -28,7 +30,7 @@ class SlotPageService extends BasePageService<SlotPageSchemaType> {
     return true
   }
 
-  validateList(pages: SlotPageSchemaType[], preview: boolean = false): boolean {
+  validateList(pages: SlotPageSchemaType[] | SlotPagePreviewSchemaType[], preview: boolean = false): boolean {
     let parse = null
     for (const page of pages) {
       parse = SlotPageSchema.safeParse(page)

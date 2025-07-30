@@ -1,5 +1,5 @@
 import { Casino } from '@/src/types/casino'
-import { CasinoPageSchema, CasinoPageSchemaType, CasinoSchemaType } from '@/src/schemas'
+import { CasinoPagePreviewSchema, CasinoPagePreviewSchemaType, CasinoPageSchema, CasinoPageSchemaType, CasinoSchemaType } from '@/src/schemas'
 import fs from 'fs'
 import BasePageService from '@/src/services/BasePageService'
 
@@ -62,6 +62,18 @@ class CasinoService extends BasePageService {
       console.log(`Invalid casino page schema:\n${page.title}\n`, parse.error)
       fs.writeFileSync('structuredDataError.log', `\n\n${page.title}\n${JSON.stringify(parse.error)}`)
       // return false
+    }
+    return true
+  }
+  validateList(pages: CasinoPageSchemaType[] | CasinoPagePreviewSchemaType[], preview: boolean = false) {
+    let parse = null
+    for (const page of pages) {
+      parse = preview ? CasinoPagePreviewSchema.safeParse(page) : CasinoPageSchema.safeParse(page)
+      // if (!parse) return false
+      if (!parse.success) {
+        console.log(`Invalid casino page schema:\n${page.title}\n`, parse.error)
+        // return false
+      }
     }
     return true
   }

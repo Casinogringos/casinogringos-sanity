@@ -4,10 +4,10 @@ import Container from '@/src/components/atoms/Container'
 import SubPageHero from '@/src/components/molecules/SubPageHero'
 import Heading from '@/src/components/atoms/Heading'
 import SlotCard from '@/src/components/molecules/SlotCard'
-import { SubPageSchemaType } from '../schemas'
 import SlotPageService from '@/src/services/SlotPageService'
 import SubPageService from '@/src/services/SubPageService'
 import BreadCrumbs from '@/src/components/organisms/BreadCrumbs'
+import { SlotPagePreviewSchemaType, SubPageSchemaType } from '@/src/schemas'
 const slotPageService = new SlotPageService()
 const subPageService = new SubPageService()
 
@@ -38,14 +38,14 @@ export default function SlotIndex({
       <BreadCrumbs items={breadcrumbItems} />
       <div className="pb-12 pt-8 lg:pt-10">
         <Container>
-          <Heading
+          {/* <Heading
             level={2}
             className="mb-6 text-2xl font-bold text-heading"
             text={`${page.subtitle || 'Populära slots'} ${year}`}
-          />
+          /> */}
           <div className="mt-4 grid grid-cols-2 gap-x-3 md:grid-cols-3 lg:grid-cols-4">
             {slotPages.map((slot: SlotPagePreviewSchemaType) => (
-              <SlotCard key={`slot-${slot._key}`} slot={slot} />
+              <SlotCard key={`slot-${slot._id}`} slot={slot} />
             ))}
           </div>
         </Container>

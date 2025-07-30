@@ -8,22 +8,26 @@ import BreadCrumbs from '@/src/components/organisms/BreadCrumbs'
 import Container from '@/src/components/atoms/Container'
 import SlotHero from '@/src/components/organisms/SlotHero'
 import TableOfContents from '@/src/components/organisms/TableOfContents'
-import { CasinoPageSchemaType, SlotPageSchemaType } from '@/src/schemas'
+import { CasinoPagePreviewSchemaType, SlotPagePreviewSchemaType, SlotPageSchemaType } from '@/src/schemas'
 import getSlotReviewStructuredData from '@/src/structured-data/slotReviewStructuredData'
-import SlotService from '@/src/services/SlotPageService'
-import SanityImage from '../components/atoms/SanityImage'
-import Heading from '../components/atoms/Heading'
+import SlotPageService from '@/src/services/SlotPageService'
+import CasinoPageService from '@/src/services/CasinoPageService'
+import SanityImage from '@/src/components/atoms/SanityImage'
+import Heading from '@/src/components/atoms/Heading'
 import { PortableText } from 'next-sanity'
 
-const slotService = new SlotService()
+const slotPageService = new SlotPageService()
+const casinoPageService = new CasinoPageService()
 
-export default async function Slot({ slotPage, similarSlotPages, casinoPages }: { slotPage: SlotPageSchemaType, similarSlotPages: SlotPageSchemaType[], casinoPages: CasinoPageSchemaType[] }) {
-  const isValid = slotService.validatePage(slotPage)
+const Slot = ({ slotPage, similarSlotPages, casinoPages }: { slotPage: SlotPageSchemaType, similarSlotPages: SlotPagePreviewSchemaType[], casinoPages: CasinoPagePreviewSchemaType[] }) => {
+  const isValidSlotPage = slotPageService.validatePage(slotPage)
+  const isValidSimilarSlotPages = slotPageService.validateList(similarSlotPages, true)
+  const isValidCasinoPages = casinoPageService.validateList(casinoPages, true)
   const schema = {
     '@context': 'https://schema.org',
     '@graph': [getSlotReviewStructuredData({ page: slotPage })],
   }
-  const headings = slotService.getHeadingObjects(slotPage)
+  const headings = slotPageService.getHeadingObjects(slotPage)
   const { slot } = slotPage
 
   return (
@@ -222,3 +226,5 @@ export default async function Slot({ slotPage, similarSlotPages, casinoPages }: 
     </>
   )
 }
+
+export default Slot

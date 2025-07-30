@@ -18,6 +18,7 @@ import { SlotSchema, SlotSchemaType } from './slot'
 import { HTMLObjectSchema, HTMLObjectSchemaType } from './htmlObject'
 import { CasinoListObjectSchema, CasinoListObjectSchemaType } from './casinoListObject'
 import { CasinoPagePreviewSchema, CasinoPagePreviewSchemaType } from './casinoPagePreview'
+import { SlotPagePreviewSchema, SlotPagePreviewSchemaType } from './slotPagePreview'
 import {
   GuidePagePreviewSchema,
   GuidePagePreviewSchemaType,
@@ -126,6 +127,7 @@ export {
   GroupObjectSchema,
   BreadcrumbsSchema,
   CasinoPagePreviewSchema,
+  SlotPagePreviewSchema,
   HeadingObjectSchema,
   HowToObjectSchema,
   GuidePagePreviewSchema,
@@ -160,6 +162,7 @@ export type {
   AISummaryObjectSchemaType,
   AuthorSchemaType,
   CasinoPagePreviewSchemaType,
+  SlotPagePreviewSchemaType,
   BasePageSchemaType,
   NewsPageSchemaType,
   CasinoListObjectSchemaType,
