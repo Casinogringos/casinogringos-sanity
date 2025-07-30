@@ -15,12 +15,18 @@ import { similarGuidePagesQuery } from '@/src/data/queries/similarGuidePagesQuer
 import { casinoPagesQuery } from '@/src/data/queries/casinoPagesQuery'
 import { staticParamsQuery } from '@/src/data/queries/staticParamsQuery'
 import { similarCasinoPagesQuery } from '@/src/data/queries/similarCasinoPagesQuery'
+import { casinoPagesByCasinosQuery } from '@/src/data/queries/casinoPagesByCasinos'
+import { similarNewsPagesQuery } from '@/src/data/queries/similarNewsPagesQuery'
+import { similarSlotPagesQuery } from '@/src/data/queries/similarSlotPagesQuery'
+import { casinoPagePreviewsQuery } from '@/src/data/queries/casinoPagePreviewsQuery'
 
 export {
   pageBySlugQuery,
   casinoPagesQuery,
   authorBySlugQuery,
   staticParamsQuery,
+  casinoPagesByCasinosQuery,
+  casinoPagePreviewsQuery,
   guidePageBySlugQuery,
   similarGuidePagesQuery,
   similarCasinoPagesQuery,
@@ -34,4 +40,6 @@ export {
   slotPagePreviewsQuery,
   newsPageBySlugQuery,
   slotPageBySlugQuery,
+  similarNewsPagesQuery,
+  similarSlotPagesQuery,
 }

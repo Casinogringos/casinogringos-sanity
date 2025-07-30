@@ -19,10 +19,11 @@ import CasinoCard from '@/src/components/organisms/CasinoCard'
 const slotPageService = new SlotPageService()
 const casinoPageService = new CasinoPageService()
 
-const Slot = ({ slotPage, similarSlotPages, casinoPages }: { slotPage: SlotPageSchemaType, similarSlotPages: SlotPagePreviewSchemaType[], casinoPages: CasinoPagePreviewSchemaType[] }) => {
+const SlotPage = ({ slotPage, similarSlotPages }: { slotPage: SlotPageSchemaType, similarSlotPages: SlotPagePreviewSchemaType[] }) => {
   const isValidSlotPage = slotPageService.validatePage(slotPage)
   const isValidSimilarSlotPages = slotPageService.validateList(similarSlotPages, true)
-  const isValidCasinoPages = casinoPageService.validateList(casinoPages, true)
+  console.log('slot', slotPage.slot)
+
   const schema = {
     '@context': 'https://schema.org',
     '@graph': [getSlotReviewStructuredData({ page: slotPage })],
@@ -53,7 +54,7 @@ const Slot = ({ slotPage, similarSlotPages, casinoPages }: { slotPage: SlotPageS
         key="slot-data"
       />
       <div>
-        <SlotHero slotPage={slotPage} casinoPages={casinoPages} />
+        <SlotHero slotPage={slotPage} />
         <div className="bg-dark">
           <Container>
             <div className="flex flex-col gap-4 pb-6 pt-4 lg:flex-row lg:gap-12 lg:px-8 lg:pb-12 lg:pt-12">
@@ -62,6 +63,7 @@ const Slot = ({ slotPage, similarSlotPages, casinoPages }: { slotPage: SlotPageS
                   <Image
                     className="rounded-sm"
                     width={600}
+                    height={600}
                     src={slotPage.featuredImage.src}
                     alt={slotPage.featuredImage.alt}
                   />
@@ -236,4 +238,4 @@ const Slot = ({ slotPage, similarSlotPages, casinoPages }: { slotPage: SlotPageS
   )
 }
 
-export default Slot
+export default SlotPage

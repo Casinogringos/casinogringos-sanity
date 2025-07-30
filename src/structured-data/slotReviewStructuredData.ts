@@ -30,7 +30,7 @@ const getSlotReviewStructuredData = ({
     },
     author: {
       '@type': 'Person',
-      name: page.author.name,
+      name: page.author.firstName + ' ' + page.author.lastName,
       url: `https://casinogringos.se/om-oss/${page.author.slug.current}`,
       sameAs: [page.author.linkedIn],
     },

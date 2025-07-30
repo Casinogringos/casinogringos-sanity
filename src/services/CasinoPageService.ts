@@ -1,4 +1,3 @@
-import { Casino } from '@/src/types/casino'
 import { CasinoPagePreviewSchema, CasinoPagePreviewSchemaType, CasinoPageSchema, CasinoPageSchemaType, CasinoSchemaType } from '@/src/schemas'
 import fs from 'fs'
 import BasePageService from '@/src/services/BasePageService'
@@ -20,7 +19,7 @@ interface RatingKey {
   imgSrc: string
 }
 
-class CasinoService extends BasePageService {
+class CasinoService extends BasePageService<CasinoPageSchemaType> {
   ratingKeys: RatingKey[]
   constructor() {
     super()

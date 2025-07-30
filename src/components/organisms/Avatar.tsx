@@ -12,6 +12,7 @@ import Link from '@/src/components/atoms/Link'
 import { AuthorSchemaType } from '@/src/schemas'
 import ShareButtons from '@/src/components/molecules/ShareButtons'
 import Image from 'next/image'
+import Placeholder from '@/src/components/atoms/Placeholder'
 
 const Avatar = ({
   author,
@@ -29,6 +30,8 @@ const Avatar = ({
   pathname: string
 }) => {
   const url = `${process.env.SITE_URL}${pathname}`
+  const { avatar } = author
+  if (!avatar) return <Placeholder message='No author avatar' />
 
   return (
     <>
@@ -49,7 +52,7 @@ const Avatar = ({
             <div className="has-tooltip relative block w-fit items-center gap-1 text-sm">
               <Link
                 className="flex w-fit text-[15px] font-medium"
-                href={`/om-oss/${author.slug}`}
+                href={`/om-oss/${author.slug.current}`}
                 prefetch={false}
               >
                 <span>{author.firstName} {author.lastName}</span>

@@ -7,7 +7,7 @@ import ToggleButton from '../atoms/ToggleButton'
 import Image from 'next/image'
 const IFrame = dynamic(() => import('@/src/components/organisms/IFrame'))
 
-const SlotHero = ({ slotPage, casinoPages }: { slotPage: SlotPageSchemaType, casinoPages: CasinoPagePreviewSchemaType[] }) => {
+const SlotHero = ({ slotPage }: { slotPage: SlotPageSchemaType }) => {
   return (
     <div className="relative overflow-hidden bg-slate900">
       <div className="absolute left-0 top-0 h-full w-full object-fill blur-2xl">
@@ -46,14 +46,6 @@ const SlotHero = ({ slotPage, casinoPages }: { slotPage: SlotPageSchemaType, cas
                     </div>
                   </ToggleButton>
                 )}
-                {casinoPages && (
-                  <Link
-                    href="#spela"
-                    className="mb-4 flex items-center justify-center gap-2 rounded-sm bg-button px-8 py-4 font-medium text-white hover:bg-buttonHover lg:mb-0"
-                  >
-                    Spela för riktiga pengar
-                  </Link>
-                )}
               </div>
             </div>
           </ToggleItem>
@@ -64,14 +56,12 @@ const SlotHero = ({ slotPage, casinoPages }: { slotPage: SlotPageSchemaType, cas
                   <span className="lg:text-md py-1 text-sm text-gray200">
                     Demo: {slotPage.title}
                   </span>
-                  {casinoPages.length > 1 && (
-                    <Link
-                      href="#spela"
-                      className="hover:bg-gray-500 ml-auto flex items-center justify-center rounded-sm bg-button px-2 py-1.5 text-xs font-medium text-white"
-                    >
-                      Spela för riktiga pengar
-                    </Link>
-                  )}
+                  <Link
+                    href="#spela"
+                    className="hover:bg-gray-500 ml-auto flex items-center justify-center rounded-sm bg-button px-2 py-1.5 text-xs font-medium text-white"
+                  >
+                    Spela för riktiga pengar
+                  </Link>
                 </div>
               </div>
               <IFrame url={slotPage.slot.demoUrl} />

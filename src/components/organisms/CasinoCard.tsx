@@ -41,14 +41,14 @@ const CasinoCard = ({ casino, index }: { casino: CasinoSchemaType; index: number
             </div>
           </div>
           <div className="block text-sm font-bold uppercase text-black">
-            {casino.casinoBonuses.length || casino.freeSpins.length ? (
-              <div className="grid grid-cols-2 gap-2">
+            <div className="grid grid-cols-2 gap-2">
+              {casino.casinoBonuses?.length && (
                 <div className="flex min-h-[84px] flex-col items-center justify-center rounded-md border border-green-200 bg-green-100 p-2 text-lg leading-6">
                   <div className="-mb-1 block text-xs text-gray-700">Bonus</div>
-                  {casino?.casinoBonuses[0]
-                    ? casino?.casinoBonuses[0].bonusAmountRange.max + ' kr'
+                  {casino.casinoBonuses[0]
+                    ? casino.casinoBonuses[0].bonusAmountRange[1] + ' kr'
                     : '-'}
-                  {casino?.casinoBonuses[0]?.wageringRequirements && (
+                  {casino?.casinoBonuses?.[0]?.wageringRequirements && (
                     <div className="-mt-0.5 flex items-center text-xs font-medium text-gray-700">
                       Omsättning:
                       <span className="ml-0.5 inline-block text-black">
@@ -57,6 +57,8 @@ const CasinoCard = ({ casino, index }: { casino: CasinoSchemaType; index: number
                     </div>
                   )}
                 </div>
+              )}
+              {casino.freeSpins?.length && (
                 <div className="flex min-h-[84px] flex-col items-center justify-center rounded-md border border-blue-100 bg-blue-50 p-2 text-lg leading-6">
                   <div className="-mb-1 block text-xs text-gray-700">
                     Freespins
@@ -71,8 +73,9 @@ const CasinoCard = ({ casino, index }: { casino: CasinoSchemaType; index: number
                     </div>
                   )}
                 </div>
-              </div>
-            ) : (
+              )}
+            </div>
+            {!casino.casinoBonuses?.length && !casino.freeSpins?.length && (
               <div className="flex min-h-[84px] items-center justify-center rounded-md border border-blue-100 bg-blue-50 p-3 text-center text-base leading-6">
                 {casino.name}
               </div>
@@ -82,7 +85,7 @@ const CasinoCard = ({ casino, index }: { casino: CasinoSchemaType; index: number
         <div className="mt-2 rounded-md border border-slate-100 bg-slate-50 p-2.5">
           {casino.advantages.map((advantage: string) => (
             <div
-              key={casino._key}
+              key={casino._id}
               className="mb-1 flex items-center gap-2 text-sm text-gray-700"
             >
               <CheckBadgeIcon className="h-4 w-4 text-button" />

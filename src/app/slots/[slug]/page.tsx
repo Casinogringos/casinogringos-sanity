@@ -1,10 +1,9 @@
-import { getSlotPageBySlug, getStaticParams, getSimilarSlotPages, getCasinoPagesByCasinos } from '@/src/lib/api'
+import { getSlotPageBySlug, getStaticParams, getSimilarSlotPages } from '@/src/lib/api'
 import { notFound } from 'next/navigation'
 import SlotPage from '@/src/app/SlotPage'
-import { CasinoPageSchemaType, SlotPageSchemaType, CasinoSchemaType } from '@/src/schemas'
+import { SlotPageSchemaType } from '@/src/schemas'
 import { formatPageSlug } from '@/src/lib/utility'
 import { Metadata } from 'next'
-import { urlFor } from '@/src/lib/client'
 
 type Params = Promise<{ slug: string }>
 
@@ -26,13 +25,13 @@ export async function generateMetadata(props: { params: Params }) {
       url: siteURL,
       locale: "sv_SE",
       siteName: 'Casinogringos',
-      type: slotPage.opengraphType,
+      type: slotPage.opengraphType ?? 'website',
       images: [
         {
-          url: urlFor(slotPage.featuredImage.image).url(),
-          alt: slotPage.featuredImage.image.alt,
-          width: slotPage.featuredImage.image.asset?.metadata?.dimensions?.width ?? 1200,
-          height: slotPage.featuredImage.image.asset?.metadata?.dimensions?.height ?? 630,
+          url: slotPage.featuredImage.src,
+          alt: slotPage.featuredImage.alt,
+          width: 1200,
+          height: 630,
         },
       ],
     },
@@ -50,11 +49,10 @@ export default async function Page(props: { params: Params }) {
     id: slotPage._id,
     count: 5,
   })
-  const casinoPages: CasinoPageSchemaType[] = await getCasinoPagesByCasinos({ casinoIds: slotPage.slot.casinos.map((casino: CasinoSchemaType) => casino._id) })
 
-  if (slotPage) {
-    return <SlotPage slotPage={slotPage} similarSlotPages={similarSlotPages} casinoPages={casinoPages} />
-  } else return notFound()
+  if (!slotPage) return notFound()
+  console.log('slot page', slotPage)
+  return <SlotPage slotPage={slotPage} similarSlotPages={similarSlotPages} />
 }
 
 export async function generateStaticParams() {

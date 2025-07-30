@@ -46,6 +46,12 @@ import { pageProjection } from '@/src/data/projections/pageProjection'
 import { slotPagePreviewProjection } from '@/src/data/projections/slotPagePreviewProjection'
 import { guidePageProjection } from '@/src/data/projections/guidePageProjection'
 import { slotPageProjection } from '@/src/data/projections/slotPageProjection'
+import { slotThemeProjection } from '@/src/data/projections/slotThemeProjection'
+import { slotFeatureProjection } from '@/src/data/projections/slotFeatureProjection'
+import { gameProviderProjection } from '@/src/data/projections/gameProviderProjection'
+import { slotProjection } from '@/src/data/projections/slotProjection'
+import { gameTypeProjection } from '@/src/data/projections/gameTypeProjection'
+import { gameProviderFeaturesProjection } from '@/src/data/projections/gameProviderFeaturesProjection'
 import { casinoPageProjection } from '@/src/data/projections/casinoPageProjection'
 import { menuProjection } from '@/src/data/projections/menuProjection'
 import { pagePreviewByAuthorProjection } from '@/src/data/projections/pagePreviewProjection'
@@ -61,8 +67,14 @@ export {
   pagePreviewByAuthorProjection,
   casinoListObjectProjection,
   toplistProjection,
+  gameProviderFeaturesProjection,
   slotPageProjection,
+  slotProjection,
   objectProjections,
+  slotThemeProjection,
+  slotFeatureProjection,
+  gameTypeProjection,
+  gameProviderProjection,
   guidePageProjection,
   freeSpinsProjection,
   newsPagePreviewProjection,
