@@ -10,8 +10,8 @@ import {
 } from 'next-share'
 import Link from '@/src/components/atoms/Link'
 import { AuthorSchemaType } from '@/src/schemas'
-import SanityImage from '@/src/components/atoms/SanityImage'
 import ShareButtons from '@/src/components/molecules/ShareButtons'
+import Image from 'next/image'
 
 const Avatar = ({
   author,
@@ -22,7 +22,7 @@ const Avatar = ({
   pathname,
 }: {
   author: AuthorSchemaType
-  reviewer: AuthorSchemaType
+  reviewer?: AuthorSchemaType
   modified: string
   shareTitle: string
   date: string
@@ -35,11 +35,11 @@ const Avatar = ({
       <div className="flex gap-x-6 border-b border-t border-gray100 py-4 md:justify-between lg:mt-5">
         <div className="flex gap-3">
           <div className="relative h-10 w-10 rounded-full">
-            <SanityImage
-              image={author.avatar.image}
+            <Image
+              src={author.avatar.src}
               width={96}
               className="rounded-full"
-              altText={author.avatar.altText}
+              alt={author.avatar.alt}
             />
           </div>
           <div>
@@ -52,17 +52,17 @@ const Avatar = ({
                 href={`/om-oss/${author.slug}`}
                 prefetch={false}
               >
-                <span>{author.name}</span>
+                <span>{author.firstName} {author.lastName}</span>
               </Link>
               <div className="tooltip text-gray-100 left-1/2 mx-auto hidden min-w-96 -translate-x-1/2 rounded-md border border-slate200 bg-gray50 p-5 text-sm opacity-100 shadow-sm transition-opacity md:block">
                 {' '}
                 <div className="flex gap-4">
                   <div className="relative mt-0.5 h-12 w-12 flex-shrink-0 rounded-full">
-                    <SanityImage
-                      image={author.avatar.image}
+                    <Image
+                      src={author.avatar.src}
                       width={96}
                       className="rounded-full"
-                      altText={`${author.firstName} ${author.lastName}`}
+                      alt={`${author.firstName} ${author.lastName}`}
                     />
                   </div>
                   <div>
@@ -100,7 +100,7 @@ const Avatar = ({
                   {author.description}
                 </div>
                 <Link
-                  href={`/om-oss/${author.slug}`}
+                  href={`/om-oss/${author.slug.current}`}
                   prefetch={false}
                   className="mt-4 flex items-center gap-3 text-base font-medium underline decoration-dashed"
                 >
@@ -131,7 +131,7 @@ const Avatar = ({
           <div className="text-xs">
             <span>Faktakontrollerad av</span>
             <Link
-              href={`/om-oss/${reviewer.slug}`}
+              href={`/om-oss/${reviewer.slug.current}`}
               className="block text-[15px] font-medium"
               prefetch={false}
             >

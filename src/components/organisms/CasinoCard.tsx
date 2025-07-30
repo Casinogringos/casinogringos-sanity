@@ -1,12 +1,12 @@
 import Star from '@/src/components/icons/StarIcon'
 import CasinoService from '@/src/services/CasinoPageService'
-import { Casino } from '@/src/types'
 import Image from 'next/image'
 import Link from '@/src/components/atoms/Link'
 import CheckBadgeIcon from '@/src/components/icons/CheckBadgeIcon'
 import Paragraph from '@/src/components/atoms/Paragraph'
+import { CasinoPagePreviewSchemaType, CasinoSchemaType } from '@/src/schemas'
 
-const CasinoCard = ({ casino, index }: { casino: Casino; index: number }) => {
+const CasinoCard = ({ casino, index }: { casino: CasinoSchemaType; index: number }) => {
   const casinoService = new CasinoService()
   const { finalRating } = casinoService.getCasinoRatings({ casino })
 

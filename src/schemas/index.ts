@@ -19,6 +19,11 @@ import { HTMLObjectSchema, HTMLObjectSchemaType } from './htmlObject'
 import { CasinoListObjectSchema, CasinoListObjectSchemaType } from './casinoListObject'
 import { CasinoPagePreviewSchema, CasinoPagePreviewSchemaType } from './casinoPagePreview'
 import { SlotPagePreviewSchema, SlotPagePreviewSchemaType } from './slotPagePreview'
+import { GameProviderSchema, GameProviderSchemaType } from './gameProvider'
+import { SlotFeatureSchema, SlotFeatureSchemaType } from './slotFeature'
+import { SlotThemeSchema, SlotThemeSchemaType } from './slotTheme'
+import { GameTypeSchema, GameTypeSchemaType } from './gameType'
+import { GameProviderFeaturesSchema, GameProviderFeaturesSchemaType } from './gameProviderFeatures'
 import {
   GuidePagePreviewSchema,
   GuidePagePreviewSchemaType,
@@ -124,6 +129,11 @@ export {
   FreeSpinsTypeSchema,
   GameSchema,
   SlotSchema,
+  GameProviderSchema,
+  SlotFeatureSchema,
+  SlotThemeSchema,
+  GameTypeSchema,
+  GameProviderFeaturesSchema,
   GroupObjectSchema,
   BreadcrumbsSchema,
   CasinoPagePreviewSchema,
@@ -160,6 +170,9 @@ export {
 export type {
   AffiliateButtonObjectSchemaType,
   AISummaryObjectSchemaType,
+  GameProviderSchemaType,
+  SlotFeatureSchemaType,
+  SlotThemeSchemaType,
   AuthorSchemaType,
   CasinoPagePreviewSchemaType,
   SlotPagePreviewSchemaType,
@@ -172,6 +185,8 @@ export type {
   ButtonObjectSchemaType,
   ButtonsObjectSchemaType,
   CasinoSchemaType,
+  GameTypeSchemaType,
+  GameProviderFeaturesSchemaType,
   SlotPageSchemaType,
   CasinoObjectSchemaType,
   NewsPagePreviewSchemaType,

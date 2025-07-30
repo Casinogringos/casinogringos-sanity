@@ -1,21 +1,23 @@
 import { PlayCircle } from 'lucide-react'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
-import { CasinoPageSchemaType, SlotPageSchemaType } from '@/src/schemas'
+import { CasinoPagePreviewSchemaType, SlotPageSchemaType } from '@/src/schemas'
 import ToggleItem from '../atoms/ToggleItem'
 import ToggleButton from '../atoms/ToggleButton'
-import SanityImage from '../atoms/SanityImage'
+import Image from 'next/image'
 const IFrame = dynamic(() => import('@/src/components/organisms/IFrame'))
 
-const SlotHero = ({ slotPage, casinoPages }: { slotPage: SlotPageSchemaType, casinoPages: CasinoPageSchemaType[] }) => {
+const SlotHero = ({ slotPage, casinoPages }: { slotPage: SlotPageSchemaType, casinoPages: CasinoPagePreviewSchemaType[] }) => {
   return (
     <div className="relative overflow-hidden bg-slate900">
       <div className="absolute left-0 top-0 h-full w-full object-fill blur-2xl">
-        <SanityImage
+        <Image
           priority={true}
-          image={slotPage.featuredImage.image}
+          src={slotPage.featuredImage.src}
+          alt={slotPage.featuredImage.alt}
           className="h-full w-full object-cover"
           width={250}
+          height={250}
         />
       </div>
       <div className="relative mx-auto mt-0 flex w-full flex-col items-start justify-center gap-2 bg-black bg-opacity-50 px-2 pb-4 pt-2 text-center lg:my-6 lg:max-w-5xl lg:flex-row lg:bg-opacity-90 lg:py-2">

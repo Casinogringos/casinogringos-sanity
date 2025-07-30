@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import Link from 'next/link'
 import Star from '@/src/components/icons/StarIcon'
 import HalfStarIcon from '@/src/components/icons/HalfStarIcon'
@@ -12,9 +11,10 @@ import { CasinoPagePreviewSchemaType, SlotPagePreviewSchemaType, SlotPageSchemaT
 import getSlotReviewStructuredData from '@/src/structured-data/slotReviewStructuredData'
 import SlotPageService from '@/src/services/SlotPageService'
 import CasinoPageService from '@/src/services/CasinoPageService'
-import SanityImage from '@/src/components/atoms/SanityImage'
+import Image from 'next/image'
 import Heading from '@/src/components/atoms/Heading'
 import { PortableText } from 'next-sanity'
+import CasinoCard from '@/src/components/organisms/CasinoCard'
 
 const slotPageService = new SlotPageService()
 const casinoPageService = new CasinoPageService()
@@ -29,6 +29,19 @@ const Slot = ({ slotPage, similarSlotPages, casinoPages }: { slotPage: SlotPageS
   }
   const headings = slotPageService.getHeadingObjects(slotPage)
   const { slot } = slotPage
+  const breadcrumbs = [
+    {
+      text: 'Hem',
+      url: `${process.env.SITE_URL}`,
+    },
+    {
+      text: 'Slots',
+      url: `${process.env.SITE_URL}/slots`,
+    },
+    {
+      text: slotPage.title,
+    },
+  ]
 
   return (
     <>
@@ -46,10 +59,11 @@ const Slot = ({ slotPage, similarSlotPages, casinoPages }: { slotPage: SlotPageS
             <div className="flex flex-col gap-4 pb-6 pt-4 lg:flex-row lg:gap-12 lg:px-8 lg:pb-12 lg:pt-12">
               <div className="lg:mt-2 lg:w-1/4">
                 {slotPage.featuredImage && (
-                  <SanityImage
+                  <Image
                     className="rounded-sm"
                     width={600}
-                    image={slotPage.featuredImage.image}
+                    src={slotPage.featuredImage.src}
+                    alt={slotPage.featuredImage.alt}
                   />
                 )}
               </div>
@@ -66,7 +80,7 @@ const Slot = ({ slotPage, similarSlotPages, casinoPages }: { slotPage: SlotPageS
                       .fill(null)
                       .map(
                         (_, index) =>
-                          slot.rating.indexOf('.') !== -1 && (
+                          slot.rating.toString().indexOf('.') !== -1 && (
                             <HalfStarIcon
                               key={`rating-star-${index}`}
                               className="h-4 w-4 text-yellow400"
@@ -88,7 +102,7 @@ const Slot = ({ slotPage, similarSlotPages, casinoPages }: { slotPage: SlotPageS
                       RTP:
                     </span>
                     <div className="text-2xl font-semibold text-green500">
-                      {slot.rtp}
+                      {slot.rtpRange[0]} - {slot.rtpRange[1]}
                     </div>
                   </div>
                   <div className="rounded-md bg-normal px-4 py-3">
@@ -96,46 +110,46 @@ const Slot = ({ slotPage, similarSlotPages, casinoPages }: { slotPage: SlotPageS
                       Maxvinst:
                     </span>
                     <div className="text-2xl font-semibold text-primary">
-                      {slot?.slotType?.maxvinst}
+                      {slot.maxWin}
                     </div>
                   </div>
-                  {slot?.slotType?.volatilitet && (
+                  {slot.volatility && (
                     <div className="rounded-md bg-normal px-4 py-3">
                       <span className="text-sm font-medium text-slate200">
                         Volalitet:
                       </span>
                       <div className="text-2xl font-semibold text-primary">
-                        {slot?.slotType?.volatilitet}
+                        {slot.volatility}
                       </div>
                     </div>
                   )}
-                  {slot?.slotType?.vinstlinjer && (
+                  {slot.numberOfPaylines && (
                     <div className="rounded-md bg-normal px-4 py-3">
                       <span className="text-sm font-medium text-slate200">
                         Vinstlinjer:
                       </span>
                       <div className="text-2xl font-semibold text-primary">
-                        {slot?.slotType?.vinstlinjer}
+                        {slot.numberOfPaylines}
                       </div>
                     </div>
                   )}
-                  {slot?.slotType?.minstaInsats && (
+                  {slot.minBet && (
                     <div className="rounded-md bg-normal px-4 py-3">
                       <span className="text-sm font-medium text-slate200">
                         Minsta insats:
                       </span>
                       <div className="text-2xl font-semibold text-primary">
-                        {slot?.slotType?.minstaInsats} kr
+                        {slot.minBet} kr
                       </div>
                     </div>
                   )}
-                  {slot?.slotType?.hogstaInsats && (
+                  {slot.maxBet && (
                     <div className="rounded-md bg-normal px-4 py-3">
                       <span className="text-sm font-medium text-slate200">
                         Högsta insats:
                       </span>
                       <div className="text-2xl font-semibold text-primary">
-                        {slot?.slotType?.hogstaInsats} kr
+                        {slot.maxBet} kr
                       </div>
                     </div>
                   )}
@@ -144,22 +158,19 @@ const Slot = ({ slotPage, similarSlotPages, casinoPages }: { slotPage: SlotPageS
             </div>
           </Container>
         </div>
-        {slot.seo.breadcrumbs && (
+        {breadcrumbs && (
           <BreadCrumbs
-            items={slot?.seo?.breadcrumbs}
-            index={{
-              text: 'Slots',
-              url: `${process.env.SITE_URL}/slots`,
-            }}
+            items={breadcrumbs}
           />
         )}
         <div className="mx-auto mb-10 mt-12 max-w-3xl px-4 lg:px-0">
           <Avatar
-            author={slot.author}
-            date={slot.date}
-            modified={slot.modified}
-            shareTitle={slot?.seo?.title}
-            reviewedBy={null}
+            author={slotPage.author}
+            date={slotPage.originalPublishedAt ?? slotPage._createdAt}
+            modified={slotPage._updatedAt ?? slotPage.originalModifiedAt}
+            shareTitle={slotPage.seoTitle}
+            reviewer={slotPage.reviewer}
+            pathname={slotPage.slug.current}
           />
         </div>
         {headings.length > 1 && (
@@ -167,23 +178,21 @@ const Slot = ({ slotPage, similarSlotPages, casinoPages }: { slotPage: SlotPageS
             <TableOfContents headings={headings} />
           </div>
         )}
-        <Content
-          blocks={slot.preview ? slot.preview.editorBlocks : slot.editorBlocks}
+        <ModularContent
+          objects={slotPage.content}
         />
-        {slot.slotType && slot.slotType.casinos && (
+        {slot.casinos && (
           <section id="spela" className="bg-normal py-12 lg:pb-16 lg:pt-20">
             <div className="mx-auto max-w-6xl px-4 text-left lg:px-8">
               <h2 className="mb-2 flex max-w-2xl items-start gap-4 text-xl font-bold text-white lg:max-w-full lg:items-center lg:text-2xl">
-                Casinon där du kan spela {slot.title}
+                Casinon där du kan spela {slotPage.slot.name}
               </h2>
               <div className="mt-6 grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-3">
-                {slot.slotType.casinos.edges.slice(0, 3).map(({ node }, i) => (
-                  <div key={`casino-${node.id}`}>
-                    <Casino
-                      item={node}
-                      hidePopup={true}
-                      count={i}
-                      pathname={node.slug}
+                {slot.casinos.slice(0, 3).map((casino, i) => (
+                  <div key={`casino-${casino._id}`}>
+                    <CasinoCard
+                      casino={casino}
+                      index={i}
                     />
                   </div>
                 ))}
@@ -191,21 +200,21 @@ const Slot = ({ slotPage, similarSlotPages, casinoPages }: { slotPage: SlotPageS
             </div>
           </section>
         )}
-        {similarSlots && (
+        {similarSlotPages && (
           <section className={'bg-gray100 py-10'}>
             <Container>
               <h3 className={'mb-4 text-2xl text-gray700'}>Fler slots</h3>
               <div className={'grid grid-cols-2 gap-4 lg:grid-cols-4'}>
-                {similarSlots.map(({ node }) => (
+                {similarSlotPages.map((page) => (
                   <Link
-                    href={`/slots/${node.slug}`}
-                    key={`slot-${node.id}`}
+                    href={`/slots/${page.slug.current}`}
+                    key={`slot-${page._id}`}
                     className={'flex flex-col'}
                   >
                     <div className={'mb-3 flex overflow-hidden rounded-md'}>
                       <Image
-                        src={node.featuredImage?.node.sourceUrl}
-                        alt={node.featuredImage?.node.altText}
+                        src={page.featuredImage.src}
+                        alt={page.featuredImage.alt}
                         style={{
                           minWidth: '100%',
                           minHeight: '100%',
@@ -215,7 +224,7 @@ const Slot = ({ slotPage, similarSlotPages, casinoPages }: { slotPage: SlotPageS
                         className="h-28 object-cover sm:h-48 md:h-56 lg:h-40"
                       />
                     </div>
-                    <h4 className={'text-gray700'}>{node.title}</h4>
+                    <h4 className={'text-gray700'}>{page.title}</h4>
                   </Link>
                 ))}
               </div>
