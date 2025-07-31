@@ -165,7 +165,7 @@ const SlotPage = ({ slotPage, similarSlotPages }: { slotPage: SlotPageSchemaType
             items={breadcrumbs}
           />
         )}
-        <div className="mx-auto mb-10 mt-12 max-w-3xl px-4 lg:px-0">
+        <Container narrow className="mb-10 mt-12">
           <Avatar
             author={slotPage.author}
             date={slotPage.originalPublishedAt ?? slotPage._createdAt}
@@ -174,11 +174,11 @@ const SlotPage = ({ slotPage, similarSlotPages }: { slotPage: SlotPageSchemaType
             reviewer={slotPage.reviewer}
             pathname={slotPage.slug.current}
           />
-        </div>
+        </Container>
         {headings.length > 1 && (
-          <div className={'px-4 lg:px-0'}>
+          <Container narrow>
             <TableOfContents headings={headings} />
-          </div>
+          </Container>
         )}
         <ModularContent
           objects={slotPage.content}

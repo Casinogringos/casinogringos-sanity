@@ -53,7 +53,7 @@ const metadataObject = (
     description: page.seoDescription,
     locale: 'sv_SE',
     alternates: {
-      canonical: new URL(page.canonical ?? ''),
+      canonical: page.canonical ? new URL(page.canonical) : undefined,
     },
     openGraph: {
       title: page.seoTitle,
@@ -104,14 +104,8 @@ export default async function Page(props: { params: Params }) {
   const page: SubPageSchemaType = await getPageBySlug({
     slug: formatPageSlug(pageUri),
   })
-  const breadcrumbs = [
-    {
-      text: 'Hem',
-      url: '/',
-    },
-  ]
   if (page?._type === 'pages') {
-    return <SubPage page={page} breadcrumbs={breadcrumbs} />
+    return <SubPage page={page} />
   }
   const casinoPage: CasinoPageSchemaType = await getCasinoPageBySlug({
     slug: formatPageSlug(slugParent),

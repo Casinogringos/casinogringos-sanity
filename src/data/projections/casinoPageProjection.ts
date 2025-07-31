@@ -1,4 +1,4 @@
-import { casinoProjection, objectProjections } from '@/src/data/projections'
+import { casinoProjection, objectProjections, imageObjectProjection } from '@/src/data/projections'
 
 export const casinoPageProjection = `
   _type,
@@ -9,6 +9,9 @@ export const casinoPageProjection = `
   publishedAt,
   seoTitle,
   seoDescription,
+  seoImage {
+    ${imageObjectProjection}
+  },
   casino-> {
     ${casinoProjection}
   },

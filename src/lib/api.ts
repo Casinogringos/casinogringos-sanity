@@ -18,10 +18,11 @@ import { staticParamsQuery } from '@/src/data/queries'
 import { similarCasinoPagesQuery } from '@/src/data/queries'
 import { casinoPagesQuery } from '@/src/data/queries'
 import { similarGuidePagesQuery } from '@/src/data/queries'
-import { casinoPagePreviewsQuery } from '@/src/data/queries/casinoPagePreviewsQuery'
-import { similarNewsPagesQuery } from '../data/queries/similarNewsPagesQuery'
-import { similarSlotPagesQuery } from '../data/queries/similarSlotPagesQuery'
-import { SlotPageSchemaType } from '../schemas'
+import { casinoPagePreviewsQuery } from '@/src/data/queries'
+import { similarNewsPagesQuery } from '@/src/data/queries'
+import { similarSlotPagesQuery } from '@/src/data/queries'
+import { SlotPageSchemaType } from '@/src/schemas'
+import { casinoPagesByCasinosQuery } from '@/src/data/queries'
 const client = getClient()
 
 export const getPageBySlug = async ({ slug }: { slug: string }) => {
@@ -193,6 +194,7 @@ export const getSimilarCasinoPages = async ({
 }) => {
   try {
     const data = await client.fetch(similarCasinoPagesQuery({ id, count }))
+    console.log('data', data)
     return data
   } catch (e) {
     console.log(e)

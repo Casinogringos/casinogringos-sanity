@@ -21,10 +21,8 @@ const pageService = new PageService()
 
 export default function SubPage({
   page,
-  breadcrumbs,
 }: {
   page: SubPageSchemaType
-  breadcrumbs: BreadcrumbsSchemaType
 }) {
   const isValid = pageService.validatePage(page)
   // if (!isValid) {
@@ -36,6 +34,15 @@ export default function SubPage({
     '@context': 'https://schema.org',
     '@graph': [getArticleStructuredData(page)],
   }
+  const breadcrumbs = [
+    {
+      text: 'Hem',
+      url: `${process.env.SITE_URL}`,
+    },
+    {
+      text: page.title,
+    },
+  ]
 
   return (
     <div>

@@ -1,4 +1,4 @@
-import { casinoPreviewProjection } from '@/src/data/projections'
+import { casinoPagePreviewProjection } from '@/src/data/projections'
 
 export const similarCasinoPagesQuery = ({
   id,
@@ -7,7 +7,7 @@ export const similarCasinoPagesQuery = ({
   id: string
   count: number
 }) => `
-  *[_type == 'casino-pages' && id != ${id}][0...${count}] {
-    ${casinoPreviewProjection}
+  *[_type == 'casino-pages' && _id != "${id}"][0...${count}] {
+    ${casinoPagePreviewProjection}
   }
 `

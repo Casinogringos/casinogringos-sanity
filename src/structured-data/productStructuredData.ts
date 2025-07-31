@@ -28,12 +28,12 @@ const getProductStructuredData = ({
       '@type': 'Review',
       author: {
         '@type': 'Person',
-        name: productPage.reviewer.name,
-        url: `https://casinogringos.se/experter/${productPage.reviewer.slug.current}`,
+        name: productPage.reviewer?.firstName ?? '' + ' ' + productPage.reviewer?.lastName ?? '',
+        url: `https://casinogringos.se/om-oss/${productPage.reviewer?.slug?.current}`,
       },
       datePublished: productPage.originalPublishedAt ?? productPage._createdAt,
       dateModified: productPage._updatedAt ?? productPage.originalModifiedAt,
-      reviewBody: casino.review,
+      // reviewBody: productPage.review,
       reviewRating: {
         '@type': 'Rating',
         ratingValue: finalRating,
@@ -43,7 +43,7 @@ const getProductStructuredData = ({
     },
     author: {
       '@type': 'Person',
-      name: productPage.author.name,
+      name: productPage.author?.firstName ?? '' + ' ' + productPage.author?.lastName ?? '',
     },
     publisher: {
       '@type': 'Organization',
