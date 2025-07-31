@@ -1,5 +1,5 @@
 import { CasinoPageSchemaType } from '@/src/schemas'
-import CasinoService from '@/src/services/CasinoPageService'
+import CasinoService from '@/src/services/CasinoService'
 import { urlFor } from '@/src/lib/client'
 
 const casinoService = new CasinoService()

@@ -2,7 +2,10 @@ import ModularContent from '@/src/components/organisms/ModularContent'
 import getReviewStructuredData from '@/src/structured-data/casinoReviewStructuredData'
 import { CasinoPageSchemaType } from '@/src/schemas'
 import getProductStructuredData from '@/src/structured-data/productStructuredData'
-import { getOrganizationStructuredData } from '../structured-data/organizationStructuredData'
+import CasinoHero from '@/src/components/organisms/CasinoHero'
+import CasinoService from '@/src/services/CasinoService'
+import BreadCrumbs from '@/src/components/organisms/BreadCrumbs'
+import CasinoInfo from '@/src/components/organisms/CasinoInfo'
 
 const CasinoPage = ({
   casinoPage,
@@ -11,15 +14,19 @@ const CasinoPage = ({
   casinoPage: CasinoPageSchemaType
   similarCasinoPages: CasinoPageSchemaType[]
 }) => {
-  // const author = page?.author.node
-  // const siteURL = process.env.SITE_URL
-  // const headings = getBlockHeadings(page?.editorBlocks)
-  // const casinoService = new CasinoService()
-  // const { finalRating } = casinoService.getCasinoRating({ page: page })
   const schema = {
     '@context': 'https://schema.org',
     '@graph': [getProductStructuredData({ productPage: casinoPage })],
   }
+  const breadcrumbs = [
+    {
+      name: 'Hem',
+      url: '/',
+    },
+    {
+      name: casinoPage.title,
+    },
+  ]
 
   return (
     <>
@@ -29,24 +36,13 @@ const CasinoPage = ({
         key="casino-page-structured-data"
       />
       <article>
-        {/*<CasinoHero*/}
-        {/*  title={page?.title}*/}
-        {/*  introduction={page?.postType?.introduction}*/}
-        {/*  coverImage={page?.featuredImage}*/}
-        {/*  bonus={page?.postType?.title}*/}
-        {/*  backgroundColor={page?.postType?.brandColor}*/}
-        {/*  rating={finalRating}*/}
-        {/*  affiliateLink={page?.postType?.affiliateLink?.node.slug}*/}
-        {/*  disclaimer={page?.postType?.disclaimer}*/}
-        {/*/>*/}
-        {/*{page?.seo?.breadcrumbs && (*/}
-        {/*  <BreadCrumbs items={page.seo?.breadcrumbs} />*/}
-        {/*)}*/}
-        {/*<div className="border-b border-b-slate100 bg-slate50 px-4 pb-4 pt-8 md:pb-6 lg:px-0">*/}
-        {/*  <Container className="!px-0">*/}
-        {/*    <PostInfo casino={page} title={page?.title} />*/}
-        {/*  </Container>*/}
-        {/*</div>*/}
+        <CasinoHero
+          casinoPage={casinoPage}
+        />
+        <BreadCrumbs items={breadcrumbs} />
+        <div className="border-b border-b-slate100 bg-slate50 px-4 pb-4 pt-8 md:pb-6 lg:px-0">
+          <CasinoInfo casino={casinoPage.casino} title={casinoPage.title} />
+        </div>
         {/*<div className="mx-auto max-w-3xl pb-6">*/}
         {/*  <div className="mb-4 mt-10 px-4 lg:px-0">*/}
         {/*    <Avatar*/}

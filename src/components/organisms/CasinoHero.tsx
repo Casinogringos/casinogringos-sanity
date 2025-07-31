@@ -1,49 +1,49 @@
 import Star from '@/src/components/icons/StarIcon'
 import StarHalf from '@/src/components/icons/HalfStarIcon'
-import CoverImage from '../../../sin-bin/CoverImage'
-import dynamic from 'next/dynamic'
-
+import { CasinoPageSchemaType } from '@/src/schemas'
+import Image from 'next/image'
+import Link from '@/src/components/atoms/Link'
 export default function CasinoHero({
-  title,
-  introduction,
-  coverImage,
-  rating,
-  backgroundColor,
-  affiliateLink,
-  disclaimer,
-  bonus,
+  casinoPage
+}: {
+  casinoPage: CasinoPageSchemaType
 }) {
+  const { casino } = casinoPage
+
   return (
     <div className="bg-darklight py-5 lg:py-16">
       <div className="mx-auto max-w-6xl px-4 lg:px-8">
         <div className="flex h-full w-full flex-col gap-x-10 lg:flex-row">
           <div
             className="mb-4 flex items-center justify-center overflow-hidden rounded-md lg:mb-0 lg:min-h-full lg:w-1/4"
-            style={{ background: backgroundColor }}
+            style={{ background: casino.brandColor }}
           >
-            <CoverImage
-              title={title}
-              coverImage={coverImage}
-              width={150}
-              height={150}
-            />
+            <div className="overflow-hidden rounded-full">
+              <Image
+                src={casino.logo.src}
+                alt={casino.logo.altText}
+                width={150}
+                height={150}
+                className="rounded-full hover:shadow-medium"
+              />
+            </div>
           </div>
           <div className="lg:w-3/4">
-            <h1 className="text-3xl font-bold text-white">{title}</h1>
-            {bonus && (
+            <h1 className="text-3xl font-bold text-white">{casinoPage.title}</h1>
+            {casino.casinoBonuses && casino.casinoBonuses.length > 0 && (
               <div className="pb-2 pt-1 text-xl font-bold text-primary">
-                {bonus}
+                {casino.casinoBonuses[0].bonusAmountRange[1]} kr
               </div>
             )}
-            {rating && (
+            {casino.overallRating && (
               <div className="mb-6 mt-1 flex">
-                {Array.from({ length: Math.floor(rating) }).map((_, index) => (
+                {Array.from({ length: Math.floor(casino.overallRating) }).map((_, index) => (
                   <Star
                     key={`rating-star-${index}`}
                     className="h-5 w-5 text-yellow400"
                   />
                 ))}
-                {rating % 1 !== 0 && (
+                {casino.overallRating % 1 !== 0 && (
                   <StarHalf
                     key="rating-star-half"
                     className="h-5 w-5 text-yellow400"
@@ -51,17 +51,17 @@ export default function CasinoHero({
                 )}
               </div>
             )}
-            {introduction && (
-              <p className="mb-6 text-lg text-gray100">{introduction}</p>
+            {casinoPage.intro && (
+              <p className="mb-6 text-lg text-gray100">{casinoPage.intro}</p>
             )}
-            {affiliateLink && (
-              <AffiliateButton
-                affiliateLink={affiliateLink}
-                title={title}
+            {casinoPage.affiliateLink && (
+              <Link
+                href={casinoPage.affiliateLink}
+                title={casinoPage.title}
                 place="CasinoCard recension"
               >
-                Till {title}
-              </AffiliateButton>
+                Till {casinoPage.title}
+              </Link>
             )}
           </div>
         </div>
@@ -73,19 +73,10 @@ export default function CasinoHero({
           <Avatar author={author} />
         </div>
       </div> */}
-        {disclaimer ? (
-          <div
-            className="rounded-b-md pt-4 text-xs3 text-gray400 shadow-2xl"
-            dangerouslySetInnerHTML={{
-              __html: disclaimer,
-            }}
-          />
-        ) : (
-          <div className="rounded-b-md pt-4 text-xs3 text-gray400 shadow-2xl">
-            18+ | Spela ansvarsfullt | Stödlinjen.se | Spelpaus.se | Regler och
-            villkor gäller
-          </div>
-        )}
+        <div className="rounded-b-md pt-4 text-xs3 text-gray400 shadow-2xl">
+          18+ | Spela ansvarsfullt | Stödlinjen.se | Spelpaus.se | Regler och
+          villkor gäller
+        </div>
       </div>
     </div>
   )
