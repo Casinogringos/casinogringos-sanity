@@ -41,7 +41,7 @@ const CasinoPage = ({
         />
         <BreadCrumbs items={breadcrumbs} />
         <div className="border-b border-b-slate100 bg-slate50 px-4 pb-4 pt-8 md:pb-6 lg:px-0">
-          <CasinoInfo casino={casinoPage.casino} title={casinoPage.title} />
+          <CasinoInfo casinoPage={casinoPage} />
         </div>
         {/*<div className="mx-auto max-w-3xl pb-6">*/}
         {/*  <div className="mb-4 mt-10 px-4 lg:px-0">*/}

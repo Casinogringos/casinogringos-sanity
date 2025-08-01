@@ -52,7 +52,12 @@ class CasinoService {
       { key: 'support_rating', label: 'Kundtjänst', imgSrc: '/support.webp' },
     ]
   }
-  getCasinoRatings({ casino }: { casino: CasinoSchemaType }) {
+  getCasinoRatings({ casino }: { casino: CasinoSchemaType }): {
+    finalRating: number
+    validRatings: number[]
+    ratings: Partial<Ratings>
+    ratingKeys: RatingKey[]
+  } {
     const ratings: Partial<Ratings> = {}
     const validRatings = this.ratingKeys.reduce<number[]>((acc, { key }) => {
       const ratingValue = casino.casinoRatings?.find(
@@ -74,7 +79,7 @@ class CasinoService {
         : 0
     const finalRating =
       validRatings.length >= 5 ? overallScore : casino?.overallRating
-    return { finalRating, validRatings, ratings }
+    return { finalRating: Number(finalRating), validRatings, ratings, ratingKeys: this.ratingKeys }
   }
 }
 
