@@ -81,6 +81,20 @@ class CasinoService {
       validRatings.length >= 5 ? overallScore : casino?.overallRating
     return { finalRating: Number(finalRating), validRatings, ratings, ratingKeys: this.ratingKeys }
   }
+  getQuickFacts({ casino }: { casino: CasinoSchemaType }): {
+    quickFacts: {
+      label: string
+      value: string
+    }[]
+  } {
+    const quickFacts = [
+      {
+        label: 'Svensk licens',
+        value: casino.swedishLicense ? 'Ja' : 'Nej',
+      }
+    ]
+    return { quickFacts }
+  }
 }
 
 export default CasinoService

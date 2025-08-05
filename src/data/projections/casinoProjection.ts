@@ -26,5 +26,7 @@ export const casinoProjection = `
       ${freeSpinsProjection}
     },
     advantages[],
+    disadvantages[],
+    prosAndCons[],
     terms
 `

@@ -1,7 +1,5 @@
 import { z } from 'zod'
-import { CasinoBonusSchema } from './casinoBonus'
-import { DashboardImageObjectSchema } from './dashboardImageObject'
-import { FreeSpinsSchema } from './freeSpins'
+import { OwnerSchema, LiveCasinoBonusSchema, FreeSpinsSchema, DashboardImageObjectSchema, CasinoBonusSchema, LicenseSchema, OddsBonusSchema, GameTypeSchema, LiveCasinoGameTypeSchema, SportSchema, GameProviderSchema, PaymentMethodSchema, ContactMethodSchema, CasinoRatingSchema } from '@/src/schemas'
 
 export const CasinoSchema = z.object({
   _type: z.literal('casinos'),

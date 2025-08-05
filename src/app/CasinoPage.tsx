@@ -6,6 +6,10 @@ import CasinoHero from '@/src/components/organisms/CasinoHero'
 import CasinoService from '@/src/services/CasinoService'
 import BreadCrumbs from '@/src/components/organisms/BreadCrumbs'
 import CasinoInfo from '@/src/components/organisms/CasinoInfo'
+import Avatar from '@/src/components/organisms/Avatar'
+import TableOfContents from '@/src/components/organisms/TableOfContents'
+import { getHeadingObjectsByPage } from '@/src/lib/helpers'
+import Container from '@/src/components/atoms/Container'
 
 const CasinoPage = ({
   casinoPage,
@@ -27,6 +31,7 @@ const CasinoPage = ({
       name: casinoPage.title,
     },
   ]
+  const headings = getHeadingObjectsByPage({ objects: casinoPage.content })
 
   return (
     <>
@@ -43,22 +48,23 @@ const CasinoPage = ({
         <div className="border-b border-b-slate100 bg-slate50 px-4 pb-4 pt-8 md:pb-6 lg:px-0">
           <CasinoInfo casinoPage={casinoPage} />
         </div>
-        {/*<div className="mx-auto max-w-3xl pb-6">*/}
-        {/*  <div className="mb-4 mt-10 px-4 lg:px-0">*/}
-        {/*    <Avatar*/}
-        {/*      author={page?.author}*/}
-        {/*      reviewedBy={page?.reviewer}*/}
-        {/*      modified={page?.modified}*/}
-        {/*      shareTitle={page?.seo?.title}*/}
-        {/*      date={page?.date}*/}
-        {/*    />*/}
-        {/*  </div>*/}
-        {/*  {headings.length > 0 && (*/}
-        {/*    <div className={'-mb-8 px-4 lg:px-0'}>*/}
-        {/*      <TableOfContents headings={headings} />*/}
-        {/*    </div>*/}
-        {/*  )}*/}
-        {/*</div>*/}
+        <div className="mx-auto max-w-3xl pb-6">
+          <div className="mb-4 mt-10 px-4 lg:px-0">
+            <Avatar
+              author={casinoPage.author}
+              reviewer={casinoPage.reviewer}
+              modified={casinoPage._updatedAt ?? casinoPage.originalModifiedAt}
+              shareTitle={casinoPage.seoTitle}
+              date={casinoPage.originalPublishedAt ?? casinoPage._createdAt}
+              pathname={casinoPage.slug.current}
+            />
+          </div>
+        </div>
+        {headings.length > 1 && (
+          <Container narrow>
+            <TableOfContents headings={headings} />
+          </Container>
+        )}
         {casinoPage.content && <ModularContent objects={casinoPage.content} />}
         {/*{page?.author && (*/}
         {/*  <div className="mx-4 lg:mx-0">*/}

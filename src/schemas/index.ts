@@ -14,16 +14,19 @@ import { AuthorSchema, AuthorSchemaType } from './author'
 import { BasePageSchema, BasePageSchemaType } from './basePage'
 import { BonusObjectSchema, BonusObjectSchemaType } from './bonusObject'
 import { BonusTypeSchema, BonusTypeSchemaType } from './bonusType'
+import { CategorySchema, CategorySchemaType } from './category'
 import { SlotSchema, SlotSchemaType } from './slot'
 import { HTMLObjectSchema, HTMLObjectSchemaType } from './htmlObject'
 import { CasinoListObjectSchema, CasinoListObjectSchemaType } from './casinoListObject'
 import { CasinoPagePreviewSchema, CasinoPagePreviewSchemaType } from './casinoPagePreview'
 import { SlotPagePreviewSchema, SlotPagePreviewSchemaType } from './slotPagePreview'
 import { GameProviderSchema, GameProviderSchemaType } from './gameProvider'
+import { LicenseSchema, LicenseSchemaType } from './license'
 import { SlotFeatureSchema, SlotFeatureSchemaType } from './slotFeature'
 import { SlotThemeSchema, SlotThemeSchemaType } from './slotTheme'
 import { GameTypeSchema, GameTypeSchemaType } from './gameType'
 import { GameProviderFeaturesSchema, GameProviderFeaturesSchemaType } from './gameProviderFeatures'
+import { LiveCasinoGameTypeSchema, LiveCasinoGameTypeSchemaType } from './liveCasinoGameType'
 import {
   GuidePagePreviewSchema,
   GuidePagePreviewSchemaType,
@@ -34,6 +37,7 @@ import {
   BasePagePreviewSchema,
   BasePagePreviewSchemaType,
 } from './basePagePreview'
+import { ContactMethodSchema, ContactMethodSchemaType } from './contactMethod'
 import { CasinoSchema, CasinoSchemaType } from './casino'
 import { CasinoObjectSchema, CasinoObjectSchemaType } from './casinoObject'
 import { CasinoBonusSchema, CasinoBonusSchemaType } from './casinoBonus'
@@ -53,6 +57,7 @@ import { FreeSpinsTypeSchema, FreeSpinsTypeSchemaType } from './freeSpinsType'
 import { GameSchema, GameSchemaType } from './game'
 import { BreadcrumbsSchema, BreadcrumbsSchemaType } from './breadcrumbs'
 import { HeadingObjectSchema, HeadingObjectSchemaType } from './headingObject'
+import { LiveCasinoBonusSchema, LiveCasinoBonusSchemaType } from './liveCasinoBonus'
 import {
   PortableTextBlockSchema,
   PortableTextBlockSchemaType,
@@ -64,16 +69,19 @@ import {
   HowToStepObjectSchemaType,
 } from './howToStepObject'
 import { ImageObjectSchema, ImageObjectSchemaType } from './imageObject'
+import { OwnerSchema, OwnerSchemaType } from './owner'
 import {
   ListItemObjectSchema,
   ListItemObjectSchemaType,
 } from './listItemObject'
 import { ListObjectSchema, ListObjectSchemaType } from './listObject'
+import { SportSchema, SportSchemaType } from './sport'
 import {
   ModularContentSchema,
   ModularContentSchemaType,
 } from './modularContent'
 import { OddsBonusSchema, OddsBonusSchemaType } from './oddsBonus'
+import { CasinoRatingSchema, CasinoRatingSchemaType } from './casinoRating'
 import {
   ParagraphObjectSchema,
   ParagraphObjectSchemaType,
@@ -114,9 +122,11 @@ export {
   ButtonObjectSchema,
   ButtonsObjectSchema,
   CasinoSchema,
+  CasinoRatingSchema,
   NewsPagePreviewSchema,
   BasePagePreviewSchema,
   GuidePageSchema,
+  SportSchema,
   CasinoObjectSchema,
   CasinoBonusSchema,
   CasinoPageSchema,
@@ -126,7 +136,9 @@ export {
   FAQObjectSchema,
   FaqItemObjectSchema,
   FreeSpinsSchema,
+  LiveCasinoBonusSchema,
   FreeSpinsTypeSchema,
+  ContactMethodSchema,
   GameSchema,
   SlotSchema,
   GameProviderSchema,
@@ -140,7 +152,10 @@ export {
   SlotPagePreviewSchema,
   HeadingObjectSchema,
   HowToObjectSchema,
+  LicenseSchema,
   GuidePagePreviewSchema,
+  OwnerSchema,
+  LiveCasinoGameTypeSchema,
   PortableTextBlockSchema,
   HowToStepObjectSchema,
   ImageObjectSchema,
@@ -155,6 +170,7 @@ export {
   PaymentMethodTypeSchema,
   CasinoListObjectSchema,
   ProsAndConsObjectSchema,
+  CategorySchema,
   QuoteObjectSchema,
   RatingObjectSchema,
   SlotPageSchema,
@@ -174,14 +190,19 @@ export type {
   SlotFeatureSchemaType,
   SlotThemeSchemaType,
   AuthorSchemaType,
+  OwnerSchemaType,
   CasinoPagePreviewSchemaType,
+  LiveCasinoGameTypeSchemaType,
   SlotPagePreviewSchemaType,
   BasePageSchemaType,
+  CasinoRatingSchemaType,
   NewsPageSchemaType,
   CasinoListObjectSchemaType,
+  SportSchemaType,
   BonusObjectSchemaType,
   SlotSchemaType,
   BonusTypeSchemaType,
+  LicenseSchemaType,
   ButtonObjectSchemaType,
   ButtonsObjectSchemaType,
   CasinoSchemaType,
@@ -196,7 +217,9 @@ export type {
   ColumnObjectSchemaType,
   ColumnsObjectSchemaType,
   DashboardImageObjectSchemaType,
+  ContactMethodSchemaType,
   FAQObjectSchemaType,
+  CategorySchemaType,
   FaqItemObjectSchemaType,
   FreeSpinsSchemaType,
   FreeSpinsTypeSchemaType,
@@ -204,6 +227,7 @@ export type {
   GameSchemaType,
   GroupObjectSchemaType,
   BreadcrumbsSchemaType,
+  LiveCasinoBonusSchemaType,
   HeadingObjectSchemaType,
   HowToObjectSchemaType,
   HowToStepObjectSchemaType,

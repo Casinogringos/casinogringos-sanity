@@ -1,19 +1,20 @@
-import { ProsAndConsObject } from '@/src/types'
 import { Check, MinusCircleIcon } from 'lucide-react'
 import dynamic from 'next/dynamic'
 const Heading = dynamic(() => import('@/src/components/atoms/Heading'))
 
 const ProsAndConsBox = ({
-  block,
+  pros,
+  prosTitle = 'Saker vi gillar',
+  cons,
+  consTitle = 'Saker vi inte gillar',
   className,
 }: {
-  block: ProsAndConsObject
+  pros: string[]
+  prosTitle?: string
+  cons: string[]
+  consTitle?: string
   className?: string
 }) => {
-  const pros = JSON.parse(block.attributes.pros)
-  const prosTitle = block.attributes.prosTitle ?? 'Saker vi gillar'
-  const cons = JSON.parse(block.attributes.cons)
-  const consTitle = block.attributes.consTitle ?? 'Saker vi inte gillar'
   if (!pros?.length || !cons?.length) return null
 
   return (
@@ -24,7 +25,8 @@ const ProsAndConsBox = ({
         <div>
           <Heading
             className={'!mt-0 mb-3'}
-            attributes={{ level: 4, text: prosTitle }}
+            level={4}
+            text={prosTitle}
           />
           {pros.map((item, index) => (
             <div
@@ -41,7 +43,8 @@ const ProsAndConsBox = ({
         <div>
           <Heading
             className={'!mt-0 mb-3'}
-            attributes={{ level: 4, text: consTitle }}
+            level={4}
+            text={consTitle}
           />
           {cons.map((item, index) => (
             <div

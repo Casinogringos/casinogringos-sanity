@@ -1,4 +1,4 @@
-import { casinoProjection, objectProjections, imageObjectProjection } from '@/src/data/projections'
+import { casinoProjection, objectProjections, imageObjectProjection, authorProjection } from '@/src/data/projections'
 
 export const casinoPageProjection = `
   _type,
@@ -17,5 +17,8 @@ export const casinoPageProjection = `
   },
   content[] {
     ${objectProjections}
+  },
+  author-> {
+    ${authorProjection}
   }
 `

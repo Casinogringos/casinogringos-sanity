@@ -1,7 +1,7 @@
 import { z, ZodAny } from 'zod'
 import { AuthorSchema } from './author'
 import { PortableTextBlockSchema } from './portableTextBlock'
-import { ModularContentSchema, SanityImageSchema, ToplistSchema } from '@/src/schemas'
+import { ModularContentSchema, SanityImageSchema, ToplistSchema, CategorySchema } from '@/src/schemas'
 
 // We'll define Toplist schema later to avoid circular dependencies
 const ToplistPlaceholder = z.object({
@@ -40,6 +40,7 @@ export const BasePageSchema = z.object({
     .optional(),
   content: ModularContentSchema,
   toplist: ToplistSchema.optional(),
+  categories: z.array(CategorySchema),
 })
 
 export type BasePageSchemaType = z.infer<typeof BasePageSchema>
