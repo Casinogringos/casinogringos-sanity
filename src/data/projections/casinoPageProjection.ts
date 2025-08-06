@@ -6,8 +6,11 @@ export const casinoPageProjection = `
   _key,
   title,
   slug,
+  intro,
+  affiliateLink,
   publishedAt,
   seoTitle,
+  ratingMotivation,
   seoDescription,
   seoImage {
     ${imageObjectProjection}

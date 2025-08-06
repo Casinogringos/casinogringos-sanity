@@ -71,14 +71,14 @@ const CasinoInfo = ({
                     <div className="mb-8 w-full rounded-2xl border border-blue100 bg-slate100 pb-6 md:mt-3 md:p-8">
                         <div className="relative mb-8 gap-6 overflow-hidden rounded-t-md bg-darklight p-5 md:overflow-visible md:rounded-md">
                             <Heading
-                                className={'-mt-1 text-lg text-white'}
+                                className={'!-mt-1 text-lg text-white'}
                                 level={2}
                                 text="Vårt betyg"
                             />
                             <div className="mt-2 flex items-start text-white">
                                 <strong className="text-5xl">{finalRating}</strong>
-                                <div className="ml-1 mt-0.5 flex gap-1 text-sm font-medium text-slate400">
-                                    /5 <StarIcon className="size-5 text-yellow400" />
+                                <div className="ml-1 mt-0.5 flex gap-1 text-sm font-medium text-slate-400">
+                                    /5 <StarIcon className="size-5 text-yellow-400" />
                                 </div>
                                 <Image
                                     src={
@@ -106,7 +106,7 @@ const CasinoInfo = ({
                                 />
                             </div>
                             {casinoPage.ratingMotivation && (
-                                <div className="mr-28 pt-3 text-sm text-slate200 md:mr-36">
+                                <div className="mr-28 pt-3 text-sm text-slate-200 md:mr-36">
                                     <PortableText
                                         value={casinoPage.ratingMotivation}
                                     />
@@ -128,17 +128,17 @@ const CasinoInfo = ({
                                                         alt={label}
                                                     />{' '}
                                                     {label}
-                                                    <p className="mb-0 ml-auto font-normal text-slate500">
+                                                    <p className="mb-0 ml-auto font-normal text-slate-500">
                                                         <strong className="text-lg text-black">
                                                             {ratings[key]}
                                                         </strong>
                                                         /5
                                                     </p>
                                                 </span>
-                                                <div className="flex h-2 overflow-hidden rounded-md bg-slate300 text-xs">
+                                                <div className="flex h-2 overflow-hidden rounded-md bg-slate-300 text-xs">
                                                     <div
                                                         style={{ width: rating * 20 + '%' }}
-                                                        className="flex flex-col justify-center whitespace-nowrap bg-green500 text-center text-white shadow-none"
+                                                        className="flex flex-col justify-center whitespace-nowrap bg-green-500 text-center text-white shadow-none"
                                                     ></div>
                                                 </div>
                                             </div>
@@ -174,7 +174,7 @@ const CasinoInfo = ({
                 <Heading level={2} className="mb-5 text-xl font-bold" text={`Snabbfakta om ${title}`} />
                 <div className="mb-5 flex gap-3 overflow-x-auto">
                     {quickFacts.map((item) => (
-                        <div className="flex flex-shrink-0 flex-col items-center justify-center gap-2 rounded-2xl border border-gray300 px-6 py-4">
+                        <div className="flex flex-shrink-0 flex-col items-center justify-center gap-2 rounded-2xl border border-gray-300 px-6 py-4">
                             <div className="text-xs font-semibold uppercase text-slate600">
                                 {item.label}
                             </div>{' '}
@@ -183,11 +183,11 @@ const CasinoInfo = ({
                     ))}
                 </div>
                 <ProsAndConsBox pros={casinoPage.casino.advantages} cons={casinoPage.casino.disadvantages} />
-                {casinoPage.casino.depositMethods && (
+                {casinoPage.casino.availableDepositMethods && (
                     <>
                         <h2 className="mb-4 mt-6 text-xl">Betalningsmetoder</h2>
                         <div className={'mb-2 flex flex-wrap items-center'}>
-                            {casinoPage.casino.depositMethods.map(
+                            {casinoPage.casino.availableDepositMethods.map(
                                 (item, i) => (
                                     <>
                                         {
@@ -198,11 +198,11 @@ const CasinoInfo = ({
                                                     key={`payment-provider-${item._type}`}
                                                     width="54"
                                                     height="30"
-                                                    className={'rounded-md border border-gray300'}
+                                                    className={'rounded-md border border-gray-300'}
                                                 />
                                             ) : (
                                                 <span
-                                                    className={'rounded-md bg-gray200 px-3 py-1 text-sm'}
+                                                    className={'rounded-md bg-gray-200 px-3 py-1 text-sm'}
                                                 >
                                                     {item.name}
                                                 </span>
@@ -213,26 +213,26 @@ const CasinoInfo = ({
                         </div>
                     </>
                 )}
-                {casinoPage.casino.withdrawalMethods && (
+                {casinoPage.casino.gameProviders && (
                     <>
                         <Heading level={2} className="mb-4 mt-6 text-xl" text="Spelleverantörer" />
                         <div className={'mb-2 flex flex-wrap items-center gap-0.5'}>
-                            {casinoPage.casino.withdrawalMethods.map(
+                            {casinoPage.casino.gameProviders.map(
                                 (item, index) => (
                                     <>
-                                        {item.logo.src ? (
+                                        {item.featuredImage.src ? (
                                             <Image
                                                 key={`game-provider-${index}`}
-                                                src={item.logo.src}
-                                                alt={item.logo.altText}
+                                                src={item.featuredImage.src}
+                                                alt={item.featuredImage.altText}
                                                 width="54"
                                                 height="30"
-                                                className={'rounded-md border border-gray300'}
+                                                className={'rounded-md border border-gray-300'}
                                             />
                                         ) : (
                                             <span
                                                 className={
-                                                    'text-xs rounded-md block text-slate700 bg-slate100 px-2 py-1.5 border border-slate300'
+                                                    'text-xs rounded-md block text-slate-700 bg-slate-100 px-2 py-1.5 border border-slate-300'
                                                 }
                                             >
                                                 {item.name}
@@ -252,7 +252,7 @@ const CasinoInfo = ({
                                 <div key={`brand-category-${category._id}`}>
                                     <span
                                         className={
-                                            'text-sm rounded-md bg-slate100 border border-slate300 px-3 py-1.5 mr-1 mb-1'
+                                            'text-sm rounded-md bg-slate-100 border border-slate-300 px-3 py-1.5 mr-1 mb-1'
                                         }
                                     >
                                         {category.name}
@@ -262,22 +262,21 @@ const CasinoInfo = ({
                         </div>
                     </>
                 )}
-                {(casinoPage.casino.contactMethods && casinoPage.casino.contactMethods.length > 0) && (
+                {(casinoPage.casino.contactMethods && casinoPage.casino.contactMethods.length > 0) ? (
                     <>
-                        <h2 className="mb-3 mt-6 text-xl font-bold">Kundtjänst</h2>
+                        <Heading level={2} className="mb-3 mt-6 text-xl font-bold" text="Kundtjänst" />
                         <ul className="mb-3">
                             {casinoPage.casino.contactMethods.map((contactMethod) => (
                                 <li className="flex items-center py-2">
-                                    <Mail className="mr-2 h-5 w-5 text-slate600" />
                                     <span className="font-medium">{contactMethod.label}</span>
-                                    <div className="ml-auto text-blue600">
+                                    <div className="ml-auto text-blue-600">
                                         {contactMethod.value}
                                     </div>
                                 </li>
                             ))}
                         </ul>
                     </>
-                )}
+                ) : null}
             </Container>
         </div>
     )

@@ -1,6 +1,7 @@
 import {
   dashboardImageProjection,
   casinoRatingProjection, casinoBonusProjection, freeSpinsProjection,
+  paymentMethodProjection, gameProviderProjection, contactMethodProjection
 } from '@/src/data/projections'
 
 export const casinoProjection = `
@@ -12,6 +13,12 @@ export const casinoProjection = `
     },
     brandColor,
     name,
+    availableDepositMethods[]-> {
+      ${paymentMethodProjection}
+    },
+    availableWithdrawalMethods[]-> {
+      ${paymentMethodProjection}
+    },
     logo {
       ${dashboardImageProjection}
     },
@@ -25,8 +32,14 @@ export const casinoProjection = `
     freeSpins[]-> {
       ${freeSpinsProjection}
     },
+    gameProviders[]-> {
+      ${gameProviderProjection}
+    },
     advantages[],
     disadvantages[],
     prosAndCons[],
-    terms
+    terms,
+    contactMethods[]-> {
+      ${contactMethodProjection}
+    }
 `

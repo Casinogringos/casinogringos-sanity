@@ -3,12 +3,19 @@ import StarHalf from '@/src/components/icons/HalfStarIcon'
 import { CasinoPageSchemaType } from '@/src/schemas'
 import Image from 'next/image'
 import Link from '@/src/components/atoms/Link'
+import { PortableText } from 'next-sanity'
+import CasinoService from '@/src/services/CasinoService'
+
 export default function CasinoHero({
   casinoPage
 }: {
   casinoPage: CasinoPageSchemaType
 }) {
   const { casino } = casinoPage
+  const casinoService = new CasinoService()
+  const { finalRating } = casinoService.getCasinoRatings({
+    casino: casinoPage.casino,
+  })
 
   return (
     <div className="bg-darklight py-5 lg:py-16">
@@ -30,39 +37,43 @@ export default function CasinoHero({
           </div>
           <div className="lg:w-3/4">
             <h1 className="text-3xl font-bold text-white">{casinoPage.title}</h1>
-            {casino.casinoBonuses && casino.casinoBonuses.length > 0 && (
+            {casino.casinoBonuses && casino.casinoBonuses.length > 0 && casino.freeSpins && casino.freeSpins.length > 0 ? (
               <div className="pb-2 pt-1 text-xl font-bold text-primary">
-                {casino.casinoBonuses[0].bonusAmountRange[1]} kr
+                {casino.casinoBonuses[0].bonusAmountRange[1]} kr i bonus + {casino.freeSpins[0].numberOfFreeSpins} free spins
               </div>
-            )}
-            {casino.overallRating && (
+            ) : <div className="pb-2 pt-1 text-xl font-bold text-primary">
+              {casino.defaultBonusText}
+            </div>}
+            {finalRating && finalRating > 0 ? (
               <div className="mb-6 mt-1 flex">
-                {Array.from({ length: Math.floor(casino.overallRating) }).map((_, index) => (
+                {Array.from({ length: Math.floor(finalRating) }).map((_, index) => (
                   <Star
                     key={`rating-star-${index}`}
-                    className="h-5 w-5 text-yellow400"
+                    className="h-5 w-5 text-yellow-400"
                   />
                 ))}
-                {casino.overallRating % 1 !== 0 && (
+                {finalRating % 1 !== 0 && (
                   <StarHalf
                     key="rating-star-half"
-                    className="h-5 w-5 text-yellow400"
+                    className="h-5 w-5 text-yellow-400"
                   />
                 )}
               </div>
-            )}
+            ) : null}
             {casinoPage.intro && (
-              <p className="mb-6 text-lg text-gray100">{casinoPage.intro}</p>
+              <div className="mb-6 text-lg text-gray-100">
+                <PortableText value={casinoPage.intro} />
+              </div>
             )}
-            {casinoPage.affiliateLink && (
-              <Link
-                href={casinoPage.affiliateLink}
-                title={casinoPage.title}
-                place="CasinoCard recension"
-              >
-                Till {casinoPage.title}
-              </Link>
-            )}
+            <Link
+              href={`/go/${casino.slug.current}`}
+              title={casinoPage.title}
+              place="CasinoCard recension"
+              variant='affiliate'
+              className='w-full'
+            >
+              Till {casinoPage.title}
+            </Link>
           </div>
         </div>
         {/* <div className="hidden md:mb-12 md:block">
@@ -73,7 +84,7 @@ export default function CasinoHero({
           <Avatar author={author} />
         </div>
       </div> */}
-        <div className="rounded-b-md pt-4 text-xs3 text-gray400 shadow-2xl">
+        <div className="rounded-b-md pt-4 text-xs3 text-gray-400 shadow-2xl">
           18+ | Spela ansvarsfullt | Stödlinjen.se | Spelpaus.se | Regler och
           villkor gäller
         </div>

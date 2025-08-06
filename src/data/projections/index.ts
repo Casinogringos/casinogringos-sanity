@@ -12,6 +12,7 @@ import { imageObjectProjection } from '@/src/data/projections/imageObjectProject
 import { listItemObjectProjection } from '@/src/data/projections/listItemObjectProjection'
 import { casinoListObjectProjection } from '@/src/data/projections/casinoListObjectProjection'
 import { bonusProjection } from '@/src/data/projections/bonusProjection'
+import { contactMethodProjection } from '@/src/data/projections/contactMethodProjection'
 import { listObjectProjection } from '@/src/data/projections/listObjectProjection'
 import { affiliateButtonObjectProjection } from '@/src/data/projections/affiliateButtonObjectProjection'
 import { bonusObjectProjection } from '@/src/data/projections/bonusObjectProjection'
@@ -70,6 +71,7 @@ export {
   gameProviderFeaturesProjection,
   slotPageProjection,
   slotProjection,
+  contactMethodProjection,
   objectProjections,
   slotThemeProjection,
   slotFeatureProjection,

@@ -8,20 +8,9 @@ import { Breadcrumbs } from '@/src/types/breadcrumbs'
 // import InternalLink from '../../../sin-bin/InternalLink'
 export default function BreadCrumbs({
   items,
-  index,
 }: {
   items: Breadcrumbs
-  index?: { text: string; url: string }
 }) {
-  const breadcrumbs = items
-    .filter((item) => item.text && item.text !== 'Hem')
-    .map((item) => {
-      return {
-        text: item.text,
-        url: item.url ?? null,
-      }
-    })
-  if (index) breadcrumbs.unshift(index)
   return (
     <div className="overflow-x-auto border-b border-b-gray-200 bg-white py-2">
       <Container>
@@ -48,7 +37,7 @@ export default function BreadCrumbs({
               </Link>
               <meta itemProp="position" content="1" />
             </li>
-            {breadcrumbs.map((item, i) => (
+            {items.map((item, i) => (
               <li
                 key={`breadcrumb-${item.text}`}
                 itemProp="itemListElement"

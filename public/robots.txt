@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /go/
+Disallow: /api/
+Disallow: /proxy/
+Sitemap: https://casinogringos.se/sitemap_index.xml

@@ -49,7 +49,7 @@ const Link = ({
   const getClassName = () => {
     switch (variant) {
       case 'affiliate':
-        return 'rounded-md bg-dark px-4 py-2 text-xs text-white'
+        return 'bg-button hover:bg-button-hover not-prose inline-block justify-center lg:text-lg text-white no-underline text-center font-semibold px-6 py-4 rounded-md'
       default:
         return `${isActive ? 'text-primary' : 'hover:text-primary'}`
     }

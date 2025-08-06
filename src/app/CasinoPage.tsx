@@ -24,11 +24,7 @@ const CasinoPage = ({
   }
   const breadcrumbs = [
     {
-      name: 'Hem',
-      url: '/',
-    },
-    {
-      name: casinoPage.title,
+      text: casinoPage.title,
     },
   ]
   const headings = getHeadingObjectsByPage({ objects: casinoPage.content })
