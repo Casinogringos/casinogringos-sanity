@@ -18,9 +18,8 @@ const Menu = ({
       <ul role={'menubar'}>
         {menu.items.map((level1Item: MenuItemType, i: number) => (
           <li
-            className={`flex items-center justify-between flex-wrap border-b-gray-100 py-4 ${
-              menu.items.length - 1 !== i ? 'border-b' : ''
-            }`}
+            className={`flex items-center justify-between flex-wrap border-b-gray-100 py-4 ${menu.items.length - 1 !== i ? 'border-b' : ''
+              }`}
             key={`level-1-item-${level1Item._key}`}
             role={'none'}
           >

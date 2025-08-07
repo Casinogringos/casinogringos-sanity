@@ -43,7 +43,7 @@ export default async function RootLayout({
   const sidebarMenu = await getMenuById({
     id: 'a88836bc-b13a-474e-a2f5-ff59513b526a',
   })
-  const sidebarCasinos = await getCasinoPagePreviews({
+  const sidebarCasinoPages = await getCasinoPagePreviews({
     count: 8,
   })
   const headersList = await headers()
@@ -67,12 +67,12 @@ export default async function RootLayout({
       <link rel="icon" href="/favicon.ico" sizes="any" />
       <body className={`${jakarta.variable} ${inter.variable}`}>
         <Provider>
-          {/* <Navigation
+          <Navigation
             headerMenu={headerMenu}
             sidebarMenu={sidebarMenu}
-            sidebarCasinos={sidebarCasinos}
+            sidebarCasinoPages={sidebarCasinoPages}
             pathname={pathname}
-          /> */}
+          />
           <main className={'relative bg-slate-100'}>{children}</main>
           <ScrollToTop />
         </Provider>

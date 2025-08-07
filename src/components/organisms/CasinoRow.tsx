@@ -1,12 +1,12 @@
 import Link from '@/src/components/atoms/Link'
 import Image from 'next/image'
-import { CasinoPageSchemaType } from '@/src/schemas'
+import { CasinoPageSchemaType, CasinoPagePreviewSchemaType } from '@/src/schemas'
 
 const CasinoRow = ({
   casino,
   pathname,
 }: {
-  casino: CasinoPageSchemaType
+  casino: CasinoPageSchemaType | CasinoPagePreviewSchemaType
   pathname: string
 }) => {
   const { casino: casinoData } = casino

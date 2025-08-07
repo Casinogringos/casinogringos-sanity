@@ -189,7 +189,7 @@ const CasinoInfo = ({
                         <div className={'mb-2 flex flex-wrap items-center'}>
                             {casinoPage.casino.availableDepositMethods.map(
                                 (item, i) => (
-                                    <>
+                                    <div key={`payment-provider-${item._id}`}>
                                         {
                                             item.logo.src ? (
                                                 <Image
@@ -208,7 +208,7 @@ const CasinoInfo = ({
                                                 </span>
                                             )
                                         }
-                                    </>
+                                    </div>
                                 ))}
                         </div>
                     </>

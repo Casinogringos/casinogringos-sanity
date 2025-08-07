@@ -5,7 +5,6 @@ import Link from 'next/link'
 import NotificationButton from '@/src/components/molecules/NotificationButton'
 import Menu from '@/src/components/organisms/Menu'
 import type {
-  Casino,
   Menu as MenuType,
   MenuItem as MenuItemType,
 } from '@/src/types'
@@ -15,16 +14,17 @@ import { headers } from 'next/headers'
 import MenuModal from '@/src/components/molecules/MenuModal'
 import NotificationModal from '@/src/components/molecules/NotificationModal'
 import CasinoRow from '@/src/components/organisms/CasinoRow'
+import { CasinoPagePreviewSchemaType } from '@/src/schemas'
 
 export default async function Navigation({
   headerMenu,
   sidebarMenu,
-  sidebarCasinos,
+  sidebarCasinoPages,
   pathname,
 }: {
   headerMenu: MenuType
   sidebarMenu: MenuType
-  sidebarCasinos: Casino[]
+  sidebarCasinoPages: CasinoPagePreviewSchemaType[]
   pathname: string | null
 }) {
   // const headersList = await headers()
@@ -48,9 +48,8 @@ export default async function Navigation({
               href="/public"
               prefetch={false}
               aria-current={isCurrentPath(pathname, '/') ? 'page' : undefined}
-              className={`${
-                isCurrentPath(pathname, '/') ? 'text-primary' : 'text-white'
-              }`}
+              className={`${isCurrentPath(pathname, '/') ? 'text-primary' : 'text-white'
+                }`}
             >
               <span className="sr-only">Casinogringos.se</span>
               <Image
@@ -76,11 +75,10 @@ export default async function Navigation({
                         ? 'page'
                         : undefined
                     }
-                    className={`text-nav text-sm uppercase tracking-wider font-medium font-inter hover:text-primary transition ${
-                      isCurrentPath(pathname, item.page.slug.current)
-                        ? 'text-primary'
-                        : 'text-white'
-                    }`}
+                    className={`text-nav text-sm uppercase tracking-wider font-medium font-inter hover:text-primary transition ${isCurrentPath(pathname, item.page.slug.current)
+                      ? 'text-primary'
+                      : 'text-white'
+                      }`}
                   >
                     {item.label ?? item.page.title}
                   </Link>
@@ -108,10 +106,10 @@ export default async function Navigation({
           <div className="relative mt-6 text-lg font-medium">
             Populära erbjudanden
           </div>
-          {sidebarCasinos.map((casino) => (
+          {sidebarCasinoPages.map((casino) => (
             <CasinoRow
               casino={casino}
-              key={`casino-${casino._key}`}
+              key={`casino-${casino.casino._id}`}
               pathname={pathname}
             />
           ))}
