@@ -1,10 +1,10 @@
-import { casinoPagePreviewProjection, casinoPageProjection } from '@/src/data/projections'
+import { casinoPagePreviewProjection } from '@/src/data/projections'
 
 export const toplistProjection = `
-_key,
+  _key,
   title,
   description,
-  casinos[]->{
+  casinos[]-> {
     ${casinoPagePreviewProjection}
   },
 `

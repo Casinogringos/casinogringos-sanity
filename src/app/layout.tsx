@@ -2,6 +2,7 @@ import Navigation from '@/src/components/organisms/Navigation'
 import {
   getCasinoPagePreviews,
   getMenuById,
+  getToplistById,
 } from '@/src/lib/api'
 import Provider from '@/src/store/provider'
 import '@/src/styles/index.css'
@@ -43,8 +44,8 @@ export default async function RootLayout({
   const sidebarMenu = await getMenuById({
     id: 'a88836bc-b13a-474e-a2f5-ff59513b526a',
   })
-  const sidebarCasinoPages = await getCasinoPagePreviews({
-    count: 8,
+  const sidebarToplist = await getToplistById({
+    id: 'fa9e75e6-eadc-499c-9019-dc3843a7e2ca',
   })
   const headersList = await headers()
   const pathname =
@@ -70,7 +71,7 @@ export default async function RootLayout({
           <Navigation
             headerMenu={headerMenu}
             sidebarMenu={sidebarMenu}
-            sidebarCasinoPages={sidebarCasinoPages}
+            sidebarToplist={sidebarToplist}
             pathname={pathname}
           />
           <main className={'relative bg-slate-100'}>{children}</main>

@@ -14,17 +14,17 @@ import { headers } from 'next/headers'
 import MenuModal from '@/src/components/molecules/MenuModal'
 import NotificationModal from '@/src/components/molecules/NotificationModal'
 import CasinoRow from '@/src/components/organisms/CasinoRow'
-import { CasinoPagePreviewSchemaType } from '@/src/schemas'
+import { CasinoPagePreviewSchemaType, ToplistSchemaType } from '@/src/schemas'
 
 export default async function Navigation({
   headerMenu,
   sidebarMenu,
-  sidebarCasinoPages,
+  sidebarToplist,
   pathname,
 }: {
   headerMenu: MenuType
   sidebarMenu: MenuType
-  sidebarCasinoPages: CasinoPagePreviewSchemaType[]
+  sidebarToplist: ToplistSchemaType
   pathname: string | null
 }) {
   // const headersList = await headers()
@@ -106,10 +106,10 @@ export default async function Navigation({
           <div className="relative mt-6 text-lg font-medium">
             Populära erbjudanden
           </div>
-          {sidebarCasinoPages.map((casino) => (
+          {sidebarToplist.casinos.map((casino) => (
             <CasinoRow
               casino={casino}
-              key={`casino-${casino.casino._id}`}
+              key={`casino-${casino._id}`}
               pathname={pathname}
             />
           ))}

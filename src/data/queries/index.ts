@@ -12,6 +12,7 @@ import { guidePageCountQuery } from '@/src/data/queries/guidePageCountQuery'
 import { guidePagePreviewsQuery } from '@/src/data/queries/guidePagePreviewsQuery'
 import { sitemapQuery } from '@/src/data/queries/sitemapQuery'
 import { similarGuidePagesQuery } from '@/src/data/queries/similarGuidePagesQuery'
+import { toplistByIdQuery } from '@/src/data/queries/toplistById'
 import { casinoPagesQuery } from '@/src/data/queries/casinoPagesQuery'
 import { staticParamsQuery } from '@/src/data/queries/staticParamsQuery'
 import { similarCasinoPagesQuery } from '@/src/data/queries/similarCasinoPagesQuery'
@@ -27,6 +28,7 @@ export {
   staticParamsQuery,
   casinoPagesByCasinosQuery,
   casinoPagePreviewsQuery,
+  toplistByIdQuery,
   guidePageBySlugQuery,
   similarGuidePagesQuery,
   similarCasinoPagesQuery,

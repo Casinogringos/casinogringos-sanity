@@ -9,6 +9,7 @@ const CasinoRow = ({
   casino: CasinoPageSchemaType | CasinoPagePreviewSchemaType
   pathname: string
 }) => {
+  console.log('casinopage', casino)
   const { casino: casinoData } = casino
 
   return (

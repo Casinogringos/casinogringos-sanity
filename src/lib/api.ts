@@ -8,6 +8,7 @@ import {
   newsPageCountQuery,
   sitemapQuery,
   authorBySlugQuery,
+  toplistByIdQuery,
 } from '@/src/data/queries'
 import { casinoPageBySlugQuery } from '@/src/data/queries'
 import { guidePageBySlugQuery } from '@/src/data/queries'
@@ -293,5 +294,19 @@ export const getCasinoPagesByCasinos = async ({
   } catch (e) {
     console.log(e)
     throw Error(`Failed to fetch casino pages by casinos`)
+  }
+}
+
+export const getToplistById = async ({
+  id,
+}: {
+  id: string
+}) => {
+  try {
+    const data = await client.fetch(toplistByIdQuery({ id }))
+    return data
+  } catch (e) {
+    console.log(e)
+    throw Error(`Failed to fetch toplist by id: ${id}`)
   }
 }
