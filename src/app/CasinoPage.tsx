@@ -10,6 +10,7 @@ import Avatar from '@/src/components/organisms/Avatar'
 import TableOfContents from '@/src/components/organisms/TableOfContents'
 import { getHeadingObjectsByPage } from '@/src/lib/helpers'
 import Container from '@/src/components/atoms/Container'
+import CasinoPageService from '@/src/services/CasinoPageService'
 
 const CasinoPage = ({
   casinoPage,
@@ -18,6 +19,8 @@ const CasinoPage = ({
   casinoPage: CasinoPageSchemaType
   similarCasinoPages: CasinoPageSchemaType[]
 }) => {
+  const casinoPageService = new CasinoPageService()
+  const isValid = casinoPageService.validatePage(casinoPage)
   const schema = {
     '@context': 'https://schema.org',
     '@graph': [getProductStructuredData({ productPage: casinoPage })],

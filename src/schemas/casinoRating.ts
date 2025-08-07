@@ -1,7 +1,7 @@
 import { z } from 'zod'
 
 export const CasinoRatingSchema = z.object({
-    _type: z.literal('casino-rating'),
+    _type: z.literal('casino-ratings'),
     name: z.string(),
     slug: z.object({
         _type: z.literal('slug'),

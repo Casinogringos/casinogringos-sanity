@@ -24,4 +24,6 @@ export const gameProviderProjection = `
   },
   advantages[],
   disadvantages[],
+  _updatedAt,
+  _createdAt
 `

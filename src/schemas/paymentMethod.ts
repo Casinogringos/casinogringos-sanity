@@ -10,12 +10,13 @@ export const PaymentMethodSchema = z.object({
     current: z.string(),
   }),
   logo: DashboardImageObjectSchema,
-  typeSlug: PaymentMethodTypeSchema,
-  supportedTransactionTypes: z.array(z.string()),
+  type: PaymentMethodTypeSchema,
+  supportedTransactionTypes: z.string(),
   withdrawalTime: z.array(z.number()),
   advantages: z.array(z.string()),
   disadvantages: z.array(z.string()),
-  publishedAt: z.string(),
+  _createdAt: z.string(),
+  _updatedAt: z.string(),
 });
 
 export type PaymentMethodSchemaType = z.infer<typeof PaymentMethodSchema>;

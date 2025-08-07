@@ -6,16 +6,22 @@ import {
 export const paymentMethodProjection = `
   _type == 'payment-methods' => {
     name,
-    slug,
+    _type,
+    slug {
+        _type,
+        current
+    },
     logo {
         ${dashboardImageProjection}
     },
     type-> {
         ${paymentMethodTypeProjection}
     },
-    supportedTransactionTypes[],
+    supportedTransactionTypes,
     withdrawalTime[],
     advantages[],
     disadvantages[],
+    _updatedAt,
+    _createdAt
   }
 `

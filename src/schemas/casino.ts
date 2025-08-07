@@ -16,7 +16,7 @@ export const CasinoSchema = z.object({
   advantages: z.array(z.string()),
   disadvantages: z.array(z.string()),
   owner: OwnerSchema,
-  launchDate: z.date(),
+  launchDate: z.string(),
   swedishLicense: z.boolean(),
   license: LicenseSchema,
   terms: z.string().optional(),

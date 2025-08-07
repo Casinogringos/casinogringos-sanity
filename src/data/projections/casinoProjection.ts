@@ -1,7 +1,8 @@
 import {
   dashboardImageProjection,
   casinoRatingProjection, casinoBonusProjection, freeSpinsProjection,
-  paymentMethodProjection, gameProviderProjection, contactMethodProjection
+  paymentMethodProjection, gameProviderProjection, contactMethodProjection, ownerProjection, licenseProjection, oddsBonusProjection, liveCasinoBonusProjection,
+  gameTypeProjection
 } from '@/src/data/projections'
 
 export const casinoProjection = `
@@ -11,6 +12,7 @@ export const casinoProjection = `
         _type,
         current
     },
+    name,
     brandColor,
     name,
     availableDepositMethods[]-> {
@@ -29,9 +31,16 @@ export const casinoProjection = `
     casinoBonuses[]-> {
       ${casinoBonusProjection}
     },
+    oddsBonuses[]-> {
+      ${oddsBonusProjection}
+    },
+    liveCasinoBonuses[]-> {
+      ${liveCasinoBonusProjection}
+    },
     freeSpins[]-> {
       ${freeSpinsProjection}
     },
+    defaultBonusText,
     gameProviders[]-> {
       ${gameProviderProjection}
     },
@@ -41,5 +50,32 @@ export const casinoProjection = `
     terms,
     contactMethods[]-> {
       ${contactMethodProjection}
-    }
+    },
+    owner-> {
+      ${ownerProjection}
+    },
+    openingHours,
+    launchDate,
+    swedishLicense,
+    license-> {
+      ${licenseProjection}
+    },
+    websiteAddress,
+    app,
+    typesOfGames[]-> {
+      ${gameTypeProjection}
+    },
+    amountOfSlots,
+    amountOfMegaways,
+    amountOfJackpots,
+    amountOfExclusiveGames,
+    typesOfLiveCasinoGames[]-> {
+      ${liveCasinoGameTypeProjection}
+    },
+    amountOfLiveCasinoTables,
+    amountOfTableGames,
+    amountOfBingoGames,
+    sports[]-> {
+      ${sportProjection}
+    },
 `

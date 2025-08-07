@@ -17,11 +17,15 @@ import { listObjectProjection } from '@/src/data/projections/listObjectProjectio
 import { affiliateButtonObjectProjection } from '@/src/data/projections/affiliateButtonObjectProjection'
 import { bonusObjectProjection } from '@/src/data/projections/bonusObjectProjection'
 import { newsPagePreviewProjection } from '@/src/data/projections/newsPagePreviewProjection'
+import { licenseProjection } from '@/src/data/projections/licenseProjection'
 import { buttonObjectProjection } from '@/src/data/projections/buttonObjectProjection'
 import { buttonsObjectProjection } from '@/src/data/projections/buttonsObjectProjection'
 import { embedObjectProjection } from '@/src/data/projections/embedObjectProjection'
+import { ownerProjection } from '@/src/data/projections/ownerProjection'
 import { bonusTypeProjection } from '@/src/data/projections/bonusTypeProjection'
+import { gameProjection } from '@/src/data/projections/gameProjection'
 import { faqItemObjectProjection } from '@/src/data/projections/faqItemObjectProjection'
+import { freeSpinsTypeProjection } from '@/src/data/projections/freeSpinsTypeProjection'
 import { faqObjectProjection } from '@/src/data/projections/faqObjectProjection'
 import { columnObjectProjection } from '@/src/data/projections/columnObjectProjection'
 import { shortcodeObjectProjection } from '@/src/data/projections/shortcodeObjectProjection'
@@ -66,6 +70,7 @@ export {
   slotPagePreviewProjection,
   oldTableObjectProjection,
   pagePreviewByAuthorProjection,
+  freeSpinsTypeProjection,
   casinoListObjectProjection,
   toplistProjection,
   gameProviderFeaturesProjection,
@@ -111,6 +116,7 @@ export {
   toggleObjectProjection,
   faqItemObjectProjection,
   imageProjection,
+  gameProjection,
   aiSummaryObjectProjection,
   buttonObjectProjection,
   buttonsObjectProjection,
@@ -118,4 +124,6 @@ export {
   columnsObjectProjection,
   groupObjectProjection,
   embedObjectProjection,
+  ownerProjection,
+  licenseProjection
 }

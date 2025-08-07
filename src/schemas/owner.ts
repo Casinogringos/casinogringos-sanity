@@ -1,7 +1,7 @@
 import { z } from 'zod'
 
 export const OwnerSchema = z.object({
-    _type: z.literal('owner'),
+    _type: z.literal('owners'),
     name: z.string(),
     slug: z.object({
         _type: z.literal('slug'),

@@ -11,6 +11,7 @@ export const casinoPageProjection = `
   publishedAt,
   seoTitle,
   ratingMotivation,
+  canonical,
   seoDescription,
   seoImage {
     ${imageObjectProjection}
@@ -23,5 +24,7 @@ export const casinoPageProjection = `
   },
   author-> {
     ${authorProjection}
-  }
+  },
+  _updatedAt,
+  _createdAt
 `

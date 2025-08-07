@@ -1,7 +1,7 @@
 import z from "zod";
 
 export const LicenseSchema = z.object({
-    _type: z.literal('license'),
+    _type: z.literal('licenses'),
     name: z.string(),
     slug: z.object({
         _type: z.literal('slug'),

@@ -7,5 +7,8 @@ export const contactMethodProjection = `
         current
     },
     label,
-    value
+    value,
+    averageResponseTime,
+    _updatedAt,
+    _createdAt
 `

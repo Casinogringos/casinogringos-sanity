@@ -1,14 +1,11 @@
-export const casinoRatingProjection = `
+export const ownerProjection = `
     _type,
     _id,
-    _key,
+    name,
     slug {
         _type,
         current
     },
-    name,
-    ratingType,
-    rating,
     _updatedAt,
     _createdAt
 `

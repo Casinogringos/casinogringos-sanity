@@ -20,7 +20,8 @@ export const FreeSpinsSchema = z.object({
   wageringRequirements: z.number(),
   validityPeriod: z.number(),
   excludedPaymentMethods: z.array(PaymentMethodSchema),
-  publishedAt: z.string(),
+  _createdAt: z.string(),
+  _updatedAt: z.string(),
 });
 
 export type FreeSpinsSchemaType = z.infer<typeof FreeSpinsSchema>;
