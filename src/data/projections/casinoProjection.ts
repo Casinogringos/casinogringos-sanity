@@ -2,7 +2,9 @@ import {
   dashboardImageProjection,
   casinoRatingProjection, casinoBonusProjection, freeSpinsProjection,
   paymentMethodProjection, gameProviderProjection, contactMethodProjection, ownerProjection, licenseProjection, oddsBonusProjection, liveCasinoBonusProjection,
-  gameTypeProjection
+  gameTypeProjection,
+  liveCasinoGameTypeProjection,
+  sportProjection
 } from '@/src/data/projections'
 
 export const casinoProjection = `

@@ -19,6 +19,9 @@ import { bonusObjectProjection } from '@/src/data/projections/bonusObjectProject
 import { newsPagePreviewProjection } from '@/src/data/projections/newsPagePreviewProjection'
 import { licenseProjection } from '@/src/data/projections/licenseProjection'
 import { buttonObjectProjection } from '@/src/data/projections/buttonObjectProjection'
+import { liveCasinoBonusProjection } from '@/src/data/projections/liveCasinoBonusProjection'
+import { liveCasinoGameTypeProjection } from '@/src/data/projections/liveCasinoGameType'
+import { sportProjection } from '@/src/data/projections/sportProjection'
 import { buttonsObjectProjection } from '@/src/data/projections/buttonsObjectProjection'
 import { embedObjectProjection } from '@/src/data/projections/embedObjectProjection'
 import { ownerProjection } from '@/src/data/projections/ownerProjection'
@@ -85,6 +88,8 @@ export {
   guidePageProjection,
   freeSpinsProjection,
   newsPagePreviewProjection,
+  liveCasinoBonusProjection,
+  liveCasinoGameTypeProjection,
   paymentMethodProjection,
   paymentMethodTypeProjection,
   casinoPreviewProjection,
@@ -114,6 +119,7 @@ export {
   affiliateButtonObjectProjection,
   faqObjectProjection,
   toggleObjectProjection,
+  sportProjection,
   faqItemObjectProjection,
   imageProjection,
   gameProjection,
