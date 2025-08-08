@@ -5,6 +5,7 @@ import { PaymentMethodTypeSchema } from './paymentMethodType';
 
 export const PaymentMethodSchema = z.object({
   _type: z.literal('payment-methods'),
+  _id: z.string(),
   name: z.string(),
   slug: z.object({
     current: z.string(),

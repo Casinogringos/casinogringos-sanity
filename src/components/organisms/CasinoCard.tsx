@@ -13,8 +13,7 @@ const CasinoCard = ({ casinoPage, index }: { casinoPage: CasinoPagePreviewSchema
 
   return (
     <>
-
-      <div className="rounded-t-md border-b border-b-gray-100 bg-white p-3.5 shadow-2xl">
+      <div className="rounded-md border-b border-b-gray-100 bg-white p-3.5 shadow-2xl">
         <div className="flex flex-col gap-x-8 gap-y-2">
           <div
             className="relative h-28 flex-col items-center overflow-hidden rounded-md p-4"
@@ -111,7 +110,7 @@ const CasinoCard = ({ casinoPage, index }: { casinoPage: CasinoPagePreviewSchema
             </div>
           </div>
           {casino.terms ? (
-            <div className="h-[37px] overflow-y-auto rounded-b-md bg-white px-4 py-2 text-xs3 text-gray-400">
+            <div className="h-[37px] overflow-y-auto rounded-b-md bg-white px-4 py-2 text-xs text-gray-400">
               <Paragraph content={casino.terms} />
             </div>
           ) : (

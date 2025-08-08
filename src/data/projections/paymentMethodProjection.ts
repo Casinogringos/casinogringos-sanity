@@ -5,6 +5,7 @@ import {
 
 export const paymentMethodProjection = `
   _type == 'payment-methods' => {
+    _id,
     name,
     _type,
     slug {

@@ -218,11 +218,10 @@ const CasinoInfo = ({
                         <Heading level={2} className="mb-4 mt-6 text-xl" text="Spelleverantörer" />
                         <div className={'mb-2 flex flex-wrap items-center gap-0.5'}>
                             {casinoPage.casino.gameProviders.map(
-                                (item, index) => (
-                                    <>
+                                (item) => (
+                                    <div key={`game-provider-${item._id}`}>
                                         {item.featuredImage.src ? (
                                             <Image
-                                                key={`game-provider-${index}`}
                                                 src={item.featuredImage.src}
                                                 alt={item.featuredImage.altText}
                                                 width="54"
@@ -238,13 +237,13 @@ const CasinoInfo = ({
                                                 {item.name}
                                             </span>
                                         )}
-                                    </>
+                                    </div>
                                 )
                             )}
                         </div>
                     </>
                 )}{' '}
-                {casinoPage.categories?.length > 0 && (
+                {casinoPage.categories && casinoPage.categories.length > 0 && (
                     <>
                         <h2 className="mb-3 mt-6 text-xl font-bold">Spelkategorier</h2>
                         <div className={'mb-2 flex flex-wrap items-center'}>

@@ -13,8 +13,6 @@ const CasinoListObject = ({ object }: { object: CasinoListObjectSchemaType }) =>
 
     return (
         <section>
-            <Heading level={2} text={title} />
-            <p>{description}</p>
             <div>
                 {casinos.map((casino) => (
                     <CasinoRow key={casino._id} casino={casino} pathname={casino.slug.current} />

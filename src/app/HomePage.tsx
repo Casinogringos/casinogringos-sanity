@@ -52,12 +52,14 @@ const HomePage = ({
       />
       <HomePageHero page={page} />
       {page.toplist?.casinos && page.toplist.casinos.length > 0 && (
-        <CasinoList
-          casinoPages={page.toplist.casinos}
-          title={page.toplist.title}
-          description={page.toplist.description}
-          itemComponent={CasinoCard}
-        />
+        <Container className='mb-16'>
+          <CasinoList
+            casinoPages={page.toplist.casinos}
+            title={page.toplist.title}
+            description={page.toplist.description}
+            itemComponent={CasinoCard}
+          />
+        </Container>
       )}
       <NewsList itemComponent={ArticleCard} items={news} />
       {headingObjects && headingObjects.length > 0 && (

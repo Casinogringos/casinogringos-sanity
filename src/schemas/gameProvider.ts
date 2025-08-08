@@ -2,6 +2,7 @@ import { z } from "zod";
 import { DashboardImageObjectSchema, GameTypeSchema, GameProviderFeaturesSchema } from "@/src/schemas";
 
 export const GameProviderSchema = z.object({
+    _id: z.string(),
     name: z.string(),
     slug: z.object({
         current: z.string(),

@@ -4,7 +4,7 @@ import { ImageObjectSchemaType, SanityImageSchemaType } from '@/src/schemas'
 
 const SanityImage = ({
   image,
-  width = 600,
+  width = 7680,
   height = 600,
   className,
   priority = false,
