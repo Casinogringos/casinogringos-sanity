@@ -13,6 +13,7 @@ const CasinoCard = ({ casinoPage, index }: { casinoPage: CasinoPagePreviewSchema
 
   return (
     <>
+
       <div className="rounded-t-md border-b border-b-gray-100 bg-white p-3.5 shadow-2xl">
         <div className="flex flex-col gap-x-8 gap-y-2">
           <div
@@ -41,10 +42,10 @@ const CasinoCard = ({ casinoPage, index }: { casinoPage: CasinoPagePreviewSchema
               )}
             </div>
           </div>
-          <div className="block text-sm font-bold uppercase text-black">
+          <div className="block text-xs uppercase text-black">
             <div className="grid grid-cols-2 gap-2">
               {casino.casinoBonuses?.length ? (
-                <div className="flex min-h-[84px] flex-col items-center justify-center rounded-md border border-green-200 bg-green-100 p-2 text-lg leading-6">
+                <div className="flex min-h-[84px] font-medium flex-col items-center justify-center rounded-md border border-green-200 bg-green-100 p-2 text-lg leading-6">
                   <div className="-mb-1 block text-xs text-gray-700">Bonus</div>
                   {casino.casinoBonuses[0].bonusAmountRange[1] ? casino.casinoBonuses[0].bonusAmountRange[1] + ' kr' : casino.defaultBonusText}
                   {casino?.casinoBonuses?.[0]?.wageringRequirements && (
@@ -57,87 +58,87 @@ const CasinoCard = ({ casinoPage, index }: { casinoPage: CasinoPagePreviewSchema
                   )}
                 </div>
               ) : null}
-              {casino.freeSpins?.length ? (
-                <div className="flex min-h-[84px] flex-col items-center justify-center rounded-md border border-blue-100 bg-blue-50 p-2 text-lg leading-6">
-                  <div className="-mb-1 block text-xs text-gray-700">
-                    Freespins
-                  </div>
-                  {casino.freeSpins?.[0].numberOfFreeSpins ?? '-'}{' '}
-                  {casino?.freeSpins.length && (
+              <div className="flex min-h-[84px] flex-col items-center justify-center rounded-md border border-blue-100 bg-blue-50 p-2 text-lg leading-6">
+                <div className="-mb-1 block text-xs text-gray-700">
+                  {casino.freeSpins?.length ? 'Freespins' : 'No free spins'}
+                </div>
+                {casino.freeSpins?.length ?
+                  (<>
+                    {casino.freeSpins?.[0].numberOfFreeSpins ?? '-'}
                     <div className="-mt-0.5 flex items-center text-xs font-medium text-gray-700">
                       Omsättning:{' '}
                       <span className="ml-0.5 inline-block text-black">
                         {casino.freeSpins?.[0].wageringRequirements}x
                       </span>
                     </div>
-                  )}
-                </div>
-              ) : null}
-            </div>
-            {!casino.casinoBonuses?.length && !casino.freeSpins?.length && (
-              <div className="flex min-h-[84px] items-center justify-center rounded-md border border-blue-100 bg-blue-50 p-3 text-center text-base leading-6">
-                {casino.name}
+                  </>
+                  ) : null}
+                {!casino.casinoBonuses?.length && !casino.freeSpins?.length && (
+                  <div className="flex min-h-[84px] items-center justify-center rounded-md border border-blue-100 bg-blue-50 p-3 text-center text-base leading-6">
+                    {casino.name}
+                  </div>
+                )}
               </div>
-            )}
-          </div>
-        </div>
-        <div className="mt-2 rounded-md border border-slate-100 bg-slate-50 p-2.5">
-          {casino.advantages.map((advantage: string) => (
-            <div
-              key={casino._id}
-              className="mb-1 flex items-center gap-2 text-sm text-gray-700"
-            >
-              <CheckBadgeIcon className="h-4 w-4 text-button" />
-              {advantage}
             </div>
-          ))}
-        </div>
-        <div className="mt-2 flex flex-col-reverse items-center justify-center gap-2">
-          <Link
-            href={`/${casino.slug.current}`}
-            prefetch={false}
-            className="flex w-full items-center justify-center rounded-md border border-gray-300 px-6 py-2.5 text-center text-xs font-medium text-gray-500 lg:hover:bg-gray-200"
-          >
-            {' '}
-            Läs recension
-          </Link>
-          {/*<AffiliateLink*/}
-          {/*  className="w-full !py-3.5 !text-base"*/}
-          {/*  affiliateLink={item.postType?.affiliateLink?.node?.slug}*/}
-          {/*  pathname={pathname}*/}
-          {/*  place="Regular toplist"*/}
-          {/*>*/}
-          {/*  Till {item.title}*/}
-          {/*</AffiliateLink>*/}
+            <div className="mt-2 rounded-md border border-slate-100 bg-slate-50 p-2.5">
+              {casino.advantages.map((advantage: string, index: number) => (
+                <div
+                  key={`${casino._id}-advantage-${index}`}
+                  className="mb-1 flex items-center gap-2 text-sm text-gray-700"
+                >
+                  <CheckBadgeIcon className="h-4 w-4 text-button" />
+                  {advantage}
+                </div>
+              ))}
+            </div>
+            <div className="mt-2 flex flex-col-reverse items-center justify-center gap-2">
+              <Link
+                href={`/${casino.slug.current}`}
+                prefetch={false}
+                className="flex w-full items-center justify-center rounded-md border border-gray-300 px-6 py-2.5 text-center text-xs font-medium text-gray-500 lg:hover:bg-gray-200"
+              >
+                {' '}
+                Läs recension
+              </Link>
+              {/*<AffiliateLink*/}
+              {/*  className="w-full !py-3.5 !text-base"*/}
+              {/*  affiliateLink={item.postType?.affiliateLink?.node?.slug}*/}
+              {/*  pathname={pathname}*/}
+              {/*  place="Regular toplist"*/}
+              {/*>*/}
+              {/*  Till {item.title}*/}
+              {/*</AffiliateLink>*/}
+            </div>
+          </div>
+          {casino.terms ? (
+            <div className="h-[37px] overflow-y-auto rounded-b-md bg-white px-4 py-2 text-xs3 text-gray-400">
+              <Paragraph content={casino.terms} />
+            </div>
+          ) : (
+            <div className="rounded-b-md bg-white px-2 py-3 text-center text-xs text-gray-400">
+              18+ | Spela ansvarsfullt |{' '}
+              <Link
+                prefetch={false}
+                rel="nofollow noreferrer noopener"
+                href="https://stodlinjen.se/"
+                target="_blank"
+              >
+                Stödlinjen.se
+              </Link>{' '}
+              |{' '}
+              <Link
+                prefetch={false}
+                rel="nofollow noreferrer noopener"
+                href="https://www.spelpaus.se/"
+                target="_blank"
+              >
+                Spelpaus
+              </Link>{' '}
+              | Regler och villkor gäller
+            </div>
+          )}
         </div>
       </div>
-      {casino.terms ? (
-        <div className="h-[37px] overflow-y-auto rounded-b-md bg-white px-4 py-2 text-xs3 text-gray-400">
-          <Paragraph content={casino.terms} />
-        </div>
-      ) : (
-        <div className="rounded-b-md bg-white px-2 py-3 text-center text-xs text-gray-400">
-          18+ | Spela ansvarsfullt |{' '}
-          <Link
-            prefetch={false}
-            rel="nofollow noreferrer noopener"
-            href="https://stodlinjen.se/"
-            target="_blank"
-          >
-            Stödlinjen.se
-          </Link>{' '}
-          |{' '}
-          <Link
-            prefetch={false}
-            rel="nofollow noreferrer noopener"
-            href="https://www.spelpaus.se/"
-            target="_blank"
-          >
-            Spelpaus
-          </Link>{' '}
-          | Regler och villkor gäller
-        </div>
-      )}
     </>
   )
 }
