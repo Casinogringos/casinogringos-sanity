@@ -24,6 +24,8 @@ export default function CasinoList({
 }) {
   const year = new Date().getFullYear()
   const ItemComponent = itemComponent
+  const initialCasinoPages = casinoPages.slice(0, 24)
+  const remainingCasinoPages = casinoPages.slice(24)
 
   return (
     <>
@@ -78,13 +80,32 @@ export default function CasinoList({
           </div>
         </div>
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {casinoPages.map((casinoPage, index) => (
+          {initialCasinoPages.map((casinoPage, index) => (
             <ItemComponent
               key={`casino-${casinoPage._id}-${index}`}
               casinoPage={casinoPage}
               index={index}
             />
           ))}
+          <ToggleItem id={'show-more-casinos'}>
+            {remainingCasinoPages.map((casinoPage, index) => (
+              <ItemComponent
+                key={`casino-${casinoPage._id}-${index}`}
+                casinoPage={casinoPage}
+                index={index}
+              />
+            ))}
+          </ToggleItem>
+          <ToggleButton
+            id={'show-more-casinos'}
+            role={'button'}
+            label={'Visa mer'}
+          >
+            <div className="ml-auto flex cursor-pointer justify-end text-sm items-center gap-1 py-2 text-xs2 text-slate-600">
+              <AlertCircle className="size-3" />
+              Annonsinformation
+            </div>
+          </ToggleButton>
         </div>
       </Container>
     </>
