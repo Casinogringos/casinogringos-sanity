@@ -62,7 +62,7 @@ import { gameTypeProjection } from '@/src/data/projections/gameTypeProjection'
 import { gameProviderFeaturesProjection } from '@/src/data/projections/gameProviderFeaturesProjection'
 import { casinoPageProjection } from '@/src/data/projections/casinoPageProjection'
 import { menuProjection } from '@/src/data/projections/menuProjection'
-import { pagePreviewByAuthorProjection } from '@/src/data/projections/pagePreviewProjection'
+import { pagePreviewProjection } from '@/src/data/projections/pagePreviewProjection'
 import { guidePagePreviewProjection } from '@/src/data/projections/guidePagePreviewProjection'
 
 export {
@@ -72,7 +72,7 @@ export {
   casinoRatingProjection,
   slotPagePreviewProjection,
   oldTableObjectProjection,
-  pagePreviewByAuthorProjection,
+  pagePreviewProjection,
   freeSpinsTypeProjection,
   casinoListObjectProjection,
   toplistProjection,

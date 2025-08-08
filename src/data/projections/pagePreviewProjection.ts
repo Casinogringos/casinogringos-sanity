@@ -7,7 +7,7 @@ import {
   imageProjection,
 } from '@/src/data/projections'
 
-export const pagePreviewByAuthorProjection = `
+export const pagePreviewProjection = `
   _type,
   _id,
   _key,

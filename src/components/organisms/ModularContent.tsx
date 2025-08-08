@@ -174,7 +174,7 @@ const ModularContent = async ({
   if (!objects) return null
   return (
     <div
-      key={'objects-wrapper'}
+      key={'objects-wrapper prose lg:prose-lg'}
       className={`${className} ${nested ? '' : 'pb-8 pt-4 mx-auto prose prose-h2:text-3xl prose-p:text-text prose-headings:tracking-normal max-w-3xl text-grey-darker'}`}
     >
       {objects.map((object: ModularContentItemSchemaType, outerIndex: number) => {

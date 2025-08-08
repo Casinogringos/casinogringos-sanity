@@ -1,4 +1,4 @@
-import { imageProjection, newsPagePreviewProjection, pagePreviewByAuthorProjection, pagePreviewProjection } from '@/src/data/projections'
+import { imageProjection, newsPagePreviewProjection, pagePreviewProjection } from '@/src/data/projections'
 
 export const authorProjection = `
     _type,
@@ -20,6 +20,6 @@ export const authorProjection = `
       ${newsPagePreviewProjection}
     },
     "subPagePreviews": *[_type == "pages" && author._ref == ^._id] {
-      ${pagePreviewByAuthorProjection}
+      ${pagePreviewProjection}
     },
 `

@@ -14,7 +14,7 @@ const CasinoRow = ({
 
   return (
     <>
-      <div className="mt-2 flex w-full items-center rounded-md border border-blue100 bg-slate100 px-3 py-2.5">
+      <div className="mt-2 flex w-full items-center rounded-md border border-blue-100 bg-slate-100 px-3 py-2.5">
         <Image
           src={casinoData.logo.src}
           alt={casinoData.logo.altText}
@@ -23,7 +23,7 @@ const CasinoRow = ({
           className="mr-3 rounded-full"
         />
         <div>
-          <span className="text-xs font-medium text-slate900">
+          <span className="text-xs font-medium text-slate-900">
             {casinoData.name}
           </span>
         </div>
@@ -46,7 +46,7 @@ const CasinoRow = ({
           Besök
         </Link>
       </div>
-      <div className="rounded-b-md bg-white pt-1 text-center text-xs3 text-gray400 lg:text-left">
+      <div className="rounded-b-md bg-white pt-1 text-center text-xs text-gray-400 lg:text-left">
         18+ | Spela ansvarsfullt |{' '}
         <Link
           prefetch={false}

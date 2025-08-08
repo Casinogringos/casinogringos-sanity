@@ -1,17 +1,18 @@
 import Star from '@/src/components/icons/StarIcon'
-import CasinoService from '@/src/services/CasinoPageService'
+import CasinoService from '@/src/services/CasinoService'
 import Image from 'next/image'
 import Link from '@/src/components/atoms/Link'
 import CheckBadgeIcon from '@/src/components/icons/CheckBadgeIcon'
 import Paragraph from '@/src/components/atoms/Paragraph'
-import { CasinoPagePreviewSchemaType, CasinoSchemaType } from '@/src/schemas'
+import { CasinoPagePreviewSchemaType } from '@/src/schemas'
 
-const CasinoCard = ({ casino, index }: { casino: CasinoSchemaType; index: number }) => {
+const CasinoCard = ({ casinoPage, index }: { casinoPage: CasinoPagePreviewSchemaType; index: number }) => {
+  const casino = casinoPage.casino
   const casinoService = new CasinoService()
   const { finalRating } = casinoService.getCasinoRatings({ casino })
 
   return (
-    <div>
+    <>
       <div className="rounded-t-md border-b border-b-gray-100 bg-white p-3.5 shadow-2xl">
         <div className="flex flex-col gap-x-8 gap-y-2">
           <div
@@ -35,19 +36,17 @@ const CasinoCard = ({ casino, index }: { casino: CasinoSchemaType; index: number
               {finalRating && (
                 <div className="ml-auto flex items-center justify-center rounded-full bg-black/40 px-2 text-sm">
                   {finalRating}
-                  <Star className="-mt-0.5 ml-1 h-3.5 w-3.5 text-yellow400" />
+                  <Star className="-mt-0.5 ml-1 h-3.5 w-3.5 text-yellow-400" />
                 </div>
               )}
             </div>
           </div>
           <div className="block text-sm font-bold uppercase text-black">
             <div className="grid grid-cols-2 gap-2">
-              {casino.casinoBonuses?.length && (
+              {casino.casinoBonuses?.length ? (
                 <div className="flex min-h-[84px] flex-col items-center justify-center rounded-md border border-green-200 bg-green-100 p-2 text-lg leading-6">
                   <div className="-mb-1 block text-xs text-gray-700">Bonus</div>
-                  {casino.casinoBonuses[0]
-                    ? casino.casinoBonuses[0].bonusAmountRange[1] + ' kr'
-                    : '-'}
+                  {casino.casinoBonuses[0].bonusAmountRange[1] ? casino.casinoBonuses[0].bonusAmountRange[1] + ' kr' : casino.defaultBonusText}
                   {casino?.casinoBonuses?.[0]?.wageringRequirements && (
                     <div className="-mt-0.5 flex items-center text-xs font-medium text-gray-700">
                       Omsättning:
@@ -57,8 +56,8 @@ const CasinoCard = ({ casino, index }: { casino: CasinoSchemaType; index: number
                     </div>
                   )}
                 </div>
-              )}
-              {casino.freeSpins?.length && (
+              ) : null}
+              {casino.freeSpins?.length ? (
                 <div className="flex min-h-[84px] flex-col items-center justify-center rounded-md border border-blue-100 bg-blue-50 p-2 text-lg leading-6">
                   <div className="-mb-1 block text-xs text-gray-700">
                     Freespins
@@ -73,7 +72,7 @@ const CasinoCard = ({ casino, index }: { casino: CasinoSchemaType; index: number
                     </div>
                   )}
                 </div>
-              )}
+              ) : null}
             </div>
             {!casino.casinoBonuses?.length && !casino.freeSpins?.length && (
               <div className="flex min-h-[84px] items-center justify-center rounded-md border border-blue-100 bg-blue-50 p-3 text-center text-base leading-6">
@@ -139,7 +138,7 @@ const CasinoCard = ({ casino, index }: { casino: CasinoSchemaType; index: number
           | Regler och villkor gäller
         </div>
       )}
-    </div>
+    </>
   )
 }
 

@@ -9,14 +9,15 @@ import { CasinoPage } from '@/src/types'
 import { PortableTextBlock } from 'next-sanity'
 import ToggleButton from '@/src/components/atoms/ToggleButton'
 import ToggleItem from '@/src/components/atoms/ToggleItem'
+import { CasinoPagePreviewSchemaType } from '@/src/schemas'
 
 export default function CasinoList({
-  casinos,
+  casinoPages,
   title,
   description,
   itemComponent,
 }: {
-  casinos: CasinoPage[]
+  casinoPages: CasinoPagePreviewSchemaType[]
   title: string
   description: PortableTextBlock[]
   itemComponent: typeof CasinoCard
@@ -77,10 +78,10 @@ export default function CasinoList({
           </div>
         </div>
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {casinos.map(({ casino }, index) => (
+          {casinoPages.map((casinoPage, index) => (
             <ItemComponent
-              key={`casino-${casino._id}-${index}`}
-              casino={casino}
+              key={`casino-${casinoPage._id}-${index}`}
+              casinoPage={casinoPage}
               index={index}
             />
           ))}

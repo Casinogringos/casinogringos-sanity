@@ -39,6 +39,7 @@ const HomePage = ({
     '@context': 'https://schema.org',
     '@graph': [getWebSiteStructuredData(), getOrganizationStructuredData()],
   }
+  console.log('page', page)
 
   return (
     <>
@@ -50,9 +51,9 @@ const HomePage = ({
         key="homepage-structured-data"
       />
       <HomePageHero page={page} />
-      {page.toplist?.casinos.length > 0 && (
+      {page.toplist?.casinos && page.toplist.casinos.length > 0 && (
         <CasinoList
-          casinos={page.toplist.casinos}
+          casinoPages={page.toplist.casinos}
           title={page.toplist.title}
           description={page.toplist.description}
           itemComponent={CasinoCard}
