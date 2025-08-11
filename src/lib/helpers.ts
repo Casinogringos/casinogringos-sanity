@@ -62,15 +62,12 @@ export const removeFirstSlash = (url) => {
   return url?.startsWith('/') ? url.slice(1) : url
 }
 
-export const sitemapImages = (images) => {
+export const sitemapImages = (images: string[]) => {
   return images.map((image) => {
-    const url = image.includes(process.env.WORDPRESS_BASE_URL)
-      ? image
-      : `${process.env.WORDPRESS_BASE_URL}${image}`
     try {
-      return { loc: new URL(url) }
+      return { loc: new URL(image) }
     } catch (e) {
-      console.error('Image url is not valid', url, e)
+      console.error('Image url is not valid', image, e)
       return null
     }
   })

@@ -25,27 +25,26 @@ class ImageService {
   //   return url
   // }
   getImagesFromModularContent = (
-    modularContent: ModularContentSchemaType,
+    modularContent: unknown,
     images: string[] = []
-  ) => {
-    if (!modularContent) return null
-    modularContent.forEach((object) => {
-      if (object._type === 'image-object') {
-        images.push(object.src)
+  ): string[] => {
+    if (!modularContent) return images
+    if (Array.isArray(modularContent)) {
+      for (const item of modularContent) {
+        this.getImagesFromModularContent(item, images)
+      }
+      return images
+    }
+    if (typeof modularContent === 'object') {
+      const obj = modularContent as Record<string, any>
+      if (obj._type === 'image-object' && typeof obj.src === 'string') {
+        images.push(obj.src)
         return images
       }
-      if (typeof object === 'object') {
-        const obj = object as Record<string, any>
-        Object.keys(obj).forEach((key) => {
-          return this.getImagesFromModularContent(obj[key], images)
-        })
+      for (const value of Object.values(obj)) {
+        this.getImagesFromModularContent(value, images)
       }
-      if (Array.isArray(object)) {
-        for (const item of object) {
-          this.getImagesFromModularContent(item, images)
-        }
-      }
-    })
+    }
     return images
   }
 }
