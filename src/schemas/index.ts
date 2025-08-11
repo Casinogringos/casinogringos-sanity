@@ -80,6 +80,7 @@ import {
   ModularContentSchema,
   ModularContentSchemaType,
 } from './modularContent'
+import { ModularContentItemSchema, ModularContentItemSchemaType } from './modularContent'
 import { OddsBonusSchema, OddsBonusSchemaType } from './oddsBonus'
 import { CasinoRatingSchema, CasinoRatingSchemaType } from './casinoRating'
 import {
@@ -171,6 +172,7 @@ export {
   CasinoListObjectSchema,
   ProsAndConsObjectSchema,
   CategorySchema,
+  ModularContentItemSchema,
   QuoteObjectSchema,
   RatingObjectSchema,
   SlotPageSchema,
@@ -187,6 +189,7 @@ export type {
   AffiliateButtonObjectSchemaType,
   AISummaryObjectSchemaType,
   GameProviderSchemaType,
+  ModularContentItemSchemaType,
   SlotFeatureSchemaType,
   SlotThemeSchemaType,
   AuthorSchemaType,

@@ -1,33 +1,32 @@
-import { getAllAuthorPreviews, getNodeByUri } from '@/lib/api'
-import About from '@/src/app/AboutIndex'
-import { extractSlugFromUrl } from '@/lib/helpers'
+import { getPageBySlug, getAllAuthorPreviews } from '@/src/lib/api'
 import { Metadata } from 'next'
-import { Page as PageType } from '@/types/index'
+import { SubPageSchemaType } from '@/src/schemas'
+import AuthorIndex from '@/src/app/AuthorIndex'
 
 export async function generateMetadata() {
-  const item = (await getNodeByUri({
-    uri: '/om-oss',
-  })) as PageType
+  const page = (await getPageBySlug({
+    slug: '/om-oss',
+  })) as SubPageSchemaType
   const siteURL = process.env.SITE_URL
-  const metadata = {
-    title: item.seo.title ?? item.title,
-    description: item.seo.metaDesc,
+  const metadata: Metadata = {
+    title: page.seoTitle,
+    description: page.seoDescription,
     alternates: {
-      canonical: process.env.SITE_URL + extractSlugFromUrl(item.seo.canonical),
+      canonical: page.canonical,
     },
     openGraph: {
-      title: item.title,
-      description: item.seo.metaDesc,
-      url: `${siteURL}/${item.slug}`,
+      title: page.seoTitle,
+      description: page.seoDescription,
+      url: `${siteURL}/${page.slug.current}`,
       locale: 'sv_SE',
-      siteName: item.seo.opengraphSiteName,
-      type: item.seo.opengraphType,
+      siteName: 'Casinogringos',
+      type: page.opengraphType,
       images: [
         {
-          url: item.seo.opengraphImage?.sourceUrl ?? '',
-          alt: item.seo.opengraphImage?.altText ?? '',
-          width: item.seo.opengraphImage?.mediaDetails.width ?? 1200,
-          height: item.seo.opengraphImage?.mediaDetails.height ?? 630,
+          url: page.seoImage?.src ?? '',
+          alt: page.seoImage?.alt ?? '',
+          width: 1200,
+          height: 630,
         },
       ],
     },
@@ -35,9 +34,6 @@ export async function generateMetadata() {
 
   return metadata as Metadata
 }
-
-import { getPageBySlug } from '@/src/lib/api'
-import AuthorIndex from '@/src/app/AuthorIndex'
 
 const Page = async () => {
   const page = await getPageBySlug({

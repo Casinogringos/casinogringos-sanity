@@ -20,10 +20,12 @@ import { casinoPagesByCasinosQuery } from '@/src/data/queries/casinoPagesByCasin
 import { similarNewsPagesQuery } from '@/src/data/queries/similarNewsPagesQuery'
 import { similarSlotPagesQuery } from '@/src/data/queries/similarSlotPagesQuery'
 import { casinoPagePreviewsQuery } from '@/src/data/queries/casinoPagePreviewsQuery'
+import { authorPreviewsQuery } from './authorPreviewsQuery'
 
 export {
   pageBySlugQuery,
   casinoPagesQuery,
+  authorPreviewsQuery,
   authorBySlugQuery,
   staticParamsQuery,
   casinoPagesByCasinosQuery,

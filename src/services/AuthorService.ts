@@ -11,6 +11,13 @@ class AuthorService {
         }
         return true
     }
+    getImagesFromPage(page: AuthorSchemaType) {
+        const images = []
+        if (page.avatar) {
+            images.push(page.avatar.src)
+        }
+        return images
+    }
 }
 
 export default AuthorService

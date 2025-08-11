@@ -24,6 +24,7 @@ import { similarNewsPagesQuery } from '@/src/data/queries'
 import { similarSlotPagesQuery } from '@/src/data/queries'
 import { SlotPageSchemaType } from '@/src/schemas'
 import { casinoPagesByCasinosQuery } from '@/src/data/queries'
+import { authorPreviewsQuery } from '@/src/data/queries'
 const client = getClient()
 
 export const getPageBySlug = async ({ slug }: { slug: string }) => {
@@ -308,5 +309,15 @@ export const getToplistById = async ({
   } catch (e) {
     console.log(e)
     throw Error(`Failed to fetch toplist by id: ${id}`)
+  }
+}
+
+export const getAllAuthorPreviews = async () => {
+  try {
+    const data = await client.fetch(authorPreviewsQuery())
+    return data
+  } catch (e) {
+    console.log(e)
+    throw Error(`Failed to fetch all author previews`)
   }
 }

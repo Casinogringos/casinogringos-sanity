@@ -37,6 +37,17 @@ class GuidePageService extends BasePageService<GuidePageSchemaType | GuidePagePr
     }
     return true
   }
+  getImagesFromPage = (page: GuidePageSchemaType, images: string[] = []) => {
+    if (!page) return null
+    const featuredImage = page.featuredImage.src
+    if (featuredImage) {
+      images.push(featuredImage)
+    }
+    const seoImage = page.seoImage.src
+    if (seoImage) {
+      images.push(seoImage)
+    }
+    return images
+  }
 }
-
 export default GuidePageService
