@@ -1,5 +1,4 @@
 import { z } from 'zod';
-import { ListItemObject } from '../types/listItemObject';
 
 export const ListItemObjectSchema = z.object({
   _type: z.literal('list-item-object'),

@@ -1,5 +1,4 @@
 import { z } from 'zod';
-import { ParagraphObject } from '../types/paragraphObject';
 import { PortableTextBlockSchema } from './portableTextBlock';
 
 export const ParagraphObjectSchema = z.object({

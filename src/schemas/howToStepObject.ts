@@ -1,6 +1,6 @@
 import { z } from 'zod'
 import { SanityImageSchema } from './sanityImage'
-import { PortableTextBlockSchema } from '@/src/schemas/portableTextBlock'
+import { PortableTextBlockSchema } from './portableTextBlock'
 
 export const HowToStepObjectSchema = z.object({
   _type: z.literal('how-to-step-object'),

@@ -1,5 +1,18 @@
 import { z } from 'zod'
-import { OwnerSchema, LiveCasinoBonusSchema, FreeSpinsSchema, DashboardImageObjectSchema, CasinoBonusSchema, LicenseSchema, OddsBonusSchema, GameTypeSchema, LiveCasinoGameTypeSchema, SportSchema, GameProviderSchema, PaymentMethodSchema, ContactMethodSchema, CasinoRatingSchema } from '@/src/schemas'
+import { DashboardImageObjectSchema } from './dashboardImageObject'
+import { OwnerSchema } from './owner'
+import { LiveCasinoBonusSchema } from './liveCasinoBonus'
+import { FreeSpinsSchema } from './freeSpins'
+import { CasinoBonusSchema } from './casinoBonus'
+import { LicenseSchema } from './license'
+import { OddsBonusSchema } from './oddsBonus'
+import { GameTypeSchema } from './gameType'
+import { LiveCasinoGameTypeSchema } from './liveCasinoGameType'
+import { SportSchema } from './sport'
+import { GameProviderSchema } from './gameProvider'
+import { PaymentMethodSchema } from './paymentMethod'
+import { ContactMethodSchema } from './contactMethod'
+import { CasinoRatingSchema } from './casinoRating'
 
 export const CasinoSchema = z.object({
   _type: z.literal('casinos'),

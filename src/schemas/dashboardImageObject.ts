@@ -1,5 +1,4 @@
 import { z } from 'zod'
-import { DashboardImageObject } from '../types/dashboardImageObject'
 
 export const DashboardImageObjectSchema = z.object({
   _type: z.literal('dashboard-image-object'),

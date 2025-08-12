@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { PortableTextBlockSchema } from '@/src/schemas/portableTextBlock'
+import { PortableTextBlockSchema } from './portableTextBlock'
 
 export const ImageObjectSchema = z.object({
   _type: z.literal('image-object'),

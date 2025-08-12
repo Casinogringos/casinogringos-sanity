@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { CasinoSchema } from '@/src/schemas';
+import { CasinoSchema } from '@/src/schemas/casino';
 
 export const AffiliateButtonObjectSchema = z.object({
   _type: z.literal('affiliate-button-object'),

@@ -1,4 +1,4 @@
-import { guidePagePreviewProjection } from '@/src/data/projections'
+import { guidePagePreviewProjection } from '@/src/data/projections/guidePagePreviewProjection'
 
 export const guidePagePreviewsQuery = ({
   count,

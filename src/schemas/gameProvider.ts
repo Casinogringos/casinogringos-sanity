@@ -1,5 +1,7 @@
 import { z } from "zod";
-import { DashboardImageObjectSchema, GameTypeSchema, GameProviderFeaturesSchema } from "@/src/schemas";
+import { DashboardImageObjectSchema } from "./dashboardImageObject";
+import { GameTypeSchema } from "./gameType";
+import { GameProviderFeaturesSchema } from "./gameProviderFeatures";
 
 export const GameProviderSchema = z.object({
     _id: z.string(),

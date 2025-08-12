@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { BasePagePreviewSchema } from '@/src/schemas'
+import { BasePagePreviewSchema } from './basePagePreview'
 import { ImageObjectSchema } from './imageObject'
 
 export const SlotPagePreviewSchema = BasePagePreviewSchema.merge(

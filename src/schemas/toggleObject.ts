@@ -1,5 +1,4 @@
 import { z } from 'zod';
-import { ToggleObject } from '../types/toggleObject';
 
 export const ToggleObjectSchema = z.object({
   _type: z.literal('toggle-object'),

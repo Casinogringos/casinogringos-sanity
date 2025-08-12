@@ -1,8 +1,9 @@
 import { z } from 'zod'
-import { BasePageSchema, ModularContentSchema } from '@/src/schemas'
-import { CasinoSchema } from '@/src/schemas'
-import { PortableTextBlockSchema } from '@/src/schemas'
-import { SanityImageSchema } from '@/src/schemas'
+import { BasePageSchema } from './basePage'
+import { ModularContentSchema } from './modularContent'
+import { CasinoSchema } from './casino'
+import { PortableTextBlockSchema } from './portableTextBlock'
+import { SanityImageSchema } from './sanityImage'
 
 export const CasinoPageSchema = BasePageSchema.extend({
   _type: z.literal('casino-pages'),

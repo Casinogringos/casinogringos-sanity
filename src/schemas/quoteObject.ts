@@ -1,5 +1,4 @@
 import { z } from 'zod';
-import { QuoteObject } from '../types/quoteObject';
 
 // Create a simple schema for PortableTextBlock since it's from an external library
 const PortableTextBlockSchema = z.object({

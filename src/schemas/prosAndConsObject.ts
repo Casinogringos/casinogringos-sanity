@@ -1,6 +1,6 @@
 import { z } from 'zod'
 import { AuthorSchema } from './author'
-import { PortableTextBlockSchema } from '@/src/schemas/portableTextBlock'
+import { PortableTextBlockSchema } from './portableTextBlock'
 
 export const ProsAndConsObjectSchema = z.object({
   _type: z.literal('pros-and-cons-object'),

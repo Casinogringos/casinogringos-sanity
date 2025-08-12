@@ -1,5 +1,4 @@
 import { z } from 'zod';
-import { OddsBonus } from '../types/oddsBonus';
 import { BonusTypeSchema } from './bonusType';
 import { PaymentMethodSchema } from './paymentMethod';
 

@@ -1,5 +1,4 @@
 import { z } from 'zod';
-import { ButtonsObject } from '../types/buttonsObject';
 import { ButtonObjectSchema } from './buttonObject';
 
 export const ButtonsObjectSchema = z.object({

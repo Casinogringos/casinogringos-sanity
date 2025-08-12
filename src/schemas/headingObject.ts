@@ -1,5 +1,4 @@
 import { z } from 'zod';
-import { HeadingObject } from '../types/headingObject';
 
 export const HeadingObjectSchema = z.object({
   _type: z.literal('heading-object'),

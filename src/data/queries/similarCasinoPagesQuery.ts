@@ -1,4 +1,4 @@
-import { casinoPagePreviewProjection } from '@/src/data/projections'
+import { casinoPagePreviewProjection } from '@/src/data/projections/casinoPagePreviewProjection'
 
 export const similarCasinoPagesQuery = ({
   id,

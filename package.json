@@ -6,7 +6,8 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "madge": "npx madge src --ts-config=tsconfig.json --extensions ts,tsx --circular"
   },
   "dependencies": {
     "@apollo/client": "^3.13.8",

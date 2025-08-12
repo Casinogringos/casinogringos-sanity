@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { ToplistSchema } from '@/src/schemas'
+import { ToplistSchema } from './toplist'
 
 export const CasinoListObjectSchema = z.object({
   _type: z.literal('casino-list-object'),

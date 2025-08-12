@@ -1,5 +1,7 @@
 import { z } from 'zod';
-import { FAQSchema, BasePageSchema, ToplistSchema } from '@/src/schemas';
+import { BasePageSchema } from './basePage';
+import { FAQSchema } from './faq';
+import { ToplistSchema } from './toplist';
 
 export const SubPageSchema = BasePageSchema.merge(
     z.object({

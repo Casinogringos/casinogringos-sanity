@@ -1,6 +1,6 @@
 import { z } from 'zod'
-import { BasePagePreviewSchema } from '@/src/schemas'
-import { CasinoSchema } from '@/src/schemas'
+import { BasePagePreviewSchema } from './basePagePreview'
+import { CasinoSchema } from './casino'
 
 export const CasinoPagePreviewSchema = BasePagePreviewSchema.extend({
   _type: z.literal('casino-pages'),

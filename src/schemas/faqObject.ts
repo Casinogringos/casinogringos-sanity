@@ -1,5 +1,4 @@
 import { z } from 'zod';
-import { FAQObject } from '../types/faqObject';
 import { FaqItemObjectSchema } from './faqItemObject';
 import { PortableTextBlockSchema } from './portableTextBlock';
 

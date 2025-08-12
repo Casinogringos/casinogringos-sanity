@@ -1,5 +1,8 @@
 import z from "zod"
-import { PaymentMethodSchema, PortableTextBlockSchema, BonusTypeSchema, GameTypeSchema } from "@/src/schemas"
+import { BonusTypeSchema } from "./bonusType"
+import { GameTypeSchema } from "./gameType"
+import { PaymentMethodSchema } from "./paymentMethod"
+import { PortableTextBlockSchema } from "./portableTextBlock"
 
 export const LiveCasinoBonusSchema = z.object({
     _type: z.literal('liveCasinoBonus'),

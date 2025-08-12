@@ -1,5 +1,4 @@
 import { z } from 'zod';
-import { PaymentMethodType } from '../types/paymentMethodType';
 
 export const PaymentMethodTypeSchema = z.object({
   _type: z.literal('payment-method-types'),

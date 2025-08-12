@@ -1,5 +1,4 @@
 import { z } from 'zod';
-import { ButtonObject } from '../types/buttonObject';
 
 // For page references, we'll use a simplified schema since these are complex types
 const PageReferenceSchema = z.object({

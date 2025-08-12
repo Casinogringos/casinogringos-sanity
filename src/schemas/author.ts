@@ -1,6 +1,6 @@
 import { z } from 'zod'
-import { SanityImageSchema } from '@/src/schemas'
-import { PortableTextBlockSchema } from '@/src/schemas/portableTextBlock'
+import { SanityImageSchema } from './sanityImage'
+import { PortableTextBlockSchema } from './portableTextBlock'
 
 export const AuthorSchema = z.object({
   _id: z.string(),

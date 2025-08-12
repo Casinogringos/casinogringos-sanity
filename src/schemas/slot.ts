@@ -1,5 +1,9 @@
 import { z } from 'zod';
-import { CasinoSchema, DashboardImageObjectSchema, GameProviderSchema, SlotFeatureSchema, SlotThemeSchema } from '@/src/schemas';
+import { CasinoSchema } from './casino';
+import { DashboardImageObjectSchema } from './dashboardImageObject';
+import { GameProviderSchema } from './gameProvider';
+import { SlotThemeSchema } from './slotTheme';
+import { SlotFeatureSchema } from './slotFeature';
 
 export const SlotSchema = z.object({
     name: z.string(),

@@ -1,5 +1,4 @@
 import { z } from 'zod';
-import { PaymentMethod } from '../types/paymentMethod';
 import { DashboardImageObjectSchema } from './dashboardImageObject';
 import { PaymentMethodTypeSchema } from './paymentMethodType';
 

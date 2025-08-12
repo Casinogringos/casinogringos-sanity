@@ -1,4 +1,4 @@
-import { casinoPageProjection } from '@/src/data/projections'
+import { casinoPageProjection } from '@/src/data/projections/casinoPageProjection'
 
 export const casinoPageBySlugQuery = ({ slug }: { slug: string }) => `
     *[_type == 'casino-pages' && slug.current == '${slug}'] {

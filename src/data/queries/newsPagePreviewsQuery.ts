@@ -1,4 +1,4 @@
-import { newsPagePreviewProjection } from '@/src/data/projections'
+import { newsPagePreviewProjection } from '@/src/data/projections/newsPagePreviewProjection'
 
 export const newsPagePreviewsQuery = ({
   count,

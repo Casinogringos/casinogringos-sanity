@@ -1,5 +1,4 @@
 import { z } from 'zod';
-import { FaqItemObject } from '../types/faqItemObject';
 import { PortableTextBlockSchema } from './portableTextBlock';
 
 export const FaqItemObjectSchema = z.object({

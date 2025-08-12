@@ -1,7 +1,8 @@
 import { z } from 'zod';
 import { BasePageSchema } from './basePage';
-import { PortableTextBlockSchema, SlotSchema } from '@/src/schemas';
+import { SlotSchema } from './slot';
 import { ImageObjectSchema } from './imageObject';
+import { PortableTextBlockSchema } from './portableTextBlock';
 
 export const SlotPageSchema = BasePageSchema.merge(
     z.object({

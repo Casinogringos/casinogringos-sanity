@@ -1,5 +1,4 @@
 import { z } from 'zod';
-import { FreeSpinsType } from '../types/freeSpinsType';
 
 export const FreeSpinsTypeSchema = z.object({
   _type: z.literal('free-spins-types'),

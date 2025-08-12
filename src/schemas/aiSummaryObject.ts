@@ -1,5 +1,4 @@
 import { z } from 'zod';
-import { AISummaryObject } from '../types/aiSummaryObject';
 import { PortableTextBlockSchema } from './portableTextBlock';
 
 export const AISummaryObjectSchema = z.object({

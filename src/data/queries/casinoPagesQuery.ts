@@ -1,4 +1,5 @@
-import { casinoPageProjection, objectProjections } from '@/src/data/projections'
+import { casinoPageProjection } from '@/src/data/projections/casinoPageProjection'
+import { objectProjections } from '@/src/data/projections/objectProjections'
 
 export const casinoPagesQuery = ({
   count,

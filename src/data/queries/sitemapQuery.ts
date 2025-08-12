@@ -1,4 +1,4 @@
-import { objectProjections } from '@/src/data/projections'
+import { objectProjections } from '@/src/data/projections/objectProjections'
 
 export const sitemapQuery = (type: 'authors' | 'pages' | 'guide-pages' | 'news-pages' | 'casino-pages' | 'slot-pages') => `
   *[_type == '${type}'] {

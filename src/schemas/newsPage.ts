@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import { BasePageSchema } from './basePage';
-import { PortableTextBlockSchema } from '@/src/schemas';
+import { PortableTextBlockSchema } from './portableTextBlock';
 import { ImageObjectSchema } from './imageObject';
 
 export const NewsPageSchema = BasePageSchema.merge(
@@ -10,4 +10,4 @@ export const NewsPageSchema = BasePageSchema.merge(
     })
 );
 
-export type NewsPageSchemaType = z.infer<typeof NewsPageSchema>;
+export type NewsPageSchemaType = z.infer<typeof NewsPageSchema>;    

@@ -1,5 +1,4 @@
 import { z } from 'zod';
-import { Game } from '../types/game';
 
 export const GameSchema = z.object({
   _type: z.literal('games'),

@@ -1,5 +1,4 @@
 import { z } from 'zod';
-import { ColumnsObject } from '../types/columnsObject';
 import { ColumnObjectSchema } from './columnObject';
 
 export const ColumnsObjectSchema = z.object({

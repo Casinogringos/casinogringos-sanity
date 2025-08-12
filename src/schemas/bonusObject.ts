@@ -1,5 +1,4 @@
 import { z } from 'zod';
-import { BonusObject } from '../types/bonusObject';
 import { CasinoSchema } from './casino';
 import { CasinoBonusSchema } from './casinoBonus';
 import { FreeSpinsSchema } from './freeSpins';

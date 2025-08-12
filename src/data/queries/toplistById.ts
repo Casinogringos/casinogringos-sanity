@@ -1,4 +1,4 @@
-import { casinoPagePreviewProjection } from '@/src/data/projections'
+import { casinoPagePreviewProjection } from '@/src/data/projections/casinoPagePreviewProjection'
 
 export const toplistByIdQuery = ({ id }: { id: string }) => `
     *[_type == 'toplists' && _id == '${id}'][0] {
