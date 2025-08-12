@@ -1,20 +1,9 @@
-import { Object as ObjectType } from '@/src/types'
-import {
-  GuidePageSchemaType,
-  SubPageSchema,
-  SubPageSchemaType,
-  CasinoPageSchemaType,
-  NewsPageSchemaType,
-  GuidePageSchema,
-  CasinoPageSchema,
-  NewsPageSchema,
-  NewsPagePreviewSchema,
-  SlotPageSchema,
-  SlotPageSchemaType,
-  SlotPagePreviewSchema,
-  SlotPagePreviewSchemaType,
-} from '@/src/schemas'
+
 import BasePageService from './BasePageService'
+import { SlotPageSchemaType } from '@/src/schemas/slotPage'
+import { SlotPagePreviewSchemaType } from '@/src/schemas/slotPagePreview'
+import { SlotPageSchema } from '@/src/schemas/slotPage'
+import { SlotPagePreviewSchema } from '@/src/schemas/slotPagePreview'
 
 class SlotPageService extends BasePageService<SlotPageSchemaType | SlotPagePreviewSchemaType> {
   validatePage(

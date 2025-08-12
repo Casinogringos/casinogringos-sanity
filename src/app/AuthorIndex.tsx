@@ -11,7 +11,8 @@ import { getOrganizationStructuredData } from '@/src/structured-data/organizatio
 import { getPersonStructuredData } from '@/src/structured-data/personStructuredData'
 import SanityImage from '@/src/components/atoms/SanityImage'
 import { PortableText } from 'next-sanity'
-import { AuthorSchemaType, SubPageSchemaType } from '../schemas'
+import { AuthorSchemaType } from '@/src/schemas/author'
+import { SubPageSchemaType } from '@/src/schemas/subPage'
 
 const AuthorIndex = ({
   page,

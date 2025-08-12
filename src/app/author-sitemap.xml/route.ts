@@ -1,6 +1,6 @@
 import { getServerSideSitemap, IImageEntry } from 'next-sitemap'
 import { getSitemap } from '@/src/lib/api'
-import { AuthorSchemaType } from '@/src/schemas'
+import { AuthorSchemaType } from '@/src/schemas/author'
 import AuthorService from '@/src/services/AuthorService'
 import ImageService from '@/src/services/ImageService'
 

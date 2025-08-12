@@ -1,10 +1,6 @@
-import {
-  GuidePagePreviewSchemaType,
-  GuidePageSchema,
-  GuidePageSchemaType,
-} from '@/src/schemas'
-
-import fs from 'fs'
+import { GuidePageSchemaType } from '@/src/schemas/guidePage'
+import { GuidePagePreviewSchemaType } from '@/src/schemas/guidePagePreview'
+import { GuidePageSchema } from '@/src/schemas/guidePage'
 import { GuidePagePreviewSchema } from '@/src/schemas/guidePagePreview'
 import BasePageService from './BasePageService'
 

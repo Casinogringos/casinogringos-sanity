@@ -1,4 +1,4 @@
-import { AuthorSchema, AuthorSchemaType } from '@/src/schemas'
+import { AuthorSchemaType, AuthorSchema } from '@/src/schemas/author'
 import fs from 'fs'
 
 const getProfileStructuredData = (author: AuthorSchemaType) => {

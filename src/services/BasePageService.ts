@@ -1,6 +1,10 @@
 import { toPlainText } from '@portabletext/react';
-import { CasinoPageSchemaType, GuidePageSchemaType, ModularContentSchemaType, NewsPageSchemaType, SubPageSchemaType, SlotPageSchemaType } from "@/src/schemas"
-import { ModularContentItemSchemaType } from '@/src/schemas/modularContent';
+import { ModularContentItemSchemaType, ModularContentSchemaType } from '@/src/schemas/modularContent';
+import { GuidePageSchemaType } from '@/src/schemas/guidePage'
+import { SubPageSchemaType } from '@/src/schemas/subPage'
+import { SlotPageSchemaType } from '@/src/schemas/slotPage'
+import { NewsPageSchemaType } from '@/src/schemas/newsPage'
+import { CasinoPageSchemaType } from '@/src/schemas/casinoPage'
 
 abstract class BasePageService<PageType> {
     abstract validatePage(page: PageType, preview: boolean): boolean

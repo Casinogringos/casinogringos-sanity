@@ -1,8 +1,8 @@
-import { SubPage } from '@/src/types'
-import { Object as ObjectType } from '@/src/types'
-import { GuidePageSchemaType, SubPageSchema, SubPageSchemaType, CasinoPageSchemaType, NewsPageSchemaType, GuidePageSchema, CasinoPageSchema, NewsPageSchema, NewsPagePreviewSchema, NewsPagePreviewSchemaType } from '@/src/schemas'
-import fs from 'fs'
 import BasePageService from '@/src/services/BasePageService'
+import { NewsPageSchemaType } from '@/src/schemas/newsPage'
+import { NewsPagePreviewSchemaType } from '@/src/schemas/newsPagePreview'
+import { NewsPageSchema } from '@/src/schemas/newsPage'
+import { NewsPagePreviewSchema } from '@/src/schemas/newsPagePreview'
 
 class NewsPageService extends BasePageService<NewsPageSchemaType> {
   validatePage(page: NewsPageSchemaType, preview: boolean): boolean {

@@ -1,4 +1,4 @@
-import { CasinoSchemaType } from '@/src/schemas'
+import { CasinoSchemaType } from '@/src/schemas/casino'
 
 interface Ratings {
   bonus_rating: number

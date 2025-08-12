@@ -1,7 +1,4 @@
-import {
-  SubPageSchema,
-  SubPageSchemaType,
-} from '@/src/schemas'
+import { SubPageSchema, SubPageSchemaType } from '@/src/schemas/subPage'
 import BasePageService from '@/src/services/BasePageService'
 import _ from 'lodash'
 

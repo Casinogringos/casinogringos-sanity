@@ -1,5 +1,8 @@
-import { CasinoPagePreviewSchema, CasinoPagePreviewSchemaType, CasinoPageSchema, CasinoPageSchemaType } from '@/src/schemas'
 import fs from 'fs'
+import { CasinoPageSchemaType } from '@/src/schemas/casinoPage'
+import { CasinoPagePreviewSchemaType } from '@/src/schemas/casinoPagePreview'
+import { CasinoPageSchema } from '@/src/schemas/casinoPage'
+import { CasinoPagePreviewSchema } from '@/src/schemas/casinoPagePreview'
 import BasePageService from '@/src/services/BasePageService'
 
 class CasinoPageService extends BasePageService<CasinoPageSchemaType> {

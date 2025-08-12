@@ -1,9 +1,8 @@
-import { Breadcrumbs } from '@/src/types'
-import { BreadcrumbsSchema } from '@/src/schemas'
+import { BreadcrumbsSchemaType, BreadcrumbsSchema } from '@/src/schemas/breadcrumbs'
 import fs from 'fs'
 
 class BreadcrumbsService {
-    validateSchema(breadcrumbs: Breadcrumbs) {
+    validateSchema(breadcrumbs: BreadcrumbsSchemaType) {
         const parse = BreadcrumbsSchema.safeParse(breadcrumbs)
         if (!parse) return false
         if (!parse.success) {

@@ -1,4 +1,4 @@
-import { AuthorSchemaType, AuthorSchema } from '@/src/schemas'
+import { AuthorSchemaType, AuthorSchema } from '@/src/schemas/author'
 import fs from 'fs'
 
 class AuthorService {
