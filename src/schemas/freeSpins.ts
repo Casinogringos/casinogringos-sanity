@@ -1,5 +1,4 @@
 import { z } from 'zod';
-import { FreeSpins } from '../types/freeSpins';
 import { FreeSpinsTypeSchema } from './freeSpinsType';
 import { GameSchema } from './game';
 import { PaymentMethodSchema } from './paymentMethod';

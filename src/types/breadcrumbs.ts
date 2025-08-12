@@ -1,1 +1,0 @@
-export type Breadcrumbs = { text?: string | undefined; url?: string | undefined }[]

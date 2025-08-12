@@ -1,6 +1,6 @@
 import { objectProjections } from '@/src/data/projections'
 
-export const sitemapQuery = (type: 'authors' | 'pages' | 'guide-pages' | 'news-pages' | 'casino-pages') => `
+export const sitemapQuery = (type: 'authors' | 'pages' | 'guide-pages' | 'news-pages' | 'casino-pages' | 'slot-pages') => `
   *[_type == '${type}'] {
     slug {
       current

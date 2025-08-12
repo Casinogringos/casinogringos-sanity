@@ -1,3 +1,109 @@
+// Atom Projections
+import {
+  FAQSchema,
+  FAQSchemaType,
+} from './faq'
+import { ContactMethodSchema, ContactMethodSchemaType } from './contactMethod'
+import { AuthorSchema, AuthorSchemaType } from './author'
+import { BonusTypeSchema, BonusTypeSchemaType } from './bonusType'
+import { SlotSchema, SlotSchemaType } from './slot'
+import { HTMLObjectSchema, HTMLObjectSchemaType } from './htmlObject'
+import { CasinoBonusSchema, CasinoBonusSchemaType } from './casinoBonus'
+import { SlotFeatureSchema, SlotFeatureSchemaType } from './slotFeature'
+import { CasinoSchema, CasinoSchemaType } from './casino'
+import { LicenseSchema, LicenseSchemaType } from './license'
+import { GameTypeSchema, GameTypeSchemaType } from './gameType'
+import { SlotThemeSchema, SlotThemeSchemaType } from './slotTheme'
+import { GameProviderFeaturesSchema, GameProviderFeaturesSchemaType } from './gameProviderFeatures'
+import { LiveCasinoGameTypeSchema, LiveCasinoGameTypeSchemaType } from './liveCasinoGameType'
+import { FreeSpinsTypeSchema, FreeSpinsTypeSchemaType } from './freeSpinsType'
+import { FreeSpinsSchema, FreeSpinsSchemaType } from './freeSpins'
+import { GameProviderSchema, GameProviderSchemaType } from './gameProvider'
+import { GameSchema, GameSchemaType } from './game'
+import { CasinoRatingSchema, CasinoRatingSchemaType } from './casinoRating'
+import { BreadcrumbsSchema, BreadcrumbsSchemaType } from './breadcrumbs'
+import {
+  PortableTextBlockSchema,
+  PortableTextBlockSchemaType,
+} from './portableTextBlock'
+import { OwnerSchema, OwnerSchemaType } from './owner'
+import { SportSchema, SportSchemaType } from './sport'
+import {
+  PaymentMethodTypeSchema,
+  PaymentMethodTypeSchemaType,
+} from './paymentMethodType'
+import { PaymentMethodSchema, PaymentMethodSchemaType } from './paymentMethod'
+import { SanityImageSchema, SanityImageSchemaType } from './sanityImage'
+
+
+// Object Projections
+import {
+  ParagraphObjectSchema,
+  ParagraphObjectSchemaType,
+} from './paragraphObject'
+import {
+  ListItemObjectSchema,
+  ListItemObjectSchemaType,
+} from './listItemObject'
+import { ListObjectSchema, ListObjectSchemaType } from './listObject'
+import { ImageObjectSchema, ImageObjectSchemaType } from './imageObject'
+import { QuoteObjectSchema, QuoteObjectSchemaType } from './quoteObject'
+import { GroupObjectSchema, GroupObjectSchemaType } from './groupObject'
+import { RatingObjectSchema, RatingObjectSchemaType } from './ratingObject'
+import { OldTableObjectSchema, OldTableObjectSchemaType } from './oldTableObject'
+import {
+  DashboardImageObjectSchema,
+  DashboardImageObjectSchemaType,
+} from './dashboardImageObject'
+import { FaqItemObjectSchema, FaqItemObjectSchemaType } from './faqItemObject'
+import { FAQObjectSchema, FAQObjectSchemaType } from './faqObject'
+import { HeadingObjectSchema, HeadingObjectSchemaType } from './headingObject'
+import {
+  HowToStepObjectSchema,
+  HowToStepObjectSchemaType,
+} from './howToStepObject'
+import { HowToObjectSchema, HowToObjectSchemaType } from './howToObject'
+import {
+  ShortcodeObjectSchema,
+  ShortcodeObjectSchemaType,
+} from './shortcodeObject'
+import { ToggleObjectSchema, ToggleObjectSchemaType } from './toggleObject'
+import {
+  ProsAndConsObjectSchema,
+  ProsAndConsObjectSchemaType,
+} from './prosAndConsObject'
+import { ColumnObjectSchema, ColumnObjectSchemaType } from './columnObject'
+import { ColumnsObjectSchema, ColumnsObjectSchemaType } from './columnsObject'
+import { ModularContentItemSchema, ModularContentItemSchemaType } from './modularContent'
+import {
+  ModularContentSchema,
+  ModularContentSchemaType,
+} from './modularContent'
+
+// Page Projections
+import { BasePageSchema, BasePageSchemaType } from './basePage'
+import { CasinoPagePreviewSchema, CasinoPagePreviewSchemaType } from './casinoPagePreview'
+import { SlotPagePreviewSchema, SlotPagePreviewSchemaType } from './slotPagePreview'
+import {
+  GuidePagePreviewSchema,
+  GuidePagePreviewSchemaType,
+} from './guidePagePreview'
+import {
+  BasePagePreviewSchema,
+  BasePagePreviewSchemaType,
+} from './basePagePreview'
+import { CasinoPageSchema, CasinoPageSchemaType } from './casinoPage'
+import { SlotPageSchema, SlotPageSchemaType } from './slotPage'
+import { GuidePageSchema, GuidePageSchemaType } from './guidePage'
+import { NewsPageSchema, NewsPageSchemaType } from './newsPage'
+import {
+  NewsPagePreviewSchema,
+  NewsPagePreviewSchemaType,
+} from './newsPagePreview'
+import { SubPageSchema, SubPageSchemaType } from './subPage'
+
+// Reference Projections
+import { CasinoObjectSchema, CasinoObjectSchemaType } from './casinoObject'
 import {
   AffiliateButtonObjectSchema,
   AffiliateButtonObjectSchemaType,
@@ -6,112 +112,14 @@ import {
   AISummaryObjectSchema,
   AISummaryObjectSchemaType,
 } from './aiSummaryObject'
-import {
-  FAQSchema,
-  FAQSchemaType,
-} from './faq'
-import { AuthorSchema, AuthorSchemaType } from './author'
-import { BasePageSchema, BasePageSchemaType } from './basePage'
 import { BonusObjectSchema, BonusObjectSchemaType } from './bonusObject'
-import { BonusTypeSchema, BonusTypeSchemaType } from './bonusType'
 import { CategorySchema, CategorySchemaType } from './category'
-import { SlotSchema, SlotSchemaType } from './slot'
-import { HTMLObjectSchema, HTMLObjectSchemaType } from './htmlObject'
 import { CasinoListObjectSchema, CasinoListObjectSchemaType } from './casinoListObject'
-import { CasinoPagePreviewSchema, CasinoPagePreviewSchemaType } from './casinoPagePreview'
-import { SlotPagePreviewSchema, SlotPagePreviewSchemaType } from './slotPagePreview'
-import { GameProviderSchema, GameProviderSchemaType } from './gameProvider'
-import { LicenseSchema, LicenseSchemaType } from './license'
-import { SlotFeatureSchema, SlotFeatureSchemaType } from './slotFeature'
-import { SlotThemeSchema, SlotThemeSchemaType } from './slotTheme'
-import { GameTypeSchema, GameTypeSchemaType } from './gameType'
-import { GameProviderFeaturesSchema, GameProviderFeaturesSchemaType } from './gameProviderFeatures'
-import { LiveCasinoGameTypeSchema, LiveCasinoGameTypeSchemaType } from './liveCasinoGameType'
-import {
-  GuidePagePreviewSchema,
-  GuidePagePreviewSchemaType,
-} from './guidePagePreview'
 import { ButtonObjectSchema, ButtonObjectSchemaType } from './buttonObject'
 import { ButtonsObjectSchema, ButtonsObjectSchemaType } from './buttonsObject'
-import {
-  BasePagePreviewSchema,
-  BasePagePreviewSchemaType,
-} from './basePagePreview'
-import { ContactMethodSchema, ContactMethodSchemaType } from './contactMethod'
-import { CasinoSchema, CasinoSchemaType } from './casino'
-import { CasinoObjectSchema, CasinoObjectSchemaType } from './casinoObject'
-import { CasinoBonusSchema, CasinoBonusSchemaType } from './casinoBonus'
-import { CasinoPageSchema, CasinoPageSchemaType } from './casinoPage'
-import { ColumnObjectSchema, ColumnObjectSchemaType } from './columnObject'
-import { ColumnsObjectSchema, ColumnsObjectSchemaType } from './columnsObject'
-import { SlotPageSchema, SlotPageSchemaType } from './slotPage'
-import {
-  DashboardImageObjectSchema,
-  DashboardImageObjectSchemaType,
-} from './dashboardImageObject'
-import { FAQObjectSchema, FAQObjectSchemaType } from './faqObject'
-import { FaqItemObjectSchema, FaqItemObjectSchemaType } from './faqItemObject'
-import { FreeSpinsSchema, FreeSpinsSchemaType } from './freeSpins'
-import { GuidePageSchema, GuidePageSchemaType } from './guidePage'
-import { FreeSpinsTypeSchema, FreeSpinsTypeSchemaType } from './freeSpinsType'
-import { GameSchema, GameSchemaType } from './game'
-import { BreadcrumbsSchema, BreadcrumbsSchemaType } from './breadcrumbs'
-import { HeadingObjectSchema, HeadingObjectSchemaType } from './headingObject'
 import { LiveCasinoBonusSchema, LiveCasinoBonusSchemaType } from './liveCasinoBonus'
-import {
-  PortableTextBlockSchema,
-  PortableTextBlockSchemaType,
-} from './portableTextBlock'
-import { HowToObjectSchema, HowToObjectSchemaType } from './howToObject'
-import { NewsPageSchema, NewsPageSchemaType } from './newsPage'
-import {
-  HowToStepObjectSchema,
-  HowToStepObjectSchemaType,
-} from './howToStepObject'
-import { ImageObjectSchema, ImageObjectSchemaType } from './imageObject'
-import { OwnerSchema, OwnerSchemaType } from './owner'
-import {
-  ListItemObjectSchema,
-  ListItemObjectSchemaType,
-} from './listItemObject'
-import { ListObjectSchema, ListObjectSchemaType } from './listObject'
-import { SportSchema, SportSchemaType } from './sport'
-import {
-  ModularContentSchema,
-  ModularContentSchemaType,
-} from './modularContent'
-import { ModularContentItemSchema, ModularContentItemSchemaType } from './modularContent'
 import { OddsBonusSchema, OddsBonusSchemaType } from './oddsBonus'
-import { CasinoRatingSchema, CasinoRatingSchemaType } from './casinoRating'
-import {
-  ParagraphObjectSchema,
-  ParagraphObjectSchemaType,
-} from './paragraphObject'
-import {
-  NewsPagePreviewSchema,
-  NewsPagePreviewSchemaType,
-} from './newsPagePreview'
-import { PaymentMethodSchema, PaymentMethodSchemaType } from './paymentMethod'
-import {
-  PaymentMethodTypeSchema,
-  PaymentMethodTypeSchemaType,
-} from './paymentMethodType'
-import {
-  ProsAndConsObjectSchema,
-  ProsAndConsObjectSchemaType,
-} from './prosAndConsObject'
-import { QuoteObjectSchema, QuoteObjectSchemaType } from './quoteObject'
-import { GroupObjectSchema, GroupObjectSchemaType } from './groupObject'
-import { RatingObjectSchema, RatingObjectSchemaType } from './ratingObject'
-import { SanityImageSchema, SanityImageSchemaType } from './sanityImage'
-import {
-  ShortcodeObjectSchema,
-  ShortcodeObjectSchemaType,
-} from './shortcodeObject'
-import { OldTableObjectSchema, OldTableObjectSchemaType } from './oldTableObject'
-import { ToggleObjectSchema, ToggleObjectSchemaType } from './toggleObject'
 import { ToplistSchema, ToplistSchemaType } from './toplist'
-import { SubPageSchema, SubPageSchemaType } from './subPage'
 
 export {
   AffiliateButtonObjectSchema,
