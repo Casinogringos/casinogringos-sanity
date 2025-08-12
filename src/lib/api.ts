@@ -236,7 +236,7 @@ export const getSimilarNewsPages = async ({
   }
 }
 
-export const getSitemap = async (type: 'authors' | 'pages' | 'guide-pages' | 'news-pages' | 'casino-pages') => {
+export const getSitemap = async (type: 'authors' | 'pages' | 'guide-pages' | 'news-pages' | 'casino-pages' | 'slot-pages') => {
   try {
     const data = await client.fetch(sitemapQuery(type))
     return data

@@ -1,8 +1,6 @@
 import { getServerSideSitemap } from 'next-sitemap'
 import { getSitemap } from '@/src/lib/api'
-import { sitemapImages } from '@/src/lib/helpers'
 import { SubPageSchemaType } from '@/src/schemas'
-import { urlFor } from '@/src/lib/client'
 import ImageService from '@/src/services/ImageService'
 
 const imageService = new ImageService()
@@ -18,12 +16,12 @@ export async function GET() {
             )
         })
         .map((page) => {
-            const featuredImage = urlFor(page.seoImage).url()
+            const featuredImage = page.seoImage?.src
             const contentImages = imageService.getImagesFromModularContent(page.content)
             const allImages = featuredImage
                 ? [featuredImage, ...(contentImages ? contentImages : [])]
                 : contentImages ? contentImages : []
-            const imagesXML = sitemapImages(allImages)
+            const imagesXML = imageService.getImagesXML(allImages).filter((image) => image !== null)
 
             return {
                 loc: `${process.env.SITE_URL}${page.slug.current !== '/' ? page.slug.current : ''}`,
