@@ -1,11 +1,17 @@
-import {
-  dashboardImageProjection,
-  casinoRatingProjection, casinoBonusProjection, freeSpinsProjection,
-  paymentMethodProjection, gameProviderProjection, contactMethodProjection, ownerProjection, licenseProjection, oddsBonusProjection, liveCasinoBonusProjection,
-  gameTypeProjection,
-  liveCasinoGameTypeProjection,
-  sportProjection
-} from '@/src/data/projections'
+import { dashboardImageProjection } from '@/src/data/projections/dashboardImageProjection'
+import { casinoRatingProjection } from '@/src/data/projections/casinoRatingProjection'
+import { casinoBonusProjection } from '@/src/data/projections/casinoBonusProjection'
+import { oddsBonusProjection } from '@/src/data/projections/oddsBonusProjection'
+import { freeSpinsProjection } from '@/src/data/projections/freeSpinsProjection'
+import { paymentMethodProjection } from '@/src/data/projections/paymentMethodProjection'
+import { gameProviderProjection } from '@/src/data/projections/gameProviderProjection'
+import { contactMethodProjection } from '@/src/data/projections/contactMethodProjection'
+import { ownerProjection } from '@/src/data/projections/ownerProjection'
+import { licenseProjection } from '@/src/data/projections/licenseProjection'
+import { gameTypeProjection } from '@/src/data/projections/gameTypeProjection'
+import { sportProjection } from '@/src/data/projections/sportProjection'
+import { liveCasinoBonusProjection } from '@/src/data/projections/liveCasinoBonusProjection'
+import { liveCasinoGameTypeProjection } from '@/src/data/projections/liveCasinoGameTypeProjection'
 
 export const casinoProjection = `
     _type,

@@ -1,4 +1,4 @@
-import { imageObjectProjection } from "@/src/data/projections";
+import { imageObjectProjection } from "@/src/data/projections/imageObjectProjection";
 
 export const slotPagePreviewProjection = `
   _type,

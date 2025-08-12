@@ -1,4 +1,6 @@
-import { imageProjection, newsPagePreviewProjection, pagePreviewProjection } from '@/src/data/projections'
+import { imageProjection } from '@/src/data/projections/imageProjection'
+import { newsPagePreviewProjection } from '@/src/data/projections/newsPagePreviewProjection'
+import { pagePreviewProjection } from '@/src/data/projections/pagePreviewProjection'
 
 export const authorProjection = `
     _type,

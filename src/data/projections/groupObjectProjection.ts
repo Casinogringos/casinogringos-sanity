@@ -1,11 +1,9 @@
-import {
-  buttonObjectProjection,
-  buttonsObjectProjection,
-  headingObjectProjection,
-  imageObjectProjection,
-  listObjectProjection,
-  paragraphObjectProjection,
-} from '@/src/data/projections'
+import { headingObjectProjection } from '@/src/data/projections/headingObjectProjection'
+import { listObjectProjection } from '@/src/data/projections/listObjectProjection'
+import { paragraphObjectProjection } from '@/src/data/projections/paragraphObjectProjection'
+import { imageObjectProjection } from '@/src/data/projections/imageObjectProjection'
+import { buttonObjectProjection } from '@/src/data/projections/buttonObjectProjection'
+import { buttonsObjectProjection } from '@/src/data/projections/buttonsObjectProjection'
 
 export const groupObjectProjection = `
   _type == 'group-object' => {

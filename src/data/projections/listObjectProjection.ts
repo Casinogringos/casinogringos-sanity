@@ -1,4 +1,4 @@
-import { listItemObjectProjection } from '@/src/data/projections'
+import { listItemObjectProjection } from '@/src/data/projections/listItemObjectProjection'
 
 export const listObjectProjection = `
   _type == 'list-object' => {

@@ -1,4 +1,4 @@
-import { gameTypeProjection } from "@/src/data/projections";
+import { gameTypeProjection } from '@/src/data/projections/gameTypeProjection'
 
 export const gameProjection = `
   _type,

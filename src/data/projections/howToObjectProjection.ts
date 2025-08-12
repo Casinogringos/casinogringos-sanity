@@ -1,4 +1,4 @@
-import { howToStepObjectProjection } from '@/src/data/projections'
+import { howToStepObjectProjection } from '@/src/data/projections/howToStepObjectProjection'
 
 export const howToObjectProjection = `
   _type == 'how-to-object' => {

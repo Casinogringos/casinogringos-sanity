@@ -1,4 +1,4 @@
-import { authorProjection } from '@/src/data/projections'
+import { authorProjection } from '@/src/data/projections/authorProjection'
 
 export const prosAndConsObjectProjection = `
   _type == 'pros-and-cons-object' => {

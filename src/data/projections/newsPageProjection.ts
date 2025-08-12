@@ -1,4 +1,5 @@
-import { imageObjectProjection, objectProjections } from '@/src/data/projections'
+import { imageObjectProjection } from '@/src/data/projections/imageObjectProjection'
+import { objectProjections } from '@/src/data/projections/objectProjections'
 
 export const newsPageProjection = `
   _type,

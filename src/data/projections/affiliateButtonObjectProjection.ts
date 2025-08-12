@@ -1,4 +1,4 @@
-import { casinoProjection } from '@/src/data/projections'
+import { casinoProjection } from '@/src/data/projections/casinoProjection'
 
 export const affiliateButtonObjectProjection = `
   _type == 'affiliate-button-object' => {
@@ -8,5 +8,5 @@ export const affiliateButtonObjectProjection = `
         ${casinoProjection}
     },
     message
-  }
+  } 
 `

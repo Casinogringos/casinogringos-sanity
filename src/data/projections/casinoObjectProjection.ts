@@ -1,4 +1,4 @@
-import { casinoProjection } from '@/src/data/projections'
+import { casinoProjection } from '@/src/data/projections/casinoProjection'
 
 export const casinoObjectProjection = `
   _type == 'casino-object' => {

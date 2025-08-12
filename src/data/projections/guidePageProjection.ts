@@ -1,4 +1,6 @@
-import { authorProjection, imageObjectProjection, objectProjections } from '@/src/data/projections'
+import { imageObjectProjection } from '@/src/data/projections/imageObjectProjection'
+import { authorProjection } from '@/src/data/projections/authorProjection'
+import { objectProjections } from '@/src/data/projections/objectProjections'
 
 export const guidePageProjection = `
   _type,

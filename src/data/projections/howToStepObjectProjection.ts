@@ -1,4 +1,4 @@
-import { imageProjection } from '@/src/data/projections'
+import { imageProjection } from '@/src/data/projections/imageProjection'
 
 export const howToStepObjectProjection = `
     _type,

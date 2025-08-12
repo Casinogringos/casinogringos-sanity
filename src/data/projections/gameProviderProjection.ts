@@ -1,4 +1,6 @@
-import { dashboardImageProjection, gameTypeProjection, gameProviderFeaturesProjection } from "@/src/data/projections";
+import { dashboardImageProjection } from '@/src/data/projections/dashboardImageProjection'
+import { gameTypeProjection } from '@/src/data/projections/gameTypeProjection'
+import { gameProviderFeaturesProjection } from '@/src/data/projections/gameProviderFeaturesProjection'
 
 export const gameProviderProjection = `
   _type,

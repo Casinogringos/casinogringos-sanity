@@ -1,9 +1,7 @@
-import {
-  dashboardImageProjection,
-  slotThemeProjection,
-  slotFeatureProjection,
-  gameProviderProjection,
-} from '@/src/data/projections'
+import { dashboardImageProjection } from '@/src/data/projections/dashboardImageProjection'
+import { slotThemeProjection } from '@/src/data/projections/slotThemeProjection'
+import { slotFeatureProjection } from '@/src/data/projections/slotFeatureProjection'
+import { gameProviderProjection } from '@/src/data/projections/gameProviderProjection'
 
 export const slotProjection = `
     _type,

@@ -1,8 +1,8 @@
-import { objectProjections } from '@/src/data/projections'
-import { toplistProjection } from '@/src/data/projections'
-import { slotProjection } from '@/src/data/projections'
-import { authorProjection } from '@/src/data/projections'
-import { imageObjectProjection } from '@/src/data/projections'
+import { objectProjections } from '@/src/data/projections/objectProjections'
+import { toplistProjection } from '@/src/data/projections/toplistProjection'
+import { slotProjection } from '@/src/data/projections/slotProjection'
+import { authorProjection } from '@/src/data/projections/authorProjection'
+import { imageObjectProjection } from '@/src/data/projections/imageObjectProjection'
 
 export const slotPageProjection = `
   _type,

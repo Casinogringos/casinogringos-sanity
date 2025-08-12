@@ -1,4 +1,4 @@
-import { faqItemObjectProjection } from '@/src/data/projections'
+import { faqItemObjectProjection } from '@/src/data/projections/faqItemObjectProjection'
 
 export const faqObjectProjection = `
   _type == 'faq-object' => {

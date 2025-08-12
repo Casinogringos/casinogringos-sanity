@@ -1,7 +1,5 @@
-import {
-  bonusTypeProjection,
-  paymentMethodProjection,
-} from '@/src/data/projections'
+import { bonusTypeProjection } from '@/src/data/projections/bonusTypeProjection'
+import { paymentMethodProjection } from '@/src/data/projections/paymentMethodProjection'
 
 export const casinoBonusProjection = `
     _type,

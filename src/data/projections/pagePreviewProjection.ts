@@ -1,11 +1,5 @@
-import {
-  objectProjections,
-  faqItemObjectProjection,
-  toplistProjection,
-  imageObjectProjection,
-  authorProjection,
-  imageProjection,
-} from '@/src/data/projections'
+import { imageProjection } from "./imageProjection"
+import { imageObjectProjection } from "./imageObjectProjection"
 
 export const pagePreviewProjection = `
   _type,

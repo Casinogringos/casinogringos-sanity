@@ -1,4 +1,4 @@
-import { toplistProjection } from '@/src/data/projections'
+import { toplistProjection } from '@/src/data/projections/toplistProjection'
 
 export const casinoListObjectProjection = `
   _type == 'casino-list-object' => {

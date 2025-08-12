@@ -1,4 +1,4 @@
-import { columnObjectProjection } from '@/src/data/projections'
+import { columnObjectProjection } from '@/src/data/projections/columnObjectProjection'
 
 export const columnsObjectProjection = `
   _type == 'columns-object' => {
