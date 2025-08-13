@@ -1,25 +1,13 @@
-import { CasinoPageSchema, CasinoPageSchemaType } from '@/src/schemas'
-import CasinoService from '@/src/services/CasinoPageService'
+import { CasinoPageSchemaType } from '@/src/schemas/casinoPage'
+import CasinoService from '@/src/services/CasinoService'
 import fs from 'fs'
 
 const casinoService = new CasinoService()
 
 const getReviewStructuredData = ({ page }: { page: CasinoPageSchemaType }) => {
-  const parse = CasinoPageSchema.safeParse(page)
   const { finalRating } = casinoService.getCasinoRatings({
     casino: page.casino,
   })
-  if (!parse.success) {
-    console.error(
-      `Invalid review structured data:\n${page.title}\n`,
-      parse.error
-    )
-    fs.writeFileSync(
-      'structuredDataError.log',
-      `\n\n${page.title}\n${JSON.stringify(parse.error)}`
-    )
-    return null
-  }
 
   return {
     '@context': 'https://schema.org/',

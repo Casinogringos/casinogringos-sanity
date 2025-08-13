@@ -2,8 +2,7 @@ import { getAuthorBySlug, getStaticParams } from "@/src/lib/api";
 import { notFound } from "next/navigation";
 import Author from "@/src/app/Author";
 import { Metadata } from "next";
-import { AuthorSchemaType } from "@/src/schemas";
-import { urlFor } from "@/src/lib/client";
+import { AuthorSchemaType } from "@/src/schemas/author";
 
 type Params = Promise<{ slug: string }>;
 
@@ -23,10 +22,10 @@ export async function generateMetadata(props: { params: Params }) {
             locale: "sv_SE",
             images: [
                 {
-                    url: urlFor(author.avatar).url(),
+                    url: author.avatar?.src,
                     alt: author.firstName + ' ' + author.lastName,
-                    width: author.avatar.asset?.metadata?.dimensions?.width ?? 1200,
-                    height: author.avatar.asset?.metadata?.dimensions?.height ?? 630,
+                    width: 1200,
+                    height: 630,
                 },
             ],
         },

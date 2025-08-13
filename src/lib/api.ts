@@ -249,7 +249,7 @@ export const getSitemap = async (type: 'authors' | 'pages' | 'guide-pages' | 'ne
 export const getAllCasinoPages = async () => {
   try {
     const data = await client.fetch(
-      casinoPagesQuery({ count: 1000, content: false })
+      casinoPagePreviewsQuery({ count: 1000 })
     )
     return data
   } catch (e) {

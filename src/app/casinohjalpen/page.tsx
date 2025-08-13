@@ -1,6 +1,6 @@
 import { getAllCasinoPages } from '@/src/lib/api'
 import dynamicComponent from 'next/dynamic'
-import { CasinoPageSchemaType } from '@/src/schemas'
+import { CasinoPageSchemaType } from '@/src/schemas/casinoPage'
 
 const CasinoHelperPage = dynamicComponent(
   () => import('@/src/app/CasinoHelperPage')
@@ -15,9 +15,7 @@ export const metadata = {
 const Page = async () => {
   const casinoPages: CasinoPageSchemaType[] = await getAllCasinoPages()
 
-  return <CasinoHelperPage initialCasinos={casinoPages} />
+  return <CasinoHelperPage initialCasinoPages={casinoPages} />
 }
 
 export default Page
-
-export const dynamic = 'force-static'

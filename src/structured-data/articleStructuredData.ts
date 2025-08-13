@@ -1,4 +1,4 @@
-import { SubPageSchemaType } from '@/src/schemas'
+import { SubPageSchemaType } from '@/src/schemas/subPage'
 import { urlFor } from '@/src/lib/client'
 
 const getArticleStructuredData = (page: SubPageSchemaType) => {

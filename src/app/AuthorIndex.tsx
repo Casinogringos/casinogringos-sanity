@@ -13,6 +13,7 @@ import SanityImage from '@/src/components/atoms/SanityImage'
 import { PortableText } from 'next-sanity'
 import { AuthorSchemaType } from '@/src/schemas/author'
 import { SubPageSchemaType } from '@/src/schemas/subPage'
+import { BreadcrumbSchemaType } from '@/src/schemas/breadcrumb'
 
 const AuthorIndex = ({
   page,
@@ -21,7 +22,7 @@ const AuthorIndex = ({
   page: SubPageSchemaType
   authors: AuthorSchemaType[]
 }) => {
-  const breadcrumbs = [
+  const breadcrumbs: BreadcrumbSchemaType[] = [
     {
       text: 'Hem',
       url: `${process.env.SITE_URL}/`,
@@ -72,7 +73,7 @@ const AuthorIndex = ({
                   />
                 </div>
                 <div>
-                  <Link prefetch={false} href={`/om-oss/${author.slug}`}>
+                  <Link prefetch={false} href={`/om-oss/${author.slug.current}`}>
                     <span className="block font-medium">
                       {author.firstName} {author.lastName}
                     </span>

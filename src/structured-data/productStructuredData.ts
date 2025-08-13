@@ -1,4 +1,4 @@
-import { CasinoPageSchemaType } from '@/src/schemas'
+import { CasinoPageSchemaType } from '@/src/schemas/casinoPage'
 import CasinoService from '@/src/services/CasinoService'
 import { urlFor } from '@/src/lib/client'
 

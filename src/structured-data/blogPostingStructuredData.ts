@@ -1,4 +1,4 @@
-import { GuidePageSchemaType } from '../schemas/guidePage'
+import { GuidePageSchemaType } from '@/src/schemas/guidePage'
 import { urlFor } from '@/src/lib/client'
 
 export const getBlogPostingStructuredData = ({

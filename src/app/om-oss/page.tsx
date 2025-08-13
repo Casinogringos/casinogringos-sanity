@@ -1,6 +1,6 @@
 import { getPageBySlug, getAllAuthorPreviews } from '@/src/lib/api'
 import { Metadata } from 'next'
-import { SubPageSchemaType } from '@/src/schemas'
+import { SubPageSchemaType } from '@/src/schemas/subPage'
 import AuthorIndex from '@/src/app/AuthorIndex'
 
 export async function generateMetadata() {
@@ -20,7 +20,7 @@ export async function generateMetadata() {
       url: `${siteURL}/${page.slug.current}`,
       locale: 'sv_SE',
       siteName: 'Casinogringos',
-      type: page.opengraphType,
+      type: page.opengraphType ?? 'website',
       images: [
         {
           url: page.seoImage?.src ?? '',

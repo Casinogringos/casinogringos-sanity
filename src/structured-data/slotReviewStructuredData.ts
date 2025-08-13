@@ -1,4 +1,4 @@
-import { SlotPageSchemaType } from "@/src/schemas"
+import { SlotPageSchemaType } from "@/src/schemas/slotPage"
 
 const getSlotReviewStructuredData = ({
   page,

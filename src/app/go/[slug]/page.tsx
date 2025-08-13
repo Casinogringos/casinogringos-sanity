@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation'
 import { getCasinoPageBySlug } from '@/src/lib/api'
 import dynamicComponent from 'next/dynamic'
 import { getStaticParams } from '@/src/lib/api'
-import { CasinoPageSchemaType } from '@/src/schemas'
+import { CasinoPageSchemaType } from '@/src/schemas/casinoPage'
 const GoPage = dynamicComponent(() => import('@/src/app/GoPage'))
 
 const Page = async (props: { params: Promise<{ slug: string }> }) => {

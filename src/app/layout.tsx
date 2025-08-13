@@ -8,12 +8,12 @@ import Provider from '@/src/store/provider'
 import '@/src/styles/index.css'
 import '@/src/styles/styles.scss'
 import PlausibleProvider from 'next-plausible'
-import dynamic from 'next/dynamic'
+import dynamicImport from 'next/dynamic'
 import { Inter, Plus_Jakarta_Sans } from 'next/font/google'
 import { headers } from 'next/headers'
 import { ReactNode } from 'react'
 
-const ScrollToTop = dynamic(
+const ScrollToTop = dynamicImport(
   () => import('@/src/components/molecules/ScrollToTop')
 )
 const inter = Inter({
@@ -81,3 +81,5 @@ export default async function RootLayout({
     </html>
   )
 }
+
+export const dynamic = 'force-static'

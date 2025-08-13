@@ -1,4 +1,4 @@
-import { AuthorSchemaType } from '@/src/schemas'
+import { AuthorSchemaType } from '@/src/schemas/author'
 
 export const getPersonStructuredData = (author: AuthorSchemaType) => {
   if (!author) return null
@@ -6,14 +6,14 @@ export const getPersonStructuredData = (author: AuthorSchemaType) => {
   return {
     '@type': 'Person',
     '@id': `https://casinogringos.se/#/schema/person/${author._id}`,
-    name: author.name,
+    name: author.firstName + ' ' + author.lastName,
     image: {
       '@type': 'ImageObject',
       inLanguage: 'sv-SE',
       '@id': 'https://casinogringos.se/#/schema/person/image/',
-      url: author.image.url,
-      contentUrl: author.image.url,
-      caption: author.name,
+      url: author.avatar?.src,
+      contentUrl: author.avatar?.src,
+      caption: author.firstName + ' ' + author.lastName,
     },
     description: author.description,
     url: `https://casinogringos.se/om-oss/${author.slug.current}`,

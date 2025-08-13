@@ -1,11 +1,7 @@
 import { BreadcrumbsSchemaType } from '@/src/schemas/breadcrumbs'
-import BreadcrumbsService from '@/src/services/BreadcrumbsService'
-
-const breadcrumbsService = new BreadcrumbsService()
 
 export const getBreadcrumbListStructuredData = (breadcrumbs: BreadcrumbsSchemaType) => {
-  const isValid = breadcrumbsService.validateSchema(breadcrumbs)
-  if (!isValid) return null
+  if (!breadcrumbs.length) return null
 
   return {
     "@type": "BreadcrumbList",
