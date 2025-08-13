@@ -11,6 +11,8 @@ export const newsPagePreviewProjection = `
   publishedAt,
   seoTitle,
   seoDescription,
+  originalPublishedAt,
   _createdAt,
+  originalModifiedAt,
   _updatedAt
 `

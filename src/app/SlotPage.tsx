@@ -7,7 +7,8 @@ import BreadCrumbs from '@/src/components/organisms/BreadCrumbs'
 import Container from '@/src/components/atoms/Container'
 import SlotHero from '@/src/components/organisms/SlotHero'
 import TableOfContents from '@/src/components/organisms/TableOfContents'
-import { CasinoPagePreviewSchemaType, SlotPagePreviewSchemaType, SlotPageSchemaType } from '@/src/schemas'
+import { SlotPageSchemaType } from '@/src/schemas/slotPage'
+import { SlotPagePreviewSchemaType } from '@/src/schemas/slotPagePreview'
 import getSlotReviewStructuredData from '@/src/structured-data/slotReviewStructuredData'
 import SlotPageService from '@/src/services/SlotPageService'
 import CasinoPageService from '@/src/services/CasinoPageService'
@@ -22,7 +23,6 @@ const casinoPageService = new CasinoPageService()
 const SlotPage = ({ slotPage, similarSlotPages }: { slotPage: SlotPageSchemaType, similarSlotPages: SlotPagePreviewSchemaType[] }) => {
   const isValidSlotPage = slotPageService.validatePage(slotPage)
   const isValidSimilarSlotPages = slotPageService.validateList(similarSlotPages, true)
-  console.log('slot', slotPage.slot)
 
   const schema = {
     '@context': 'https://schema.org',
@@ -31,10 +31,6 @@ const SlotPage = ({ slotPage, similarSlotPages }: { slotPage: SlotPageSchemaType
   const headings = slotPageService.getHeadingObjects(slotPage)
   const { slot } = slotPage
   const breadcrumbs = [
-    {
-      text: 'Hem',
-      url: `${process.env.SITE_URL}`,
-    },
     {
       text: 'Slots',
       url: `${process.env.SITE_URL}/slots`,

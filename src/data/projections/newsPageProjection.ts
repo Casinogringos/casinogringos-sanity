@@ -12,6 +12,10 @@ export const newsPageProjection = `
   publishedAt,
   seoTitle,
   seoDescription,
+  seoImage {
+    ${imageObjectProjection}
+  },
+  canonical,
   content[] {
     ${objectProjections}
   }

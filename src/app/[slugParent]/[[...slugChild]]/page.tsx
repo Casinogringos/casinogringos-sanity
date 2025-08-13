@@ -9,7 +9,8 @@ import {
   getStaticParams,
 } from '@/src/lib/api'
 import { formatPageSlug } from '@/src/lib/utility'
-import { CasinoPageSchemaType, SubPageSchemaType } from '@/src/schemas'
+import { SubPageSchemaType } from '@/src/schemas/subPage'
+import { CasinoPageSchemaType } from '@/src/schemas/casinoPage'
 import { urlFor } from '@/src/lib/client'
 
 type Params = Promise<{
@@ -62,8 +63,8 @@ const metadataObject = (
       siteName: 'Casinogringos',
       images: [
         {
-          url: page.seoImage.src,
-          alt: page.seoImage.alt,
+          url: page.seoImage?.src ?? '',
+          alt: page.seoImage?.alt ?? '',
           width: 600,
           height: 400,
         },

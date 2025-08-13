@@ -12,8 +12,8 @@ class SlotPageService extends BasePageService<SlotPageSchemaType | SlotPagePrevi
   ): boolean {
     const parse = SlotPageSchema.safeParse(page)
     if (!parse.success) {
-      console.log(`Invalid page:\n${page.title}\n`, parse.error)
-      console.log('suspect page', page)
+      // console.log(`Invalid page:\n${page.title}\n`, parse.error)
+      // console.log('suspect page', page)
       return false
     }
     return true

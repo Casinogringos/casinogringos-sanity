@@ -1,7 +1,7 @@
 import { getServerSideSitemap } from 'next-sitemap'
 import { getSitemap } from '@/src/lib/api'
 import { sitemapImages } from '@/src/lib/helpers'
-import { CasinoPageSchemaType } from '@/src/schemas'
+import { CasinoPageSchemaType } from '@/src/schemas/casinoPage'
 import ImageService from '@/src/services/ImageService'
 
 const imageService = new ImageService()
@@ -11,7 +11,6 @@ export async function GET() {
     const casinoPages = casinoPagesResponse.map((page) => {
         const featuredImage = page.featuredImage?.src
         const seoImage = page.seoImage?.src
-        console.log('page.content', page.content)
         const contentImages = imageService.getImagesFromModularContent(page.content)
         const allImages = featuredImage
             ? [featuredImage, seoImage === featuredImage ? null : seoImage, ...(contentImages ? contentImages : [])]

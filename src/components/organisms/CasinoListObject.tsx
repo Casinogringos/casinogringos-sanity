@@ -5,7 +5,6 @@ import Placeholder from '../atoms/Placeholder'
 
 const CasinoListObject = ({ object }: { object: CasinoListObjectSchemaType }) => {
     const { toplist } = object
-    console.log('toplist', toplist)
     if (!toplist || !toplist.casinos || toplist.casinos.length === 0) {
         return <Placeholder message="No toplist found" />
     }

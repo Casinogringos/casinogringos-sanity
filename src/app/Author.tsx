@@ -9,7 +9,7 @@ import { getPersonStructuredData } from '@/src/structured-data/personStructuredD
 import getProfileStructuredData from '@/src/structured-data/profileStructuredData'
 import SanityImage from '@/src/components/atoms/SanityImage'
 import { PortableText } from 'next-sanity'
-import { AuthorSchemaType } from '@/src/schemas'
+import { AuthorSchemaType } from '@/src/schemas/author'
 
 const Author = ({ author }: { author: AuthorSchemaType }) => {
   const schema = {
@@ -22,10 +22,6 @@ const Author = ({ author }: { author: AuthorSchemaType }) => {
     ],
   }
   const breadcrumbs = [
-    {
-      text: 'Hem',
-      url: `${process.env.SITE_URL}/`,
-    },
     {
       text: 'Om Oss',
       url: `${process.env.SITE_URL}/om-oss`,
@@ -136,14 +132,14 @@ const Author = ({ author }: { author: AuthorSchemaType }) => {
                   prefetch={false}
                 >
                   <SanityImage
-                    image={item.featuredImage.image}
+                    image={item.featuredImage}
                     width={600}
                     className="h-32 w-full rounded-sm object-cover lg:h-36"
                   />
                   <div>
                     <h3 className="mb-1 mt-3 text-lg">{item?.title}</h3>
                     <span className="block text-xs text-slate600">
-                      <Date dateString={item.publishedAt} />
+                      <Date dateString={item.originalPublishedAt ?? item._createdAt} />
                     </span>
                   </div>
                 </Link>

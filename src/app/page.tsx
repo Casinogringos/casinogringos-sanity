@@ -46,7 +46,6 @@ export default async function Page() {
       url: '/',
     },
   ]
-  console.log('homepage', homepage)
   if (!homepage) return notFound()
 
   return <HomePage page={homepage} news={news} breadcrumbs={breadcrumbs} />

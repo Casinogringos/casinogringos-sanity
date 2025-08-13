@@ -10,9 +10,14 @@ export const slotPageProjection = `
   _key,
   title,
   slug,
-  publishedAt,
+  originalPublishedAt,
+  originalModifiedAt,
   seoTitle,
   seoDescription,
+  seoImage {
+    ${imageObjectProjection}
+  },
+  canonical,
   featuredImage {
     ${imageObjectProjection}
   },

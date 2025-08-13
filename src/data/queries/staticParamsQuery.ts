@@ -3,7 +3,7 @@ export const staticParamsQuery = ({
 }: {
   type: 'pages' | 'casino-pages' | 'guide-pages' | 'news-pages' | 'authors' | 'slot-pages'
 }) => `
-    *[_type == ${type}] {
+    *[_type == "${type}"] {
       slug {
         current
       }

@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import SanityImage from '@/src/components/atoms/SanityImage'
 import Date from '@/src/components/atoms/Date'
-import { NewsPagePreviewSchemaType } from '@/src/schemas'
+import { NewsPagePreviewSchemaType } from '@/src/schemas/newsPagePreview'
 
 const NewsCard = ({ item }: { item: NewsPagePreviewSchemaType }) => {
   return (
@@ -12,7 +12,7 @@ const NewsCard = ({ item }: { item: NewsPagePreviewSchemaType }) => {
     >
       <div className="relative flex h-36 w-full items-center overflow-hidden rounded-t-md">
         <SanityImage
-          image={item?.featuredImage.image}
+          image={item.featuredImage}
           width={400}
           className={'min-h-full min-w-full object-cover'}
         />

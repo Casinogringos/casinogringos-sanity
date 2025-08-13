@@ -22,7 +22,6 @@ export async function GET() {
             images: imagesXML,
         }
     })
-    console.log('newsPages', newsPages)
     const indexPage = () => {
         const featuredImage = newsIndexPage.featuredImage?.src
         const contentImages = imageService.getImagesFromModularContent(newsIndexPage.content)

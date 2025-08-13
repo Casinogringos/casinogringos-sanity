@@ -1,30 +1,27 @@
 import { getClient } from '@/src/lib/client'
-import {
-  pageBySlugQuery,
-  menuByIdQuery,
-  newsPageBySlugQuery,
-  slotPageBySlugQuery,
-  slotPagePreviewsQuery,
-  newsPageCountQuery,
-  sitemapQuery,
-  authorBySlugQuery,
-  toplistByIdQuery,
-} from '@/src/data/queries'
-import { casinoPageBySlugQuery } from '@/src/data/queries'
-import { guidePageBySlugQuery } from '@/src/data/queries'
-import { guidePagePreviewsQuery } from '@/src/data/queries'
-import { guidePageCountQuery } from '@/src/data/queries'
-import { newsPagePreviewsQuery } from '@/src/data/queries'
-import { staticParamsQuery } from '@/src/data/queries'
-import { similarCasinoPagesQuery } from '@/src/data/queries'
-import { casinoPagesQuery } from '@/src/data/queries'
-import { similarGuidePagesQuery } from '@/src/data/queries'
-import { casinoPagePreviewsQuery } from '@/src/data/queries'
-import { similarNewsPagesQuery } from '@/src/data/queries'
-import { similarSlotPagesQuery } from '@/src/data/queries'
-import { SlotPageSchemaType } from '@/src/schemas'
-import { casinoPagesByCasinosQuery } from '@/src/data/queries'
-import { authorPreviewsQuery } from '@/src/data/queries'
+import { pageBySlugQuery } from '@/src/data/queries/pageBySlugQuery'
+import { guidePageCountQuery } from '@/src/data/queries/guidePageCountQuery'
+import { slotPagePreviewsQuery } from '@/src/data/queries/slotPagePreviewsQuery'
+import { guidePagePreviewsQuery } from '@/src/data/queries/guidePagePreviewsQuery'
+import { newsPagePreviewsQuery } from '@/src/data/queries/newsPagePreviewsQuery'
+import { staticParamsQuery } from '@/src/data/queries/staticParamsQuery'
+import { similarCasinoPagesQuery } from '@/src/data/queries/similarCasinoPagesQuery'
+import { similarGuidePagesQuery } from '@/src/data/queries/similarGuidePagesQuery'
+import { casinoPagePreviewsQuery } from '@/src/data/queries/casinoPagePreviewsQuery'
+import { similarNewsPagesQuery } from '@/src/data/queries/similarNewsPagesQuery'
+import { similarSlotPagesQuery } from '@/src/data/queries/similarSlotPagesQuery'
+import { authorPreviewsQuery } from '@/src/data/queries/authorPreviewsQuery'
+import { sitemapQuery } from '@/src/data/queries/sitemapQuery'
+import { authorBySlugQuery } from '@/src/data/queries/authorBySlugQuery'
+import { menuByIdQuery } from '@/src/data/queries/menuByIdQuery'
+import { casinoPageBySlugQuery } from '@/src/data/queries/casinoPageBySlugQuery'
+import { guidePageBySlugQuery } from '@/src/data/queries/guidePageBySlugQuery'
+import { newsPageBySlugQuery } from '@/src/data/queries/newsPageBySlugQuery'
+import { slotPageBySlugQuery } from '@/src/data/queries/slotPageBySlugQuery'
+import { newsPageCountQuery } from '@/src/data/queries/newsPageCountQuery'
+import { toplistByIdQuery } from '@/src/data/queries/toplistById'
+import { casinoPagesByCasinosQuery } from '@/src/data/queries/casinoPagesByCasinos'
+
 const client = getClient()
 
 export const getPageBySlug = async ({ slug }: { slug: string }) => {
@@ -142,9 +139,7 @@ export const getCasinoPageBySlug = async ({ slug }: { slug: string }) => {
 
 export const getNewsPageBySlug = async ({ slug }: { slug: string }) => {
   try {
-    console.log('pageBySlugQuery', pageBySlugQuery({ slug }))
     const data = await client.fetch(newsPageBySlugQuery({ slug }))
-    // console.log('data', data)
     return data[0]
   } catch (e) {
     console.log(e)
@@ -154,9 +149,7 @@ export const getNewsPageBySlug = async ({ slug }: { slug: string }) => {
 
 export const getMenuById = async ({ id }: { id: string }) => {
   try {
-    // console.log('getMenuById', id)
     const data = await client.fetch(menuByIdQuery({ id }))
-    console.log('data', data)
     return data
   } catch (e) {
     console.log(e)
@@ -196,7 +189,6 @@ export const getSimilarCasinoPages = async ({
 }) => {
   try {
     const data = await client.fetch(similarCasinoPagesQuery({ id, count }))
-    console.log('data', data)
     return data
   } catch (e) {
     console.log(e)

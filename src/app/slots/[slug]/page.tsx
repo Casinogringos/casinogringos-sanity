@@ -1,7 +1,7 @@
 import { getSlotPageBySlug, getStaticParams, getSimilarSlotPages } from '@/src/lib/api'
 import { notFound } from 'next/navigation'
 import SlotPage from '@/src/app/SlotPage'
-import { SlotPageSchemaType } from '@/src/schemas'
+import { SlotPageSchemaType } from '@/src/schemas/slotPage'
 import { formatPageSlug } from '@/src/lib/utility'
 import { Metadata } from 'next'
 
@@ -51,12 +51,13 @@ export default async function Page(props: { params: Params }) {
   })
 
   if (!slotPage) return notFound()
-  console.log('slot page', slotPage)
   return <SlotPage slotPage={slotPage} similarSlotPages={similarSlotPages} />
 }
 
 export async function generateStaticParams() {
   const allSlotPages: SlotPageSchemaType[] = await getStaticParams('slot-pages')
-
-  return allSlotPages.map((page) => ({ slug: page.slug.current }))
+  return allSlotPages.map((page) => {
+    const slug = page.slug.current.replace('/slots/', '')
+    return { slug }
+  })
 }

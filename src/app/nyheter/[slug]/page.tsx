@@ -2,7 +2,8 @@ import { notFound } from 'next/navigation'
 import NewsPage from '@/src/app/NewsPage'
 import { getNewsPageBySlug, getStaticParams, getSimilarNewsPages } from '@/src/lib/api'
 import { formatPageSlug } from '@/src/lib/utility'
-import { NewsPageSchemaType, NewsPagePreviewSchemaType } from '@/src/schemas'
+import { NewsPageSchemaType } from '@/src/schemas/newsPage'
+import { NewsPagePreviewSchemaType } from '@/src/schemas/newsPagePreview'
 import { extractSlugFromUrl } from '@/src/lib/helpers'
 import { Metadata } from 'next'
 
@@ -20,7 +21,7 @@ export async function generateMetadata(props: { params: Params }) {
     title: newsPage.seoTitle ?? newsPage.title,
     description: newsPage.seoDescription,
     alternates: {
-      canonical: process.env.SITE_URL + extractSlugFromUrl(newsPage.canonical),
+      canonical: newsPage.canonical,
     },
     openGraph: {
       title: newsPage.seoTitle ?? newsPage.title,
@@ -28,7 +29,7 @@ export async function generateMetadata(props: { params: Params }) {
       url: siteURL,
       locale: 'sv_SE',
       siteName: 'Casinogringos',
-      type: newsPage.opengraphType,
+      type: newsPage.opengraphType ?? 'website',
       images: [
         {
           url: newsPage.seoImage.src,
@@ -59,5 +60,8 @@ export default async function Page(props: { params: Params }) {
 export async function generateStaticParams() {
   const allNewsPages: NewsPagePreviewSchemaType[] = await getStaticParams('news-pages')
 
-  return allNewsPages.map((page) => ({ slug: page.slug.current }))
+  return allNewsPages.map((page) => {
+    const slug = page.slug.current.replace('/nyheter/', '')
+    return { slug }
+  })
 }

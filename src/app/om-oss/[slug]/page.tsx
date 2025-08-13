@@ -45,6 +45,5 @@ export default async function AuthorItem(props: { params: Params }) {
 
 export async function generateStaticParams() {
     const authors: AuthorSchemaType[] = await getStaticParams("authors");
-
-    return authors.map(({ slug }) => ({ slug }));
+    return authors.map(({ slug }) => ({ slug: slug.current }));
 }

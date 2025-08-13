@@ -24,10 +24,6 @@ export default function NewsPage({
   }
   const breadcrumbs = [
     {
-      text: 'Hem',
-      url: '/',
-    },
-    {
       text: 'Nyheter',
       url: '/nyheter',
     },

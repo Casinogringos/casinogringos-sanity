@@ -39,7 +39,6 @@ const HomePage = ({
     '@context': 'https://schema.org',
     '@graph': [getWebSiteStructuredData(), getOrganizationStructuredData()],
   }
-  console.log('page', page)
 
   return (
     <>

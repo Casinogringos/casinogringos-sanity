@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import Placeholder from '@/src/components/atoms/Placeholder'
-import { ImageObjectSchemaType, SanityImageSchemaType } from '@/src/schemas'
+import { ImageObjectSchemaType } from '@/src/schemas/imageObject'
 
 const SanityImage = ({
   image,
@@ -15,7 +15,6 @@ const SanityImage = ({
   className?: string
   priority?: boolean
 }) => {
-  console.log('image', image)
   if (!image?.src) {
     return <Placeholder message={'Sanity Image: Missing image src'} />
   }
