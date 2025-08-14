@@ -48,11 +48,11 @@ export default async function Page(props: { params: Params }) {
   const newsPage: NewsPageSchemaType = await getNewsPageBySlug({
     slug: `/nyheter${formatPageSlug(params?.slug)}`,
   })
+  if (!newsPage) return notFound()
   const similarNews: NewsPagePreviewSchemaType[] = await getSimilarNewsPages({
     id: newsPage._id,
     count: 5,
   })
-  if (!newsPage) return notFound()
 
   return <NewsPage page={newsPage} similarNews={similarNews} />
 }

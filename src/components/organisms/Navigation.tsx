@@ -4,17 +4,14 @@ import Container from '@/src/components/atoms/Container'
 import Link from 'next/link'
 import NotificationButton from '@/src/components/molecules/NotificationButton'
 import Menu from '@/src/components/organisms/Menu'
-import type {
-  Menu as MenuType,
-  MenuItem as MenuItemType,
-} from '@/src/types'
 import MenuButton from '@/src/components/molecules/MenuButton'
 import SearchButton from '@/src/components/molecules/SearchButton'
 import { headers } from 'next/headers'
 import MenuModal from '@/src/components/molecules/MenuModal'
 import NotificationModal from '@/src/components/molecules/NotificationModal'
 import CasinoRow from '@/src/components/organisms/CasinoRow'
-import { CasinoPagePreviewSchemaType, ToplistSchemaType } from '@/src/schemas'
+import { MenuItemSchemaType, MenuSchemaType } from '@/src/schemas/menu'
+import { ToplistSchemaType } from '@/src/schemas/toplist'
 
 export default async function Navigation({
   headerMenu,
@@ -22,8 +19,8 @@ export default async function Navigation({
   sidebarToplist,
   pathname,
 }: {
-  headerMenu: MenuType
-  sidebarMenu: MenuType
+  headerMenu: MenuSchemaType
+  sidebarMenu: MenuSchemaType
   sidebarToplist: ToplistSchemaType
   pathname: string | null
 }) {
@@ -45,7 +42,7 @@ export default async function Navigation({
         <Container>
           <div className="flex items-center gap-x-12 lg:px-0">
             <Link
-              href="/public"
+              href="/"
               prefetch={false}
               aria-current={isCurrentPath(pathname, '/') ? 'page' : undefined}
               className={`${isCurrentPath(pathname, '/') ? 'text-primary' : 'text-white'
@@ -65,7 +62,7 @@ export default async function Navigation({
               role="menubar"
               className="ml-auto hidden space-x-8 lg:-mt-[3px] lg:flex lg:items-center"
             >
-              {headerMenu.items?.map((item: MenuItemType) => (
+              {headerMenu.items?.map((item: MenuItemSchemaType) => (
                 <li key={`menu-item-${item._key}`} role="none">
                   <Link
                     href={item.page.slug.current}

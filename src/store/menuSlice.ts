@@ -47,7 +47,7 @@ const menuSlice = createSlice({
       state.isNotificationMenuClosing = true
     },
     closedNotificationMenu: (state) => {
-      state.isNotificationMenuOpen = false
+      state.isNotificationMenuClosing = false
     },
     openNotificationMenu: (state) => {
       state.isNotificationMenuOpen = true

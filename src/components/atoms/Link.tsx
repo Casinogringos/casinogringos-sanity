@@ -13,7 +13,7 @@ const Link = ({
   target,
   className,
   children,
-  prefetch,
+  prefetch = false,
   role,
   place,
   label,
