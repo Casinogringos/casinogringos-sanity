@@ -59,7 +59,7 @@ const menuSlice = createSlice({
       state.isSearchClosing = true
     },
     closedSearch: (state) => {
-      state.isSearchOpen = false
+      state.isSearchClosing = false
     },
     openSearch: (state) => {
       state.isSearchOpen = true

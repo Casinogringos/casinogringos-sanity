@@ -12,6 +12,8 @@ import NotificationModal from '@/src/components/molecules/NotificationModal'
 import CasinoRow from '@/src/components/organisms/CasinoRow'
 import { MenuItemSchemaType, MenuSchemaType } from '@/src/schemas/menu'
 import { ToplistSchemaType } from '@/src/schemas/toplist'
+import SearchModal from '@/src/components/molecules/SearchModal'
+import SearchBox from '@/src/components/molecules/SearchBox'
 
 export default async function Navigation({
   headerMenu,
@@ -92,9 +94,9 @@ export default async function Navigation({
           </div>
         </Container>
       </nav>
-      {/*<SearchModal>*/}
-      {/*  <Search data={searchData} />*/}
-      {/*</SearchModal>*/}
+      <SearchModal>
+        <SearchBox />
+      </SearchModal>
       <MenuModal>
         <Menu menu={sidebarMenu} pathname={pathname} />
       </MenuModal>

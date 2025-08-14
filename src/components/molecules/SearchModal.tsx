@@ -1,42 +1,31 @@
 'use client'
 
 import { ReactNode, useCallback } from 'react'
-import {
-  useAppSelector,
-  useAppDispatch,
-} from '../../../../../casinogringos-v3/src/store/hooks'
+import { useAppSelector, useAppDispatch } from '@/src/store/hooks'
 import {
   closedSearch,
-  closeSearch as closeSearchAction,
+  closeSearch,
   closingSearch,
-} from '../../../../../casinogringos-v3/src/store/menuSlice'
-import ModalCenter from '@/app/components/ui/ModalCenter'
+} from '@/src/store/menuSlice'
+import ModalCenter from '@/src/components/organisms/ModalCenter'
 
-type CustomModalProps = {
-  children: ReactNode
-}
-const SearchModel = ({ children }: CustomModalProps) => {
+const SearchModel = ({ children }: { children: ReactNode }) => {
   const dispatch = useAppDispatch()
-  const { isSearchOpen, isSearchClosing: isClosing } = useAppSelector(
-    (state) => state.menu
-  )
-  const closeSearch = useCallback(() => {
+  const {
+    isSearchOpen: isOpen,
+    isSearchClosing: isClosing,
+  } = useAppSelector((state) => state.menu)
+  const close = useCallback(() => {
     dispatch(closingSearch())
     setTimeout(() => {
-      dispatch(closeSearchAction())
+      dispatch(closeSearch())
       dispatch(closedSearch())
     }, 300)
     document.body.classList.remove('overflow-hidden')
   }, [dispatch])
 
   return (
-    <ModalCenter
-      direction={'bottom'}
-      isClosing={isClosing}
-      isOpen={isSearchOpen}
-      close={closeSearch}
-      position={'top'}
-    >
+    <ModalCenter direction='bottom' isOpen={isOpen} isClosing={isClosing} close={close} removeFromDom={true}>
       {children}
     </ModalCenter>
   )
