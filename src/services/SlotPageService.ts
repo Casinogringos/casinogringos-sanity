@@ -22,7 +22,7 @@ class SlotPageService extends BasePageService<SlotPageSchemaType | SlotPagePrevi
   validateList(pages: SlotPageSchemaType[] | SlotPagePreviewSchemaType[], preview: boolean = false): boolean {
     let parse = null
     for (const page of pages) {
-      parse = SlotPageSchema.safeParse(page)
+      parse = SlotPagePreviewSchema.safeParse(page)
       // if (!parse) return false
       if (!parse.success) {
         console.log(`Invalid slot page:\n${page.title}\n`, parse.error)

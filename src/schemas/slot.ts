@@ -7,14 +7,14 @@ import { SlotFeatureSchema } from './slotFeature';
 
 export const SlotSchema = z.object({
     name: z.string(),
-    casinos: z.array(CasinoSchema),
+    casinos: z.array(CasinoSchema).optional(),
     featuredImage: DashboardImageObjectSchema,
     provider: GameProviderSchema,
-    launchDate: z.date(),
-    slotTheme: SlotThemeSchema,
+    launchDate: z.string(),
+    theme: SlotThemeSchema,
     rtpRange: z.array(z.number()),
     volatility: z.string(),
-    demoUrl: z.string(),
+    demoUrl: z.string().optional(),
     numberOfPaylines: z.number(),
     clusterPays: z.boolean(),
     scatterPays: z.boolean(),

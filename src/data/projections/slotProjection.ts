@@ -11,19 +11,25 @@ export const slotProjection = `
         _type,
         current
     },
+    name,
     provider-> {
       ${gameProviderProjection}
     },
     launchDate,
+    rtpRange,
+    volatility,
     theme-> {
       ${slotThemeProjection}
     },
-    rtpRange,
-    volatility,
     numberOfPaylines,
     reels,
     rows,
     megaways,
+    scatterPays,
+    clusterPays,
+    specialFeatures[] -> {
+      ${slotFeatureProjection}
+    },
     buyFeature,
     jackpot,
     featuredImage {
@@ -33,9 +39,6 @@ export const slotProjection = `
     progressiveJackpot,
     minBet,
     maxBet,
-    specialFeatures->[] {
-      ${slotFeatureProjection}
-    },
     advantages[],
     disadvantages[],
     rating,

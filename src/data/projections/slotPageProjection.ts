@@ -11,6 +11,8 @@ export const slotPageProjection = `
   title,
   slug,
   originalPublishedAt,
+  _createdAt,
+  _updatedAt,
   originalModifiedAt,
   seoTitle,
   seoDescription,

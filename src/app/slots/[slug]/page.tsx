@@ -45,12 +45,12 @@ export default async function Page(props: { params: Params }) {
   const slotPage: SlotPageSchemaType = (await getSlotPageBySlug({
     slug: `/slots${formatPageSlug(params?.slug)}`,
   }))
+  if (!slotPage || !slotPage.slot) return notFound()
   const similarSlotPages = await getSimilarSlotPages({
     id: slotPage._id,
     count: 5,
   })
 
-  if (!slotPage) return notFound()
   return <SlotPage slotPage={slotPage} similarSlotPages={similarSlotPages} />
 }
 

@@ -15,9 +15,9 @@ export const GameProviderSchema = z.object({
     yearLaunched: z.number(),
     headquarters: z.string(),
     swedishLicense: z.boolean(),
-    typesOfGames: z.array(GameTypeSchema),
+    typesOfGames: z.array(GameTypeSchema).optional(),
     numberOfGames: z.number(),
-    uniqueFeatures: z.array(GameProviderFeaturesSchema),
+    uniqueFeatures: z.array(GameProviderFeaturesSchema).optional(),
     advantages: z.array(z.string()),
     disadvantages: z.array(z.string()),
 })

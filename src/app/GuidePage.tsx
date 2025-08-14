@@ -30,10 +30,6 @@ export default function GuidePage({
   }
   const breadcrumbs = [
     {
-      text: 'Hem',
-      url: `${process.env.SITE_URL}/`,
-    },
-    {
       text: 'Guider',
       url: `${process.env.SITE_URL}/guider`,
     },
@@ -68,7 +64,7 @@ export default function GuidePage({
       </div>
       <BreadCrumbs items={breadcrumbs} />
       {headings.length > 1 && (
-        <Container>
+        <Container narrow>
           <div className="-mb-6 mt-4 px-4 lg:mt-5 lg:px-0">
             <TableOfContents headings={headings} />
           </div>
