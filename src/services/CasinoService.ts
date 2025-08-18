@@ -95,6 +95,20 @@ class CasinoService {
     ]
     return { quickFacts }
   }
+  getBonusString({ casino }: { casino: CasinoSchemaType }): string {
+    const bonus = casino.casinoBonuses?.[0]?.bonusAmountRange[1] ?? 0
+    const freeSpins = casino.freeSpins?.[0]?.numberOfFreeSpins ?? 0
+    let bonusString = ''
+    if (bonus === 0 || freeSpins === 0) {
+      bonusString = casino.defaultBonusText
+      if (!casino.defaultBonusText) {
+        throw new Error('Casino default bonus text is missing')
+      }
+    } else {
+      bonusString = `${bonus} kr bonus + ${freeSpins} freespins`
+    }
+    return bonusString
+  }
 }
 
 export default CasinoService

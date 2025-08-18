@@ -18,8 +18,8 @@ const SlotCard = ({ slotPage }: { slotPage: SlotPagePreviewSchemaType }) => {
       <div className="p-4 flex flex-col items-center">
         <Heading className='!mt-0 !p-0 !mb-2' level={3} text={slotPage.title} size={3} />
         <div className='grid grid-cols-1 md:grid-cols-2 gap-2 text-sm'>
-          <div className='flex flex-col items-center'><span className='text-slate-500'>Lanserades</span><span>{slotPage.slot.launchDate}</span></div>
-          <div className='flex flex-col items-center'><span className='!text-slate-500'>RTP</span><span>{slotPage.slot.rtpRange[1]}%</span></div>
+          <div className='flex flex-col items-center'><span className='!text-slate-500'>Lanserades</span><span className='!text-black'>{slotPage.slot.launchDate}</span></div>
+          <div className='flex flex-col items-center'><span className='!text-slate-500'>RTP</span><span className='!text-black'>{slotPage.slot.rtpRange[1]}%</span></div>
         </div>
       </div>
     </Link>

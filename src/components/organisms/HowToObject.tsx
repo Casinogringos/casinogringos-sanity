@@ -1,10 +1,9 @@
-import SanityImage from '@/src/components/atoms/SanityImage'
+import Image from 'next/image'
+import { HowToObjectSchemaType } from '@/src/schemas/howToObject'
+import { PortableTextBlockSchemaType } from '@/src/schemas/portableTextBlock'
+import { SanityImageSchemaType } from '@/src/schemas/sanityImage'
 import { PortableText } from 'next-sanity'
-import {
-  HowToObjectSchemaType,
-  PortableTextBlockSchemaType,
-  SanityImageSchemaType,
-} from '@/src/schemas'
+
 
 const HowToObject = ({ object }: { object: HowToObjectSchemaType }) => {
   const {
@@ -77,10 +76,12 @@ const HowToObject = ({ object }: { object: HowToObjectSchemaType }) => {
                 </div>
                 {row.image && (
                   <div className={'mt-4 min-h-[176px] lg:mt-0'}>
-                    <SanityImage
+                    <Image
                       key={`how-to-image-${rowIndex}`}
-                      image={row.image}
+                      src={row.image.src}
+                      alt={row.image.alt}
                       width={600}
+                      height={600}
                     />
                   </div>
                 )}

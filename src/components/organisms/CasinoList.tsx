@@ -1,15 +1,13 @@
 import { AlertCircle } from 'lucide-react'
 import Link from 'next/link'
 import Heading from '@/src/components/atoms/Heading'
-import CasinoCard from './CasinoCard'
-import Container from '../atoms/Container'
-import CheckBadgeIcon from '../icons/CheckBadgeIcon'
-import ToggleObject from '../molecules/ToggleObject'
-import { CasinoPage } from '@/src/types'
+import CasinoCard from '@/src/components/organisms/CasinoCard'
+import CheckBadgeIcon from '@/src/components/icons/CheckBadgeIcon'
+import ToggleObject from '@/src/components/molecules/ToggleObject'
 import { PortableTextBlock } from 'next-sanity'
 import ToggleButton from '@/src/components/atoms/ToggleButton'
 import ToggleItem from '@/src/components/atoms/ToggleItem'
-import { CasinoPagePreviewSchemaType } from '@/src/schemas'
+import { CasinoPagePreviewSchemaType } from '@/src/schemas/casinoPagePreview'
 
 export default function CasinoList({
   casinoPages,

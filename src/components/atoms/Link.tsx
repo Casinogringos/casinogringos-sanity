@@ -51,7 +51,7 @@ const Link = ({
       case 'affiliate':
         return 'bg-button hover:bg-button-hover not-prose inline-block justify-center lg:text-lg text-white no-underline text-center font-semibold px-6 py-4 rounded-md'
       default:
-        return `${isActive ? 'text-primary' : 'hover:text-primary'}`
+        return `${isActive ? 'text-primary' : 'hover:text-primary'} underline`
     }
   }
   if (!href) return <Placeholder message={'Link component missing the href'} />
@@ -70,7 +70,7 @@ const Link = ({
       onClick={() => {
         if (!plausible) return
         plausibleMethod(plausible.eventName, {
-          props: plausible.props,
+          props: { ...plausible.props, pathname },
         })
       }}
     >

@@ -18,9 +18,10 @@ import RatingObject from '@/src/components/organisms/RatingObject'
 import FAQObject from '@/src/components/organisms/FAQObject'
 import { ModularContentSchemaType } from '@/src/schemas/modularContent'
 import { ModularContentItemSchemaType } from '@/src/schemas/modularContent'
-import CasinoListObject from './CasinoListObject'
+import CasinoListObject from './CasinoTableObject'
 import HTMLObject from '@/src/components/organisms/HTMLObject'
 import SlotListObject from '@/src/components/organisms/SlotListObject'
+import CasinoTableObject from './CasinoTableObject'
 
 const renderObject = (
   object: ModularContentItemSchemaType,
@@ -85,10 +86,11 @@ const renderObject = (
         </Tag>
       )
     }
-    case 'casino-list-object': {
+    // TODO: set this back to the list and add a new casino-table-object on next migration
+    case 'casino-table-object': {
       return (
         <Tag>
-          <CasinoListObject object={object} />
+          <CasinoTableObject object={object} />
         </Tag>
       )
     }

@@ -3,7 +3,7 @@ import Image from 'next/image'
 import { CasinoPageSchemaType } from '@/src/schemas/casinoPage'
 import { CasinoPagePreviewSchemaType } from '@/src/schemas/casinoPagePreview'
 
-const CasinoRow = ({
+const CasinoTableRow = ({
   casino,
   pathname,
 }: {
@@ -71,4 +71,4 @@ const CasinoRow = ({
   )
 }
 
-export default CasinoRow
+export default CasinoTableRow
