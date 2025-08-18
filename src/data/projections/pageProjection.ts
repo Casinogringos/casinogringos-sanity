@@ -26,8 +26,12 @@ export const pageProjection = `
   featuredImage {
     ${imageObjectProjection}
   },
-  faqs[] {
-    ${faqItemObjectProjection}
+  faqs {
+    title,
+    description,
+    items[] {
+      ${faqItemObjectProjection}
+    }
   },
   toplist-> {
     ${toplistProjection}

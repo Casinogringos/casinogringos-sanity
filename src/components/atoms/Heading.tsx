@@ -43,7 +43,7 @@ const Heading = ({
     className:
       index === 0
         ? `mt-0 relative ${className}`
-        : `${tagClasses[level as keyof typeof tagClasses]} mt-10 ${className} ${sizeClasses[size as keyof typeof sizeClasses]}`,
+        : `${tagClasses[level as keyof typeof tagClasses]} ${className} ${sizeClasses[size as keyof typeof sizeClasses]}`,
     dangerouslySetInnerHTML: { __html: html },
   })
 }

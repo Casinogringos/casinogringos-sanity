@@ -32,7 +32,7 @@ const ToggleButton = ({
       <input type="checkbox" className={'hidden'} id={id} />
       <label
         htmlFor={id}
-        className={`cursor-pointer ${className}`}
+        className={`cursor-pointer ${className} w-full`}
         aria-label={label}
         aria-haspopup={isOpen}
         aria-checked={isOpen}

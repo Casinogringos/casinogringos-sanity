@@ -4,33 +4,44 @@ import Heading from '@/src/components/atoms/Heading'
 import ToggleSpin from '@/src/components/atoms/ToggleSpin'
 import { ChevronDown } from 'lucide-react'
 import ToggleItem from '@/src/components/atoms/ToggleItem'
+import { FaqItemObjectSchemaType } from '@/src/schemas/faqItemObject'
+import { PortableTextBlockSchemaType } from '@/src/schemas/portableTextBlock'
+import Container from '@/src/components/atoms/Container'
 
-const FAQ = ({ items, title }: { items: FAQItem[]; title?: string }) => {
+const FAQ = ({ items, title, description }: { items: FaqItemObjectSchemaType[]; title?: string; description?: PortableTextBlockSchemaType }) => {
   return (
-    <section>
-      {items.map((item, index) => (
-        <div key={`faq-item-${index}`}>
-          <div className={'bg-lightBlue2'}>
-            <ToggleButton id={item._key} role={'button'} label={item.question}>
-              <div className={'flex items-center justify-between'}>
-                <Heading
-                  text={item.question}
-                  level={3}
-                  className="text-white"
-                />
-                <ToggleSpin id={item._key}>
-                  <ChevronDown className={'stroke-white'} />
-                </ToggleSpin>
-              </div>
-            </ToggleButton>
+    <section className="bg-dark py-12">
+      <Container>
+        {title && description && (
+          <div className="mb-6 text-white text-center">
+            <Heading text={title} level={2} size={6} />
+            <PortableText value={description} />
           </div>
-          <ToggleItem id={item._key}>
-            <div className="text-white">
-              <PortableText value={item.answer} />
+        )}
+        {items.map((item, index) => (
+          <div key={`faq-item-${index}`}>
+            <div className={'bg-secondary-blue-light flex items-center justify-between no-prose p-5 rounded-md mb-2'}>
+              <ToggleButton id={item._key} role={'button'} label={item.question}>
+                <div className={'flex items-center justify-between'}>
+                  <Heading
+                    text={item.question}
+                    level={3}
+                    className="text-white"
+                  />
+                  <ToggleSpin id={item._key}>
+                    <ChevronDown className={'stroke-white'} />
+                  </ToggleSpin>
+                </div>
+              </ToggleButton>
             </div>
-          </ToggleItem>
-        </div>
-      ))}
+            <ToggleItem id={item._key}>
+              <div className="text-white">
+                <PortableText value={item.answer} />
+              </div>
+            </ToggleItem>
+          </div>
+        ))}
+      </Container>
     </section>
   )
 }

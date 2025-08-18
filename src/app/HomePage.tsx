@@ -1,5 +1,4 @@
 import ModularContent from '@/src/components/organisms/ModularContent'
-import { Breadcrumbs as BreadcrumbsType } from '@/src/types'
 import HomePageHero from '@/src/components/organisms/HomePageHero'
 import CasinoList from '@/src/components/organisms/CasinoList'
 import CasinoCard from '@/src/components/organisms/CasinoCard'
@@ -16,9 +15,11 @@ import FAQ from '@/src/components/organisms/FAQ'
 import AuthorBox from '@/src/components/organisms/AuthorBox'
 import NewsCard from '@/src/components/organisms/NewsCard'
 import { getHeadingObjectsByPage } from '@/src/lib/helpers'
-import { SubPageSchemaType, NewsPageSchemaType } from '@/src/schemas'
 import PageService from '@/src/services/SubPageService'
 import ArticleCard from '../components/molecules/ArticleCard'
+import { SubPageSchemaType } from '@/src/schemas/subPage'
+import { NewsPageSchemaType } from '@/src/schemas/newsPage'
+import { BreadcrumbsSchemaType } from '@/src/schemas/breadcrumbs'
 
 const pageService = new PageService()
 
@@ -29,7 +30,7 @@ const HomePage = ({
 }: {
   page: SubPageSchemaType
   news: NewsPageSchemaType[]
-  breadcrumbs: BreadcrumbsType
+  breadcrumbs: BreadcrumbsSchemaType
 }) => {
   const isValid = pageService.validatePage(page)
   if (!isValid) return null
@@ -78,12 +79,8 @@ const HomePage = ({
           />
         </Container>
       )}
-      {faqs && faqs.length > 0 && (
-        <div className="bg-dark pb-6 pt-12 lg:py-20">
-          <div className="mx-auto max-w-4xl px-4 lg:px-0">
-            <FAQ items={faqs} />
-          </div>
-        </div>
+      {faqs && (
+        <FAQ items={faqs.items} title={faqs.title} description={faqs.description} />
       )}
     </>
   )
