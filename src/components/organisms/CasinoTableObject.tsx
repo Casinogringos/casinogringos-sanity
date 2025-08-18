@@ -13,11 +13,11 @@ const CasinoTableObject = ({ object }: { object: CasinoTableObjectSchemaType }) 
         <section>
             <table>
                 <thead>
-                    <tr>
-                        <th>RANK</th>
-                        <th>CASINO</th>
-                        <th>BONUS</th>
-                        <th>SPELA</th>
+                    <tr className='bg-dark not-prose'>
+                        <th className='text-white p-3 rounded-tl-md'>RANK</th>
+                        <th className='text-white p-3'>CASINO</th>
+                        <th className='text-white p-3'>BONUS</th>
+                        <th className='text-white p-3 rounded-tr-md'>SPELA</th>
                     </tr>
                 </thead>
                 <tbody>

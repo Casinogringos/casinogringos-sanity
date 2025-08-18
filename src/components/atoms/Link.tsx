@@ -23,6 +23,7 @@ const Link = ({
   variant,
   title,
   disabled,
+  size = 'md'
 }: {
   href: string
   rel?: string
@@ -42,14 +43,25 @@ const Link = ({
   }
   variant?: 'affiliate' | 'ghost'
   disabled?: boolean
+  size?: 'sm' | 'md' | 'lg'
 }) => {
   const plausibleMethod = usePlausible()
   const pathname = usePathname()
   const isActive = isCurrentPath(pathname, href)
+  const paddingClasses = {
+    sm: 'px-4 py-2',
+    md: 'px-6 py-4',
+    lg: 'px-8 py-6',
+  }
+  const sizeClasses = {
+    sm: 'text-sm',
+    md: 'text-base',
+    lg: 'text-lg',
+  }
   const getClassName = () => {
     switch (variant) {
       case 'affiliate':
-        return 'bg-button hover:bg-button-hover not-prose inline-block justify-center lg:text-lg text-white no-underline text-center font-semibold px-6 py-4 rounded-md'
+        return `bg-button hover:bg-button-hover not-prose inline-block justify-center lg:text-lg text-white no-underline text-center font-semibold ${paddingClasses[size]} ${sizeClasses[size]} rounded-md`
       default:
         return `${isActive ? 'text-primary' : 'hover:text-primary'} underline`
     }
