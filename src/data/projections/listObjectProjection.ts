@@ -6,6 +6,7 @@ export const listObjectProjection = `
     _id,
     _key,
     message,
+    numbered,
     items[] {
         ${listItemObjectProjection}
     }   

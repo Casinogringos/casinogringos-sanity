@@ -1,20 +1,27 @@
 import Link from '@/src/components/atoms/Link'
-import { SlotPagePreviewSchemaType } from '@/src/schemas'
+import { SlotPagePreviewSchemaType } from '@/src/schemas/slotPagePreview'
+import Heading from '@/src/components/atoms/Heading'
 import Image from 'next/image'
 
-const SlotCard = ({ slot }: { slot: SlotPagePreviewSchemaType }) => {
+const SlotCard = ({ slotPage }: { slotPage: SlotPagePreviewSchemaType }) => {
   return (
-    <Link prefetch={false} className="mb-6" href={`${slot.slug.current}`}>
-      <div className="relative mb-2 flex h-28 w-full overflow-hidden rounded-sm lg:h-40">
+    <Link className='shadow-md not-prose block rounded-md overflow-hidden' prefetch={false} href={`${slotPage.slug.current}`}>
+      <div className="relative flex h-28 w-full overflow-hidden lg:h-40">
         <Image
           width={600}
           height={500}
-          src={slot.featuredImage.src}
-          alt={slot.featuredImage.alt}
+          src={slotPage.featuredImage.src}
+          alt={slotPage.featuredImage.alt}
           className={'min-h-full min-w-full object-cover'}
         />
       </div>
-      <span className="text-sm font-semibold text-heading">{slot.title}</span>
+      <div className="p-4 flex flex-col items-center">
+        <Heading className='!mt-0 !p-0 !mb-2' level={3} text={slotPage.title} size={3} />
+        <div className='grid grid-cols-1 md:grid-cols-2 gap-2 text-sm'>
+          <div className='flex flex-col items-center'><span className='text-slate-500'>Lanserades</span><span>{slotPage.slot.launchDate}</span></div>
+          <div className='flex flex-col items-center'><span className='!text-slate-500'>RTP</span><span>{slotPage.slot.rtpRange[1]}%</span></div>
+        </div>
+      </div>
     </Link>
   )
 }

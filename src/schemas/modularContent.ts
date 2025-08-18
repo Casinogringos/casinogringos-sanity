@@ -19,6 +19,7 @@ import { OldTableObjectSchema } from './oldTableObject'
 import { ToggleObjectSchema } from './toggleObject'
 import { ColumnsObjectSchema } from './columnsObject'
 import { CasinoListObjectSchema } from './casinoListObject'
+import { SlotListObjectSchema } from './slotListObject'
 
 // This is a discriminated union of all the possible content types
 export const ModularContentItemSchema = z.discriminatedUnion('_type', [
@@ -42,6 +43,7 @@ export const ModularContentItemSchema = z.discriminatedUnion('_type', [
   ToggleObjectSchema,
   ColumnsObjectSchema,
   CasinoListObjectSchema,
+  SlotListObjectSchema,
   // ColumnsObjectSchema references this schema, so we can't include it here
 ])
 

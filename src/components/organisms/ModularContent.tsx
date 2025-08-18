@@ -1,14 +1,12 @@
 import CasinoObject from '@/src/components/organisms/CasinoObject'
 import HowToObject from '@/src/components/organisms/HowToObject'
-import dynamic from 'next/dynamic'
 import { Fragment } from 'react'
 import GroupObject from '@/src/components/utils/GroupObject'
 import { PortableText } from 'next-sanity'
 import Container from '@/src/components/atoms/Container'
 import ImageObject from '@/src/components/atoms/ImageObject'
-const Heading = dynamic(() => import('@/src/components/atoms/Heading'))
+import Heading from '@/src/components/atoms/Heading'
 import ListObject from '@/src/components/organisms/ListObject'
-import { writeDataToTestFile } from '@/src/lib/actions'
 import ColumnsObject from '@/src/components/utils/ColumnsObject'
 import Placeholder from '@/src/components/atoms/Placeholder'
 import ButtonObject from '@/src/components/molecules/ButtonObject'
@@ -18,10 +16,11 @@ import AISummaryObject from '@/src/components/organisms/AISummaryObject'
 import QuoteObject from '@/src/components/organisms/QuoteObject'
 import RatingObject from '@/src/components/organisms/RatingObject'
 import FAQObject from '@/src/components/organisms/FAQObject'
-import { ModularContentSchemaType } from '@/src/schemas'
+import { ModularContentSchemaType } from '@/src/schemas/modularContent'
 import { ModularContentItemSchemaType } from '@/src/schemas/modularContent'
 import CasinoListObject from './CasinoListObject'
 import HTMLObject from '@/src/components/organisms/HTMLObject'
+import SlotListObject from '@/src/components/organisms/SlotListObject'
 
 const renderObject = (
   object: ModularContentItemSchemaType,
@@ -40,14 +39,14 @@ const renderObject = (
     }
     case 'paragraph-object':
       return (
-        <Tag>
+        <Tag className={nested ? 'not-prose' : ''}>
           <PortableText value={object.content} />
         </Tag>
       )
     case 'image-object': {
       return (
         <Tag>
-          <ImageObject object={object} />
+          <ImageObject className="rounded-md" object={object} />
         </Tag>
       )
     }
@@ -69,6 +68,13 @@ const renderObject = (
       return (
         <Tag>
           <ColumnsObject object={object} />
+        </Tag>
+      )
+    }
+    case 'slot-list-object': {
+      return (
+        <Tag>
+          <SlotListObject object={object} />
         </Tag>
       )
     }

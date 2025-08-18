@@ -4,7 +4,7 @@ import { authorProjection } from "@/src/data/projections/authorProjection";
 import { slotFeatureProjection } from "@/src/data/projections/slotFeatureProjection";
 
 export const slotPagePreviewProjection = `
-  _type,
+    _type,
     _id,
     _key,
     title,

@@ -11,6 +11,7 @@ export const groupObjectProjection = `
     _key,
     width,
     className,
+    backgroundColor,
     content[] {
          ${headingObjectProjection},
          ${listObjectProjection},

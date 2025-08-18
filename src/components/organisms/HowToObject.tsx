@@ -46,7 +46,7 @@ const HowToObject = ({ object }: { object: HowToObjectSchemaType }) => {
           ) => (
             <li
               key={`row-${rowIndex}`}
-              className={'mb-6 list-none rounded-md bg-slate100 p-5 lg:mb-8'}
+              className={'mb-6 list-none rounded-md bg-slate-200 p-5 lg:mb-8'}
             >
               <div
                 className={`grid grid-cols-1 ${row.image ? 'lg:grid-cols-2 gap-x-6' : ''}`}

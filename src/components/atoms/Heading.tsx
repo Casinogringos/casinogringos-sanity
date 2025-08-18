@@ -9,12 +9,14 @@ const Heading = ({
   index,
   className = '',
   children,
+  size = 3
 }: {
   text?: string
   level: number
   index?: number
   className?: string
   children?: JSX.Element
+  size?: number
 }) => {
   if (!text) return null
   if (!level) return null
@@ -27,13 +29,21 @@ const Heading = ({
     5: 'text-lg font-bold',
     6: 'text-base font-bold',
   }
+  const sizeClasses = {
+    1: 'text-xs',
+    2: 'text-sm',
+    3: 'text-base',
+    4: 'text-lg',
+    5: 'text-xl',
+    6: 'text-2xl',
+  }
   const Tag: string = `h${level}` as keyof JSX.IntrinsicElements
   const html = `<span class='absolute -top-20' id='${slug}'></span>${text ?? children}`
   return createElement(Tag, {
     className:
       index === 0
         ? `mt-0 relative ${className}`
-        : `${tagClasses[level as keyof typeof tagClasses]} mt-10 ${className}`,
+        : `${tagClasses[level as keyof typeof tagClasses]} mt-10 ${className} ${sizeClasses[size as keyof typeof sizeClasses]}`,
     dangerouslySetInnerHTML: { __html: html },
   })
 }
