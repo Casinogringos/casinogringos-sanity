@@ -9,7 +9,7 @@ import SearchButton from '@/src/components/molecules/SearchButton'
 import { headers } from 'next/headers'
 import MenuModal from '@/src/components/molecules/MenuModal'
 import NotificationModal from '@/src/components/molecules/NotificationModal'
-import CasinoRow from '@/src/components/organisms/CasinoRow'
+import CasinoRow from '@/src/components/organisms/CasinoTableRow'
 import { MenuItemSchemaType, MenuSchemaType } from '@/src/schemas/menu'
 import { ToplistSchemaType } from '@/src/schemas/toplist'
 import SearchModal from '@/src/components/molecules/SearchModal'
@@ -105,11 +105,11 @@ export default async function Navigation({
           <div className="relative mt-6 text-lg font-medium">
             Populära erbjudanden
           </div>
-          {sidebarToplist.casinos.map((casino) => (
+          {sidebarToplist.casinos.map((casino, index) => (
             <CasinoRow
-              casino={casino}
+              casinoPage={casino}
               key={`casino-${casino._id}`}
-              pathname={pathname}
+              index={index}
             />
           ))}
         </section>

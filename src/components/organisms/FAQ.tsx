@@ -20,9 +20,9 @@ const FAQ = ({ items, title, description }: { items: FaqItemObjectSchemaType[]; 
         )}
         {items.map((item, index) => (
           <div key={`faq-item-${index}`}>
-            <div className={'bg-secondary-blue-light flex items-center justify-between no-prose p-5 rounded-md mb-2'}>
+            <div className={'bg-white/20 flex items-stretch justify-between no-prose rounded-md mb-2'}>
               <ToggleButton id={item._key} role={'button'} label={item.question}>
-                <div className={'flex items-center justify-between'}>
+                <div className={'flex items-center justify-between p-5'}>
                   <Heading
                     text={item.question}
                     level={3}
@@ -35,7 +35,7 @@ const FAQ = ({ items, title, description }: { items: FaqItemObjectSchemaType[]; 
               </ToggleButton>
             </div>
             <ToggleItem id={item._key}>
-              <div className="text-white">
+              <div className="bg-white/20 no-prose p-5 text-white rounded-md mb-2">
                 <PortableText value={item.answer} />
               </div>
             </ToggleItem>

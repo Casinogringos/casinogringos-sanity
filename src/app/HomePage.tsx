@@ -26,11 +26,9 @@ const pageService = new PageService()
 const HomePage = ({
   page,
   news,
-  breadcrumbs,
 }: {
   page: SubPageSchemaType
   news: NewsPageSchemaType[]
-  breadcrumbs: BreadcrumbsSchemaType
 }) => {
   const isValid = pageService.validatePage(page)
   if (!isValid) return null
@@ -40,6 +38,11 @@ const HomePage = ({
     '@context': 'https://schema.org',
     '@graph': [getWebSiteStructuredData(), getOrganizationStructuredData()],
   }
+  const breadcrumbs = [
+    {
+      url: '/',
+    },
+  ]
 
   return (
     <>
