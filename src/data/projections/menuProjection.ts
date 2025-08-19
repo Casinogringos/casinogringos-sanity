@@ -6,7 +6,9 @@ const menuItemProjection = `
     page-> {
         _type,
         _key,
-        slug,
+        slug {
+            current
+        },
         title
     },
     children[] {
@@ -17,7 +19,9 @@ const menuItemProjection = `
         page-> {           
             _type,
             _key,
-            slug,      
+            slug {
+                current
+            },      
             title
         },
     }

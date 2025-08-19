@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { Menu, MenuItem, Post } from '@/src/types'
+import { SubPageSchemaType } from '@/src/schemas/subPage'
+import { CasinoPageSchemaType } from '@/src/schemas/casinoPage'
 
 interface IconProps {
   className?: string
@@ -78,13 +79,13 @@ const navigation = {
 }
 
 const Footer = ({
-  menu,
-  sites,
-  posts,
+  siteLinks,
+  popularCasinos,
+  latestReviews
 }: {
-  menu: Menu['menuItems']
-  sites: Menu['menuItems']
-  posts: { edges: { node: Post }[] }
+  siteLinks: { items: { page: { slug: { current: string; }, title: string } }[] }
+  popularCasinos: { items: { page: { slug: { current: string; }, title: string } }[] }
+  latestReviews: { items: { page: { slug: { current: string; }, title: string } }[] }
 }) => {
   const year = new Date().getFullYear()
 
@@ -95,20 +96,20 @@ const Footer = ({
       </h2>
       <div className="mx-auto max-w-7xl px-6 pb-8 pt-10 lg:px-8">
         <div>
-          <div className="gap-6md:gap-6 mt-8 md:grid md:grid-cols-4 lg:mt-12">
+          <div className="gap-6 md:gap-6 mt-8 md:grid md:grid-cols-4 lg:mt-12">
             <div>
               <span className="text-xl font-semibold leading-6 text-white">
                 Sidlänkar
               </span>
               <ul role="list" className="mt-6 space-y-4">
-                {menu?.edges.map(({ node }: { node: MenuItem }) => (
-                  <li key={`menu-item-label-${node.label}`}>
+                {siteLinks.items.map(({ page }) => (
+                  <li key={`menu-item-label-${page.title}`}>
                     <Link
-                      href={node.uri}
+                      href={page.slug.current}
                       prefetch={false}
-                      className="text-sm leading-6 text-gray300 hover:text-white"
+                      className="text-sm leading-6 text-gray-300 hover:text-white"
                     >
-                      {node.label}
+                      {page.title}
                     </Link>
                   </li>
                 ))}
@@ -119,14 +120,14 @@ const Footer = ({
                 Populära casinosidor
               </span>
               <ul role="list" className="mt-6 space-y-4">
-                {sites?.edges.map(({ node }: { node: MenuItem }) => (
-                  <li key={`site-${node.label}`}>
+                {popularCasinos.items.map(({ page }) => (
+                  <li key={`site-${page.title}`}>
                     <Link
-                      href={node.uri}
+                      href={page.slug.current}
                       prefetch={false}
-                      className="text-sm leading-6 text-gray300 hover:text-white"
+                      className="text-sm leading-6 text-gray-300 hover:text-white"
                     >
-                      {node.label}
+                      {page.title}
                     </Link>
                   </li>
                 ))}
@@ -137,14 +138,14 @@ const Footer = ({
                 Senaste recensionerna
               </span>
               <ul role="list" className="mt-6 space-y-4">
-                {posts?.edges.map(({ node }: { node: Post }) => (
-                  <li key={`post-${node.title}`}>
+                {latestReviews.items.map(({ page }) => (
+                  <li key={`post-${page.title}`}>
                     <Link
-                      href={node.uri}
+                      href={page.slug.current}
                       prefetch={false}
-                      className="text-sm leading-6 text-gray300 hover:text-white"
+                      className="text-sm leading-6 text-gray-300 hover:text-white"
                     >
-                      {node.title}
+                      {page.title}
                     </Link>
                   </li>
                 ))}
@@ -154,7 +155,7 @@ const Footer = ({
               <span className="mb-5 block text-xl font-semibold leading-6 text-white">
                 Kontaktuppgifter
               </span>
-              <div className="mb-2 text-sm leading-6 text-lightBlue">
+              <div className="mb-2 text-sm leading-6 text-white">
                 Flamingo Media Limited
                 <br />
                 International House
@@ -239,7 +240,7 @@ const Footer = ({
           </div>
         </div>
         <div className="mt-8 border-t border-white/10 py-8 lg:pt-12">
-          <p className="text-center text-sm leading-6 text-gray300">
+          <p className="text-center text-sm leading-6 text-gray-300">
             Casinogringos.se är en oberoende jämförelsesida för casinon på nätet
             som ägs av Flamingo Media Limited, ett bolag baserat på Malta med
             organisationsnummer C93014. Informationen på sidan är ämnad för
@@ -265,7 +266,7 @@ const Footer = ({
               </Link>
             ))}
           </div>
-          <p className="mt-8 text-center text-xs leading-5 text-gray400 md:order-1 md:mt-0 lg:text-left">
+          <p className="mt-8 text-center text-xs leading-5 text-gray-400 md:order-1 md:mt-0 lg:text-left">
             &copy; 2019-{year} Casinogringos, Alla rättigheter reserverade.
           </p>
         </div>

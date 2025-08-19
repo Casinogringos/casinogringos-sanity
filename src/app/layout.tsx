@@ -12,6 +12,7 @@ import dynamicImport from 'next/dynamic'
 import { Inter, Plus_Jakarta_Sans } from 'next/font/google'
 import { headers } from 'next/headers'
 import { ReactNode } from 'react'
+import Footer from '@/src/components/organisms/Footer'
 
 const ScrollToTop = dynamicImport(
   () => import('@/src/components/molecules/ScrollToTop')
@@ -41,11 +42,21 @@ export default async function RootLayout({
   const headerMenu = await getMenuById({
     id: '44b803d0-621c-4c3f-9c2c-69fb774489bb',
   })
+  console.log('headerMenu', headerMenu)
   const sidebarMenu = await getMenuById({
     id: 'a88836bc-b13a-474e-a2f5-ff59513b526a',
   })
   const sidebarToplist = await getToplistById({
     id: 'fa9e75e6-eadc-499c-9019-dc3843a7e2ca',
+  })
+  const siteLinks = await getMenuById({
+    id: 'ce4ec368-a2be-4bd2-b6b6-b10d48af6109',
+  })
+  const popularCasinos = await getMenuById({
+    id: '8448085d-edd3-4c66-abd9-38ef394c71c2',
+  })
+  const latestReviews = await getMenuById({
+    id: '249c442e-d010-406b-aae8-e08df2cd257a',
   })
   const headersList = await headers()
   const pathname =
@@ -76,6 +87,7 @@ export default async function RootLayout({
           />
           <main className={'relative bg-slate-100'}>{children}</main>
           <ScrollToTop />
+          <Footer siteLinks={siteLinks} popularCasinos={popularCasinos} latestReviews={latestReviews} />
         </Provider>
       </body>
     </html>
