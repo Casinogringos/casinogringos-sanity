@@ -21,6 +21,7 @@ import { slotPageBySlugQuery } from '@/src/data/queries/slotPageBySlugQuery'
 import { newsPageCountQuery } from '@/src/data/queries/newsPageCountQuery'
 import { toplistByIdQuery } from '@/src/data/queries/toplistById'
 import { casinoPagesByCasinosQuery } from '@/src/data/queries/casinoPagesByCasinos'
+import { searchPagePreviewsQuery } from '@/src/data/queries/searchPagePreviewsQuery'
 
 const client = getClient()
 
@@ -42,6 +43,17 @@ export const getGuidePageCount = async () => {
   } catch (e) {
     console.log(e)
     throw Error(`Failed to fetch guide page count`)
+  }
+}
+
+export const getSearchPagePreviews = async () => {
+  try {
+    const data = await client.fetch(searchPagePreviewsQuery())
+    // console.log('data', data)
+    return data
+  } catch (e) {
+    console.log(e)
+    throw Error(`Failed to fetch search page previews`)
   }
 }
 
