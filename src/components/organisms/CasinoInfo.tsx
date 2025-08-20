@@ -8,7 +8,7 @@ import { CasinoPageSchemaType } from '@/src/schemas/casinoPage'
 import CasinoService from '@/src/services/CasinoService'
 import { PortableText } from 'next-sanity'
 import ToggleObject from '@/src/components/molecules/ToggleObject'
-import { PaymentMethodSchemaType } from '@/src/schemas/paymentMethod'
+import { PaymentMethodPageSchemaType } from '@/src/schemas/paymentMethodPage'
 
 const CasinoInfo = ({
     casinoPage,
@@ -25,23 +25,20 @@ const CasinoInfo = ({
     })
     console.log('casinoPage.casino.availableDepositMethods', casinoPage.casino.availableDepositMethods)
     console.log('casinoPage.casino.availableWithdrawalMethods', casinoPage.casino.availableWithdrawalMethods)
-    const depositMethods = casinoPage.casino.availableDepositMethods.reduce((acc, item) => {
+    const depositMethodsPages = casinoPage.casino.availableDepositMethods.reduce((acc, item) => {
         acc.push(item.depositMethodPages[0])
         return acc
-    }, [] as PaymentMethodSchemaType[])
-    console.log('depositMethods', depositMethods)
-    const withdrawalMethods = casinoPage.casino.availableWithdrawalMethods.reduce((acc, item) => {
+    }, [] as PaymentMethodPageSchemaType[])
+    const withdrawalMethodsPages = casinoPage.casino.availableWithdrawalMethods.reduce((acc, item) => {
         acc.push(item.withdrawalMethodPages[0])
         return acc
-    }, [] as PaymentMethodSchemaType[])
-    console.log('withdrawalMethods', withdrawalMethods)
-    const paymentMethods = [...depositMethods, ...withdrawalMethods].reduce((acc, item) => {
-        if (item && !acc.some((method) => method.paymentMethod.slug.current === item.paymentMethod.slug.current)) {
-            acc.push(item)
+    }, [] as PaymentMethodPageSchemaType[])
+    const paymentMethodPages: PaymentMethodPageSchemaType[] = [...depositMethodsPages, ...withdrawalMethodsPages].reduce((acc, page) => {
+        if (page && !acc.some((method) => method.paymentMethod.slug.current === page.paymentMethod.slug.current)) {
+            acc.push(page)
         }
         return acc
-    }, [] as PaymentMethodSchemaType[])
-    console.log('paymentMethods', paymentMethods)
+    }, [] as PaymentMethodPageSchemaType[])
 
     return (
         <div>
@@ -162,11 +159,11 @@ const CasinoInfo = ({
                     ))}
                 </div>
                 <ProsAndConsBox casinoPage={casinoPage} prosTitle="Vad du får" consTitle="Vad du inte får" />
-                {paymentMethods && paymentMethods.length > 0 && (
+                {paymentMethodPages && paymentMethodPages.length > 0 && (
                     <div>
                         <Heading size={5} level={2} className="mb-3 mt-5 font-bold" text='Betalningsmetoder' />
                         <div className={'mb-5 flex flex-wrap items-center'}>
-                            {paymentMethods.map(
+                            {paymentMethodPages.map(
                                 ({ paymentMethod, linkedPage }, i) => {
                                     const Tag = linkedPage ? Link : 'div'
                                     return <Tag href={linkedPage?.slug.current} key={`payment-provider-${paymentMethod._id}`}>

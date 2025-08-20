@@ -52,12 +52,12 @@ export const CasinoSchema = z.object({
   openingHours: z.string(),
   contactMethods: z.array(ContactMethodSchema),
   overallRating: z.number(),
-  availableDepositMethods: z.object({
+  availableDepositMethods: z.array(z.object({
     depositMethodPages: z.array(PaymentMethodPageSchema),
-  }),
-  availableWithdrawalMethods: z.object({
+  })),
+  availableWithdrawalMethods: z.array(z.object({
     withdrawalMethodPages: z.array(PaymentMethodPageSchema),
-  }),
+  })),
   casinoRatings: z.array(CasinoRatingSchema),
 })
 
