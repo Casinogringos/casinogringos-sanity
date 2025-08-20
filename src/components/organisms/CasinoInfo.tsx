@@ -1,15 +1,14 @@
-import { Mail, MessageCircle, Phone } from 'lucide-react'
-import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import Link from '@/src/components/atoms/Link'
 import Container from '@/src/components/atoms/Container'
 import Heading from '@/src/components/atoms/Heading'
 import ProsAndConsBox from '@/src/components/organisms/ProsAndConsBox'
 import StarIcon from '@/src/components/icons/StarIcon'
-import { CasinoPageSchemaType } from '@/src/schemas'
+import { CasinoPageSchemaType } from '@/src/schemas/casinoPage'
 import CasinoService from '@/src/services/CasinoService'
 import { PortableText } from 'next-sanity'
 import ToggleObject from '@/src/components/molecules/ToggleObject'
+import { PaymentMethodSchemaType } from '@/src/schemas/paymentMethod'
 
 const CasinoInfo = ({
     casinoPage,
@@ -24,51 +23,31 @@ const CasinoInfo = ({
     const { quickFacts } = casinoService.getQuickFacts({
         casino: casinoPage.casino,
     })
-    const prosAndConsStructuredData = {
-        '@context': 'https://schema.org',
-        '@type': 'Product',
-        name: title,
-        review: {
-            '@type': 'Review',
-            name: `Recension av ${title}`,
-            author: {
-                '@type': 'Person',
-                name: casinoPage.author.firstName + ' ' + casinoPage.author.lastName,
-            },
-            positiveNotes: {
-                '@type': 'ItemList',
-                itemListElement: casinoPage.casino.advantages.map(
-                    (item, index) => ({
-                        '@type': 'ListItem',
-                        position: index + 1,
-                        name: item,
-                    })
-                ),
-            },
-            negativeNotes: {
-                '@type': 'ItemList',
-                itemListElement: casinoPage.casino.disadvantages.map(
-                    (item, index) => ({
-                        '@type': 'ListItem',
-                        position: index + 1,
-                        name: item,
-                    })
-                ),
-            },
-        },
-    }
+    console.log('casinoPage.casino.availableDepositMethods', casinoPage.casino.availableDepositMethods)
+    console.log('casinoPage.casino.availableWithdrawalMethods', casinoPage.casino.availableWithdrawalMethods)
+    const depositMethods = casinoPage.casino.availableDepositMethods.reduce((acc, item) => {
+        acc.push(item.depositMethodPages[0])
+        return acc
+    }, [] as PaymentMethodSchemaType[])
+    console.log('depositMethods', depositMethods)
+    const withdrawalMethods = casinoPage.casino.availableWithdrawalMethods.reduce((acc, item) => {
+        acc.push(item.withdrawalMethodPages[0])
+        return acc
+    }, [] as PaymentMethodSchemaType[])
+    console.log('withdrawalMethods', withdrawalMethods)
+    const paymentMethods = [...depositMethods, ...withdrawalMethods].reduce((acc, item) => {
+        if (item && !acc.some((method) => method.paymentMethod.slug.current === item.paymentMethod.slug.current)) {
+            acc.push(item)
+        }
+        return acc
+    }, [] as PaymentMethodSchemaType[])
+    console.log('paymentMethods', paymentMethods)
 
     return (
         <div>
-            <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{
-                    __html: JSON.stringify(prosAndConsStructuredData),
-                }}
-            />
             {validRatings.length >= 5 && (
                 <div className="mx-auto max-w-3xl">
-                    <div className="mb-8 w-full rounded-2xl border border-blue100 bg-slate100 pb-6 md:mt-3 md:p-8">
+                    <div className="mb-8 w-full rounded-2xl border border-blue-100 bg-slate-200/20 pb-6 md:mt-3 md:p-8">
                         <div className="relative mb-8 gap-6 overflow-hidden rounded-t-md bg-darklight p-5 md:overflow-visible md:rounded-md">
                             <Heading
                                 className={'!-mt-1 text-lg text-white'}
@@ -171,31 +150,32 @@ const CasinoInfo = ({
                 </div>
             )}
             <Container className="!max-w-3xl !px-0">
-                <Heading level={2} className="mb-5 text-xl font-bold" text={`Snabbfakta om ${title}`} />
+                <Heading level={2} size={5} className="mb-3 font-bold" text={`Snabbfakta om ${title}`} />
                 <div className="mb-5 flex gap-3 overflow-x-auto">
                     {quickFacts.map((item) => (
                         <div className="flex flex-shrink-0 flex-col items-center justify-center gap-2 rounded-2xl border border-gray-300 px-6 py-4">
-                            <div className="text-xs font-semibold uppercase text-slate600">
+                            <div className="text-xs font-semibold uppercase text-slate-600">
                                 {item.label}
                             </div>{' '}
                             <span className="block">{item.value}</span>
                         </div>
                     ))}
                 </div>
-                <ProsAndConsBox pros={casinoPage.casino.advantages} cons={casinoPage.casino.disadvantages} />
-                {casinoPage.casino.availableDepositMethods && (
-                    <>
-                        <h2 className="mb-4 mt-6 text-xl">Betalningsmetoder</h2>
-                        <div className={'mb-2 flex flex-wrap items-center'}>
-                            {casinoPage.casino.availableDepositMethods.map(
-                                (item, i) => (
-                                    <div key={`payment-provider-${item._id}`}>
+                <ProsAndConsBox casinoPage={casinoPage} prosTitle="Vad du får" consTitle="Vad du inte får" />
+                {paymentMethods && paymentMethods.length > 0 && (
+                    <div>
+                        <Heading size={5} level={2} className="mb-3 mt-5 font-bold" text='Betalningsmetoder' />
+                        <div className={'mb-5 flex flex-wrap items-center'}>
+                            {paymentMethods.map(
+                                ({ paymentMethod, linkedPage }, i) => {
+                                    const Tag = linkedPage ? Link : 'div'
+                                    return <Tag href={linkedPage?.slug.current} key={`payment-provider-${paymentMethod._id}`}>
                                         {
-                                            item.logo.src ? (
+                                            paymentMethod.logo.src ? (
                                                 <Image
-                                                    src={item.logo.src}
-                                                    alt={item.logo.altText}
-                                                    key={`payment-provider-${item._type}`}
+                                                    src={paymentMethod.logo.src}
+                                                    alt={paymentMethod.logo.altText}
+                                                    key={`payment-provider-${paymentMethod._type}`}
                                                     width="54"
                                                     height="30"
                                                     className={'rounded-md border border-gray-300'}
@@ -204,14 +184,15 @@ const CasinoInfo = ({
                                                 <span
                                                     className={'rounded-md bg-gray-200 px-3 py-1 text-sm'}
                                                 >
-                                                    {item.name}
+                                                    {paymentMethod.name}
                                                 </span>
                                             )
                                         }
-                                    </div>
-                                ))}
+                                    </Tag>
+                                }
+                            )}
                         </div>
-                    </>
+                    </div>
                 )}
                 {casinoPage.casino.gameProviders && (
                     <>

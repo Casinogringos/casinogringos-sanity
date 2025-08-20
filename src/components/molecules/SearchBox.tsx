@@ -6,12 +6,19 @@ import { Search } from 'lucide-react'
 import Fuse from 'fuse.js'
 import Link from 'next/link'
 import Heading from '@/src/components/atoms/Heading'
+import Date from '@/src/components/atoms/Date'
+import { SubPagePreviewSchemaType } from '@/src/schemas/subPagePreview'
+import { SlotPagePreviewSchemaType } from '@/src/schemas/slotPagePreview'
+import { GuidePagePreviewSchemaType } from '@/src/schemas/guidePagePreview'
+import { NewsPagePreviewSchemaType } from '@/src/schemas/newsPagePreview'
+import { CasinoPagePreviewSchemaType } from '@/src/schemas/casinoPagePreview'
+import { FilteredSearchResultSchemaType } from '@/src/schemas/filteredSearchResult'
 
 const SearchBox = () => {
-    const [data, setData] = useState<SearchSchemaType | null>(null)
-    console.log('data', data)
-    const [filteredData, setFilteredData] = useState<SearchSchemaType | null>(null)
-    const resultGroups = filteredData?.reduce((acc, item) => {
+    const [pages, setPages] = useState<SubPagePreviewSchemaType[] | SlotPagePreviewSchemaType[] | GuidePagePreviewSchemaType[] | NewsPagePreviewSchemaType[] | CasinoPagePreviewSchemaType[] | null>(null)
+    console.log('pages', pages)
+    const [filteredResults, setFilteredResults] = useState<FilteredSearchResultSchemaType[] | null>(null)
+    const resultGroups = filteredResults?.reduce((acc, item) => {
         acc[item._type].push(item)
         return acc
     }, {
@@ -20,8 +27,8 @@ const SearchBox = () => {
         'news-pages': [],
         'slot-pages': [],
         'pages': [],
-    } as Record<string, { _type: string; modifiedAt: string; title: string; slug: { current: string; }; featuredImage?: { url: string; alt: string; } | undefined; }[]>)
-    console.log('filteredData', filteredData)
+    })
+    console.log('filteredResults', filteredResults)
     const [query, setQuery] = useState('')
     const [didFetch, setDidFetch] = useState(false)
     useEffect(() => {
@@ -30,36 +37,36 @@ const SearchBox = () => {
         const fetchData = async () => {
             const res = await fetch('/api/search')
             const data = await res.json()
-            setData(data)
+            setPages(data)
         }
         fetchData()
     }, [])
     useEffect(() => {
         console.log('query', query)
         if (query === '') {
-            setFilteredData(null)
+            setFilteredResults(null)
             return
         }
-        if (!data) return
-        const fuse = new Fuse(data, {
+        if (!pages) return
+        const fuse = new Fuse(pages, {
             keys: ['title', 'slug', 'featuredImage.alt'],
             includeScore: true,
             threshold: 0.2,
         })
         const searchResults = fuse.search(query)
-        const filteredData = searchResults.map((result) => {
-            const record = data?.find((item) => item.slug === result.item.slug)
+        const filteredResults = searchResults.map((result) => {
+            const record = pages?.find((item) => item.slug.current === result.item.slug.current)
             const featuredImage = record?.featuredImage
-            const modifiedAt = record?._updatedAt ?? record?.originalModifiedAt
+            console.log('record', record._updatedAt, record.originalModifiedAt)
             return {
                 _type: result.item._type,
                 title: result.item.title,
                 slug: result.item.slug,
                 featuredImage,
-                modifiedAt,
+                modifiedAt: record?._updatedAt ?? record?.originalModifiedAt,
             }
         })
-        setFilteredData(filteredData)
+        setFilteredResults(filteredResults)
     }, [query])
 
     return (
@@ -72,13 +79,13 @@ const SearchBox = () => {
             </div>
             <div className='bg-white rounded-md max-h-[400px] p-4 overflow-y-scroll'>
                 {resultGroups && resultGroups?.['casino-pages']?.length > 0 && (
-                    <Heading text="Casinoer" level={3} size={6} className='mb-3' />
+                    <Heading text="Casinon" level={3} size={5} className='mb-3' />
                 )}
                 {resultGroups?.['casino-pages'].map((item, index) => (
                     <div key={`${item.slug}-${index}`} className='border-b border-slate-200 p-4'>
                         <Link href={item.slug.current}>
                             <Heading text={item.title} level={4} size={2} className='!font-normal !text-md' />
-                            <span className='text-xs text-slate-500'>{item.modifiedAt}</span>
+                            <Date dateString={item.modifiedAt} />
                         </Link>
                     </div>
                 ))}

@@ -12,6 +12,7 @@ import { gameTypeProjection } from '@/src/data/projections/gameTypeProjection'
 import { sportProjection } from '@/src/data/projections/sportProjection'
 import { liveCasinoBonusProjection } from '@/src/data/projections/liveCasinoBonusProjection'
 import { liveCasinoGameTypeProjection } from '@/src/data/projections/liveCasinoGameTypeProjection'
+import { paymentMethodPageProjection } from '@/src/data/projections/paymentMethodPageProjection'
 
 export const casinoProjection = `
     _type,
@@ -24,10 +25,14 @@ export const casinoProjection = `
     brandColor,
     name,
     availableDepositMethods[]-> {
-      ${paymentMethodProjection}
+      'depositMethodPages': *[paymentMethod._ref == ^._id] {
+        ${paymentMethodPageProjection}
+      },
     },
     availableWithdrawalMethods[]-> {
-      ${paymentMethodProjection}
+      'withdrawalMethodPages': *[paymentMethod._ref == ^._id] {
+        ${paymentMethodPageProjection}
+      },
     },
     logo {
       ${dashboardImageProjection}

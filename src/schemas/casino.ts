@@ -10,9 +10,9 @@ import { GameTypeSchema } from './gameType'
 import { LiveCasinoGameTypeSchema } from './liveCasinoGameType'
 import { SportSchema } from './sport'
 import { GameProviderSchema } from './gameProvider'
-import { PaymentMethodSchema } from './paymentMethod'
 import { ContactMethodSchema } from './contactMethod'
 import { CasinoRatingSchema } from './casinoRating'
+import { PaymentMethodPageSchema } from './paymentMethodPage'
 
 export const CasinoSchema = z.object({
   _type: z.literal('casinos'),
@@ -49,11 +49,15 @@ export const CasinoSchema = z.object({
   amountOfBingoGames: z.number(),
   sports: z.array(SportSchema),
   gameProviders: z.array(GameProviderSchema),
-  availableDepositMethods: z.array(PaymentMethodSchema),
-  availableWithdrawalMethods: z.array(PaymentMethodSchema),
   openingHours: z.string(),
   contactMethods: z.array(ContactMethodSchema),
   overallRating: z.number(),
+  availableDepositMethods: z.object({
+    depositMethodPages: z.array(PaymentMethodPageSchema),
+  }),
+  availableWithdrawalMethods: z.object({
+    withdrawalMethodPages: z.array(PaymentMethodPageSchema),
+  }),
   casinoRatings: z.array(CasinoRatingSchema),
 })
 

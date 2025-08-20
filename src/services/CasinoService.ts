@@ -84,13 +84,32 @@ class CasinoService {
   getQuickFacts({ casino }: { casino: CasinoSchemaType }): {
     quickFacts: {
       label: string
-      value: string
+      value: string | undefined | number
     }[]
   } {
     const quickFacts = [
       {
-        label: 'Svensk licens',
+        label: 'SVENSK LICENS',
         value: casino.swedishLicense ? 'Ja' : 'Nej',
+      },
+      {
+        label: 'SWISH',
+        value: [casino.availableDepositMethods.depositMethodPages, casino.availableWithdrawalMethods.withdrawalMethodPages].some((methodType) => methodType?.some((method) => {
+          console.log('method', method)
+          return method.paymentMethod.slug.current === 'swish'
+        })) ? 'Ja' : 'Nej',
+      },
+      {
+        label: 'LIVECHATT',
+        value: casino.contactMethods.some((method) => method.slug.current.includes('live-chat')) ? 'Ja' : 'Nej',
+      },
+      {
+        label: 'LANSERADSEDE',
+        value: new Date(casino.launchDate).toLocaleDateString('sv-SE', { year: 'numeric' }),
+      },
+      {
+        label: 'Minsta insättning',
+        value: casino.casinoBonuses?.reduce((min, bonus) => Math.min(min, bonus.bonusAmountRange[0]), Infinity),
       }
     ]
     return { quickFacts }

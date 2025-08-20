@@ -41,12 +41,7 @@ export default async function Page() {
 
   // const guides = await getGuidePreviews({ count: 3 })
   const news = await getNewsPagePreviews({ count: 3, offset: 0 })
-  const breadcrumbs = [
-    {
-      url: '/',
-    },
-  ]
-  if (!homepage) return notFound()
 
-  return <HomePage page={homepage} news={news} breadcrumbs={breadcrumbs} />
+  if (!homepage) return notFound()
+  return <HomePage page={homepage} news={news} />
 }

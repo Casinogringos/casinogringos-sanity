@@ -12,7 +12,7 @@ const ToggleObject = ({ children, className = '', title = '' }) => {
     >
       <button
         onClick={() => setOpen(!open)}
-        className={'w-full relative flex items-center px-4 py-2'}
+        className={'w-full relative flex items-center px-4 py-2 cursor-pointer'}
       >
         <h2
           className={
@@ -27,9 +27,8 @@ const ToggleObject = ({ children, className = '', title = '' }) => {
         </div>
       </button>
       <div
-        className={`${
-          open ? 'max-h-[600px]' : 'max-h-0'
-        } overflow-y-auto transition-mh origin-top`}
+        className={`${open ? 'max-h-[600px]' : 'max-h-0'
+          } overflow-y-auto transition-mh origin-top`}
       >
         <p className="pt-2 pb-4 px-4 text-sm text-slate-600">{children}</p>
       </div>

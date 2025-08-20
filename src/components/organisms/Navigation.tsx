@@ -26,10 +26,6 @@ export default async function Navigation({
   sidebarToplist: ToplistSchemaType
   pathname: string | null
 }) {
-  // const headersList = await headers()
-  // const pathname =
-  //   headersList.get('x-pathname') || headersList.get('x-url') || ''
-  // console.log('pathname', pathname)
   const parentRoute = pathname?.split('/')[1]
 
   if (parentRoute === 'go') return null

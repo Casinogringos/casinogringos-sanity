@@ -21,14 +21,6 @@ const Heading = ({
   if (!text) return null
   if (!level) return null
   const slug = slugify(text)
-  const tagClasses = {
-    1: 'text-4xl font-bold mb-5',
-    2: 'text-3xl font-bold',
-    3: 'text-2xl font-bold',
-    4: 'text-xl font-bold',
-    5: 'text-lg font-bold',
-    6: 'text-base font-bold',
-  }
   const sizeClasses = {
     1: 'text-xs',
     2: 'text-sm',
@@ -43,7 +35,7 @@ const Heading = ({
     className:
       index === 0
         ? `mt-0 relative ${className}`
-        : `${tagClasses[level as keyof typeof tagClasses]} ${className} ${sizeClasses[size as keyof typeof sizeClasses]}`,
+        : `${className} ${sizeClasses[size as keyof typeof sizeClasses]}`,
     dangerouslySetInnerHTML: { __html: html },
   })
 }

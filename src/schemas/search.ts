@@ -10,8 +10,7 @@ export const SearchSchema = z.array(z.object({
         url: z.string(),
         alt: z.string(),
     }).optional(),
-    originalModifiedAt: z.string().optional(),
-    _updatedAt: z.string().optional(),
+    modifiedAt: z.string(),
 }))
 
 export type SearchSchemaType = z.infer<typeof SearchSchema>

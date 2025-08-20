@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 
 const DynamicDate = ({ dateString }: { dateString: string }) => {
+  console.log('dateString', dateString)
   const [date, setDate] = useState("");
   useEffect(() => {
     const getDate = () =>

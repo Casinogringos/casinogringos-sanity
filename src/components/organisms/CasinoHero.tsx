@@ -1,10 +1,11 @@
 import Star from '@/src/components/icons/StarIcon'
 import StarHalf from '@/src/components/icons/HalfStarIcon'
-import { CasinoPageSchemaType } from '@/src/schemas'
+import { CasinoPageSchemaType } from '@/src/schemas/casinoPage'
 import Image from 'next/image'
 import Link from '@/src/components/atoms/Link'
 import { PortableText } from 'next-sanity'
 import CasinoService from '@/src/services/CasinoService'
+import Heading from '@/src/components/atoms/Heading'
 
 export default function CasinoHero({
   casinoPage
@@ -18,7 +19,7 @@ export default function CasinoHero({
   })
 
   return (
-    <div className="bg-darklight py-5 lg:py-16">
+    <div className="bg-darklight py-5 lg:py-16 not-prose">
       <div className="mx-auto max-w-6xl px-4 lg:px-8">
         <div className="flex h-full w-full flex-col gap-x-10 lg:flex-row">
           <div
@@ -36,14 +37,10 @@ export default function CasinoHero({
             </div>
           </div>
           <div className="lg:w-3/4">
-            <h1 className="text-3xl font-bold text-white">{casinoPage.title}</h1>
-            {casino.casinoBonuses && casino.casinoBonuses.length > 0 && casino.freeSpins && casino.freeSpins.length > 0 ? (
-              <div className="pb-2 pt-1 text-xl font-bold text-primary">
-                {casino.casinoBonuses[0].bonusAmountRange[1]} kr i bonus + {casino.freeSpins[0].numberOfFreeSpins} free spins
-              </div>
-            ) : <div className="pb-2 pt-1 text-xl font-bold text-primary">
-              {casino.defaultBonusText}
-            </div>}
+            <Heading level={1} size={6} className="text-3xl font-bold text-white !mb-0" text={casinoPage.title} />
+            <div className="pb-2 pt-1 text-xl font-bold text-primary">
+              {casinoService.getBonusString({ casino: casinoPage.casino })}
+            </div>
             {finalRating && finalRating > 0 ? (
               <div className="mb-6 mt-1 flex">
                 {Array.from({ length: Math.floor(finalRating) }).map((_, index) => (
@@ -84,7 +81,7 @@ export default function CasinoHero({
           <Avatar author={author} />
         </div>
       </div> */}
-        <div className="rounded-b-md pt-4 text-xs3 text-gray-400 shadow-2xl">
+        <div className="rounded-b-md pt-4 text-xs text-gray-400 shadow-2xl">
           18+ | Spela ansvarsfullt | Stödlinjen.se | Spelpaus.se | Regler och
           villkor gäller
         </div>
