@@ -11,17 +11,17 @@ const FAQObject = ({ object }: { object: FAQObjectType }) => {
   return (
     <section>
       <PortableText value={object.description} />
-      <div>
+      <div className='not-prose'>
         {object.items.map((item, index) => (
-          <div key={`faq-item-${index}`}>
-            <div>
+          <div key={`faq-item-${index}`} className='mb-3'>
+            <div className='bg-slate-100 p-4 rounded-t-md mb-1'>
               <ToggleButton
                 id={item._key}
                 role={'button'}
                 label={item.question}
               >
                 <div className={'flex items-center justify-between'}>
-                  <Heading text={item.question} level={3} />
+                  <Heading text={item.question} level={3} className='font-bold' />
                   <ToggleSpin id={item._key}>
                     <ChevronDown className={'stroke-dark'} />
                   </ToggleSpin>
@@ -29,7 +29,7 @@ const FAQObject = ({ object }: { object: FAQObjectType }) => {
               </ToggleButton>
             </div>
             <ToggleItem id={item._key}>
-              <div>
+              <div className='bg-slate-100 p-4 rounded-b-md'>
                 <PortableText value={item.answer} />
               </div>
             </ToggleItem>

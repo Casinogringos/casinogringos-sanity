@@ -1,4 +1,5 @@
 import { casinoProjection } from '@/src/data/projections/casinoProjection'
+import { imageProjection } from './imageProjection'
 
 export const casinoPagePreviewProjection = `
   _type,
@@ -8,7 +9,9 @@ export const casinoPagePreviewProjection = `
     _type,
     current
   },
-  publishedAt,
+  featuredImage {
+    ${imageProjection}
+  },
   seoTitle,
   seoDescription,
   casino-> {

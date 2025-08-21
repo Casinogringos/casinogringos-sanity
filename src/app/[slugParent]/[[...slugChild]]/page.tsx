@@ -117,7 +117,7 @@ export default async function Page(props: { params: Params }) {
   const similarCasinoPages: CasinoPageSchemaType[] =
     await getSimilarCasinoPages({
       id: casinoPage._id,
-      count: 5,
+      count: 4,
     })
   if (casinoPage?._type === 'casino-pages') {
     return (
