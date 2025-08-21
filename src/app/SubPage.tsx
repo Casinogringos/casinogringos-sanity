@@ -64,7 +64,7 @@ export default function SubPage({
         />
       ) : null}
       {faqs && faqs.length > 0 && (
-        <div className="mb-16 bg-dark px-4 py-16 md:px-0">
+        <div className="mb-16 bg-dark bg-dark pb-20 pt-10">
           <Container>
             <FAQ items={faqs} title={faqs.title} />
           </Container>

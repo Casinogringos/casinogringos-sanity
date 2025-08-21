@@ -149,7 +149,7 @@ const CasinoInfo = ({
                         <div className="text-xs font-semibold uppercase text-slate-600">
                             {item.label}
                         </div>{' '}
-                        <span className="block">{item.value}</span>
+                        {item.value ? <span className="block">{item.value}</span> : null}
                     </div>
                 ))}
             </div>

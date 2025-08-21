@@ -28,6 +28,10 @@ const Heading = ({
     4: 'text-lg',
     5: 'text-xl',
     6: 'text-2xl',
+    7: 'text-3xl',
+    8: 'text-4xl',
+    9: 'text-5xl',
+    10: 'text-6xl',
   }
   const Tag: string = `h${level}` as keyof JSX.IntrinsicElements
   const html = `<span class='absolute -top-20' id='${slug}'></span>${text ?? children}`

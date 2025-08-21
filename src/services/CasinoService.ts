@@ -79,7 +79,8 @@ class CasinoService {
         : 0
     const finalRating =
       validRatings.length >= 5 ? overallScore : casino?.overallRating
-    return { finalRating: Number(finalRating), validRatings, ratings, ratingKeys: this.ratingKeys }
+    console.log('final rating', finalRating)
+    return { finalRating: typeof finalRating === 'string' ? Number(finalRating) : finalRating, validRatings, ratings, ratingKeys: this.ratingKeys }
   }
   getQuickFacts({ casino }: { casino: CasinoSchemaType }): {
     quickFacts: {
@@ -115,7 +116,8 @@ class CasinoService {
     return { quickFacts }
   }
   getBonusString({ casino }: { casino: CasinoSchemaType }): string {
-    const bonus = casino.casinoBonuses?.[0]?.bonusAmountRange[1] ?? null
+    const bonus = casino.casinoBonuses?.[0]?.bonusAmountRange[1]?.value ?? null
+    console.log('bonus', bonus)
     const freeSpins = casino.freeSpins?.[0]?.numberOfFreeSpins ?? null
     let finalString = ''
     let bonusString = ''

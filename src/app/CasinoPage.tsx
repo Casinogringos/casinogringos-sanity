@@ -22,6 +22,7 @@ const CasinoPage = ({
   casinoPage: CasinoPageSchemaType
   similarCasinoPages: CasinoPageSchemaType[]
 }) => {
+  console.log('casino ratings', casinoPage.casino.casinoRatings)
   const casinoPageService = new CasinoPageService()
   const isValid = casinoPageService.validatePage(casinoPage)
   const schema = {

@@ -6,7 +6,9 @@ export const CasinoBonusSchema = z.object({
   _type: z.literal('casino-bonuses'),
   name: z.string(),
   bonusType: BonusTypeSchema,
-  bonusAmountRange: z.array(z.number()),
+  bonusAmountRange: z.array(z.object({
+    value: z.number(),
+  })),
   bonusPercentage: z.number(),
   minimumDeposit: z.number(),
   wageringRequirements: z.number(),
