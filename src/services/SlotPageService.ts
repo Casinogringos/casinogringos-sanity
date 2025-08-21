@@ -14,7 +14,7 @@ class SlotPageService extends BasePageService<SlotPageSchemaType | SlotPagePrevi
     if (!parse.success) {
       // console.log(`Invalid page:\n${page.title}\n`, parse.error)
       // console.log('suspect page', page)
-      return false
+      // return false
     }
     return true
   }
