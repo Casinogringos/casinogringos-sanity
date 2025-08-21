@@ -44,27 +44,27 @@ const CasinoPage = ({
           casinoPage={casinoPage}
         />
         <BreadCrumbs items={breadcrumbs} />
-        <div className="border-b border-b-slate100 bg-slate50 px-4 pb-4 pt-8 md:pb-6 lg:px-0">
-          <CasinoInfo casinoPage={casinoPage} />
+        <div className="border-b border-b-slate-100 bg-slate-50">
+          <Container className='py-6' narrow>
+            <CasinoInfo casinoPage={casinoPage} />
+          </Container>
         </div>
-        <div className="mx-auto max-w-3xl pb-6">
-          <div className="mb-4 mt-10 px-4 lg:px-0">
-            <Avatar
-              author={casinoPage.author}
-              reviewer={casinoPage.reviewer}
-              modified={casinoPage._updatedAt ?? casinoPage.originalModifiedAt}
-              shareTitle={casinoPage.seoTitle}
-              date={casinoPage.originalPublishedAt ?? casinoPage._createdAt}
-              pathname={casinoPage.slug.current}
-            />
-          </div>
-        </div>
+        <Container className='pt-10 pb-6' narrow>
+          <Avatar
+            author={casinoPage.author}
+            reviewer={casinoPage.reviewer}
+            modified={casinoPage._updatedAt ?? casinoPage.originalModifiedAt}
+            shareTitle={casinoPage.seoTitle}
+            date={casinoPage.originalPublishedAt ?? casinoPage._createdAt}
+            pathname={casinoPage.slug.current}
+          />
+        </Container>
         {headings.length > 1 && (
           <Container narrow>
             <TableOfContents headings={headings} />
           </Container>
         )}
-        {casinoPage.content && <ModularContent objects={casinoPage.content} />}
+        {casinoPage.content && <ModularContent objects={casinoPage.content} casino={casinoPage.casino} />}
         {/*{page?.author && (*/}
         {/*  <div className="mx-4 lg:mx-0">*/}
         {/*    <AuthorBox*/}

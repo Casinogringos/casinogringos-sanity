@@ -4,12 +4,12 @@
 import Container from '../atoms/Container'
 import Link from 'next/link'
 import { ChevronRight } from 'lucide-react'
-import { Breadcrumbs } from '@/src/types/breadcrumbs'
+import { BreadcrumbsSchemaType } from '@/src/schemas/breadcrumbs'
 // import InternalLink from '../../../sin-bin/InternalLink'
 export default function BreadCrumbs({
   items,
 }: {
-  items: Breadcrumbs
+  items: BreadcrumbsSchemaType
 }) {
   return (
     <div className="overflow-x-auto border-b border-b-gray-200 bg-white py-2">

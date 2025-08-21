@@ -22,11 +22,13 @@ import CasinoListObject from './CasinoTableObject'
 import HTMLObject from '@/src/components/organisms/HTMLObject'
 import SlotListObject from '@/src/components/organisms/SlotListObject'
 import CasinoTableObject from './CasinoTableObject'
+import { CasinoSchemaType } from '@/src/schemas/casino'
 
 const renderObject = (
   object: ModularContentItemSchemaType,
   outerIndex: number,
-  nested = false
+  nested = false,
+  casino?: CasinoSchemaType
 ) => {
   if (!object) return null
   const Tag = nested ? 'div' : Container
@@ -144,9 +146,10 @@ const renderObject = (
       )
     }
     case 'rating-object': {
+      if (!casino) return null
       return (
         <Tag>
-          <RatingObject object={object} />
+          <RatingObject object={object} casino={casino} />
         </Tag>
       )
     }
@@ -173,10 +176,12 @@ const ModularContent = async ({
   objects,
   className = '',
   nested,
+  casino
 }: {
   objects: ModularContentSchemaType
   className?: string
   nested?: boolean
+  casino?: CasinoSchemaType
 }) => {
   // if (!nested) await writeDataToTestFile(objects)
   if (!objects) return null
@@ -189,7 +194,7 @@ const ModularContent = async ({
         if (!object._key) return null
         return (
           <Fragment key={`object-${object._key}`}>
-            {renderObject(object, outerIndex, nested)}
+            {renderObject(object, outerIndex, nested, casino)}
           </Fragment>
         )
       })}

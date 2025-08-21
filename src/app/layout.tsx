@@ -85,7 +85,7 @@ export default async function RootLayout({
             sidebarToplist={sidebarToplist}
             pathname={pathname}
           />
-          <main className={'relative bg-slate-100'}>{children}</main>
+          <main className={'relative'}>{children}</main>
           <ScrollToTop />
           <Footer siteLinks={siteLinks} popularCasinos={popularCasinos} latestReviews={latestReviews} />
         </Provider>
