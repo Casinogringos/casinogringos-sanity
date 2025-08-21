@@ -83,7 +83,11 @@ const HomePage = ({
         </Container>
       )}
       {faqs && (
-        <FAQ items={faqs.items} title={faqs.title} description={faqs.description} />
+        <div className='bg-dark pb-16 pt-10'>
+          <Container>
+            <FAQ items={faqs.items} title={faqs.title} description={faqs.description} />
+          </Container>
+        </div>
       )}
     </>
   )

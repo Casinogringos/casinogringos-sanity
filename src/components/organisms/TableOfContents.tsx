@@ -20,7 +20,7 @@ const TableOfContents = async ({ headings }: { headings: Heading[] }) => {
   return (
     <section
       className={
-        'bg-slate-200 mb-3 mx-auto rounded-md overflow-hidden relative'
+        'bg-slate-100 mb-3 mx-auto rounded-md overflow-hidden relative'
       }
     >
       <ToggleButton

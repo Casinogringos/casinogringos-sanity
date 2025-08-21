@@ -18,7 +18,7 @@ const SlotListObject = ({
           </li>
         ))}
       </ul>
-      <div className='text-right'><Link href='/slots'>Visa fler slots</Link></div>
+      <div className='text-right'><Link underline={true} href='/slots'>Visa fler slots</Link></div>
     </section>
   )
 }

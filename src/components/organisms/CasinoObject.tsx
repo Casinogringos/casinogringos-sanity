@@ -14,7 +14,7 @@ const CasinoObject = ({ object }: { object: CasinoObjectSchemaType }) => {
   return (
     <div
       className={
-        'grid grid-cols-1 md:grid-cols-[100px_1fr] bg-slate-200 rounded-lg lg:px-6 px-5 py-6 mb-4 lg:mb-6 lg:py-9 gap-6'
+        'grid grid-cols-1 md:grid-cols-[100px_1fr] bg-slate-100 rounded-lg lg:px-6 px-5 py-6 mb-4 lg:mb-6 lg:py-9 gap-6'
       }
     >
       <div className={'flex lg:justify-start lg:items-start not-prose'}>

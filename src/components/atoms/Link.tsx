@@ -23,7 +23,8 @@ const Link = ({
   variant,
   title,
   disabled,
-  size = 'md'
+  size = 'md',
+  underline = false
 }: {
   href: string
   rel?: string
@@ -44,6 +45,7 @@ const Link = ({
   variant?: 'affiliate' | 'ghost'
   disabled?: boolean
   size?: 'sm' | 'md' | 'lg'
+  underline?: boolean
 }) => {
   const plausibleMethod = usePlausible()
   const pathname = usePathname()
@@ -63,7 +65,7 @@ const Link = ({
       case 'affiliate':
         return `bg-button hover:bg-button-hover not-prose inline-block justify-center lg:text-lg text-white no-underline text-center font-semibold ${paddingClasses[size]} ${sizeClasses[size]} rounded-md`
       default:
-        return `${isActive ? 'text-primary' : 'hover:text-primary'} underline`
+        return `${isActive ? 'text-primary' : 'hover:text-primary'} ${underline ? 'underline' : ''}`
     }
   }
   if (!href) return <Placeholder message={'Link component missing the href'} />

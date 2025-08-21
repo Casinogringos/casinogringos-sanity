@@ -100,7 +100,7 @@ export default function CasinoList({
         label={'Visa fler casinon'}
       >
         <div className="text-center">
-          <div className='cursor-pointer inline-block py-2 px-4 rounded-md text-xs text-white bg-dark'>
+          <div className='cursor-pointer inline-block py-2 px-4 rounded-md text-sm text-white bg-dark'>
             Visa fler casinon
           </div>
         </div>

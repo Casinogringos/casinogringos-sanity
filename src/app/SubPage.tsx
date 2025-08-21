@@ -36,10 +36,6 @@ export default function SubPage({
   }
   const breadcrumbs = [
     {
-      text: 'Hem',
-      url: `${process.env.SITE_URL}`,
-    },
-    {
       text: page.title,
     },
   ]
@@ -63,10 +59,10 @@ export default function SubPage({
           description={toplist.description}
         />
       ) : null}
-      {faqs && faqs.length > 0 && (
-        <div className="mb-16 bg-dark bg-dark pb-20 pt-10">
+      {faqs && (
+        <div className="mb-16 bg-dark pb-16 pt-10">
           <Container>
-            <FAQ items={faqs} title={faqs.title} />
+            <FAQ items={faqs.items} title={faqs.title} />
           </Container>
         </div>
       )}
