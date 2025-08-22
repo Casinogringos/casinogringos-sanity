@@ -67,7 +67,8 @@ export default function CasinoList({
         <div className="pr-8 lg:pr-0">
           <Heading
             level={2}
-            className="mb-0 !mt-1 text-xl tracking-normal lg:text-2xl"
+            size={7}
+            className="mb-0 !mt-1 font-semibold"
             text={title}
           />
           <p className="text-gray-600 mb-5 mt-1 text-sm lg:mb-6">

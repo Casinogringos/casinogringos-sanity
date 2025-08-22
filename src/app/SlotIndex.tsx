@@ -45,14 +45,14 @@ export default function SlotIndex({
         </Container>
       </div>
       {faqs && (
-        <div className="mb-16 bg-dark pb-20 pt-10">
+        <div className="mb-16 bg-dark pb-16 pt-6">
           <Container>
             <FAQ items={faqs.items} title={faqs.title} />
           </Container>
         </div>
       )}
       {headings.length > 1 && (
-        <Container narrow>
+        <Container>
           <TableOfContents headings={headings} />
         </Container>
       )}

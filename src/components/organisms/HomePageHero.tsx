@@ -2,7 +2,7 @@ import { ArrowRight, Gift, Star, Vibrate, Zap } from 'lucide-react'
 import Image from 'next/image'
 import Container from '@/src/components/atoms/Container'
 import Link from '@/src/components/atoms/Link'
-import { SubPageSchemaType } from '@/src/schemas'
+import { SubPageSchemaType } from '@/src/schemas/subPage'
 import { PortableText } from 'next-sanity'
 import Heading from '@/src/components/atoms/Heading'
 
@@ -37,6 +37,7 @@ const HomePageHero = ({ page }: { page: SubPageSchemaType }) => {
           <section className="relative z-10">
             <Heading
               level={1}
+              size={10}
               className="max-w-md font-jakarta text-4xl font-bold tracking-tight text-white sm:text-[45px] sm:leading-[52px]"
               text={page.title}
             >

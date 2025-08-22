@@ -3,14 +3,14 @@ import Image from 'next/image'
 import { CasinoPageSchemaType } from '@/src/schemas/casinoPage'
 import { CasinoPagePreviewSchemaType } from '@/src/schemas/casinoPagePreview'
 
-const CasinoTableRow = ({
-  casino,
+const CasinoRow = ({
+  casinoPage,
   pathname,
 }: {
-  casino: CasinoPageSchemaType | CasinoPagePreviewSchemaType
+  casinoPage: CasinoPageSchemaType | CasinoPagePreviewSchemaType
   pathname: string
 }) => {
-  const { casino: casinoData } = casino
+  const { casino: casinoData } = casinoPage
 
   return (
     <>
@@ -28,7 +28,7 @@ const CasinoTableRow = ({
           </span>
         </div>
         <Link
-          href={`/go/${casino.slug.current}`}
+          href={`/go/${casinoPage.slug.current}`}
           target="_blank"
           rel="noopener noreferrer nofollow"
           prefetch={false}
@@ -71,4 +71,4 @@ const CasinoTableRow = ({
   )
 }
 
-export default CasinoTableRow
+export default CasinoRow

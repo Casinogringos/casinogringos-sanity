@@ -1,8 +1,7 @@
-import { NewsPage } from '@/src/types'
 import Heading from '@/src/components/atoms/Heading'
 import NewsCard from '@/src/components/organisms/NewsCard'
 import Link from 'next/link'
-import { NewsPageSchemaType } from '@/src/schemas'
+import { NewsPageSchemaType } from '@/src/schemas/newsPage'
 
 const NewsList = ({
   items,
@@ -16,7 +15,7 @@ const NewsList = ({
   return (
     <div className={`bg-blue-100 py-10 sm:py-20`}>
       <div className="mx-auto max-w-6xl px-6 lg:px-8">
-        <Heading level={2} text={'Senaste casinonyheter'} className="text-gray-900 text-3xl font-bold tracking-tight" />
+        <Heading level={2} size={7} text={'Senaste casinonyheter'} className="text-gray-900 font-semibold tracking-tight" />
         <p className="mt-4 text-slate600">
           Här hittar du de senaste nyheterna om online casino i Sverige. Vi
           håller oss alltid uppdaterade med vad som sker inom den svenska

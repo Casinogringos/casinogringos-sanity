@@ -10,7 +10,7 @@ const CasinoTableObject = ({ object }: { object: CasinoTableObjectSchemaType }) 
     const { title, description, casinos } = toplist
 
     return (
-        <section>
+        <div>
             <table>
                 <thead>
                     <tr className='bg-dark not-prose'>
@@ -26,7 +26,7 @@ const CasinoTableObject = ({ object }: { object: CasinoTableObjectSchemaType }) 
                     ))}
                 </tbody>
             </table>
-        </section>
+        </div>
     )
 }
 
