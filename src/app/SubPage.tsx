@@ -59,7 +59,7 @@ export default function SubPage({
           description={toplist.description}
         />
       ) : null}
-      {faqs && (
+      {faqs && toplist?.casinos?.length && (
         <div className="mb-16 bg-dark pb-16 pt-10">
           <Container>
             <FAQ items={faqs.items} title={faqs.title} />
@@ -82,6 +82,13 @@ export default function SubPage({
             reviewedBy={reviewer}
           />
         </Container>
+      )}
+      {!toplist?.casinos?.length && faqs && (
+        <div className="bg-dark pb-16 pt-10">
+          <Container>
+            <FAQ items={faqs.items} title={faqs.title} />
+          </Container>
+        </div>
       )}
     </div>
   )
