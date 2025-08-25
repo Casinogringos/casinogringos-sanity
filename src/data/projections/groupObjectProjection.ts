@@ -4,6 +4,7 @@ import { paragraphObjectProjection } from '@/src/data/projections/paragraphObjec
 import { imageObjectProjection } from '@/src/data/projections/imageObjectProjection'
 import { buttonObjectProjection } from '@/src/data/projections/buttonObjectProjection'
 import { buttonsObjectProjection } from '@/src/data/projections/buttonsObjectProjection'
+import { columnsObjectProjection } from './columnsObjectProjection'
 
 export const groupObjectProjection = `
   _type == 'group-object' => {
@@ -19,6 +20,7 @@ export const groupObjectProjection = `
          ${imageObjectProjection},
          ${buttonObjectProjection},
          ${buttonsObjectProjection},
+         ${columnsObjectProjection}
     },
     message
   }
