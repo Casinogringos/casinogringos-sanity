@@ -3,8 +3,7 @@ import { Calendar, Linkedin, Mail } from 'lucide-react'
 import Image from 'next/image'
 import CheckBadgeIcon from '@/src/components/icons/CheckBadgeIcon'
 import Link from '@/src/components/atoms/Link'
-import { AuthorSchemaType } from '@/src/schemas'
-import SanityImage from '@/src/components/atoms/SanityImage'
+import { AuthorSchemaType } from '@/src/schemas/author'
 
 const AuthorBox = ({
   author,
@@ -16,23 +15,27 @@ const AuthorBox = ({
   reviewedBy?: AuthorSchemaType
 }) => {
   return (
-    <div className="mx-auto mb-12 max-w-3xl rounded-md border border-blue100 bg-blue50 p-6">
+    <div className="mx-auto mb-12 max-w-3xl rounded-md border border-blue-100 bg-blue-50 p-6">
       <div className="flex items-start gap-3">
         <div className="overflow-hidden rounded-full">
-          <SanityImage
-            image={author.avatar}
+          <Image
+            src={author.avatar.src}
+            alt={author.avatar.alt}
             width={45}
+            height={45}
+            priority={true}
+            className="rounded-full"
           />
         </div>
         <div>
-          <div className="text-sm text-slate700">Innehållsansvarig:</div>
+          <div className="text-sm text-slate-700">Innehållsansvarig:</div>
           <Link
             prefetch={false}
             href={`/om-oss/${author.slug.current}`}
             className="font-semibold"
           >
             {author.firstName} {author.lastName}{' '}
-            <CheckBadgeIcon className="-mt-1 inline-block h-5 w-5 text-blue500" />
+            <CheckBadgeIcon className="-mt-1 inline-block h-5 w-5 text-blue-500" />
           </Link>
         </div>
         <div className="ml-auto flex gap-2">
@@ -64,7 +67,7 @@ const AuthorBox = ({
           )}
         </div>
       </div>
-      <p className="mt-4 text-sm text-slate700">{author.description}</p>
+      <p className="mt-4 text-sm text-slate-700">{author.description}</p>
       {author.expertise && (
         <section>
           <span className="mb-2 mt-5 block font-semibold">Expertområden</span>
@@ -83,12 +86,12 @@ const AuthorBox = ({
         </section>
       )}
       <div className="mt-5 flex flex-col lg:flex-row">
-        <p className="flex items-center gap-2 text-xs text-slate700">
+        <p className="flex items-center gap-2 text-xs text-slate-700">
           <Calendar className="h-3 w-3" /> Uppdaterad:{' '}
           <Date dateString={modified} />
         </p>
         {reviewedBy && (
-          <div className="mt-2 flex gap-3 text-xs text-slate700 lg:ml-auto lg:mt-0">
+          <div className="mt-2 flex gap-3 text-xs text-slate-700 lg:ml-auto lg:mt-0">
             <p className="text-xs">
               Faktakontrollerad av:{' '}
               <Link
@@ -97,7 +100,7 @@ const AuthorBox = ({
                 href={`/om-oss/${reviewedBy?.slug}`}
               >
                 {reviewedBy?.firstName} {reviewedBy?.lastName}
-                <CheckBadgeIcon className="ml-1 inline-block h-4 w-4 text-blue400" />
+                <CheckBadgeIcon className="ml-1 inline-block h-4 w-4 text-blue-400" />
               </Link>
             </p>
           </div>

@@ -9,7 +9,7 @@ import {
   WhatsappShareButton,
 } from 'next-share'
 import Link from '@/src/components/atoms/Link'
-import { AuthorSchemaType } from '@/src/schemas'
+import { AuthorSchemaType } from '@/src/schemas/author'
 import ShareButtons from '@/src/components/molecules/ShareButtons'
 import Image from 'next/image'
 import Placeholder from '@/src/components/atoms/Placeholder'
@@ -35,7 +35,7 @@ const Avatar = ({
 
   return (
     <>
-      <div className="flex gap-x-6 border-b border-t border-gray100 py-4 md:justify-between lg:mt-5">
+      <div className="flex gap-x-6 border-b border-t border-gray-100 py-4 md:justify-between lg:mt-5">
         <div className="flex gap-3">
           <div className="relative h-10 w-10 rounded-full">
             <Image
@@ -46,7 +46,7 @@ const Avatar = ({
             />
           </div>
           <div>
-            <div className="text-xs font-medium text-slate700">
+            <div className="text-xs font-medium text-slate-700">
               {author.role}
             </div>
             <div className="has-tooltip relative block w-fit items-center gap-1 text-sm">
@@ -70,7 +70,7 @@ const Avatar = ({
                   </div>
                   <div>
                     <strong className="text-base font-medium">{`${author.firstName} ${author.lastName}`}</strong>{' '}
-                    <div className="text-xs font-medium text-slate700">
+                    <div className="text-xs font-medium text-slate-700">
                       {author.role}
                     </div>
                     <div className="ml-auto mt-1 flex gap-1.5">
@@ -87,7 +87,7 @@ const Avatar = ({
                       )}
                       {author.email && (
                         <Link
-                          className="rounded-md bg-slate200 p-1 text-slate500"
+                          className="rounded-md bg-slate-200 p-1 text-slate500"
                           href={`mailto:${author.email}`}
                           title="E-post"
                           target="_blank"
@@ -99,7 +99,7 @@ const Avatar = ({
                     </div>
                   </div>
                 </div>
-                <div className="mt-4 text-sm font-normal text-slate600">
+                <div className="mt-4 text-sm font-normal text-slate-600">
                   {author.description}
                 </div>
                 <Link
@@ -155,7 +155,7 @@ const Avatar = ({
           <ShareButtons url={url} title={shareTitle} />
         </div>
       </div>
-      <div className="mt-3 flex items-center gap-1 rounded-sm border border-gray200 px-3 py-2.5 text-xs text-slate700 md:mt-0 md:hidden">
+      <div className="mt-3 flex items-center gap-1 rounded-sm border border-gray-200 px-3 py-2.5 text-xs text-slate-700 md:mt-0 md:hidden">
         <span>Uppdaterad:</span>
         <time dateTime={modified}>
           <Date dateString={modified} />

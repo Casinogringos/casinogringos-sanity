@@ -14,8 +14,7 @@ import {
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import Link from '@/src/components/atoms/Link'
-import SanityImage from '../atoms/SanityImage'
-import { AuthorSchemaType } from '@/src/schemas'
+import { AuthorSchemaType } from '@/src/schemas/author'
 
 const HeroAvatar = ({
   author,
@@ -34,27 +33,30 @@ const HeroAvatar = ({
     <>
       <div className="flex items-start gap-3 lg:mt-8">
         <div className="relative mt-1 flex h-11 w-11 rounded-full">
-          <SanityImage
-            image={author.avatar}
+          <Image
+            src={author.avatar.src}
+            alt={author.avatar.alt}
+            width={44}
+            height={44}
             priority={true}
             className="rounded-full"
           />
         </div>
         <div>
           <Link
-            className="text-sm text-slate300"
+            className="text-sm text-slate-300"
             prefetch={false}
             href={`/om-oss/${author.slug.current}`}
           >
             <span className="flex items-center gap-1 font-medium">
               {author.firstName} {author.lastName}
-              <CheckBadge className="h-4 w-4 rounded-full text-sky400" />
+              <CheckBadge className="h-4 w-4 rounded-full text-sky-400" />
             </span>
-            <div className="flex items-center gap-1 text-xs text-slate300">
+            <div className="flex items-center gap-1 text-xs text-slate-300">
               {author.role}
             </div>
           </Link>
-          <div className="flex w-full items-center gap-x-4 text-slate400">
+          <div className="flex w-full items-center gap-x-4 text-slate-400">
             {modified ? (
               <div className="mt-0.5 flex items-center gap-2 text-xs">
                 <span>
@@ -62,7 +64,7 @@ const HeroAvatar = ({
                 </span>
               </div>
             ) : (
-              <div className="flex items-center gap-2 text-xs font-medium text-slate400">
+              <div className="flex items-center gap-2 text-xs font-medium text-slate-400">
                 <Calendar className="text-slate-200 h-4 w-4" />
                 <span>
                   Publicerad: <Date dateString={date} />

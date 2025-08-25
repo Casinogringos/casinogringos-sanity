@@ -1,4 +1,3 @@
-import { imageProjection } from "./imageProjection"
 import { imageObjectProjection } from "./imageObjectProjection"
 
 export const pagePreviewProjection = `
@@ -12,7 +11,7 @@ export const pagePreviewProjection = `
   seoTitle,
   seoDescription,
   seoImage {
-    ${imageProjection}
+    ${imageObjectProjection}
   },
   canonical,
   intro,
