@@ -6,6 +6,14 @@ const GroupObject = ({ object, className }: { object: GroupObjectType, className
     switch (object.backgroundColor) {
       case 'gray':
         return 'bg-slate-100'
+      case 'green':
+        return 'bg-green-50'
+      case 'red':
+        return 'bg-red-200'
+      case 'yellow':
+        return 'bg-yellow'
+      case 'green':
+        return 'bg-green-50'
       case 'transparent':
         return 'bg-transparent'
       default:

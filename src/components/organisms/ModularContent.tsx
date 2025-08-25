@@ -42,7 +42,7 @@ const renderObject = (
     }
     case 'paragraph-object':
       return (
-        <Tag className={nested ? 'not-prose' : ''}>
+        <Tag>
           <PortableText value={object.content} />
         </Tag>
       )

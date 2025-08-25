@@ -1,10 +1,9 @@
-import { ButtonObject as ButtonObjectType } from '@/src/types'
+import { ButtonObjectSchemaType } from '@/src/schemas/buttonObject'
 import Link from '@/src/components/atoms/Link'
 
-const ButtonObject = ({ object }: { object: ButtonObjectType }) => {
-  // console.log('button object', object)
+const ButtonObject = ({ object }: { object: ButtonObjectSchemaType }) => {
   const getHref = () => {
-    if (!object.page) {
+    if (!object.page?.slug) {
       return `${object.uri.current}`
     }
     switch (object.page._type) {
@@ -18,10 +17,13 @@ const ButtonObject = ({ object }: { object: ButtonObjectType }) => {
         return `/slots/${object.page.slug.current}`
       case 'pages':
         return `/${object.page.slug.current}`
+      default:
+        return null
     }
   }
+  const href = getHref()
 
-  return <Link href={getHref()}>{object.title}</Link>
+  return href ? <Link variant="affiliate" href={href}>{object.title}</Link> : null
 }
 
 export default ButtonObject

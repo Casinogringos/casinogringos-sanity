@@ -20,7 +20,7 @@ import { ToggleObjectSchema } from './toggleObject';
 export const GroupObjectSchema = z.object({
   _type: z.literal('group-object'),
   _key: z.string(),
-  backgroundColor: z.enum(['gray', 'transparent']).optional(),
+  backgroundColor: z.enum(['gray', 'transparent', 'green', 'red', 'yellow']).optional(),
   content: z.array(z.discriminatedUnion('_type', [
     AffiliateButtonObjectSchema,
     AISummaryObjectSchema,
