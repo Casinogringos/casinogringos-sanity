@@ -45,7 +45,7 @@ const AuthorBox = ({
               target="_blank"
               aria-label={`${author?.firstName} ${author?.lastName} på LinkedIn`}
               href={author.linkedIn}
-              className="rounded-full bg-normal p-[8px]"
+              className="rounded-full bg-dark bg-normal p-[8px]"
             >
               <Linkedin
                 aria-label="none"
@@ -57,7 +57,7 @@ const AuthorBox = ({
             <Link
               href={`mailto:${author.email}`}
               aria-label={`${author.firstName} ${author.lastName} via e-post`}
-              className="rounded-full bg-normal p-[8px]"
+              className="rounded-full bg-dark bg-normal p-[8px]"
             >
               <Mail
                 aria-label="none"
@@ -97,7 +97,7 @@ const AuthorBox = ({
               <Link
                 className="text-xs font-medium"
                 prefetch={false}
-                href={`/om-oss/${reviewedBy?.slug}`}
+                href={`/om-oss/${reviewedBy?.slug.current}`}
               >
                 {reviewedBy?.firstName} {reviewedBy?.lastName}
                 <CheckBadgeIcon className="ml-1 inline-block h-4 w-4 text-blue-400" />

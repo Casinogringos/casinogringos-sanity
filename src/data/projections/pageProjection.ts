@@ -23,6 +23,9 @@ export const pageProjection = `
   author-> {
     ${authorProjection}
   },
+  reviewer-> {
+    ${authorProjection}
+  },
   featuredImage {
     ${imageObjectProjection}
   },

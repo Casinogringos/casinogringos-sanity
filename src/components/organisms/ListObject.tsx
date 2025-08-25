@@ -5,10 +5,10 @@ const ListObject = ({ object }: { object: ListObjectSchemaType }) => {
 
   if (object.numbered) {
     return (
-      <div>
+      <div className='not-prose'>
         <ol className='p-0'>
           {object.items.map((item, index) => (
-            <li key={item._key} className='flex items-center gap-2'>
+            <li key={item._key} className='flex items-center gap-2 my-2'>
               <span className='rounded-full w-6 h-6 flex items-center justify-center bg-green-500 text-white'>{index + 1}</span>
               <ModularContent objects={item.content} nested={true} />
             </li>
@@ -18,10 +18,10 @@ const ListObject = ({ object }: { object: ListObjectSchemaType }) => {
     )
   }
   return (
-    <div>
-      <ul>
+    <div className='not-prose'>
+      <ul className='p-0'>
         {object.items.map((item) => (
-          <li key={item._key}>
+          <li key={item._key} className='my-2'>
             <ModularContent objects={item.content} nested={true} />
           </li>
         ))}
