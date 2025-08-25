@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { SearchSchemaType } from '@/src/schemas/search'
 import { Search } from 'lucide-react'
 import Fuse from 'fuse.js'
@@ -13,13 +13,23 @@ import { GuidePagePreviewSchemaType } from '@/src/schemas/guidePagePreview'
 import { NewsPagePreviewSchemaType } from '@/src/schemas/newsPagePreview'
 import { CasinoPagePreviewSchemaType } from '@/src/schemas/casinoPagePreview'
 import { FilteredSearchResultSchemaType } from '@/src/schemas/filteredSearchResult'
+import { id } from 'zod/v4/locales'
+import _ from 'lodash'
 
 const SearchBox = () => {
     const [pages, setPages] = useState<SubPagePreviewSchemaType[] | SlotPagePreviewSchemaType[] | GuidePagePreviewSchemaType[] | NewsPagePreviewSchemaType[] | CasinoPagePreviewSchemaType[] | null>(null)
     console.log('pages', pages)
     const [filteredResults, setFilteredResults] = useState<FilteredSearchResultSchemaType[] | null>(null)
-    const resultGroups = filteredResults?.reduce((acc, item) => {
-        acc[item._type].push(item)
+    const resultGroups = useMemo(() => filteredResults?.reduce((acc, item) => {
+        if (!item) return acc
+        const newItem = {
+            _type: item._type,
+            title: item.title,
+            slug: { ...item.slug },
+            featuredImage: { ...item.featuredImage },
+            modifiedAt: item.modifiedAt,
+        }
+        acc[item._type].push(newItem)
         return acc
     }, {
         'casino-pages': [],
@@ -27,7 +37,11 @@ const SearchBox = () => {
         'news-pages': [],
         'slot-pages': [],
         'pages': [],
-    })
+    }) ?? [], [filteredResults])
+    useEffect(() => {
+        console.log('resultGroups after grouping:', resultGroups);
+    }, [resultGroups]);
+    console.log('resultGroups', resultGroups)
     console.log('filteredResults', filteredResults)
     const [query, setQuery] = useState('')
     const [didFetch, setDidFetch] = useState(false)
@@ -56,14 +70,17 @@ const SearchBox = () => {
         const searchResults = fuse.search(query)
         const filteredResults = searchResults.map((result) => {
             const record = pages?.find((item) => item.slug.current === result.item.slug.current)
-            const featuredImage = record?.featuredImage
-            console.log('record', record._updatedAt, record.originalModifiedAt)
+            const clonedRecord = _.cloneDeep(record)
+            const featuredImage = clonedRecord?.featuredImage
+            const rawModifiedAt = clonedRecord?.originalModifiedAt ?? clonedRecord?._updatedAt
+            const modified = rawModifiedAt instanceof Date ? rawModifiedAt.toISOString() : rawModifiedAt
+            console.log('record', clonedRecord._updatedAt, clonedRecord.originalModifiedAt)
             return {
-                _type: result.item._type,
-                title: result.item.title,
-                slug: result.item.slug,
+                _type: record?._type,
+                title: record?.title,
+                slug: { ...record.slug },
                 featuredImage,
-                modifiedAt: record?._updatedAt ?? record?.originalModifiedAt,
+                modifiedAt: modified,
             }
         })
         setFilteredResults(filteredResults)
@@ -81,8 +98,8 @@ const SearchBox = () => {
                 {resultGroups && resultGroups?.['casino-pages']?.length > 0 && (
                     <Heading text="Casinon" level={3} size={5} className='mb-3' />
                 )}
-                {resultGroups?.['casino-pages'].map((item, index) => (
-                    <div key={`${item.slug}-${index}`} className='border-b border-slate-200 p-4'>
+                {resultGroups?.['casino-pages']?.map((item, index) => (
+                    <div key={`${item.slug.current}`} className='border-b border-slate-200 p-4'>
                         <Link href={item.slug.current}>
                             <Heading text={item.title} level={4} size={2} className='!font-normal !text-md' />
                             <Date dateString={item.modifiedAt} />
@@ -90,42 +107,46 @@ const SearchBox = () => {
                     </div>
                 ))}
                 {resultGroups && resultGroups?.['guide-pages']?.length > 0 && (
-                    <Heading text="Guidor" level={3} size={6} />
+                    <Heading text="Guidor" level={3} size={5} className='mb-3' />
                 )}
-                {resultGroups?.['guide-pages'].map((item, index) => (
+                {resultGroups?.['guide-pages']?.map((item, index) => (
                     <div key={`${item.slug}-${index}`}>
                         <Link href={item.slug.current}>
-                            <h2>{item.title}</h2>
+                            <Heading text={item.title} level={4} size={2} className='!font-normal !text-md' />
+                            <Date dateString={item.modifiedAt} />
                         </Link>
                     </div>
                 ))}
                 {resultGroups && resultGroups?.['news-pages']?.length > 0 && (
-                    <Heading text="Nyheter" level={3} size={6} />
+                    <Heading text="Nyheter" level={3} size={5} className='mb-3' />
                 )}
-                {resultGroups?.['news-pages'].map((item, index) => (
+                {resultGroups?.['news-pages']?.map((item, index) => (
                     <div key={`${item.slug}-${index}`}>
                         <Link href={item.slug.current}>
-                            <h2>{item.title}</h2>
+                            <Heading text={item.title} level={4} size={2} className='!font-normal !text-md' />
+                            <Date dateString={item.modifiedAt} />
                         </Link>
                     </div>
                 ))}
                 {resultGroups && resultGroups?.['slot-pages']?.length > 0 && (
-                    <Heading text="Sloter" level={3} size={6} />
+                    <Heading text="Sloter" level={3} size={5} className='mb-3' />
                 )}
-                {resultGroups?.['slot-pages'].map((item, index) => (
+                {resultGroups?.['slot-pages']?.map((item, index) => (
                     <div key={`${item.slug}-${index}`}>
                         <Link href={item.slug.current}>
-                            <h2>{item.title}</h2>
+                            <Heading text={item.title} level={4} size={2} className='!font-normal !text-md' />
+                            <Date dateString={item.modifiedAt} />
                         </Link>
                     </div>
                 ))}
                 {resultGroups && resultGroups?.['pages']?.length > 0 && (
-                    <Heading text="Sidor" level={3} size={6} />
+                    <Heading text="Sidor" level={3} size={5} className='mb-3' />
                 )}
-                {resultGroups?.['pages'].map((item, index) => (
+                {resultGroups?.['pages']?.map((item, index) => (
                     <div key={`${item.slug}-${index}`}>
                         <Link href={item.slug.current}>
-                            <h2>{item.title}</h2>
+                            <Heading text={item.title} level={4} size={2} className='!font-normal !text-md' />
+                            <Date dateString={item.modifiedAt} />
                         </Link>
                     </div>
                 ))}
