@@ -1,24 +1,27 @@
-import { ProsAndConsObject as ProsAndConsObjectType } from '@/src/types'
 import Heading from '@/src/components/atoms/Heading'
+import { ProsAndConsObjectSchemaType } from '@/src/schemas/prosAndConsObject'
 import { PortableText } from 'next-sanity'
+import { Check, X } from 'lucide-react'
 
-const ProsAndConsObject = ({ object }: { object: ProsAndConsObjectType }) => {
+const ProsAndConsObject = ({ object }: { object: ProsAndConsObjectSchemaType }) => {
   return (
-    <section>
+    <section className='not-prose'>
       <div className={'grid grid-cols-1 md:grid-cols-2 gap-4'}>
         <div>
-          <Heading text={'Fördelar'} level={2} />
+          <Heading text={'Fördelar'} className='font-bold mb-2' level={2} size={5} />
           {object.pros.map((pro, index) => (
-            <div key={`pros-${index}`}>
-              <PortableText value={pro} />
+            <div className='bg-green-100 text-green-700 rounded-md p-3 mb-3 flex items-center' key={`pros-${index}`}>
+              <Check className='mr-2 h-6 w-6 flex-shrink-0 text-green-700' />
+              <p>{pro}</p>
             </div>
           ))}
         </div>
         <div>
-          <Heading text={'Nackdelar'} level={2} />
+          <Heading text={'Nackdelar'} className='font-bold mb-2' level={2} size={5} />
           {object.cons.map((con, index) => (
-            <div key={`cons-${index}`}>
-              <PortableText value={con} />
+            <div className='bg-red-100 text-red-700 rounded-md p-3 mb-3 flex items-center' key={`cons-${index}`}>
+              <X className='mr-2 h-6 w-6 flex-shrink-0 text-red-700' />
+              <p>{con}</p>
             </div>
           ))}
         </div>
