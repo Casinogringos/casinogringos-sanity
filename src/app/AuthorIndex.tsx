@@ -9,11 +9,12 @@ import { getBreadcrumbListStructuredData } from '@/src/structured-data/breadcrum
 import { getWebSiteStructuredData } from '@/src/structured-data/webSiteStructuredData'
 import { getOrganizationStructuredData } from '@/src/structured-data/organizationStructuredData'
 import { getPersonStructuredData } from '@/src/structured-data/personStructuredData'
-import SanityImage from '@/src/components/atoms/SanityImage'
 import { PortableText } from 'next-sanity'
 import { AuthorSchemaType } from '@/src/schemas/author'
 import { SubPageSchemaType } from '@/src/schemas/subPage'
 import { BreadcrumbsSchemaType } from '@/src/schemas/breadcrumbs'
+import Image from 'next/image'
+import Heading from '@/src/components/atoms/Heading'
 
 const AuthorIndex = ({
   page,
@@ -22,14 +23,10 @@ const AuthorIndex = ({
   page: SubPageSchemaType
   authors: AuthorSchemaType[]
 }) => {
-  const breadcrumbs: BreadcrumbsSchemaType[] = [
-    {
-      text: 'Hem',
-      url: `${process.env.SITE_URL}/`,
-    },
+  const breadcrumbs: BreadcrumbsSchemaType = [
     {
       text: 'Om Oss',
-    },
+    }
   ]
   const schema = {
     '@context': 'https://schema.org',
@@ -59,17 +56,19 @@ const AuthorIndex = ({
       />
       <div className="bg-hero px-4 py-12">
         <div className="mx-auto max-w-3xl">
-          <h2 className="mb-6 text-2xl">Vi som jobbar på Casinogringos</h2>
+          <Heading level={2} text="Vi som jobbar på Casinogringos" className="mb-6 font-bold" size={5} />
           {authors.map((author) => (
             <div
               key={`author-${author._id}`}
-              className="mb-4 rounded-md bg-white p-6"
+              className="mb-4 rounded-md bg-white p-6 not-prose"
             >
               <div className="mb-4 flex items-center gap-4">
                 <div className="mt-1 overflow-hidden rounded-full">
-                  <SanityImage
-                    image={author.avatar}
+                  <Image
+                    src={author.avatar.src}
+                    alt={author.avatar.alt}
                     width={50}
+                    height={50}
                   />
                 </div>
                 <div>

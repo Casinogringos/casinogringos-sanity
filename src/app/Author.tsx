@@ -7,9 +7,10 @@ import { getWebSiteStructuredData } from '@/src/structured-data/webSiteStructure
 import { getOrganizationStructuredData } from '@/src/structured-data/organizationStructuredData'
 import { getPersonStructuredData } from '@/src/structured-data/personStructuredData'
 import getProfileStructuredData from '@/src/structured-data/profileStructuredData'
-import SanityImage from '@/src/components/atoms/SanityImage'
 import { PortableText } from 'next-sanity'
 import { AuthorSchemaType } from '@/src/schemas/author'
+import Image from 'next/image'
+import Heading from '@/src/components/atoms/Heading'
 
 const Author = ({ author }: { author: AuthorSchemaType }) => {
   const schema = {
@@ -28,7 +29,6 @@ const Author = ({ author }: { author: AuthorSchemaType }) => {
     },
     {
       text: author.firstName + ' ' + author.lastName,
-      url: `${process.env.SITE_URL}/om-oss/${author.slug.current}`,
     },
   ]
 
@@ -41,16 +41,14 @@ const Author = ({ author }: { author: AuthorSchemaType }) => {
         }}
         key="homepage-data"
       />
-      <div className="bg-blue50 py-6 lg:py-16">
+      <div className="bg-blue-50 py-6 lg:py-16 not-prose">
         <Container>
           <div className="flex flex-col items-start gap-10 lg:flex-row">
             <div className="overflow-hidden rounded-full lg:w-1/5">
-              <SanityImage image={author.avatar} width={400} />
+              <Image src={author.avatar.src} alt={author.avatar.alt} width={400} height={400} />
             </div>
             <div className="lg:w-3/4">
-              <h1 className="mb-1 text-3xl font-bold">
-                {author.firstName} {author.lastName}
-              </h1>
+              <Heading level={1} size={6} text={author.firstName + ' ' + author.lastName} className="mb-1 font-bold" />
               <span className="text-slate-600">{author.role}</span>
               <div className="ml-auto mt-2 flex gap-2">
                 {author.linkedIn && (
@@ -103,7 +101,7 @@ const Author = ({ author }: { author: AuthorSchemaType }) => {
                     {author.experience?.map((item, index) => (
                       <li
                         key={`author-${author._id}-experience-${index}`}
-                        className="border-b border-b-blue100 py-2"
+                        className="border-b border-b-blue-100 py-2"
                       >
                         <strong className="text-dark">{item.title}</strong>
                         <span className="block text-sm">{item.years}</span>
@@ -127,13 +125,15 @@ const Author = ({ author }: { author: AuthorSchemaType }) => {
               {author.newsPagePreviews.map((item, index) => (
                 <Link
                   key={`author-${author._id}-post-${index}`}
-                  className="font-medium no-underline"
+                  className="font-medium no-underline no-prose"
                   href={`/nyheter/${item.slug.current}`}
                   prefetch={false}
                 >
-                  <SanityImage
-                    image={item.featuredImage}
+                  <Image
+                    src={item.featuredImage.src}
+                    alt={item.featuredImage.alt}
                     width={600}
+                    height={600}
                     className="h-32 w-full rounded-sm object-cover lg:h-36"
                   />
                   <div>

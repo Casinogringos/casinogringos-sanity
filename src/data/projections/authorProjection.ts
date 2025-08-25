@@ -18,6 +18,7 @@ export const authorProjection = `
     avatar {
       ${imageProjection}
     },
+    description,
     "newsPagePreviews": *[_type == "news-pages" && author._ref == ^._id] {
       ${newsPagePreviewProjection}
     },
