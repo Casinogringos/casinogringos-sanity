@@ -39,10 +39,17 @@ abstract class BasePageService<PageType extends GuidePageSchemaType | SubPageSch
         page: PageType
     ): string | null {
         const originalPublishedAt = page.originalPublishedAt ? new Date(page.originalPublishedAt).getTime() : null
+        console.log('originalPublishedAt', originalPublishedAt)
         const originalModifiedAt = page.originalModifiedAt ? new Date(page.originalModifiedAt).getTime() : null
+        console.log('originalModifiedAt', originalModifiedAt)
+        const newCreatedAt = page._createdAt ? new Date(page._createdAt).getTime() : null
+        console.log('newCreatedAt', newCreatedAt)
         const newUpdatedAt = page._updatedAt ? new Date(page._updatedAt).getTime() : null
-        if (!originalPublishedAt || !originalModifiedAt || !newUpdatedAt) return null
-        if (newUpdatedAt > originalModifiedAt) return page._updatedAt
+        console.log('newUpdatedAt', newUpdatedAt)
+        if (!originalPublishedAt || !originalModifiedAt || !newUpdatedAt || !newCreatedAt) return null
+        if (newUpdatedAt > newCreatedAt) {
+            return page._updatedAt
+        }
         return page.originalModifiedAt ?? null
     }
 }

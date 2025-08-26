@@ -16,7 +16,7 @@ const Menu = ({
   return (
     <nav aria-labelledby="sidebarmenu">
       <ul role={'menubar'}>
-        {menu.items.map((level1Item: MenuItemType, i: number) => (
+        {menu?.items?.map((level1Item: MenuItemType, i: number) => (
           <li
             className={`flex items-center justify-between flex-wrap border-b-gray-100 py-4 ${menu.items.length - 1 !== i ? 'border-b' : ''
               }`}

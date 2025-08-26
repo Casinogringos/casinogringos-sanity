@@ -4,6 +4,7 @@ import Image from 'next/image'
 import CheckBadgeIcon from '@/src/components/icons/CheckBadgeIcon'
 import Link from '@/src/components/atoms/Link'
 import { AuthorSchemaType } from '@/src/schemas/author'
+import { PortableText } from 'next-sanity'
 
 const AuthorBox = ({
   author,
@@ -11,7 +12,7 @@ const AuthorBox = ({
   reviewedBy,
 }: {
   author: AuthorSchemaType
-  modified: string
+  modified: string | null
   reviewedBy?: AuthorSchemaType
 }) => {
   return (
@@ -67,7 +68,9 @@ const AuthorBox = ({
           )}
         </div>
       </div>
-      <p className="mt-4 text-sm text-slate-700">{author.description}</p>
+      <div className="mt-4 text-sm text-slate-700">
+        <PortableText value={author.description} />
+      </div>
       {author.expertise && (
         <section>
           <span className="mb-2 mt-5 block font-semibold">Expertområden</span>

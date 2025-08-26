@@ -11,6 +11,8 @@ export const searchPagePreviewsQuery = () => `
       ${imageProjection}
     },
     originalModifiedAt,
+    originalPublishedAt,
+    _createdAt,
     _updatedAt
   }
 `

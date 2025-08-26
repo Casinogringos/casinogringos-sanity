@@ -2,8 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-const DynamicDate = ({ dateString }: { dateString: string }) => {
-  console.log('dateString', dateString)
+const DynamicDate = ({ dateString, className }: { dateString: string, className?: string }) => {
   const [date, setDate] = useState("");
   useEffect(() => {
     const getDate = () =>
@@ -11,12 +10,12 @@ const DynamicDate = ({ dateString }: { dateString: string }) => {
         day: "numeric",
         month: "long",
         year: "numeric",
-      });
+      })
     setDate(getDate());
   }, [dateString]);
   if (!date) return null;
 
-  return <time>{date}</time>;
+  return <time className={className}>{date}</time>;
 };
 
 export default DynamicDate;
