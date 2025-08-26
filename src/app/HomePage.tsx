@@ -77,7 +77,7 @@ const HomePage = ({
         <Container>
           <AuthorBox
             author={author}
-            modified={page._updatedAt ?? page.originalModifiedAt}
+            modified={pageService.getModifiedDate(page)}
             reviewedBy={reviewer}
           />
         </Container>

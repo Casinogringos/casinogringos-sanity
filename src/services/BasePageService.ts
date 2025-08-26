@@ -6,7 +6,7 @@ import { SlotPageSchemaType } from '@/src/schemas/slotPage'
 import { NewsPageSchemaType } from '@/src/schemas/newsPage'
 import { CasinoPageSchemaType } from '@/src/schemas/casinoPage'
 
-abstract class BasePageService<PageType> {
+abstract class BasePageService<PageType extends GuidePageSchemaType | SubPageSchemaType | SlotPageSchemaType | NewsPageSchemaType | CasinoPageSchemaType> {
     abstract validatePage(page: PageType, preview: boolean): boolean
 
     abstract validateList(pages: PageType[], preview: boolean): boolean
@@ -34,6 +34,16 @@ abstract class BasePageService<PageType> {
             }
             return acc
         }, 0)
+    }
+    getModifiedDate(
+        page: PageType
+    ): string | null {
+        const originalPublishedAt = page.originalPublishedAt ? new Date(page.originalPublishedAt).getTime() : null
+        const originalModifiedAt = page.originalModifiedAt ? new Date(page.originalModifiedAt).getTime() : null
+        const newUpdatedAt = page._updatedAt ? new Date(page._updatedAt).getTime() : null
+        if (!originalPublishedAt || !originalModifiedAt || !newUpdatedAt) return null
+        if (newUpdatedAt > originalModifiedAt) return page._updatedAt
+        return page.originalModifiedAt ?? null
     }
 }
 
