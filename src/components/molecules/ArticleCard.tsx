@@ -1,10 +1,8 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import Date from '@/src/components/atoms/Date'
-import {
-  GuidePagePreviewSchemaType,
-  NewsPagePreviewSchemaType,
-} from '@/src/schemas'
+import { GuidePagePreviewSchemaType } from '@/src/schemas/guidePagePreview'
+import { NewsPagePreviewSchemaType } from '@/src/schemas/newsPagePreview'
 import { PortableText } from 'next-sanity'
 import GuidePageService from '@/src/services/GuidePageService'
 import NewsPageService from '@/src/services/NewsPageService'
@@ -18,7 +16,7 @@ const ArticleCard = ({
   item: NewsPagePreviewSchemaType | GuidePagePreviewSchemaType
 }) => {
   const publishedDate = guidePageService.getPublishedDate(item)
-  console.log('item', item)
+
   return (
     <Link
       href={item.slug.current}

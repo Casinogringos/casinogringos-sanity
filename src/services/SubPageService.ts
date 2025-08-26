@@ -1,10 +1,11 @@
 import { SubPageSchema, SubPageSchemaType } from '@/src/schemas/subPage'
 import BasePageService from '@/src/services/BasePageService'
 import _ from 'lodash'
+import { SubPagePreviewSchemaType } from '../schemas/subPagePreview'
 
-class SubPageService extends BasePageService<SubPageSchemaType> {
+class SubPageService extends BasePageService<SubPageSchemaType | SubPagePreviewSchemaType> {
   validatePage(
-    page: SubPageSchemaType,
+    page: SubPageSchemaType | SubPagePreviewSchemaType,
     preview: boolean = false
   ): boolean {
     const parse = SubPageSchema.safeParse(page)

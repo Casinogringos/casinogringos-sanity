@@ -5,7 +5,6 @@ import { SlotSchema } from './slot'
 
 export const SlotPagePreviewSchema = BasePagePreviewSchema.merge(
   z.object({
-    featuredImage: ImageObjectSchema,
     slot: SlotSchema,
   })
 )

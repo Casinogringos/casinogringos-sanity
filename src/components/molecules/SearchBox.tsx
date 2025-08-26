@@ -1,18 +1,17 @@
 'use client'
 
 import { useEffect, useMemo, useState } from 'react'
-import { SearchSchemaType } from '@/src/schemas/search'
 import { ArrowRight, Search } from 'lucide-react'
 import Fuse from 'fuse.js'
 import Link from 'next/link'
 import Heading from '@/src/components/atoms/Heading'
 import Date from '@/src/components/atoms/Date'
-import { SubPagePreviewSchemaType } from '@/src/schemas/subPagePreview
+import { SubPagePreviewSchemaType } from '@/src/schemas/subPagePreview'
 import { SlotPagePreviewSchemaType } from '@/src/schemas/slotPagePreview'
 import { GuidePagePreviewSchemaType } from '@/src/schemas/guidePagePreview'
 import { NewsPagePreviewSchemaType } from '@/src/schemas/newsPagePreview'
 import { CasinoPagePreviewSchemaType } from '@/src/schemas/casinoPagePreview'
-import { FilteredSearchResultSchemaType } from '@/src/schemas/filteredSearchResult'
+import { SearchSchemaItemType, SearchSchemaType } from '@/src/schemas/search'
 import { id } from 'zod/v4/locales'
 import _ from 'lodash'
 import SubPageService from '@/src/services/SubPageService'
@@ -20,14 +19,21 @@ import SlotPageService from '@/src/services/SlotPageService'
 import GuidePageService from '@/src/services/GuidePageService'
 import NewsPageService from '@/src/services/NewsPageService'
 import CasinoPageService from '@/src/services/CasinoPageService'
+import { ImageObjectSchemaType } from '@/src/schemas/imageObject'
 import Image from 'next/image'
+import { SubPageSchemaType } from '@/src/schemas/subPage'
+import { CasinoPageSchemaType } from '@/src/schemas/casinoPage'
 
 const pageService = new SubPageService()
+const slotPageService = new SlotPageService()
+const guidePageService = new GuidePageService()
+const newsPageService = new NewsPageService()
+const casinoPageService = new CasinoPageService()
 
 const SearchBox = () => {
-    const [pages, setPages] = useState<SubPagePreviewSchemaType[] | SlotPagePreviewSchemaType[] | GuidePagePreviewSchemaType[] | NewsPagePreviewSchemaType[] | CasinoPagePreviewSchemaType[] | null>(null)
-    const [filteredResults, setFilteredResults] = useState<FilteredSearchResultSchemaType[] | null>(null)
-    const resultGroups: Record<string, FilteredSearchResultSchemaType[]> = useMemo(() => filteredResults?.reduce((acc, item) => {
+    const [pages, setPages] = useState<Array<SubPagePreviewSchemaType | SlotPagePreviewSchemaType | GuidePagePreviewSchemaType | NewsPagePreviewSchemaType | CasinoPagePreviewSchemaType> | null>(null)
+    const [filteredResults, setFilteredResults] = useState<SearchSchemaType | null>(null)
+    const resultGroups: Record<string, SearchSchemaItemType[]> = useMemo(() => filteredResults?.reduce((acc, item) => {
         if (!item) return acc
         const newItem = {
             _type: item._type,
@@ -36,16 +42,17 @@ const SearchBox = () => {
             featuredImage: { ...item.featuredImage },
             modifiedAt: item.modifiedAt,
         }
-        acc[item._type].push(newItem)
+        if (item._type === 'casino-pages' || item._type === 'guide-pages' || item._type === 'news-pages' || item._type === 'slot-pages' || item._type === 'pages') {
+            acc[item._type].push(newItem as SearchSchemaItemType)
+        }
         return acc
     }, {
-        'casino-pages': [],
-        'guide-pages': [],
-        'news-pages': [],
-        'slot-pages': [],
-        'pages': [],
+        'casino-pages': [] as SearchSchemaItemType[],
+        'guide-pages': [] as SearchSchemaItemType[],
+        'news-pages': [] as SearchSchemaItemType[],
+        'slot-pages': [] as SearchSchemaItemType[],
+        'pages': [] as SearchSchemaItemType[],
     }) ?? {}, [filteredResults])
-    console.log('resultGroups', resultGroups)
     const [query, setQuery] = useState('')
     const [didFetch, setDidFetch] = useState(false)
     useEffect(() => {
@@ -64,27 +71,38 @@ const SearchBox = () => {
             return
         }
         if (!pages) return
-        const fuse = new Fuse(pages, {
+        const fuse = new Fuse((pages), {
             keys: ['title', 'slug', 'featuredImage.alt'],
             includeScore: true,
             threshold: 0.2,
         })
         const searchResults = fuse.search(query)
         const filteredResults = searchResults.map((result) => {
-            const record = pages?.find((item) => item.slug.current === result.item.slug.current)
-            if (record.slug.current === '') return null
+            const record: SubPagePreviewSchemaType | SlotPagePreviewSchemaType | GuidePagePreviewSchemaType | NewsPagePreviewSchemaType | CasinoPagePreviewSchemaType | null | undefined = pages?.find((item) => item.slug.current === result.item.slug.current)
+            if (record?.slug.current === '') return null
             const clonedRecord = _.cloneDeep(record)
             const featuredImage = clonedRecord?.featuredImage
-            const modified = pageService.getModifiedDate(clonedRecord)
+            let modifiedAt = null
+            if (clonedRecord && clonedRecord?._type === 'pages') {
+                modifiedAt = pageService.getModifiedDate(clonedRecord)
+            } else if (clonedRecord && clonedRecord?._type === 'casino-pages') {
+                modifiedAt = casinoPageService.getModifiedDate(clonedRecord)
+            } else if (clonedRecord && clonedRecord?._type === 'guide-pages') {
+                modifiedAt = guidePageService.getModifiedDate(clonedRecord)
+            } else if (clonedRecord && clonedRecord?._type === 'news-pages') {
+                modifiedAt = newsPageService.getModifiedDate(clonedRecord)
+            } else if (clonedRecord && clonedRecord?._type === 'slot-pages') {
+                modifiedAt = slotPageService.getModifiedDate(clonedRecord)
+            }
             return {
-                _type: record?._type,
-                title: record?.title,
-                slug: { ...record.slug },
+                _type: clonedRecord?._type,
+                title: clonedRecord?.title,
+                slug: { current: clonedRecord?.slug.current },
                 featuredImage,
-                modifiedAt: modified,
+                modifiedAt
             }
         })
-        setFilteredResults(filteredResults.filter((item) => item !== null))
+        setFilteredResults(filteredResults.filter((item): item is SearchSchemaItemType => item !== null))
     }, [query])
 
     return (

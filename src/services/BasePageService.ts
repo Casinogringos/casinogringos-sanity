@@ -5,9 +5,13 @@ import { SubPageSchemaType } from '@/src/schemas/subPage'
 import { SlotPageSchemaType } from '@/src/schemas/slotPage'
 import { NewsPageSchemaType } from '@/src/schemas/newsPage'
 import { CasinoPageSchemaType } from '@/src/schemas/casinoPage'
-import { GuidePagePreviewSchemaType } from '../schemas/guidePagePreview';
+import { GuidePagePreviewSchemaType } from '@/src/schemas/guidePagePreview';
+import { SubPagePreviewSchemaType } from '@/src/schemas/subPagePreview';
+import { SlotPagePreviewSchemaType } from '@/src/schemas/slotPagePreview';
+import { NewsPagePreviewSchemaType } from '@/src/schemas/newsPagePreview';
+import { CasinoPagePreviewSchemaType } from '@/src/schemas/casinoPagePreview';
 
-abstract class BasePageService<PageType extends GuidePageSchemaType | GuidePagePreviewSchemaType | SubPageSchemaType | SlotPageSchemaType | NewsPageSchemaType | CasinoPageSchemaType> {
+abstract class BasePageService<PageType extends GuidePageSchemaType | GuidePagePreviewSchemaType | SubPageSchemaType | SubPagePreviewSchemaType | SlotPageSchemaType | SlotPagePreviewSchemaType | NewsPageSchemaType | NewsPagePreviewSchemaType | CasinoPageSchemaType | CasinoPagePreviewSchemaType> {
     abstract validatePage(page: PageType, preview: boolean): boolean
 
     abstract validateList(pages: PageType[], preview: boolean): boolean

@@ -6,7 +6,6 @@ import { PortableTextBlockSchema } from './portableTextBlock';
 
 export const SlotPageSchema = BasePageSchema.merge(
     z.object({
-        featuredImage: ImageObjectSchema,
         excerpt: z.array(PortableTextBlockSchema),
         slot: SlotSchema,
     })

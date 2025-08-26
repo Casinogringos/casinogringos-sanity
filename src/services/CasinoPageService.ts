@@ -5,7 +5,7 @@ import { CasinoPageSchema } from '@/src/schemas/casinoPage'
 import { CasinoPagePreviewSchema } from '@/src/schemas/casinoPagePreview'
 import BasePageService from '@/src/services/BasePageService'
 
-class CasinoPageService extends BasePageService<CasinoPageSchemaType> {
+class CasinoPageService extends BasePageService<CasinoPageSchemaType | CasinoPagePreviewSchemaType> {
   constructor() {
     super()
   }
