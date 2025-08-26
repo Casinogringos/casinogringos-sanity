@@ -7,7 +7,6 @@ export const guidePageProjection = `
   _id,
   title,
   slug,
-  publishedAt,
   seoTitle,
   seoDescription,
   seoImage {
@@ -17,12 +16,17 @@ export const guidePageProjection = `
   author-> {
     ${authorProjection}
   },
+  reviewer-> {
+    ${authorProjection}
+  },
   featuredImage {
     ${imageObjectProjection}
   },
   content[] {
     ${objectProjections}
   },
+  originalPublishedAt,
+  originalModifiedAt,
   _createdAt,
   _updatedAt,
 `

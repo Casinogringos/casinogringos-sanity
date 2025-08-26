@@ -18,13 +18,13 @@ export const getBlogPostingStructuredData = ({
     image: urlFor(page.seoImage),
     author: {
       '@type': 'Person',
-      name: page.author.name,
+      name: page.author.firstName + ' ' + page.author.lastName,
       url: `https://casinogringos.se/om-oss/${page.author.slug.current}`,
       sameAs: [page.author.linkedIn],
     },
     reviewedBy: {
       '@type': 'Person',
-      name: page.reviewer.name,
+      name: page.reviewer.firstName + ' ' + page.reviewer.lastName,
       url: `https://casinogringos.se/om-oss/${page.reviewer.slug.current}`,
       sameAs: [page.reviewer.linkedIn],
     },

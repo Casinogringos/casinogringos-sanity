@@ -78,7 +78,7 @@ const AuthorBox = ({
             {author.expertise?.map(
               (item: { title: string }, index: number) => (
                 <span
-                  key={`author-${author.id}-expertise-${index}`}
+                  key={`author-${author._id}-expertise-${index}`}
                   className="rounded-sm bg-dark px-2 py-1 text-sm text-white"
                 >
                   {item.title}
@@ -91,7 +91,7 @@ const AuthorBox = ({
       <div className="mt-5 flex flex-col lg:flex-row">
         <p className="flex items-center gap-2 text-xs text-slate-700">
           <Calendar className="h-3 w-3" /> Uppdaterad:{' '}
-          <Date dateString={modified} />
+          {modified && <Date dateString={modified} />}
         </p>
         {reviewedBy && (
           <div className="mt-2 flex gap-3 text-xs text-slate-700 lg:ml-auto lg:mt-0">

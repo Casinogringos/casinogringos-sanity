@@ -8,8 +8,12 @@ import {
   WhatsappIcon,
   WhatsappShareButton,
 } from 'next-share'
+import { usePathname } from 'next/navigation'
 
-const ShareButtons = ({ url, title }: { url: string; title: string }) => {
+const ShareButtons = ({ title }: { title: string }) => {
+  const pathname = usePathname()
+  const url = `${process.env.SITE_URL}${pathname}`
+
   return (
     <>
       <FacebookShareButton url={url} quote={title} title={title}>

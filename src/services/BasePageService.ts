@@ -5,8 +5,9 @@ import { SubPageSchemaType } from '@/src/schemas/subPage'
 import { SlotPageSchemaType } from '@/src/schemas/slotPage'
 import { NewsPageSchemaType } from '@/src/schemas/newsPage'
 import { CasinoPageSchemaType } from '@/src/schemas/casinoPage'
+import { GuidePagePreviewSchemaType } from '../schemas/guidePagePreview';
 
-abstract class BasePageService<PageType extends GuidePageSchemaType | SubPageSchemaType | SlotPageSchemaType | NewsPageSchemaType | CasinoPageSchemaType> {
+abstract class BasePageService<PageType extends GuidePageSchemaType | GuidePagePreviewSchemaType | SubPageSchemaType | SlotPageSchemaType | NewsPageSchemaType | CasinoPageSchemaType> {
     abstract validatePage(page: PageType, preview: boolean): boolean
 
     abstract validateList(pages: PageType[], preview: boolean): boolean
@@ -46,11 +47,23 @@ abstract class BasePageService<PageType extends GuidePageSchemaType | SubPageSch
         console.log('newCreatedAt', newCreatedAt)
         const newUpdatedAt = page._updatedAt ? new Date(page._updatedAt).getTime() : null
         console.log('newUpdatedAt', newUpdatedAt)
-        if (!originalPublishedAt || !originalModifiedAt || !newUpdatedAt || !newCreatedAt) return null
-        if (newUpdatedAt > newCreatedAt) {
+        if ((!originalPublishedAt && newCreatedAt) || (!originalModifiedAt && newUpdatedAt)) return null
+        if (!newUpdatedAt) return page.originalModifiedAt ?? null
+        if (newUpdatedAt && newCreatedAt && newUpdatedAt > newCreatedAt) {
             return page._updatedAt
         }
         return page.originalModifiedAt ?? null
+    }
+    getPublishedDate(
+        page: PageType
+    ): string | null {
+        const originalPublishedAt = page.originalPublishedAt ? new Date(page.originalPublishedAt).getTime() : null
+        const newCreatedAt = page._createdAt ? new Date(page._createdAt).getTime() : null
+        if (!originalPublishedAt || !newCreatedAt) return null
+        if (originalPublishedAt) {
+            return page.originalPublishedAt ?? null
+        }
+        return page._createdAt ?? null
     }
 }
 

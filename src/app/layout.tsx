@@ -79,12 +79,12 @@ export default async function RootLayout({
       <link rel="icon" href="/favicon.ico" sizes="any" />
       <body className={`${jakarta.variable} ${inter.variable}`}>
         <Provider>
-          {/* <Navigation
+          <Navigation
             headerMenu={headerMenu}
             sidebarMenu={sidebarMenu}
             sidebarToplist={sidebarToplist}
             pathname={pathname}
-          /> */}
+          />
           <main className={'relative'}>{children}</main>
           <ScrollToTop />
           {/* <Footer siteLinks={siteLinks} popularCasinos={popularCasinos} latestReviews={latestReviews} /> */}

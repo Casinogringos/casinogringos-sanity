@@ -126,3 +126,13 @@
     /* #333333 */
     --color-hero: oklch(0.984 0.012 257.36);
 }
+
+.tooltip {
+    visibility: hidden;
+    position: absolute;
+}
+
+.has-tooltip:hover .tooltip {
+    visibility: visible;
+    z-index: 10;
+}

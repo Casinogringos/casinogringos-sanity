@@ -6,12 +6,18 @@ import {
   NewsPagePreviewSchemaType,
 } from '@/src/schemas'
 import { PortableText } from 'next-sanity'
+import GuidePageService from '@/src/services/GuidePageService'
+import NewsPageService from '@/src/services/NewsPageService'
+
+const guidePageService = new GuidePageService()
+const newsPageService = new NewsPageService()
 
 const ArticleCard = ({
   item,
 }: {
   item: NewsPagePreviewSchemaType | GuidePagePreviewSchemaType
 }) => {
+  const publishedDate = guidePageService.getPublishedDate(item)
   console.log('item', item)
   return (
     <Link
@@ -29,9 +35,9 @@ const ArticleCard = ({
         />
       </div>
       <div className="px-4">
-        <div className="mt-4 flex items-center gap-x-4 text-xs text-slate500">
-          <Date dateString={item.originalPublishedAt ?? item._createdAt} />
-        </div>
+        {publishedDate && <div className="mt-4 flex items-center gap-x-4 text-xs text-slate500">
+          <Date dateString={publishedDate} />
+        </div>}
         <h3 className="text-gray900 group-hover:text-gray-600 mt-2 text-lg font-medium leading-6">
           <span />
           {item.title}

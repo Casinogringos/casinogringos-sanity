@@ -1,6 +1,6 @@
 import ModularContent from '@/src/components/organisms/ModularContent'
 import Container from '@/src/components/atoms/Container'
-import PostHeader from '@/src/components/molecules/PostHeader'
+import PostHeader from '@/src/components/molecules/ArticleHeader'
 import Heading from '@/src/components/atoms/Heading'
 import { NewsPagePreviewSchemaType, NewsPageSchemaType } from '@/src/schemas'
 import { getHeadingObjectsByPage } from '@/src/lib/helpers'

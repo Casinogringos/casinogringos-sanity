@@ -7,7 +7,7 @@ import Fuse from 'fuse.js'
 import Link from 'next/link'
 import Heading from '@/src/components/atoms/Heading'
 import Date from '@/src/components/atoms/Date'
-import { SubPagePreviewSchemaType } from '@/src/schemas/subPagePreview'
+import { SubPagePreviewSchemaType } from '@/src/schemas/subPagePreview
 import { SlotPagePreviewSchemaType } from '@/src/schemas/slotPagePreview'
 import { GuidePagePreviewSchemaType } from '@/src/schemas/guidePagePreview'
 import { NewsPagePreviewSchemaType } from '@/src/schemas/newsPagePreview'
@@ -72,6 +72,7 @@ const SearchBox = () => {
         const searchResults = fuse.search(query)
         const filteredResults = searchResults.map((result) => {
             const record = pages?.find((item) => item.slug.current === result.item.slug.current)
+            if (record.slug.current === '') return null
             const clonedRecord = _.cloneDeep(record)
             const featuredImage = clonedRecord?.featuredImage
             const modified = pageService.getModifiedDate(clonedRecord)
@@ -83,7 +84,7 @@ const SearchBox = () => {
                 modifiedAt: modified,
             }
         })
-        setFilteredResults(filteredResults)
+        setFilteredResults(filteredResults.filter((item) => item !== null))
     }, [query])
 
     return (
@@ -102,13 +103,13 @@ const SearchBox = () => {
                     {resultGroups?.['casino-pages']?.map((item, index) => (
                         <div key={`${item.slug.current}`} className='border-b border-slate-200 hover:bg-slate-100 p-4 pl-0'>
                             <Link className='flex items-center justify-start' href={item.slug.current}>
-                                <Image
+                                {item.featuredImage.src && <Image
                                     src={item.featuredImage.src}
                                     alt={item.featuredImage.alt}
                                     width={50}
                                     height={50}
                                     className='rounded-md mr-2'
-                                />
+                                />}
                                 <div className='flex-grow'>
                                     <Heading text={item.title} level={4} size={2} className='!font-normal !text-md' />
                                     <Date className='text-slate-500 text-sm' dateString={item.modifiedAt} />
@@ -127,13 +128,13 @@ const SearchBox = () => {
                     {resultGroups?.['guide-pages']?.map((item, index) => (
                         <div key={`${item.slug}-${index}`} className='border-b border-slate-200 hover:bg-slate-100 p-4 pl-0'>
                             <Link href={item.slug.current} className='flex items-center justify-start'>
-                                <Image
+                                {item.featuredImage.src && <Image
                                     src={item.featuredImage.src}
                                     alt={item.featuredImage.alt}
                                     width={50}
                                     height={50}
                                     className='rounded-md mr-2'
-                                />
+                                />}
                                 <div className='flex-grow'>
                                     <Heading text={item.title} level={4} size={2} className='!font-normal !text-md' />
                                     <Date dateString={item.modifiedAt} className='text-slate-500 text-sm' />
@@ -152,13 +153,13 @@ const SearchBox = () => {
                     {resultGroups?.['news-pages']?.map((item, index) => (
                         <div key={`${item.slug}-${index}`} className='border-b border-slate-200 hover:bg-slate-100 p-4 pl-0'>
                             <Link href={item.slug.current} className='flex items-center justify-start'>
-                                <Image
+                                {item.featuredImage.src && <Image
                                     src={item.featuredImage.src}
                                     alt={item.featuredImage.alt}
                                     width={50}
                                     height={50}
                                     className='rounded-md mr-2'
-                                />
+                                />}
                                 <div className='flex-grow'>
                                     <Heading text={item.title} level={4} size={2} className='!font-normal !text-md' />
                                     <Date dateString={item.modifiedAt} className='text-slate-500 text-sm' />
@@ -177,13 +178,13 @@ const SearchBox = () => {
                     {resultGroups?.['slot-pages']?.map((item, index) => (
                         <div key={`${item.slug}-${index}`} className='border-b border-slate-200 hover:bg-slate-100 p-4 pl-0'>
                             <Link href={item.slug.current} className='flex items-center justify-start'>
-                                <Image
+                                {item.featuredImage.src && <Image
                                     src={item.featuredImage.src}
                                     alt={item.featuredImage.alt}
                                     width={50}
                                     height={50}
                                     className='rounded-md mr-2'
-                                />
+                                />}
                                 <div className='flex-grow'>
                                     <Heading text={item.title} level={4} size={2} className='!font-normal !text-md' />
                                     <Date dateString={item.modifiedAt} className='text-slate-500 text-sm' />
@@ -202,13 +203,13 @@ const SearchBox = () => {
                     {resultGroups?.['pages']?.map((item, index) => (
                         <div key={`${item.slug}-${index}`} className='border-b border-slate-200 hover:bg-slate-100 p-4 pl-0'>
                             <Link href={item.slug.current} className='flex items-center justify-start'>
-                                <Image
+                                {item.featuredImage.src && <Image
                                     src={item.featuredImage.src}
                                     alt={item.featuredImage.alt}
                                     width={50}
                                     height={50}
                                     className='rounded-md mr-2'
-                                />
+                                />}
                                 <div className='flex-grow'>
                                     <Heading text={item.title} level={4} size={2} className='!font-normal !text-md' />
                                     <Date dateString={item.modifiedAt} className='text-slate-500 text-sm' />

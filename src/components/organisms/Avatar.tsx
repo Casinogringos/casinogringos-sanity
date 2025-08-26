@@ -1,35 +1,27 @@
 import Date from '@/src/components/atoms/Date'
 import { ArrowRightIcon, Linkedin, Mail } from 'lucide-react'
-import {
-  FacebookIcon,
-  FacebookShareButton,
-  TwitterIcon,
-  TwitterShareButton,
-  WhatsappIcon,
-  WhatsappShareButton,
-} from 'next-share'
 import Link from '@/src/components/atoms/Link'
 import { AuthorSchemaType } from '@/src/schemas/author'
 import ShareButtons from '@/src/components/molecules/ShareButtons'
 import Image from 'next/image'
 import Placeholder from '@/src/components/atoms/Placeholder'
+import { PortableText } from 'next-sanity'
 
 const Avatar = ({
   author,
   reviewer,
-  modified,
+  modifiedAt,
   shareTitle,
-  date,
-  pathname,
+  createdAt,
 }: {
   author: AuthorSchemaType
   reviewer?: AuthorSchemaType
-  modified: string
+  modifiedAt: string | null
   shareTitle: string
-  date: string
-  pathname: string
+  createdAt: string | null
 }) => {
-  const url = `${process.env.SITE_URL}${pathname}`
+  console.log('modifiedAt', modifiedAt)
+  console.log('createdAt', createdAt)
   const { avatar } = author
   if (!avatar) return <Placeholder message='No author avatar' />
 
@@ -37,10 +29,11 @@ const Avatar = ({
     <>
       <div className="flex gap-x-6 border-b border-t border-gray-100 py-4 md:justify-between lg:mt-5">
         <div className="flex gap-3">
-          <div className="relative h-10 w-10 rounded-full">
+          <div className="relative">
             <Image
               src={author.avatar.src}
-              width={96}
+              width={40}
+              height={40}
               className="rounded-full"
               alt={author.avatar.alt}
             />
@@ -57,26 +50,27 @@ const Avatar = ({
               >
                 <span>{author.firstName} {author.lastName}</span>
               </Link>
-              <div className="tooltip text-gray-100 left-1/2 mx-auto hidden min-w-96 -translate-x-1/2 rounded-md border border-slate200 bg-gray50 p-5 text-sm opacity-100 shadow-sm transition-opacity md:block">
+              <div className="tooltip left-1/2 mx-auto hidden min-w-96 -translate-x-1/2 rounded-md border border-slate-200 bg-gray-50 p-5 text-sm opacity-100 shadow-sm transition-opacity md:block">
                 {' '}
                 <div className="flex gap-4">
                   <div className="relative mt-0.5 h-12 w-12 flex-shrink-0 rounded-full">
                     <Image
                       src={author.avatar.src}
                       width={96}
+                      height={96}
                       className="rounded-full"
                       alt={`${author.firstName} ${author.lastName}`}
                     />
                   </div>
                   <div>
-                    <strong className="text-base font-medium">{`${author.firstName} ${author.lastName}`}</strong>{' '}
+                    <strong className="text-base text-gray-700 font-medium">{`${author.firstName} ${author.lastName}`}</strong>{' '}
                     <div className="text-xs font-medium text-slate-700">
                       {author.role}
                     </div>
                     <div className="ml-auto mt-1 flex gap-1.5">
                       {author.linkedIn && (
                         <Link
-                          className="rounded-md bg-slate200 p-1 text-slate500"
+                          className="rounded-md bg-slate-200 p-1 text-slate-500"
                           href={author.linkedIn}
                           title="LinkedIn"
                           target="_blank"
@@ -87,7 +81,7 @@ const Avatar = ({
                       )}
                       {author.email && (
                         <Link
-                          className="rounded-md bg-slate-200 p-1 text-slate500"
+                          className="rounded-md bg-slate-200 p-1 text-slate-500"
                           href={`mailto:${author.email}`}
                           title="E-post"
                           target="_blank"
@@ -100,7 +94,7 @@ const Avatar = ({
                   </div>
                 </div>
                 <div className="mt-4 text-sm font-normal text-slate-600">
-                  {author.description}
+                  <PortableText value={author.description} />
                 </div>
                 <Link
                   href={`/om-oss/${author.slug.current}`}
@@ -143,26 +137,22 @@ const Avatar = ({
           </div>
         )}
         <div className="mt-4 hidden text-xs md:mt-0 md:block">
-          <span>{modified ? 'Uppdaterad den' : 'Publicerad den'}</span>
+          <span>{modifiedAt ? 'Uppdaterad den' : 'Publicerad den'}</span>
           <div className="text-[14px]">
-            <time dateTime={modified ? modified : date}>
-              <Date dateString={modified ? modified : date} />
-            </time>
+            {createdAt && <Date dateString={createdAt} />}
           </div>
         </div>
         <div className="hidden items-center gap-x-1 md:flex">
           <span className="mr-1 text-xs">Dela:</span>
-          <ShareButtons url={url} title={shareTitle} />
+          <ShareButtons title={shareTitle} />
         </div>
       </div>
       <div className="mt-3 flex items-center gap-1 rounded-sm border border-gray-200 px-3 py-2.5 text-xs text-slate-700 md:mt-0 md:hidden">
         <span>Uppdaterad:</span>
-        <time dateTime={modified}>
-          <Date dateString={modified} />
-        </time>
+        {modifiedAt && <Date dateString={modifiedAt} />}
         <div className="ml-auto flex items-center gap-x-1 md:hidden">
           <span className="mr-1">Dela:</span>
-          <ShareButtons url={url} title={shareTitle} />
+          <ShareButtons title={shareTitle} />
         </div>
       </div>
     </>

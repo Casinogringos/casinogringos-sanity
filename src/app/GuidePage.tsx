@@ -1,16 +1,18 @@
 import ModularContent from '@/src/components/organisms/ModularContent'
 import { GuidePageSchemaType } from '@/src/schemas/guidePage'
 import { getBlogPostingStructuredData } from '@/src/structured-data/blogPostingStructuredData'
-import PostHeader from '@/src/components/molecules/PostHeader'
-import GuideService from '@/src/services/GuidePageService'
 import BreadCrumbs from '@/src/components/organisms/BreadCrumbs'
 import TableOfContents from '@/src/components/organisms/TableOfContents'
 import AuthorBox from '@/src/components/organisms/AuthorBox'
 import Container from '@/src/components/atoms/Container'
 import Link from '@/src/components/atoms/Link'
 import Image from 'next/image'
+import ArticleHeader from '@/src/components/molecules/ArticleHeader'
+import GuidePageService from '@/src/services/GuidePageService'
+import Heading from '@/src/components/atoms/Heading'
+import ArticleCard from '../components/molecules/ArticleCard'
 
-const guideService = new GuideService()
+const guidePageService = new GuidePageService()
 
 export default function GuidePage({
   page,
@@ -19,11 +21,11 @@ export default function GuidePage({
   page: GuidePageSchemaType
   similarGuidePages: GuidePageSchemaType[]
 }) {
-  const isValid = guideService.validatePage(page, false)
+  const isValid = guidePageService.validatePage(page, false)
   if (!isValid) {
     return null
   }
-  const headings = guideService.getHeadingObjects(page)
+  const headings = guidePageService.getHeadingObjects(page)
   const schema = {
     '@context': 'https://schema.org',
     '@graph': [getBlogPostingStructuredData({ page })],
@@ -48,8 +50,9 @@ export default function GuidePage({
         }}
         key="guide-page-structured-data"
       />
+      <BreadCrumbs items={breadcrumbs} />
       <div className="mx-auto mb-0 max-w-3xl px-4 pt-6 lg:px-0">
-        {page.featuredImage && (
+        {page.featuredImage.src && (
           <div className="mb-4 flex h-auto items-start overflow-hidden rounded-md lg:mb-8 lg:mt-8 lg:h-96">
             <Image
               src={page.featuredImage.src}
@@ -60,9 +63,8 @@ export default function GuidePage({
             />{' '}
           </div>
         )}
-        <PostHeader post={page} />
+        <ArticleHeader article={page} />
       </div>
-      <BreadCrumbs items={breadcrumbs} />
       {headings.length > 1 && (
         <Container narrow>
           <div className="-mb-6 mt-4 px-4 lg:mt-5 lg:px-0">
@@ -71,11 +73,11 @@ export default function GuidePage({
         </Container>
       )}
       <ModularContent objects={page.content} />
-      {page?.author && (
+      {(page?.author || page?.reviewer) && (
         <div className="mx-4 lg:mx-0">
           <AuthorBox
             author={page?.author}
-            modified={page?._updatedAt ?? page?.originalModifiedAt}
+            modified={guidePageService.getModifiedDate(page)}
             reviewedBy={page?.reviewer}
           />
         </div>
@@ -83,29 +85,13 @@ export default function GuidePage({
       {similarGuidePages && (
         <section className="bg-gray-100 py-10">
           <Container>
-            <h3 className="mb-4 text-2xl text-gray-700">Fler guider</h3>
+            <Heading level={3} size={6} className="mb-4 font-bold text-gray-700" text="Fler guider" />
             <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
               {similarGuidePages.map((guidePage) => (
-                <Link
-                  href={guidePage.slug.current}
-                  key={`guide-page-${guidePage._id}`}
-                  className="flex flex-col"
-                >
-                  {guidePage.featuredImage && (
-                    <div
-                      className="flex rounded-md overflow-hidden mb-3 relative"
-                    >
-                      <Image
-                        src={guidePage.featuredImage.src}
-                        alt={guidePage.featuredImage.alt}
-                        width={500}
-                        height={500}
-                        className="h-28 object-cover sm:h-48 md:h-56 lg:h-40"
-                      />
-                    </div>
-                  )}
-                  <h4 className="text-gray700">{guidePage.title}</h4>
-                </Link>
+                <ArticleCard
+                  key={guidePage._id}
+                  item={guidePage}
+                />
               ))}
             </div>
           </Container>
