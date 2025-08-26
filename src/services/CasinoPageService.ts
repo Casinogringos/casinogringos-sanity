@@ -1,4 +1,3 @@
-import fs from 'fs'
 import { CasinoPageSchemaType } from '@/src/schemas/casinoPage'
 import { CasinoPagePreviewSchemaType } from '@/src/schemas/casinoPagePreview'
 import { CasinoPageSchema } from '@/src/schemas/casinoPage'
@@ -13,7 +12,6 @@ class CasinoPageService extends BasePageService<CasinoPageSchemaType | CasinoPag
     const parse = CasinoPageSchema.safeParse(page)
     if (!parse.success) {
       console.log(`Invalid casino page schema:\n${page.title}\n`, parse.error)
-      fs.writeFileSync('structuredDataError.log', `\n\n${page.title}\n${JSON.stringify(parse.error)}`)
       // return false
     }
     return true
