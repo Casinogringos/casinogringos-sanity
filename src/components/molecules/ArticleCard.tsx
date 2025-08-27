@@ -6,6 +6,7 @@ import { NewsPagePreviewSchemaType } from '@/src/schemas/newsPagePreview'
 import { PortableText } from 'next-sanity'
 import GuidePageService from '@/src/services/GuidePageService'
 import NewsPageService from '@/src/services/NewsPageService'
+import Heading from '@/src/components/atoms/Heading'
 
 const guidePageService = new GuidePageService()
 const newsPageService = new NewsPageService()
@@ -29,17 +30,15 @@ const ArticleCard = ({
           alt={item.featuredImage.alt}
           width={400}
           height={200}
-          className="object-cover"
+          className="object-cover absolute w-full h-full"
         />
       </div>
       <div className="px-4">
-        {publishedDate && <div className="mt-4 flex items-center gap-x-4 text-xs text-slate500">
+        {publishedDate && <div className="mt-4 flex items-center gap-x-4 text-xs text-slate-500">
           <Date dateString={publishedDate} />
         </div>}
-        <h3 className="text-gray900 group-hover:text-gray-600 mt-2 text-lg font-medium leading-6">
-          <span />
-          {item.title}
-        </h3>
+        <Heading size={5} level={3} text={item.title} className="text-gray-900 group-hover:text-gray-600 my-2 font-bold leading-6" />
+        {item._type === 'news-pages' && item.excerpt && <PortableText value={item.excerpt} />}
       </div>
     </Link>
   )

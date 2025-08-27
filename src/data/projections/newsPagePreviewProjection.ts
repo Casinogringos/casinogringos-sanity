@@ -8,7 +8,7 @@ export const newsPagePreviewProjection = `
   featuredImage {
     ${imageObjectProjection}
   },
-  publishedAt,
+  excerpt,
   seoTitle,
   seoDescription,
   originalPublishedAt,
