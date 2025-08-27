@@ -23,6 +23,7 @@ import HTMLObject from '@/src/components/organisms/HTMLObject'
 import SlotListObject from '@/src/components/organisms/SlotListObject'
 import CasinoTableObject from './CasinoTableObject'
 import { CasinoSchemaType } from '@/src/schemas/casino'
+import HeadingObject from '@/src/components/atoms/HeadingObject'
 
 const renderObject = (
   object: ModularContentItemSchemaType,
@@ -36,7 +37,7 @@ const renderObject = (
     case 'heading-object': {
       return (
         <Tag>
-          <Heading text={object.text} level={object.level} index={outerIndex} />
+          <HeadingObject text={object.text} level={object.level} index={outerIndex} />
         </Tag>
       )
     }
