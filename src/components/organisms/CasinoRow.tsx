@@ -2,6 +2,9 @@ import Link from '@/src/components/atoms/Link'
 import Image from 'next/image'
 import { CasinoPageSchemaType } from '@/src/schemas/casinoPage'
 import { CasinoPagePreviewSchemaType } from '@/src/schemas/casinoPagePreview'
+import CasinoService from '@/src/services/CasinoService'
+
+const casinoService = new CasinoService()
 
 const CasinoRow = ({
   casinoPage,
@@ -23,9 +26,10 @@ const CasinoRow = ({
           className="mr-3 rounded-full"
         />
         <div>
-          <span className="text-xs font-medium text-slate-900">
+          <span className="text-xs font-medium text-slate-900 block">
             {casinoData.name}
           </span>
+          <span className='block'>{casinoService.getBonusString(casinoPage)}</span>
         </div>
         <Link
           href={`/go/${casinoPage.slug.current}`}
@@ -33,6 +37,7 @@ const CasinoRow = ({
           rel="noopener noreferrer nofollow"
           prefetch={false}
           variant={'affiliate'}
+          size='sm'
           className="ml-auto"
           plausible={{
             eventName: 'AffiliateClick',

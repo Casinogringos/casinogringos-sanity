@@ -51,7 +51,7 @@ const NotificationButton = ({ count }: { count: number }) => {
     <button
       onClick={handleToggleNotificationSidebar}
       aria-label="Notifikationer"
-      className="mr-2 lg:mr-2.5 relative mt-1 lg:mt-0"
+      className="mr-2 lg:mr-2.5 relative mt-1 lg:mt-0 cursor-pointer"
     >
       <Bell aria-hidden="true" className="text-white w-5 h-5" />
       {pendingNotifications && (
