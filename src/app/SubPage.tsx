@@ -29,7 +29,7 @@ export default function SubPage({
   //   return null
   // }
   const { toplist, faqs, author, _createdAt, reviewer } = page
-  const headingObjects = getHeadingObjectsByPage({ objects: page.content })
+  const headingObjects = pageService.getHeadingObjects(page)
   const schema = {
     '@context': 'https://schema.org',
     '@graph': [getArticleStructuredData(page)],

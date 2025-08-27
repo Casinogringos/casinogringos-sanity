@@ -17,12 +17,26 @@ abstract class BasePageService<PageType extends GuidePageSchemaType | GuidePageP
     abstract validateList(pages: PageType[], preview: boolean): boolean
 
     getHeadingObjects(
-        page: PageType
+        page: PageType,
     ) {
+        const traverse: any = (data: any, acc: any = []) => {
+            if (!data) return acc
+            if (data._type === 'heading-object') {
+                acc.push(data)
+            }
+            if (Array.isArray(data)) {
+                data.forEach((item: any) => {
+                    traverse(item, acc)
+                })
+            } else if (typeof data === 'object') {
+                Object.values(data).forEach((item: any) => {
+                    traverse(item, acc)
+                })
+            }
+            return acc
+        }
         const { content }: { content: ModularContentSchemaType } = page as GuidePageSchemaType | SubPageSchemaType | SlotPageSchemaType | NewsPageSchemaType | CasinoPageSchemaType
-        return content.filter((object) => {
-            return object._type === 'heading-object'
-        })
+        return traverse(content)
     }
 
     getWordCount(
