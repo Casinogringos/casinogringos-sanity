@@ -3,6 +3,8 @@ import { SanityImageSchema } from './sanityImage'
 import { PortableTextBlockSchema } from './portableTextBlock'
 import { ExperienceObjectSchema } from './experienceObject'
 import { CategorySchema } from './category'
+import { NewsPagePreviewSchema } from './newsPagePreview'
+import { SubPagePreviewSchema } from './subPagePreview'
 
 export const AuthorSchema = z.object({
   _id: z.string(),
@@ -22,6 +24,8 @@ export const AuthorSchema = z.object({
   canonical: z.string(),
   expertise: z.array(CategorySchema),
   experience: z.array(ExperienceObjectSchema),
+  newsPagePreviews: z.array(NewsPagePreviewSchema),
+  pagePreviews: z.array(SubPagePreviewSchema)
 })
 
 export type AuthorSchemaType = z.infer<typeof AuthorSchema>

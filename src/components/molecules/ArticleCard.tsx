@@ -13,8 +13,10 @@ const newsPageService = new NewsPageService()
 
 const ArticleCard = ({
   item,
+  excerpt = true,
 }: {
   item: NewsPagePreviewSchemaType | GuidePagePreviewSchemaType
+  excerpt?: boolean
 }) => {
   const publishedDate = guidePageService.getPublishedDate(item)
 
@@ -22,7 +24,7 @@ const ArticleCard = ({
     <Link
       href={item.slug.current}
       prefetch={false}
-      className={'flex h-full bg-white pb-4 rounded-md flex-col items-start'}
+      className={'flex h-full bg-white pb-4 rounded-md flex-col items-start not-prose'}
     >
       <div className="relative flex h-36 w-full items-center overflow-hidden rounded-t-md">
         <Image
@@ -38,7 +40,7 @@ const ArticleCard = ({
           <Date dateString={publishedDate} />
         </div>}
         <Heading size={5} level={3} text={item.title} className="text-gray-900 group-hover:text-gray-600 my-2 font-bold leading-6" />
-        {item._type === 'news-pages' && item.excerpt && <PortableText value={item.excerpt} />}
+        {item._type === 'news-pages' && item.excerpt && excerpt && <PortableText value={item.excerpt} />}
       </div>
     </Link>
   )

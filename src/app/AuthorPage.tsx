@@ -11,6 +11,7 @@ import { PortableText } from 'next-sanity'
 import { AuthorSchemaType } from '@/src/schemas/author'
 import Image from 'next/image'
 import Heading from '@/src/components/atoms/Heading'
+import ArticleCard from '../components/molecules/ArticleCard';
 
 const Author = ({ author }: { author: AuthorSchemaType }) => {
   const schema = {
@@ -116,42 +117,21 @@ const Author = ({ author }: { author: AuthorSchemaType }) => {
       <Container>
         <div className="prose mx-auto max-w-6xl pb-12">
           <section>
-            <h2 className="my-10 text-3xl">
-              Artiklar som författaren bidgragit till
-            </h2>
+            <Heading level={2} size={7} text="Artiklar som författaren bidgragit till" />
             <div className="grid grid-cols-2 gap-6 md:grid-cols-3 lg:grid-cols-4">
               {author.newsPagePreviews.map((item, index) => (
-                <Link
-                  key={`author-${author._id}-post-${index}`}
-                  className="font-medium no-underline no-prose"
-                  href={`/nyheter/${item.slug.current}`}
-                  prefetch={false}
-                >
-                  <Image
-                    src={item.featuredImage.src}
-                    alt={item.featuredImage.alt}
-                    width={600}
-                    height={600}
-                    className="h-32 w-full rounded-sm object-cover lg:h-36"
-                  />
-                  <div>
-                    <h3 className="mb-1 mt-3 text-lg">{item?.title}</h3>
-                    <span className="block text-xs text-slate600">
-                      <Date dateString={item.originalPublishedAt ?? item._createdAt} />
-                    </span>
-                  </div>
-                </Link>
+                <ArticleCard key={`author-${author._id}-news-${index}`} item={item} excerpt={false} />
               ))}
             </div>
           </section>
           <section>
-            <h2 className="mb-4 text-2xl">Senaste sidor</h2>
+            <Heading level={2} size={7} text="Senaste sidor" />
             <ul>
-              {author?.subPagePreviews?.map((item) => (
-                <li key={`author-${item.id}`}>
+              {author.pagePreviews?.map((item) => (
+                <li key={`author-page-${item._id}`}>
                   <Link
                     className="decoration-transparent font-medium"
-                    href={item?.uri}
+                    href={item?.slug.current}
                     prefetch={false}
                   >
                     {item?.title}

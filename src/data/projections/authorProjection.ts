@@ -33,7 +33,7 @@ export const authorProjection = `
     "newsPagePreviews": *[_type == "news-pages" && author._ref == ^._id] {
       ${newsPagePreviewProjection}
     },
-    "subPagePreviews": *[_type == "pages" && author._ref == ^._id] {
+    "pagePreviews": *[_type == "pages" && author._ref == ^._id] {
       ${pagePreviewProjection}
     },
 `
