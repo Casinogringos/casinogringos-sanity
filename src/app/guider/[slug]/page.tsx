@@ -7,8 +7,7 @@ import { notFound } from 'next/navigation'
 import { formatPageSlug } from '@/src/lib/utility'
 import GuidePage from '@/src/app/GuidePage'
 import { Metadata } from 'next'
-import { GuidePageSchemaType } from '@/src/schemas'
-import { urlFor } from '@/src/lib/client'
+import { GuidePageSchemaType } from '@/src/schemas/guidePage'
 
 type Params = Promise<{ slug: string }>
 

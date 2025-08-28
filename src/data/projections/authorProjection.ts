@@ -1,6 +1,8 @@
 import { imageProjection } from '@/src/data/projections/imageProjection'
 import { newsPagePreviewProjection } from '@/src/data/projections/newsPagePreviewProjection'
 import { pagePreviewProjection } from '@/src/data/projections/pagePreviewProjection'
+import { experienceObjectProjection } from '@/src/data/projections/experienceObjectProjection'
+import { categoryProjection } from '@/src/data/projections/categoryProjection'
 
 export const authorProjection = `
     _type,
@@ -20,6 +22,12 @@ export const authorProjection = `
     linkedIn,
     avatar {
       ${imageProjection}
+    },
+    experience[] {
+      ${experienceObjectProjection}
+    },
+    expertise[] -> {
+      ${categoryProjection}
     },
     description,
     "newsPagePreviews": *[_type == "news-pages" && author._ref == ^._id] {

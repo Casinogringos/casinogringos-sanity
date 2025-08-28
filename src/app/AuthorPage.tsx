@@ -79,7 +79,7 @@ const Author = ({ author }: { author: AuthorSchemaType }) => {
               </div>
               {author.expertise && (
                 <section>
-                  <h3 className="mb-4 mt-5 text-lg">Expertområden</h3>
+                  <Heading level={3} size={5} className="mb-3 mt-5 font-bold" text="Expertområden" />
                   <div className="flex gap-2 rounded-md">
                     {author.expertise?.map((item, index) => (
                       <span
@@ -94,17 +94,15 @@ const Author = ({ author }: { author: AuthorSchemaType }) => {
               )}
               {author.experience && (
                 <section>
-                  <h3 className="mb-3 mt-5 text-lg">
-                    Erfarenhet och utbildning
-                  </h3>
+                  <Heading level={3} size={5} className="mt-5 font-bold" text='Erfarenhet och utbildning' />
                   <ul>
                     {author.experience?.map((item, index) => (
                       <li
                         key={`author-${author._id}-experience-${index}`}
                         className="border-b border-b-blue-100 py-2"
                       >
-                        <strong className="text-dark">{item.title}</strong>
-                        <span className="block text-sm">{item.years}</span>
+                        <strong className="text-dark">{item.position} - {item.employer}</strong>
+                        <span className="block text-sm"><Date dateString={item.startDate} /> - {item.endDate ? <Date dateString={item.endDate} /> : 'Present'}</span>
                       </li>
                     ))}
                   </ul>

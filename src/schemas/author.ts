@@ -1,6 +1,8 @@
 import { z } from 'zod'
 import { SanityImageSchema } from './sanityImage'
 import { PortableTextBlockSchema } from './portableTextBlock'
+import { ExperienceObjectSchema } from './experienceObject'
+import { CategorySchema } from './category'
 
 export const AuthorSchema = z.object({
   _id: z.string(),
@@ -18,13 +20,8 @@ export const AuthorSchema = z.object({
   seoTitle: z.string(),
   seoDescription: z.string(),
   canonical: z.string(),
-  expertise: z.array(z.object({
-    title: z.string(),
-  })),
-  experience: z.array(z.object({
-    title: z.string(),
-    years: z.number(),
-  })),
+  expertise: z.array(CategorySchema),
+  experience: z.array(ExperienceObjectSchema),
 })
 
 export type AuthorSchemaType = z.infer<typeof AuthorSchema>

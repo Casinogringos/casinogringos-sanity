@@ -1,6 +1,6 @@
 import { getAuthorBySlug, getStaticParams } from "@/src/lib/api";
 import { notFound } from "next/navigation";
-import Author from "@/src/app/Author";
+import AuthorPage from "@/src/app/AuthorPage";
 import { Metadata } from "next";
 import { AuthorSchemaType } from "@/src/schemas/author";
 
@@ -40,7 +40,7 @@ export default async function AuthorItem(props: { params: Params }) {
     if (!author) {
         return notFound()
     }
-    return <Author author={author} />
+    return <AuthorPage author={author} />
 }
 
 export async function generateStaticParams() {
