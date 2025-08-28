@@ -24,6 +24,7 @@ import SlotListObject from '@/src/components/organisms/SlotListObject'
 import CasinoTableObject from './CasinoTableObject'
 import { CasinoSchemaType } from '@/src/schemas/casino'
 import HeadingObject from '@/src/components/atoms/HeadingObject'
+import BonusObject from './BonusObject'
 
 const renderObject = (
   object: ModularContentItemSchemaType,
@@ -94,6 +95,20 @@ const renderObject = (
       return (
         <Tag>
           <CasinoTableObject object={object} />
+        </Tag>
+      )
+    }
+    case 'bonus-object': {
+      if (!object.casino) {
+        return (
+          <Tag>
+            <Placeholder message={'Bonus Object: Missing bonus'} />
+          </Tag>
+        )
+      }
+      return (
+        <Tag>
+          <BonusObject object={object} />
         </Tag>
       )
     }

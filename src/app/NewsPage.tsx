@@ -1,9 +1,10 @@
 import ModularContent from '@/src/components/organisms/ModularContent'
 import Container from '@/src/components/atoms/Container'
-import PostHeader from '@/src/components/molecules/ArticleHeader'
+import ArticleHeader from '@/src/components/molecules/ArticleHeader'
 import Heading from '@/src/components/atoms/Heading'
-import { NewsPagePreviewSchemaType, NewsPageSchemaType } from '@/src/schemas'
 import { getHeadingObjectsByPage } from '@/src/lib/helpers'
+import { NewsPageSchemaType } from '@/src/schemas/newsPage'
+import { NewsPagePreviewSchemaType } from '@/src/schemas/newsPagePreview'
 import TableOfContents from '@/src/components/organisms/TableOfContents'
 import AuthorBox from '@/src/components/organisms/AuthorBox'
 import NewsCard from '@/src/components/organisms/NewsCard'
@@ -55,7 +56,7 @@ export default function NewsPage({
             />{' '}
           </div>
         )}
-        <PostHeader post={page} />
+        <ArticleHeader article={page} />
       </Container>
       {headingObjects.length > 2 && (
         <Container narrow>

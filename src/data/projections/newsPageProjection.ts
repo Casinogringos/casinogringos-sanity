@@ -1,5 +1,6 @@
 import { imageObjectProjection } from '@/src/data/projections/imageObjectProjection'
 import { objectProjections } from '@/src/data/projections/objectProjections'
+import { authorProjection } from '@/src/data/projections/authorProjection'
 
 export const newsPageProjection = `
   _type,
@@ -9,7 +10,10 @@ export const newsPageProjection = `
   featuredImage {
     ${imageObjectProjection}
   },
-  publishedAt,
+  originalPublishedAt,
+  originalModifiedAt,
+  _createdAt,
+  _updatedAt,
   seoTitle,
   seoDescription,
   seoImage {
@@ -18,5 +22,8 @@ export const newsPageProjection = `
   canonical,
   content[] {
     ${objectProjections}
-  }
+  },
+  author-> {
+    ${authorProjection}
+  },
 `
