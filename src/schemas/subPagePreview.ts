@@ -6,6 +6,7 @@ import { ImageObjectSchema } from './imageObject';
 
 export const SubPagePreviewSchema = BasePagePreviewSchema.merge(
     z.object({
+        _type: z.literal('pages'),
         faqs: FAQSchema.optional(),
         toplist: ToplistSchema.optional(),
     })

@@ -55,7 +55,7 @@ const HomePage = ({
       />
       <HomePageHero page={page} />
       {page.toplist?.casinos && page.toplist.casinos.length > 0 && (
-        <Container className='mb-16'>
+        <Container className="mb-16">
           <CasinoList
             casinoPages={page.toplist.casinos}
             title={page.toplist.title}
@@ -77,15 +77,19 @@ const HomePage = ({
         <Container>
           <AuthorBox
             author={author}
-            modified={pageService.getModifiedDate(page)}
+            modified={pageService.getPageModifiedAtTimestamp(page)}
             reviewedBy={reviewer}
           />
         </Container>
       )}
       {faqs && (
-        <div className='bg-dark pb-16 pt-10'>
+        <div className="bg-dark pb-16 pt-10">
           <Container>
-            <FAQ items={faqs.items} title={faqs.title} description={faqs.description} />
+            <FAQ
+              items={faqs.items}
+              title={faqs.title}
+              description={faqs.description}
+            />
           </Container>
         </div>
       )}

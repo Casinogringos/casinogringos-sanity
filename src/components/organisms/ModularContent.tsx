@@ -24,7 +24,8 @@ import SlotListObject from '@/src/components/organisms/SlotListObject'
 import CasinoTableObject from './CasinoTableObject'
 import { CasinoSchemaType } from '@/src/schemas/casino'
 import HeadingObject from '@/src/components/atoms/HeadingObject'
-import BonusObject from './BonusObject'
+import BonusObject from '@/src/components/organisms/BonusObject'
+import SliderObject from '@/src/components/organisms/SliderObject'
 
 const renderObject = (
   object: ModularContentItemSchemaType,
@@ -180,6 +181,13 @@ const renderObject = (
       return (
         <Tag>
           <HTMLObject object={object} />
+        </Tag>
+      )
+    }
+    case 'slider-object': {
+      return (
+        <Tag>
+          <SliderObject object={object} />
         </Tag>
       )
     }

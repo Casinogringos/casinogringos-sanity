@@ -5,6 +5,7 @@ import { SlotSchema } from './slot'
 
 export const SlotPagePreviewSchema = BasePagePreviewSchema.merge(
   z.object({
+    _type: z.literal('slot-pages'),
     slot: SlotSchema,
   })
 )

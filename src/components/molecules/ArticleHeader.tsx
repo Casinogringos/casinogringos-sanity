@@ -7,25 +7,20 @@ import GuidePageService from '@/src/services/GuidePageService'
 const pageService = new GuidePageService()
 
 const ArticleHeader = ({
-  article
+  article,
 }: {
   article: NewsPageSchemaType | GuidePageSchemaType
 }) => {
   console.log('article', article)
   return (
     <>
-      <Heading
-        text={article.title}
-        level={1}
-        size={8}
-        className='font-bold'
-      />
+      <Heading text={article.title} level={1} size={8} className="font-bold" />
       {article.author ? (
         <Avatar
           shareTitle={article.seoTitle}
           reviewer={article.reviewer}
           author={article.author}
-          modifiedAt={pageService.getModifiedDate(article)}
+          modifiedAt={pageService.getPageModifiedAtTimestamp(article)}
           createdAt={pageService.getPublishedDate(article)}
         />
       ) : null}

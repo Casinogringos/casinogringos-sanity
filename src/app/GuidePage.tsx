@@ -77,7 +77,7 @@ export default function GuidePage({
         <div className="mx-4 lg:mx-0">
           <AuthorBox
             author={page?.author}
-            modified={guidePageService.getModifiedDate(page)}
+            modified={guidePageService.getPageModifiedAtTimestamp(page)}
             reviewedBy={page?.reviewer}
           />
         </div>
@@ -85,13 +85,15 @@ export default function GuidePage({
       {similarGuidePages && (
         <section className="bg-gray-100 py-10">
           <Container>
-            <Heading level={3} size={6} className="mb-4 font-bold text-gray-700" text="Fler guider" />
+            <Heading
+              level={3}
+              size={6}
+              className="mb-4 font-bold text-gray-700"
+              text="Fler guider"
+            />
             <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
               {similarGuidePages.map((guidePage) => (
-                <ArticleCard
-                  key={guidePage._id}
-                  item={guidePage}
-                />
+                <ArticleCard key={guidePage._id} item={guidePage} />
               ))}
             </div>
           </Container>

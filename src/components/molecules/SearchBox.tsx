@@ -31,218 +31,337 @@ const newsPageService = new NewsPageService()
 const casinoPageService = new CasinoPageService()
 
 const SearchBox = () => {
-    const [pages, setPages] = useState<Array<SubPagePreviewSchemaType | SlotPagePreviewSchemaType | GuidePagePreviewSchemaType | NewsPagePreviewSchemaType | CasinoPagePreviewSchemaType> | null>(null)
-    const [filteredResults, setFilteredResults] = useState<SearchSchemaType | null>(null)
-    const resultGroups: Record<string, SearchSchemaItemType[]> = useMemo(() => filteredResults?.reduce((acc, item) => {
-        if (!item) return acc
-        const newItem = {
+  const [pages, setPages] = useState<Array<
+    | SubPagePreviewSchemaType
+    | SlotPagePreviewSchemaType
+    | GuidePagePreviewSchemaType
+    | NewsPagePreviewSchemaType
+    | CasinoPagePreviewSchemaType
+  > | null>(null)
+  const [filteredResults, setFilteredResults] =
+    useState<SearchSchemaType | null>(null)
+  const resultGroups: Record<string, SearchSchemaItemType[]> = useMemo(
+    () =>
+      filteredResults?.reduce(
+        (acc, item) => {
+          if (!item) return acc
+          const newItem = {
             _type: item._type,
             title: item.title,
             slug: { ...item.slug },
             featuredImage: { ...item.featuredImage },
             modifiedAt: item.modifiedAt,
-        }
-        if (item._type === 'casino-pages' || item._type === 'guide-pages' || item._type === 'news-pages' || item._type === 'slot-pages' || item._type === 'pages') {
+          }
+          if (
+            item._type === 'casino-pages' ||
+            item._type === 'guide-pages' ||
+            item._type === 'news-pages' ||
+            item._type === 'slot-pages' ||
+            item._type === 'pages'
+          ) {
             acc[item._type].push(newItem as SearchSchemaItemType)
+          }
+          return acc
+        },
+        {
+          'casino-pages': [] as SearchSchemaItemType[],
+          'guide-pages': [] as SearchSchemaItemType[],
+          'news-pages': [] as SearchSchemaItemType[],
+          'slot-pages': [] as SearchSchemaItemType[],
+          pages: [] as SearchSchemaItemType[],
         }
-        return acc
-    }, {
-        'casino-pages': [] as SearchSchemaItemType[],
-        'guide-pages': [] as SearchSchemaItemType[],
-        'news-pages': [] as SearchSchemaItemType[],
-        'slot-pages': [] as SearchSchemaItemType[],
-        'pages': [] as SearchSchemaItemType[],
-    }) ?? {}, [filteredResults])
-    const [query, setQuery] = useState('')
-    const [didFetch, setDidFetch] = useState(false)
-    useEffect(() => {
-        if (didFetch) return
-        setDidFetch(true)
-        const fetchData = async () => {
-            const res = await fetch('/api/search')
-            const data = await res.json()
-            setPages(data)
-        }
-        fetchData()
-    }, [])
-    useEffect(() => {
-        if (query === '') {
-            setFilteredResults(null)
-            return
-        }
-        if (!pages) return
-        const fuse = new Fuse((pages), {
-            keys: ['title', 'slug', 'featuredImage.alt'],
-            includeScore: true,
-            threshold: 0.2,
-        })
-        const searchResults = fuse.search(query)
-        const filteredResults = searchResults.map((result) => {
-            const record: SubPagePreviewSchemaType | SlotPagePreviewSchemaType | GuidePagePreviewSchemaType | NewsPagePreviewSchemaType | CasinoPagePreviewSchemaType | null | undefined = pages?.find((item) => item.slug.current === result.item.slug.current)
-            if (record?.slug.current === '') return null
-            const clonedRecord = _.cloneDeep(record)
-            const featuredImage = clonedRecord?.featuredImage
-            let modifiedAt = null
-            if (clonedRecord && clonedRecord?._type === 'pages') {
-                modifiedAt = pageService.getModifiedDate(clonedRecord)
-            } else if (clonedRecord && clonedRecord?._type === 'casino-pages') {
-                modifiedAt = casinoPageService.getModifiedDate(clonedRecord)
-            } else if (clonedRecord && clonedRecord?._type === 'guide-pages') {
-                modifiedAt = guidePageService.getModifiedDate(clonedRecord)
-            } else if (clonedRecord && clonedRecord?._type === 'news-pages') {
-                modifiedAt = newsPageService.getModifiedDate(clonedRecord)
-            } else if (clonedRecord && clonedRecord?._type === 'slot-pages') {
-                modifiedAt = slotPageService.getModifiedDate(clonedRecord)
-            }
-            return {
-                _type: clonedRecord?._type,
-                title: clonedRecord?.title,
-                slug: { current: clonedRecord?.slug.current },
-                featuredImage,
-                modifiedAt
-            }
-        })
-        setFilteredResults(filteredResults.filter((item): item is SearchSchemaItemType => item !== null))
-    }, [query])
-
-    return (
-        <>
-            <div className="bg-white rounded-md flex items-stretch mb-2">
-                <div className='bg-slate-300 w-[70px] rounded-l-md flex items-center justify-center'>
-                    <Search className='text-white' />
-                </div>
-                <input className='h-[70px] px-4 w-full text-slate-500 outline-none' type="text" placeholder="Sök" onChange={(e) => setQuery(e.target.value)} />
-            </div>
-            {filteredResults && filteredResults.length > 0 && (<div className='bg-white rounded-md max-h-[400px] p-4 overflow-y-scroll'>
-                <div className='mb-4'>
-                    {resultGroups && resultGroups?.['casino-pages']?.length > 0 && (
-                        <Heading text="Casinon" level={3} size={5} className='mb-3' />
-                    )}
-                    {resultGroups?.['casino-pages']?.map((item, index) => (
-                        <div key={`${item.slug.current}`} className='border-b border-slate-200 hover:bg-slate-100 pl-0'>
-                            <Link className='flex items-center justify-start p-4' href={item.slug.current}>
-                                {item.featuredImage.src && <Image
-                                    src={item.featuredImage.src}
-                                    alt={item.featuredImage.alt}
-                                    width={50}
-                                    height={50}
-                                    className='rounded-md mr-2'
-                                />}
-                                <div className='flex-grow'>
-                                    <Heading text={item.title} level={4} size={2} className='!font-normal !text-md' />
-                                    <Date className='text-slate-500 text-sm' dateString={item.modifiedAt} />
-                                </div>
-                                <div className='flex-shrink-0 rounded-full bg-slate-200 p-2'>
-                                    <ArrowRight size={15} />
-                                </div>
-                            </Link>
-                        </div>
-                    ))}
-                </div>
-                <div className='mb-4'>
-                    {resultGroups && resultGroups?.['guide-pages']?.length > 0 && (
-                        <Heading text="Guidor" level={3} size={5} className='mb-3' />
-                    )}
-                    {resultGroups?.['guide-pages']?.map((item, index) => (
-                        <div key={`${item.slug}-${index}`} className='border-b border-slate-200 hover:bg-slate-100 p-4 pl-0'>
-                            <Link href={item.slug.current} className='flex items-center justify-start'>
-                                {item.featuredImage.src && <Image
-                                    src={item.featuredImage.src}
-                                    alt={item.featuredImage.alt}
-                                    width={50}
-                                    height={50}
-                                    className='rounded-md mr-2'
-                                />}
-                                <div className='flex-grow'>
-                                    <Heading text={item.title} level={4} size={2} className='!font-normal !text-md' />
-                                    <Date dateString={item.modifiedAt} className='text-slate-500 text-sm' />
-                                </div>
-                                <div className='flex-shrink-0 rounded-full bg-slate-200 p-2'>
-                                    <ArrowRight size={15} />
-                                </div>
-                            </Link>
-                        </div>
-                    ))}
-                </div>
-                <div className='mb-4'>
-                    {resultGroups && resultGroups?.['news-pages']?.length > 0 && (
-                        <Heading text="Nyheter" level={3} size={5} className='mb-3' />
-                    )}
-                    {resultGroups?.['news-pages']?.map((item, index) => (
-                        <div key={`${item.slug}-${index}`} className='border-b border-slate-200 hover:bg-slate-100 p-4 pl-0'>
-                            <Link href={item.slug.current} className='flex items-center justify-start'>
-                                {item.featuredImage.src && <Image
-                                    src={item.featuredImage.src}
-                                    alt={item.featuredImage.alt}
-                                    width={50}
-                                    height={50}
-                                    className='rounded-md mr-2'
-                                />}
-                                <div className='flex-grow'>
-                                    <Heading text={item.title} level={4} size={2} className='!font-normal !text-md' />
-                                    <Date dateString={item.modifiedAt} className='text-slate-500 text-sm' />
-                                </div>
-                                <div className='flex-shrink-0 rounded-full bg-slate-200 p-2'>
-                                    <ArrowRight size={15} />
-                                </div>
-                            </Link>
-                        </div>
-                    ))}
-                </div>
-                <div className='mb-4'>
-                    {resultGroups && resultGroups?.['slot-pages']?.length > 0 && (
-                        <Heading text="Sloter" level={3} size={5} className='mb-3' />
-                    )}
-                    {resultGroups?.['slot-pages']?.map((item, index) => (
-                        <div key={`${item.slug}-${index}`} className='border-b border-slate-200 hover:bg-slate-100 p-4 pl-0'>
-                            <Link href={item.slug.current} className='flex items-center justify-start'>
-                                {item.featuredImage.src && <Image
-                                    src={item.featuredImage.src}
-                                    alt={item.featuredImage.alt}
-                                    width={50}
-                                    height={50}
-                                    className='rounded-md mr-2'
-                                />}
-                                <div className='flex-grow'>
-                                    <Heading text={item.title} level={4} size={2} className='!font-normal !text-md' />
-                                    <Date dateString={item.modifiedAt} className='text-slate-500 text-sm' />
-                                </div>
-                                <div className='flex-shrink-0 rounded-full bg-slate-200 p-2'>
-                                    <ArrowRight size={15} />
-                                </div>
-                            </Link>
-                        </div>
-                    ))}
-                </div>
-                <div className='mb-4'>
-                    {resultGroups && resultGroups?.['pages']?.length > 0 && (
-                        <Heading text="Sidor" level={3} size={5} className='mb-3' />
-                    )}
-                    {resultGroups?.['pages']?.map((item, index) => (
-                        <div key={`${item.slug}-${index}`} className='border-b border-slate-200 hover:bg-slate-100 p-4 pl-0'>
-                            <Link href={item.slug.current} className='flex items-center justify-start'>
-                                {item.featuredImage.src && <Image
-                                    src={item.featuredImage.src}
-                                    alt={item.featuredImage.alt}
-                                    width={50}
-                                    height={50}
-                                    className='rounded-md mr-2'
-                                />}
-                                <div className='flex-grow'>
-                                    <Heading text={item.title} level={4} size={2} className='!font-normal !text-md' />
-                                    <Date dateString={item.modifiedAt} className='text-slate-500 text-sm' />
-                                </div>
-                                <div className='flex-shrink-0 rounded-full bg-slate-200 p-2'>
-                                    <ArrowRight size={15} />
-                                </div>
-                            </Link>
-                        </div>
-                    ))}
-                </div>
-            </div>
-            )}
-        </>
+      ) ?? {},
+    [filteredResults]
+  )
+  const [query, setQuery] = useState('')
+  const [didFetch, setDidFetch] = useState(false)
+  useEffect(() => {
+    if (didFetch) return
+    setDidFetch(true)
+    const fetchData = async () => {
+      const res = await fetch('/api/search')
+      const data = await res.json()
+      setPages(data)
+    }
+    fetchData()
+  }, [])
+  useEffect(() => {
+    if (query === '') {
+      setFilteredResults(null)
+      return
+    }
+    if (!pages) return
+    const fuse = new Fuse(pages, {
+      keys: ['title', 'slug', 'featuredImage.alt'],
+      includeScore: true,
+      threshold: 0.2,
+    })
+    const searchResults = fuse.search(query)
+    const filteredResults = searchResults.map((result) => {
+      const record:
+        | SubPagePreviewSchemaType
+        | SlotPagePreviewSchemaType
+        | GuidePagePreviewSchemaType
+        | NewsPagePreviewSchemaType
+        | CasinoPagePreviewSchemaType
+        | null
+        | undefined = pages?.find(
+        (item) => item.slug.current === result.item.slug.current
+      )
+      if (record?.slug.current === '') return null
+      const clonedRecord = _.cloneDeep(record)
+      const featuredImage = clonedRecord?.featuredImage
+      let modifiedAt = null
+      if (clonedRecord && clonedRecord?._type === 'pages') {
+        modifiedAt = pageService.getPageModifiedAtTimestamp(clonedRecord)
+      } else if (clonedRecord && clonedRecord?._type === 'casino-pages') {
+        modifiedAt = casinoPageService.getPageModifiedAtTimestamp(clonedRecord)
+      } else if (clonedRecord && clonedRecord?._type === 'guide-pages') {
+        modifiedAt = guidePageService.getPageModifiedAtTimestamp(clonedRecord)
+      } else if (clonedRecord && clonedRecord?._type === 'news-pages') {
+        modifiedAt = newsPageService.getPageModifiedAtTimestamp(clonedRecord)
+      } else if (clonedRecord && clonedRecord?._type === 'slot-pages') {
+        modifiedAt = slotPageService.getPageModifiedAtTimestamp(clonedRecord)
+      }
+      return {
+        _type: clonedRecord?._type,
+        title: clonedRecord?.title,
+        slug: { current: clonedRecord?.slug.current },
+        featuredImage,
+        modifiedAt,
+      }
+    })
+    setFilteredResults(
+      filteredResults.filter(
+        (item): item is SearchSchemaItemType => item !== null
+      )
     )
+  }, [query])
+
+  return (
+    <>
+      <div className="bg-white rounded-md flex items-stretch mb-2">
+        <div className="bg-slate-300 w-[70px] rounded-l-md flex items-center justify-center">
+          <Search className="text-white" />
+        </div>
+        <input
+          className="h-[70px] px-4 w-full text-slate-500 outline-none"
+          type="text"
+          placeholder="Sök"
+          onChange={(e) => setQuery(e.target.value)}
+        />
+      </div>
+      {filteredResults && filteredResults.length > 0 && (
+        <div className="bg-white rounded-md max-h-[400px] p-4 overflow-y-scroll">
+          <div className="mb-4">
+            {resultGroups && resultGroups?.['casino-pages']?.length > 0 && (
+              <Heading text="Casinon" level={3} size={5} className="mb-3" />
+            )}
+            {resultGroups?.['casino-pages']?.map((item, index) => (
+              <div
+                key={`${item.slug.current}`}
+                className="border-b border-slate-200 hover:bg-slate-100 pl-0"
+              >
+                <Link
+                  className="flex items-center justify-start p-4"
+                  href={item.slug.current}
+                >
+                  {item.featuredImage.src && (
+                    <Image
+                      src={item.featuredImage.src}
+                      alt={item.featuredImage.alt}
+                      width={50}
+                      height={50}
+                      className="rounded-md mr-2"
+                    />
+                  )}
+                  <div className="flex-grow">
+                    <Heading
+                      text={item.title}
+                      level={4}
+                      size={2}
+                      className="!font-normal !text-md"
+                    />
+                    <Date
+                      className="text-slate-500 text-sm"
+                      dateString={item.modifiedAt}
+                    />
+                  </div>
+                  <div className="flex-shrink-0 rounded-full bg-slate-200 p-2">
+                    <ArrowRight size={15} />
+                  </div>
+                </Link>
+              </div>
+            ))}
+          </div>
+          <div className="mb-4">
+            {resultGroups && resultGroups?.['guide-pages']?.length > 0 && (
+              <Heading text="Guidor" level={3} size={5} className="mb-3" />
+            )}
+            {resultGroups?.['guide-pages']?.map((item, index) => (
+              <div
+                key={`${item.slug}-${index}`}
+                className="border-b border-slate-200 hover:bg-slate-100 p-4 pl-0"
+              >
+                <Link
+                  href={item.slug.current}
+                  className="flex items-center justify-start"
+                >
+                  {item.featuredImage.src && (
+                    <Image
+                      src={item.featuredImage.src}
+                      alt={item.featuredImage.alt}
+                      width={50}
+                      height={50}
+                      className="rounded-md mr-2"
+                    />
+                  )}
+                  <div className="flex-grow">
+                    <Heading
+                      text={item.title}
+                      level={4}
+                      size={2}
+                      className="!font-normal !text-md"
+                    />
+                    <Date
+                      dateString={item.modifiedAt}
+                      className="text-slate-500 text-sm"
+                    />
+                  </div>
+                  <div className="flex-shrink-0 rounded-full bg-slate-200 p-2">
+                    <ArrowRight size={15} />
+                  </div>
+                </Link>
+              </div>
+            ))}
+          </div>
+          <div className="mb-4">
+            {resultGroups && resultGroups?.['news-pages']?.length > 0 && (
+              <Heading text="Nyheter" level={3} size={5} className="mb-3" />
+            )}
+            {resultGroups?.['news-pages']?.map((item, index) => (
+              <div
+                key={`${item.slug}-${index}`}
+                className="border-b border-slate-200 hover:bg-slate-100 p-4 pl-0"
+              >
+                <Link
+                  href={item.slug.current}
+                  className="flex items-center justify-start"
+                >
+                  {item.featuredImage.src && (
+                    <Image
+                      src={item.featuredImage.src}
+                      alt={item.featuredImage.alt}
+                      width={50}
+                      height={50}
+                      className="rounded-md mr-2"
+                    />
+                  )}
+                  <div className="flex-grow">
+                    <Heading
+                      text={item.title}
+                      level={4}
+                      size={2}
+                      className="!font-normal !text-md"
+                    />
+                    <Date
+                      dateString={item.modifiedAt}
+                      className="text-slate-500 text-sm"
+                    />
+                  </div>
+                  <div className="flex-shrink-0 rounded-full bg-slate-200 p-2">
+                    <ArrowRight size={15} />
+                  </div>
+                </Link>
+              </div>
+            ))}
+          </div>
+          <div className="mb-4">
+            {resultGroups && resultGroups?.['slot-pages']?.length > 0 && (
+              <Heading text="Sloter" level={3} size={5} className="mb-3" />
+            )}
+            {resultGroups?.['slot-pages']?.map((item, index) => (
+              <div
+                key={`${item.slug}-${index}`}
+                className="border-b border-slate-200 hover:bg-slate-100 p-4 pl-0"
+              >
+                <Link
+                  href={item.slug.current}
+                  className="flex items-center justify-start"
+                >
+                  {item.featuredImage.src && (
+                    <Image
+                      src={item.featuredImage.src}
+                      alt={item.featuredImage.alt}
+                      width={50}
+                      height={50}
+                      className="rounded-md mr-2"
+                    />
+                  )}
+                  <div className="flex-grow">
+                    <Heading
+                      text={item.title}
+                      level={4}
+                      size={2}
+                      className="!font-normal !text-md"
+                    />
+                    <Date
+                      dateString={item.modifiedAt}
+                      className="text-slate-500 text-sm"
+                    />
+                  </div>
+                  <div className="flex-shrink-0 rounded-full bg-slate-200 p-2">
+                    <ArrowRight size={15} />
+                  </div>
+                </Link>
+              </div>
+            ))}
+          </div>
+          <div className="mb-4">
+            {resultGroups && resultGroups?.['pages']?.length > 0 && (
+              <Heading text="Sidor" level={3} size={5} className="mb-3" />
+            )}
+            {resultGroups?.['pages']?.map((item, index) => (
+              <div
+                key={`${item.slug}-${index}`}
+                className="border-b border-slate-200 hover:bg-slate-100 p-4 pl-0"
+              >
+                <Link
+                  href={item.slug.current}
+                  className="flex items-center justify-start"
+                >
+                  {item.featuredImage.src && (
+                    <Image
+                      src={item.featuredImage.src}
+                      alt={item.featuredImage.alt}
+                      width={50}
+                      height={50}
+                      className="rounded-md mr-2"
+                    />
+                  )}
+                  <div className="flex-grow">
+                    <Heading
+                      text={item.title}
+                      level={4}
+                      size={2}
+                      className="!font-normal !text-md"
+                    />
+                    <Date
+                      dateString={item.modifiedAt}
+                      className="text-slate-500 text-sm"
+                    />
+                  </div>
+                  <div className="flex-shrink-0 rounded-full bg-slate-200 p-2">
+                    <ArrowRight size={15} />
+                  </div>
+                </Link>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+    </>
+  )
 }
 
 export default SearchBox

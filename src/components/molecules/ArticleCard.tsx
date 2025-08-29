@@ -18,7 +18,7 @@ const ArticleCard = ({
   item: NewsPagePreviewSchemaType | GuidePagePreviewSchemaType
   excerpt?: boolean
 }) => {
-  const publishedDate = guidePageService.getPublishedDate(item)
+  const publishedDate = guidePageService.getPagePublishedTimestamp(item)
 
   return (
     <Link
