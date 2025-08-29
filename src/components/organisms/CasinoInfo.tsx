@@ -145,7 +145,7 @@ const CasinoInfo = ({
             <Heading level={2} size={5} className="mb-3 font-bold" text={`Snabbfakta om ${title}`} />
             <div className="mb-5 flex gap-3 overflow-x-auto">
                 {quickFacts.map((item) => (
-                    <div className="flex flex-shrink-0 flex-col items-center justify-center gap-2 rounded-2xl border border-gray-300 px-6 py-4">
+                    <div key={`quick-fact-${item.label}`} className="flex flex-shrink-0 flex-col items-center justify-center gap-2 rounded-2xl border border-gray-300 px-6 py-4">
                         <div className="text-xs font-semibold uppercase text-slate-600">
                             {item.label}
                         </div>{' '}
@@ -239,7 +239,7 @@ const CasinoInfo = ({
                     <Heading level={2} className="mb-3 mt-6 text-xl font-bold" text="Kundtjänst" />
                     <ul className="mb-3">
                         {casinoPage.casino.contactMethods.map((contactMethod) => (
-                            <li className="flex items-center py-2 border-b border-gray-200">
+                            <li key={`contact-method-${contactMethod.label}`} className="flex items-center py-2 border-b border-gray-200">
                                 <span className="font-medium">{contactMethod.label}</span>
                                 <div className="ml-auto text-blue-600">
                                     {contactMethod.value}

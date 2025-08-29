@@ -15,7 +15,6 @@ const ModalSidebar = ({
   close: () => void
   children: ReactNode
 }) => {
-  console.log('ModalSidebar', isOpen, isClosing)
   return (
     <>
       {isOpen && <Overlay closing={isClosing} close={close} />}

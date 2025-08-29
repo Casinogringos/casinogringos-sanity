@@ -26,8 +26,14 @@ export const slotPagePreviewProjection = `
     },
     slot-> {
       ${slotProjection}
-    },
-    author-> {
-      ${authorProjection}
-    },
+    }
 `
+
+export const getSlotPagePreviewProjection = ({ author }: { author?: boolean }): string => {
+  return `
+    ${slotPagePreviewProjection},
+    ${author ? `author-> {
+      ${authorProjection}
+    }` : ''}
+  `
+}

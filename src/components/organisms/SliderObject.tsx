@@ -64,7 +64,8 @@ const Item = ({ item }: { item: ItemSchemaType }) => {
 
 const SliderObject = ({ object }: { object: SliderObjectSchemaType }) => {
     console.log('slider object', object)
-    const items = object.items.map((item, index): ItemSchemaType => {
+    const { category, items } = object
+    const manualItems = items?.map((item, index): ItemSchemaType => {
         return {
             _id: item._id,
             _type: item._type,
@@ -76,11 +77,25 @@ const SliderObject = ({ object }: { object: SliderObjectSchemaType }) => {
             _updatedAt: item._updatedAt,
             slug: item.slug
         }
-    })
+    }) || []
+    const categoryItems = category?.items?.map((item, index): ItemSchemaType => {
+        return {
+            _id: item._id,
+            _type: item._type,
+            featuredImage: item.featuredImage ?? { _type: 'image-object', src: '', alt: '' },
+            title: item.title,
+            originalModifiedAt: item.originalModifiedAt ?? '',
+            originalPublishedAt: item.originalPublishedAt ?? '',
+            _createdAt: item._createdAt,
+            _updatedAt: item._updatedAt,
+            slug: item.slug
+        }
+    }) || []
+    const mergedItems = [...manualItems, ...categoryItems]
 
     return <div className='not-prose overflow-x-auto'>
         <div className='flex gap-2 items-stretch'>
-            {items.map((item, index) => (
+            {mergedItems.map((item, index) => (
                 <div key={`slider-item-${item._id}`}>
                     <Item item={item} />
                 </div>

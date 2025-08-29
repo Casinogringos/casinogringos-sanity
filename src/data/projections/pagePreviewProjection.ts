@@ -1,4 +1,5 @@
 import { imageObjectProjection } from "./imageObjectProjection"
+import { authorProjection } from "./authorProjection"
 
 export const pagePreviewProjection = `
   _type,
@@ -17,5 +18,14 @@ export const pagePreviewProjection = `
   intro,
   featuredImage {
     ${imageObjectProjection}
-  },
+  }
 `
+
+export const getPagePreviewProjection = ({ author }: { author?: boolean }): string => {
+  return `
+    ${pagePreviewProjection},
+    ${author ? `author-> {
+      ${authorProjection}
+    }` : ''}
+  `
+}
