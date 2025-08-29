@@ -16,9 +16,9 @@ const Avatar = ({
 }: {
   author: AuthorSchemaType
   reviewer?: AuthorSchemaType
-  modifiedAt: string | null
+  modifiedAt: number | null
   shareTitle: string
-  createdAt: string | null
+  createdAt: number | null
 }) => {
   console.log('modifiedAt', modifiedAt)
   console.log('createdAt', createdAt)
@@ -139,7 +139,7 @@ const Avatar = ({
         <div className="mt-4 hidden text-xs md:mt-0 md:block">
           <span>{modifiedAt ? 'Uppdaterad den' : 'Publicerad den'}</span>
           <div className="text-[14px]">
-            {createdAt && <Date dateString={createdAt} />}
+            {createdAt && <Date timestamp={createdAt} />}
           </div>
         </div>
         <div className="hidden items-center gap-x-1 md:flex">
@@ -149,7 +149,7 @@ const Avatar = ({
       </div>
       <div className="mt-3 flex items-center gap-1 rounded-sm border border-gray-200 px-3 py-2.5 text-xs text-slate-700 md:mt-0 md:hidden">
         <span>Uppdaterad:</span>
-        {modifiedAt && <Date dateString={modifiedAt} />}
+        {modifiedAt && <Date timestamp={modifiedAt} />}
         <div className="ml-auto flex items-center gap-x-1 md:hidden">
           <span className="mr-1">Dela:</span>
           <ShareButtons title={shareTitle} />

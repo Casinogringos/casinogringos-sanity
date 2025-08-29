@@ -21,7 +21,7 @@ const ArticleHeader = ({
           reviewer={article.reviewer}
           author={article.author}
           modifiedAt={pageService.getPageModifiedAtTimestamp(article)}
-          createdAt={pageService.getPublishedDate(article)}
+          createdAt={pageService.getPagePublishedAtTimestamp(article)}
         />
       ) : null}
     </>

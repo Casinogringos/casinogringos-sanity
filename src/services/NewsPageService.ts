@@ -4,7 +4,7 @@ import { NewsPagePreviewSchemaType } from '@/src/schemas/newsPagePreview'
 import { NewsPageSchema } from '@/src/schemas/newsPage'
 import { NewsPagePreviewSchema } from '@/src/schemas/newsPagePreview'
 
-class NewsPageService extends BasePageService<NewsPageSchemaType> {
+class NewsPageService extends BasePageService<NewsPageSchemaType | NewsPagePreviewSchemaType> {
   validatePage(page: NewsPageSchemaType, preview: boolean): boolean {
     let parse = null
     parse = preview ? NewsPagePreviewSchema.safeParse(page) : NewsPageSchema.safeParse(page)

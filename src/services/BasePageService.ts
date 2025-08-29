@@ -1,7 +1,7 @@
 import { toPlainText } from '@portabletext/react'
 import {
-  ModularContentItemSchemaType,
-  ModularContentSchemaType,
+    ModularContentItemSchemaType,
+    ModularContentSchemaType,
 } from '@/src/schemas/modularContent'
 import { GuidePageSchemaType } from '@/src/schemas/guidePage'
 import { SubPageSchemaType } from '@/src/schemas/subPage'
@@ -16,7 +16,7 @@ import { CasinoPagePreviewSchemaType } from '@/src/schemas/casinoPagePreview'
 import UtilityService from '@/src/services/UtilityService'
 
 abstract class BasePageService<
-  PageType extends
+    PageType extends
     | GuidePageSchemaType
     | GuidePagePreviewSchemaType
     | SubPageSchemaType
@@ -28,99 +28,99 @@ abstract class BasePageService<
     | CasinoPageSchemaType
     | CasinoPagePreviewSchemaType,
 > {
-  utilityService = new UtilityService()
+    utilityService = new UtilityService()
 
-  abstract validatePage(page: PageType, preview: boolean): boolean
+    abstract validatePage(page: PageType, preview: boolean): boolean
 
-  abstract validateList(pages: PageType[], preview: boolean): boolean
+    abstract validateList(pages: PageType[], preview: boolean): boolean
 
-  getHeadingObjects(page: PageType) {
-    const traverse: any = (data: any, acc: any = []) => {
-      if (!data) return acc
-      if (data._type === 'heading-object') {
-        acc.push(data)
-      }
-      if (Array.isArray(data)) {
-        data.forEach((item: any) => {
-          traverse(item, acc)
-        })
-      } else if (typeof data === 'object') {
-        Object.values(data).forEach((item: any) => {
-          traverse(item, acc)
-        })
-      }
-      return acc
-    }
-    const { content }: { content: ModularContentSchemaType } = page as
-      | GuidePageSchemaType
-      | SubPageSchemaType
-      | SlotPageSchemaType
-      | NewsPageSchemaType
-      | CasinoPageSchemaType
-    return traverse(content)
-  }
-
-  getWordCount(page: PageType) {
-    const { content }: { content: ModularContentSchemaType } = page as
-      | GuidePageSchemaType
-      | SubPageSchemaType
-      | SlotPageSchemaType
-      | NewsPageSchemaType
-      | CasinoPageSchemaType
-    return content.reduce(
-      (acc: number, object: ModularContentItemSchemaType) => {
-        if (object._type === 'heading-object') {
-          return acc + object.text.split(' ').length
+    getHeadingObjects(page: PageType) {
+        const traverse: any = (data: any, acc: any = []) => {
+            if (!data) return acc
+            if (data._type === 'heading-object') {
+                acc.push(data)
+            }
+            if (Array.isArray(data)) {
+                data.forEach((item: any) => {
+                    traverse(item, acc)
+                })
+            } else if (typeof data === 'object') {
+                Object.values(data).forEach((item: any) => {
+                    traverse(item, acc)
+                })
+            }
+            return acc
         }
-        if (object._type === 'paragraph-object') {
-          const plainText = toPlainText(object.content)
-          return acc + plainText.split(' ').length
-        }
-        return acc
-      },
-      0
-    )
-  }
-  getPageModifiedAtTimestamp(page: PageType): string | null {
-    const originalPublishedAt = page.originalPublishedAt
-      ? new Date(page.originalPublishedAt).getTime()
-      : null
-    console.log('originalPublishedAt', originalPublishedAt)
-    const originalModifiedAt = page.originalModifiedAt
-      ? new Date(page.originalModifiedAt).getTime()
-      : null
-    console.log('originalModifiedAt', originalModifiedAt)
-    const newCreatedAt = page._createdAt
-      ? new Date(page._createdAt).getTime()
-      : null
-    console.log('newCreatedAt', newCreatedAt)
-    const newUpdatedAt = page._updatedAt
-      ? new Date(page._updatedAt).getTime()
-      : null
-    console.log('newUpdatedAt', newUpdatedAt)
-    if (
-      (!originalPublishedAt && newCreatedAt) ||
-      (!originalModifiedAt && newUpdatedAt)
-    )
-      return null
-    if (!newUpdatedAt) return page.originalModifiedAt ?? null
-    if (newUpdatedAt && newCreatedAt && newUpdatedAt > newCreatedAt) {
-      return page._updatedAt
+        const { content }: { content: ModularContentSchemaType } = page as
+            | GuidePageSchemaType
+            | SubPageSchemaType
+            | SlotPageSchemaType
+            | NewsPageSchemaType
+            | CasinoPageSchemaType
+        return traverse(content)
     }
-    return page.originalModifiedAt ?? null
-  }
-  getPagePublishedTimestamp(page: PageType): number | null {
-    const originalPublishedAt = page.originalPublishedAt
-      ? new Date(page.originalPublishedAt).getTime()
-      : null
-    const newCreatedAt = page._createdAt
-      ? new Date(page._createdAt).getTime()
-      : null
-    return this.utilityService.getPublishedTimestamp({
-      originalPublishedAt,
-      newCreatedAt,
-    })
-  }
+
+    getWordCount(page: PageType) {
+        const { content }: { content: ModularContentSchemaType } = page as
+            | GuidePageSchemaType
+            | SubPageSchemaType
+            | SlotPageSchemaType
+            | NewsPageSchemaType
+            | CasinoPageSchemaType
+        return content.reduce(
+            (acc: number, object: ModularContentItemSchemaType) => {
+                if (object._type === 'heading-object') {
+                    return acc + object.text.split(' ').length
+                }
+                if (object._type === 'paragraph-object') {
+                    const plainText = toPlainText(object.content)
+                    return acc + plainText.split(' ').length
+                }
+                return acc
+            },
+            0
+        )
+    }
+    getPageModifiedAtTimestamp(page: PageType): string | null {
+        const originalPublishedAt = page.originalPublishedAt
+            ? new Date(page.originalPublishedAt).getTime()
+            : null
+        console.log('originalPublishedAt', originalPublishedAt)
+        const originalModifiedAt = page.originalModifiedAt
+            ? new Date(page.originalModifiedAt).getTime()
+            : null
+        console.log('originalModifiedAt', originalModifiedAt)
+        const newCreatedAt = page._createdAt
+            ? new Date(page._createdAt).getTime()
+            : null
+        console.log('newCreatedAt', newCreatedAt)
+        const newUpdatedAt = page._updatedAt
+            ? new Date(page._updatedAt).getTime()
+            : null
+        console.log('newUpdatedAt', newUpdatedAt)
+        if (
+            (!originalPublishedAt && newCreatedAt) ||
+            (!originalModifiedAt && newUpdatedAt)
+        )
+            return null
+        if (!newUpdatedAt) return page.originalModifiedAt ?? null
+        if (newUpdatedAt && newCreatedAt && newUpdatedAt > newCreatedAt) {
+            return page._updatedAt
+        }
+        return page.originalModifiedAt ?? null
+    }
+    getPagePublishedAtTimestamp(page: PageType): number | null {
+        const originalPublishedAt = page.originalPublishedAt
+            ? new Date(page.originalPublishedAt).getTime()
+            : null
+        const newCreatedAt = page._createdAt
+            ? new Date(page._createdAt).getTime()
+            : null
+        return this.utilityService.getPublishedTimestamp({
+            originalPublishedAt,
+            newCreatedAt,
+        })
+    }
 }
 
 export default BasePageService

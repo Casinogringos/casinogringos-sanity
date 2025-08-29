@@ -18,7 +18,16 @@ const ArticleCard = ({
   item: NewsPagePreviewSchemaType | GuidePagePreviewSchemaType
   excerpt?: boolean
 }) => {
-  const publishedDate = guidePageService.getPagePublishedTimestamp(item)
+  const getPublishedDate = () => {
+    if (item._type === 'news-pages') {
+      return newsPageService.getPagePublishedAtTimestamp(item)
+    }
+    if (item._type === 'guide-pages') {
+      return guidePageService.getPagePublishedAtTimestamp(item)
+    }
+    return null
+  }
+  const publishedDate = getPublishedDate()
 
   return (
     <Link
@@ -37,7 +46,7 @@ const ArticleCard = ({
       </div>
       <div className="px-4">
         {publishedDate && <div className="mt-4 flex items-center gap-x-4 text-xs text-slate-500">
-          <Date dateString={publishedDate} />
+          <Date timestamp={publishedDate} />
         </div>}
         <Heading size={5} level={3} text={item.title} className="text-gray-900 group-hover:text-gray-600 my-2 font-bold leading-6" />
         {item._type === 'news-pages' && item.excerpt && excerpt && <PortableText value={item.excerpt} />}
