@@ -74,7 +74,7 @@ const HomePage = ({
       )}
       <ModularContent objects={page.content} />
       {author && (
-        <Container>
+        <Container narrow>
           <AuthorBox
             author={author}
             modified={pageService.getPageModifiedAtTimestamp(page)}

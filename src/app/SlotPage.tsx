@@ -23,7 +23,7 @@ const casinoPageService = new CasinoPageService()
 const SlotPage = ({ slotPage, similarSlotPages }: { slotPage: SlotPageSchemaType, similarSlotPages: SlotPagePreviewSchemaType[] }) => {
   const isValidSlotPage = slotPageService.validatePage(slotPage)
   const isValidSimilarSlotPages = slotPageService.validateList(similarSlotPages, true)
-
+  console.log('slotpage', slotPage)
   const schema = {
     '@context': 'https://schema.org',
     '@graph': [getSlotReviewStructuredData({ page: slotPage })],
@@ -39,6 +39,8 @@ const SlotPage = ({ slotPage, similarSlotPages }: { slotPage: SlotPageSchemaType
       text: slotPage.title,
     },
   ]
+  const createdAt = new Date(slotPage.originalPublishedAt ?? '' as string).getTime() ?? new Date(slotPage._createdAt).getTime()
+  const modifiedAt = new Date(slotPage._updatedAt).getTime() ?? new Date(slotPage.originalModifiedAt ?? '' as string).getTime()
 
   return (
     <>
@@ -71,7 +73,7 @@ const SlotPage = ({ slotPage, similarSlotPages }: { slotPage: SlotPageSchemaType
                     {new Array(slot.rating).fill(null).map((_, index) => (
                       <Star
                         key={`rating-star-${index}`}
-                        className="h-4 w-4 text-yellow400"
+                        className="h-4 w-4 text-yellow-400"
                       />
                     ))}
                     {new Array(slot.rating)
@@ -81,30 +83,28 @@ const SlotPage = ({ slotPage, similarSlotPages }: { slotPage: SlotPageSchemaType
                           slot.rating.toString().indexOf('.') !== -1 && (
                             <HalfStarIcon
                               key={`rating-star-${index}`}
-                              className="h-4 w-4 text-yellow400"
+                              className="h-4 w-4 text-yellow-400"
                             />
                           )
                       )}
                   </div>
                 )}
-                <Heading level={1} className="mb-0 mt-1 text-3xl font-bold text-white">
-                  <span>{slotPage.title}</span>
-                </Heading>
-                <p className="text-slate300">
+                <Heading level={1} size={7} text={slotPage.title} className="mb-0 mt-1 font-bold text-white" />
+                <p className="text-slate-300">
                   {slot.provider.name}
                 </p>
                 <PortableText value={slotPage.intro} />
                 <section className="mt-6 grid grid-cols-2 gap-3">
-                  <div className="rounded-md bg-normal px-4 py-3">
-                    <span className="text-sm font-medium text-slate200">
+                  <div className="rounded-md bg-normal px-4 py-3 bg-white/10">
+                    <span className="text-sm font-medium text-slate-200">
                       RTP:
                     </span>
-                    <div className="text-2xl font-semibold text-green500">
+                    <div className="text-2xl font-semibold text-green-500">
                       {slot.rtpRange[0]} - {slot.rtpRange[1]}
                     </div>
                   </div>
-                  <div className="rounded-md bg-normal px-4 py-3">
-                    <span className="text-sm font-medium text-slate200">
+                  <div className="rounded-md bg-normal px-4 py-3 bg-white/10">
+                    <span className="text-sm font-medium text-slate-200">
                       Maxvinst:
                     </span>
                     <div className="text-2xl font-semibold text-primary">
@@ -112,8 +112,8 @@ const SlotPage = ({ slotPage, similarSlotPages }: { slotPage: SlotPageSchemaType
                     </div>
                   </div>
                   {slot.volatility && (
-                    <div className="rounded-md bg-normal px-4 py-3">
-                      <span className="text-sm font-medium text-slate200">
+                    <div className="rounded-md bg-normal px-4 py-3 bg-white/10">
+                      <span className="text-sm font-medium text-slate-200">
                         Volalitet:
                       </span>
                       <div className="text-2xl font-semibold text-primary">
@@ -122,8 +122,8 @@ const SlotPage = ({ slotPage, similarSlotPages }: { slotPage: SlotPageSchemaType
                     </div>
                   )}
                   {slot.numberOfPaylines && (
-                    <div className="rounded-md bg-normal px-4 py-3">
-                      <span className="text-sm font-medium text-slate200">
+                    <div className="rounded-md bg-normal px-4 py-3 bg-white/10">
+                      <span className="text-sm font-medium text-slate-200">
                         Vinstlinjer:
                       </span>
                       <div className="text-2xl font-semibold text-primary">
@@ -132,8 +132,8 @@ const SlotPage = ({ slotPage, similarSlotPages }: { slotPage: SlotPageSchemaType
                     </div>
                   )}
                   {slot.minBet && (
-                    <div className="rounded-md bg-normal px-4 py-3">
-                      <span className="text-sm font-medium text-slate200">
+                    <div className="rounded-md bg-normal px-4 py-3 bg-white/10">
+                      <span className="text-sm font-medium text-slate-200">
                         Minsta insats:
                       </span>
                       <div className="text-2xl font-semibold text-primary">
@@ -142,8 +142,8 @@ const SlotPage = ({ slotPage, similarSlotPages }: { slotPage: SlotPageSchemaType
                     </div>
                   )}
                   {slot.maxBet && (
-                    <div className="rounded-md bg-normal px-4 py-3">
-                      <span className="text-sm font-medium text-slate200">
+                    <div className="rounded-md bg-normal px-4 py-3 bg-white/10">
+                      <span className="text-sm font-medium text-slate-200">
                         Högsta insats:
                       </span>
                       <div className="text-2xl font-semibold text-primary">
@@ -164,8 +164,8 @@ const SlotPage = ({ slotPage, similarSlotPages }: { slotPage: SlotPageSchemaType
         <Container narrow className="mb-10 mt-12">
           <Avatar
             author={slotPage.author}
-            date={slotPage.originalPublishedAt ?? slotPage._createdAt}
-            modified={slotPage._updatedAt ?? slotPage.originalModifiedAt}
+            createdAt={createdAt}
+            modifiedAt={modifiedAt}
             shareTitle={slotPage.seoTitle}
             reviewer={slotPage.reviewer}
             pathname={slotPage.slug.current}

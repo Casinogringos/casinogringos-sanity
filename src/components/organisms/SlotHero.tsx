@@ -1,15 +1,15 @@
 import { PlayCircle } from 'lucide-react'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
-import { CasinoPagePreviewSchemaType, SlotPageSchemaType } from '@/src/schemas'
 import ToggleItem from '../atoms/ToggleItem'
 import ToggleButton from '../atoms/ToggleButton'
 import Image from 'next/image'
+import { SlotPageSchemaType } from '@/src/schemas/slotPage'
 const IFrame = dynamic(() => import('@/src/components/organisms/IFrame'))
 
 const SlotHero = ({ slotPage }: { slotPage: SlotPageSchemaType }) => {
   return (
-    <div className="relative overflow-hidden bg-slate900">
+    <div className="relative overflow-hidden bg-slate-900">
       <div className="absolute left-0 top-0 h-full w-full object-fill blur-2xl">
         <Image
           priority={true}
@@ -28,7 +28,7 @@ const SlotHero = ({ slotPage }: { slotPage: SlotPageSchemaType }) => {
                 {slotPage.title}
               </span>
               {slotPage.slot.provider && (
-                <p className="text-sm text-slate100">
+                <p className="text-sm text-slate-100">
                   {slotPage.slot.provider.name}
                 </p>
               )}
@@ -40,7 +40,7 @@ const SlotHero = ({ slotPage }: { slotPage: SlotPageSchemaType }) => {
                     label="Spela demo"
                   >
                     <div
-                      className="mb-4 flex items-center justify-center gap-2 rounded-sm bg-blue100 px-12 py-4 font-medium lg:mb-0"
+                      className="mb-4 flex items-center justify-center gap-2 rounded-sm bg-blue-100 px-12 py-4 font-medium lg:mb-0"
                     >
                       <PlayCircle className="h-6 w-6" /> Spela demo
                     </div>
@@ -49,24 +49,22 @@ const SlotHero = ({ slotPage }: { slotPage: SlotPageSchemaType }) => {
               </div>
             </div>
           </ToggleItem>
-          {slotPage.slot.demoUrl && (
-            <ToggleItem id={`slot-demo-${slotPage._id}`}>
-              <div className="mb-2">
-                <div className="flex items-center px-2 py-1">
-                  <span className="lg:text-md py-1 text-sm text-gray200">
-                    Demo: {slotPage.title}
-                  </span>
-                  <Link
-                    href="#spela"
-                    className="hover:bg-gray-500 ml-auto flex items-center justify-center rounded-sm bg-button px-2 py-1.5 text-xs font-medium text-white"
-                  >
-                    Spela för riktiga pengar
-                  </Link>
-                </div>
+          <ToggleItem id={`slot-demo-${slotPage._id}`}>
+            <div className="mb-2">
+              <div className="flex items-center px-2 py-1">
+                <span className="lg:text-md py-1 text-sm text-gray-200">
+                  Demo: {slotPage.title}
+                </span>
+                <Link
+                  href="#spela"
+                  className="hover:bg-gray-500 ml-auto flex items-center justify-center rounded-sm bg-button px-2 py-1.5 text-xs font-medium text-white"
+                >
+                  Spela för riktiga pengar
+                </Link>
               </div>
-              <IFrame url={slotPage.slot.demoUrl} />
-            </ToggleItem>
-          )}
+            </div>
+            {slotPage.slot.demoUrl && <IFrame url={slotPage.slot.demoUrl} />}
+          </ToggleItem>
         </section>
       </div>
     </div>

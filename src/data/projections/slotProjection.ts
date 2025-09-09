@@ -42,4 +42,5 @@ export const slotProjection = `
     advantages[],
     disadvantages[],
     rating,
+    demoUrl
 `

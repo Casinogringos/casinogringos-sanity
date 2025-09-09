@@ -13,6 +13,7 @@ const CasinoTableRow = ({
   const { casino } = casinoPage
   const casinoService = new CasinoService()
   const bonusString = casinoService.getBonusString({ casino })
+  console.log('bonusString', bonusString)
 
   return (
     <tr>

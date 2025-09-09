@@ -12,7 +12,7 @@ const FAQ = ({ items, title, description }: { items: FaqItemObjectSchemaType[]; 
   return (
     <>
       <div className="mb-6 text-white text-center">
-        <Heading text={title ?? 'Frågor och svar'} level={2} size={8} className='font-bold' />
+        <Heading className='mb-5 font-bold' text={title ?? 'Frågor och svar'} level={2} size={8} />
         <PortableText value={description} />
       </div>
       {items.map((item, index) => (
