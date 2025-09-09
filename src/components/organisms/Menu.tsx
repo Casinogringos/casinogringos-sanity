@@ -18,7 +18,7 @@ const Menu = ({
       <ul role={'menubar'}>
         {menu?.items?.map((level1Item: MenuItemType, i: number) => (
           <li
-            className={`flex items-center justify-between flex-wrap border-b-gray-100 py-4 ${menu.items.length - 1 !== i ? 'border-b' : ''
+            className={`border-b-gray-100 py-4 ${menu.items.length - 1 !== i ? 'border-b' : ''
               }`}
             key={`level-1-item-${level1Item._key}`}
             role={'none'}
@@ -32,7 +32,7 @@ const Menu = ({
                   ? 'page'
                   : undefined
               }
-              className={`flex items-center flex-grow truncate font-medium text-lg whitespace-nowrap hover:text-primary max-w-[calc(100%-34px)]`}
+              className={`truncate ellipsis float-left font-medium text-lg whitespace-nowrap hover:text-primary max-w-[calc(100%-34px)]`}
               href={level1Item.page.slug.current}
             >
               {level1Item.page.title}
@@ -43,6 +43,7 @@ const Menu = ({
                   id={`menu-toggle-${i}-${level1Item._key}`}
                   label={'Öppna undermeny'}
                   role={'menuitemcheckbox'}
+                  className='w-[34px] h-[34px] inline-flex items-center justify-center float-right'
                 >
                   <ToggleSpin id={`menu-toggle-${i}-${level1Item._key}`}>
                     <ChevronDown

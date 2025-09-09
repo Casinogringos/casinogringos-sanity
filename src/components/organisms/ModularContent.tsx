@@ -201,7 +201,7 @@ const renderObject = (
     }
     case 'slider-object': {
       return (
-        <Tag>
+        <Tag className='mb-8'>
           <SliderObject object={object} />
         </Tag>
       )
