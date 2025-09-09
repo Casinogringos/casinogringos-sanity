@@ -26,12 +26,14 @@ import { CasinoSchemaType } from '@/src/schemas/casino'
 import HeadingObject from '@/src/components/atoms/HeadingObject'
 import BonusObject from '@/src/components/organisms/BonusObject'
 import SliderObject from '@/src/components/organisms/SliderObject'
+import SectionObject from './SectionObject'
 
 const renderObject = (
   object: ModularContentItemSchemaType,
   outerIndex: number,
   nested = false,
-  casino?: CasinoSchemaType
+  casino?: CasinoSchemaType,
+  backgroundColor?: string
 ) => {
   if (!object) return null
   const Tag = nested ? 'div' : Container
@@ -39,16 +41,22 @@ const renderObject = (
     case 'heading-object': {
       return (
         <Tag>
-          <HeadingObject text={object.text} level={object.level} index={outerIndex} />
+          <HeadingObject backgroundColor={backgroundColor} text={object.text} level={object.level} index={outerIndex} />
         </Tag>
       )
     }
-    case 'paragraph-object':
+    case 'paragraph-object': {
+      console.log('backgroundColor', backgroundColor)
+      const proseColorOverrides =
+        backgroundColor === 'blue'
+          ? 'dark-bg'
+          : 'light-bg'
       return (
-        <Tag>
+        <Tag className={proseColorOverrides}>
           <PortableText value={object.content} />
         </Tag>
       )
+    }
     case 'image-object': {
       return (
         <Tag>
@@ -110,6 +118,13 @@ const renderObject = (
       return (
         <Tag>
           <BonusObject object={object} />
+        </Tag>
+      )
+    }
+    case 'section-object': {
+      return (
+        <Tag>
+          <SectionObject object={object} />
         </Tag>
       )
     }
@@ -200,12 +215,14 @@ const ModularContent = async ({
   objects,
   className = '',
   nested,
-  casino
+  casino,
+  backgroundColor
 }: {
   objects: ModularContentSchemaType
   className?: string
   nested?: boolean
   casino?: CasinoSchemaType
+  backgroundColor?: string
 }) => {
   // if (!nested) await writeDataToTestFile(objects)
   if (!objects) return null
@@ -218,7 +235,7 @@ const ModularContent = async ({
         if (!object._key) return null
         return (
           <Fragment key={`object-${object._key}`}>
-            {renderObject(object, outerIndex, nested, casino)}
+            {renderObject(object, outerIndex, nested, casino, backgroundColor)}
           </Fragment>
         )
       })}

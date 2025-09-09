@@ -24,6 +24,7 @@ import { casinoListObjectProjection } from '@/src/data/projections/casinoListObj
 import { slotListObjectProjection } from '@/src/data/projections/slotListObjectProjection'
 import { casinoTableObjectProjection } from '@/src/data/projections/casinoTableObjectProjection'
 import { sliderObjectProjection } from '@/src/data/projections/sliderObjectProjection'
+import { sectionObjectProjection } from './sectionObjectProjection'
 
 // export const objectProjections = `
 //     ${casinoObjectProjection},
@@ -71,7 +72,8 @@ export const objectProjections = [
   prosAndConsObjectProjection,
   slotListObjectProjection,
   casinoTableObjectProjection,
-  sliderObjectProjection
+  sliderObjectProjection,
+  sectionObjectProjection
 ]
   .map((projection) => projection.trim())
   .join(',\n')
