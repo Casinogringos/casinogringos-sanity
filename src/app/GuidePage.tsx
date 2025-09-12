@@ -51,7 +51,7 @@ export default function GuidePage({
         key="guide-page-structured-data"
       />
       <BreadCrumbs items={breadcrumbs} />
-      <div className="mx-auto mb-0 max-w-3xl px-4 pt-6 lg:px-0">
+      <Container narrow>
         {page.featuredImage.src && (
           <div className="mb-4 flex h-auto items-start overflow-hidden rounded-md lg:mb-8 lg:mt-8 lg:h-96">
             <Image
@@ -64,7 +64,7 @@ export default function GuidePage({
           </div>
         )}
         <ArticleHeader article={page} />
-      </div>
+      </Container>
       {headings.length > 1 && (
         <Container narrow>
           <div className="-mb-6 mt-4 px-4 lg:mt-5 lg:px-0">
@@ -72,7 +72,7 @@ export default function GuidePage({
           </div>
         </Container>
       )}
-      <ModularContent objects={page.content} />
+      <ModularContent narrow objects={page.content} />
       {(page?.author || page?.reviewer) && (
         <div className="mx-4 lg:mx-0">
           <AuthorBox
@@ -84,7 +84,7 @@ export default function GuidePage({
       )}
       {similarGuidePages && (
         <section className="bg-gray-100 py-10">
-          <Container>
+          <Container narrow>
             <Heading
               level={3}
               size={6}

@@ -31,16 +31,17 @@ import SectionObject from './SectionObject'
 const renderObject = (
   object: ModularContentItemSchemaType,
   outerIndex: number,
-  nested = false,
+  padding = false,
   casino?: CasinoSchemaType,
-  backgroundColor?: string
+  backgroundColor?: string,
+  narrow?: boolean
 ) => {
   if (!object) return null
-  const Tag = nested ? 'div' : Container
+  const Tag = padding ? Container : 'div'
   switch (object._type) {
     case 'heading-object': {
       return (
-        <Tag>
+        <Tag narrow={narrow}>
           <HeadingObject backgroundColor={backgroundColor} text={object.text} level={object.level} index={outerIndex} />
         </Tag>
       )
@@ -52,49 +53,49 @@ const renderObject = (
           ? 'dark-bg'
           : 'light-bg'
       return (
-        <Tag className={proseColorOverrides}>
+        <Tag narrow={narrow} className={proseColorOverrides}>
           <PortableText value={object.content} />
         </Tag>
       )
     }
     case 'image-object': {
       return (
-        <Tag>
+        <Tag narrow={narrow}>
           <ImageObject className="rounded-md" object={object} />
         </Tag>
       )
     }
     case 'list-object': {
       return (
-        <Tag>
+        <Tag narrow={narrow}>
           <ListObject object={object} />
         </Tag>
       )
     }
     case 'how-to-object': {
       return (
-        <Tag>
+        <Tag narrow={narrow}>
           <HowToObject object={object} />
         </Tag>
       )
     }
     case 'columns-object': {
       return (
-        <Tag>
+        <Tag narrow={narrow}>
           <ColumnsObject object={object} />
         </Tag>
       )
     }
     case 'slot-list-object': {
       return (
-        <Tag>
+        <Tag narrow={narrow}>
           <SlotListObject object={object} />
         </Tag>
       )
     }
     case 'casino-object': {
       return (
-        <Tag>
+        <Tag narrow={narrow}>
           <CasinoObject object={object} />
         </Tag>
       )
@@ -102,7 +103,7 @@ const renderObject = (
     // TODO: set this back to the list and add a new casino-table-object on next migration
     case 'casino-table-object': {
       return (
-        <Tag>
+        <Tag narrow={narrow}>
           <CasinoTableObject object={object} />
         </Tag>
       )
@@ -110,69 +111,69 @@ const renderObject = (
     case 'bonus-object': {
       if (!object.casino) {
         return (
-          <Tag>
+          <Tag narrow={narrow}>
             <Placeholder message={'Bonus Object: Missing bonus'} />
           </Tag>
         )
       }
       return (
-        <Tag>
+        <Tag narrow={narrow}>
           <BonusObject object={object} />
         </Tag>
       )
     }
     case 'section-object': {
       return (
-        <Tag>
+        <Tag narrow={narrow}>
           <SectionObject object={object} />
         </Tag>
       )
     }
     case 'table-object': {
       return (
-        <Tag>
+        <Tag narrow={narrow}>
           <Placeholder message={'Table Object: Missing table'} />
         </Tag>
       )
     }
     case 'button-object': {
       return (
-        <Tag>
+        <Tag narrow={narrow}>
           <ButtonObject object={object} />
         </Tag>
       )
     }
     case 'buttons-object': {
       return (
-        <Tag>
+        <Tag narrow={narrow}>
           <ButtonsObject object={object} />
         </Tag>
       )
     }
     case 'pros-and-cons-object': {
       return (
-        <Tag>
+        <Tag narrow={narrow}>
           <ProsAndConsObject object={object} />
         </Tag>
       )
     }
     case 'group-object': {
       return (
-        <Tag>
+        <Tag narrow={narrow}>
           <GroupObject object={object} />
         </Tag>
       )
     }
     case 'ai-summary-object': {
       return (
-        <Tag>
+        <Tag narrow={narrow}>
           <AISummaryObject object={object} />
         </Tag>
       )
     }
     case 'quote-object': {
       return (
-        <Tag>
+        <Tag narrow={narrow}>
           <QuoteObject object={object} />
         </Tag>
       )
@@ -180,28 +181,28 @@ const renderObject = (
     case 'rating-object': {
       if (!casino) return null
       return (
-        <Tag>
+        <Tag narrow={narrow}>
           <RatingObject object={object} casino={casino} />
         </Tag>
       )
     }
     case 'faq-object': {
       return (
-        <Tag>
+        <Tag narrow={narrow}>
           <FAQObject object={object} />
         </Tag>
       )
     }
     case 'old-table-object': {
       return (
-        <Tag>
+        <Tag narrow={narrow}>
           <HTMLObject object={object} />
         </Tag>
       )
     }
     case 'slider-object': {
       return (
-        <Tag className='mb-8'>
+        <Tag narrow={narrow} className='mb-8'>
           <SliderObject object={object} />
         </Tag>
       )
@@ -216,26 +217,28 @@ const ModularContent = async ({
   className = '',
   nested,
   casino,
-  backgroundColor
+  backgroundColor,
+  narrow,
 }: {
   objects: ModularContentSchemaType
   className?: string
   nested?: boolean
   casino?: CasinoSchemaType
   backgroundColor?: string
+  narrow?: boolean
 }) => {
   // if (!nested) await writeDataToTestFile(objects)
   if (!objects) return null
   return (
     <div
       key={'objects-wrapper prose lg:prose-lg'}
-      className={`${className} ${nested ? '' : 'pb-8 pt-4 mx-auto prose prose-h2:text-3xl prose-p:text-text prose-headings:tracking-normal max-w-3xl text-grey-darker'}`}
+      className={`${className} ${nested ? '' : 'pb-8 w-full pt-4 mx-auto prose'}`}
     >
       {objects.map((object: ModularContentItemSchemaType, outerIndex: number) => {
         if (!object._key) return null
         return (
           <Fragment key={`object-${object._key}`}>
-            {renderObject(object, outerIndex, nested, casino, backgroundColor)}
+            {renderObject(object, outerIndex, nested, casino, backgroundColor, narrow)}
           </Fragment>
         )
       })}

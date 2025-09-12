@@ -10,6 +10,7 @@ const ToggleButton = ({
   role,
   label,
   className,
+  childClassName,
   children,
 }: {
   id: string
@@ -17,6 +18,7 @@ const ToggleButton = ({
   role: string
   label: string
   className?: string
+  childClassName?: string
   children: ReactNode
 }) => {
   const dispatch = useAppDispatch()
@@ -40,7 +42,7 @@ const ToggleButton = ({
         role={role}
         onClick={handleToggle}
       >
-        <div>{children}</div>
+        <div className={childClassName}>{children}</div>
       </label>
     </>
   )

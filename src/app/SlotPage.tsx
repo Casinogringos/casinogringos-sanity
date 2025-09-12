@@ -90,7 +90,7 @@ const SlotPage = ({ slotPage, similarSlotPages }: { slotPage: SlotPageSchemaType
                   </div>
                 )}
                 <Heading level={1} size={7} text={slotPage.title} className="mb-0 mt-1 font-bold text-white" />
-                <p className="text-slate-300">
+                <p className="text-slate-300 mb-5">
                   {slot.provider.name}
                 </p>
                 <PortableText value={slotPage.intro} />

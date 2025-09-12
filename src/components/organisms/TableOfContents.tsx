@@ -28,6 +28,7 @@ const TableOfContents = async ({ headings }: { headings: Heading[] }) => {
         role={'button'}
         label={'Innehåll'}
         className={'w-full relative flex items-center px-4 py-2'}
+        childClassName={'w-full'}
       >
         <div className={'flex items-center justify-between'}>
           <div className={'flex items-center'}>
