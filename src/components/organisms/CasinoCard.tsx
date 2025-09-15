@@ -41,10 +41,10 @@ const CasinoCard = ({ casinoPage, index }: { casinoPage: CasinoPagePreviewSchema
               )}
             </div>
           </div>
-          <div className="block text-xs uppercase text-black">
+          <div className="block text-xs text-black">
             <div className="grid grid-cols-2 gap-2">
               {casino.casinoBonuses?.length ? (
-                <div className="flex min-h-[84px] font-medium flex-col items-center justify-center rounded-md border border-green-200 bg-green-100 p-2 text-lg leading-6">
+                <div className="uppercase flex min-h-[84px] font-medium flex-col items-center justify-center rounded-md border border-green-200 bg-green-100 p-2 text-lg leading-6">
                   <div className="-mb-1 block text-xs text-gray-700">Bonus</div>
                   {casino.casinoBonuses[0].bonusAmountRange[1] ? casino.casinoBonuses[0].bonusAmountRange[1] + ' kr' : casino.defaultBonusText}
                   {casino?.casinoBonuses?.[0]?.wageringRequirements && (
@@ -57,9 +57,9 @@ const CasinoCard = ({ casinoPage, index }: { casinoPage: CasinoPagePreviewSchema
                   )}
                 </div>
               ) : null}
-              <div className="flex min-h-[84px] flex-col items-center justify-center rounded-md border border-blue-100 bg-blue-50 p-2 text-lg leading-6">
+              <div className="uppercase flex min-h-[84px] flex-col items-center justify-center rounded-md border border-blue-100 bg-blue-50 p-2 text-lg leading-6">
                 <div className="-mb-1 block text-xs text-gray-700">
-                  {casino.freeSpins?.length ? 'Freespins' : 'No free spins'}
+                  Freespins
                 </div>
                 {casino.freeSpins?.length ?
                   (<>
@@ -71,7 +71,7 @@ const CasinoCard = ({ casinoPage, index }: { casinoPage: CasinoPagePreviewSchema
                       </span>
                     </div>
                   </>
-                  ) : null}
+                  ) : '-'}
                 {!casino.casinoBonuses?.length && !casino.freeSpins?.length && (
                   <div className="flex min-h-[84px] items-center justify-center rounded-md border border-blue-100 bg-blue-50 p-3 text-center text-base leading-6">
                     {casino.name}
@@ -99,14 +99,16 @@ const CasinoCard = ({ casinoPage, index }: { casinoPage: CasinoPagePreviewSchema
                 {' '}
                 Läs recension
               </Link>
-              {/*<AffiliateLink*/}
-              {/*  className="w-full !py-3.5 !text-base"*/}
-              {/*  affiliateLink={item.postType?.affiliateLink?.node?.slug}*/}
-              {/*  pathname={pathname}*/}
-              {/*  place="Regular toplist"*/}
-              {/*>*/}
-              {/*  Till {item.title}*/}
-              {/*</AffiliateLink>*/}
+              {casinoPage.affiliateLink && (
+                <Link
+                  href={`/go${casinoPage.slug.current}`}
+                  prefetch={false}
+                  variant='affiliate'
+                  className='w-full'
+                >
+                  Till {casino.name}
+                </Link>
+              )}
             </div>
           </div>
           {casino.terms ? (

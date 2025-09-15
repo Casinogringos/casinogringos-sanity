@@ -8,7 +8,7 @@ const GoPage = dynamicComponent(() => import('@/src/app/GoPage'))
 const Page = async (props: { params: Promise<{ slug: string }> }) => {
   const params = await props.params
   const casinoPage = await getCasinoPageBySlug({
-    slug: params.slug,
+    slug: `/${params?.slug}`,
   })
   if (!casinoPage.affiliateLink) {
     return notFound()

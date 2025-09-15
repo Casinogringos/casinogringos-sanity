@@ -4,7 +4,7 @@ import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import { useEffect } from 'react'
 import Container from '@/src/components/atoms/Container'
-import { CasinoPageSchemaType } from '@/src/schemas'
+import { CasinoPageSchemaType } from '@/src/schemas/casinoPage'
 
 const GoPage = ({ casinoPage }: { casinoPage: CasinoPageSchemaType }) => {
   const router = useRouter()
@@ -35,7 +35,7 @@ const GoPage = ({ casinoPage }: { casinoPage: CasinoPageSchemaType }) => {
       >
         <Container>
           <p className={'mb-12 text-center text-3xl lg:text-4xl'}>
-            <span className={'font-bold text-slate400'}>
+            <span className={'font-bold text-slate-400'}>
               Tack för att du besökte
             </span>
             <span className={'block font-bold text-white md:inline-block'}>
@@ -63,17 +63,17 @@ const GoPage = ({ casinoPage }: { casinoPage: CasinoPageSchemaType }) => {
             <div className={'mx-5 flex'}>
               <div
                 className={
-                  'h-3 w-3 animate-pulse delay-0 bg-gray200 rounded-full'
+                  'h-3 w-3 animate-pulse delay-0 bg-gray-200 rounded-full'
                 }
               ></div>
               <div
                 className={
-                  'h-3 w-3 mx-1 animate-pulse delay-500 bg-gray200 rounded-full'
+                  'h-3 w-3 mx-1 animate-pulse delay-500 bg-gray-200 rounded-full'
                 }
               ></div>
               <div
                 className={
-                  'h-3 w-3 animate-pulse delay-1000 bg-gray200 rounded-full'
+                  'h-3 w-3 animate-pulse delay-1000 bg-gray-200 rounded-full'
                 }
               ></div>
             </div>
@@ -86,10 +86,11 @@ const GoPage = ({ casinoPage }: { casinoPage: CasinoPageSchemaType }) => {
                 src={casinoPage.casino.logo.src}
                 alt={casinoPage.casino.logo.altText}
                 width={160}
+                height={60}
               />
             </div>
           </div>
-          <p className={'text-center text-lg text-slate400'}>
+          <p className={'text-center text-lg text-slate-400'}>
             Om du inte blir skickad vidare till{' '}
             <span className={'italic text-white'}>{casinoPage.title}</span> kan
             du&nbsp;

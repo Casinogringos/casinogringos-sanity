@@ -10,6 +10,7 @@ export const casinoPagePreviewProjection = `
     _type,
     current
   },
+  affiliateLink,
   featuredImage {
     ${imageProjection}
   },
