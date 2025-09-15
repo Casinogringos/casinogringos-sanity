@@ -18,6 +18,7 @@ export const ColumnObjectSchema = z.object({
   _key: z.string(),
   width: z.string().optional(),
   className: z.string().optional(),
+  backgroundColor: z.string().optional(),
   column: z.array(
     z.discriminatedUnion('_type', [
       AffiliateButtonObjectSchema,

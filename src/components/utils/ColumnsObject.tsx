@@ -1,13 +1,17 @@
-import { ColumnsObject as ColumnsObjectType } from '@/src/types'
+import { ColumnsObjectSchemaType as ColumnsObjectType } from '@/src/schemas/columnsObject'
 import ModularContent from '@/src/components/organisms/ModularContent'
 
 const ColumnsObject = ({ object }: { object: ColumnsObjectType }) => {
   const { columns } = object
+  const colorClasses = {
+    'grey': 'bg-slate-500/20',
+    'white': 'bg-white'
+  }
 
   return (
     <div
       className={
-        'gap-[30px] my-12 lg:flex-nowrap prose-lg prose-h2:mt-0 prose-h3:mt-0 flex box-border flex-wrap'
+        `gap-[30px] my-12 lg:flex-nowrap prose-img:mb-0 prose-h2:mt-0 prose-h3:mt-0 flex box-border flex-wrap`
       }
     >
       {columns.map((column) => {
@@ -17,15 +21,13 @@ const ColumnsObject = ({ object }: { object: ColumnsObjectType }) => {
             style={
               column.width
                 ? // @ts-expect-error -- invalid css class
-                  // @
-                  { '--column-block-width': column.width }
+                // @
+                { '--column-block-width': column.width }
                 : {}
             }
-            className={`column-block min-w-0 break-words lg:flex-grow lg:basis-0 ${
-              column.className ?? ''
-            }`}
+            className={`column-block rounded-md pb-4 min-w-0 break-words lg:flex-grow lg:basis-0 ${column.className ?? ''} ${colorClasses[column.backgroundColor as keyof typeof colorClasses]}`}
           >
-            <ModularContent objects={column.column} nested={true} />
+            <ModularContent objects={column.column} />
           </div>
         )
       })}

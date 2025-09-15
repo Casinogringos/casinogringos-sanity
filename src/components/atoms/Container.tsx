@@ -13,7 +13,7 @@ export default function Container({
 }) {
   const classNames = disabled
     ? ""
-    : `${narrow ? "max-w-3xl" : "max-w-6xl"} mx-auto w-full px-4 lg:px-8 relative ${className}`;
+    : `${narrow ? "max-w-4xl" : "max-w-6xl"} mx-auto w-full px-4 lg:px-8 relative ${className}`;
 
   return <div className={classNames}>{children}</div>;
 }

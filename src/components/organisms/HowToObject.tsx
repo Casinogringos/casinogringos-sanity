@@ -17,9 +17,8 @@ const HowToObject = ({ object }: { object: HowToObjectSchemaType }) => {
     days,
   } = object
   const Tag = unorderedList ? 'ul' : 'ol'
-  // console.log('how to object', object)
   return (
-    <section>
+    <section className='not-prose'>
       <meta />
       <p>
         <span className={'font-bold'}>Tid som behövs: </span>
@@ -30,10 +29,10 @@ const HowToObject = ({ object }: { object: HowToObjectSchemaType }) => {
           {seconds && seconds !== 0 ? `${seconds} sekunder` : ''}
         </span>
       </p>
-      <div>
+      <div className='mb-3'>
         <PortableText value={description} />
       </div>
-      <Tag className="-ml-7">
+      <Tag className='p-0 m-0'>
         {steps.map(
           (
             row: {
@@ -66,7 +65,7 @@ const HowToObject = ({ object }: { object: HowToObjectSchemaType }) => {
                     </strong>
                   )}
                   {row.description && (
-                    <div className={'not-prose'}>
+                    <div>
                       <PortableText
                         key={`how-to-paragraph-${rowIndex}`}
                         value={row.description}
@@ -90,7 +89,7 @@ const HowToObject = ({ object }: { object: HowToObjectSchemaType }) => {
           )
         )}
       </Tag>
-    </section>
+    </section >
   )
 }
 

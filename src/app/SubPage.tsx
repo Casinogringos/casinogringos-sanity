@@ -73,9 +73,9 @@ export default function SubPage({
           </Container>
         </div>
       )}
-      <ModularContent objects={page.content} />
+      <ModularContent objects={page.content} className='py-5' narrow />
       {author && (
-        <Container>
+        <Container narrow>
           <AuthorBox
             author={author}
             modified={page._updatedAt ?? page.originalModifiedAt}

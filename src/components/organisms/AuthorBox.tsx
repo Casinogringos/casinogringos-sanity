@@ -16,7 +16,7 @@ const AuthorBox = ({
   reviewedBy?: AuthorSchemaType
 }) => {
   return (
-    <div className="mx-auto mb-12 max-w-3xl rounded-md border border-blue-100 bg-blue-50 p-6">
+    <div className="mb-12 rounded-md border border-blue-100 bg-blue-50 p-6">
       <div className="flex items-start gap-3">
         <div className="overflow-hidden rounded-full">
           <Image

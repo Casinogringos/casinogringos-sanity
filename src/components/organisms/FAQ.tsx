@@ -18,8 +18,8 @@ const FAQ = ({ items, title, description }: { items: FaqItemObjectSchemaType[]; 
       {items.map((item, index) => (
         <div key={`faq-item-${index}`}>
           <div className={'bg-white/20 flex items-stretch justify-between no-prose rounded-md mb-2'}>
-            <ToggleButton id={item._key} role={'button'} label={item.question}>
-              <div className={'flex items-center justify-between p-5'}>
+            <ToggleButton id={item._key} role={'button'} label={item.question} className='w-full'>
+              <div className={'flex items-center justify-between w-full p-5'}>
                 <Heading
                   text={item.question}
                   level={3}

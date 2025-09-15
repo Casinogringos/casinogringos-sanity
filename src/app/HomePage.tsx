@@ -72,7 +72,7 @@ const HomePage = ({
           </div>
         </Container>
       )}
-      <ModularContent objects={page.content} />
+      <ModularContent className='py-10' narrow objects={page.content} />
       {author && (
         <Container narrow>
           <AuthorBox

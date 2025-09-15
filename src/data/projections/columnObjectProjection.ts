@@ -12,6 +12,7 @@ export const columnObjectProjection = `
     _key,
     width,
     className,
+    backgroundColor,
     column[] {
         ${headingObjectProjection},
         ${imageObjectProjection},
