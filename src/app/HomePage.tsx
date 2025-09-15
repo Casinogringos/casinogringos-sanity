@@ -36,13 +36,8 @@ const HomePage = ({
   const headingObjects = getHeadingObjectsByPage({ objects: page.content })
   const schema = {
     '@context': 'https://schema.org',
-    '@graph': [getWebSiteStructuredData(), getOrganizationStructuredData()],
+    '@graph': [getWebSiteStructuredData(), getWebPageStructuredData(page), getOrganizationStructuredData()],
   }
-  const breadcrumbs = [
-    {
-      url: '/',
-    },
-  ]
 
   return (
     <>

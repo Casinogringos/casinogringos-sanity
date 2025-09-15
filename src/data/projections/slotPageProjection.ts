@@ -3,6 +3,7 @@ import { toplistProjection } from '@/src/data/projections/toplistProjection'
 import { slotProjection } from '@/src/data/projections/slotProjection'
 import { authorProjection } from '@/src/data/projections/authorProjection'
 import { imageObjectProjection } from '@/src/data/projections/imageObjectProjection'
+import { casinoPagePreviewProjection } from '@/src/data/projections/casinoPagePreviewProjection'
 
 export const slotPageProjection = `
   _type,
@@ -21,6 +22,12 @@ export const slotPageProjection = `
     ${imageObjectProjection}
   },
   canonical,
+  casinos[] -> {
+    ${casinoPagePreviewProjection}
+  },
+  "latestCasinos": *[_type == 'casino-pages'][0...3] {
+    ${casinoPagePreviewProjection}
+  },
   featuredImage {
     ${imageObjectProjection}
   },

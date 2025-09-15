@@ -1,4 +1,5 @@
-import { SubPageSchemaType, BreadcrumbsSchemaType } from '@/src/schemas'
+import { SubPageSchemaType } from '@/src/schemas/subPage'
+import { BreadcrumbsSchemaType } from '@/src/schemas/breadcrumbs'
 import ModularContent from '@/src/components/organisms/ModularContent'
 import SubPageHero from '@/src/components/molecules/SubPageHero'
 import getArticleStructuredData from '@/src/structured-data/articleStructuredData'
@@ -54,7 +55,7 @@ export default function SubPage({
       {toplist?.casinos?.length ? (
         <CasinoList
           itemComponent={CasinoCard}
-          casinos={toplist.casinos}
+          casinoPages={toplist.casinos}
           title={toplist.title}
           description={toplist.description}
         />
@@ -67,7 +68,7 @@ export default function SubPage({
         </div>
       )}
       {headingObjects.length > 1 && (
-        <div className={faqs?.length > 0 ? '' : 'mt-16'}>
+        <div className={faqs?.items?.length && faqs.items.length > 0 ? '' : 'mt-16'}>
           <Container narrow>
             <TableOfContents headings={headingObjects} />
           </Container>

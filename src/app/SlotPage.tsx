@@ -16,6 +16,9 @@ import Image from 'next/image'
 import Heading from '@/src/components/atoms/Heading'
 import { PortableText } from 'next-sanity'
 import CasinoCard from '@/src/components/organisms/CasinoCard'
+import { getWebPageStructuredData } from '@/src/structured-data/webPageStructuredData'
+import { getWebSiteStructuredData } from '@/src/structured-data/webSiteStructuredData'
+import { getOrganizationStructuredData } from '@/src/structured-data/organizationStructuredData'
 
 const slotPageService = new SlotPageService()
 const casinoPageService = new CasinoPageService()
@@ -26,7 +29,7 @@ const SlotPage = ({ slotPage, similarSlotPages }: { slotPage: SlotPageSchemaType
   console.log('slotpage', slotPage)
   const schema = {
     '@context': 'https://schema.org',
-    '@graph': [getSlotReviewStructuredData({ page: slotPage })],
+    '@graph': [getSlotReviewStructuredData({ page: slotPage }), getWebPageStructuredData({ page: slotPage }), getWebSiteStructuredData(), getOrganizationStructuredData()],
   }
   const headings = slotPageService.getHeadingObjects(slotPage)
   const { slot } = slotPage
@@ -41,6 +44,8 @@ const SlotPage = ({ slotPage, similarSlotPages }: { slotPage: SlotPageSchemaType
   ]
   const createdAt = new Date(slotPage.originalPublishedAt ?? '' as string).getTime() ?? new Date(slotPage._createdAt).getTime()
   const modifiedAt = new Date(slotPage._updatedAt).getTime() ?? new Date(slotPage.originalModifiedAt ?? '' as string).getTime()
+  const { casinos, latestCasinos } = slotPage
+  const relatedCasinos = casinos?.length > 0 ? casinos : latestCasinos
 
   return (
     <>
@@ -168,7 +173,6 @@ const SlotPage = ({ slotPage, similarSlotPages }: { slotPage: SlotPageSchemaType
             modifiedAt={modifiedAt}
             shareTitle={slotPage.seoTitle}
             reviewer={slotPage.reviewer}
-            pathname={slotPage.slug.current}
           />
         </Container>
         {headings.length > 1 && (
@@ -177,19 +181,21 @@ const SlotPage = ({ slotPage, similarSlotPages }: { slotPage: SlotPageSchemaType
           </Container>
         )}
         <ModularContent
+          className='py-5'
           objects={slotPage.content}
+          narrow
         />
-        {slot.casinos && (
-          <section id="spela" className="bg-normal py-12 lg:pb-16 lg:pt-20">
+        {relatedCasinos && (
+          <section id="spela" className="bg-dark  py-12 lg:pb-16 lg:pt-20">
             <div className="mx-auto max-w-6xl px-4 text-left lg:px-8">
               <h2 className="mb-2 flex max-w-2xl items-start gap-4 text-xl font-bold text-white lg:max-w-full lg:items-center lg:text-2xl">
                 Casinon där du kan spela {slotPage.slot.name}
               </h2>
               <div className="mt-6 grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-3">
-                {slot.casinos.slice(0, 3).map((casino, i) => (
+                {relatedCasinos.slice(0, 3).map((casino, i) => (
                   <div key={`casino-${casino._id}`}>
                     <CasinoCard
-                      casino={casino}
+                      casinoPage={casino}
                       index={i}
                     />
                   </div>
@@ -199,13 +205,13 @@ const SlotPage = ({ slotPage, similarSlotPages }: { slotPage: SlotPageSchemaType
           </section>
         )}
         {similarSlotPages && (
-          <section className={'bg-gray100 py-10'}>
+          <section className={'bg-gray-100 py-10'}>
             <Container>
-              <h3 className={'mb-4 text-2xl text-gray700'}>Fler slots</h3>
+              <Heading level={3} size={6} className={'mb-4 text-gray-700 font-bold'} text="Fler slots" />
               <div className={'grid grid-cols-2 gap-4 lg:grid-cols-4'}>
                 {similarSlotPages.map((page) => (
                   <Link
-                    href={`/slots/${page.slug.current}`}
+                    href={`${page.slug.current}`}
                     key={`slot-${page._id}`}
                     className={'flex flex-col'}
                   >

@@ -4,7 +4,7 @@ import Image from 'next/image'
 import Link from '@/src/components/atoms/Link'
 import CheckBadgeIcon from '@/src/components/icons/CheckBadgeIcon'
 import Paragraph from '@/src/components/atoms/Paragraph'
-import { CasinoPagePreviewSchemaType } from '@/src/schemas'
+import { CasinoPagePreviewSchemaType } from '@/src/schemas/casinoPagePreview'
 
 const CasinoCard = ({ casinoPage, index }: { casinoPage: CasinoPagePreviewSchemaType; index: number }) => {
   const casino = casinoPage.casino
@@ -56,7 +56,7 @@ const CasinoCard = ({ casinoPage, index }: { casinoPage: CasinoPagePreviewSchema
                     </div>
                   )}
                 </div>
-              ) : null}
+              ) : <div />}
               <div className="uppercase flex min-h-[84px] flex-col items-center justify-center rounded-md border border-blue-100 bg-blue-50 p-2 text-lg leading-6">
                 <div className="-mb-1 block text-xs text-gray-700">
                   Freespins
@@ -72,11 +72,11 @@ const CasinoCard = ({ casinoPage, index }: { casinoPage: CasinoPagePreviewSchema
                     </div>
                   </>
                   ) : '-'}
-                {!casino.casinoBonuses?.length && !casino.freeSpins?.length && (
+                {/* {!casino.casinoBonuses?.length && !casino.freeSpins?.length && (
                   <div className="flex min-h-[84px] items-center justify-center rounded-md border border-blue-100 bg-blue-50 p-3 text-center text-base leading-6">
                     {casino.name}
                   </div>
-                )}
+                )} */}
               </div>
             </div>
             <div className="mt-2 rounded-md border border-slate-100 bg-slate-50 p-2.5">
