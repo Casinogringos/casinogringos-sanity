@@ -1,10 +1,11 @@
 import Image from 'next/image'
 import Placeholder from '@/src/components/atoms/Placeholder'
 import { ImageObjectSchemaType } from '@/src/schemas/imageObject'
+import { PortableText } from 'next-sanity'
 
 const SanityImage = ({
   image,
-  width = 7680,
+  width = 1200,
   height = 600,
   className,
   priority = false,
@@ -22,14 +23,16 @@ const SanityImage = ({
     return <Placeholder message={'Sanity Image: Missing altText'} />
   }
   return (
-    <Image
-      src={image.src}
-      alt={image.alt}
-      className={className}
-      priority={priority}
-      width={width}
-      height={height}
-    />
+    <div className={`${className} not-prose`}>
+      <Image
+        src={image.src}
+        alt={image.alt}
+        priority={priority}
+        width={width}
+        height={height}
+      />
+      {image.caption && <div className="text-sm text-slate-500 text-center mt-2"><PortableText value={image.caption} /></div>}
+    </div>
   )
 }
 
