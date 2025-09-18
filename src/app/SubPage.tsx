@@ -1,13 +1,10 @@
 import { SubPageSchemaType } from '@/src/schemas/subPage'
-import { BreadcrumbsSchemaType } from '@/src/schemas/breadcrumbs'
 import ModularContent from '@/src/components/organisms/ModularContent'
 import SubPageHero from '@/src/components/molecules/SubPageHero'
 import getArticleStructuredData from '@/src/structured-data/articleStructuredData'
 import { getWebPageStructuredData } from '@/src/structured-data/webPageStructuredData'
 import { getWebSiteStructuredData } from '@/src/structured-data/webSiteStructuredData'
 import { getOrganizationStructuredData } from '@/src/structured-data/organizationStructuredData'
-import { getPersonStructuredData } from '@/src/structured-data/personStructuredData'
-import { getBreadcrumbListStructuredData } from '@/src/structured-data/breadcrumbListStructuredData'
 import BreadCrumbs from '@/src/components/organisms/BreadCrumbs'
 import CasinoList from '@/src/components/organisms/CasinoList'
 import CasinoCard from '@/src/components/organisms/CasinoCard'
@@ -33,7 +30,7 @@ export default function SubPage({
   const headingObjects = pageService.getHeadingObjects(page)
   const schema = {
     '@context': 'https://schema.org',
-    '@graph': [getArticleStructuredData(page)],
+    '@graph': [getArticleStructuredData(page), getWebPageStructuredData({ webPage: page }), getWebSiteStructuredData(), getOrganizationStructuredData()],
   }
   const breadcrumbs = [
     {
@@ -51,7 +48,7 @@ export default function SubPage({
         key="subpage-data"
       />
       <SubPageHero page={page} />
-      {breadcrumbs && <BreadCrumbs items={breadcrumbs} />}
+      {breadcrumbs && <BreadCrumbs items={breadcrumbs} className="mb-16" />}
       {toplist?.casinos?.length ? (
         <CasinoList
           itemComponent={CasinoCard}
@@ -60,15 +57,15 @@ export default function SubPage({
           description={toplist.description}
         />
       ) : null}
-      {faqs && toplist?.casinos?.length && (
-        <div className="mb-16 bg-dark pb-16 pt-10">
+      {/* {faqs && faqs.items.length && (
+        <div className="mb-16 bg-dark pb-16 pt-10 mb-16">
           <Container>
             <FAQ items={faqs.items} title={faqs.title} />
           </Container>
         </div>
-      )}
+      )} */}
       {headingObjects.length > 1 && (
-        <div className={faqs?.items?.length && faqs.items.length > 0 ? '' : 'mt-16'}>
+        <div>
           <Container narrow>
             <TableOfContents headings={headingObjects} />
           </Container>

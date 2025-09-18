@@ -1,11 +1,11 @@
 import { ListObjectSchemaType } from '@/src/schemas/listObject'
 import ModularContent from '@/src/components/organisms/ModularContent'
 
-const ListObject = ({ object }: { object: ListObjectSchemaType }) => {
+const ListObject = ({ object, className }: { object: ListObjectSchemaType, className?: string }) => {
 
   if (object.numbered) {
     return (
-      <div className='not-prose'>
+      <div className={`not-prose ${className}`}>
         <ol className='p-0'>
           {object.items.map((item, index) => (
             <li key={item._key} className='flex items-center gap-2 my-2'>
@@ -18,7 +18,7 @@ const ListObject = ({ object }: { object: ListObjectSchemaType }) => {
     )
   }
   return (
-    <div className='not-prose'>
+    <div className={`not-prose ${className}`}>
       <ul className='p-0'>
         {object.items.map((item) => (
           <li key={item._key} className='my-2'>

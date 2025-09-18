@@ -11,6 +11,9 @@ import ArticleHeader from '@/src/components/molecules/ArticleHeader'
 import GuidePageService from '@/src/services/GuidePageService'
 import Heading from '@/src/components/atoms/Heading'
 import ArticleCard from '../components/molecules/ArticleCard'
+import { getWebPageStructuredData } from '@/src/structured-data/webPageStructuredData'
+import { getWebSiteStructuredData } from '@/src/structured-data/webSiteStructuredData'
+import { getOrganizationStructuredData } from '@/src/structured-data/organizationStructuredData'
 
 const guidePageService = new GuidePageService()
 
@@ -28,7 +31,7 @@ export default function GuidePage({
   const headings = guidePageService.getHeadingObjects(page)
   const schema = {
     '@context': 'https://schema.org',
-    '@graph': [getBlogPostingStructuredData({ page })],
+    '@graph': [getBlogPostingStructuredData({ page }), getWebPageStructuredData({ webPage: page }), getWebSiteStructuredData(), getOrganizationStructuredData()],
   }
   const breadcrumbs = [
     {

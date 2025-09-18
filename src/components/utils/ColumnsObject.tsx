@@ -4,14 +4,14 @@ import ModularContent from '@/src/components/organisms/ModularContent'
 const ColumnsObject = ({ object }: { object: ColumnsObjectType }) => {
   const { columns } = object
   const colorClasses = {
-    'grey': 'bg-slate-500/20',
+    'grey': 'bg-gray-50',
     'white': 'bg-white'
   }
 
   return (
     <div
       className={
-        `gap-[30px] my-12 lg:flex-nowrap prose-img:mb-0 prose-h2:mt-0 prose-h3:mt-0 flex box-border flex-wrap`
+        `gap-[30px] my-12 lg:flex-nowrap prose-img prose-h2:mt-0 prose-h3:mt-0 flex box-border flex-wrap`
       }
     >
       {columns.map((column) => {
@@ -27,7 +27,7 @@ const ColumnsObject = ({ object }: { object: ColumnsObjectType }) => {
             }
             className={`column-block rounded-md pb-4 min-w-0 break-words lg:flex-grow lg:basis-0 ${column.className ?? ''} ${colorClasses[column.backgroundColor as keyof typeof colorClasses]}`}
           >
-            <ModularContent objects={column.column} />
+            <ModularContent nested objects={column.column} />
           </div>
         )
       })}

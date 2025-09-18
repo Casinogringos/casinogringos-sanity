@@ -19,6 +19,7 @@ import CasinoCard from '@/src/components/organisms/CasinoCard'
 import { getWebPageStructuredData } from '@/src/structured-data/webPageStructuredData'
 import { getWebSiteStructuredData } from '@/src/structured-data/webSiteStructuredData'
 import { getOrganizationStructuredData } from '@/src/structured-data/organizationStructuredData'
+import SlotCard from '@/src/components/molecules/SlotCard'
 
 const slotPageService = new SlotPageService()
 const casinoPageService = new CasinoPageService()
@@ -46,6 +47,11 @@ const SlotPage = ({ slotPage, similarSlotPages }: { slotPage: SlotPageSchemaType
   const modifiedAt = new Date(slotPage._updatedAt).getTime() ?? new Date(slotPage.originalModifiedAt ?? '' as string).getTime()
   const { casinos, latestCasinos } = slotPage
   const relatedCasinos = casinos?.length > 0 ? casinos : latestCasinos
+  const slotVolatilityMap = {
+    'low': 'Låg',
+    'medium': 'Medium',
+    'high': 'Hög',
+  }
 
   return (
     <>
@@ -122,11 +128,11 @@ const SlotPage = ({ slotPage, similarSlotPages }: { slotPage: SlotPageSchemaType
                         Volalitet:
                       </span>
                       <div className="text-2xl font-semibold text-primary">
-                        {slot.volatility}
+                        {slotVolatilityMap[slot.volatility as keyof typeof slotVolatilityMap]}
                       </div>
                     </div>
                   )}
-                  {slot.numberOfPaylines && (
+                  {slot.numberOfPaylines ? (
                     <div className="rounded-md bg-normal px-4 py-3 bg-white/10">
                       <span className="text-sm font-medium text-slate-200">
                         Vinstlinjer:
@@ -135,7 +141,7 @@ const SlotPage = ({ slotPage, similarSlotPages }: { slotPage: SlotPageSchemaType
                         {slot.numberOfPaylines}
                       </div>
                     </div>
-                  )}
+                  ) : null}
                   {slot.minBet && (
                     <div className="rounded-md bg-normal px-4 py-3 bg-white/10">
                       <span className="text-sm font-medium text-slate-200">
@@ -210,26 +216,10 @@ const SlotPage = ({ slotPage, similarSlotPages }: { slotPage: SlotPageSchemaType
               <Heading level={3} size={6} className={'mb-4 text-gray-700 font-bold'} text="Fler slots" />
               <div className={'grid grid-cols-2 gap-4 lg:grid-cols-4'}>
                 {similarSlotPages.map((page) => (
-                  <Link
-                    href={`${page.slug.current}`}
+                  <SlotCard
                     key={`slot-${page._id}`}
-                    className={'flex flex-col'}
-                  >
-                    <div className={'mb-3 flex overflow-hidden rounded-md'}>
-                      <Image
-                        src={page.featuredImage.src}
-                        alt={page.featuredImage.alt}
-                        style={{
-                          minWidth: '100%',
-                          minHeight: '100%',
-                        }}
-                        width={500}
-                        height={300}
-                        className="h-28 object-cover sm:h-48 md:h-56 lg:h-40"
-                      />
-                    </div>
-                    <h4 className={'text-gray700'}>{page.title}</h4>
-                  </Link>
+                    slotPage={page}
+                  />
                 ))}
               </div>
             </Container>

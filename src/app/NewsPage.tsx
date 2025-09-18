@@ -11,6 +11,9 @@ import NewsCard from '@/src/components/organisms/NewsCard'
 import getNewsArticleStructuredData from '@/src/structured-data/newsArticleStructuredData'
 import BreadCrumbs from '@/src/components/organisms/BreadCrumbs'
 import Image from 'next/image'
+import { getWebPageStructuredData } from '@/src/structured-data/webPageStructuredData'
+import { getWebSiteStructuredData } from '@/src/structured-data/webSiteStructuredData'
+import { getOrganizationStructuredData } from '@/src/structured-data/organizationStructuredData'
 
 export default function NewsPage({
   page,
@@ -21,7 +24,8 @@ export default function NewsPage({
 }) {
   const headingObjects = getHeadingObjectsByPage({ objects: page.content })
   const schema = {
-    ...getNewsArticleStructuredData(page),
+    '@context': 'https://schema.org',
+    '@graph': [getNewsArticleStructuredData({ page }), getWebPageStructuredData({ webPage: page }), getWebSiteStructuredData(), getOrganizationStructuredData()],
   }
   const breadcrumbs = [
     {

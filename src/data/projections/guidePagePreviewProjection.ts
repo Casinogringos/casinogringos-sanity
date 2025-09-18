@@ -9,6 +9,8 @@ export const guidePagePreviewProjection = `
   slug,
   _createdAt,
   _updatedAt,
+  originalPublishedAt,
+  originalModifiedAt,
   featuredImage {
     ${imageObjectProjection}
   },

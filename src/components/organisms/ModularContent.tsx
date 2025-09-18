@@ -34,7 +34,8 @@ const renderObject = (
   padding = false,
   casino?: CasinoSchemaType,
   backgroundColor?: string,
-  narrow?: boolean
+  narrow?: boolean,
+  prose?: boolean
 ) => {
   if (!object) return null
   switch (object._type) {
@@ -55,12 +56,12 @@ const renderObject = (
     }
     case 'image-object': {
       return (
-        <ImageObject className="rounded-md" object={object} />
+        <ImageObject prose={prose} object={object} rounded='lg' />
       )
     }
     case 'list-object': {
       return (
-        <ListObject object={object} />
+        <ListObject object={object} className="mb-6" />
       )
     }
     case 'how-to-object': {
@@ -171,6 +172,7 @@ const ModularContent = async ({
   casino,
   backgroundColor,
   narrow,
+  prose = true
 }: {
   objects: ModularContentSchemaType
   className?: string
@@ -178,20 +180,21 @@ const ModularContent = async ({
   casino?: CasinoSchemaType
   backgroundColor?: string
   narrow?: boolean
+  prose?: boolean
 }) => {
   // if (!nested) await writeDataToTestFile(objects)
   if (!objects) return null
   const Tag = nested ? 'div' : Container
   return (
     <Tag
-      className={`${className} prose lg:prose-lg`}
+      className={`${className} ${prose ? 'prose lg:prose-lg' : ''}`}
       narrow={narrow}
     >
       {objects.map((object: ModularContentItemSchemaType, outerIndex: number) => {
         if (!object._key) return null
         return (
           <Fragment key={`object-${object._key}`}>
-            {renderObject(object, outerIndex, nested, casino, backgroundColor, narrow)}
+            {renderObject(object, outerIndex, nested, casino, backgroundColor, narrow, prose)}
           </Fragment>
         )
       })}

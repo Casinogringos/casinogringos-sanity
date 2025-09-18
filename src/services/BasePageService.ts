@@ -81,7 +81,7 @@ abstract class BasePageService<
             0
         )
     }
-    getPageModifiedAtTimestamp(page: PageType): string | null {
+    getPageModifiedAtTimestamp(page: PageType): number | null {
         const originalPublishedAt = page.originalPublishedAt
             ? new Date(page.originalPublishedAt).getTime()
             : null
@@ -103,11 +103,11 @@ abstract class BasePageService<
             (!originalModifiedAt && newUpdatedAt)
         )
             return null
-        if (!newUpdatedAt) return page.originalModifiedAt ?? null
+        if (!newUpdatedAt) return page.originalModifiedAt ? new Date(page.originalModifiedAt).getTime() : null
         if (newUpdatedAt && newCreatedAt && newUpdatedAt > newCreatedAt) {
-            return page._updatedAt
+            return new Date(page._updatedAt).getTime()
         }
-        return page.originalModifiedAt ?? null
+        return page.originalModifiedAt ? new Date(page.originalModifiedAt).getTime() : null
     }
     getPagePublishedAtTimestamp(page: PageType): number | null {
         const originalPublishedAt = page.originalPublishedAt
@@ -121,6 +121,7 @@ abstract class BasePageService<
             newCreatedAt,
         })
     }
+
 }
 
 export default BasePageService

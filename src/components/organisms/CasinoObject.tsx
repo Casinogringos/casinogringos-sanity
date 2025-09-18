@@ -28,7 +28,7 @@ const CasinoObject = ({ object }: { object: CasinoObjectSchemaType }) => {
         />
       </div>
       <div>
-        <Heading level={2} text={casino.name} className={'not-prose !mt-0 !mb-3'} />
+        <Heading level={2} text={casino.name} className={'not-prose !mt-0 !mb-2'} />
         <span className={'block pb-0 not-prose font-bold leading-6 text-dark'}>
           <PortableText value={offer} />
         </span>

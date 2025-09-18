@@ -1,9 +1,11 @@
 import Container from '@/src/components/atoms/Container'
 import Heading from '@/src/components/atoms/Heading'
 import ArticleCard from '@/src/components/molecules/ArticleCard'
-import { NewsPagePreviewSchemaType } from '@/src/schemas'
+import { NewsPagePreviewSchemaType } from '@/src/schemas/newsPagePreview'
 import NewsPageService from '@/src/services/NewsPageService'
 import BreadCrumbs from '@/src/components/organisms/BreadCrumbs'
+import { getWebSiteStructuredData } from '@/src/structured-data/webSiteStructuredData'
+import { getOrganizationStructuredData } from '@/src/structured-data/organizationStructuredData'
 const newsPageService = new NewsPageService()
 
 const NewsIndex = ({
@@ -22,9 +24,18 @@ const NewsIndex = ({
       url: `${process.env.SITE_URL}/nyheter`,
     },
   ]
+  const schema = {
+    '@context': 'https://schema.org',
+    '@graph': [getWebSiteStructuredData(), getOrganizationStructuredData()],
+  }
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+        key="news-index-structured-data"
+      />
       <BreadCrumbs items={breadcrumbItems} />
       <Container className="py-6 lg:py-12">
         <Heading

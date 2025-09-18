@@ -10,6 +10,9 @@ import BreadCrumbs from '@/src/components/organisms/BreadCrumbs'
 import { SubPageSchemaType } from '@/src/schemas/subPage'
 import { SlotPagePreviewSchemaType } from '@/src/schemas/slotPagePreview'
 import FAQ from '../components/organisms/FAQ'
+import { getWebPageStructuredData } from '@/src/structured-data/webPageStructuredData'
+import { getWebSiteStructuredData } from '@/src/structured-data/webSiteStructuredData'
+import { getOrganizationStructuredData } from '@/src/structured-data/organizationStructuredData'
 const slotPageService = new SlotPageService()
 const subPageService = new SubPageService()
 
@@ -30,6 +33,10 @@ export default function SlotIndex({
   ]
   const headings = subPageService.getHeadingObjects(page)
   const faqs = page.faqs
+  const schema = {
+    '@context': 'https://schema.org',
+    '@graph': [getWebPageStructuredData({ webPage: page }), getWebSiteStructuredData(), getOrganizationStructuredData()],
+  }
 
   return (
     <>
@@ -37,7 +44,7 @@ export default function SlotIndex({
       <BreadCrumbs items={breadcrumbItems} />
       <div className="pb-12 pt-8 lg:pt-10 bg-slate-100">
         <Container>
-          <div className="mt-4 grid grid-cols-2 gap-x-3 md:grid-cols-3 lg:grid-cols-4">
+          <div className="mt-4 grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-4">
             {slotPages.filter((slotPage: SlotPagePreviewSchemaType) => slotPage.slot).map((slotPage: SlotPagePreviewSchemaType) => (
               <SlotCard key={`slot-${slotPage._id}`} slotPage={slotPage} />
             ))}
@@ -45,18 +52,20 @@ export default function SlotIndex({
         </Container>
       </div>
       {faqs && (
-        <div className="mb-16 bg-dark pb-16 pt-6">
+        <div className="mb-16 bg-dark py-16">
           <Container>
             <FAQ items={faqs.items} title={faqs.title} />
           </Container>
         </div>
       )}
       {headings.length > 1 && (
-        <Container>
-          <TableOfContents headings={headings} />
-        </Container>
+        <div className="mb-10">
+          <Container narrow>
+            <TableOfContents headings={headings} />
+          </Container>
+        </div>
       )}
-      <ModularContent objects={page.content} />
+      <ModularContent className='py-5' narrow objects={page.content} />
     </>
   )
 }

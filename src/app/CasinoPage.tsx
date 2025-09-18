@@ -14,6 +14,9 @@ import CasinoPageService from '@/src/services/CasinoPageService'
 import Heading from '@/src/components/atoms/Heading'
 import Link from '@/src/components/atoms/Link'
 import Image from 'next/image'
+import { getWebPageStructuredData } from '@/src/structured-data/webPageStructuredData'
+import { getWebSiteStructuredData } from '@/src/structured-data/webSiteStructuredData'
+import { getOrganizationStructuredData } from '@/src/structured-data/organizationStructuredData'
 
 const CasinoPage = ({
   casinoPage,
@@ -27,7 +30,7 @@ const CasinoPage = ({
   const isValid = casinoPageService.validatePage(casinoPage)
   const schema = {
     '@context': 'https://schema.org',
-    '@graph': [getProductStructuredData({ productPage: casinoPage })],
+    '@graph': [getProductStructuredData({ productPage: casinoPage }), getWebPageStructuredData({ webPage: casinoPage }), getWebSiteStructuredData(), getOrganizationStructuredData()],
   }
   const breadcrumbs = [
     {
