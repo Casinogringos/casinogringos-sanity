@@ -45,7 +45,7 @@ export default function SlotIndex({
       <div className="pb-12 pt-8 lg:pt-10 bg-slate-100">
         <Container>
           <div className="mt-4 grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-4">
-            {slotPages.filter((slotPage: SlotPagePreviewSchemaType) => slotPage.slot).map((slotPage: SlotPagePreviewSchemaType) => (
+            {slotPages.filter((slotPage: SlotPagePreviewSchemaType) => slotPage.slot).sort((a, b) => new Date(b.originalPublishedAt ?? b._createdAt).getTime() - new Date(a.originalPublishedAt ?? a._createdAt).getTime()).map((slotPage: SlotPagePreviewSchemaType) => (
               <SlotCard key={`slot-${slotPage._id}`} slotPage={slotPage} />
             ))}
           </div>
