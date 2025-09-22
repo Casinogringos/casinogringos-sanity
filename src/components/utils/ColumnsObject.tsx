@@ -4,7 +4,8 @@ import ModularContent from '@/src/components/organisms/ModularContent'
 const ColumnsObject = ({ object }: { object: ColumnsObjectType }) => {
   const { columns } = object
   const colorClasses = {
-    'grey': 'bg-gray-50',
+    'grey': 'bg-slate-100',
+    'blueLight': 'bg-blue-light',
     'white': 'bg-white'
   }
 
