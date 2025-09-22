@@ -74,6 +74,8 @@ const CasinoPage = ({
           <ModularContent
             objects={casinoPage.content}
             casino={casinoPage.casino}
+            className='py-5'
+            narrow
           />
         )}
         {/*{page?.author && (*/}
