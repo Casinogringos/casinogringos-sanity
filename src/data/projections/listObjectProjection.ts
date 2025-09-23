@@ -1,4 +1,5 @@
 import { listItemObjectProjection } from '@/src/data/projections/listItemObjectProjection'
+import { imageProjection } from './imageProjection'
 
 export const listObjectProjection = `
   _type == 'list-object' => {
@@ -7,8 +8,12 @@ export const listObjectProjection = `
     _key,
     message,
     numbered,
+    showIcon,
+    icon {
+      ${imageProjection}
+    },
     items[] {
-        ${listItemObjectProjection}
+      ${listItemObjectProjection}
     }   
   }
 `

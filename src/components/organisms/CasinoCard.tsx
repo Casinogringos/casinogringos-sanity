@@ -116,7 +116,7 @@ const CasinoCard = ({ casinoPage, index }: { casinoPage: CasinoPagePreviewSchema
               <Paragraph content={casino.terms} />
             </div>
           ) : (
-            <div className="rounded-b-md bg-white px-2 py-3 text-center text-xs text-gray-400">
+            <div className="rounded-b-md overflow-y-auto bg-white px-2 py-3 text-center text-xs text-gray-400">
               18+ | Spela ansvarsfullt |{' '}
               <Link
                 prefetch={false}

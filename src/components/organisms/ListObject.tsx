@@ -1,5 +1,6 @@
 import { ListObjectSchemaType } from '@/src/schemas/listObject'
 import ModularContent from '@/src/components/organisms/ModularContent'
+import Image from 'next/image'
 
 const ListObject = ({ object, className }: { object: ListObjectSchemaType, className?: string }) => {
 
@@ -17,11 +18,13 @@ const ListObject = ({ object, className }: { object: ListObjectSchemaType, class
       </div>
     )
   }
+  console.log('object', object.icon)
   return (
     <div className={`not-prose ${className}`}>
       <ul className='p-0'>
         {object.items.map((item) => (
-          <li key={item._key} className='my-2'>
+          <li key={item._key} className={`my-2 flex items-start gap-2 ${!object.showIcon ? 'bullets' : ''}`}>
+            {object.showIcon && object.icon && <Image src={object.icon.src} alt={object.icon.alt} width={10} height={10} className='mt-3' />}
             <ModularContent objects={item.content} nested={true} />
           </li>
         ))}
