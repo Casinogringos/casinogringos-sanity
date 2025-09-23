@@ -12,7 +12,7 @@ const BreadCrumbs = ({
 }) => {
   return (
     <div className={`overflow-x-auto border-b border-b-gray-200 bg-white py-2 ${className}`}>
-      <Container>
+      <Container narrow>
         <nav id="breadcrumb" aria-label="Breadcrumb">
           <ol
             role="list"
