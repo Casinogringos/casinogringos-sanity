@@ -2,6 +2,7 @@
 
 import { JSX, createElement } from 'react'
 import { slugify } from '@/src/lib/helpers'
+import { jakarta } from '@/src/styles/fonts'
 
 const Heading = ({
   text,
@@ -38,8 +39,8 @@ const Heading = ({
   return createElement(Tag, {
     className:
       index === 0
-        ? `mt-0 relative ${className}`
-        : `${className} ${sizeClasses[size as keyof typeof sizeClasses]}`,
+        ? `mt-0 relative ${className} ${jakarta.className}`
+        : `${className} ${sizeClasses[size as keyof typeof sizeClasses]} ${jakarta.className}`,
     dangerouslySetInnerHTML: { __html: html },
   })
 }

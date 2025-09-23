@@ -38,7 +38,7 @@ const HomePageHero = ({ page }: { page: SubPageSchemaType }) => {
             <Heading
               level={1}
               size={10}
-              className="max-w-md font-jakarta text-4xl font-bold tracking-tight text-white sm:text-[45px] sm:leading-[52px]"
+              className="max-w-md text-4xl font-bold tracking-tight text-white sm:text-[45px] sm:leading-[52px]"
               text={page.title}
             >
               <span className="block">{page.title}</span>
@@ -52,7 +52,7 @@ const HomePageHero = ({ page }: { page: SubPageSchemaType }) => {
                   <Link
                     href={item.link}
                     prefetch={false}
-                    className="group relative flex items-center justify-center gap-4 overflow-hidden rounded-md bg-white p-4 font-jakarta transition md:gap-2.5 lg:h-[58px] lg:p-3.5"
+                    className="group relative flex items-center justify-center gap-4 overflow-hidden rounded-md bg-white p-4 transition md:gap-2.5 lg:h-[58px] lg:p-3.5"
                   >
                     {item.icon}
                     {item.label}

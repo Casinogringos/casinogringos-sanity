@@ -9,26 +9,27 @@ import '@/src/styles/index.css'
 import '@/src/styles/styles.scss'
 import PlausibleProvider from 'next-plausible'
 import dynamicImport from 'next/dynamic'
-import { Inter, Plus_Jakarta_Sans } from 'next/font/google'
+
 import { headers } from 'next/headers'
 import { ReactNode } from 'react'
 import Footer from '@/src/components/organisms/Footer'
+import { inter } from '@/src/styles/fonts'
 
 const ScrollToTop = dynamicImport(
   () => import('@/src/components/molecules/ScrollToTop')
 )
-const inter = Inter({
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-inter',
-  weight: ['400', '500', '600'],
-})
-const jakarta = Plus_Jakarta_Sans({
-  subsets: ['latin'],
-  variable: '--font-jakarta',
-  display: 'swap',
-  weight: ['700'],
-})
+// const inter = Inter({
+//   subsets: ['latin'],
+//   display: 'swap',
+//   variable: '--font-inter',
+//   weight: ['400', '500', '600'],
+// })
+// const jakarta = Plus_Jakarta_Sans({
+//   subsets: ['latin'],
+//   variable: '--font-jakarta',
+//   display: 'swap',
+//   weight: ['700'],
+// })
 
 // export const metadata = {
 //   metadataBase: new URL(process.env.SITE_URL as string),
@@ -77,7 +78,7 @@ export default async function RootLayout({
     <html lang="sv-SE">
       <PlausibleProvider domain="casinogringos.se" />
       <link rel="icon" href="/favicon.ico" sizes="any" />
-      <body className={`${jakarta.variable} ${inter.variable}`}>
+      <body className={`${inter.className}`}>
         <Provider>
           <Navigation
             headerMenu={headerMenu}
