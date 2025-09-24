@@ -12,7 +12,7 @@ const AuthorBox = ({
   reviewedBy,
 }: {
   author: AuthorSchemaType
-  modified: string | null
+  modified: number | null
   reviewedBy?: AuthorSchemaType
 }) => {
   return (

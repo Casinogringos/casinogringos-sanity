@@ -8,7 +8,7 @@ export const SearchSchemaItem = z.object({
         current: z.string(),
     }),
     featuredImage: ImageObjectSchema,
-    modifiedAt: z.string(),
+    modifiedAt: z.number(),
 })
 
 export const SearchSchema = z.array(SearchSchemaItem)

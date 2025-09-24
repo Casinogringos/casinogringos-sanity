@@ -59,10 +59,9 @@ const CasinoPage = ({
           <Avatar
             author={casinoPage.author}
             reviewer={casinoPage.reviewer}
-            modified={casinoPage._updatedAt ?? casinoPage.originalModifiedAt}
+            modifiedAt={casinoPageService.getPageModifiedAtTimestamp(casinoPage)}
             shareTitle={casinoPage.seoTitle}
-            date={casinoPage.originalPublishedAt ?? casinoPage._createdAt}
-            pathname={casinoPage.slug.current}
+            createdAt={casinoPageService.getPagePublishedAtTimestamp(casinoPage)}
           />
         </Container>
         {headings.length > 1 && (
@@ -94,7 +93,7 @@ const CasinoPage = ({
               <div className={'grid grid-cols-2 gap-4 lg:grid-cols-4'}>
                 {similarCasinoPages.map((page) => (
                   <Link
-                    href={`/${page.slug.current}`}
+                    href={`${process.env.SITE_URL}${page.slug.current}`}
                     key={`similar-post-${page._id}`}
                     className={'flex flex-col'}
                   >

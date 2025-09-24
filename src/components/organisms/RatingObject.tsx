@@ -2,7 +2,8 @@ import Heading from '@/src/components/atoms/Heading'
 import { PortableText } from 'next-sanity'
 import { RatingObjectSchemaType } from '@/src/schemas/ratingObject'
 import { CasinoSchemaType } from '@/src/schemas/casino'
-import { Star, StarHalf } from 'lucide-react'
+import StarIcon from '@/src/components/icons/StarIcon'
+import HalfStarIcon from '@/src/components/icons/HalfStarIcon'
 
 const RatingObject = ({ object, casino }: { object: RatingObjectSchemaType, casino: CasinoSchemaType }) => {
   console.log('rating object', object)
@@ -15,17 +16,15 @@ const RatingObject = ({ object, casino }: { object: RatingObjectSchemaType, casi
         <Heading text={object.title} size={6} className='not-prose font-bold' level={2} />
         <div className="flex">
           {Array.from({ length: Math.floor(rating) }).map((_, index) => (
-            <Star
+            <StarIcon
               key={`rating-star-${index}`}
               className="text-yellow-400"
-              size={20}
             />
           ))}
           {rating % 1 !== 0 && (
-            <StarHalf
+            <HalfStarIcon
               key="rating-star-half"
               className="text-yellow-400"
-              size={20}
             />
           )}
         </div>

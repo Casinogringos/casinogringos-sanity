@@ -75,7 +75,7 @@ export default function GuidePage({
           </div>
         </Container>
       )}
-      <ModularContent narrow objects={page.content} />
+      <ModularContent narrow objects={page.content} className={'py-5'} />
       {(page?.author || page?.reviewer) && (
         <div className="mx-4 lg:mx-0">
           <AuthorBox

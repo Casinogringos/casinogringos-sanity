@@ -81,6 +81,7 @@ const HowToObject = ({ object }: { object: HowToObjectSchemaType }) => {
                       alt={row.image.alt}
                       width={600}
                       height={600}
+                      className='rounded-sm'
                     />
                   </div>
                 )}

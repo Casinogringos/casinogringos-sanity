@@ -1,9 +1,9 @@
 'use client'
 
-import { useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import { ArrowRight, Search } from 'lucide-react'
 import Fuse from 'fuse.js'
-import Link from 'next/link'
+import Link from '@/src/components/atoms/Link'
 import Heading from '@/src/components/atoms/Heading'
 import Date from '@/src/components/atoms/Date'
 import { SubPagePreviewSchemaType } from '@/src/schemas/subPagePreview'
@@ -23,6 +23,8 @@ import { ImageObjectSchemaType } from '@/src/schemas/imageObject'
 import Image from 'next/image'
 import { SubPageSchemaType } from '@/src/schemas/subPage'
 import { CasinoPageSchemaType } from '@/src/schemas/casinoPage'
+import { closedSearch, closeSearch, closingSearch } from '@/src/store/menuSlice'
+import { useAppSelector, useAppDispatch } from '@/src/store/hooks'
 
 const pageService = new SubPageService()
 const slotPageService = new SlotPageService()
@@ -40,6 +42,7 @@ const SearchBox = () => {
   > | null>(null)
   const [filteredResults, setFilteredResults] =
     useState<SearchSchemaType | null>(null)
+  const dispatch = useAppDispatch()
   const resultGroups: Record<string, SearchSchemaItemType[]> = useMemo(
     () =>
       filteredResults?.reduce(
@@ -106,8 +109,8 @@ const SearchBox = () => {
         | CasinoPagePreviewSchemaType
         | null
         | undefined = pages?.find(
-        (item) => item.slug.current === result.item.slug.current
-      )
+          (item) => item.slug.current === result.item.slug.current
+        )
       if (record?.slug.current === '') return null
       const clonedRecord = _.cloneDeep(record)
       const featuredImage = clonedRecord?.featuredImage
@@ -137,6 +140,15 @@ const SearchBox = () => {
       )
     )
   }, [query])
+  const handleCloseSearch = useCallback(() => {
+    dispatch(closingSearch())
+    setTimeout(() => {
+      dispatch(closeSearch())
+      dispatch(closedSearch())
+    }, 300)
+    document.body.classList.remove('overflow-hidden')
+  }, [dispatch])
+
 
   return (
     <>
@@ -165,6 +177,7 @@ const SearchBox = () => {
                 <Link
                   className="flex items-center justify-start p-4"
                   href={item.slug.current}
+                  onClick={handleCloseSearch}
                 >
                   {item.featuredImage.src && (
                     <Image
@@ -184,7 +197,7 @@ const SearchBox = () => {
                     />
                     <Date
                       className="text-slate-500 text-sm"
-                      dateString={item.modifiedAt}
+                      timestamp={item.modifiedAt}
                     />
                   </div>
                   <div className="flex-shrink-0 rounded-full bg-slate-200 p-2">
@@ -206,6 +219,7 @@ const SearchBox = () => {
                 <Link
                   href={item.slug.current}
                   className="flex items-center justify-start"
+                  onClick={() => closeSearch()}
                 >
                   {item.featuredImage.src && (
                     <Image
@@ -224,7 +238,7 @@ const SearchBox = () => {
                       className="!font-normal !text-md"
                     />
                     <Date
-                      dateString={item.modifiedAt}
+                      timestamp={item.modifiedAt}
                       className="text-slate-500 text-sm"
                     />
                   </div>
@@ -247,6 +261,7 @@ const SearchBox = () => {
                 <Link
                   href={item.slug.current}
                   className="flex items-center justify-start"
+                  onClick={() => closeSearch()}
                 >
                   {item.featuredImage.src && (
                     <Image
@@ -265,7 +280,7 @@ const SearchBox = () => {
                       className="!font-normal !text-md"
                     />
                     <Date
-                      dateString={item.modifiedAt}
+                      timestamp={item.modifiedAt}
                       className="text-slate-500 text-sm"
                     />
                   </div>
@@ -288,6 +303,7 @@ const SearchBox = () => {
                 <Link
                   href={item.slug.current}
                   className="flex items-center justify-start"
+                  onClick={() => closeSearch()}
                 >
                   {item.featuredImage.src && (
                     <Image
@@ -306,7 +322,7 @@ const SearchBox = () => {
                       className="!font-normal !text-md"
                     />
                     <Date
-                      dateString={item.modifiedAt}
+                      timestamp={item.modifiedAt}
                       className="text-slate-500 text-sm"
                     />
                   </div>
@@ -329,6 +345,7 @@ const SearchBox = () => {
                 <Link
                   href={item.slug.current}
                   className="flex items-center justify-start"
+                  onClick={() => closeSearch()}
                 >
                   {item.featuredImage.src && (
                     <Image
@@ -347,7 +364,7 @@ const SearchBox = () => {
                       className="!font-normal !text-md"
                     />
                     <Date
-                      dateString={item.modifiedAt}
+                      timestamp={item.modifiedAt}
                       className="text-slate-500 text-sm"
                     />
                   </div>

@@ -14,6 +14,9 @@ import Image from 'next/image'
 import { getWebPageStructuredData } from '@/src/structured-data/webPageStructuredData'
 import { getWebSiteStructuredData } from '@/src/structured-data/webSiteStructuredData'
 import { getOrganizationStructuredData } from '@/src/structured-data/organizationStructuredData'
+import NewsPageService from '@/src/services/NewsPageService'
+
+const newsPageService = new NewsPageService()
 
 export default function NewsPage({
   page,
@@ -69,15 +72,15 @@ export default function NewsPage({
           </div>
         </Container>
       )}
-      <ModularContent objects={page.content} />
+      <ModularContent narrow objects={page.content} className={'py-5'} />
       {page.author && (
-        <div className="mx-4 lg:mx-0">
+        <Container narrow>
           <AuthorBox
             author={page.author}
-            modified={page._updatedAt ?? page.originalModifiedAt}
+            modified={newsPageService.getPageModifiedAtTimestamp(page)}
             reviewedBy={page.reviewer}
           />
-        </div>
+        </Container>
       )}
       {similarNews && (
         <section className={'bg-gray-100 py-10'}>

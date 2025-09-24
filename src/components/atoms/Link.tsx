@@ -24,7 +24,8 @@ const Link = ({
   title,
   disabled,
   size = 'md',
-  underline = false
+  underline = false,
+  onClick,
 }: {
   href: string
   rel?: string
@@ -46,6 +47,7 @@ const Link = ({
   disabled?: boolean
   size?: 'sm' | 'md' | 'lg'
   underline?: boolean
+  onClick?: () => void
 }) => {
   const plausibleMethod = usePlausible()
   const pathname = usePathname()
@@ -82,6 +84,7 @@ const Link = ({
       aria-label={label}
       title={title}
       onClick={() => {
+        if (onClick) onClick()
         if (!plausible) return
         plausibleMethod(plausible.eventName, {
           props: { ...plausible.props, pathname },
