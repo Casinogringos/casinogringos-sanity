@@ -1,6 +1,6 @@
 'use client'
 
-import Date from '@/src/components/atoms/Date'
+import DateComponent from '@/src/components/atoms/Date'
 import CheckBadge from '@/src/components/icons/CheckBadgeIcon'
 import { Calendar } from 'lucide-react'
 import {
@@ -27,6 +27,8 @@ const HeroAvatar = ({
   modified: string
   shareTitle: string
 }) => {
+  const publishedAt = new Date(date).getTime()
+  const modifiedAt = new Date(modified).getTime()
   const url = `${process.env.SITE_URL}${usePathname()}`
 
   return (
@@ -60,14 +62,14 @@ const HeroAvatar = ({
             {modified ? (
               <div className="mt-0.5 flex items-center gap-2 text-xs">
                 <span>
-                  Senast uppdaterad: <Date dateString={modified} />
+                  Senast uppdaterad: <DateComponent timestamp={modifiedAt} />
                 </span>
               </div>
             ) : (
               <div className="flex items-center gap-2 text-xs font-medium text-slate-400">
                 <Calendar className="text-slate-200 h-4 w-4" />
                 <span>
-                  Publicerad: <Date dateString={date} />
+                  Publicerad: <DateComponent timestamp={publishedAt} />
                 </span>
               </div>
             )}
