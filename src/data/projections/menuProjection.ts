@@ -4,6 +4,7 @@ const menuItemProjection = `
     _key,
     label,
     page-> {
+        _id,
         _type,
         _key,
         slug {
@@ -17,6 +18,7 @@ const menuItemProjection = `
         _key,
         label,
         page-> {           
+            _id,
             _type,
             _key,
             slug {

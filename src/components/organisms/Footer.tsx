@@ -83,11 +83,12 @@ const Footer = ({
   popularCasinos,
   latestReviews
 }: {
-  siteLinks: { items: { page: { slug: { current: string; }, title: string } }[] }
-  popularCasinos: { items: { page: { slug: { current: string; }, title: string } }[] }
-  latestReviews: { items: { page: { slug: { current: string; }, title: string } }[] }
+  siteLinks: { items: { page: { _id: string; slug: { current: string; }, title: string } }[] }
+  popularCasinos: { items: { page: { _id: string; slug: { current: string; }, title: string } }[] }
+  latestReviews: { items: { page: { _id: string; slug: { current: string; }, title: string } }[] }
 }) => {
   const year = new Date().getFullYear()
+  console.log('siteLinks', siteLinks)
 
   return (
     <footer className="bg-dark" aria-labelledby="footer-heading">
@@ -102,17 +103,23 @@ const Footer = ({
                 Sidlänkar
               </span>
               <ul role="list" className="mt-6 space-y-4">
-                {siteLinks.items.map(({ page }) => (
-                  <li key={`menu-item-label-${page.title}`}>
-                    <Link
-                      href={page.slug.current}
-                      prefetch={false}
-                      className="text-sm leading-6 text-gray-300 hover:text-white"
-                    >
-                      {page.title}
-                    </Link>
-                  </li>
-                ))}
+                {siteLinks.items.map((item, i) => {
+                  const { page } = item
+                  console.log('item', item)
+                  console.log('page', page)
+                  if (!page) return null
+                  return (
+                    <li key={`site-link-${page._id}-${i}`}>
+                      <Link
+                        href={page.slug.current}
+                        prefetch={false}
+                        className="text-sm leading-6 text-gray-300 hover:text-white"
+                      >
+                        {page.title}
+                      </Link>
+                    </li>
+                  )
+                })}
               </ul>
             </div>
             <div className="mt-10 md:mt-0">

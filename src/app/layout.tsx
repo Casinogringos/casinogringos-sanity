@@ -88,7 +88,7 @@ export default async function RootLayout({
           />
           <main className={'relative'}>{children}</main>
           <ScrollToTop />
-          {/* <Footer siteLinks={siteLinks} popularCasinos={popularCasinos} latestReviews={latestReviews} /> */}
+          <Footer siteLinks={siteLinks} popularCasinos={popularCasinos} latestReviews={latestReviews} />
         </Provider>
       </body>
     </html>
