@@ -26,7 +26,7 @@ const HeadingObject = ({
     className:
       index === 0
         ? `mt-0 relative ${className} ${jakarta.className}`
-        : `${className} ${jakarta.className}`,
+        : `${className} relative ${jakarta.className}`,
     dangerouslySetInnerHTML: { __html: html },
   })
 }

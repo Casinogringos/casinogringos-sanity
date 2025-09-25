@@ -6,19 +6,21 @@ import { BreadcrumbsSchemaType } from '@/src/schemas/breadcrumbs'
 const BreadCrumbs = ({
   items,
   className,
+  narrow = false,
 }: {
   items: BreadcrumbsSchemaType
   className?: string
+  narrow?: boolean
 }) => {
   return (
     <div className={`overflow-x-auto border-b border-b-gray-200 bg-white py-2 ${className}`}>
-      <Container narrow>
+      <Container narrow={narrow}>
         <nav id="breadcrumb" aria-label="Breadcrumb">
           <ol
             role="list"
             itemScope
             itemType="https://schema.org/BreadcrumbList"
-            className="flex items-center space-x-2 whitespace-nowrap lg:space-x-3"
+            className="flex items-center gap-x-2 whitespace-nowrap lg:gap-x-3"
           >
             <li
               itemProp="itemListElement"
@@ -30,7 +32,7 @@ const BreadCrumbs = ({
                 itemProp="item"
                 itemType="https://schema.org/WebPage"
                 prefetch={false}
-                className="mr-2 block text-xs font-medium leading-7 text-gray-700 hover:text-primary"
+                className="block text-xs font-medium leading-7 text-gray-700 hover:text-primary"
               >
                 <span itemProp="name">Hem</span>
               </Link>
@@ -42,10 +44,10 @@ const BreadCrumbs = ({
                 itemProp="itemListElement"
                 itemScope
                 itemType="https://schema.org/ListItem"
-                className="!ml-0 flex items-center"
+                className="flex items-center gap-x-2 lg:gap-x-3"
               >
                 <ChevronRight
-                  className="ml-0 size-4 flex-shrink-0 pl-0 text-gray-400"
+                  className="size-4 flex-shrink-0 pl-0 text-gray-400"
                   aria-hidden="true"
                 />
                 {item.url ? (
@@ -54,7 +56,7 @@ const BreadCrumbs = ({
                     itemProp="item"
                     itemType="https://schema.org/WebPage"
                     prefetch={false}
-                    className="lg:m-l3 hover:text-slate-500 mx-2 text-xs text-gray-500"
+                    className="lg:m-l3 hover:text-primary text-xs text-gray-500"
                   >
                     <span itemProp="name">{item.text}</span>
                   </Link>
@@ -62,7 +64,7 @@ const BreadCrumbs = ({
                   <div
                     itemProp="item"
                     itemType="https://schema.org/WebPage"
-                    className="lg:m-l3 hover:text-slate-500 ml-2 text-xs text-gray-500"
+                    className="lg:m-l3 hover:text-slate-500 text-xs text-gray-500"
                   >
                     <span itemProp="name">{item.text}</span>
                   </div>

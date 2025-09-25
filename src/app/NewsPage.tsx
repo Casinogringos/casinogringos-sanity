@@ -15,6 +15,8 @@ import { getWebPageStructuredData } from '@/src/structured-data/webPageStructure
 import { getWebSiteStructuredData } from '@/src/structured-data/webSiteStructuredData'
 import { getOrganizationStructuredData } from '@/src/structured-data/organizationStructuredData'
 import NewsPageService from '@/src/services/NewsPageService'
+import { HeadingObjectSchemaType } from '../schemas/headingObject'
+import { slugify } from '@/src/lib/helpers'
 
 const newsPageService = new NewsPageService()
 
@@ -37,7 +39,6 @@ export default function NewsPage({
     },
     {
       text: page.title,
-      url: `/nyheter/${page.slug.current}`,
     },
   ]
 
@@ -50,7 +51,7 @@ export default function NewsPage({
         }}
         key="news-page-structured-data"
       />
-      <BreadCrumbs items={breadcrumbs} />
+      <BreadCrumbs items={breadcrumbs} narrow />
       <Container narrow>
         {page.featuredImage && (
           <div className="mb-4 flex h-auto items-start overflow-hidden rounded-md lg:mb-8 lg:mt-8 lg:h-96 relative">
@@ -68,7 +69,10 @@ export default function NewsPage({
       {headingObjects.length > 2 && (
         <Container narrow>
           <div className="mt-4 px-4 lg:mt-5 lg:px-0">
-            <TableOfContents headings={headingObjects} />
+            <TableOfContents headings={headingObjects.map((heading: HeadingObjectSchemaType) => ({
+              text: heading.text,
+              slug: `${page.slug.current}#${slugify(heading.text)}`,
+            }))} />
           </div>
         </Container>
       )}

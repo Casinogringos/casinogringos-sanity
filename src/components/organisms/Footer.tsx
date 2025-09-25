@@ -266,7 +266,7 @@ const Footer = ({
                 target="_blank"
                 key={`social-${item.name}`}
                 href={item.href}
-                className="text-gray500 hover:text-primary"
+                className="text-gray-500 hover:text-primary"
               >
                 <span className="sr-only">{item.name}</span>
                 <item.icon className="h-6 w-6" aria-hidden="true" />

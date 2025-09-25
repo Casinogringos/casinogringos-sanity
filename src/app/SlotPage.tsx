@@ -20,6 +20,8 @@ import { getWebPageStructuredData } from '@/src/structured-data/webPageStructure
 import { getWebSiteStructuredData } from '@/src/structured-data/webSiteStructuredData'
 import { getOrganizationStructuredData } from '@/src/structured-data/organizationStructuredData'
 import SlotCard from '@/src/components/molecules/SlotCard'
+import { HeadingObjectSchemaType } from '../schemas/headingObject'
+import { slugify } from '../lib/helpers'
 
 const slotPageService = new SlotPageService()
 const casinoPageService = new CasinoPageService()
@@ -170,6 +172,7 @@ const SlotPage = ({ slotPage, similarSlotPages }: { slotPage: SlotPageSchemaType
         {breadcrumbs && (
           <BreadCrumbs
             items={breadcrumbs}
+            narrow
           />
         )}
         <Container narrow className="mb-10 mt-12">
@@ -183,7 +186,10 @@ const SlotPage = ({ slotPage, similarSlotPages }: { slotPage: SlotPageSchemaType
         </Container>
         {headings.length > 1 && (
           <Container narrow>
-            <TableOfContents headings={headings} />
+            <TableOfContents headings={headings.map((heading: HeadingObjectSchemaType) => ({
+              text: heading.text,
+              slug: `${slotPage.slug.current}#${slugify(heading.text)}`,
+            }))} />
           </Container>
         )}
         <ModularContent

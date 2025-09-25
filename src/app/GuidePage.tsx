@@ -14,6 +14,8 @@ import ArticleCard from '../components/molecules/ArticleCard'
 import { getWebPageStructuredData } from '@/src/structured-data/webPageStructuredData'
 import { getWebSiteStructuredData } from '@/src/structured-data/webSiteStructuredData'
 import { getOrganizationStructuredData } from '@/src/structured-data/organizationStructuredData'
+import { HeadingObjectSchemaType } from '../schemas/headingObject'
+import { slugify } from '../lib/helpers'
 
 const guidePageService = new GuidePageService()
 
@@ -40,7 +42,6 @@ export default function GuidePage({
     },
     {
       text: page.title,
-      url: `${process.env.SITE_URL}/guider/${page.slug.current}`,
     },
   ]
 
@@ -71,19 +72,22 @@ export default function GuidePage({
       {headings.length > 1 && (
         <Container narrow>
           <div className="-mb-6 mt-4 px-4 lg:mt-5 lg:px-0">
-            <TableOfContents headings={headings} />
+            <TableOfContents headings={headings.map((heading: HeadingObjectSchemaType) => ({
+              text: heading.text,
+              slug: `${page.slug.current}#${slugify(heading.text)}`,
+            }))} />
           </div>
         </Container>
       )}
       <ModularContent narrow objects={page.content} className={'py-5'} />
       {(page?.author || page?.reviewer) && (
-        <div className="mx-4 lg:mx-0">
+        <Container narrow>
           <AuthorBox
             author={page?.author}
             modified={guidePageService.getPageModifiedAtTimestamp(page)}
             reviewedBy={page?.reviewer}
           />
-        </div>
+        </Container>
       )}
       {similarGuidePages && (
         <section className="bg-gray-100 py-10">
@@ -94,7 +98,7 @@ export default function GuidePage({
               className="mb-4 font-bold text-gray-700"
               text="Fler guider"
             />
-            <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
+            <div className="grid grid-cols-2 gap-4 lg:grid-cols-3">
               {similarGuidePages.map((guidePage) => (
                 <ArticleCard key={guidePage._id} item={guidePage} />
               ))}

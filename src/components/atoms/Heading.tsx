@@ -40,7 +40,7 @@ const Heading = ({
     className:
       index === 0
         ? `mt-0 relative ${className} ${jakarta.className}`
-        : `${className} ${sizeClasses[size as keyof typeof sizeClasses]} ${jakarta.className}`,
+        : `${className} relative ${sizeClasses[size as keyof typeof sizeClasses]} ${jakarta.className}`,
     dangerouslySetInnerHTML: { __html: html },
   })
 }

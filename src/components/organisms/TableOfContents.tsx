@@ -7,16 +7,9 @@ import ToggleSpin from '@/src/components/atoms/ToggleSpin'
 import ToggleItem from '@/src/components/atoms/ToggleItem'
 import Heading from '@/src/components/atoms/Heading'
 import ToggleSwitch from '@/src/components/atoms/ToggleSwitch'
-import { headers } from 'next/headers'
+import { HeadingObjectSchemaType } from '@/src/schemas/headingObject'
 
-interface Heading {
-  text: string
-}
-
-const TableOfContents = async ({ headings }: { headings: Heading[] }) => {
-  const headerList = await headers()
-  const pathname = await headerList.get('x-current-path')
-
+const TableOfContents = ({ headings }: { headings: (HeadingObjectSchemaType & { slug: string })[] }) => {
   return (
     <section
       className={
@@ -58,16 +51,16 @@ const TableOfContents = async ({ headings }: { headings: Heading[] }) => {
             'border-solid border-t list-decimal not-prose ml-5 border-t-white p-4'
           }
         >
-          {headings.map((heading) => (
+          {headings.map((heading, i) => (
             <li
-              key={`heading-${slugify(heading.text)}`}
+              key={`heading-${slugify(heading.text)}-${i}`}
               className={
                 'py-2 last-of-type:border-0 text-slate-600 last-of-type:pb-0 border-b border-b-slate-200'
               }
             >
               <Link
                 className="hover:text-dark font-medium"
-                href={`/${pathname}/#${slugify(heading.text)}`}
+                href={heading.slug}
               >
                 {heading.text}
               </Link>

@@ -7,6 +7,10 @@ export const HeadingObjectSchema = z.object({
   className: z.string().optional(),
   anchor: z.string().optional(),
   level: z.number(),
+  slug: z.object({
+    _type: z.literal('slug'),
+    current: z.string(),
+  }),
 });
 
 export type HeadingObjectSchemaType = z.infer<typeof HeadingObjectSchema>;

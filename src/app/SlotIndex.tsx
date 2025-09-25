@@ -13,6 +13,8 @@ import FAQ from '../components/organisms/FAQ'
 import { getWebPageStructuredData } from '@/src/structured-data/webPageStructuredData'
 import { getWebSiteStructuredData } from '@/src/structured-data/webSiteStructuredData'
 import { getOrganizationStructuredData } from '@/src/structured-data/organizationStructuredData'
+import { HeadingObjectSchemaType } from '@/src/schemas/headingObject'
+import { slugify } from '@/src/lib/helpers'
 const slotPageService = new SlotPageService()
 const subPageService = new SubPageService()
 
@@ -41,7 +43,7 @@ export default function SlotIndex({
   return (
     <>
       <SubPageHero page={page} />
-      <BreadCrumbs items={breadcrumbItems} />
+      <BreadCrumbs narrow={false} items={breadcrumbItems} />
       <div className="pb-12 pt-8 lg:pt-10 bg-slate-100">
         <Container>
           <div className="mt-4 grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-4">
@@ -61,7 +63,10 @@ export default function SlotIndex({
       {headings.length > 1 && (
         <div className="mb-10">
           <Container narrow>
-            <TableOfContents headings={headings} />
+            <TableOfContents headings={headings.map((heading: HeadingObjectSchemaType) => ({
+              text: heading.text,
+              slug: `${page.slug.current}#${slugify(heading.text)}`,
+            }))} />
           </Container>
         </div>
       )}
