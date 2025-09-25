@@ -180,13 +180,15 @@ const SearchBox = () => {
                   onClick={handleCloseSearch}
                 >
                   {item.featuredImage.src && (
-                    <Image
-                      src={item.featuredImage.src}
-                      alt={item.featuredImage.alt}
-                      width={50}
-                      height={50}
-                      className="rounded-md mr-2"
-                    />
+                    <div className='h-[50px] w-[50px] relative mr-2'>
+                      <Image
+                        src={item.featuredImage.src}
+                        alt={item.featuredImage.alt}
+                        width={50}
+                        height={50}
+                        className="rounded-md object-cover w-full h-full"
+                      />
+                    </div>
                   )}
                   <div className="flex-grow">
                     <Heading
@@ -214,21 +216,23 @@ const SearchBox = () => {
             {resultGroups?.['guide-pages']?.map((item, index) => (
               <div
                 key={`${item.slug}-${index}`}
-                className="border-b border-slate-200 hover:bg-slate-100 p-4 pl-0"
+                className="border-b border-slate-200 hover:bg-slate-100 pl-0"
               >
                 <Link
                   href={item.slug.current}
-                  className="flex items-center justify-start"
+                  className="flex items-center justify-start p-4"
                   onClick={() => closeSearch()}
                 >
                   {item.featuredImage.src && (
-                    <Image
-                      src={item.featuredImage.src}
-                      alt={item.featuredImage.alt}
-                      width={50}
-                      height={50}
-                      className="rounded-md mr-2"
-                    />
+                    <div className="h-[50px] w-[50px] relative mr-2">
+                      <Image
+                        src={item.featuredImage.src}
+                        alt={item.featuredImage.alt}
+                        width={50}
+                        height={50}
+                        className="rounded-md object-cover w-full h-full"
+                      />
+                    </div>
                   )}
                   <div className="flex-grow">
                     <Heading
@@ -264,13 +268,15 @@ const SearchBox = () => {
                   onClick={() => closeSearch()}
                 >
                   {item.featuredImage.src && (
-                    <Image
-                      src={item.featuredImage.src}
-                      alt={item.featuredImage.alt}
-                      width={50}
-                      height={50}
-                      className="rounded-md mr-2"
-                    />
+                    <div className="h-[50px] w-[50px] relative mr-2">
+                      <Image
+                        src={item.featuredImage.src}
+                        alt={item.featuredImage.alt}
+                        width={50}
+                        height={50}
+                        className="rounded-md object-cover w-full h-full"
+                      />
+                    </div>
                   )}
                   <div className="flex-grow">
                     <Heading
@@ -306,13 +312,15 @@ const SearchBox = () => {
                   onClick={() => closeSearch()}
                 >
                   {item.featuredImage.src && (
-                    <Image
-                      src={item.featuredImage.src}
-                      alt={item.featuredImage.alt}
-                      width={50}
-                      height={50}
-                      className="rounded-md mr-2"
-                    />
+                    <div className="h-[50px] w-[50px] relative mr-2">
+                      <Image
+                        src={item.featuredImage.src}
+                        alt={item.featuredImage.alt}
+                        width={50}
+                        height={50}
+                        className="rounded-md object-cover w-full h-full"
+                      />
+                    </div>
                   )}
                   <div className="flex-grow">
                     <Heading
@@ -348,13 +356,15 @@ const SearchBox = () => {
                   onClick={() => closeSearch()}
                 >
                   {item.featuredImage.src && (
-                    <Image
-                      src={item.featuredImage.src}
-                      alt={item.featuredImage.alt}
-                      width={50}
-                      height={50}
-                      className="rounded-md mr-2"
-                    />
+                    <div className="h-[50px] w-[50px] relative mr-2">
+                      <Image
+                        src={item.featuredImage.src}
+                        alt={item.featuredImage.alt}
+                        width={50}
+                        height={50}
+                        className="rounded-md object-cover w-full h-full"
+                      />
+                    </div>
                   )}
                   <div className="flex-grow">
                     <Heading

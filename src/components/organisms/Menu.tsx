@@ -1,24 +1,26 @@
 import { ChevronDown } from 'lucide-react'
 import { isCurrentPath } from '@/src/lib/helpers'
 import Link from '@/src/components/atoms/Link'
-import type { Menu as MenuType, MenuItem as MenuItemType } from '@/src/types'
 import ToggleButton from '@/src/components/atoms/ToggleButton'
 import ToggleItem from '@/src/components/atoms/ToggleItem'
 import ToggleSpin from '@/src/components/atoms/ToggleSpin'
+import { MenuSchemaType } from '@/src/schemas/menu'
+import { MenuItemSchemaType } from '@/src/schemas/menu'
+import { MenuItemChildSchemaType } from '@/src/schemas/menu'
 
 const Menu = ({
   menu,
   pathname,
 }: {
-  menu: MenuType
+  menu: MenuSchemaType
   pathname: string | null
 }) => {
   return (
     <nav aria-labelledby="sidebarmenu">
       <ul role={'menubar'}>
-        {menu?.items?.map((level1Item: MenuItemType, i: number) => (
+        {menu?.items?.map((level1Item: MenuItemSchemaType, i: number) => (
           <li
-            className={`border-b-gray-100 py-4 ${menu.items.length - 1 !== i ? 'border-b' : ''
+            className={`border-b-gray-100 py-4 flex flex-wrap overflow-hidden ${menu.items.length - 1 !== i ? 'border-b' : ''
               }`}
             key={`level-1-item-${level1Item._key}`}
             role={'none'}
@@ -32,8 +34,9 @@ const Menu = ({
                   ? 'page'
                   : undefined
               }
-              className={`truncate ellipsis float-left font-medium text-lg whitespace-nowrap hover:text-primary max-w-[calc(100%-34px)]`}
+              className={`truncate ellipsis float-left flex-grow font-medium text-lg whitespace-nowrap hover:text-primary max-w-[calc(100%-34px)]`}
               href={level1Item.page.slug.current}
+              actions={['close-menu']}
             >
               {level1Item.page.title}
             </Link>
@@ -62,7 +65,7 @@ const Menu = ({
                       .filter((child) => {
                         return child.page
                       })
-                      .map((level2Item: MenuItemType) => (
+                      .map((level2Item: MenuItemChildSchemaType) => (
                         <li
                           key={`level-2-item-${level2Item._key}`}
                           role={'none'}

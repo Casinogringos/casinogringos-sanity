@@ -99,8 +99,8 @@ abstract class BasePageService<
             : null
         console.log('newUpdatedAt', newUpdatedAt)
         if (
-            (!originalPublishedAt && newCreatedAt) ||
-            (!originalModifiedAt && newUpdatedAt)
+            (!originalPublishedAt && !newCreatedAt) ||
+            (!originalModifiedAt && !newUpdatedAt)
         )
             return null
         if (!newUpdatedAt) return page.originalModifiedAt ? new Date(page.originalModifiedAt).getTime() : null

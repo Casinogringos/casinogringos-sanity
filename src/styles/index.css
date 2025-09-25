@@ -125,6 +125,9 @@
     --color-heading: oklch(0.251 0.012 264.39);
     /* #333333 */
     --color-hero: oklch(0.984 0.012 257.36);
+
+    --font-size-md: 16px;
+    --font-size-2xs: 9px;
 }
 
 .tooltip {
@@ -135,4 +138,8 @@
 .has-tooltip:hover .tooltip {
     visibility: visible;
     z-index: 10;
+}
+
+.text-2xs {
+    font-size: var(--font-size-2xs);
 }

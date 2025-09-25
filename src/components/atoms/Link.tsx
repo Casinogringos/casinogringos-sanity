@@ -1,11 +1,17 @@
 'use client'
 
 import { usePlausible } from 'next-plausible'
-import { ReactNode } from 'react'
+import { ReactNode, useCallback } from 'react'
 import NextLink from 'next/link'
 import { usePathname } from 'next/navigation'
 import { isCurrentPath } from '@/src/lib/helpers'
 import Placeholder from '@/src/components/atoms/Placeholder'
+import {
+  closedMainMenu,
+  closeMainMenu,
+  closingMainMenu
+} from '@/src/store/menuSlice'
+import { useAppDispatch } from '@/src/store/hooks'
 
 const Link = ({
   href,
@@ -26,6 +32,7 @@ const Link = ({
   size = 'md',
   underline = false,
   onClick,
+  actions,
 }: {
   href: string
   rel?: string
@@ -48,6 +55,7 @@ const Link = ({
   size?: 'sm' | 'md' | 'lg'
   underline?: boolean
   onClick?: () => void
+  actions?: string[]
 }) => {
   const plausibleMethod = usePlausible()
   const pathname = usePathname()
@@ -70,6 +78,26 @@ const Link = ({
         return `${isActive ? 'text-primary' : 'hover:text-primary'} ${underline ? 'underline' : ''}`
     }
   }
+  const dispatch = useAppDispatch()
+  const closeMenu = useCallback(() => {
+    console.log('closeMenu')
+    dispatch(closingMainMenu())
+    setTimeout(() => {
+      dispatch(closeMainMenu())
+      dispatch(closedMainMenu())
+    }, 300)
+    document.body.classList.remove('overflow-hidden')
+  }, [dispatch])
+  const runActions = () => {
+    console.log('runActions')
+    if (!actions) return
+    for (const action of actions) {
+      switch (action) {
+        case 'close-menu':
+          closeMenu()
+      }
+    }
+  }
   if (!href) return <Placeholder message={'Link component missing the href'} />
 
   return (
@@ -85,6 +113,7 @@ const Link = ({
       title={title}
       onClick={() => {
         if (onClick) onClick()
+        runActions()
         if (!plausible) return
         plausibleMethod(plausible.eventName, {
           props: { ...plausible.props, pathname },

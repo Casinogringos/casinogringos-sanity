@@ -27,6 +27,7 @@ import HeadingObject from '@/src/components/atoms/HeadingObject'
 import BonusObject from '@/src/components/organisms/BonusObject'
 import SliderObject from '@/src/components/organisms/SliderObject'
 import SectionObject from './SectionObject'
+import { difference } from 'lodash'
 
 const renderObject = (
   object: ModularContentItemSchemaType,
@@ -51,7 +52,9 @@ const renderObject = (
           ? 'dark-bg'
           : 'light-bg'
       return (
-        <PortableText value={object.content} />
+        <div className={'text-base'}>
+          <PortableText value={object.content} />
+        </div>
       )
     }
     case 'image-object': {

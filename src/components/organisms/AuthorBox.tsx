@@ -15,6 +15,7 @@ const AuthorBox = ({
   modified: number | null
   reviewedBy?: AuthorSchemaType
 }) => {
+  console.log('modified', modified)
   return (
     <div className="mb-12 rounded-md border border-blue-100 bg-blue-50 p-6">
       <div className="flex items-start gap-3">
@@ -91,7 +92,7 @@ const AuthorBox = ({
       <div className="mt-5 flex flex-col lg:flex-row">
         <p className="flex items-center gap-2 text-xs text-slate-700">
           <Calendar className="h-3 w-3" /> Uppdaterad:{' '}
-          {modified && <Date dateString={modified} />}
+          {modified && <Date timestamp={modified} />}
         </p>
         {reviewedBy && (
           <div className="mt-2 flex gap-3 text-xs text-slate-700 lg:ml-auto lg:mt-0">
