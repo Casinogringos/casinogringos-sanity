@@ -7,7 +7,7 @@ export async function GET() {
         `${process.env.SITE_URL}/nyheter-sitemap.xml`,
         `${process.env.SITE_URL}/slots-sitemap.xml`,
         `${process.env.SITE_URL}/author-sitemap.xml`,
-        `${process.env.SITE_URL}/casino-sitemap.xml`,
+        `${process.env.SITE_URL}/post-sitemap.xml`,
         `${process.env.SITE_URL}/video-sitemap.xml`,
     ])
 }
