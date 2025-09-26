@@ -15,8 +15,8 @@ const NewsList = ({
   return (
     <div className={`bg-blue-100 py-10 sm:py-20`}>
       <div className="mx-auto max-w-6xl px-6 lg:px-8">
-        <Heading level={2} size={7} text={'Senaste casinonyheter'} className="text-gray-900 font-semibold tracking-tight" />
-        <p className="mt-4 text-slate600">
+        <Heading level={2} sizes={[7, 7, 8]} text={'Senaste casinonyheter'} className="text-gray-900 font-semibold tracking-tight" />
+        <p className="mt-4 text-slate-600">
           Här hittar du de senaste nyheterna om online casino i Sverige. Vi
           håller oss alltid uppdaterade med vad som sker inom den svenska
           spelbranschen och skriver nyheter kontinuerligt för att hålla dig
