@@ -50,7 +50,7 @@ const Link = ({
     eventName: string
     props: Record<string, string>
   }
-  variant?: 'affiliate' | 'ghost'
+  variant?: 'affiliate' | 'ghost' | 'primary'
   disabled?: boolean
   size?: 'sm' | 'md' | 'lg'
   underline?: boolean
@@ -74,6 +74,8 @@ const Link = ({
     switch (variant) {
       case 'affiliate':
         return `bg-button hover:bg-button-hover not-prose inline-block justify-center lg:text-lg text-white no-underline text-center font-semibold ${paddingClasses[size]} ${sizeClasses[size]} rounded-md`
+      case 'primary':
+        return 'rounded-md border border-dark/20 bg-dark px-4 py-2 font-medium text-white transition hover:text-primary'
       default:
         return `${isActive ? 'text-primary' : 'hover:text-primary'} ${underline ? 'underline' : ''}`
     }

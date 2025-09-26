@@ -125,6 +125,8 @@
     --color-heading: oklch(0.251 0.012 264.39);
     /* #333333 */
     --color-hero: oklch(0.984 0.012 257.36);
+    /* #7caef521 */
+    --color-light-blue: oklch(0.29 0.09 271.75);
 
     --font-size-md: 16px;
     --font-size-2xs: 9px;

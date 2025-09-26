@@ -1,6 +1,6 @@
 import Heading from '@/src/components/atoms/Heading'
 import NewsCard from '@/src/components/organisms/NewsCard'
-import Link from 'next/link'
+import Link from '@/src/components/atoms/Link'
 import { NewsPageSchemaType } from '@/src/schemas/newsPage'
 
 const NewsList = ({
@@ -31,7 +31,8 @@ const NewsList = ({
           <Link
             href="/nyheter"
             prefetch={false}
-            className="font-roboto ml-auto mt-10 rounded-md border border-dark/20 bg-dark px-4 py-2 font-medium text-white transition hover:text-primary"
+            className="ml-auto mt-10"
+            variant="primary"
           >
             Se alla nyheter
           </Link>

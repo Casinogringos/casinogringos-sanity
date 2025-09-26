@@ -8,6 +8,7 @@ import { PortableTextBlock } from 'next-sanity'
 import ToggleButton from '@/src/components/atoms/ToggleButton'
 import ToggleItem from '@/src/components/atoms/ToggleItem'
 import { CasinoPagePreviewSchemaType } from '@/src/schemas/casinoPagePreview'
+import Button from '../atoms/Button'
 
 export default function CasinoList({
   casinoPages,
@@ -77,7 +78,7 @@ export default function CasinoList({
           </p>
         </div>
       </div>
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 mb-4">
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
         {initialCasinoPages.map((casinoPage, index) => (
           <ItemComponent
             key={`casino-${casinoPage._id}-${index}`}
@@ -100,10 +101,10 @@ export default function CasinoList({
         role={'button'}
         label={'Visa fler casinon'}
       >
-        <div className="text-center">
-          <div className='cursor-pointer inline-block py-2 px-4 rounded-md text-sm text-white bg-dark'>
+        <div className="text-center mt-10">
+          <Button variant="primary">
             Visa fler casinon
-          </div>
+          </Button>
         </div>
       </ToggleButton>
     </>
