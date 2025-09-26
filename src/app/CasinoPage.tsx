@@ -17,6 +17,7 @@ import Image from 'next/image'
 import { getWebPageStructuredData } from '@/src/structured-data/webPageStructuredData'
 import { getWebSiteStructuredData } from '@/src/structured-data/webSiteStructuredData'
 import { getOrganizationStructuredData } from '@/src/structured-data/organizationStructuredData'
+import { slugify } from '@/src/lib/helpers'
 
 const CasinoPage = ({
   casinoPage,
@@ -66,7 +67,10 @@ const CasinoPage = ({
         </Container>
         {headings.length > 1 && (
           <Container narrow>
-            <TableOfContents headings={headings} />
+            <TableOfContents headings={headings.map((heading: HeadingObjectSchemaType) => ({
+              text: heading.text,
+              slug: `${casinoPage.slug.current}#${slugify(heading.text)}`,
+            }))} />
           </Container>
         )}
         {casinoPage.content && (
