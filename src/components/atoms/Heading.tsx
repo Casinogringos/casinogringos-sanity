@@ -10,14 +10,14 @@ const Heading = ({
   index,
   className = '',
   children,
-  size = 3
+  sizes = [6, 8, 10]
 }: {
   text?: string
   level: number
   index?: number
   className?: string
   children?: JSX.Element
-  size?: number
+  sizes?: number[]
 }) => {
   if (!text) return null
   if (!level) return null
@@ -34,13 +34,18 @@ const Heading = ({
     9: 'text-5xl',
     10: 'text-6xl',
   }
+  const getSizeClasses = () => {
+    return sizes.map((size, index) => {
+      return `${index === 1 ? 'md' : index === 2 ? 'lg' : ''}${sizeClasses[size as keyof typeof sizeClasses]}`
+    })
+  }
   const Tag: string = `h${level}` as keyof JSX.IntrinsicElements
   const html = `<span class='absolute -top-20' id='${slug}'></span>${text ?? children}`
   return createElement(Tag, {
     className:
       index === 0
         ? `mt-0 relative ${className} ${jakarta.className}`
-        : `${className} relative ${sizeClasses[size as keyof typeof sizeClasses]} ${jakarta.className}`,
+        : `${className} relative ${getSizeClasses().join(' ')} ${jakarta.className}`,
     dangerouslySetInnerHTML: { __html: html },
   })
 }

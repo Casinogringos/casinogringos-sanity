@@ -37,7 +37,7 @@ const HomePageHero = ({ page }: { page: SubPageSchemaType }) => {
           <section className="relative z-10">
             <Heading
               level={1}
-              size={10}
+              sizes={[6, 8, 10]}
               className="max-w-md text-4xl font-bold tracking-tight text-white sm:text-[45px] sm:leading-[52px]"
               text={page.title}
             >
