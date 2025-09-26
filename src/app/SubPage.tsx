@@ -14,6 +14,7 @@ import TableOfContents from '@/src/components/organisms/TableOfContents'
 import AuthorBox from '@/src/components/organisms/AuthorBox'
 import { getHeadingObjectsByPage } from '@/src/lib/helpers'
 import PageService from '@/src/services/SubPageService'
+import { slugify } from '@/src/lib/helpers'
 
 const pageService = new PageService()
 
@@ -67,7 +68,10 @@ export default function SubPage({
       {headingObjects.length > 1 && (
         <div>
           <Container narrow>
-            <TableOfContents headings={headingObjects} />
+            <TableOfContents headings={headingObjects.map((heading: HeadingObjectSchemaType) => ({
+              text: heading.text,
+              slug: `${page.slug.current}#${slugify(heading.text)}`,
+            }))} />
           </Container>
         </div>
       )}

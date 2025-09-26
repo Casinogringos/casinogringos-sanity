@@ -20,6 +20,7 @@ import ArticleCard from '../components/molecules/ArticleCard'
 import { SubPageSchemaType } from '@/src/schemas/subPage'
 import { NewsPageSchemaType } from '@/src/schemas/newsPage'
 import { BreadcrumbsSchemaType } from '@/src/schemas/breadcrumbs'
+import { slugify } from '@/src/lib/helpers'
 
 const pageService = new PageService()
 
@@ -63,7 +64,10 @@ const HomePage = ({
       {headingObjects && headingObjects.length > 0 && (
         <Container narrow>
           <div className="pt-12 lg:pt-16">
-            <TableOfContents headings={headingObjects} />
+            <TableOfContents headings={headingObjects.map((heading: HeadingObjectSchemaType) => ({
+              text: heading.text,
+              slug: `${page.slug.current}#${slugify(heading.text)}`,
+            }))} />
           </div>
         </Container>
       )}
