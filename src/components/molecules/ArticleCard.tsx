@@ -49,7 +49,7 @@ const ArticleCard = ({
         {publishedAt && <div className="mt-4 flex items-center gap-x-4 text-xs text-slate-500">
           <Date timestamp={publishedAt} />
         </div>}
-        <Heading sizes={[4, 4, 5]} level={3} text={item.title} className="text-gray-900 group-hover:text-gray-600 my-2 font-bold leading-6" />
+        <Heading sizes={[4, 4, 5]} level={3} text={item.title} className="text-gray-900 hover:text-gray-600 my-2 font-bold leading-6" />
         {item._type === 'news-pages' && item.excerpt && excerpt && <PortableText value={item.excerpt} />}
       </div>
     </Link>

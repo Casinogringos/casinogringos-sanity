@@ -145,3 +145,11 @@
 .text-2xs {
     font-size: var(--font-size-2xs);
 }
+
+html {
+    scrollbar-width: none;
+}
+
+body::-webkit-scrollbar {
+    display: none;
+}

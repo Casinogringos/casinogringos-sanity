@@ -6,6 +6,7 @@ import ShareButtons from '@/src/components/molecules/ShareButtons'
 import Image from 'next/image'
 import Placeholder from '@/src/components/atoms/Placeholder'
 import { PortableText } from 'next-sanity'
+import { create } from 'lodash'
 
 const Avatar = ({
   author,
@@ -139,7 +140,7 @@ const Avatar = ({
         <div className="mt-4 hidden text-xs md:mt-0 md:block">
           <span>{modifiedAt ? 'Uppdaterad den' : 'Publicerad den'}</span>
           <div className="text-[14px]">
-            {createdAt && <Date timestamp={createdAt} />}
+            {modifiedAt ? <Date timestamp={modifiedAt} /> : createdAt ? <Date timestamp={createdAt} /> : null}
           </div>
         </div>
         <div className="hidden items-center gap-x-1 md:flex">

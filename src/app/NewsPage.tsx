@@ -17,6 +17,7 @@ import { getOrganizationStructuredData } from '@/src/structured-data/organizatio
 import NewsPageService from '@/src/services/NewsPageService'
 import { HeadingObjectSchemaType } from '../schemas/headingObject'
 import { slugify } from '@/src/lib/helpers'
+import ArticleCard from '../components/molecules/ArticleCard'
 
 const newsPageService = new NewsPageService()
 
@@ -94,7 +95,7 @@ export default function NewsPage({
             </Heading>
             <div className={'grid grid-cols-2 gap-4 lg:grid-cols-4'}>
               {similarNews.map((item) => (
-                <NewsCard key={`news-card-${item._id}`} item={item} />
+                <ArticleCard key={`news-card-${item._id}`} item={item} />
               ))}
             </div>
           </Container>
