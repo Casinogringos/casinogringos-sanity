@@ -50,7 +50,7 @@ const ArticleCard = ({
           <Date timestamp={publishedAt} />
         </div>}
         <Heading sizes={[4, 4, 5]} level={3} text={item.title} className="text-gray-900 hover:text-gray-600 my-2 font-bold leading-6" />
-        {item._type === 'news-pages' && item.excerpt && excerpt && <PortableText value={item.excerpt} />}
+        {item._type === 'news-pages' && item.excerpt && excerpt && <div className="text-gray-500"><PortableText value={item.excerpt} /></div>}
       </div>
     </Link>
   )

@@ -34,7 +34,7 @@ export default function CasinoList({
           role={'button'}
           label={'Annonsinformation'}
         >
-          <div className="ml-auto flex cursor-pointer justify-end text-sm items-center gap-1 py-2 text-xs2 text-slate-600">
+          <div className="ml-auto flex cursor-pointer justify-end text-sm items-center gap-1 py-2 text-2xs text-slate-600">
             <AlertCircle className="size-3" />
             Annonsinformation
           </div>
