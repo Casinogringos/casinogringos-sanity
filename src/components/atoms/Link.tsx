@@ -62,18 +62,18 @@ const Link = ({
   const isActive = isCurrentPath(pathname, href)
   const paddingClasses = {
     sm: 'px-4 py-2',
-    md: 'px-6 py-4',
-    lg: 'px-8 py-6',
+    md: 'px-5 py-3',
+    lg: 'px-6 py-4',
   }
   const sizeClasses = {
-    sm: 'text-sm',
-    md: 'text-base',
-    lg: 'text-lg',
+    sm: 'text-xs',
+    md: 'text-sm',
+    lg: 'text-base',
   }
   const getClassName = () => {
     switch (variant) {
       case 'affiliate':
-        return `bg-button hover:bg-button-hover not-prose inline-block justify-center lg:text-lg text-white no-underline text-center font-semibold ${paddingClasses[size]} ${sizeClasses[size]} rounded-md`
+        return `bg-button hover:bg-button-hover not-prose inline-block justify-center text-white no-underline text-center font-semibold ${paddingClasses[size]} ${sizeClasses[size]} rounded-md`
       case 'primary':
         return 'rounded-md border border-dark/20 bg-dark px-4 py-2 font-medium text-white transition hover:text-primary'
       default:

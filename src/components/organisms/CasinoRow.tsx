@@ -29,7 +29,7 @@ const CasinoRow = ({
           <span className="text-xs font-medium text-slate-900 block">
             {casinoData.name}
           </span>
-          <span className='block'>{casinoService.getBonusString(casinoPage)}</span>
+          <span className='block text-sm font-bold'>{casinoService.getBonusString(casinoPage)}</span>
         </div>
         <Link
           href={`/go/${casinoPage.slug.current}`}
