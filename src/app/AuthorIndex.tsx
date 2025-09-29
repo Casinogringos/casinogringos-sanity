@@ -50,9 +50,10 @@ const AuthorIndex = ({
         }}
         key="about-index-structured-data"
       />
-      <BreadCrumbs items={breadcrumbs} />
+      <BreadCrumbs items={breadcrumbs} className="mb-16" />
       <ModularContent
         objects={page.content}
+        narrow
       />
       <div className="bg-hero px-4 py-12">
         <div className="mx-auto max-w-3xl">

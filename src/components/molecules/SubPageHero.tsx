@@ -18,9 +18,11 @@ const SubPageHero = ({ page }: { page: SubPageSchemaType }) => {
             className="font-bold leading-none mb-4"
             text={title}
             level={1}
-            size={8}
+            sizes={[7, 7, 8]}
           />
-          <PortableText value={page.intro} />
+          <div className="text-slate-200">
+            <PortableText value={page.intro} />
+          </div>
           {page.author && (
             <div className="mt-6">
               <HeroAvatar
