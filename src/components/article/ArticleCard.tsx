@@ -22,7 +22,7 @@ const ArticleCard = ({
   className?: string
   cardBackground?: boolean
 }) => {
-  const getUpdatedDate = () => {
+  const getPublishedDate = () => {
     if (item._type === 'news-pages') {
       return newsPageService.getPagePublishedAtTimestamp(item)
     }
@@ -31,7 +31,7 @@ const ArticleCard = ({
     }
     return null
   }
-  const publishedAt = getUpdatedDate()
+  const publishedAt = getPublishedDate()
 
   return (
     <Link
