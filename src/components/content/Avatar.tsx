@@ -1,10 +1,10 @@
-import Date from '@/src/components/atoms/Date'
+import Date from '@/src/components/content/Date'
 import { ArrowRightIcon, Linkedin, Mail } from 'lucide-react'
-import Link from '@/src/components/atoms/Link'
+import Link from '@/src/components/content/Link'
 import { AuthorSchemaType } from '@/src/schemas/author'
-import ShareButtons from '@/src/components/molecules/ShareButtons'
+import ShareButtons from '@/src/components/content/ShareButtons'
 import Image from 'next/image'
-import Placeholder from '@/src/components/atoms/Placeholder'
+import Placeholder from '@/src/components/utils/Placeholder'
 import { PortableText } from 'next-sanity'
 import { create } from 'lodash'
 
@@ -24,7 +24,7 @@ const Avatar = ({
   console.log('modifiedAt', modifiedAt)
   console.log('createdAt', createdAt)
   const { avatar } = author
-  if (!avatar) return <Placeholder message='No author avatar' />
+  if (!avatar) return <Placeholder message="No author avatar" />
 
   return (
     <>
@@ -49,7 +49,9 @@ const Avatar = ({
                 href={`/om-oss/${author.slug.current}`}
                 prefetch={false}
               >
-                <span>{author.firstName} {author.lastName}</span>
+                <span>
+                  {author.firstName} {author.lastName}
+                </span>
               </Link>
               <div className="tooltip left-1/2 mx-auto hidden min-w-96 -translate-x-1/2 rounded-md border border-slate-200 bg-gray-50 p-5 text-sm opacity-100 shadow-sm transition-opacity md:block">
                 {' '}
@@ -140,7 +142,11 @@ const Avatar = ({
         <div className="mt-4 hidden text-xs md:mt-0 md:block">
           <span>{modifiedAt ? 'Uppdaterad den' : 'Publicerad den'}</span>
           <div className="text-[14px]">
-            {modifiedAt ? <Date timestamp={modifiedAt} /> : createdAt ? <Date timestamp={createdAt} /> : null}
+            {modifiedAt ? (
+              <Date timestamp={modifiedAt} />
+            ) : createdAt ? (
+              <Date timestamp={createdAt} />
+            ) : null}
           </div>
         </div>
         <div className="hidden items-center gap-x-1 md:flex">

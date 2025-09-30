@@ -1,8 +1,8 @@
 import { Linkedin, Mail } from 'lucide-react'
 import Link from 'next/link'
-import BreadCrumbs from '@/src/components/organisms/BreadCrumbs'
-import ModularContent from '@/src/components/organisms/ModularContent'
-import SubPageHero from '@/src/components/molecules/SubPageHero'
+import BreadCrumbs from '@/src/components/navigation/BreadCrumbs'
+import ModularContent from '@/src/components/content/ModularContent'
+import SubPageHero from '@/src/components/content/SubPageHero'
 import getArticleStructuredData from '@/src/structured-data/articleStructuredData'
 import { getWebPageStructuredData } from '@/src/structured-data/webPageStructuredData'
 import { getBreadcrumbListStructuredData } from '@/src/structured-data/breadcrumbListStructuredData'
@@ -14,7 +14,7 @@ import { AuthorSchemaType } from '@/src/schemas/author'
 import { SubPageSchemaType } from '@/src/schemas/subPage'
 import { BreadcrumbsSchemaType } from '@/src/schemas/breadcrumbs'
 import Image from 'next/image'
-import Heading from '@/src/components/atoms/Heading'
+import Heading from '@/src/components/content/Heading'
 
 const AuthorIndex = ({
   page,
@@ -26,7 +26,7 @@ const AuthorIndex = ({
   const breadcrumbs: BreadcrumbsSchemaType = [
     {
       text: 'Om Oss',
-    }
+    },
   ]
   const schema = {
     '@context': 'https://schema.org',
@@ -51,13 +51,15 @@ const AuthorIndex = ({
         key="about-index-structured-data"
       />
       <BreadCrumbs items={breadcrumbs} className="mb-16" />
-      <ModularContent
-        objects={page.content}
-        narrow
-      />
+      <ModularContent objects={page.content} narrow />
       <div className="bg-hero px-4 py-12">
         <div className="mx-auto max-w-3xl">
-          <Heading level={2} text="Vi som jobbar på Casinogringos" className="mb-6 font-bold" size={5} />
+          <Heading
+            level={2}
+            text="Vi som jobbar på Casinogringos"
+            className="mb-6 font-bold"
+            size={5}
+          />
           {authors.map((author) => (
             <div
               key={`author-${author._id}`}
@@ -73,7 +75,10 @@ const AuthorIndex = ({
                   />
                 </div>
                 <div>
-                  <Link prefetch={false} href={`/om-oss/${author.slug.current}`}>
+                  <Link
+                    prefetch={false}
+                    href={`/om-oss/${author.slug.current}`}
+                  >
                     <span className="block font-medium">
                       {author.firstName} {author.lastName}
                     </span>

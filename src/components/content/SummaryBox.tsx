@@ -1,7 +1,7 @@
-import Paragraph from '@/src/components/atoms/Paragraph'
+import Paragraph from '@/src/components/content/Paragraph'
 
-const Heading = dynamic(() => import('@/src/components/atoms/Heading'))
-import List from '@/src/components/molecules/List'
+const Heading = dynamic(() => import('@/src/components/content/Heading'))
+import List from '@/src/components/content/List'
 import dynamic from 'next/dynamic'
 
 const SummaryBox = ({

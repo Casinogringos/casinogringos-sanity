@@ -1,9 +1,9 @@
 import { CasinoObjectSchemaType } from '@/src/schemas/casinoObject'
 import Image from 'next/image'
-import Link from '@/src/components/atoms/Link'
+import Link from '@/src/components/content/Link'
 import { PortableText } from 'next-sanity'
-import Placeholder from '@/src/components/atoms/Placeholder'
-import Heading from '@/src/components/atoms/Heading'
+import Placeholder from '@/src/components/utils/Placeholder'
+import Heading from '@/src/components/content/Heading'
 
 const CasinoObject = ({ object }: { object: CasinoObjectSchemaType }) => {
   const { casino, buttonText, offer, description } = object
@@ -28,14 +28,23 @@ const CasinoObject = ({ object }: { object: CasinoObjectSchemaType }) => {
         />
       </div>
       <div>
-        <Heading level={2} text={casino.name} className={'not-prose !mt-0 !mb-2'} />
+        <Heading
+          level={2}
+          text={casino.name}
+          className={'not-prose !mt-0 !mb-2'}
+        />
         <span className={'block pb-0 not-prose font-bold leading-6 text-dark'}>
           <PortableText value={offer} />
         </span>
         <div className={'prose mb-6 mt-3'}>
           <PortableText value={description} />
         </div>
-        <Link variant='affiliate' className='w-full' href={`go/${casino.slug.current}`} place="CasinoCard block">
+        <Link
+          variant="affiliate"
+          className="w-full"
+          href={`go/${casino.slug.current}`}
+          place="CasinoCard block"
+        >
           {buttonText}
         </Link>
       </div>

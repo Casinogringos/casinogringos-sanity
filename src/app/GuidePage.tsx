@@ -1,16 +1,16 @@
-import ModularContent from '@/src/components/organisms/ModularContent'
+import ModularContent from '@/src/components/content/ModularContent'
 import { GuidePageSchemaType } from '@/src/schemas/guidePage'
 import { getBlogPostingStructuredData } from '@/src/structured-data/blogPostingStructuredData'
-import BreadCrumbs from '@/src/components/organisms/BreadCrumbs'
-import TableOfContents from '@/src/components/organisms/TableOfContents'
-import AuthorBox from '@/src/components/organisms/AuthorBox'
-import Container from '@/src/components/atoms/Container'
-import Link from '@/src/components/atoms/Link'
+import BreadCrumbs from '@/src/components/navigation/BreadCrumbs'
+import TableOfContents from '@/src/components/navigation/TableOfContents'
+import AuthorBox from '@/src/components/content/AuthorBox'
+import Container from '@/src/components/layout/Container'
+import Link from '@/src/components/content/Link'
 import Image from 'next/image'
-import ArticleHeader from '@/src/components/molecules/ArticleHeader'
+import ArticleHeader from '@/src/components/article/ArticleHeader'
 import GuidePageService from '@/src/services/GuidePageService'
-import Heading from '@/src/components/atoms/Heading'
-import ArticleCard from '../components/molecules/ArticleCard'
+import Heading from '@/src/components/content/Heading'
+import ArticleCard from '../components/article/ArticleCard'
 import { getWebPageStructuredData } from '@/src/structured-data/webPageStructuredData'
 import { getWebSiteStructuredData } from '@/src/structured-data/webSiteStructuredData'
 import { getOrganizationStructuredData } from '@/src/structured-data/organizationStructuredData'
@@ -33,7 +33,12 @@ export default function GuidePage({
   const headings = guidePageService.getHeadingObjects(page)
   const schema = {
     '@context': 'https://schema.org',
-    '@graph': [getBlogPostingStructuredData({ page }), getWebPageStructuredData({ webPage: page }), getWebSiteStructuredData(), getOrganizationStructuredData()],
+    '@graph': [
+      getBlogPostingStructuredData({ page }),
+      getWebPageStructuredData({ webPage: page }),
+      getWebSiteStructuredData(),
+      getOrganizationStructuredData(),
+    ],
   }
   const breadcrumbs = [
     {
@@ -72,10 +77,12 @@ export default function GuidePage({
       {headings.length > 1 && (
         <Container narrow>
           <div className="-mb-6 mt-4 px-4 lg:mt-5 lg:px-0">
-            <TableOfContents headings={headings.map((heading: HeadingObjectSchemaType) => ({
-              text: heading.text,
-              slug: `${page.slug.current}#${slugify(heading.text)}`,
-            }))} />
+            <TableOfContents
+              headings={headings.map((heading: HeadingObjectSchemaType) => ({
+                text: heading.text,
+                slug: `${page.slug.current}#${slugify(heading.text)}`,
+              }))}
+            />
           </div>
         </Container>
       )}

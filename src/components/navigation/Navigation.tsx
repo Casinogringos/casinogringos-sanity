@@ -2,18 +2,18 @@ import { isCurrentPath } from '@/src/lib/helpers'
 import Image from 'next/image'
 import Container from '@/src/components/layout/Container'
 import Link from 'next/link'
-import NotificationButton from '@/src/components/interactivity/NotificationButton'
-import Menu from '@/src/components/organisms/Menu'
-import MenuButton from '@/src/components/interactivity/MenuButton'
-import SearchButton from '@/src/components/interactivity/SearchButton'
+import NotificationButton from '@/src/components/navigation/NotificationButton'
+import Menu from '@/src/components/navigation/Menu'
+import MenuButton from '@/src/components/navigation/MenuButton'
+import SearchButton from '@/src/components/search/SearchButton'
 import { headers } from 'next/headers'
-import MenuModal from '@/src/components/layout/MenuModal'
-import NotificationModal from '@/src/components/layout/NotificationModal'
+import MenuModal from '@/src/components/navigation/MenuModal'
+import NotificationModal from '@/src/components/navigation/NotificationModal'
 import CasinoRow from '@/src/components/casino/CasinoRow'
 import { MenuItemSchemaType, MenuSchemaType } from '@/src/schemas/menu'
 import { ToplistSchemaType } from '@/src/schemas/toplist'
-import SearchModal from '@/src/components/layout/SearchModal'
-import SearchBox from '@/src/components/molecules/SearchBox'
+import SearchModal from '@/src/components/search/SearchModal'
+import SearchBox from '@/src/components/search/SearchBox'
 
 export default async function Navigation({
   headerMenu,
@@ -40,7 +40,7 @@ export default async function Navigation({
         <Container>
           <div className="flex items-center gap-x-12 lg:px-0">
             <Link
-              href="/"
+              href="/public"
               prefetch={false}
               aria-current={isCurrentPath(pathname, '/') ? 'page' : undefined}
               className={`${

@@ -1,6 +1,6 @@
 import { Check, MinusCircleIcon } from 'lucide-react'
 import dynamic from 'next/dynamic'
-const Heading = dynamic(() => import('@/src/components/atoms/Heading'))
+const Heading = dynamic(() => import('@/src/components/content/Heading'))
 import { CasinoPageSchemaType } from '@/src/schemas/casinoPage'
 
 const ProsAndConsBox = ({
@@ -31,23 +31,19 @@ const ProsAndConsBox = ({
       },
       positiveNotes: {
         '@type': 'ItemList',
-        itemListElement: pros.map(
-          (item, index) => ({
-            '@type': 'ListItem',
-            position: index + 1,
-            name: item,
-          })
-        ),
+        itemListElement: pros.map((item, index) => ({
+          '@type': 'ListItem',
+          position: index + 1,
+          name: item,
+        })),
       },
       negativeNotes: {
         '@type': 'ItemList',
-        itemListElement: cons.map(
-          (item, index) => ({
-            '@type': 'ListItem',
-            position: index + 1,
-            name: item,
-          })
-        ),
+        itemListElement: cons.map((item, index) => ({
+          '@type': 'ListItem',
+          position: index + 1,
+          name: item,
+        })),
       },
     },
   }
@@ -56,7 +52,9 @@ const ProsAndConsBox = ({
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(prosAndConsStructuredData) }}
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(prosAndConsStructuredData),
+        }}
         key="casino-pros-and-cons-structured-data"
       />
       <section

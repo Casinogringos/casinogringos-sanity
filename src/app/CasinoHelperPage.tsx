@@ -1,21 +1,23 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import Container from '@/src/components/atoms/Container'
+import Container from '@/src/components/layout/Container'
 import { ChevronLeft } from 'lucide-react'
-import Paragraph from '@/src/components/atoms/Paragraph'
-import Button from '@/src/components/atoms/Button'
-import CasinoList from '@/src/components/organisms/CasinoList'
+import Paragraph from '@/src/components/content/Paragraph'
+import Button from '@/src/components/content/Button'
+import CasinoList from '@/src/components/casino/CasinoList'
 import { CasinoPageSchemaType } from '@/src/schemas/casinoPage'
 import { CasinoSchemaType } from '@/src/schemas/casino'
-import CasinoCard from '@/src/components/organisms/CasinoCard'
+import CasinoCard from '@/src/components/casino/CasinoCard'
 
 const CasinoHelperPage = ({
   initialCasinoPages,
 }: {
   initialCasinoPages: CasinoPageSchemaType[]
 }) => {
-  const [casinoPages, setCasinoPages] = useState<CasinoPageSchemaType[] | null>(initialCasinoPages)
+  const [casinoPages, setCasinoPages] = useState<CasinoPageSchemaType[] | null>(
+    initialCasinoPages
+  )
   const [index, setIndex] = useState<number>(0)
   const [category, setCategory] = useState<'casino' | 'betting' | null>(null)
   const [history, setHistory] = useState<{ index: number; state: string[] }[]>(
@@ -32,7 +34,11 @@ const CasinoHelperPage = ({
       text: string
       nextIndex: number
       previousIndex: number
-      callback: ((items: CasinoPageSchemaType[] | null) => CasinoPageSchemaType[] | null) | null
+      callback:
+        | ((
+            items: CasinoPageSchemaType[] | null
+          ) => CasinoPageSchemaType[] | null)
+        | null
     }
     index: number
   }) => {
@@ -104,7 +110,9 @@ const CasinoHelperPage = ({
                 item.categories?.some(
                   (category) =>
                     category.slug.current ===
-                    (category.slug.current === 'casino' ? 'casino-bonus' : 'betting-bonus')
+                    (category.slug.current === 'casino'
+                      ? 'casino-bonus'
+                      : 'betting-bonus')
                 )
               )
             } else {
@@ -204,7 +212,9 @@ const CasinoHelperPage = ({
           callback: (items: CasinoPageSchemaType[]) =>
             items.filter((item: CasinoPageSchemaType) =>
               item.casino.availableDepositMethods?.some(
-                (method) => method.slug.current === 'visa' || method.slug.current === 'mastercard'
+                (method) =>
+                  method.slug.current === 'visa' ||
+                  method.slug.current === 'mastercard'
               )
             ),
         },
@@ -223,7 +233,9 @@ const CasinoHelperPage = ({
           nextIndex: 5,
           callback: (items: CasinoPageSchemaType[]) =>
             items.filter((item: CasinoPageSchemaType) => {
-              return item.casino.casinoBonuses?.some((bonus) => bonus.bonusAmountRange[0] < 100)
+              return item.casino.casinoBonuses?.some(
+                (bonus) => bonus.bonusAmountRange[0] < 100
+              )
             }),
         },
         {
@@ -231,7 +243,9 @@ const CasinoHelperPage = ({
           nextIndex: 5,
           callback: (items: CasinoPageSchemaType[]) =>
             items.filter((item: CasinoPageSchemaType) => {
-              return item.casino.casinoBonuses?.some((bonus) => bonus.bonusAmountRange[0] >= 100)
+              return item.casino.casinoBonuses?.some(
+                (bonus) => bonus.bonusAmountRange[0] >= 100
+              )
             }),
         },
         {
@@ -292,8 +306,8 @@ const CasinoHelperPage = ({
                   'w-fit bg-slate100 p-4 rounded-md text-gray700 mb-6 block'
                 }
               >
-                Toppen! Vi hittade <strong>{casinoPages.length} casinon</strong> som
-                matchar dina kriterier - Här är resultaten.
+                Toppen! Vi hittade <strong>{casinoPages.length} casinon</strong>{' '}
+                som matchar dina kriterier - Här är resultaten.
               </span>
               <CasinoList
                 casinoPages={casinoPages.map((item) => ({ node: item }))}
@@ -328,7 +342,9 @@ const CasinoHelperPage = ({
                           .map((id) =>
                             initialCasinoPages.find((item) => item._id === id)
                           )
-                          .filter((item) => item !== undefined) as CasinoPageSchemaType[]
+                          .filter(
+                            (item) => item !== undefined
+                          ) as CasinoPageSchemaType[]
                       )
                       setIndex(history[history.length - 1].index)
                       setHistory((prev) => prev.slice(0, history.length - 1))

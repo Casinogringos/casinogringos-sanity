@@ -1,28 +1,24 @@
 import { SubPageSchemaType } from '@/src/schemas/subPage'
-import ModularContent from '@/src/components/organisms/ModularContent'
-import SubPageHero from '@/src/components/molecules/SubPageHero'
+import ModularContent from '@/src/components/content/ModularContent'
+import SubPageHero from '@/src/components/content/SubPageHero'
 import getArticleStructuredData from '@/src/structured-data/articleStructuredData'
 import { getWebPageStructuredData } from '@/src/structured-data/webPageStructuredData'
 import { getWebSiteStructuredData } from '@/src/structured-data/webSiteStructuredData'
 import { getOrganizationStructuredData } from '@/src/structured-data/organizationStructuredData'
-import BreadCrumbs from '@/src/components/organisms/BreadCrumbs'
-import CasinoList from '@/src/components/organisms/CasinoList'
-import CasinoCard from '@/src/components/organisms/CasinoCard'
-import Container from '@/src/components/atoms/Container'
-import FAQ from '@/src/components/organisms/FAQ'
-import TableOfContents from '@/src/components/organisms/TableOfContents'
-import AuthorBox from '@/src/components/organisms/AuthorBox'
+import BreadCrumbs from '@/src/components/navigation/BreadCrumbs'
+import CasinoList from '@/src/components/casino/CasinoList'
+import CasinoCard from '@/src/components/casino/CasinoCard'
+import Container from '@/src/components/layout/Container'
+import FAQ from '@/src/components/content/FAQ'
+import TableOfContents from '@/src/components/navigation/TableOfContents'
+import AuthorBox from '@/src/components/content/AuthorBox'
 import { getHeadingObjectsByPage } from '@/src/lib/helpers'
 import PageService from '@/src/services/SubPageService'
 import { slugify } from '@/src/lib/helpers'
 
 const pageService = new PageService()
 
-export default function SubPage({
-  page,
-}: {
-  page: SubPageSchemaType
-}) {
+export default function SubPage({ page }: { page: SubPageSchemaType }) {
   const isValid = pageService.validatePage(page)
   // if (!isValid) {
   //   return null
@@ -31,7 +27,12 @@ export default function SubPage({
   const headingObjects = pageService.getHeadingObjects(page)
   const schema = {
     '@context': 'https://schema.org',
-    '@graph': [getArticleStructuredData(page), getWebPageStructuredData({ webPage: page }), getWebSiteStructuredData(), getOrganizationStructuredData()],
+    '@graph': [
+      getArticleStructuredData(page),
+      getWebPageStructuredData({ webPage: page }),
+      getWebSiteStructuredData(),
+      getOrganizationStructuredData(),
+    ],
   }
   const breadcrumbs = [
     {
@@ -68,14 +69,18 @@ export default function SubPage({
       {headingObjects.length > 1 && (
         <div>
           <Container narrow>
-            <TableOfContents headings={headingObjects.map((heading: HeadingObjectSchemaType) => ({
-              text: heading.text,
-              slug: `${page.slug.current}#${slugify(heading.text)}`,
-            }))} />
+            <TableOfContents
+              headings={headingObjects.map(
+                (heading: HeadingObjectSchemaType) => ({
+                  text: heading.text,
+                  slug: `${page.slug.current}#${slugify(heading.text)}`,
+                })
+              )}
+            />
           </Container>
         </div>
       )}
-      <ModularContent objects={page.content} className='py-5' narrow />
+      <ModularContent objects={page.content} className="py-5" narrow />
       {author && (
         <Container narrow>
           <AuthorBox

@@ -1,6 +1,6 @@
 import { ChevronLeft, ChevronRight } from 'lucide-react'
-import Container from '@/src/components/atoms/Container'
-import Link from '@/src/components/atoms/Link'
+import Container from '@/src/components/layout/Container'
+import Link from '@/src/components/content/Link'
 
 const Pagination = ({
   currentPage,
@@ -42,8 +42,9 @@ const Pagination = ({
         <div className={'hidden items-center justify-center lg:flex'}>
           {Array.from({ length: numPages }, (_, i) => (
             <Link
-              className={`bg-gray-200 mx-2 px-3 py-1 rounded-md hover:bg-gray-400 hover:text-white ${currentPage === i + 1 ? 'bg-gray-400 text-white' : ''
-                }`}
+              className={`bg-gray-200 mx-2 px-3 py-1 rounded-md hover:bg-gray-400 hover:text-white ${
+                currentPage === i + 1 ? 'bg-gray-400 text-white' : ''
+              }`}
               current={currentPage === i ? 'page' : undefined}
               label={`Sida ${i}`}
               replace

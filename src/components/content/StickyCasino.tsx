@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import ImageWrap from '../../sin-bin/ImageWrap'
 import dynamic from 'next/dynamic'
 import { Casino } from '@/src/types/casino'
-const Link = dynamic(() => import('@/src/components/atoms/Link'))
+const Link = dynamic(() => import('@/src/components/content/Link'))
 
 const StickyCasino = ({ casino }: { casino: Casino }) => {
   const [isVisible, setIsVisible] = useState(false)

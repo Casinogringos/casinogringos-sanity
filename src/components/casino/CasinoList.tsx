@@ -1,14 +1,14 @@
 import { AlertCircle } from 'lucide-react'
 import Link from 'next/link'
-import Heading from '@/src/components/atoms/Heading'
-import CasinoCard from '@/src/components/organisms/CasinoCard'
+import Heading from '@/src/components/content/Heading'
+import CasinoCard from '@/src/components/casino/CasinoCard'
 import CheckBadgeIcon from '@/src/components/icons/CheckBadgeIcon'
-import ToggleObject from '@/src/components/molecules/ToggleObject'
+import ToggleObject from '@/src/components/objects/ToggleObject'
 import { PortableTextBlock } from 'next-sanity'
-import ToggleButton from '@/src/components/atoms/ToggleButton'
-import ToggleItem from '@/src/components/atoms/ToggleItem'
+import ToggleButton from '@/src/components/interactivity/ToggleButton'
+import ToggleItem from '@/src/components/interactivity/ToggleItem'
 import { CasinoPagePreviewSchemaType } from '@/src/schemas/casinoPagePreview'
-import Button from '../atoms/Button'
+import Button from '../content/Button'
 
 export default function CasinoList({
   casinoPages,
@@ -41,13 +41,13 @@ export default function CasinoList({
         </ToggleButton>
         <ToggleItem id={'toplist-ad-information'}>
           <p className="rounded-md bg-white px-3 py-4 text-xs italic text-gray-700">
-            Casinogringos.se är en jämförelsetjänst för online casinon och
-            sidan innehåller reklamlänkar. När du klickar dig vidare till ett
-            casino via oss kan vi därför komma att erhålla provision för detta
-            från operatören, dock utan att det medför någon som helst kostnad
-            för dig. Vårt dedikerade team har granskat samtliga casinon
-            noggrant och endast de som uppfyller våra krav på säkerhet och
-            kvalitet har tagits med i våra jämförelser.
+            Casinogringos.se är en jämförelsetjänst för online casinon och sidan
+            innehåller reklamlänkar. När du klickar dig vidare till ett casino
+            via oss kan vi därför komma att erhålla provision för detta från
+            operatören, dock utan att det medför någon som helst kostnad för
+            dig. Vårt dedikerade team har granskat samtliga casinon noggrant och
+            endast de som uppfyller våra krav på säkerhet och kvalitet har
+            tagits med i våra jämförelser.
           </p>
         </ToggleItem>
       </div>
@@ -58,10 +58,10 @@ export default function CasinoList({
         <Link prefetch={false} href="/om-oss" className="text-blue-500">
           casinoexperter
         </Link>{' '}
-        med lång erfarenhet. Vi arbetar opartiskt och utan påverkan från
-        externa parter, vilket gör att vi kan erbjuda objektiva bedömningar
-        och rekommendationer som våra läsare kan lita på. Vi strävar efter att
-        hålla en hög standard för att ge den mest transparenta och uppdaterade
+        med lång erfarenhet. Vi arbetar opartiskt och utan påverkan från externa
+        parter, vilket gör att vi kan erbjuda objektiva bedömningar och
+        rekommendationer som våra läsare kan lita på. Vi strävar efter att hålla
+        en hög standard för att ge den mest transparenta och uppdaterade
         informationen inom området.
       </ToggleObject>
       <div className="relative flex w-full flex-col-reverse lg:flex-row">
@@ -102,9 +102,7 @@ export default function CasinoList({
         label={'Visa fler casinon'}
       >
         <div className="text-center mt-10">
-          <Button variant="primary">
-            Visa fler casinon
-          </Button>
+          <Button variant="primary">Visa fler casinon</Button>
         </div>
       </ToggleButton>
     </>

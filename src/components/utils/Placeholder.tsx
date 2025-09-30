@@ -1,4 +1,4 @@
-import Paragraph from '@/src/components/atoms/Paragraph'
+import Paragraph from '@/src/components/content/Paragraph'
 
 const Placeholder = ({ message }: { message: string }) => {
   return (

@@ -1,15 +1,15 @@
-import ModularContent from '@/src/components/organisms/ModularContent'
-import Container from '@/src/components/atoms/Container'
-import ArticleHeader from '@/src/components/molecules/ArticleHeader'
-import Heading from '@/src/components/atoms/Heading'
+import ModularContent from '@/src/components/content/ModularContent'
+import Container from '@/src/components/layout/Container'
+import ArticleHeader from '@/src/components/article/ArticleHeader'
+import Heading from '@/src/components/content/Heading'
 import { getHeadingObjectsByPage } from '@/src/lib/helpers'
 import { NewsPageSchemaType } from '@/src/schemas/newsPage'
 import { NewsPagePreviewSchemaType } from '@/src/schemas/newsPagePreview'
-import TableOfContents from '@/src/components/organisms/TableOfContents'
-import AuthorBox from '@/src/components/organisms/AuthorBox'
-import NewsCard from '@/src/components/organisms/NewsCard'
+import TableOfContents from '@/src/components/navigation/TableOfContents'
+import AuthorBox from '@/src/components/content/AuthorBox'
+import NewsCard from '@/src/components/news/NewsCard'
 import getNewsArticleStructuredData from '@/src/structured-data/newsArticleStructuredData'
-import BreadCrumbs from '@/src/components/organisms/BreadCrumbs'
+import BreadCrumbs from '@/src/components/navigation/BreadCrumbs'
 import Image from 'next/image'
 import { getWebPageStructuredData } from '@/src/structured-data/webPageStructuredData'
 import { getWebSiteStructuredData } from '@/src/structured-data/webSiteStructuredData'
@@ -17,7 +17,7 @@ import { getOrganizationStructuredData } from '@/src/structured-data/organizatio
 import NewsPageService from '@/src/services/NewsPageService'
 import { HeadingObjectSchemaType } from '../schemas/headingObject'
 import { slugify } from '@/src/lib/helpers'
-import ArticleCard from '../components/molecules/ArticleCard'
+import ArticleCard from '../components/article/ArticleCard'
 
 const newsPageService = new NewsPageService()
 
@@ -31,7 +31,12 @@ export default function NewsPage({
   const headingObjects = getHeadingObjectsByPage({ objects: page.content })
   const schema = {
     '@context': 'https://schema.org',
-    '@graph': [getNewsArticleStructuredData({ page }), getWebPageStructuredData({ webPage: page }), getWebSiteStructuredData(), getOrganizationStructuredData()],
+    '@graph': [
+      getNewsArticleStructuredData({ page }),
+      getWebPageStructuredData({ webPage: page }),
+      getWebSiteStructuredData(),
+      getOrganizationStructuredData(),
+    ],
   }
   const breadcrumbs = [
     {
@@ -70,10 +75,14 @@ export default function NewsPage({
       {headingObjects.length > 2 && (
         <Container narrow>
           <div className="mt-4 px-4 lg:mt-5 lg:px-0">
-            <TableOfContents headings={headingObjects.map((heading: HeadingObjectSchemaType) => ({
-              text: heading.text,
-              slug: `${page.slug.current}#${slugify(heading.text)}`,
-            }))} />
+            <TableOfContents
+              headings={headingObjects.map(
+                (heading: HeadingObjectSchemaType) => ({
+                  text: heading.text,
+                  slug: `${page.slug.current}#${slugify(heading.text)}`,
+                })
+              )}
+            />
           </div>
         </Container>
       )}

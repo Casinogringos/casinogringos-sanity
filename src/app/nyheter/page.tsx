@@ -1,14 +1,18 @@
 import NewsIndex from '@/src/app/NewsIndex'
-import Pagination from '@/src/components/organisms/Pagination'
-import { getNewsPageCount, getNewsPagePreviews, getPageBySlug } from '@/src/lib/api'
+import Pagination from '@/src/components/content/Pagination'
+import {
+  getNewsPageCount,
+  getNewsPagePreviews,
+  getPageBySlug,
+} from '@/src/lib/api'
 import { urlFor } from '@/src/lib/client'
 import { SubPageSchemaType } from '@/src/schemas'
 import { Metadata } from 'next'
 
 export async function generateMetadata() {
-  const page: SubPageSchemaType = (await getPageBySlug({
+  const page: SubPageSchemaType = await getPageBySlug({
     slug: '/nyheter',
-  }))
+  })
   const siteURL = (process.env.SITE_URL as string) + page.slug.current
   let metadata: Metadata = {
     title: page.seoTitle,

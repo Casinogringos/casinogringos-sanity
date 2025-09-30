@@ -1,9 +1,9 @@
-import Container from '@/src/components/atoms/Container'
-import Heading from '@/src/components/atoms/Heading'
-import ArticleCard from '@/src/components/molecules/ArticleCard'
+import Container from '@/src/components/layout/Container'
+import Heading from '@/src/components/content/Heading'
+import ArticleCard from '@/src/components/article/ArticleCard'
 import { NewsPagePreviewSchemaType } from '@/src/schemas/newsPagePreview'
 import NewsPageService from '@/src/services/NewsPageService'
-import BreadCrumbs from '@/src/components/organisms/BreadCrumbs'
+import BreadCrumbs from '@/src/components/navigation/BreadCrumbs'
 import { getWebSiteStructuredData } from '@/src/structured-data/webSiteStructuredData'
 import { getOrganizationStructuredData } from '@/src/structured-data/organizationStructuredData'
 const newsPageService = new NewsPageService()
@@ -40,17 +40,24 @@ const NewsIndex = ({
           text={'Casinonyheter'}
         />
         <p className="mt-4 text-lg text-gray600">
-          Här hittar du de senaste nyheterna gällande de nätcasinon som vi listar
-          på våran sida. Vi skriver om allt från nya bonuserbjudanden till vilka
-          kampanjer som för tillfället är aktiva. Nyhetsflödet uppdateras löpande
-          så håll utkik på denna sidan för att inte missa grymma kampanjer.
+          Här hittar du de senaste nyheterna gällande de nätcasinon som vi
+          listar på våran sida. Vi skriver om allt från nya bonuserbjudanden
+          till vilka kampanjer som för tillfället är aktiva. Nyhetsflödet
+          uppdateras löpande så håll utkik på denna sidan för att inte missa
+          grymma kampanjer.
         </p>
         <div className="mx-auto mt-8 grid max-w-2xl grid-cols-2 gap-x-4 gap-y-6 lg:mx-0 lg:max-w-none lg:grid-cols-3 lg:gap-y-10">
-          {newsPages.sort((a, b) => new Date(b.originalPublishedAt ?? b._createdAt).getTime() - new Date(a.originalPublishedAt ?? a._createdAt).getTime()).map((post) => (
-            <div key={`news-${post._id}`}>
-              <ArticleCard item={post} />
-            </div>
-          ))}
+          {newsPages
+            .sort(
+              (a, b) =>
+                new Date(b.originalPublishedAt ?? b._createdAt).getTime() -
+                new Date(a.originalPublishedAt ?? a._createdAt).getTime()
+            )
+            .map((post) => (
+              <div key={`news-${post._id}`}>
+                <ArticleCard item={post} />
+              </div>
+            ))}
         </div>
       </Container>
     </>

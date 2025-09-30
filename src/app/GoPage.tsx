@@ -3,7 +3,7 @@
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import { useEffect } from 'react'
-import Container from '@/src/components/atoms/Container'
+import Container from '@/src/components/layout/Container'
 import { CasinoPageSchemaType } from '@/src/schemas/casinoPage'
 
 const GoPage = ({ casinoPage }: { casinoPage: CasinoPageSchemaType }) => {

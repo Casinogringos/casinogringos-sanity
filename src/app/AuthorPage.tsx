@@ -1,8 +1,8 @@
-import Date from '@/src/components/atoms/Date'
-import Link from '@/src/components/atoms/Link'
-import { Linkedin, Mail } from "lucide-react";
-import BreadCrumbs from '@/src/components/organisms/BreadCrumbs'
-import Container from '@/src/components/atoms/Container'
+import Date from '@/src/components/content/Date'
+import Link from '@/src/components/content/Link'
+import { Linkedin, Mail } from 'lucide-react'
+import BreadCrumbs from '@/src/components/navigation/BreadCrumbs'
+import Container from '@/src/components/layout/Container'
 import { getWebSiteStructuredData } from '@/src/structured-data/webSiteStructuredData'
 import { getOrganizationStructuredData } from '@/src/structured-data/organizationStructuredData'
 import { getPersonStructuredData } from '@/src/structured-data/personStructuredData'
@@ -10,8 +10,8 @@ import getProfileStructuredData from '@/src/structured-data/profileStructuredDat
 import { PortableText } from 'next-sanity'
 import { AuthorSchemaType } from '@/src/schemas/author'
 import Image from 'next/image'
-import Heading from '@/src/components/atoms/Heading'
-import ArticleCard from '../components/molecules/ArticleCard';
+import Heading from '@/src/components/content/Heading'
+import ArticleCard from '../components/article/ArticleCard'
 
 const Author = ({ author }: { author: AuthorSchemaType }) => {
   const schema = {
@@ -46,10 +46,20 @@ const Author = ({ author }: { author: AuthorSchemaType }) => {
         <Container>
           <div className="flex flex-col items-start gap-10 lg:flex-row">
             <div className="overflow-hidden rounded-full lg:w-1/5">
-              <Image src={author.avatar.src} alt={author.avatar.alt} width={400} height={400} />
+              <Image
+                src={author.avatar.src}
+                alt={author.avatar.alt}
+                width={400}
+                height={400}
+              />
             </div>
             <div className="lg:w-3/4">
-              <Heading level={1} size={6} text={author.firstName + ' ' + author.lastName} className="mb-1 font-bold" />
+              <Heading
+                level={1}
+                size={6}
+                text={author.firstName + ' ' + author.lastName}
+                className="mb-1 font-bold"
+              />
               <span className="text-slate-600">{author.role}</span>
               <div className="ml-auto mt-2 flex gap-2">
                 {author.linkedIn && (
@@ -80,7 +90,12 @@ const Author = ({ author }: { author: AuthorSchemaType }) => {
               </div>
               {author.expertise && (
                 <section>
-                  <Heading level={3} size={5} className="mb-3 mt-5 font-bold" text="Expertområden" />
+                  <Heading
+                    level={3}
+                    size={5}
+                    className="mb-3 mt-5 font-bold"
+                    text="Expertområden"
+                  />
                   <div className="flex gap-2 rounded-md">
                     {author.expertise?.map((item, index) => (
                       <span
@@ -95,15 +110,29 @@ const Author = ({ author }: { author: AuthorSchemaType }) => {
               )}
               {author.experience && (
                 <section>
-                  <Heading level={3} size={5} className="mt-5 font-bold" text='Erfarenhet och utbildning' />
+                  <Heading
+                    level={3}
+                    size={5}
+                    className="mt-5 font-bold"
+                    text="Erfarenhet och utbildning"
+                  />
                   <ul>
                     {author.experience?.map((item, index) => (
                       <li
                         key={`author-${author._id}-experience-${index}`}
                         className="border-b border-b-blue-100 py-2"
                       >
-                        <strong className="text-dark">{item.position} - {item.employer}</strong>
-                        <span className="block text-sm"><Date dateString={item.startDate} /> - {item.endDate ? <Date dateString={item.endDate} /> : 'Present'}</span>
+                        <strong className="text-dark">
+                          {item.position} - {item.employer}
+                        </strong>
+                        <span className="block text-sm">
+                          <Date dateString={item.startDate} /> -{' '}
+                          {item.endDate ? (
+                            <Date dateString={item.endDate} />
+                          ) : (
+                            'Present'
+                          )}
+                        </span>
                       </li>
                     ))}
                   </ul>
@@ -117,10 +146,18 @@ const Author = ({ author }: { author: AuthorSchemaType }) => {
       <Container>
         <div className="prose mx-auto max-w-6xl pb-12">
           <section>
-            <Heading level={2} size={7} text="Artiklar som författaren bidgragit till" />
+            <Heading
+              level={2}
+              size={7}
+              text="Artiklar som författaren bidgragit till"
+            />
             <div className="grid grid-cols-2 gap-6 md:grid-cols-3 lg:grid-cols-4">
               {author.newsPagePreviews.map((item, index) => (
-                <ArticleCard key={`author-${author._id}-news-${index}`} item={item} excerpt={false} />
+                <ArticleCard
+                  key={`author-${author._id}-news-${index}`}
+                  item={item}
+                  excerpt={false}
+                />
               ))}
             </div>
           </section>
@@ -143,7 +180,7 @@ const Author = ({ author }: { author: AuthorSchemaType }) => {
         </div>
       </Container>
     </>
-  );
+  )
 }
 
 export default Author

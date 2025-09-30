@@ -1,18 +1,18 @@
-import ModularContent from '@/src/components/organisms/ModularContent'
+import ModularContent from '@/src/components/content/ModularContent'
 import getReviewStructuredData from '@/src/structured-data/casinoReviewStructuredData'
 import { CasinoPageSchemaType } from '@/src/schemas/casinoPage'
 import getProductStructuredData from '@/src/structured-data/productStructuredData'
-import CasinoHero from '@/src/components/organisms/CasinoHero'
+import CasinoHero from '@/src/components/casino/CasinoHero'
 import CasinoService from '@/src/services/CasinoService'
-import BreadCrumbs from '@/src/components/organisms/BreadCrumbs'
-import CasinoInfo from '@/src/components/organisms/CasinoInfo'
-import Avatar from '@/src/components/organisms/Avatar'
-import TableOfContents from '@/src/components/organisms/TableOfContents'
+import BreadCrumbs from '@/src/components/navigation/BreadCrumbs'
+import CasinoInfo from '@/src/components/casino/CasinoInfo'
+import Avatar from '@/src/components/content/Avatar'
+import TableOfContents from '@/src/components/navigation/TableOfContents'
 import { getHeadingObjectsByPage } from '@/src/lib/helpers'
-import Container from '@/src/components/atoms/Container'
+import Container from '@/src/components/layout/Container'
 import CasinoPageService from '@/src/services/CasinoPageService'
-import Heading from '@/src/components/atoms/Heading'
-import Link from '@/src/components/atoms/Link'
+import Heading from '@/src/components/content/Heading'
+import Link from '@/src/components/content/Link'
 import Image from 'next/image'
 import { getWebPageStructuredData } from '@/src/structured-data/webPageStructuredData'
 import { getWebSiteStructuredData } from '@/src/structured-data/webSiteStructuredData'
@@ -31,7 +31,12 @@ const CasinoPage = ({
   const isValid = casinoPageService.validatePage(casinoPage)
   const schema = {
     '@context': 'https://schema.org',
-    '@graph': [getProductStructuredData({ productPage: casinoPage }), getWebPageStructuredData({ webPage: casinoPage }), getWebSiteStructuredData(), getOrganizationStructuredData()],
+    '@graph': [
+      getProductStructuredData({ productPage: casinoPage }),
+      getWebPageStructuredData({ webPage: casinoPage }),
+      getWebSiteStructuredData(),
+      getOrganizationStructuredData(),
+    ],
   }
   const breadcrumbs = [
     {
@@ -60,24 +65,30 @@ const CasinoPage = ({
           <Avatar
             author={casinoPage.author}
             reviewer={casinoPage.reviewer}
-            modifiedAt={casinoPageService.getPageModifiedAtTimestamp(casinoPage)}
+            modifiedAt={casinoPageService.getPageModifiedAtTimestamp(
+              casinoPage
+            )}
             shareTitle={casinoPage.seoTitle}
-            createdAt={casinoPageService.getPagePublishedAtTimestamp(casinoPage)}
+            createdAt={casinoPageService.getPagePublishedAtTimestamp(
+              casinoPage
+            )}
           />
         </Container>
         {headings.length > 1 && (
           <Container narrow>
-            <TableOfContents headings={headings.map((heading: HeadingObjectSchemaType) => ({
-              text: heading.text,
-              slug: `${casinoPage.slug.current}#${slugify(heading.text)}`,
-            }))} />
+            <TableOfContents
+              headings={headings.map((heading: HeadingObjectSchemaType) => ({
+                text: heading.text,
+                slug: `${casinoPage.slug.current}#${slugify(heading.text)}`,
+              }))}
+            />
           </Container>
         )}
         {casinoPage.content && (
           <ModularContent
             objects={casinoPage.content}
             casino={casinoPage.casino}
-            className='py-5'
+            className="py-5"
             narrow
           />
         )}
@@ -93,7 +104,12 @@ const CasinoPage = ({
         {similarCasinoPages && (
           <section className={'bg-gray-100 py-10'}>
             <Container>
-              <Heading level={3} size={6} className={'mb-4 text-gray-700 font-bold'} text={'Fler populära casinon'} />
+              <Heading
+                level={3}
+                size={6}
+                className={'mb-4 text-gray-700 font-bold'}
+                text={'Fler populära casinon'}
+              />
               <div className={'grid grid-cols-2 gap-4 lg:grid-cols-4'}>
                 {similarCasinoPages.map((page) => (
                   <Link
@@ -114,7 +130,11 @@ const CasinoPage = ({
                         className="h-28 object-cover sm:h-48 md:h-56 lg:h-40"
                       />
                     </div>
-                    <Heading level={4} className={'text-gray-700'} text={page.title} />
+                    <Heading
+                      level={4}
+                      className={'text-gray-700'}
+                      text={page.title}
+                    />
                   </Link>
                 ))}
               </div>

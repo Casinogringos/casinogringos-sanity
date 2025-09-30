@@ -3,7 +3,7 @@
 import { ReactNode } from 'react'
 import dynamic from 'next/dynamic'
 
-const Overlay = dynamic(() => import('@/src/components/atoms/Overlay'))
+const Overlay = dynamic(() => import('@/src/components/layout/Overlay'))
 
 interface CustomModalProps {
   removeFromDom?: boolean
@@ -46,16 +46,19 @@ const ModalCenter = ({
       {isOpen && <Overlay closing={isClosing} close={close} />}
       {removeFromDom && !isOpen && !isClosing ? null : (
         <div
-          className={`${isOpen && !isClosing
-            ? 'translate-y-0 translate-x-0 opacity-100'
-            : hide()
-            } ${position === 'top' ? 'items-start mt-24' : 'items-center'
-            } fixed inset-0 z-[100] flex transition duration-300 justify-center pb-20 lg:pb-3 top-16`}
+          className={`${
+            isOpen && !isClosing
+              ? 'translate-y-0 translate-x-0 opacity-100'
+              : hide()
+          } ${
+            position === 'top' ? 'items-start mt-24' : 'items-center'
+          } fixed inset-0 z-[100] flex transition duration-300 justify-center pb-20 lg:pb-3 top-16`}
           onClick={() => close()}
         >
           <div
-            className={`${background ? `bg-${background}` : ''
-              } max-w-[calc(100vw-25px)] md:max-w-3xl w-full rounded-lg overflow-hidden h-full sm:h-[calc(100vh-30%)] max-h-[750px]`}
+            className={`${
+              background ? `bg-${background}` : ''
+            } max-w-[calc(100vw-25px)] md:max-w-3xl w-full rounded-lg overflow-hidden h-full sm:h-[calc(100vh-30%)] max-h-[750px]`}
           >
             <div
               className={`${fillModal ? 'h-full' : 'h-auto'}`}

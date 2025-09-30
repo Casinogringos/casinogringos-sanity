@@ -1,4 +1,4 @@
-import Navigation from '@/src/components/organisms/Navigation'
+import Navigation from '@/src/components/navigation/Navigation'
 import {
   getCasinoPagePreviews,
   getMenuById,
@@ -12,11 +12,11 @@ import dynamicImport from 'next/dynamic'
 
 import { headers } from 'next/headers'
 import { ReactNode } from 'react'
-import Footer from '@/src/components/organisms/Footer'
+import Footer from '@/src/components/navigation/Footer'
 import { inter } from '@/src/styles/fonts'
 
 const ScrollToTop = dynamicImport(
-  () => import('@/src/components/molecules/ScrollToTop')
+  () => import('@/src/components/navigation/ScrollToTop')
 )
 // const inter = Inter({
 //   subsets: ['latin'],
@@ -88,7 +88,11 @@ export default async function RootLayout({
           />
           <main className={'relative'}>{children}</main>
           <ScrollToTop />
-          <Footer siteLinks={siteLinks} popularCasinos={popularCasinos} latestReviews={latestReviews} />
+          <Footer
+            siteLinks={siteLinks}
+            popularCasinos={popularCasinos}
+            latestReviews={latestReviews}
+          />
         </Provider>
       </body>
     </html>

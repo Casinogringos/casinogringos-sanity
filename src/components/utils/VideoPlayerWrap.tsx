@@ -1,5 +1,5 @@
 const VideoPlayer = dynamic(
-  () => import('@/src/components/organisms/VideoPlayer')
+  () => import('@/src/components/content/VideoPlayer')
 )
 import { getYoutubeMetaData, getVimeoMetaData } from '../../lib/api'
 import dynamic from 'next/dynamic'

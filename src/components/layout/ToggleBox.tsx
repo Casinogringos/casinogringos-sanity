@@ -3,7 +3,7 @@
 import { ParagraphObject, HeadingObject, ImageObject } from '@/src/types'
 import { ChevronDown } from 'lucide-react'
 import { useEffect, useState } from 'react'
-import ModularContent from '@/src/components/organisms/ModularContent'
+import ModularContent from '@/src/components/content/ModularContent'
 
 const ToggleBox = ({
   buttonTextOpen,

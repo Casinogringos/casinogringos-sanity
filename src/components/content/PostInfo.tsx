@@ -4,13 +4,13 @@ import { Mail, MessageCircle, Phone } from 'lucide-react'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
 import Link from 'next/link'
-import Container from '../atoms/Container'
-import Heading from '../atoms/Heading'
+import Container from '../layout/Container'
+import Heading from './Heading'
 import ProsAndConsBox from './ProsAndConsBox'
 import StarIcon from '../icons/StarIcon'
 import CasinoService from '@/src/services/CasinoPageService'
 const ToggleBlock = dynamic(
-  () => import('@/src/components/molecules/ToggleObject')
+  () => import('@/src/components/objects/ToggleObject')
 )
 
 const PostInfo = ({ casino, title }: { casino: Post; title: string }) => {
@@ -335,42 +335,42 @@ const PostInfo = ({ casino, title }: { casino: Post; title: string }) => {
         {(casino.postType.brandEmail ||
           casino.postType.kundtjanstTelefon ||
           casino.postType.brandSupportHours) && (
-            <>
-              <h2 className="mb-3 mt-6 text-xl font-bold">Kundtjänst</h2>
-              <ul className="mb-3">
-                {casino.postType.brandEmail && (
-                  <li className="flex items-center py-2">
-                    <Mail className="mr-2 h-5 w-5 text-slate600" />
-                    <span className="font-medium">E-post</span>
-                    <Link
-                      href={`mailto:${casino.postType.brandEmail}`}
-                      className="ml-auto text-blue600"
-                    >
-                      {casino.postType.brandEmail}
-                    </Link>
-                  </li>
-                )}
-                {casino.postType.kundtjanstTelefon && (
-                  <li className="flex items-center border-t border-t-slate200 py-2">
-                    <Phone className="mr-2 h-5 w-5 text-slate600" />
-                    <span className="font-medium">Telefon</span>
-                    <span className="ml-auto text-gray500">
-                      {casino.postType.kundtjanstTelefon}
-                    </span>
-                  </li>
-                )}
-                {casino.postType.brandSupportHours && (
-                  <li className="flex items-center border-t border-t-slate200 py-2">
-                    <MessageCircle className="mr-2 h-5 w-5 text-slate600" />
-                    <span className="font-medium">Live chatt öppettider</span>
-                    <span className="ml-auto text-gray500">
-                      {casino.postType.brandSupportHours}
-                    </span>
-                  </li>
-                )}
-              </ul>
-            </>
-          )}
+          <>
+            <h2 className="mb-3 mt-6 text-xl font-bold">Kundtjänst</h2>
+            <ul className="mb-3">
+              {casino.postType.brandEmail && (
+                <li className="flex items-center py-2">
+                  <Mail className="mr-2 h-5 w-5 text-slate600" />
+                  <span className="font-medium">E-post</span>
+                  <Link
+                    href={`mailto:${casino.postType.brandEmail}`}
+                    className="ml-auto text-blue600"
+                  >
+                    {casino.postType.brandEmail}
+                  </Link>
+                </li>
+              )}
+              {casino.postType.kundtjanstTelefon && (
+                <li className="flex items-center border-t border-t-slate200 py-2">
+                  <Phone className="mr-2 h-5 w-5 text-slate600" />
+                  <span className="font-medium">Telefon</span>
+                  <span className="ml-auto text-gray500">
+                    {casino.postType.kundtjanstTelefon}
+                  </span>
+                </li>
+              )}
+              {casino.postType.brandSupportHours && (
+                <li className="flex items-center border-t border-t-slate200 py-2">
+                  <MessageCircle className="mr-2 h-5 w-5 text-slate600" />
+                  <span className="font-medium">Live chatt öppettider</span>
+                  <span className="ml-auto text-gray500">
+                    {casino.postType.brandSupportHours}
+                  </span>
+                </li>
+              )}
+            </ul>
+          </>
+        )}
       </Container>
       {/* <TabComponent props={casino} /> */}
     </div>

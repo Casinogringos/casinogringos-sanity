@@ -5,7 +5,7 @@ import ToggleItem from '../interactivity/ToggleItem'
 import ToggleButton from '../interactivity/ToggleButton'
 import Image from 'next/image'
 import { SlotPageSchemaType } from '@/src/schemas/slotPage'
-const IFrame = dynamic(() => import('@/src/components/organisms/IFrame'))
+const IFrame = dynamic(() => import('@/src/components/content/IFrame'))
 
 const SlotHero = ({ slotPage }: { slotPage: SlotPageSchemaType }) => {
   return (

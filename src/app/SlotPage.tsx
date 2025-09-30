@@ -1,38 +1,52 @@
 import Link from 'next/link'
 import Star from '@/src/components/icons/StarIcon'
 import HalfStarIcon from '@/src/components/icons/HalfStarIcon'
-import ModularContent from '@/src/components/organisms/ModularContent'
-import Avatar from '@/src/components/organisms/Avatar'
-import BreadCrumbs from '@/src/components/organisms/BreadCrumbs'
-import Container from '@/src/components/atoms/Container'
-import SlotHero from '@/src/components/organisms/SlotHero'
-import TableOfContents from '@/src/components/organisms/TableOfContents'
+import ModularContent from '@/src/components/content/ModularContent'
+import Avatar from '@/src/components/content/Avatar'
+import BreadCrumbs from '@/src/components/navigation/BreadCrumbs'
+import Container from '@/src/components/layout/Container'
+import SlotHero from '@/src/components/slot/SlotHero'
+import TableOfContents from '@/src/components/navigation/TableOfContents'
 import { SlotPageSchemaType } from '@/src/schemas/slotPage'
 import { SlotPagePreviewSchemaType } from '@/src/schemas/slotPagePreview'
 import getSlotReviewStructuredData from '@/src/structured-data/slotReviewStructuredData'
 import SlotPageService from '@/src/services/SlotPageService'
 import CasinoPageService from '@/src/services/CasinoPageService'
 import Image from 'next/image'
-import Heading from '@/src/components/atoms/Heading'
+import Heading from '@/src/components/content/Heading'
 import { PortableText } from 'next-sanity'
-import CasinoCard from '@/src/components/organisms/CasinoCard'
+import CasinoCard from '@/src/components/casino/CasinoCard'
 import { getWebPageStructuredData } from '@/src/structured-data/webPageStructuredData'
 import { getWebSiteStructuredData } from '@/src/structured-data/webSiteStructuredData'
 import { getOrganizationStructuredData } from '@/src/structured-data/organizationStructuredData'
-import SlotCard from '@/src/components/molecules/SlotCard'
+import SlotCard from '@/src/components/slot/SlotCard'
 import { HeadingObjectSchemaType } from '../schemas/headingObject'
 import { slugify } from '../lib/helpers'
 
 const slotPageService = new SlotPageService()
 const casinoPageService = new CasinoPageService()
 
-const SlotPage = ({ slotPage, similarSlotPages }: { slotPage: SlotPageSchemaType, similarSlotPages: SlotPagePreviewSchemaType[] }) => {
+const SlotPage = ({
+  slotPage,
+  similarSlotPages,
+}: {
+  slotPage: SlotPageSchemaType
+  similarSlotPages: SlotPagePreviewSchemaType[]
+}) => {
   const isValidSlotPage = slotPageService.validatePage(slotPage)
-  const isValidSimilarSlotPages = slotPageService.validateList(similarSlotPages, true)
+  const isValidSimilarSlotPages = slotPageService.validateList(
+    similarSlotPages,
+    true
+  )
   console.log('slotpage', slotPage)
   const schema = {
     '@context': 'https://schema.org',
-    '@graph': [getSlotReviewStructuredData({ page: slotPage }), getWebPageStructuredData({ page: slotPage }), getWebSiteStructuredData(), getOrganizationStructuredData()],
+    '@graph': [
+      getSlotReviewStructuredData({ page: slotPage }),
+      getWebPageStructuredData({ page: slotPage }),
+      getWebSiteStructuredData(),
+      getOrganizationStructuredData(),
+    ],
   }
   const headings = slotPageService.getHeadingObjects(slotPage)
   const { slot } = slotPage
@@ -45,14 +59,18 @@ const SlotPage = ({ slotPage, similarSlotPages }: { slotPage: SlotPageSchemaType
       text: slotPage.title,
     },
   ]
-  const createdAt = new Date(slotPage.originalPublishedAt ?? '' as string).getTime() ?? new Date(slotPage._createdAt).getTime()
-  const modifiedAt = new Date(slotPage._updatedAt).getTime() ?? new Date(slotPage.originalModifiedAt ?? '' as string).getTime()
+  const createdAt =
+    new Date(slotPage.originalPublishedAt ?? ('' as string)).getTime() ??
+    new Date(slotPage._createdAt).getTime()
+  const modifiedAt =
+    new Date(slotPage._updatedAt).getTime() ??
+    new Date(slotPage.originalModifiedAt ?? ('' as string)).getTime()
   const { casinos, latestCasinos } = slotPage
   const relatedCasinos = casinos?.length > 0 ? casinos : latestCasinos
   const slotVolatilityMap = {
-    'low': 'Låg',
-    'medium': 'Medium',
-    'high': 'Hög',
+    low: 'Låg',
+    medium: 'Medium',
+    high: 'Hög',
   }
 
   return (
@@ -102,10 +120,13 @@ const SlotPage = ({ slotPage, similarSlotPages }: { slotPage: SlotPageSchemaType
                       )}
                   </div>
                 )}
-                <Heading level={1} size={7} text={slotPage.title} className="mb-0 mt-1 font-bold text-white" />
-                <p className="text-slate-300 mb-5">
-                  {slot.provider.name}
-                </p>
+                <Heading
+                  level={1}
+                  size={7}
+                  text={slotPage.title}
+                  className="mb-0 mt-1 font-bold text-white"
+                />
+                <p className="text-slate-300 mb-5">{slot.provider.name}</p>
                 <PortableText value={slotPage.intro} />
                 <section className="mt-6 grid grid-cols-2 gap-3">
                   <div className="rounded-md bg-normal px-4 py-3 bg-white/10">
@@ -130,7 +151,11 @@ const SlotPage = ({ slotPage, similarSlotPages }: { slotPage: SlotPageSchemaType
                         Volalitet:
                       </span>
                       <div className="text-2xl font-semibold text-primary">
-                        {slotVolatilityMap[slot.volatility as keyof typeof slotVolatilityMap]}
+                        {
+                          slotVolatilityMap[
+                            slot.volatility as keyof typeof slotVolatilityMap
+                          ]
+                        }
                       </div>
                     </div>
                   )}
@@ -169,12 +194,7 @@ const SlotPage = ({ slotPage, similarSlotPages }: { slotPage: SlotPageSchemaType
             </div>
           </Container>
         </div>
-        {breadcrumbs && (
-          <BreadCrumbs
-            items={breadcrumbs}
-            narrow
-          />
-        )}
+        {breadcrumbs && <BreadCrumbs items={breadcrumbs} narrow />}
         <Container narrow className="mb-10 mt-12">
           <Avatar
             author={slotPage.author}
@@ -186,17 +206,15 @@ const SlotPage = ({ slotPage, similarSlotPages }: { slotPage: SlotPageSchemaType
         </Container>
         {headings.length > 1 && (
           <Container narrow>
-            <TableOfContents headings={headings.map((heading: HeadingObjectSchemaType) => ({
-              text: heading.text,
-              slug: `${slotPage.slug.current}#${slugify(heading.text)}`,
-            }))} />
+            <TableOfContents
+              headings={headings.map((heading: HeadingObjectSchemaType) => ({
+                text: heading.text,
+                slug: `${slotPage.slug.current}#${slugify(heading.text)}`,
+              }))}
+            />
           </Container>
         )}
-        <ModularContent
-          className='py-5'
-          objects={slotPage.content}
-          narrow
-        />
+        <ModularContent className="py-5" objects={slotPage.content} narrow />
         {relatedCasinos && (
           <section id="spela" className="bg-dark  py-12 lg:pb-16 lg:pt-20">
             <div className="mx-auto max-w-6xl px-4 text-left lg:px-8">
@@ -206,10 +224,7 @@ const SlotPage = ({ slotPage, similarSlotPages }: { slotPage: SlotPageSchemaType
               <div className="mt-6 grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-3">
                 {relatedCasinos.slice(0, 3).map((casino, i) => (
                   <div key={`casino-${casino._id}`}>
-                    <CasinoCard
-                      casinoPage={casino}
-                      index={i}
-                    />
+                    <CasinoCard casinoPage={casino} index={i} />
                   </div>
                 ))}
               </div>
@@ -219,13 +234,15 @@ const SlotPage = ({ slotPage, similarSlotPages }: { slotPage: SlotPageSchemaType
         {similarSlotPages && (
           <section className={'bg-gray-100 py-10'}>
             <Container>
-              <Heading level={3} size={6} className={'mb-4 text-gray-700 font-bold'} text="Fler slots" />
+              <Heading
+                level={3}
+                size={6}
+                className={'mb-4 text-gray-700 font-bold'}
+                text="Fler slots"
+              />
               <div className={'grid grid-cols-2 gap-4 lg:grid-cols-4'}>
                 {similarSlotPages.map((page) => (
-                  <SlotCard
-                    key={`slot-${page._id}`}
-                    slotPage={page}
-                  />
+                  <SlotCard key={`slot-${page._id}`} slotPage={page} />
                 ))}
               </div>
             </Container>

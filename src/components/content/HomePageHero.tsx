@@ -1,10 +1,10 @@
 import { ArrowRight, Gift, Star, Vibrate, Zap } from 'lucide-react'
 import Image from 'next/image'
-import Container from '@/src/components/atoms/Container'
-import Link from '@/src/components/atoms/Link'
+import Container from '@/src/components/layout/Container'
+import Link from '@/src/components/content/Link'
 import { SubPageSchemaType } from '@/src/schemas/subPage'
 import { PortableText } from 'next-sanity'
-import Heading from '@/src/components/atoms/Heading'
+import Heading from '@/src/components/content/Heading'
 
 const HomePageHero = ({ page }: { page: SubPageSchemaType }) => {
   const menuItems = [

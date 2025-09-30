@@ -4,8 +4,8 @@ import {
   getGuidePagePreviews,
   getPageBySlug,
 } from '@/src/lib/api'
-import Pagination from '@/src/components/organisms/Pagination'
-import BreadCrumbs from '@/src/components/organisms/BreadCrumbs'
+import Pagination from '@/src/components/content/Pagination'
+import BreadCrumbs from '@/src/components/navigation/BreadCrumbs'
 import { Metadata } from 'next'
 
 export async function generateMetadata() {
@@ -46,8 +46,14 @@ const Page = async () => {
   const page = await getPageBySlug({ slug: '/guider' })
   const pageCount = Math.ceil(guidesCount / 24)
 
-
-  return <GuideIndex guidePages={guides} page={page} pageCount={pageCount} currentPage={1} />
+  return (
+    <GuideIndex
+      guidePages={guides}
+      page={page}
+      pageCount={pageCount}
+      currentPage={1}
+    />
+  )
 }
 
 export default Page

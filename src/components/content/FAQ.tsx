@@ -1,24 +1,46 @@
 import { PortableText } from 'next-sanity'
-import ToggleButton from '@/src/components/atoms/ToggleButton'
-import Heading from '@/src/components/atoms/Heading'
-import ToggleSpin from '@/src/components/atoms/ToggleSpin'
+import ToggleButton from '@/src/components/interactivity/ToggleButton'
+import Heading from '@/src/components/content/Heading'
+import ToggleSpin from '@/src/components/interactivity/ToggleSpin'
 import { ChevronDown } from 'lucide-react'
-import ToggleItem from '@/src/components/atoms/ToggleItem'
+import ToggleItem from '@/src/components/interactivity/ToggleItem'
 import { FaqItemObjectSchemaType } from '@/src/schemas/faqItemObject'
 import { PortableTextBlockSchemaType } from '@/src/schemas/portableTextBlock'
-import Container from '@/src/components/atoms/Container'
+import Container from '@/src/components/layout/Container'
 
-const FAQ = ({ items, title, description }: { items: FaqItemObjectSchemaType[]; title?: string; description?: PortableTextBlockSchemaType }) => {
+const FAQ = ({
+  items,
+  title,
+  description,
+}: {
+  items: FaqItemObjectSchemaType[]
+  title?: string
+  description?: PortableTextBlockSchemaType
+}) => {
   return (
     <>
       <div className="mb-6 text-white text-center">
-        <Heading className='mb-5 font-bold' text={title ?? 'Frågor och svar'} level={2} sizes={[7, 7, 8]} />
+        <Heading
+          className="mb-5 font-bold"
+          text={title ?? 'Frågor och svar'}
+          level={2}
+          sizes={[7, 7, 8]}
+        />
         <PortableText value={description} />
       </div>
       {items.map((item, index) => (
         <div key={`faq-item-${index}`}>
-          <div className={'bg-light-blue flex items-stretch justify-between no-prose rounded-md mb-2'}>
-            <ToggleButton id={item._key} role={'button'} label={item.question} className='w-full'>
+          <div
+            className={
+              'bg-light-blue flex items-stretch justify-between no-prose rounded-md mb-2'
+            }
+          >
+            <ToggleButton
+              id={item._key}
+              role={'button'}
+              label={item.question}
+              className="w-full"
+            >
               <div className={'flex items-center justify-between w-full p-5'}>
                 <Heading
                   text={item.question}

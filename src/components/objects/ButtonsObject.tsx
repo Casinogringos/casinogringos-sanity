@@ -1,4 +1,4 @@
-import ButtonObject from '@/src/components/molecules/ButtonObject'
+import ButtonObject from '@/src/components/objects/ButtonObject'
 import { ButtonsObjectSchemaType } from '@/src/schemas/buttonsObject'
 
 const ButtonsObject = ({ object }: { object: ButtonsObjectSchemaType }) => {

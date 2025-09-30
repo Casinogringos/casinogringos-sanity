@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import Placeholder from '@/src/components/atoms/Placeholder'
+import Placeholder from '@/src/components/utils/Placeholder'
 import { ImageObjectSchemaType } from '@/src/schemas/imageObject'
 import { PortableText } from 'next-sanity'
 
@@ -10,7 +10,7 @@ const SanityImage = ({
   className,
   priority = false,
   prose = true,
-  rounded = 'md'
+  rounded = 'md',
 }: {
   image: ImageObjectSchemaType
   width?: number
@@ -29,7 +29,7 @@ const SanityImage = ({
   const roundedClasses = {
     sm: 'rounded-sm',
     md: 'rounded-md',
-    lg: 'rounded-lg'
+    lg: 'rounded-lg',
   }
   return (
     <div className={`${className} ${prose ? '' : 'not-prose'}`}>
@@ -41,7 +41,11 @@ const SanityImage = ({
         height={height}
         className={roundedClasses[rounded]}
       />
-      {image.caption && <div className="text-sm text-slate-500 text-center mt-2"><PortableText value={image.caption} /></div>}
+      {image.caption && (
+        <div className="text-sm text-slate-500 text-center mt-2">
+          <PortableText value={image.caption} />
+        </div>
+      )}
     </div>
   )
 }

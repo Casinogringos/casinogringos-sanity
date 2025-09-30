@@ -2,13 +2,13 @@ import Star from '@/src/components/icons/StarIcon'
 import StarHalf from '@/src/components/icons/HalfStarIcon'
 import { CasinoPageSchemaType } from '@/src/schemas/casinoPage'
 import Image from 'next/image'
-import Link from '@/src/components/atoms/Link'
+import Link from '@/src/components/content/Link'
 import { PortableText } from 'next-sanity'
 import CasinoService from '@/src/services/CasinoService'
-import Heading from '@/src/components/atoms/Heading'
+import Heading from '@/src/components/content/Heading'
 
 export default function CasinoHero({
-  casinoPage
+  casinoPage,
 }: {
   casinoPage: CasinoPageSchemaType
 }) {
@@ -37,18 +37,25 @@ export default function CasinoHero({
             </div>
           </div>
           <div className="lg:w-3/4">
-            <Heading level={1} size={6} className="text-3xl font-bold text-white !mb-0" text={casinoPage.title} />
+            <Heading
+              level={1}
+              size={6}
+              className="text-3xl font-bold text-white !mb-0"
+              text={casinoPage.title}
+            />
             <div className="pb-2 pt-1 text-xl font-bold text-primary">
               {casinoService.getBonusString({ casino: casinoPage.casino })}
             </div>
             {finalRating && finalRating > 0 ? (
               <div className="mb-6 mt-1 flex">
-                {Array.from({ length: Math.floor(finalRating) }).map((_, index) => (
-                  <Star
-                    key={`rating-star-${index}`}
-                    className="h-5 w-5 text-yellow-400"
-                  />
-                ))}
+                {Array.from({ length: Math.floor(finalRating) }).map(
+                  (_, index) => (
+                    <Star
+                      key={`rating-star-${index}`}
+                      className="h-5 w-5 text-yellow-400"
+                    />
+                  )
+                )}
                 {finalRating % 1 !== 0 && (
                   <StarHalf
                     key="rating-star-half"
@@ -66,8 +73,8 @@ export default function CasinoHero({
               href={`/go/${casino.slug.current}`}
               title={casinoPage.title}
               place="CasinoCard recension"
-              variant='affiliate'
-              className='w-full'
+              variant="affiliate"
+              className="w-full"
             >
               Till {casinoPage.title}
             </Link>

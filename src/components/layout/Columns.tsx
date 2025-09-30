@@ -1,4 +1,4 @@
-import ModularContent from '../organisms/ModularContent'
+import ModularContent from '../content/ModularContent'
 import type { CoreColumnsBlock } from '@/types'
 
 const Columns = ({ columns }: { columns: CoreColumnsBlock }) => {

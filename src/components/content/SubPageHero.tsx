@@ -1,11 +1,9 @@
-import Container from '@/src/components/atoms/Container'
+import Container from '@/src/components/layout/Container'
 import dynamic from 'next/dynamic'
 import { PortableText } from 'next-sanity'
-import Heading from '@/src/components/atoms/Heading'
+import Heading from '@/src/components/content/Heading'
 import { SubPageSchemaType } from '@/src/schemas/subPage'
-const HeroAvatar = dynamic(
-  () => import('@/src/components/organisms/HeroAvatar')
-)
+const HeroAvatar = dynamic(() => import('@/src/components/content/HeroAvatar'))
 
 const SubPageHero = ({ page }: { page: SubPageSchemaType }) => {
   const { title } = page

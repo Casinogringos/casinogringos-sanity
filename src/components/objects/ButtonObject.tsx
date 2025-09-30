@@ -1,5 +1,5 @@
 import { ButtonObjectSchemaType } from '@/src/schemas/buttonObject'
-import Link from '@/src/components/atoms/Link'
+import Link from '@/src/components/content/Link'
 
 const ButtonObject = ({ object }: { object: ButtonObjectSchemaType }) => {
   const getHref = () => {
@@ -23,7 +23,11 @@ const ButtonObject = ({ object }: { object: ButtonObjectSchemaType }) => {
   }
   const href = getHref()
 
-  return href ? <Link variant="affiliate" href={href}>{object.title}</Link> : null
+  return href ? (
+    <Link variant="affiliate" href={href}>
+      {object.title}
+    </Link>
+  ) : null
 }
 
 export default ButtonObject

@@ -1,7 +1,13 @@
 import { GroupObjectSchemaType as GroupObjectType } from '@/src/schemas/groupObject'
-import ModularContent from '@/src/components/organisms/ModularContent'
+import ModularContent from '@/src/components/content/ModularContent'
 
-const GroupObject = ({ object, className }: { object: GroupObjectType, className?: string }) => {
+const GroupObject = ({
+  object,
+  className,
+}: {
+  object: GroupObjectType
+  className?: string
+}) => {
   const classes = () => {
     switch (object.backgroundColor) {
       case 'gray':

@@ -5,7 +5,7 @@ import { BonusObjectSchema } from './bonusObject';
 import { ButtonsObjectSchema } from './buttonsObject';
 import { CasinoObjectSchema } from './casinoObject';
 import { FAQObjectSchema } from './faqObject';
-import { HeadingObjectSchema } from './headingObject';
+import { HeadingObjectSchema } from '@/src/schemas/headingObject';
 import { HowToObjectSchema } from './howToObject';
 import { ImageObjectSchema } from './imageObject';
 import { ListObjectSchema } from './listObject';

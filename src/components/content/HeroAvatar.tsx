@@ -1,6 +1,6 @@
 'use client'
 
-import DateComponent from '@/src/components/atoms/Date'
+import DateComponent from '@/src/components/content/Date'
 import CheckBadge from '@/src/components/icons/CheckBadgeIcon'
 import { Calendar } from 'lucide-react'
 import {
@@ -13,7 +13,7 @@ import {
 } from 'next-share'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
-import Link from '@/src/components/atoms/Link'
+import Link from '@/src/components/content/Link'
 import { AuthorSchemaType } from '@/src/schemas/author'
 
 const HeroAvatar = ({

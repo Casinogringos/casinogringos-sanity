@@ -5,11 +5,11 @@ import { ReactNode, useCallback } from 'react'
 import NextLink from 'next/link'
 import { usePathname } from 'next/navigation'
 import { isCurrentPath } from '@/src/lib/helpers'
-import Placeholder from '@/src/components/atoms/Placeholder'
+import Placeholder from '@/src/components/utils/Placeholder'
 import {
   closedMainMenu,
   closeMainMenu,
-  closingMainMenu
+  closingMainMenu,
 } from '@/src/store/menuSlice'
 import { useAppDispatch } from '@/src/store/hooks'
 
