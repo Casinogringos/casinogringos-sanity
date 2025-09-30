@@ -93,7 +93,7 @@ const HomePage = ({
         </Container>
       )}
       {faqs && (
-        <div className="bg-dark pb-16 pt-10">
+        <div className="bg-dark pb-16 pt-16">
           <Container>
             <FAQ
               items={faqs.items}

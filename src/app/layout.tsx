@@ -88,11 +88,11 @@ export default async function RootLayout({
           />
           <main className={'relative'}>{children}</main>
           <ScrollToTop />
-          <Footer
+          {/* <Footer
             siteLinks={siteLinks}
             popularCasinos={popularCasinos}
             latestReviews={latestReviews}
-          />
+          /> */}
         </Provider>
       </body>
     </html>

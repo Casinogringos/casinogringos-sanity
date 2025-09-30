@@ -19,12 +19,12 @@ const FAQ = ({
 }) => {
   return (
     <>
-      <div className="mb-6 text-white text-center">
+      <div className={`mb-6 text-white text-center ${description ? 'pb-6' : 'pb-1'}`}>
         <Heading
           className="mb-5 font-bold"
           text={title ?? 'Frågor och svar'}
           level={2}
-          sizes={[7, 7, 8]}
+          sizes={[6, 6, 7]}
         />
         <PortableText value={description} />
       </div>
@@ -46,7 +46,7 @@ const FAQ = ({
                   text={item.question}
                   level={3}
                   className="text-white"
-                  sizes={[4, 4, 5]}
+                  sizes={[4, 4, 4]}
                 />
                 <ToggleSpin id={item._key}>
                   <ChevronDown className={'stroke-white'} />

@@ -22,7 +22,7 @@ const NewsList = ({
       <div className="mx-auto max-w-6xl px-6 lg:px-8">
         <Heading
           level={2}
-          sizes={[7, 7, 8]}
+          sizes={[6, 6, 7]}
           text={'Senaste casinonyheter'}
           className="text-gray-900 font-semibold tracking-tight"
         />
