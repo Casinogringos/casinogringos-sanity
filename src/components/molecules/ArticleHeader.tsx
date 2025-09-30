@@ -14,7 +14,7 @@ const ArticleHeader = ({
   console.log('article', article)
   return (
     <>
-      <Heading text={article.title} level={1} size={8} className="font-bold" />
+      <Heading text={article.title} level={1} sizes={[6, 7, 8]} className="font-bold" />
       {article.author ? (
         <Avatar
           shareTitle={article.seoTitle}

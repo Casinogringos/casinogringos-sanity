@@ -36,7 +36,7 @@ const Heading = ({
   }
   const getSizeClasses = () => {
     return sizes.map((size, index) => {
-      return `${index === 1 ? 'md' : index === 2 ? 'lg' : ''}${sizeClasses[size as keyof typeof sizeClasses]}`
+      return `${index === 1 ? 'md:' : index === 2 ? 'lg:' : ''}${sizeClasses[size as keyof typeof sizeClasses]}`
     })
   }
   const Tag: string = `h${level}` as keyof JSX.IntrinsicElements

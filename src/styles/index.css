@@ -146,6 +146,19 @@
     font-size: var(--font-size-2xs);
 }
 
+/* 
+.text-4xl {
+    font-size: var(--font-size-4xl);
+}
+
+.text-5xl {
+    font-size: var(--font-size-5xl);
+}
+
+.text-6xl {
+    font-size: var(--font-size-6xl);
+} */
+
 html {
     scrollbar-width: none;
 }

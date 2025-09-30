@@ -47,7 +47,7 @@ const GuideIndex = ({
       />
       <Breadcrumbs items={breadcrumbItems} />
       <Container className="py-6 lg:py-12">
-        <Heading level={1} size={8} className="font-bold mb-4" text={page.title} />
+        <Heading level={1} sizes={[5, 6, 7]} className="font-bold mb-4" text={page.title} />
         <div className='text-slate-500'>
           <PortableText value={page.intro} />
         </div>
@@ -56,15 +56,15 @@ const GuideIndex = ({
             <ArticleCard key={`guide-${guide._id}`} item={guide} />
           ))}
         </div>
-        {pageCount > 1 && (
-          <Pagination
-            currentPage={currentPage}
-            numPages={pageCount}
-            pathPrefix={'guider'}
-            className={'font'}
-          />
-        )}
       </Container>
+      {pageCount > 1 && (
+        <Pagination
+          currentPage={currentPage}
+          numPages={pageCount}
+          pathPrefix={'guider'}
+          className={'font'}
+        />
+      )}
     </>
   )
 }

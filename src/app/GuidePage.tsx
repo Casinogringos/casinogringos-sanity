@@ -91,14 +91,14 @@ export default function GuidePage({
       )}
       {similarGuidePages && (
         <section className="bg-gray-100 py-10">
-          <Container narrow>
+          <Container>
             <Heading
               level={3}
-              size={6}
+              sizes={[7, 8, 9]}
               className="mb-4 font-bold text-gray-700"
               text="Fler guider"
             />
-            <div className="grid grid-cols-2 gap-4 lg:grid-cols-3">
+            <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
               {similarGuidePages.map((guidePage) => (
                 <ArticleCard key={guidePage._id} item={guidePage} />
               ))}

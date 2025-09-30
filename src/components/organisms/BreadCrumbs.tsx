@@ -44,7 +44,7 @@ const BreadCrumbs = ({
                 itemProp="itemListElement"
                 itemScope
                 itemType="https://schema.org/ListItem"
-                className="flex items-center gap-x-2 lg:gap-x-3"
+                className="flex items-center gap-x-2 lg:gap-x-2"
               >
                 <ChevronRight
                   className="size-4 flex-shrink-0 pl-0 text-gray-400"
