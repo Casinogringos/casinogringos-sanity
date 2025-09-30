@@ -3,9 +3,9 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { ArrowRight, Search } from 'lucide-react'
 import Fuse from 'fuse.js'
-import Link from '@/src/components/atoms/Link'
-import Heading from '@/src/components/atoms/Heading'
-import Date from '@/src/components/atoms/Date'
+import Link from '@/src/components/content/Link'
+import Heading from '@/src/components/content/Heading'
+import Date from '@/src/components/content/Date'
 import { SubPagePreviewSchemaType } from '@/src/schemas/subPagePreview'
 import { SlotPagePreviewSchemaType } from '@/src/schemas/slotPagePreview'
 import { GuidePagePreviewSchemaType } from '@/src/schemas/guidePagePreview'
@@ -109,8 +109,8 @@ const SearchBox = () => {
         | CasinoPagePreviewSchemaType
         | null
         | undefined = pages?.find(
-          (item) => item.slug.current === result.item.slug.current
-        )
+        (item) => item.slug.current === result.item.slug.current
+      )
       if (record?.slug.current === '') return null
       const clonedRecord = _.cloneDeep(record)
       const featuredImage = clonedRecord?.featuredImage
@@ -149,7 +149,6 @@ const SearchBox = () => {
     document.body.classList.remove('overflow-hidden')
   }, [dispatch])
 
-
   return (
     <>
       <div className="bg-white rounded-md flex items-stretch mb-2">
@@ -180,7 +179,7 @@ const SearchBox = () => {
                   onClick={handleCloseSearch}
                 >
                   {item.featuredImage.src && (
-                    <div className='h-[50px] w-[50px] relative mr-2'>
+                    <div className="h-[50px] w-[50px] relative mr-2">
                       <Image
                         src={item.featuredImage.src}
                         alt={item.featuredImage.alt}

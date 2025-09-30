@@ -1,9 +1,9 @@
 import { ChevronDown } from 'lucide-react'
 import { isCurrentPath } from '@/src/lib/helpers'
-import Link from '@/src/components/atoms/Link'
-import ToggleButton from '@/src/components/atoms/ToggleButton'
-import ToggleItem from '@/src/components/atoms/ToggleItem'
-import ToggleSpin from '@/src/components/atoms/ToggleSpin'
+import Link from '@/src/components/content/Link'
+import ToggleButton from '@/src/components/interactivity/ToggleButton'
+import ToggleItem from '@/src/components/interactivity/ToggleItem'
+import ToggleSpin from '@/src/components/interactivity/ToggleSpin'
 import { MenuSchemaType } from '@/src/schemas/menu'
 import { MenuItemSchemaType } from '@/src/schemas/menu'
 import { MenuItemChildSchemaType } from '@/src/schemas/menu'
@@ -20,8 +20,9 @@ const Menu = ({
       <ul role={'menubar'}>
         {menu?.items?.map((level1Item: MenuItemSchemaType, i: number) => (
           <li
-            className={`border-b-gray-100 py-4 flex flex-wrap overflow-hidden ${menu.items.length - 1 !== i ? 'border-b' : ''
-              }`}
+            className={`border-b-gray-100 py-4 flex flex-wrap overflow-hidden ${
+              menu.items.length - 1 !== i ? 'border-b' : ''
+            }`}
             key={`level-1-item-${level1Item._key}`}
             role={'none'}
           >
@@ -46,7 +47,7 @@ const Menu = ({
                   id={`menu-toggle-${i}-${level1Item._key}`}
                   label={'Öppna undermeny'}
                   role={'menuitemcheckbox'}
-                  className='w-[34px] h-[34px] inline-flex items-center justify-center float-right'
+                  className="w-[34px] h-[34px] inline-flex items-center justify-center float-right"
                 >
                   <ToggleSpin id={`menu-toggle-${i}-${level1Item._key}`}>
                     <ChevronDown

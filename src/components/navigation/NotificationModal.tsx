@@ -7,7 +7,7 @@ import {
   closeNotificationMenu,
   closingNotificationMenu,
 } from '@/src/store/menuSlice'
-import ModalSidebar from '@/src/components/organisms/ModalSidebar'
+import ModalSidebar from '@/src/components/layout/ModalSidebar'
 
 const NotificationModel = ({ children }: { children: ReactNode }) => {
   const dispatch = useAppDispatch()

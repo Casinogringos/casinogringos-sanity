@@ -1,6 +1,6 @@
-import Heading from '@/src/components/atoms/Heading'
+import Heading from '@/src/components/content/Heading'
 import NewsCard from '@/src/components/organisms/NewsCard'
-import Link from '@/src/components/atoms/Link'
+import Link from '@/src/components/content/Link'
 import { NewsPageSchemaType } from '@/src/schemas/newsPage'
 
 const NewsList = ({
@@ -15,7 +15,12 @@ const NewsList = ({
   return (
     <div className={`bg-blue-100 py-10 sm:py-20`}>
       <div className="mx-auto max-w-6xl px-6 lg:px-8">
-        <Heading level={2} sizes={[7, 7, 8]} text={'Senaste casinonyheter'} className="text-gray-900 font-semibold tracking-tight" />
+        <Heading
+          level={2}
+          sizes={[7, 7, 8]}
+          text={'Senaste casinonyheter'}
+          className="text-gray-900 font-semibold tracking-tight"
+        />
         <p className="mt-4 text-slate-600">
           Här hittar du de senaste nyheterna om online casino i Sverige. Vi
           håller oss alltid uppdaterade med vad som sker inom den svenska
@@ -23,9 +28,7 @@ const NewsList = ({
           uppdaterad med det senaste inom casinovärlden.
         </p>
         <div className="mx-auto mt-8 grid max-w-2xl auto-rows-fr grid-cols-1 items-start gap-x-8 gap-y-6 lg:mx-0 lg:max-w-none lg:grid-cols-3 lg:gap-y-20">
-          {items?.map((item) => (
-            <ItemComponent item={item} key={item._id} />
-          ))}
+          {items?.map((item) => <ItemComponent item={item} key={item._id} />)}
         </div>
         <div className="flex">
           <Link

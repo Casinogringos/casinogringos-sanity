@@ -2,8 +2,8 @@ import { FlamingoRatingBlock } from '@/src/types'
 import dynamic from 'next/dynamic'
 import StarIcon from '@/src/components/icons/StarIcon'
 import HalfStarIcon from '@/src/components/icons/HalfStarIcon'
-const Heading = dynamic(() => import('@/src/components/atoms/Heading'))
-const Paragraph = dynamic(() => import('@/src/components/atoms/Paragraph'))
+const Heading = dynamic(() => import('@/src/components/content/Heading'))
+const Paragraph = dynamic(() => import('@/src/components/content/Paragraph'))
 
 const RatingBox = ({
   block,

@@ -1,8 +1,8 @@
 import { PlayCircle } from 'lucide-react'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
-import ToggleItem from '../atoms/ToggleItem'
-import ToggleButton from '../atoms/ToggleButton'
+import ToggleItem from '../interactivity/ToggleItem'
+import ToggleButton from '../interactivity/ToggleButton'
 import Image from 'next/image'
 import { SlotPageSchemaType } from '@/src/schemas/slotPage'
 const IFrame = dynamic(() => import('@/src/components/organisms/IFrame'))
@@ -39,9 +39,7 @@ const SlotHero = ({ slotPage }: { slotPage: SlotPageSchemaType }) => {
                     role="button"
                     label="Spela demo"
                   >
-                    <div
-                      className="mb-4 flex items-center justify-center gap-2 rounded-sm bg-blue-100 px-12 py-4 font-medium lg:mb-0"
-                    >
+                    <div className="mb-4 flex items-center justify-center gap-2 rounded-sm bg-blue-100 px-12 py-4 font-medium lg:mb-0">
                       <PlayCircle className="h-6 w-6" /> Spela demo
                     </div>
                   </ToggleButton>

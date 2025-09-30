@@ -1,18 +1,18 @@
 import { isCurrentPath } from '@/src/lib/helpers'
 import Image from 'next/image'
-import Container from '@/src/components/atoms/Container'
+import Container from '@/src/components/layout/Container'
 import Link from 'next/link'
-import NotificationButton from '@/src/components/molecules/NotificationButton'
+import NotificationButton from '@/src/components/interactivity/NotificationButton'
 import Menu from '@/src/components/organisms/Menu'
-import MenuButton from '@/src/components/molecules/MenuButton'
-import SearchButton from '@/src/components/molecules/SearchButton'
+import MenuButton from '@/src/components/interactivity/MenuButton'
+import SearchButton from '@/src/components/interactivity/SearchButton'
 import { headers } from 'next/headers'
-import MenuModal from '@/src/components/molecules/MenuModal'
-import NotificationModal from '@/src/components/molecules/NotificationModal'
-import CasinoRow from '@/src/components/organisms/CasinoRow'
+import MenuModal from '@/src/components/layout/MenuModal'
+import NotificationModal from '@/src/components/layout/NotificationModal'
+import CasinoRow from '@/src/components/casino/CasinoRow'
 import { MenuItemSchemaType, MenuSchemaType } from '@/src/schemas/menu'
 import { ToplistSchemaType } from '@/src/schemas/toplist'
-import SearchModal from '@/src/components/molecules/SearchModal'
+import SearchModal from '@/src/components/layout/SearchModal'
 import SearchBox from '@/src/components/molecules/SearchBox'
 
 export default async function Navigation({
@@ -43,8 +43,9 @@ export default async function Navigation({
               href="/"
               prefetch={false}
               aria-current={isCurrentPath(pathname, '/') ? 'page' : undefined}
-              className={`${isCurrentPath(pathname, '/') ? 'text-primary' : 'text-white'
-                }`}
+              className={`${
+                isCurrentPath(pathname, '/') ? 'text-primary' : 'text-white'
+              }`}
             >
               <span className="sr-only">Casinogringos.se</span>
               <Image
@@ -70,10 +71,11 @@ export default async function Navigation({
                         ? 'page'
                         : undefined
                     }
-                    className={`text-nav text-sm uppercase tracking-wider font-medium font-inter hover:text-primary transition ${isCurrentPath(pathname, item.page.slug.current)
-                      ? 'text-primary'
-                      : 'text-white'
-                      }`}
+                    className={`text-nav text-sm uppercase tracking-wider font-medium font-inter hover:text-primary transition ${
+                      isCurrentPath(pathname, item.page.slug.current)
+                        ? 'text-primary'
+                        : 'text-white'
+                    }`}
                   >
                     {item.label ?? item.page.title}
                   </Link>

@@ -7,7 +7,7 @@ import {
   closeMainMenu,
   closingMainMenu,
 } from '@/src/store/menuSlice'
-import ModalSidebar from '@/src/components/organisms/ModalSidebar'
+import ModalSidebar from '@/src/components/layout/ModalSidebar'
 
 const MenuModal = ({ children }: { children: ReactNode }) => {
   const dispatch = useAppDispatch()

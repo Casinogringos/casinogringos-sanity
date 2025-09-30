@@ -2,7 +2,7 @@
 
 import { usePlausible } from 'next-plausible'
 import Image from 'next/image'
-import Link from '@/src/components/atoms/Link'
+import Link from '@/src/components/content/Link'
 
 const HeroAlert = () => {
   const plausible = usePlausible()

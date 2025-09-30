@@ -1,8 +1,8 @@
-import Date from '@/src/components/atoms/Date'
+import Date from '@/src/components/content/Date'
 import { Calendar, Linkedin, Mail } from 'lucide-react'
 import Image from 'next/image'
 import CheckBadgeIcon from '@/src/components/icons/CheckBadgeIcon'
-import Link from '@/src/components/atoms/Link'
+import Link from '@/src/components/content/Link'
 import { AuthorSchemaType } from '@/src/schemas/author'
 import { PortableText } from 'next-sanity'
 
@@ -76,16 +76,14 @@ const AuthorBox = ({
         <section>
           <span className="mb-2 mt-5 block font-semibold">Expertområden</span>
           <div className="flex gap-2 rounded-md">
-            {author.expertise?.map(
-              (item: { title: string }, index: number) => (
-                <span
-                  key={`author-${author._id}-expertise-${index}`}
-                  className="rounded-sm bg-dark px-2 py-1 text-sm text-white"
-                >
-                  {item.title}
-                </span>
-              )
-            )}
+            {author.expertise?.map((item: { title: string }, index: number) => (
+              <span
+                key={`author-${author._id}-expertise-${index}`}
+                className="rounded-sm bg-dark px-2 py-1 text-sm text-white"
+              >
+                {item.title}
+              </span>
+            ))}
           </div>
         </section>
       )}

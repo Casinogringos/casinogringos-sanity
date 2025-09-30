@@ -2,7 +2,7 @@
 
 import { ChevronLeft, Maximize, X } from 'lucide-react'
 import { useEffect, useRef, useState } from 'react'
-import Link from '@/src/components/atoms/Link'
+import Link from '@/src/components/content/Link'
 
 const IFrame = ({ url }: { url: string }) => {
   const iFrameRef = useRef<null | HTMLIFrameElement>(null)
@@ -45,8 +45,9 @@ const IFrame = ({ url }: { url: string }) => {
         />
       </div>
       <div
-        className={`bg-black px-2 lg:px-0 lg:mt-2 py-2 lg:py-1 z-[100] flex justify-start items-center ${isFullScreen ? 'fixed bottom-0 left-0 w-screen h-[50px]' : ''
-          }`}
+        className={`bg-black px-2 lg:px-0 lg:mt-2 py-2 lg:py-1 z-[100] flex justify-start items-center ${
+          isFullScreen ? 'fixed bottom-0 left-0 w-screen h-[50px]' : ''
+        }`}
       >
         <Link
           href="/slots"
@@ -58,8 +59,9 @@ const IFrame = ({ url }: { url: string }) => {
         </Link>
         <button
           onClick={() => toggleFullScreen()}
-          className={`text-white flex ml-auto items-center lg:hover:text-gray200 gap-2 lg:text-md ${isFullScreen ? 'text-md pr-4' : 'text-sm pr-1'
-            }`}
+          className={`text-white flex ml-auto items-center lg:hover:text-gray200 gap-2 lg:text-md ${
+            isFullScreen ? 'text-md pr-4' : 'text-sm pr-1'
+          }`}
         >
           {isFullScreen ? (
             <>

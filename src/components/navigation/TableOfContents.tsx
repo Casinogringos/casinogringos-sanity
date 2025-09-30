@@ -2,14 +2,18 @@ import { slugify } from '@/src/lib/helpers'
 import { ChevronDown } from 'lucide-react'
 import { Book, BookOpen } from 'lucide-react'
 import Link from 'next/link'
-import ToggleButton from '@/src/components/atoms/ToggleButton'
-import ToggleSpin from '@/src/components/atoms/ToggleSpin'
-import ToggleItem from '@/src/components/atoms/ToggleItem'
-import Heading from '@/src/components/atoms/Heading'
-import ToggleSwitch from '@/src/components/atoms/ToggleSwitch'
+import ToggleButton from '@/src/components/interactivity/ToggleButton'
+import ToggleSpin from '@/src/components/interactivity/ToggleSpin'
+import ToggleItem from '@/src/components/interactivity/ToggleItem'
+import Heading from '@/src/components/content/Heading'
+import ToggleSwitch from '@/src/components/interactivity/ToggleSwitch'
 import { HeadingObjectSchemaType } from '@/src/schemas/headingObject'
 
-const TableOfContents = ({ headings }: { headings: (HeadingObjectSchemaType & { slug: string })[] }) => {
+const TableOfContents = ({
+  headings,
+}: {
+  headings: (HeadingObjectSchemaType & { slug: string })[]
+}) => {
   return (
     <section
       className={
@@ -58,10 +62,7 @@ const TableOfContents = ({ headings }: { headings: (HeadingObjectSchemaType & { 
                 'py-2 last-of-type:border-0 text-slate-600 last-of-type:pb-0 border-b border-b-slate-200'
               }
             >
-              <Link
-                className="hover:text-dark font-medium"
-                href={heading.slug}
-              >
+              <Link className="hover:text-dark font-medium" href={heading.slug}>
                 {heading.text}
               </Link>
             </li>

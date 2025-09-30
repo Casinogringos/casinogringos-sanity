@@ -1,9 +1,9 @@
-import List from '@/src/components/molecules/List'
+import List from '@/src/components/content/List'
 import { BonusObject } from '@/src/types'
 import dynamic from 'next/dynamic'
 import Image from 'next/image'
-const Paragraph = dynamic(() => import('@/src/components/atoms/Paragraph'))
-const Button = dynamic(() => import('@/src/components/atoms/Button'))
+const Paragraph = dynamic(() => import('@/src/components/content/Paragraph'))
+const Button = dynamic(() => import('@/src/components/content/Button'))
 
 const BonusBox = ({
   block,

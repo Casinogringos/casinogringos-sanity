@@ -1,12 +1,12 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import Date from '@/src/components/atoms/Date'
+import Date from '@/src/components/content/Date'
 import { GuidePagePreviewSchemaType } from '@/src/schemas/guidePagePreview'
 import { NewsPagePreviewSchemaType } from '@/src/schemas/newsPagePreview'
 import { PortableText } from 'next-sanity'
 import GuidePageService from '@/src/services/GuidePageService'
 import NewsPageService from '@/src/services/NewsPageService'
-import Heading from '@/src/components/atoms/Heading'
+import Heading from '@/src/components/content/Heading'
 
 const guidePageService = new GuidePageService()
 const newsPageService = new NewsPageService()
@@ -47,11 +47,22 @@ const ArticleCard = ({
         />
       </div>
       <div>
-        {publishedAt && <div className="mt-4 flex items-center gap-x-4 text-xs text-slate-500">
-          <Date timestamp={publishedAt} />
-        </div>}
-        <Heading sizes={[4, 4, 5]} level={3} text={item.title} className="text-gray-900 hover:text-gray-600 my-2 font-bold leading-6" />
-        {item._type === 'news-pages' && item.excerpt && excerpt && <div className="text-gray-500"><PortableText value={item.excerpt} /></div>}
+        {publishedAt && (
+          <div className="mt-4 flex items-center gap-x-4 text-xs text-slate-500">
+            <Date timestamp={publishedAt} />
+          </div>
+        )}
+        <Heading
+          sizes={[4, 4, 5]}
+          level={3}
+          text={item.title}
+          className="text-gray-900 hover:text-gray-600 my-2 font-bold leading-6"
+        />
+        {item._type === 'news-pages' && item.excerpt && excerpt && (
+          <div className="text-gray-500">
+            <PortableText value={item.excerpt} />
+          </div>
+        )}
       </div>
     </Link>
   )
