@@ -41,23 +41,23 @@ export default async function RootLayout({
   children: ReactNode
 }) {
   const headerMenu = await getMenuById({
-    id: '44b803d0-621c-4c3f-9c2c-69fb774489bb',
+    id: '895b7eb3-dcfe-4321-b0cb-dc88f48d3664',
   })
   console.log('headerMenu', headerMenu)
   const sidebarMenu = await getMenuById({
-    id: 'a88836bc-b13a-474e-a2f5-ff59513b526a',
+    id: 'be7218f7-6ab0-4e18-97d1-343a82b8556d',
   })
   const sidebarToplist = await getToplistById({
     id: 'fa9e75e6-eadc-499c-9019-dc3843a7e2ca',
   })
   const siteLinks = await getMenuById({
-    id: 'ce4ec368-a2be-4bd2-b6b6-b10d48af6109',
+    id: 'd4fcd6b4-d5b4-40b9-97cc-db901ff1f261',
   })
   const popularCasinos = await getMenuById({
-    id: '8448085d-edd3-4c66-abd9-38ef394c71c2',
+    id: 'eb25c93d-f885-413a-b5c2-97a82fd10d66',
   })
   const latestReviews = await getMenuById({
-    id: '249c442e-d010-406b-aae8-e08df2cd257a',
+    id: 'baeabb93-7c82-4503-8c1b-8d8be1060e19',
   })
   const headersList = await headers()
   const pathname =
@@ -88,11 +88,11 @@ export default async function RootLayout({
           />
           <main className={'relative'}>{children}</main>
           <ScrollToTop />
-          {/* <Footer
+          <Footer
             siteLinks={siteLinks}
             popularCasinos={popularCasinos}
             latestReviews={latestReviews}
-          /> */}
+          />
         </Provider>
       </body>
     </html>
