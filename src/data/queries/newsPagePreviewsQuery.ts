@@ -6,8 +6,13 @@ export const newsPagePreviewsQuery = ({
 }: {
   count: number
   offset: number
-}) => `
-  *[_type == 'news-pages'][${offset}..${offset + count - 1}] | order(coalesce(originalPublishedAt, _createdAt) desc) {
+}) => {
+  console.log('offset', offset)
+  console.log('count', count)
+  // const coalesce = `select(_updatedAt == _createdAt => originalModifiedAt, _updatedAt)`
+  const coalesce = `select(originalPublishedAt, _createdAt)`
+  return `
+  *[_type == 'news-pages'] | order(${coalesce} desc)[${offset}..${offset + count - 1}] {
     ${newsPagePreviewProjection}
   }
-`
+`}

@@ -30,7 +30,7 @@ const BreadCrumbs = ({
               itemType="https://schema.org/ListItem"
             >
               <Link
-                href="/public"
+                href="/"
                 itemProp="item"
                 itemType="https://schema.org/WebPage"
                 prefetch={false}

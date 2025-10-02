@@ -48,11 +48,6 @@ const NewsIndex = ({
         </p>
         <div className="mx-auto mt-8 grid max-w-2xl grid-cols-2 gap-x-4 gap-y-6 lg:mx-0 lg:max-w-none lg:grid-cols-3 lg:gap-y-10">
           {newsPages
-            .sort(
-              (a, b) =>
-                new Date(b.originalPublishedAt ?? b._createdAt).getTime() -
-                new Date(a.originalPublishedAt ?? a._createdAt).getTime()
-            )
             .map((post) => (
               <div key={`news-${post._id}`}>
                 <ArticleCard item={post} />
