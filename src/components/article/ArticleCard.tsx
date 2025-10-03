@@ -55,7 +55,7 @@ const ArticleCard = ({
           </div>
         )}
         <Heading
-          sizes={[4, 4, 5]}
+          sizes={[3, 3, 4]}
           level={3}
           text={item.title}
           className="text-gray-900 hover:text-gray-600 my-2 font-bold leading-6"

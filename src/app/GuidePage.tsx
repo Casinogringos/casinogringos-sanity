@@ -101,7 +101,7 @@ export default function GuidePage({
           <Container>
             <Heading
               level={3}
-              sizes={[7, 8, 9]}
+              sizes={[6, 6, 7]}
               className="mb-4 font-bold text-gray-700"
               text="Fler guider"
             />
