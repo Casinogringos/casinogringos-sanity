@@ -27,9 +27,6 @@ export default function GuidePage({
   similarGuidePages: GuidePageSchemaType[]
 }) {
   const isValid = guidePageService.validatePage(page, false)
-  if (!isValid) {
-    return null
-  }
   const headings = guidePageService.getHeadingObjects(page)
   const schema = {
     '@context': 'https://schema.org',
