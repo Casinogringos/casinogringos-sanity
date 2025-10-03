@@ -48,7 +48,7 @@ export default async function Page(props: { params: Params }) {
   if (!slotPage || !slotPage.slot) return notFound()
   const similarSlotPages = await getSimilarSlotPages({
     id: slotPage._id,
-    count: 5,
+    count: 4,
   })
 
   return <SlotPage slotPage={slotPage} similarSlotPages={similarSlotPages} />

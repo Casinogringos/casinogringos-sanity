@@ -22,6 +22,7 @@ import { getOrganizationStructuredData } from '@/src/structured-data/organizatio
 import SlotCard from '@/src/components/slot/SlotCard'
 import { HeadingObjectSchemaType } from '../schemas/headingObject'
 import { slugify } from '../lib/helpers'
+import Placeholder from '../components/utils/Placeholder'
 
 const slotPageService = new SlotPageService()
 const casinoPageService = new CasinoPageService()
@@ -50,6 +51,9 @@ const SlotPage = ({
   }
   const headings = slotPageService.getHeadingObjects(slotPage)
   const { slot } = slotPage
+  if (!slot) return (
+    <Placeholder message="No slot attached to slot page" />
+  )
   const breadcrumbs = [
     {
       text: 'Slots',
@@ -153,7 +157,7 @@ const SlotPage = ({
                       <div className="text-2xl font-semibold text-primary">
                         {
                           slotVolatilityMap[
-                            slot.volatility as keyof typeof slotVolatilityMap
+                          slot.volatility as keyof typeof slotVolatilityMap
                           ]
                         }
                       </div>
@@ -215,7 +219,7 @@ const SlotPage = ({
           </Container>
         )}
         <ModularContent className="py-5" objects={slotPage.content} narrow />
-        {relatedCasinos && (
+        {relatedCasinos.filter((casino) => casino.casino) && (
           <section id="spela" className="bg-dark  py-12 lg:pb-16 lg:pt-20">
             <div className="mx-auto max-w-6xl px-4 text-left lg:px-8">
               <h2 className="mb-2 flex max-w-2xl items-start gap-4 text-xl font-bold text-white lg:max-w-full lg:items-center lg:text-2xl">
@@ -236,7 +240,7 @@ const SlotPage = ({
             <Container>
               <Heading
                 level={3}
-                size={6}
+                sizes={[6, 6, 7]}
                 className={'mb-4 text-gray-700 font-bold'}
                 text="Fler slots"
               />

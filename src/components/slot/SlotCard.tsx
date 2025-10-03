@@ -4,6 +4,8 @@ import Heading from '@/src/components/content/Heading'
 import Image from 'next/image'
 
 const SlotCard = ({ slotPage }: { slotPage: SlotPagePreviewSchemaType }) => {
+  if (!slotPage.slot) return null
+
   return (
     <Link
       className="shadow-md not-prose block rounded-md overflow-hidden"
@@ -24,7 +26,7 @@ const SlotCard = ({ slotPage }: { slotPage: SlotPagePreviewSchemaType }) => {
           className="!mt-0 !p-0 !mb-2"
           level={3}
           text={slotPage.title}
-          size={3}
+          sizes={[3, 3, 4]}
         />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm">
           <div className="flex flex-col items-center">
