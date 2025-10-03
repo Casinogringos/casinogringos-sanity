@@ -13,6 +13,7 @@ const CasinoCard = ({
   casinoPage: CasinoPagePreviewSchemaType
   index: number
 }) => {
+  if (!casinoPage) return null
   const casino = casinoPage.casino
   const casinoService = new CasinoService()
   const { finalRating } = casinoService.getCasinoRatings({ casino })

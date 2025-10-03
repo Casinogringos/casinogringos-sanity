@@ -106,7 +106,7 @@ const CasinoPage = ({
             <Container>
               <Heading
                 level={3}
-                size={6}
+                sizes={[5, 5, 6]}
                 className={'mb-4 text-gray-700 font-bold'}
                 text={'Fler populära casinon'}
               />
@@ -132,6 +132,7 @@ const CasinoPage = ({
                     </div>
                     <Heading
                       level={4}
+                      sizes={[3, 3, 4]}
                       className={'text-gray-700'}
                       text={page.title}
                     />

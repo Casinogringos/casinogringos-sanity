@@ -50,7 +50,7 @@ const CasinoRow = ({
             },
           }}
         >
-          Besök
+          <span className="whitespace-nowrap">Besök</span>
         </Link>
       </div>
       <div className="rounded-b-md bg-white pt-1 text-center text-xs text-gray-400 lg:text-left">

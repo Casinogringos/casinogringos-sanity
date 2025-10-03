@@ -41,23 +41,23 @@ export default async function RootLayout({
   children: ReactNode
 }) {
   const headerMenu = await getMenuById({
-    id: '895b7eb3-dcfe-4321-b0cb-dc88f48d3664',
+    id: '02e7db71-3430-4108-bf0f-4b56dd557b39',
   })
   console.log('headerMenu', headerMenu)
   const sidebarMenu = await getMenuById({
-    id: 'be7218f7-6ab0-4e18-97d1-343a82b8556d',
+    id: '230ed636-9eb2-4a6f-bb24-f97f49907634',
   })
   const sidebarToplist = await getToplistById({
-    id: 'fa9e75e6-eadc-499c-9019-dc3843a7e2ca',
+    id: '719ca05f-52df-4062-9855-36a75c76c245',
   })
   const siteLinks = await getMenuById({
     id: 'd4fcd6b4-d5b4-40b9-97cc-db901ff1f261',
   })
   const popularCasinos = await getMenuById({
-    id: 'eb25c93d-f885-413a-b5c2-97a82fd10d66',
+    id: '4e9fe85c-071c-4227-b36a-3956689cbe9a',
   })
   const latestReviews = await getMenuById({
-    id: 'baeabb93-7c82-4503-8c1b-8d8be1060e19',
+    id: '6623a1bc-1bfa-465e-bd77-6c6283aa4ef0',
   })
   const headersList = await headers()
   const pathname =
@@ -80,19 +80,19 @@ export default async function RootLayout({
       <link rel="icon" href="/favicon.ico" sizes="any" />
       <body className={`${inter.className}`}>
         <Provider>
-          {/* <Navigation
+          <Navigation
             headerMenu={headerMenu}
             sidebarMenu={sidebarMenu}
             sidebarToplist={sidebarToplist}
             pathname={pathname}
-          /> */}
+          />
           <main className={'relative'}>{children}</main>
           <ScrollToTop />
-          {/* <Footer
+          <Footer
             siteLinks={siteLinks}
             popularCasinos={popularCasinos}
             latestReviews={latestReviews}
-          /> */}
+          />
         </Provider>
       </body>
     </html>
