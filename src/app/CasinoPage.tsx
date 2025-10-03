@@ -18,6 +18,7 @@ import { getWebPageStructuredData } from '@/src/structured-data/webPageStructure
 import { getWebSiteStructuredData } from '@/src/structured-data/webSiteStructuredData'
 import { getOrganizationStructuredData } from '@/src/structured-data/organizationStructuredData'
 import { slugify } from '@/src/lib/helpers'
+import Placeholder from '../components/utils/Placeholder'
 
 const CasinoPage = ({
   casinoPage,
@@ -26,7 +27,9 @@ const CasinoPage = ({
   casinoPage: CasinoPageSchemaType
   similarCasinoPages: CasinoPageSchemaType[]
 }) => {
-  console.log('casino ratings', casinoPage.casino.casinoRatings)
+  if (!casinoPage.casino) return (
+    <Placeholder message="No casino attached to casino page" className="my-10" />
+  )
   const casinoPageService = new CasinoPageService()
   const isValid = casinoPageService.validatePage(casinoPage)
   const schema = {

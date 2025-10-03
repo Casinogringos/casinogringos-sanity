@@ -40,12 +40,11 @@ export default async function Navigation({
         <Container>
           <div className="flex items-center gap-x-12 lg:px-0">
             <Link
-              href="/public"
+              href="/"
               prefetch={false}
               aria-current={isCurrentPath(pathname, '/') ? 'page' : undefined}
-              className={`${
-                isCurrentPath(pathname, '/') ? 'text-primary' : 'text-white'
-              }`}
+              className={`${isCurrentPath(pathname, '/') ? 'text-primary' : 'text-white'
+                }`}
             >
               <span className="sr-only">Casinogringos.se</span>
               <Image
@@ -71,11 +70,10 @@ export default async function Navigation({
                         ? 'page'
                         : undefined
                     }
-                    className={`text-nav text-sm uppercase tracking-wider font-medium font-inter hover:text-primary transition ${
-                      isCurrentPath(pathname, item.page.slug.current)
+                    className={`text-nav text-sm uppercase tracking-wider font-medium font-inter hover:text-primary transition ${isCurrentPath(pathname, item.page.slug.current)
                         ? 'text-primary'
                         : 'text-white'
-                    }`}
+                      }`}
                   >
                     {item.label ?? item.page.title}
                   </Link>
