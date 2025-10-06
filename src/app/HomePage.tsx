@@ -28,9 +28,11 @@ const pageService = new PageService()
 const HomePage = ({
   page,
   news,
+  toplistCategory,
 }: {
   page: SubPageSchemaType
   news: NewsPageSchemaType[]
+  toplistCategory: string
 }) => {
   const isValid = pageService.validatePage(page)
   if (!isValid) return null
@@ -63,6 +65,7 @@ const HomePage = ({
               title={page.toplist.title}
               description={page.toplist.description}
               itemComponent={CasinoCard}
+              category={toplistCategory}
             />
           </Container>
         </div>

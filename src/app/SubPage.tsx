@@ -57,6 +57,7 @@ export default function SubPage({ page }: { page: SubPageSchemaType }) {
           casinoPages={toplist.casinos}
           title={toplist.title}
           description={toplist.description}
+          category={toplist.bonusCategory}
         />
       ) : null}
       {/* {faqs && faqs.items.length && (

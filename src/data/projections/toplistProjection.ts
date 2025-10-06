@@ -6,5 +6,6 @@ export const toplistProjection = `
   description,
   casinos[]-> {
     ${casinoPagePreviewProjection}
-  }
+  },
+  bonusCategory
 `

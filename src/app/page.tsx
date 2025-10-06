@@ -42,5 +42,5 @@ export default async function Page() {
   const news = await getNewsPagePreviews({ count: 3, offset: 0 })
 
   if (!homepage) return notFound()
-  return <HomePage page={homepage} news={news} />
+  return <HomePage page={homepage} news={news} toplistCategory={homepage.toplist.bonusCategory} />
 }
