@@ -45,7 +45,7 @@ export const BasePageSchema = z.object({
     .optional(),
   content: ModularContentSchema,
   toplist: ToplistSchema.optional(),
-  categories: z.array(CategorySchema).optional(),
+  bonusCategory: z.string().optional(),
 })
 
 export type BasePageSchemaType = z.infer<typeof BasePageSchema>

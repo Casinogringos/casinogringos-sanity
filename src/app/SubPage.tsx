@@ -50,15 +50,17 @@ export default function SubPage({ page }: { page: SubPageSchemaType }) {
         key="subpage-data"
       />
       <SubPageHero page={page} />
-      {breadcrumbs && <BreadCrumbs items={breadcrumbs} className="mb-16" />}
+      {breadcrumbs && <BreadCrumbs items={breadcrumbs} />}
       {toplist?.casinos?.length ? (
-        <CasinoList
-          itemComponent={CasinoCard}
-          casinoPages={toplist.casinos}
-          title={toplist.title}
-          description={toplist.description}
-          category={toplist.bonusCategory}
-        />
+        <Container className="mb-16">
+          <CasinoList
+            itemComponent={CasinoCard}
+            casinoPages={toplist.casinos}
+            title={toplist.title}
+            description={toplist.description}
+            category={page.bonusCategory ?? ''}
+          />
+        </Container>
       ) : null}
       {/* {faqs && faqs.items.length && (
         <div className="mb-16 bg-dark pb-16 pt-10 mb-16">

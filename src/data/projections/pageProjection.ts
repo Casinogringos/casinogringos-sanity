@@ -39,6 +39,7 @@ export const pageProjection = `
   toplist-> {
     ${toplistProjection}
   },
+  bonusCategory,
   content[] {
     ${objectProjections}
   }

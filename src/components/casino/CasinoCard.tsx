@@ -5,6 +5,10 @@ import Link from '@/src/components/content/Link'
 import CheckBadgeIcon from '@/src/components/icons/CheckBadgeIcon'
 import Paragraph from '@/src/components/content/Paragraph'
 import { CasinoPagePreviewSchemaType } from '@/src/schemas/casinoPagePreview'
+import { divide } from 'lodash'
+import { CasinoBonusSchemaType } from '@/src/schemas/casinoBonus'
+import { OddsBonusSchemaType } from '@/src/schemas/oddsBonus'
+import { LiveCasinoBonusSchemaType } from '@/src/schemas/liveCasinoBonus'
 
 const CasinoCard = ({
   casinoPage,
@@ -22,17 +26,40 @@ const CasinoCard = ({
   const getBonus = () => {
     switch (category) {
       case 'casino-bonus':
-        return casino.casinoBonuses?.[0] ?? false
+        return casino.casinoBonuses?.reduce((acc, bonus) => {
+          if (bonus.bonusAmountRange?.[1].value > acc.bonusAmountRange?.[1].value) {
+            return bonus
+          }
+          return acc
+        }, casino.casinoBonuses[0] as CasinoBonusSchemaType) ?? false
       case 'odds-bonus':
-        return casino.oddsBonuses?.[0] ?? false
+        return casino.oddsBonuses?.reduce((acc, bonus) => {
+          if (bonus.bonusAmountRange[1] > acc.bonusAmountRange[1]) {
+            return bonus
+          }
+          return acc
+        }, casino.oddsBonuses[0] as OddsBonusSchemaType) ?? false
       case 'live-casino-bonus':
-        return casino.liveCasinoBonuses?.[0] ?? false
+        return casino.liveCasinoBonuses?.reduce((acc, bonus) => {
+          if (bonus.maxWinLimit > acc.maxWinLimit) {
+            return bonus
+          }
+          return acc
+        }, casino.liveCasinoBonuses[0] as LiveCasinoBonusSchemaType) ?? false
       default:
         return false
     }
   }
   const bonus = getBonus()
-  console.log('bonus', category)
+  const getFreespins = () => {
+    return casino.freeSpins?.reduce((acc, freeSpin) => {
+      if (freeSpin.numberOfFreeSpins > acc.numberOfFreeSpins) {
+        return freeSpin
+      }
+      return acc
+    }, casino.freeSpins[0]) ?? false
+  }
+  const freeSpins = getFreespins()
 
   return (
     <>
@@ -66,9 +93,9 @@ const CasinoCard = ({
           </div>
           <div className="block text-xs text-black">
             <div className="grid grid-cols-2 gap-2">
-              {bonus ? (
+              {bonus || freeSpins ? (
                 <>
-                  <div className="uppercase flex min-h-[84px] font-medium flex-col items-center justify-center rounded-md border border-green-200 bg-green-100 p-2 text-lg leading-6">
+                  {bonus ? <div className="uppercase flex min-h-[84px] font-medium flex-col items-center justify-center rounded-md border border-green-200 bg-green-100 p-2 text-lg leading-6">
                     <div className="-mb-1 block text-xs text-gray-700">Bonus</div>
                     {bonus ? bonus.minimumDeposit + ' kr' : '-'}
                     {bonus.wageringRequirements && (
@@ -79,30 +106,25 @@ const CasinoCard = ({
                         </span>
                       </div>
                     )}
-                  </div>
-                  <div className="uppercase flex min-h-[84px] flex-col items-center justify-center rounded-md border border-blue-100 bg-blue-50 p-2 text-lg leading-6">
+                  </div> : <div className={"uppercase flex min-h-[84px] font-medium flex-col items-center justify-center rounded-md border border-green-200 bg-green-100 p-2 text-lg leading-6"}>-</div>}
+                  {freeSpins ? <div className="uppercase flex min-h-[84px] flex-col items-center justify-center rounded-md border border-blue-100 bg-blue-50 p-2 text-lg leading-6">
                     <div className="-mb-1 block text-xs text-gray-700">
                       Freespins
                     </div>
-                    {casino.freeSpins?.length ? (
+                    {freeSpins ? (
                       <>
-                        {casino.freeSpins?.[0].numberOfFreeSpins ?? '-'}
+                        {freeSpins.numberOfFreeSpins ?? '-'}
                         <div className="-mt-0.5 flex items-center text-xs font-medium text-gray-700">
                           Omsättning:{' '}
                           <span className="ml-0.5 inline-block text-black">
-                            {casino.freeSpins?.[0].wageringRequirements}x
+                            {freeSpins.wageringRequirements}x
                           </span>
                         </div>
                       </>
                     ) : (
                       '-'
                     )}
-                    {/* {!casino.casinoBonuses?.length && !casino.freeSpins?.length && (
-                  <div className="flex min-h-[84px] items-center justify-center rounded-md border border-blue-100 bg-blue-50 p-3 text-center text-base leading-6">
-                    {casino.name}
-                  </div>
-                )} */}
-                  </div>
+                  </div> : <div className={"uppercase flex min-h-[84px] font-medium flex-col items-center justify-center rounded-md border border-blue-100 bg-blue-50 p-2 text-lg leading-6"}>-</div>}
                 </>
               ) : (
                 <div className='col-span-2 min-h-[84px] font-medium flex flex-col items-center justify-center rounded-md border border-blue-100 bg-blue-50 p-2 text-lg leading-6'>
