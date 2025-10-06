@@ -24,6 +24,7 @@ const CasinoCard = ({
   const casinoService = new CasinoService()
   const { finalRating } = casinoService.getCasinoRatings({ casino })
   const getBonus = () => {
+    if (!category) return false
     switch (category) {
       case 'casino-bonus':
         return casino.casinoBonuses?.reduce((acc, bonus) => {

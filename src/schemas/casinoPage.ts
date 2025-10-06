@@ -10,7 +10,9 @@ export const CasinoPageSchema = BasePageSchema.extend({
   content: ModularContentSchema,
   featuredImage: SanityImageSchema,
   casino: CasinoSchema,
-  affiliateLink: z.string(),
+  affLink: z.object({
+    link: z.string(),
+  }),
   ratingMotivation: PortableTextBlockSchema,
 })
 

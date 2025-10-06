@@ -10,7 +10,9 @@ export const casinoPageProjection = `
   title,
   slug,
   intro,
-  affiliateLink,
+  affLink-> {
+    link
+  }
   publishedAt,
   seoTitle,
   ratingMotivation,

@@ -30,7 +30,7 @@ const GoPage = ({ casinoPage }: { casinoPage: CasinoPageSchemaType }) => {
       />
       <div
         className={
-          'min-h-screen bg-darklight flex items-center flex-col justify-center'
+          'min-h-screen fixed inset-0 bg-darklight z-100 flex items-center flex-col justify-center'
         }
       >
         <Container>
