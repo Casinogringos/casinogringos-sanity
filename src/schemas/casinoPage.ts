@@ -4,15 +4,14 @@ import { ModularContentSchema } from './modularContent'
 import { CasinoSchema } from './casino'
 import { PortableTextBlockSchema } from './portableTextBlock'
 import { SanityImageSchema } from './sanityImage'
+import AffLinkSchema from './affLink'
 
 export const CasinoPageSchema = BasePageSchema.extend({
   _type: z.literal('casino-pages'),
   content: ModularContentSchema,
   featuredImage: SanityImageSchema,
   casino: CasinoSchema,
-  affLink: z.object({
-    link: z.string(),
-  }),
+  affLinks: z.array(AffLinkSchema),
   ratingMotivation: PortableTextBlockSchema,
 })
 

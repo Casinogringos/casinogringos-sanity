@@ -1,5 +1,5 @@
 import { notFound } from 'next/navigation'
-import { getCasinoPageBySlug } from '@/src/lib/api'
+import { getAffiliateLinkBySlug } from '@/src/lib/api'
 import dynamicComponent from 'next/dynamic'
 import { getStaticParams } from '@/src/lib/api'
 import { CasinoPageSchemaType } from '@/src/schemas/casinoPage'
@@ -7,14 +7,15 @@ const GoPage = dynamicComponent(() => import('@/src/app/GoPage'))
 
 const Page = async (props: { params: Promise<{ slug: string }> }) => {
   const params = await props.params
-  const casinoPage = await getCasinoPageBySlug({
+  const affLink = await getAffiliateLinkBySlug({
     slug: `/${params?.slug}`,
   })
-  if (!casinoPage.affiliateLink) {
+  console.log('affLink', affLink)
+  if (!affLink.link) {
     return notFound()
   }
 
-  return <GoPage casinoPage={casinoPage} />
+  return <GoPage affLink={affLink} />
 }
 
 export const metadata = {
@@ -24,15 +25,15 @@ export const metadata = {
   },
 }
 
-export async function generateStaticParams() {
-  const casinoPages: CasinoPageSchemaType[] =
-    await getStaticParams('casino-pages')
+// export async function generateStaticParams() {
+//   const affLinks: CasinoPageSchemaType[] =
+//     await getStaticParams('casino-pages')
 
-  return (
-    casinoPages
-      .filter((page) => page.affiliateLink)
-      .map((page) => ({ slug: page.slug.current })) || []
-  )
-}
+//   return (
+//     casinoPages
+//       .filter((page) => page.affiliateLink)
+//       .map((page) => ({ slug: page.slug.current })) || []
+//   )
+// }
 
 export default Page

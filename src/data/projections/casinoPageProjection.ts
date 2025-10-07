@@ -2,18 +2,24 @@ import { casinoProjection } from '@/src/data/projections/casinoProjection'
 import { objectProjections } from '@/src/data/projections/objectProjections'
 import { imageObjectProjection } from '@/src/data/projections/imageObjectProjection'
 import { authorProjection } from '@/src/data/projections/authorProjection'
+import { affLinkProjection } from '@/src/data/projections/affLinkProjection'
 
 export const casinoPageProjection = `
   _type,
   _id,
   _key,
   title,
-  slug,
+  slug {
+    current
+  },
+  affLinks[] -> {
+    ${affLinkProjection}
+  },
   intro,
-  affLink-> {
-    link
-  }
   publishedAt,
+  featuredImage {
+    ${imageObjectProjection}
+  },
   seoTitle,
   ratingMotivation,
   canonical,

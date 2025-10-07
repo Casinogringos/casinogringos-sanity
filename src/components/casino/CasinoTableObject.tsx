@@ -27,7 +27,7 @@ const CasinoTableObject = ({
         <tbody>
           {casinos.map((casino, index) => (
             <CasinoTableRow
-              key={casino._id}
+              key={`${casino._id}-${index}`}
               casinoPage={casino}
               index={index}
             />

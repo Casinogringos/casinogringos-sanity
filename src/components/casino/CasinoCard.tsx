@@ -20,6 +20,7 @@ const CasinoCard = ({
   category: string
 }) => {
   if (!casinoPage) return null
+  console.log('casinoPage', casinoPage)
   const casino = casinoPage.casino
   const casinoService = new CasinoService()
   const { finalRating } = casinoService.getCasinoRatings({ casino })
@@ -155,12 +156,13 @@ const CasinoCard = ({
                 {' '}
                 Läs recension
               </Link>
-              {casinoPage.affiliateLink && (
+              {casinoPage && (
                 <Link
-                  href={`/go${casinoPage.slug.current}`}
+                  href={`/go${casinoPage.affLinks?.[0].slug.current}`}
                   prefetch={false}
                   variant="affiliate"
                   className="w-full"
+                  target='_blank'
                 >
                   Till {casino.name}
                 </Link>

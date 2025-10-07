@@ -22,6 +22,7 @@ import { newsPageCountQuery } from '@/src/data/queries/newsPageCountQuery'
 import { toplistByIdQuery } from '@/src/data/queries/toplistById'
 import { casinoPagesByCasinosQuery } from '@/src/data/queries/casinoPagesByCasinos'
 import { searchPagePreviewsQuery } from '@/src/data/queries/searchPagePreviewsQuery'
+import { affLinkBySlugQuery } from '../data/queries/affLinkBySlugQuery'
 
 const client = getClient()
 
@@ -323,5 +324,15 @@ export const getAllAuthorPreviews = async () => {
   } catch (e) {
     console.log(e)
     throw Error(`Failed to fetch all author previews`)
+  }
+}
+
+export const getAffiliateLinkBySlug = async ({ slug }: { slug: string }) => {
+  try {
+    const data = await client.fetch(affLinkBySlugQuery({ slug }))
+    return data
+  } catch (e) {
+    console.log(e)
+    throw Error(`Failed to fetch affiliate link by slug: ${slug}`)
   }
 }

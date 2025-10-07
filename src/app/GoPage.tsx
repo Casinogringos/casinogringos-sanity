@@ -6,17 +6,19 @@ import { useEffect } from 'react'
 import Container from '@/src/components/layout/Container'
 import { CasinoPageSchemaType } from '@/src/schemas/casinoPage'
 
-const GoPage = ({ casinoPage }: { casinoPage: CasinoPageSchemaType }) => {
+const GoPage = ({ affLink }: { affLink: AffiliateLinkSchemaType }) => {
   const router = useRouter()
   const goToOperator = () => {
-    router.push(casinoPage.affiliateLink)
+    router.push(affLink.link)
   }
   useEffect(() => {
     setTimeout(function () {
       goToOperator()
     }, 1000)
-    document.body.classList.add('overflow-hidden')
+    // document.body.classList.add('overflow-hidden')
   })
+  const { referencedBy } = affLink
+  console.log('referencedBy', referencedBy)
 
   return (
     <>
@@ -83,8 +85,8 @@ const GoPage = ({ casinoPage }: { casinoPage: CasinoPageSchemaType }) => {
               }
             >
               <Image
-                src={casinoPage.casino.logo.src}
-                alt={casinoPage.casino.logo.altText}
+                src={referencedBy.find((item: any) => item._type === 'casino-pages')?.featuredImage.src}
+                alt={referencedBy.find((item: any) => item._type === 'casino-pages')?.featuredImage.altText}
                 width={160}
                 height={60}
               />
@@ -92,7 +94,7 @@ const GoPage = ({ casinoPage }: { casinoPage: CasinoPageSchemaType }) => {
           </div>
           <p className={'text-center text-lg text-slate-400'}>
             Om du inte blir skickad vidare till{' '}
-            <span className={'italic text-white'}>{casinoPage.title}</span> kan
+            <span className={'italic text-white'}>{referencedBy.title}</span> kan
             du&nbsp;
             <span
               className={'cursor-pointer text-primary'}

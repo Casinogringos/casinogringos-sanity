@@ -1,6 +1,7 @@
 import { casinoProjection } from '@/src/data/projections/casinoProjection'
 import { imageProjection } from './imageProjection'
 import { authorProjection } from './authorProjection'
+import { affLinkProjection } from './affLinkProjection'
 
 export const casinoPagePreviewProjection = `
   _type,
@@ -10,7 +11,9 @@ export const casinoPagePreviewProjection = `
     _type,
     current
   },
-  affiliateLink,
+  affLinks[]-> {
+    ${affLinkProjection}
+  },
   featuredImage {
     ${imageProjection}
   },

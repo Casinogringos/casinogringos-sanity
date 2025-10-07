@@ -22,7 +22,7 @@ const CasinoTableRow = ({
       <td className="text-center font-bold">{bonusString}</td>
       <td className="text-center">
         <Link
-          href={`/go${casinoPage.slug.current}`}
+          href={`/go${casinoPage.affLinks?.[0].slug.current}`}
           target="_blank"
           rel="noopener noreferrer nofollow"
           prefetch={false}
