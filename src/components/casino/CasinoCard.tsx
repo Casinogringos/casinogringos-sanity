@@ -20,7 +20,6 @@ const CasinoCard = ({
   category: string
 }) => {
   if (!casinoPage) return null
-  console.log('casinoPage', casinoPage)
   const casino = casinoPage.casino
   const casinoService = new CasinoService()
   const { finalRating } = casinoService.getCasinoRatings({ casino })
@@ -28,38 +27,20 @@ const CasinoCard = ({
     if (!category) return false
     switch (category) {
       case 'casino-bonus':
-        return casino.casinoBonuses?.reduce((acc, bonus) => {
-          if (bonus.bonusAmountRange?.[1].value > acc.bonusAmountRange?.[1].value) {
-            return bonus
-          }
-          return acc
-        }, casino.casinoBonuses[0] as CasinoBonusSchemaType) ?? false
+        return casino.casinoBonuses?.[0]
       case 'odds-bonus':
-        return casino.oddsBonuses?.reduce((acc, bonus) => {
-          if (bonus.bonusAmountRange[1] > acc.bonusAmountRange[1]) {
-            return bonus
-          }
-          return acc
-        }, casino.oddsBonuses[0] as OddsBonusSchemaType) ?? false
+        return casino.oddsBonuses?.[0]
       case 'live-casino-bonus':
-        return casino.liveCasinoBonuses?.reduce((acc, bonus) => {
-          if (bonus.maxWinLimit > acc.maxWinLimit) {
-            return bonus
-          }
-          return acc
-        }, casino.liveCasinoBonuses[0] as LiveCasinoBonusSchemaType) ?? false
+        return casino.liveCasinoBonuses?.[0]
       default:
         return false
     }
   }
   const bonus = getBonus()
+  console.log('bonus', bonus)
+  console.log('category', category)
   const getFreespins = () => {
-    return casino.freeSpins?.reduce((acc, freeSpin) => {
-      if (freeSpin.numberOfFreeSpins > acc.numberOfFreeSpins) {
-        return freeSpin
-      }
-      return acc
-    }, casino.freeSpins[0]) ?? false
+    return casino.freeSpins[0]
   }
   const freeSpins = getFreespins()
 
