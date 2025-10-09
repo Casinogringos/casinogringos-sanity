@@ -27,7 +27,6 @@ export default function SlotIndex({
 }) {
   const isValidList = slotPageService.validateList(slotPages, true)
   const isValidPage = subPageService.validatePage(page, true)
-  const year = new Date().getFullYear()
   const breadcrumbItems = [
     {
       text: 'Slots',
@@ -43,6 +42,7 @@ export default function SlotIndex({
       getOrganizationStructuredData(),
     ],
   }
+  const year = new Date().getFullYear()
 
   return (
     <>
@@ -50,7 +50,7 @@ export default function SlotIndex({
       <BreadCrumbs narrow={false} items={breadcrumbItems} />
       <div className="pb-12 pt-8 lg:pt-10 bg-slate-100">
         <Container>
-          <Heading level={2} sizes={[7, 7, 8]} text={`Populära slots {year}`} className="mb-6 text-2xl font-bold text-heading" />
+          <Heading level={2} sizes={[7, 7, 8]} text={`Populära slots ${year}`} className="mb-6 text-2xl font-bold text-heading" />
           <div className="mt-4 grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-4">
             {slotPages
               .filter((slotPage: SlotPagePreviewSchemaType) => slotPage.slot)

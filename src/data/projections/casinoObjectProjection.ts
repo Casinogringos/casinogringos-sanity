@@ -1,12 +1,12 @@
-import { casinoProjection } from '@/src/data/projections/casinoProjection'
+import { casinoPagePreviewProjection } from './casinoPagePreviewProjection'
 
 export const casinoObjectProjection = `
   _type == 'casino-object' => {
     _type,
     _id,
     _key,
-    casino-> {
-        ${casinoProjection}
+    casinoPage-> {
+        ${casinoPagePreviewProjection}
     },
     message,
     offer,

@@ -15,6 +15,7 @@ import AuthorBox from '@/src/components/content/AuthorBox'
 import { getHeadingObjectsByPage } from '@/src/lib/helpers'
 import PageService from '@/src/services/SubPageService'
 import { slugify } from '@/src/lib/helpers'
+import { divide } from 'lodash'
 
 const pageService = new PageService()
 
@@ -61,7 +62,7 @@ export default function SubPage({ page }: { page: SubPageSchemaType }) {
             category={page.bonusCategory ?? ''}
           />
         </Container>
-      ) : null}
+      ) : <div className='mb-6' />}
       {/* {faqs && faqs.items.length && (
         <div className="mb-16 bg-dark pb-16 pt-10 mb-16">
           <Container>

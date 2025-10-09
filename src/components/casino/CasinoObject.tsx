@@ -6,11 +6,12 @@ import Placeholder from '@/src/components/utils/Placeholder'
 import Heading from '@/src/components/content/Heading'
 
 const CasinoObject = ({ object }: { object: CasinoObjectSchemaType }) => {
-  const { casino, buttonText, offer, description } = object
+  const { casinoPage, buttonText, offer, description } = object
 
-  if (!casino) {
+  if (!casinoPage) {
     return <Placeholder message={'Casino Object: Missing casino'} />
   }
+  const { casino } = casinoPage
   return (
     <div
       className={
@@ -42,7 +43,7 @@ const CasinoObject = ({ object }: { object: CasinoObjectSchemaType }) => {
         <Link
           variant="affiliate"
           className="w-full"
-          href={`go/${casino.slug.current}`}
+          href={`go${casinoPage.affLinks[0].slug.current}`}
           place="CasinoCard block"
         >
           {buttonText}

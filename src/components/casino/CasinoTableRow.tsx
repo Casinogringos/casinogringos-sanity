@@ -21,7 +21,7 @@ const CasinoTableRow = ({
       <td className="text-center">{casinoPage.title}</td>
       <td className="text-center font-bold">{bonusString}</td>
       <td className="text-center">
-        <Link
+        {casinoPage.affLinks?.[0].slug.current && <Link
           href={`/go${casinoPage.affLinks?.[0].slug.current}`}
           target="_blank"
           rel="noopener noreferrer nofollow"
@@ -38,7 +38,7 @@ const CasinoTableRow = ({
           }}
         >
           Till Casinot
-        </Link>
+        </Link>}
       </td>
     </tr>
   )
