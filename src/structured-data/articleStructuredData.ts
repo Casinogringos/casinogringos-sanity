@@ -15,7 +15,7 @@ const getArticleStructuredData = (page: SubPageSchemaType) => {
     '@type': 'Article',
     mainEntityOfPage: {
       '@type': 'WebPage',
-      '@id': `https://casinogringos.se/${page.slug.current}`,
+      '@id': `https://casinogringos.se${page.slug.current}`,
     },
     headline: page.seoTitle,
     description: page.seoDescription,
