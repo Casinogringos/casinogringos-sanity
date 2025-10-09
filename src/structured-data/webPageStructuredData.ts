@@ -1,4 +1,5 @@
 import { SubPageSchemaType, CasinoPageSchemaType } from '@/src/schemas'
+import { portableTextToPlainText } from '@/src/lib/utils'
 import PageService from '@/src/services/SubPageService'
 import { urlFor } from '@/src/lib/client'
 
@@ -45,7 +46,7 @@ export const getWebPageStructuredData = (
       name: page.reviewer.name,
       email: page.reviewer.email,
       jobTitle: page.reviewer.jobTitle,
-      description: page.reviewer.description,
+      description: portableTextToPlainText(page.reviewer.description),
       url: `https://casinogringos.se/om-oss/${page.reviewer.slug}`,
       sameAs: [page.reviewer.linkedIn],
     },

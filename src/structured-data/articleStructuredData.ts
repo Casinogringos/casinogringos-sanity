@@ -12,7 +12,7 @@ const getArticleStructuredData = (page: SubPageSchemaType) => {
     },
     headline: page.seoTitle,
     description: page.seoDescription,
-    image: urlFor(page.seoImage),
+    image: urlFor(page.seoImage).url(),
     author: {
       '@type': 'Organization',
       name: 'Casinogringos',

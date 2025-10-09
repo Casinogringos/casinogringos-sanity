@@ -137,7 +137,7 @@ const CasinoCard = ({
                 {' '}
                 Läs recension
               </Link>
-              {casinoPage && (
+              {casinoPage.affLinks?.[0] && (
                 <Link
                   href={`/go${casinoPage.affLinks?.[0].slug.current}`}
                   prefetch={false}

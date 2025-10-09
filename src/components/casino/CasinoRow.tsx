@@ -33,8 +33,8 @@ const CasinoRow = ({
             {casinoService.getBonusString(casinoPage)}
           </span>
         </div>
-        <Link
-          href={`/go/${casinoPage.slug.current}`}
+        {casinoPage.affLinks?.[0] && <Link
+          href={`/go${casinoPage.affLinks?.[0].slug.current}`}
           target="_blank"
           rel="noopener noreferrer nofollow"
           prefetch={false}
@@ -51,7 +51,7 @@ const CasinoRow = ({
           }}
         >
           <span className="whitespace-nowrap">Besök</span>
-        </Link>
+        </Link>}
       </div>
       <div className="rounded-b-md bg-white pt-1 text-center text-xs text-gray-400 lg:text-left">
         18+ | Spela ansvarsfullt |{' '}
