@@ -3,6 +3,13 @@ import { urlFor } from '@/src/lib/client'
 
 const getArticleStructuredData = (page: SubPageSchemaType) => {
   if (!page.author) return null
+  const dev = process.env.DEV === 'true'
+  let seoImage
+  if (dev) {
+    seoImage = page.seoImage?.src ? page.seoImage.src : ''
+  } else {
+    seoImage = page.seoImage.src
+  }
 
   return {
     '@type': 'Article',
@@ -12,7 +19,7 @@ const getArticleStructuredData = (page: SubPageSchemaType) => {
     },
     headline: page.seoTitle,
     description: page.seoDescription,
-    image: page.seoImage.src,
+    image: seoImage,
     author: {
       '@type': 'Organization',
       name: 'Casinogringos',
