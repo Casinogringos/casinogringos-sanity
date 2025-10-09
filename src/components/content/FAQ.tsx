@@ -37,6 +37,7 @@ const FAQ = ({
           >
             <ToggleButton
               id={item._key}
+              group={'faq'}
               role={'button'}
               label={item.question}
               className="w-full"

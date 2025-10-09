@@ -12,6 +12,7 @@ const ToggleButton = ({
   className,
   childClassName,
   children,
+  group,
 }: {
   id: string
   rotate?: boolean
@@ -20,6 +21,7 @@ const ToggleButton = ({
   className?: string
   childClassName?: string
   children: ReactNode
+  group: 'faq' | undefined
 }) => {
   const dispatch = useAppDispatch()
   const { toggleIds } = useAppSelector((state) => state.toggle)

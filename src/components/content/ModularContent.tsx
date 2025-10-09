@@ -54,7 +54,7 @@ const renderObject = (
       const proseColorOverrides =
         backgroundColor === 'blue' ? 'dark-bg' : 'light-bg'
       return (
-        <div className={'text-base'}>
+        <div className={'text-base leading-paragraph'}>
           <PortableText value={object.content} />
         </div>
       )

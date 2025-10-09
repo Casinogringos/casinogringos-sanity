@@ -130,6 +130,8 @@
 
     --font-size-md: 16px;
     --font-size-2xs: 9px;
+
+    --leading-paragraph: 28px;
 }
 
 .tooltip {

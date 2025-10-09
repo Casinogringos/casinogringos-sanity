@@ -18,7 +18,7 @@ const Paragraph = ({
       dangerouslySetInnerHTML={{
         __html: sanitizedContent,
       }}
-      className={className}
+      className={`${className} leading-paragraph`}
     />
   )
 }
