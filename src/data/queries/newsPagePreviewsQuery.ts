@@ -7,8 +7,6 @@ export const newsPagePreviewsQuery = ({
   count: number
   offset: number
 }) => {
-  console.log('offset', offset)
-  console.log('count', count)
   // const coalesce = `select(_updatedAt == _createdAt => originalModifiedAt, _updatedAt)`
   const coalesce = `select(originalPublishedAt, _createdAt)`
   return `

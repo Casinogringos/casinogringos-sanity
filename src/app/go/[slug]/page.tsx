@@ -10,7 +10,6 @@ const Page = async (props: { params: Promise<{ slug: string }> }) => {
   const affLink = await getAffiliateLinkBySlug({
     slug: `/${params?.slug}`,
   })
-  console.log('affLink', affLink)
   if (!affLink.link) {
     return notFound()
   }

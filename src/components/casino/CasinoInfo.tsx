@@ -20,14 +20,6 @@ const CasinoInfo = ({ casinoPage }: { casinoPage: CasinoPageSchemaType }) => {
   const { quickFacts } = casinoService.getQuickFacts({
     casino: casinoPage.casino,
   })
-  console.log(
-    'casinoPage.casino.availableDepositMethods',
-    casinoPage.casino.availableDepositMethods
-  )
-  console.log(
-    'casinoPage.casino.availableWithdrawalMethods',
-    casinoPage.casino.availableWithdrawalMethods
-  )
   const depositMethodsPages = casinoPage.casino.availableDepositMethods.reduce(
     (acc, item) => {
       acc.push(item.depositMethodPages[0])

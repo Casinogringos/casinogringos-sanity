@@ -21,7 +21,6 @@ const ToggleButton = ({
   const handleToggle = () => {
     dispatch(toggleId(id))
   }
-  // console.log('toggle ids', toggleIds)
 
   return (
     <>

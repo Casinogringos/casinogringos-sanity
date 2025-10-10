@@ -30,7 +30,6 @@ const ToggleButton = ({
   const handleToggle = () => {
     dispatch(group === 'faq' ? toggleIdFaq(id) : toggleId(id))
   }
-  // console.log('toggle ids', toggleIds)
 
   return (
     <>

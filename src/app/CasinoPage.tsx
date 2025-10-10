@@ -47,7 +47,6 @@ const CasinoPage = ({
     },
   ]
   const headings = getHeadingObjectsByPage({ objects: casinoPage.content })
-  console.log('casino pages', similarCasinoPages)
 
   return (
     <>

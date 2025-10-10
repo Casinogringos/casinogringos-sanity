@@ -79,7 +79,6 @@ class CasinoService {
         : 0
     const finalRating =
       validRatings.length >= 5 ? overallScore : casino?.overallRating
-    console.log('final rating', finalRating)
     return { finalRating: typeof finalRating === 'string' ? Number(finalRating) : finalRating, validRatings, ratings, ratingKeys: this.ratingKeys }
   }
   getQuickFacts({ casino }: { casino: CasinoSchemaType }): {
@@ -96,7 +95,6 @@ class CasinoService {
       {
         label: 'SWISH',
         value: [casino.availableDepositMethods.depositMethodPages, casino.availableWithdrawalMethods.withdrawalMethodPages].some((methodType) => methodType?.some((method) => {
-          console.log('method', method)
           return method.paymentMethod.slug.current === 'swish'
         })) ? 'Ja' : 'Nej',
       },
@@ -117,7 +115,6 @@ class CasinoService {
   }
   getBonusString({ casino }: { casino: CasinoSchemaType }): string {
     const bonus = casino.casinoBonuses?.[0]?.bonusAmountRange[1]?.value ?? null
-    console.log('bonus', bonus)
     const freeSpins = casino.freeSpins?.[0]?.numberOfFreeSpins ?? null
     let finalString = ''
     let bonusString = ''

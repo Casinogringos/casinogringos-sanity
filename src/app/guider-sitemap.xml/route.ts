@@ -13,7 +13,6 @@ export async function GET() {
     slug: '/guider',
   })
   const guidePages: GuidePageSchemaType[] = await getSitemap('guide-pages')
-  console.log('guidePages', guidePages)
   const itemsPages = guidePages.map((page) => {
     const contentImages = imageService.getImagesFromModularContent(page.content)
     const pageImages = guidePageService.getImagesFromPage(page)
@@ -25,7 +24,6 @@ export async function GET() {
       allImages.push(...pageImages)
     }
     const imagesXML: IImageEntry[] = imageService.getImagesXML(allImages)
-    console.log('imagesXML', imagesXML)
 
     return {
       loc: `${process.env.SITE_URL}${page.slug.current}`,
@@ -42,7 +40,6 @@ export async function GET() {
       allImages.push(...contentImages)
     }
     const imagesXML: IImageEntry[] = imageService.getImagesXML(allImages).filter((image) => image !== null)
-    console.log('imagesXML', imagesXML)
 
     return {
       loc: `${process.env.SITE_URL}${guidesIndexPage.slug.current}`,

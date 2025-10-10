@@ -12,7 +12,6 @@ const RatingObject = ({
   object: RatingObjectSchemaType
   casino: CasinoSchemaType
 }) => {
-  console.log('rating object', object)
   const rating = casino.casinoRatings?.find(
     (rating) => rating.ratingType === object.rating
   )?.rating

@@ -21,8 +21,6 @@ const Avatar = ({
   shareTitle: string
   createdAt: number | null
 }) => {
-  console.log('modifiedAt', modifiedAt)
-  console.log('createdAt', createdAt)
   const { avatar } = author
   if (!avatar) return <Placeholder message="No author avatar" />
 

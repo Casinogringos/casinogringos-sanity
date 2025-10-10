@@ -88,7 +88,6 @@ const Footer = ({
   latestReviews: { items: { page: { _id: string; slug: { current: string; }, title: string } }[] }
 }) => {
   const year = new Date().getFullYear()
-  console.log('siteLinks', siteLinks)
 
   return (
     <footer className="bg-dark" aria-labelledby="footer-heading">
@@ -105,8 +104,6 @@ const Footer = ({
               <ul role="list" className="mt-6 space-y-4">
                 {siteLinks.items.map((item, i) => {
                   const { page } = item
-                  console.log('item', item)
-                  console.log('page', page)
                   if (!page) return null
                   return (
                     <li key={`site-link-${page._id}-${i}`}>

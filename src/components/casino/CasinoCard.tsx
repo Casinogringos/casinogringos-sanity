@@ -37,8 +37,6 @@ const CasinoCard = ({
     }
   }
   const bonus = getBonus()
-  console.log('bonus', bonus)
-  console.log('category', category)
   const getFreespins = () => {
     return casino.freeSpins[0]
   }

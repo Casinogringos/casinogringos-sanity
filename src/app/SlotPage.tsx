@@ -39,7 +39,6 @@ const SlotPage = ({
     similarSlotPages,
     true
   )
-  console.log('slotpage', slotPage)
   const schema = {
     '@context': 'https://schema.org',
     '@graph': [

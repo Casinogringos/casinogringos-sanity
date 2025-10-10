@@ -11,7 +11,6 @@ const ArticleHeader = ({
 }: {
   article: NewsPageSchemaType | GuidePageSchemaType
 }) => {
-  console.log('article', article)
   return (
     <>
       <Heading

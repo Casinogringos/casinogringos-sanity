@@ -90,7 +90,6 @@ const Item = ({ item }: { item: ItemSchemaType }) => {
 }
 
 const SliderObject = ({ object }: { object: SliderObjectSchemaType }) => {
-  console.log('slider object', object)
   const { category, items } = object
   const manualItems =
     items?.map((item, index): ItemSchemaType => {

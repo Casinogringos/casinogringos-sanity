@@ -85,19 +85,15 @@ abstract class BasePageService<
         const originalPublishedAt = page.originalPublishedAt
             ? new Date(page.originalPublishedAt).getTime()
             : null
-        console.log('originalPublishedAt', originalPublishedAt)
         const originalModifiedAt = page.originalModifiedAt
             ? new Date(page.originalModifiedAt).getTime()
             : null
-        console.log('originalModifiedAt', originalModifiedAt)
         const newCreatedAt = page._createdAt
             ? new Date(page._createdAt).getTime()
             : null
-        console.log('newCreatedAt', newCreatedAt)
         const newUpdatedAt = page._updatedAt
             ? new Date(page._updatedAt).getTime()
             : null
-        console.log('newUpdatedAt', newUpdatedAt)
         if (
             (!originalPublishedAt && !newCreatedAt) ||
             (!originalModifiedAt && !newUpdatedAt)

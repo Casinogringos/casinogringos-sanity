@@ -51,7 +51,6 @@ const renderObject = (
       )
     }
     case 'paragraph-object': {
-      console.log('backgroundColor', backgroundColor)
       const proseColorOverrides =
         backgroundColor === 'blue' ? 'dark-bg' : 'light-bg'
       return (

@@ -82,7 +82,6 @@ const Link = ({
   }
   const dispatch = useAppDispatch()
   const closeMenu = useCallback(() => {
-    console.log('closeMenu')
     dispatch(closingMainMenu())
     setTimeout(() => {
       dispatch(closeMainMenu())
@@ -91,7 +90,6 @@ const Link = ({
     document.body.classList.remove('overflow-hidden')
   }, [dispatch])
   const runActions = () => {
-    console.log('runActions')
     if (!actions) return
     for (const action of actions) {
       switch (action) {

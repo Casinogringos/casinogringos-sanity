@@ -18,7 +18,6 @@ const faqSlice = createSlice({
       if (state.toggleIds.includes(action.payload)) {
         state.toggleIds = state.toggleIds.filter((id) => id !== action.payload)
       } else {
-        console.log('toggle id', action.payload)
         state.toggleIds = [action.payload]
       }
     },

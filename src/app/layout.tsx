@@ -43,7 +43,6 @@ export default async function RootLayout({
   const headerMenu = await getMenuById({
     id: '02e7db71-3430-4108-bf0f-4b56dd557b39',
   })
-  console.log('headerMenu', headerMenu)
   const sidebarMenu = await getMenuById({
     id: '230ed636-9eb2-4a6f-bb24-f97f49907634',
   })
@@ -62,7 +61,6 @@ export default async function RootLayout({
   const headersList = await headers()
   const pathname =
     headersList.get('x-pathname') || headersList.get('x-url') || ''
-  // console.log('pathname', pathname)
   // const footerNav = await getMenuById({ id: 'dGVybToxNA==' })
   // const footerSites = await getMenuById({
   //   id: 'dGVybToxNzMx',

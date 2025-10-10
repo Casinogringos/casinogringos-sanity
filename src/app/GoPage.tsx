@@ -18,7 +18,6 @@ const GoPage = ({ affLink }: { affLink: AffiliateLinkSchemaType }) => {
     // document.body.classList.add('overflow-hidden')
   })
   const { referencedBy } = affLink
-  console.log('referencedBy', referencedBy)
 
   return (
     <>

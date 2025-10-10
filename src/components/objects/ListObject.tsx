@@ -29,7 +29,6 @@ const ListObject = ({
       </div>
     )
   }
-  console.log('object', object.icon)
   return (
     <div className={`not-prose ${className}`}>
       <ul className="p-0">
