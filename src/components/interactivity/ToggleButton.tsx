@@ -3,6 +3,7 @@
 import { type ReactNode } from 'react'
 import { useAppDispatch, useAppSelector } from '@/src/store/hooks'
 import { toggleId } from '@/src/store/toggleSlice'
+import { toggleId as toggleIdFaq } from '@/src/store/faqSlice'
 
 const ToggleButton = ({
   id,
@@ -24,10 +25,10 @@ const ToggleButton = ({
   group?: 'faq' | undefined
 }) => {
   const dispatch = useAppDispatch()
-  const { toggleIds } = useAppSelector((state) => state.toggle)
+  const { toggleIds } = useAppSelector((state) => group === 'faq' ? state.faq : state.toggle)
   const isOpen = toggleIds.includes(id)
   const handleToggle = () => {
-    dispatch(toggleId(id))
+    dispatch(group === 'faq' ? toggleIdFaq(id) : toggleId(id))
   }
   // console.log('toggle ids', toggleIds)
 

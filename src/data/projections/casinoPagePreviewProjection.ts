@@ -12,7 +12,7 @@ export const casinoPagePreviewProjection = `
     current
   },
   affLinks[]-> {
-    ${affLinkProjection}
+    ${affLinkProjection} 
   },
   featuredImage {
     ${imageProjection}

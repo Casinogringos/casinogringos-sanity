@@ -55,7 +55,7 @@ const FAQ = ({
               </div>
             </ToggleButton>
           </div>
-          <ToggleItem id={item._key}>
+          <ToggleItem id={item._key} group={'faq'}>
             <div className="bg-light-blue no-prose p-5 text-white rounded-md mb-2">
               <PortableText value={item.answer} />
             </div>

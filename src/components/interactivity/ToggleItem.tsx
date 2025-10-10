@@ -8,13 +8,15 @@ const ToggleItem = ({
   children,
   className,
   reverse = false,
+  group
 }: {
   id: string
   children: ReactNode
   className?: string
   reverse?: boolean
+  group?: 'toggle' | 'faq'
 }) => {
-  const { toggleIds } = useAppSelector((state) => state.toggle)
+  const { toggleIds } = useAppSelector((state) => group === 'faq' ? state.faq : state.toggle)
   const isOpen = toggleIds.includes(id)
   const toggleClass = isOpen && reverse ? 'hidden' : isOpen && !reverse ? 'block' : reverse ? 'block' : 'hidden'
 
