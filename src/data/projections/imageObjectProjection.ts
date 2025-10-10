@@ -8,6 +8,7 @@ export const imageObjectProjection = `
     internalLink {
         slug
     },
-    externalLink
+    externalLink,
+    maxWidth
   }
 `

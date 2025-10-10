@@ -15,6 +15,7 @@ export const ImageObjectSchema = z.object({
     })
     .optional(),
   externalLink: z.string().optional(),
+  maxWidth: z.number().optional(),
 })
 
 export type ImageObjectSchemaType = z.infer<typeof ImageObjectSchema>

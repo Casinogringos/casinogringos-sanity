@@ -21,7 +21,7 @@ const SlotCard = ({ slotPage }: { slotPage: SlotPagePreviewSchemaType }) => {
           className={'min-h-full min-w-full object-cover'}
         />
       </div>
-      <div className="p-4 flex flex-col items-center">
+      <div className="p-4 flex flex-col items-center text-center">
         <Heading
           className="!mt-0 !p-0 !mb-2"
           level={3}

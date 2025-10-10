@@ -65,7 +65,7 @@ const HowToObject = ({ object }: { object: HowToObjectSchemaType }) => {
                     </strong>
                   )}
                   {row.description && (
-                    <div>
+                    <div className='text-base'>
                       <PortableText
                         key={`how-to-paragraph-${rowIndex}`}
                         value={row.description}

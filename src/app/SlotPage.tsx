@@ -126,7 +126,7 @@ const SlotPage = ({
                 )}
                 <Heading
                   level={1}
-                  size={7}
+                  sizes={[6, 6, 7]}
                   text={slotPage.title}
                   className="mb-0 mt-1 font-bold text-white"
                 />

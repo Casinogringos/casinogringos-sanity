@@ -52,7 +52,7 @@ const HomePageHero = ({ page }: { page: SubPageSchemaType }) => {
                   <Link
                     href={item.link}
                     prefetch={false}
-                    className="group relative flex items-center justify-center gap-4 overflow-hidden rounded-md bg-white p-4 transition md:gap-2.5 lg:h-[58px] lg:p-3.5"
+                    className="group relative flex font-bold items-center justify-center gap-4 overflow-hidden rounded-md bg-white p-4 transition md:gap-2.5 lg:h-[58px] lg:p-3.5"
                   >
                     {item.icon}
                     {item.label}

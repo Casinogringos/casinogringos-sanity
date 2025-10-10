@@ -23,7 +23,7 @@ const RatingObject = ({
       <div className="flex items-center justify-between mb-2">
         <Heading
           text={object.title}
-          size={6}
+          sizes={[5, 5, 6]}
           className="not-prose font-bold"
           level={2}
         />
@@ -39,7 +39,7 @@ const RatingObject = ({
           )}
         </div>
       </div>
-      <div className="rounded-md bg-slate-100 p-4 not-prose">
+      <div className="rounded-md bg-slate-100 p-4 not-prose text-base">
         <p className="font-bold">Motivering till betyget:</p>
         <PortableText value={object.motivation} />
       </div>

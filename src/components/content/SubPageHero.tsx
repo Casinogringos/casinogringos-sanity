@@ -9,7 +9,7 @@ const SubPageHero = ({ page }: { page: SubPageSchemaType }) => {
   const { title } = page
 
   return (
-    <div className="relative bg-dark">
+    <div className="relative bg-darklight">
       <Container>
         <div className="py-6 lg:pt-12 lg:pb-14 text-white">
           <Heading

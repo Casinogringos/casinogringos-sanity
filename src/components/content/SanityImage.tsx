@@ -11,6 +11,7 @@ const SanityImage = ({
   priority = false,
   prose = true,
   rounded = 'md',
+  maxWidth,
 }: {
   image: ImageObjectSchemaType
   width?: number
@@ -19,6 +20,7 @@ const SanityImage = ({
   priority?: boolean
   prose?: boolean
   rounded?: 'sm' | 'md' | 'lg'
+  maxWidth?: number
 }) => {
   if (!image?.src) {
     return <Placeholder message={'Sanity Image: Missing image src'} />
@@ -32,7 +34,7 @@ const SanityImage = ({
     lg: 'rounded-lg',
   }
   return (
-    <div className={`${className} ${prose ? '' : 'not-prose'}`}>
+    <div className={`${className} ${prose ? '' : 'not-prose'} flex items-center justify-center`}>
       <Image
         src={image.src}
         alt={image.alt}
@@ -40,6 +42,7 @@ const SanityImage = ({
         width={width}
         height={height}
         className={roundedClasses[rounded]}
+        style={{ maxWidth: maxWidth ?? '100%' }}
       />
       {image.caption && (
         <div className="text-sm text-slate-500 text-center mt-2">

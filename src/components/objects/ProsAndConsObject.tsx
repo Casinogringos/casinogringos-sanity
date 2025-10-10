@@ -16,7 +16,7 @@ const ProsAndConsObject = ({
             text={'Fördelar'}
             className="font-bold mb-2"
             level={2}
-            size={5}
+            sizes={[5, 5, 6]}
           />
           {object.pros.map((pro, index) => (
             <div
@@ -24,7 +24,7 @@ const ProsAndConsObject = ({
               key={`pros-${index}`}
             >
               <Check className="mr-2 h-6 w-6 flex-shrink-0 text-green-700" />
-              <p>{pro}</p>
+              <p className='leading-paragraph text-base'>{pro}</p>
             </div>
           ))}
         </div>
@@ -33,7 +33,7 @@ const ProsAndConsObject = ({
             text={'Nackdelar'}
             className="font-bold mb-2"
             level={2}
-            size={5}
+            sizes={[5, 5, 6]}
           />
           {object.cons.map((con, index) => (
             <div
@@ -41,7 +41,7 @@ const ProsAndConsObject = ({
               key={`cons-${index}`}
             >
               <X className="mr-2 h-6 w-6 flex-shrink-0 text-red-700" />
-              <p>{con}</p>
+              <p className='leading-paragraph text-base'>{con}</p>
             </div>
           ))}
         </div>

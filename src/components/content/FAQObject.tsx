@@ -24,6 +24,7 @@ const FAQObject = ({ object }: { object: FAQObjectType }) => {
                   <Heading
                     text={item.question}
                     level={3}
+                    sizes={[3, 3, 4]}
                     className="font-bold"
                   />
                   <ToggleSpin id={item._key}>
@@ -33,7 +34,7 @@ const FAQObject = ({ object }: { object: FAQObjectType }) => {
               </ToggleButton>
             </div>
             <ToggleItem id={item._key}>
-              <div className="bg-slate-100 p-4 rounded-b-md">
+              <div className="bg-slate-100 p-4 text-base leading-paragraph rounded-b-md">
                 <PortableText value={item.answer} />
               </div>
             </ToggleItem>

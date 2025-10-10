@@ -36,7 +36,8 @@ const renderObject = (
   casino?: CasinoSchemaType,
   backgroundColor?: string,
   narrow?: boolean,
-  prose?: boolean
+  prose?: boolean,
+  nested?: boolean,
 ) => {
   if (!object) return null
   switch (object._type) {
@@ -131,11 +132,11 @@ const renderObject = (
 const ModularContent = async ({
   objects,
   className = '',
-  nested,
   casino,
   backgroundColor,
   narrow,
   prose = true,
+  nested = false,
 }: {
   objects: ModularContentSchemaType
   className?: string
@@ -165,7 +166,8 @@ const ModularContent = async ({
                 casino,
                 backgroundColor,
                 narrow,
-                prose
+                prose,
+                nested
               )}
             </Fragment>
           )

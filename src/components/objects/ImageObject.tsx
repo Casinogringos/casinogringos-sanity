@@ -17,7 +17,9 @@ const ImageObject = ({
       image={object}
       className={className}
       prose={prose}
-      rounded={rounded}
+      width={1200}
+      height={600}
+      maxWidth={object.maxWidth}
     />
   )
 }

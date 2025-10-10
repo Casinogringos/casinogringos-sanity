@@ -105,11 +105,11 @@ const CasinoInfo = ({ casinoPage }: { casinoPage: CasinoPageSchemaType }) => {
             return (
               rating > 0 && (
                 <div key={key}>
-                  <span className="lg:text-md text-slate-600 mb-2 flex items-center gap-3 text-sm font-normal">
+                  <span className="lg:text-md text-dark mb-2 flex items-center gap-3 text-sm font-normal">
                     <Image src={imgSrc} width={20} height={20} alt={label} />{' '}
                     {label}
-                    <p className="mb-0 ml-auto font-normal text-slate-500">
-                      <strong className="text-lg text-black">
+                    <p className="mb-0 ml-auto font-normal">
+                      <strong className="text-lg text-dark">
                         {ratings[key]}
                       </strong>
                       /5
@@ -268,7 +268,7 @@ const CasinoInfo = ({ casinoPage }: { casinoPage: CasinoPageSchemaType }) => {
         </>
       )}
       {casinoPage.casino.contactMethods &&
-      casinoPage.casino.contactMethods.length > 0 ? (
+        casinoPage.casino.contactMethods.length > 0 ? (
         <>
           <Heading
             level={2}

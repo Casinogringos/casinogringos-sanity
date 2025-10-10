@@ -105,7 +105,7 @@ class CasinoService {
         value: casino.contactMethods.some((method) => method.slug.current.includes('live-chat')) ? 'Ja' : 'Nej',
       },
       {
-        label: 'LANSERADSEDE',
+        label: 'LANSERADES',
         value: new Date(casino.launchDate).toLocaleDateString('sv-SE', { year: 'numeric' }),
       },
       {
