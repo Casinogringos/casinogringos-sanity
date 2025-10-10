@@ -7,11 +7,10 @@ import Heading from '@/src/components/content/Heading'
 
 const CasinoObject = ({ object }: { object: CasinoObjectSchemaType }) => {
   const { casinoPage, buttonText, offer, description } = object
-
-  if (!casinoPage) {
+  const { casino } = casinoPage ?? {}
+  if (!casino) {
     return <Placeholder message={'Casino Object: Missing casino'} />
   }
-  const { casino } = casinoPage
   return (
     <div
       className={
