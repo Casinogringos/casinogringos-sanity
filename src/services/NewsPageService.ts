@@ -10,7 +10,7 @@ class NewsPageService extends BasePageService<NewsPageSchemaType | NewsPagePrevi
     parse = preview ? NewsPagePreviewSchema.safeParse(page) : NewsPageSchema.safeParse(page)
     // if (!parse) return false
     if (!parse.success) {
-      console.log(`Invalid news page:\n${page.title}\n`, parse.error)
+      // console.log(`Invalid news page:\n${page.title}\n`, parse.error)
       // return false
     }
     return true
@@ -22,7 +22,7 @@ class NewsPageService extends BasePageService<NewsPageSchemaType | NewsPagePrevi
       parse = preview ? NewsPagePreviewSchema.safeParse(page) : NewsPageSchema.safeParse(page)
       // if (!parse) return false
       if (!parse.success) {
-        console.log(`Invalid news page:\n${page.title}\n`, parse.error)
+        // console.log(`Invalid news page:\n${page.title}\n`, parse.error)
         // return false
       }
     }

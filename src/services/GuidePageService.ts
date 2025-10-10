@@ -10,7 +10,7 @@ class GuidePageService extends BasePageService<GuidePageSchemaType | GuidePagePr
       ? GuidePagePreviewSchema.safeParse(page)
       : GuidePageSchema.safeParse(page)
     if (!parse.success) {
-      console.log(`Invalid guide page:\n${page.title}\n`, parse.error)
+      // console.log(`Invalid guide page:\n${page.title}\n`, parse.error)
       // return false
     }
     return true
@@ -27,7 +27,7 @@ class GuidePageService extends BasePageService<GuidePageSchemaType | GuidePagePr
         : GuidePageSchema.safeParse(item)
       // if (!parse) return false
       if (!parse.success) {
-        console.log(`Invalid guide page:\n${item.title}\n`, parse.error)
+        // console.log(`Invalid guide page:\n${item.title}\n`, parse.error)
         // return false
       }
     }

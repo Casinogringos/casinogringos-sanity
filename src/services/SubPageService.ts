@@ -10,7 +10,7 @@ class SubPageService extends BasePageService<SubPageSchemaType | SubPagePreviewS
   ): boolean {
     const parse = SubPageSchema.safeParse(page)
     if (!parse.success) {
-      console.log(`Invalid page:\n${page.title}\n`, parse.error.format())
+      // console.log(`Invalid page:\n${page.title}\n`, parse.error.format())
       for (const err of parse.error.errors) {
         if (err.code === 'invalid_union_discriminator') {
           const offendingObject = _.get(page, err.path);
@@ -27,7 +27,7 @@ class SubPageService extends BasePageService<SubPageSchemaType | SubPagePreviewS
       parse = SubPageSchema.safeParse(page)
       // if (!parse) return false
       if (!parse.success) {
-        console.log(`Invalid page:\n${page.title}\n`, parse.error)
+        // console.log(`Invalid page:\n${page.title}\n`, parse.error)
         // return false
       }
     }

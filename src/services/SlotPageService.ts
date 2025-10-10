@@ -25,7 +25,7 @@ class SlotPageService extends BasePageService<SlotPageSchemaType | SlotPagePrevi
       parse = SlotPagePreviewSchema.safeParse(page)
       // if (!parse) return false
       if (!parse.success) {
-        console.log(`Invalid slot page:\n${page.title}\n`, parse.error)
+        // console.log(`Invalid slot page:\n${page.title}\n`, parse.error)
         // return false
       }
     }

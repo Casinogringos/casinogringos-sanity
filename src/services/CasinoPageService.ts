@@ -11,7 +11,7 @@ class CasinoPageService extends BasePageService<CasinoPageSchemaType | CasinoPag
   validatePage(page: CasinoPageSchemaType, preview: boolean = false) {
     const parse = CasinoPageSchema.safeParse(page)
     if (!parse.success) {
-      console.log(`Invalid casino page schema:\n${page.title}\n`, parse.error)
+      // console.log(`Invalid casino page schema:\n${page.title}\n`, parse.error)
       // return false
     }
     return true
@@ -22,7 +22,7 @@ class CasinoPageService extends BasePageService<CasinoPageSchemaType | CasinoPag
       parse = preview ? CasinoPagePreviewSchema.safeParse(page) : CasinoPageSchema.safeParse(page)
       // if (!parse) return false
       if (!parse.success) {
-        console.log(`Invalid casino page schema:\n${page.title}\n`, parse.error)
+        // console.log(`Invalid casino page schema:\n${page.title}\n`, parse.error)
         // return false
       }
     }
