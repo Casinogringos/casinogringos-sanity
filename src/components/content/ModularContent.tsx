@@ -38,6 +38,7 @@ const renderObject = (
   narrow?: boolean,
   prose?: boolean,
   nested?: boolean,
+  bonusCategory?: string,
 ) => {
   if (!object) return null
   switch (object._type) {
@@ -78,7 +79,7 @@ const renderObject = (
       return <CasinoObject object={object} />
     }
     case 'casino-table-object': {
-      return <CasinoTableObject object={object} />
+      return <CasinoTableObject object={object} bonusCategory={bonusCategory} />
     }
     case 'bonus-object': {
       if (!object.casino) {
@@ -131,6 +132,7 @@ const renderObject = (
 const ModularContent = async ({
   objects,
   className = '',
+  bonusCategory,
   casino,
   backgroundColor,
   narrow,
@@ -141,6 +143,7 @@ const ModularContent = async ({
   className?: string
   nested?: boolean
   casino?: CasinoSchemaType
+  bonusCategory?: string
   backgroundColor?: string
   narrow?: boolean
   prose?: boolean
@@ -166,7 +169,8 @@ const ModularContent = async ({
                 backgroundColor,
                 narrow,
                 prose,
-                nested
+                nested,
+                bonusCategory
               )}
             </Fragment>
           )

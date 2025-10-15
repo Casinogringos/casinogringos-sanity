@@ -18,16 +18,16 @@ export const casinoPagePreviewProjection = `
   affLink-> {
     ${affLinkProjection} 
   },
-  casinoBonuses[] -> {
+  casinoBonusPages[] -> {
     ${casinoBonusPageProjection}
   },
-  oddsBonuses[] -> {
+  oddsBonusPages[] -> {
     ${oddsBonusPageProjection}
   },
-  liveCasinoBonuses[] -> {
+  liveCasinoBonusPages[] -> {
     ${liveCasinoBonusPageProjection}
   },
-  freeSpins[] -> {
+  freeSpinsPages[] -> {
     ${freeSpinsPageProjection}
   },
   featuredImage {

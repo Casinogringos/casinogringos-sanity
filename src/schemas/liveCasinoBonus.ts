@@ -5,7 +5,7 @@ import { PaymentMethodSchema } from "./paymentMethod"
 import { PortableTextBlockSchema } from "./portableTextBlock"
 
 export const LiveCasinoBonusSchema = z.object({
-    _type: z.literal('liveCasinoBonus'),
+    _type: z.literal('live-casino-bonuses'),
     name: z.string(),
     slug: z.object({
         _type: z.literal('slug'),

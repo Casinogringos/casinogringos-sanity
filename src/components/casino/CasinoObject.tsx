@@ -39,14 +39,14 @@ const CasinoObject = ({ object }: { object: CasinoObjectSchemaType }) => {
         <div className={'prose mb-6 mt-3'}>
           <PortableText value={description} />
         </div>
-        <Link
+        {casinoPage?.affLink?.slug?.current && <Link
           variant="affiliate"
           className="w-full"
-          href={`go${casinoPage.affLinks[0].slug.current}`}
+          href={`go${casinoPage?.affLink?.slug?.current}`}
           place="CasinoCard block"
         >
           {buttonText}
-        </Link>
+        </Link>}
       </div>
     </div>
   )

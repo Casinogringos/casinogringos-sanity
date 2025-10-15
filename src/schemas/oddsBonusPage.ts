@@ -5,7 +5,7 @@ import { OddsBonusSchema } from './oddsBonus';
 import AffLinkSchema from './affLink';
 
 export const OddsBonusPageSchema = z.object({
-  _type: z.literal('odds-bonuses'),
+  _type: z.literal('odds-bonus-pages'),
   oddsBonus: OddsBonusSchema,
   affLink: AffLinkSchema,
 });

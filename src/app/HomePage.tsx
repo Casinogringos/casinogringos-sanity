@@ -85,7 +85,7 @@ const HomePage = ({
           </div>
         </Container>
       )}
-      <ModularContent className="py-10" narrow objects={page.content} />
+      <ModularContent className="py-10" narrow objects={page.content} bonusCategory={toplistCategory} />
       {author && (
         <Container narrow>
           <AuthorBox

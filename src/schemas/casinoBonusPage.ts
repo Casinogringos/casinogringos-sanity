@@ -5,7 +5,7 @@ import { CasinoBonusSchema } from './casinoBonus'
 import AffLinkSchema from './affLink'
 
 export const CasinoBonusPageSchema = z.object({
-  _type: z.literal('casino-bonuses'),
+  _type: z.literal('casino-bonus-pages'),
   casinoBonus: CasinoBonusSchema,
   affLink: AffLinkSchema,
 })

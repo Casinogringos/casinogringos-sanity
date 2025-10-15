@@ -23,40 +23,59 @@ const CasinoCard = ({
   const casino = casinoPage.casino
   const casinoService = new CasinoService()
   const { finalRating } = casinoService.getCasinoRatings({ casino })
-  console.log('casinoPage', casinoPage)
-  const getBonus = () => {
-    if (!category) return false
-    switch (category) {
-      case 'casino-bonus':
-        return casinoPage.casinoBonuses?.[0].casinoBonus
-      case 'odds-bonus':
-        return casinoPage.oddsBonuses?.[0].oddsBonus
-      case 'live-casino-bonus':
-        return casinoPage.liveCasinoBonuses?.[0].liveCasinoBonus
-      default:
-        return false
-    }
-  }
+  const bonusPage = casinoService.getBonus({ casinoPage, category })
+  const freespinsPage = casinoService.getFreespinsPage({ casinoPage })
   const getAffLinkSlug = () => {
     switch (category) {
       case 'casino-bonus':
-        return casinoPage.casinoBonuses?.[0].affLink.slug.current
+        return casinoPage.casinoBonusPages?.[0].affLink.slug.current ?? null
       case 'odds-bonus':
-        return casinoPage.oddsBonuses?.[0].affLink.slug.current
+        return casinoPage.oddsBonusPages?.[0].affLink.slug.current ?? null
       case 'live-casino-bonus':
-        return casinoPage.liveCasinoBonuses?.[0].affLink.slug.current
+        return casinoPage.liveCasinoBonusPages?.[0].affLink.slug.current ?? null
       case 'freespins':
-        return casinoPage.freeSpins?.[0].affLink.slug.current
+        return casinoPage.freeSpinsPages?.[0].affLink.slug.current ?? null
       default:
-        return false
+        return null
     }
   }
-  const getFreespins = () => {
-    return casinoPage.freeSpins?.[0].freeSpins
+  const getBonus = () => {
+    switch (category) {
+      case 'casino-bonus':
+        return casinoPage.casinoBonusPages?.[0].casinoBonus.bonusAmountRange[1] ?? null
+      case 'odds-bonus':
+        return casinoPage.oddsBonusPages?.[0].oddsBonus.bonusAmountRange[1] ?? null
+      case 'live-casino-bonus':
+        return casinoPage.liveCasinoBonusPages?.[0].liveCasinoBonus.bonusPercentage ?? null
+      default:
+        return null
+    }
   }
-  const freeSpins = getFreespins()
-  const bonus = getBonus()
+  const getWageringRequirements = () => {
+    switch (category) {
+      case 'casino-bonus':
+        return casinoPage.casinoBonusPages?.[0].casinoBonus.wageringRequirements ?? null
+      case 'odds-bonus':
+        return casinoPage.oddsBonusPages?.[0].oddsBonus.wageringRequirements ?? null
+      case 'live-casino-bonus':
+        return casinoPage.liveCasinoBonusPages?.[0].liveCasinoBonus.wageringRequirements ?? null
+      case 'freespins':
+        return casinoPage.freeSpinsPages?.[0].freeSpins.wageringRequirements ?? null
+      default:
+        return null
+    }
+  }
+  const getFreeSpins = () => {
+    return casinoPage.freeSpinsPages?.[0].freeSpins.numberOfFreeSpins ?? null
+  }
+  console.log('CATEGORY', category)
   const affLinkSlug = getAffLinkSlug()
+  const bonus = getBonus()
+  console.log('BONUS', bonus)
+  const wageringRequirements = getWageringRequirements()
+  console.log('wageringRequirements', wageringRequirements)
+  const freeSpins = getFreeSpins()
+  console.log('freeSpins', freeSpins)
 
   return (
     <>
@@ -94,27 +113,27 @@ const CasinoCard = ({
                 <>
                   {bonus ? <div className="uppercase flex min-h-[84px] font-medium flex-col items-center justify-center rounded-md border border-green-200 bg-green-100 p-2 text-lg leading-6">
                     <div className="-mb-1 block text-xs text-gray-700">Bonus</div>
-                    {bonus ? bonus.minimumDeposit + ' kr' : '-'}
-                    {bonus.wageringRequirements && (
+                    {bonus ? bonus + ' kr' : '-'}
+                    {wageringRequirements && (
                       <div className="-mt-0.5 flex items-center text-xs font-medium text-gray-700">
                         Omsättning:
                         <span className="ml-0.5 inline-block text-black">
-                          {bonus.wageringRequirements}x{' '}
+                          {wageringRequirements}x{' '}
                         </span>
                       </div>
                     )}
                   </div> : <div className={"uppercase flex min-h-[84px] font-medium flex-col items-center justify-center rounded-md border border-green-200 bg-green-100 p-2 text-lg leading-6"}>-</div>}
-                  {freeSpins ? <div className="uppercase flex min-h-[84px] flex-col items-center justify-center rounded-md border border-blue-100 bg-blue-50 p-2 text-lg leading-6">
+                  {freespinsPage ? <div className="uppercase flex min-h-[84px] flex-col items-center justify-center rounded-md border border-blue-100 bg-blue-50 p-2 text-lg leading-6">
                     <div className="-mb-1 block text-xs text-gray-700">
                       Freespins
                     </div>
-                    {freeSpins ? (
+                    {freespinsPage ? (
                       <>
-                        {freeSpins.numberOfFreeSpins ?? '-'}
+                        {freespinsPage.numberOfFreeSpins ?? '-'}
                         <div className="-mt-0.5 flex items-center text-xs font-medium text-gray-700">
                           Omsättning:{' '}
                           <span className="ml-0.5 inline-block text-black">
-                            {freeSpins.wageringRequirements}x
+                            {freespinsPage.wageringRequirements}x
                           </span>
                         </div>
                       </>

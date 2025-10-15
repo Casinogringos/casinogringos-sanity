@@ -4,14 +4,16 @@ import { CasinoTableObjectSchemaType } from '@/src/schemas/casinoTableObject'
 
 const CasinoTableObject = ({
   object,
+  bonusCategory,
 }: {
   object: CasinoTableObjectSchemaType
+  bonusCategory: string
 }) => {
   const { toplist } = object
   if (!toplist || !toplist.casinos || toplist.casinos.length === 0) {
     return <Placeholder message="No toplist found" />
   }
-  const { title, description, casinos } = toplist
+  const { title, description, casinos: casinoPages } = toplist
 
   return (
     <div>
@@ -25,11 +27,12 @@ const CasinoTableObject = ({
           </tr>
         </thead>
         <tbody>
-          {casinos.map((casino, index) => (
+          {casinoPages.map((casinoPage, index) => (
             <CasinoTableRow
-              key={`${casino._id}-${index}`}
-              casinoPage={casino}
+              key={`${casinoPage._id}-${index}`}
+              casinoPage={casinoPage}
               index={index}
+              bonusCategory={bonusCategory}
             />
           ))}
         </tbody>
