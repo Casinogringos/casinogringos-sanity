@@ -69,15 +69,15 @@ export default function CasinoHero({
                 <PortableText value={casinoPage.intro} />
               </div>
             )}
-            <Link
-              href={`/go/${casino.slug.current}`}
+            {casinoPage.affLink && <Link
+              href={`/go${casinoPage.affLink.slug.current}`}
               title={casinoPage.title}
               place="CasinoCard recension"
               variant="affiliate"
               className="w-full"
             >
               Till {casinoPage.title}
-            </Link>
+            </Link>}
           </div>
         </div>
         {/* <div className="hidden md:mb-12 md:block">

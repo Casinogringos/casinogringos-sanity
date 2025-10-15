@@ -3,6 +3,10 @@ import { objectProjections } from '@/src/data/projections/objectProjections'
 import { imageObjectProjection } from '@/src/data/projections/imageObjectProjection'
 import { authorProjection } from '@/src/data/projections/authorProjection'
 import { affLinkProjection } from '@/src/data/projections/affLinkProjection'
+import { casinoBonusPageProjection } from './casinoBonusPageProjection'
+import { oddsBonusPageProjection } from './oddsBonusPageProjection'
+import { liveCasinoBonusPageProjection } from './liveCasinoBonusPageProjection'
+import { freeSpinsPageProjection } from './freeSpinsPageProjection'
 
 export const casinoPageProjection = `
   _type,
@@ -12,8 +16,20 @@ export const casinoPageProjection = `
   slug {
     current
   },
-  affLinks[] -> {
+  affLink -> {
     ${affLinkProjection}
+  },
+  casinoBonusPages->[] {
+    ${casinoBonusPageProjection}
+  },
+  oddsBonusPages->[] {
+    ${oddsBonusPageProjection}
+  },
+  liveCasinoBonusPages->[] {
+    ${liveCasinoBonusPageProjection}
+  },
+  freeSpinsPages->[] {
+    ${freeSpinsPageProjection}
   },
   intro,
   publishedAt,

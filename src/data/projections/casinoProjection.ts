@@ -1,8 +1,8 @@
 import { dashboardImageProjection } from '@/src/data/projections/dashboardImageProjection'
 import { casinoRatingProjection } from '@/src/data/projections/casinoRatingProjection'
-import { casinoBonusProjection } from '@/src/data/projections/casinoBonusProjection'
-import { oddsBonusProjection } from '@/src/data/projections/oddsBonusProjection'
-import { freeSpinsProjection } from '@/src/data/projections/freeSpinsProjection'
+import { casinoBonusPageProjection } from '@/src/data/projections/casinoBonusPageProjection'
+import { oddsBonusPageProjection } from '@/src/data/projections/oddsBonusPageProjection'
+import { freeSpinsPageProjection } from '@/src/data/projections/freeSpinsPageProjection'
 import { paymentMethodProjection } from '@/src/data/projections/paymentMethodProjection'
 import { gameProviderProjection } from '@/src/data/projections/gameProviderProjection'
 import { contactMethodProjection } from '@/src/data/projections/contactMethodProjection'
@@ -13,6 +13,7 @@ import { sportProjection } from '@/src/data/projections/sportProjection'
 import { liveCasinoBonusProjection } from '@/src/data/projections/liveCasinoBonusProjection'
 import { liveCasinoGameTypeProjection } from '@/src/data/projections/liveCasinoGameTypeProjection'
 import { paymentMethodPageProjection } from '@/src/data/projections/paymentMethodPageProjection'
+import { liveCasinoBonusPageProjection } from './liveCasinoBonusPageProjection'
 
 export const casinoProjection = `
     _type,
@@ -41,17 +42,17 @@ export const casinoProjection = `
     casinoRatings[]-> {
       ${casinoRatingProjection}
     },
-    casinoBonuses[]-> {
-      ${casinoBonusProjection}
+    "casinoBonusPages": *[_type == "casinoBonusPage" && references(^._id)]{
+      ${casinoBonusPageProjection}
     },
-    oddsBonuses[]-> {
-      ${oddsBonusProjection}
+    "oddsBonusPages": *[_type == "oddsBonusPage" && references(^._id)]{
+      ${oddsBonusPageProjection}
     },
-    liveCasinoBonuses[]-> {
-      ${liveCasinoBonusProjection}
+    "liveCasinoBonusPages": *[_type == "liveCasinoBonusPage" && references(^._id)]{
+      ${liveCasinoBonusPageProjection}
     },
-    freeSpins[]-> {
-      ${freeSpinsProjection}
+    "freeSpinsPages": *[_type == "freeSpinsPage" && references(^._id)]{
+      ${freeSpinsPageProjection}
     },
     defaultBonusText,
     gameProviders[]-> {

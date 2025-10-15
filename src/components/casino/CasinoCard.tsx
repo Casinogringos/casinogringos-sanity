@@ -23,24 +23,40 @@ const CasinoCard = ({
   const casino = casinoPage.casino
   const casinoService = new CasinoService()
   const { finalRating } = casinoService.getCasinoRatings({ casino })
+  console.log('casinoPage', casinoPage)
   const getBonus = () => {
     if (!category) return false
     switch (category) {
       case 'casino-bonus':
-        return casino.casinoBonuses?.[0]
+        return casinoPage.casinoBonuses?.[0].casinoBonus
       case 'odds-bonus':
-        return casino.oddsBonuses?.[0]
+        return casinoPage.oddsBonuses?.[0].oddsBonus
       case 'live-casino-bonus':
-        return casino.liveCasinoBonuses?.[0]
+        return casinoPage.liveCasinoBonuses?.[0].liveCasinoBonus
       default:
         return false
     }
   }
-  const bonus = getBonus()
+  const getAffLinkSlug = () => {
+    switch (category) {
+      case 'casino-bonus':
+        return casinoPage.casinoBonuses?.[0].affLink.slug.current
+      case 'odds-bonus':
+        return casinoPage.oddsBonuses?.[0].affLink.slug.current
+      case 'live-casino-bonus':
+        return casinoPage.liveCasinoBonuses?.[0].affLink.slug.current
+      case 'freespins':
+        return casinoPage.freeSpins?.[0].affLink.slug.current
+      default:
+        return false
+    }
+  }
   const getFreespins = () => {
-    return casino.freeSpins[0]
+    return casinoPage.freeSpins?.[0].freeSpins
   }
   const freeSpins = getFreespins()
+  const bonus = getBonus()
+  const affLinkSlug = getAffLinkSlug()
 
   return (
     <>
@@ -135,9 +151,9 @@ const CasinoCard = ({
                 {' '}
                 Läs recension
               </Link>
-              {casinoPage.affLinks?.[0] && (
+              {affLinkSlug || casinoPage.affLink ? (
                 <Link
-                  href={`/go${casinoPage.affLinks?.[0].slug.current}`}
+                  href={`/go${affLinkSlug || casinoPage.affLink.slug.current}`}
                   prefetch={false}
                   variant="affiliate"
                   className="w-full"
@@ -145,7 +161,7 @@ const CasinoCard = ({
                 >
                   Till {casino.name}
                 </Link>
-              )}
+              ) : null}
             </div>
           </div>
           {casino.terms ? (
