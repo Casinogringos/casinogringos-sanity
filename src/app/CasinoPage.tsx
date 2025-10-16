@@ -79,10 +79,22 @@ const CasinoPage = ({
         {headings.length > 1 && (
           <Container narrow>
             <TableOfContents
-              headings={headings.map((heading: HeadingObjectSchemaType) => ({
-                text: heading.text,
-                slug: `${casinoPage.slug.current}#${slugify(heading.text)}`,
-              }))}
+              headings={headings.map((heading: HeadingObjectSchemaType) => {
+                switch (heading._type) {
+                  case 'heading-object': {
+                    return {
+                      text: heading.text,
+                      slug: `${casinoPage.slug.current}#${slugify(heading.text)}`,
+                    }
+                  }
+                  case 'rating-object': {
+                    return {
+                      text: heading.title,
+                      slug: `${casinoPage.slug.current}#${slugify(heading.title)}`,
+                    }
+                  }
+                }
+              })}
             />
           </Container>
         )}

@@ -44,7 +44,7 @@ export default function CasinoHero({
               text={casinoPage.title}
             />
             <div className="pb-2 pt-1 text-xl font-bold text-primary">
-              {casinoService.getBonusString({ casino: casinoPage.casino })}
+              {casino.defaultBonusText}
             </div>
             {finalRating && finalRating > 0 ? (
               <div className="mb-6 mt-1 flex">
