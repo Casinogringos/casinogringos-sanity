@@ -241,19 +241,19 @@ const CasinoInfo = ({ casinoPage }: { casinoPage: CasinoPageSchemaType }) => {
           </div>
         </>
       )}{' '}
-      {casinoPage.categories && casinoPage.categories.length > 0 && (
+      {casinoPage.casino.typesOfGames && casinoPage.casino.typesOfGames.length > 0 && (
         <>
           <h2 className="mb-3 mt-6 text-xl font-bold">Spelkategorier</h2>
-          <div className={'mb-2 flex flex-wrap items-center'}>
-            {casinoPage.categories.map((category) => (
+          <div className={'mb-2 flex flex-wrap'}>
+            {casinoPage.casino.typesOfGames.map((category) => (
               <div key={`brand-category-${category._id}`}>
-                <span
+                <div
                   className={
                     'text-sm rounded-md bg-slate-100 border border-slate-300 px-3 py-1.5 mr-1 mb-1'
                   }
                 >
                   {category.name}
-                </span>
+                </div>
               </div>
             ))}
           </div>
