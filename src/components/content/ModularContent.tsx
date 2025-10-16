@@ -119,7 +119,11 @@ const renderObject = (
       return <FAQObject object={object} />
     }
     case 'old-table-object': {
-      return <HTMLObject object={object} />
+      return (
+        <div className='overflow-x-auto'>
+          <HTMLObject object={object} />
+        </div>
+      )
     }
     case 'slider-object': {
       return <SliderObject object={object} />
