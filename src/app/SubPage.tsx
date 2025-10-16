@@ -70,6 +70,13 @@ export default function SubPage({ page }: { page: SubPageSchemaType }) {
           </Container>
         </div>
       )} */}
+      {faqs && faqs.items.length && (
+        <div className="bg-dark pb-16 pt-10 mb-16">
+          <Container>
+            <FAQ items={faqs.items} title={faqs.title} />
+          </Container>
+        </div>
+      )}
       {headingObjects.length > 1 && (
         <div>
           <Container narrow>
@@ -93,13 +100,6 @@ export default function SubPage({ page }: { page: SubPageSchemaType }) {
             reviewedBy={reviewer}
           />
         </Container>
-      )}
-      {!toplist?.casinos?.length && faqs && (
-        <div className="bg-dark pb-16 pt-10">
-          <Container>
-            <FAQ items={faqs.items} title={faqs.title} />
-          </Container>
-        </div>
       )}
     </div>
   )

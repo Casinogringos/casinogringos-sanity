@@ -16,9 +16,9 @@ const CasinoTableRow = ({
   const casinoService = new CasinoService()
   const bonus = casinoService.getBonus({ casinoPage, category: bonusCategory })
   const freespinsPage = casinoService.getFreespinsPage({ casinoPage })
-  console.log('CASINOPAGE', casinoPage)
-  console.log('bonus', bonus)
-  console.log('bonusCategory', bonusCategory)
+  // console.log('CASINOPAGE', casinoPage)
+  // console.log('bonus', bonus)
+  // console.log('bonusCategory', bonusCategory)
   const getBonusString = () => {
     if (!bonus) return
     switch (bonus._type) {

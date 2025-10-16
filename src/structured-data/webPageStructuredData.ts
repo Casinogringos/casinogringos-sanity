@@ -1,14 +1,17 @@
-import { SubPageSchemaType, CasinoPageSchemaType } from '@/src/schemas'
 import { portableTextToPlainText } from '@/src/lib/utils'
 import PageService from '@/src/services/SubPageService'
 import { urlFor } from '@/src/lib/client'
+import { SubPageSchemaType } from '@/src/schemas/subPage'
 
 const pageService = new PageService()
 
 export const getWebPageStructuredData = (
-  page: SubPageSchemaType | CasinoPageSchemaType
+  page: SubPageSchemaType
 ) => {
   if (!page.reviewer) return null
+  const pageService = new PageService()
+  const publishedAt = pageService.getPagePublishedAtTimestamp(page)
+  const modifiedAt = pageService.getPageModifiedAtTimestamp(page)
 
   return {
     '@type': 'WebPage',
@@ -28,12 +31,9 @@ export const getWebPageStructuredData = (
       '@id': 'https://casinogringos.se/#primaryimage',
     },
     thumbnailUrl: page.seoImage.src,
-    datePublished: page._createdAt,
-    dateModified: page._updatedAt,
+    datePublished: publishedAt,
+    dateModified: modifiedAt,
     description: page.seoDescription,
-    breadcrumb: {
-      '@id': 'https://casinogringos.se/#breadcrumb',
-    },
     inLanguage: 'sv-SE',
     potentialAction: [
       {
@@ -43,9 +43,9 @@ export const getWebPageStructuredData = (
     ],
     reviewedBy: {
       '@type': 'Person',
-      name: page.reviewer.name,
+      name: page.reviewer.firstName + ' ' + page.reviewer.lastName,
       email: page.reviewer.email,
-      jobTitle: page.reviewer.jobTitle,
+      jobTitle: page.reviewer.role,
       description: portableTextToPlainText(page.reviewer.description),
       url: `https://casinogringos.se/om-oss/${page.reviewer.slug}`,
       sameAs: [page.reviewer.linkedIn],
