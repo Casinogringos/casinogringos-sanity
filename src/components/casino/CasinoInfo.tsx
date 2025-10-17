@@ -145,7 +145,7 @@ const CasinoInfo = ({ casinoPage }: { casinoPage: CasinoPageSchemaType }) => {
         text={`Snabbfakta om ${title}`}
       />
       <div className="mb-5 flex gap-3 overflow-x-auto">
-        {quickFacts.map((item) => (
+        {quickFacts.filter((item) => item.value).map((item) => (
           <div
             key={`quick-fact-${item.label}`}
             className="flex flex-shrink-0 flex-col items-center justify-center gap-2 rounded-2xl border border-gray-300 px-6 py-4"

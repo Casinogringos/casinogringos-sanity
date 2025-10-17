@@ -24,7 +24,6 @@ export const casinoProjection = `
     },
     name,
     brandColor,
-    name,
     availableDepositMethods[]-> {
       'depositMethodPages': *[paymentMethod._ref == ^._id] {
         ${paymentMethodPageProjection}
@@ -42,16 +41,16 @@ export const casinoProjection = `
     casinoRatings[]-> {
       ${casinoRatingProjection}
     },
-    "casinoBonusPages": *[_type == "casinoBonusPage" && references(^._id)]{
+    "casinoBonusPages": *[_type == "casinoBonusPage" && casino._ref == ^._id]{
       ${casinoBonusPageProjection}
     },
-    "oddsBonusPages": *[_type == "oddsBonusPage" && references(^._id)]{
+    "oddsBonusPages": *[_type == "oddsBonusPage" && casino._ref == ^._id]{
       ${oddsBonusPageProjection}
     },
-    "liveCasinoBonusPages": *[_type == "liveCasinoBonusPage" && references(^._id)]{
+    "liveCasinoBonusPages": *[_type == "liveCasinoBonusPage" && casino._ref == ^._id]{
       ${liveCasinoBonusPageProjection}
     },
-    "freeSpinsPages": *[_type == "freeSpinsPage" && references(^._id)]{
+    "freeSpinsPages": *[_type == "freeSpinsPage" && casino._ref == ^._id]{
       ${freeSpinsPageProjection}
     },
     defaultBonusText,

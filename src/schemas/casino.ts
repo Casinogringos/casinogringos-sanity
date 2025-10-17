@@ -13,6 +13,10 @@ import { GameProviderSchema } from './gameProvider'
 import { ContactMethodSchema } from './contactMethod'
 import { CasinoRatingSchema } from './casinoRating'
 import { PaymentMethodPageSchema } from './paymentMethodPage'
+import { CasinoBonusPageSchema } from './casinoBonusPage'
+import { FreeSpinsPageSchema } from './freeSpinsPage'
+import { OddsBonusPageSchema } from './oddsBonusPage'
+import { LiveCasinoBonusPageSchema } from './liveCasinoBonusPage'
 
 export const CasinoSchema = z.object({
   _type: z.literal('casinos'),
@@ -24,18 +28,19 @@ export const CasinoSchema = z.object({
   }),
   name: z.string(),
   brandColor: z.string(),
-  casinoBonuses: z.array(CasinoBonusSchema).optional(),
-  freeSpins: z.array(FreeSpinsSchema),
+  casinoBonusPages: z.array(CasinoBonusPageSchema).optional(),
+  freeSpinsPages: z.array(FreeSpinsPageSchema),
   advantages: z.array(z.string()),
   disadvantages: z.array(z.string()),
   owner: OwnerSchema,
   launchDate: z.string(),
   swedishLicense: z.boolean(),
   license: LicenseSchema,
+  minimumDeposit: z.number(),
   terms: z.string().optional(),
   websiteAddress: z.string(),
-  oddsBonuses: z.array(OddsBonusSchema),
-  liveCasinoBonuses: z.array(LiveCasinoBonusSchema),
+  oddsBonusPages: z.array(OddsBonusPageSchema),
+  liveCasinoBonusPages: z.array(LiveCasinoBonusPageSchema),
   defaultBonusText: z.string(),
   app: z.boolean(),
   typesOfGames: z.array(GameTypeSchema),

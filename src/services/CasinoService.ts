@@ -116,7 +116,7 @@ class CasinoService {
       },
       {
         label: 'Minsta insättning',
-        value: casino.casinoBonuses?.reduce((min, bonus) => Math.min(min, bonus.bonusAmountRange[0]), Infinity),
+        value: casino.minimumDeposit
       }
     ]
     return { quickFacts }
