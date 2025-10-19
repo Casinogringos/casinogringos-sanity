@@ -1,3 +1,5 @@
+'use client'
+
 import Image from 'next/image'
 import Link from '@/src/components/content/Link'
 import Container from '@/src/components/layout/Container'
@@ -9,9 +11,12 @@ import CasinoService from '@/src/services/CasinoService'
 import { PortableText } from 'next-sanity'
 import ToggleObject from '@/src/components/objects/ToggleObject'
 import { PaymentMethodPageSchemaType } from '@/src/schemas/paymentMethodPage'
+import { GameProviderSchemaType } from '@/src/schemas/gameProvider'
+import { useState } from 'react'
 
 const CasinoInfo = ({ casinoPage }: { casinoPage: CasinoPageSchemaType }) => {
   const { title } = casinoPage
+  const [showAllGameProviders, setShowAllGameProviders] = useState(false)
   const casinoService = new CasinoService()
   const { finalRating, validRatings, ratings, ratingKeys } =
     casinoService.getCasinoRatings({
@@ -47,6 +52,8 @@ const CasinoInfo = ({ casinoPage }: { casinoPage: CasinoPageSchemaType }) => {
     }
     return acc
   }, [] as PaymentMethodPageSchemaType[])
+  const initGameProviders = casinoPage.casino.gameProviders.slice(0, 20)
+  const remainingGameProviders = casinoPage.casino.gameProviders.slice(20)
 
   return (
     <div>
@@ -212,7 +219,42 @@ const CasinoInfo = ({ casinoPage }: { casinoPage: CasinoPageSchemaType }) => {
             text="Spelleverantörer"
           />
           <div className={'mb-2 flex flex-wrap items-center gap-0.5'}>
-            {casinoPage.casino.gameProviders.map((item) => (
+            {initGameProviders.map((item) => (
+              <div
+                key={`game-provider-${item._id}`}
+                className="h-[40px] w-[54px] relative"
+              >
+                {item.featuredImage.src ? (
+                  <Image
+                    src={item.featuredImage.src}
+                    alt={item.featuredImage.altText}
+                    width="54"
+                    height="40"
+                    className={
+                      'rounded-md border border-gray-300 h-full w-full absolute object-cover'
+                    }
+                  />
+                ) : (
+                  <span
+                    className={
+                      'text-xs rounded-md block text-slate-700 bg-slate-100 px-2 py-1.5 border border-slate-300'
+                    }
+                  >
+                    {item.name}
+                  </span>
+                )}
+              </div>
+            ))}
+            {!showAllGameProviders && <div onClick={() => setShowAllGameProviders(true)} className="h-[40px] cursor-pointer w-[54px] relative bg-slate-100 border border-slate-300 rounded-md flex items-center justify-center">
+              <span
+                className={
+                  'text-xs block text-slate-700 px-2 py-1.5'
+                }
+              >
+                +{remainingGameProviders.length}
+              </span>
+            </div>}
+            {showAllGameProviders && remainingGameProviders.map((item) => (
               <div
                 key={`game-provider-${item._id}`}
                 className="h-[40px] w-[54px] relative"
