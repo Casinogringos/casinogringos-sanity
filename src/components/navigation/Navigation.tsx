@@ -54,6 +54,7 @@ export default async function Navigation({
                 className="w-18"
                 width={80}
                 height={40}
+                id="logo"
               />
             </Link>
             <ul
@@ -71,8 +72,8 @@ export default async function Navigation({
                         : undefined
                     }
                     className={`text-nav text-sm uppercase tracking-wider font-medium font-inter hover:text-primary transition ${isCurrentPath(pathname, item.page.slug.current)
-                        ? 'text-primary'
-                        : 'text-white'
+                      ? 'text-primary'
+                      : 'text-white'
                       }`}
                   >
                     {item.label ?? item.page.title}

@@ -7,15 +7,11 @@ export const getOrganizationStructuredData = () => {
     logo: {
       '@type': 'ImageObject',
       inLanguage: 'sv-SE',
-      '@id': 'https://casinogringos.se/#/schema/logo/image/',
-      url: 'https://casinogringos.se/casinogringos.png',
-      contentUrl: 'https://casinogringos.se/casinogringos.png',
+      '@id': 'https://casinogringos.se/#logo',
+      url: `${process.env.SITE_URL}/casinogringos.png`,
       width: 250,
       height: 118,
       caption: 'Casinogringos',
-    },
-    image: {
-      '@id': 'https://casinogringos.se/#/schema/logo/image/',
     },
     sameAs: [
       'https://www.facebook.com/Casinogringos',
@@ -23,11 +19,5 @@ export const getOrganizationStructuredData = () => {
       'https://www.instagram.com/casinogringos',
       'https://www.youtube.com/channel/UCeFbFMkDfTlLayuZmk_aXiA/',
     ],
-    contactPoint: {
-      '@type': 'ContactPoint',
-      email: 'kontakt@casinogringos.se',
-      contactType: 'customer support',
-      availableLanguage: ['Swedish', 'English'],
-    },
   }
 }

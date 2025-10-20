@@ -4,9 +4,18 @@ import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import { useEffect } from 'react'
 import Container from '@/src/components/layout/Container'
-import { CasinoPageSchemaType } from '@/src/schemas/casinoPage'
+import { AffiliateLinkSchemaType } from '@/src/schemas/affiliateLink'
+import { getWebSiteStructuredData } from '@/src/structured-data/webSiteStructuredData'
+import { getOrganizationStructuredData } from '@/src/structured-data/organizationStructuredData'
 
 const GoPage = ({ affLink }: { affLink: AffiliateLinkSchemaType }) => {
+  const schema = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      getWebSiteStructuredData(),
+      getOrganizationStructuredData(),
+    ],
+  }
   const router = useRouter()
   const goToOperator = () => {
     router.push(affLink.link)
@@ -21,6 +30,11 @@ const GoPage = ({ affLink }: { affLink: AffiliateLinkSchemaType }) => {
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+        key="go-page-structured-data"
+      />
       <Image
         src={'/fade.png'}
         alt={'Background Image'}

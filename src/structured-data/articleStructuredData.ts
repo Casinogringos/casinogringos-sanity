@@ -1,5 +1,5 @@
 import { SubPageSchemaType } from '@/src/schemas/subPage'
-import { urlFor } from '@/src/lib/client'
+import { portableTextToPlainText } from '@/src/lib/utils'
 
 const getArticleStructuredData = (page: SubPageSchemaType) => {
   if (!page.author) return null
@@ -11,19 +11,16 @@ const getArticleStructuredData = (page: SubPageSchemaType) => {
     seoImage = page.seoImage.src
   }
 
-  return {
+  const structuredData = {
     '@type': 'Article',
+    "@id": "https://casinogringos.se/#article",
     mainEntityOfPage: {
       '@type': 'WebPage',
-      '@id': `https://casinogringos.se${page.slug.current}`,
+      '@id': `${process.env.SITE_URL}${page.slug.current}`,
     },
     headline: page.seoTitle,
     description: page.seoDescription,
     image: seoImage,
-    author: {
-      '@type': 'Organization',
-      name: 'Casinogringos',
-    },
     publisher: {
       '@type': 'Organization',
       name: 'Casinogringos',
@@ -34,6 +31,27 @@ const getArticleStructuredData = (page: SubPageSchemaType) => {
     },
     datePublished: page.originalPublishedAt,
     dateModified: page._updatedAt ?? page.originalModifiedAt,
+    author: {
+      '@type': 'Person',
+      name: page.author.firstName + ' ' + page.author.lastName,
+      email: page.author.email,
+      jobTitle: page.author.role,
+      description: portableTextToPlainText(page.author.description),
+      url: `https://casinogringos.se/om-oss/${page.author.slug}`,
+      image: page.author.avatar.src,
+      sameAs: [page.author.linkedIn],
+    }
+  }
+  if (page.reviewer) {
+    structuredData.reviewedBy = {
+      '@type': 'Person',
+      name: page.reviewer.firstName + ' ' + page.reviewer.lastName,
+      email: page.reviewer.email,
+      jobTitle: page.reviewer.role,
+      description: portableTextToPlainText(page.reviewer.description),
+      url: `https://casinogringos.se/om-oss/${page.reviewer.slug}`,
+      sameAs: [page.reviewer.linkedIn],
+    }
   }
 }
 

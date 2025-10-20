@@ -9,12 +9,21 @@ import CasinoList from '@/src/components/casino/CasinoList'
 import { CasinoPageSchemaType } from '@/src/schemas/casinoPage'
 import { CasinoSchemaType } from '@/src/schemas/casino'
 import CasinoCard from '@/src/components/casino/CasinoCard'
+import { getWebSiteStructuredData } from '@/src/structured-data/webSiteStructuredData'
+import { getOrganizationStructuredData } from '@/src/structured-data/organizationStructuredData'
 
 const CasinoHelperPage = ({
   initialCasinoPages,
 }: {
   initialCasinoPages: CasinoPageSchemaType[]
 }) => {
+  const schema = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      getWebSiteStructuredData(),
+      getOrganizationStructuredData(),
+    ],
+  }
   const [casinoPages, setCasinoPages] = useState<CasinoPageSchemaType[] | null>(
     initialCasinoPages
   )
@@ -35,10 +44,10 @@ const CasinoHelperPage = ({
       nextIndex: number
       previousIndex: number
       callback:
-        | ((
-            items: CasinoPageSchemaType[] | null
-          ) => CasinoPageSchemaType[] | null)
-        | null
+      | ((
+        items: CasinoPageSchemaType[] | null
+      ) => CasinoPageSchemaType[] | null)
+      | null
     }
     index: number
   }) => {
@@ -285,100 +294,107 @@ const CasinoHelperPage = ({
     )
 
   return (
-    <div className={'min-h-[96svh] py-6 lg:py-12'}>
-      <Container className="min-h-[80svh] lg:min-h-[65svh] flex flex-col justify-between">
-        <div>
-          {index === 0 && (
-            <span
-              className={
-                'w-fit mx-auto text-center p-4 rounded-md text-gray800 mt-8 mb-6 block'
-              }
-            >
-              Hej och välkommen till casinohjälpen! För att kunna hjälpa dig
-              hitta rätt casino behöver vi ställa några frågor, det tar bara
-              någon minut.
-            </span>
-          )}
-          {index === questions.length ? (
-            <>
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+        key="casino-helper-page-structured-data"
+      />
+      <div className={'min-h-[96svh] py-6 lg:py-12'}>
+        <Container className="min-h-[80svh] lg:min-h-[65svh] flex flex-col justify-between">
+          <div>
+            {index === 0 && (
               <span
                 className={
-                  'w-fit bg-slate100 p-4 rounded-md text-gray700 mb-6 block'
+                  'w-fit mx-auto text-center p-4 rounded-md text-gray800 mt-8 mb-6 block'
                 }
               >
-                Toppen! Vi hittade <strong>{casinoPages.length} casinon</strong>{' '}
-                som matchar dina kriterier - Här är resultaten.
+                Hej och välkommen till casinohjälpen! För att kunna hjälpa dig
+                hitta rätt casino behöver vi ställa några frågor, det tar bara
+                någon minut.
               </span>
-              <CasinoList
-                casinoPages={casinoPages.map((item) => ({ node: item }))}
-                title={'Casinohjalpen Results'}
-                itemComponent={CasinoCard}
-              />
-              <div className={'flex items-center justify-center'}>
-                <Button size={'large'} callback={handleStartAgain}>
-                  Börja om
-                </Button>
-              </div>
-            </>
-          ) : (
-            <div
-              className={'flex flex-col items-center justify-between gap-y-10'}
-            >
-              {index !== 0 && (
-                <span className={'text-sm text-gray700 mt-6'}>
-                  {casinoPages.length} casinon matchar dina kriterier
+            )}
+            {index === questions.length ? (
+              <>
+                <span
+                  className={
+                    'w-fit bg-slate100 p-4 rounded-md text-gray700 mb-6 block'
+                  }
+                >
+                  Toppen! Vi hittade <strong>{casinoPages.length} casinon</strong>{' '}
+                  som matchar dina kriterier - Här är resultaten.
                 </span>
-              )}
-              <Paragraph
-                content={questions[index].question}
-                className={'bg-slate100 p-4 rounded-md'}
-              />
-              {index !== 0 && (
-                <div>
-                  <div
-                    onClick={() => {
-                      setCasinoPages(
-                        history[history.length - 1].state
-                          .map((id) =>
-                            initialCasinoPages.find((item) => item._id === id)
-                          )
-                          .filter(
-                            (item) => item !== undefined
-                          ) as CasinoPageSchemaType[]
-                      )
-                      setIndex(history[history.length - 1].index)
-                      setHistory((prev) => prev.slice(0, history.length - 1))
-                    }}
-                    className={'rounded-full bg-gray100 p-4 cursor-pointer'}
-                  >
-                    <ChevronLeft className={'h-4 w-4'} />
-                  </div>
+                <CasinoList
+                  casinoPages={casinoPages.map((item) => ({ node: item }))}
+                  title={'Casinohjalpen Results'}
+                  itemComponent={CasinoCard}
+                />
+                <div className={'flex items-center justify-center'}>
+                  <Button size={'large'} callback={handleStartAgain}>
+                    Börja om
+                  </Button>
                 </div>
-              )}
+              </>
+            ) : (
+              <div
+                className={'flex flex-col items-center justify-between gap-y-10'}
+              >
+                {index !== 0 && (
+                  <span className={'text-sm text-gray700 mt-6'}>
+                    {casinoPages.length} casinon matchar dina kriterier
+                  </span>
+                )}
+                <Paragraph
+                  content={questions[index].question}
+                  className={'bg-slate100 p-4 rounded-md'}
+                />
+                {index !== 0 && (
+                  <div>
+                    <div
+                      onClick={() => {
+                        setCasinoPages(
+                          history[history.length - 1].state
+                            .map((id) =>
+                              initialCasinoPages.find((item) => item._id === id)
+                            )
+                            .filter(
+                              (item) => item !== undefined
+                            ) as CasinoPageSchemaType[]
+                        )
+                        setIndex(history[history.length - 1].index)
+                        setHistory((prev) => prev.slice(0, history.length - 1))
+                      }}
+                      className={'rounded-full bg-gray100 p-4 cursor-pointer'}
+                    >
+                      <ChevronLeft className={'h-4 w-4'} />
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
+          </div>
+          {index !== questions.length && (
+            <div className="flex flex-wrap gap-3 justify-center items-center">
+              {questions[index].answers.map((answer, i) => (
+                <Button
+                  key={`answer-${i}`}
+                  callback={() =>
+                    handleAnswer({
+                      answer: { ...answer, previousIndex: i },
+                      index,
+                    })
+                  }
+                  className="lg:text-[17px]"
+                  size={'large'}
+                >
+                  {answer.text}
+                </Button>
+              ))}
             </div>
           )}
-        </div>
-        {index !== questions.length && (
-          <div className="flex flex-wrap gap-3 justify-center items-center">
-            {questions[index].answers.map((answer, i) => (
-              <Button
-                key={`answer-${i}`}
-                callback={() =>
-                  handleAnswer({
-                    answer: { ...answer, previousIndex: i },
-                    index,
-                  })
-                }
-                className="lg:text-[17px]"
-                size={'large'}
-              >
-                {answer.text}
-              </Button>
-            ))}
-          </div>
-        )}
-      </Container>
-    </div>
+        </Container>
+      </div>
+    </>
   )
 }
 

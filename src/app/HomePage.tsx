@@ -44,6 +44,7 @@ const HomePage = ({
       getWebSiteStructuredData(),
       getWebPageStructuredData(page),
       getOrganizationStructuredData(),
+      getArticleStructuredData(page),
     ],
   }
 
