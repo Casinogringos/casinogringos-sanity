@@ -10,7 +10,7 @@ export const getBlogPostingStructuredData = ({
     return null
   }
 
-  return {
+  const structuredData = {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
     headline: page.seoTitle,
@@ -21,12 +21,6 @@ export const getBlogPostingStructuredData = ({
       name: page.author.firstName + ' ' + page.author.lastName,
       url: `https://casinogringos.se/om-oss/${page.author.slug.current}`,
       sameAs: [page.author.linkedIn],
-    },
-    reviewedBy: {
-      '@type': 'Person',
-      name: page.reviewer.firstName + ' ' + page.reviewer.lastName,
-      url: `https://casinogringos.se/om-oss/${page.reviewer.slug.current}`,
-      sameAs: [page.reviewer.linkedIn],
     },
     publisher: {
       '@type': 'Organization',
@@ -43,4 +37,13 @@ export const getBlogPostingStructuredData = ({
     datePublished: page.originalPublishedAt ?? page._createdAt,
     dateModified: page._updatedAt ?? page.originalModifiedAt,
   }
+  if (page.reviewer) {
+    structuredData.reviewedBy = {
+      '@type': 'Person',
+      name: page.reviewer.firstName + ' ' + page.reviewer.lastName,
+      url: `https://casinogringos.se/om-oss/${page.reviewer.slug.current}`,
+      sameAs: [page.reviewer.linkedIn],
+    }
+  }
+  return structuredData
 }

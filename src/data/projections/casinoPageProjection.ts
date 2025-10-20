@@ -19,16 +19,16 @@ export const casinoPageProjection = `
   affLink -> {
     ${affLinkProjection}
   },
-  casinoBonusPages->[] {
+  casinoBonusPages[] -> {
     ${casinoBonusPageProjection}
   },
-  oddsBonusPages->[] {
+  oddsBonusPages[] -> {
     ${oddsBonusPageProjection}
   },
-  liveCasinoBonusPages->[] {
+  liveCasinoBonusPages[] -> {
     ${liveCasinoBonusPageProjection}
   },
-  freeSpinsPages->[] {
+  freeSpinsPages[] -> {
     ${freeSpinsPageProjection}
   },
   intro,

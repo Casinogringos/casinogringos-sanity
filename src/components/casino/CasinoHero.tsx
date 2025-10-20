@@ -17,6 +17,9 @@ export default function CasinoHero({
   const { finalRating } = casinoService.getCasinoRatings({
     casino: casinoPage.casino,
   })
+  const bonus = casinoPage.casinoBonusPages?.[0].casinoBonus.bonusAmountRange[1] ?? null
+  const wageringRequirements = casinoPage.casinoBonusPages?.[0].casinoBonus.wageringRequirements ?? null
+  const freeSpins = casinoPage.freeSpinsPages?.[0].freeSpins.numberOfFreeSpins ?? null
 
   return (
     <div className="bg-darklight py-5 lg:py-16 not-prose">
@@ -39,15 +42,57 @@ export default function CasinoHero({
           <div className="lg:w-3/4">
             <Heading
               level={1}
-              size={6}
-              className="text-3xl font-bold text-white !mb-0"
+              sizes={[6, 6, 7]}
+              className="text-3xl font-bold text-white mb-4"
               text={casinoPage.title}
             />
-            <div className="pb-2 pt-1 text-xl font-bold text-primary">
+            {/* <div className="pb-2 pt-1 text-xl font-bold text-primary">
               {casino.defaultBonusText}
+            </div> */}
+            <div className="grid grid-cols-2 gap-2 mb-6">
+              {bonus || freeSpins ? (
+                <>
+                  {bonus ? <div className="uppercase flex min-h-[84px] font-medium flex-col items-center justify-center rounded-md border border-green-200 bg-green-100 p-2 text-lg leading-6">
+                    <div className="-mb-1 block text-xs text-gray-700">Bonus</div>
+                    {bonus ? bonus + ' kr' : '-'}
+                    {wageringRequirements && (
+                      <div className="-mt-0.5 flex items-center text-xs font-medium text-gray-700">
+                        Omsättning:
+                        <span className="ml-0.5 inline-block text-black">
+                          {wageringRequirements}x{' '}
+                        </span>
+                      </div>
+                    )}
+                  </div> : <div className={"uppercase flex min-h-[84px] font-medium flex-col items-center justify-center rounded-md border border-green-200 bg-green-100 p-2 text-lg leading-6"}>-</div>}
+                  {freeSpins ? <div className="uppercase flex min-h-[84px] flex-col items-center justify-center rounded-md border border-blue-100 bg-blue-50 p-2 text-lg leading-6">
+                    <div className="-mb-1 block text-xs text-gray-700">
+                      Freespins
+                    </div>
+                    {freeSpins ? (
+                      <>
+                        {freeSpins ?? '-'}
+                        <div className="-mt-0.5 flex items-center text-xs font-medium text-gray-700">
+                          Omsättning:{' '}
+                          <span className="ml-0.5 inline-block text-black">
+                            {wageringRequirements}x
+                          </span>
+                        </div>
+                      </>
+                    ) : (
+                      '-'
+                    )}
+                  </div> : <div className={"uppercase flex min-h-[84px] font-medium flex-col items-center justify-center rounded-md border border-blue-100 bg-blue-50 p-2 text-lg leading-6"}>-</div>}
+                </>
+              ) : (
+                <div className='col-span-2 min-h-[84px] font-medium flex flex-col items-center justify-center rounded-md border border-blue-100 bg-blue-50 p-2 text-lg leading-6'>
+                  <span className="text-gray-700 text-xs">
+                    {casino.defaultBonusText}
+                  </span>
+                </div>
+              )}
             </div>
             {finalRating && finalRating > 0 ? (
-              <div className="mb-6 mt-1 flex">
+              <div className="mb-4 mt-1 flex">
                 {Array.from({ length: Math.floor(finalRating) }).map(
                   (_, index) => (
                     <Star

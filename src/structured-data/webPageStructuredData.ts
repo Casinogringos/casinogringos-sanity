@@ -13,7 +13,7 @@ export const getWebPageStructuredData = (
   const publishedAt = pageService.getPagePublishedAtTimestamp(page)
   const modifiedAt = pageService.getPageModifiedAtTimestamp(page)
 
-  return {
+  const structuredData = {
     '@type': 'WebPage',
     '@id': 'https://casinogringos.se/',
     url: 'https://casinogringos.se/',
@@ -41,7 +41,9 @@ export const getWebPageStructuredData = (
         target: ['https://casinogringos.se/'],
       },
     ],
-    reviewedBy: {
+  }
+  if (page.reviewer) {
+    structuredData.reviewedBy = {
       '@type': 'Person',
       name: page.reviewer.firstName + ' ' + page.reviewer.lastName,
       email: page.reviewer.email,
@@ -49,6 +51,7 @@ export const getWebPageStructuredData = (
       description: portableTextToPlainText(page.reviewer.description),
       url: `https://casinogringos.se/om-oss/${page.reviewer.slug}`,
       sameAs: [page.reviewer.linkedIn],
-    },
+    }
   }
+  return structuredData
 }
