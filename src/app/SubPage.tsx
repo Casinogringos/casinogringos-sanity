@@ -16,6 +16,7 @@ import { getHeadingObjectsByPage } from '@/src/lib/helpers'
 import PageService from '@/src/services/SubPageService'
 import { slugify } from '@/src/lib/helpers'
 import { divide } from 'lodash'
+import { getItemListStructuredData } from '@/src/structured-data/itemListStructuredData'
 
 const pageService = new PageService()
 
@@ -33,6 +34,7 @@ export default function SubPage({ page }: { page: SubPageSchemaType }) {
       getWebPageStructuredData({ webPage: page }),
       getWebSiteStructuredData(),
       getOrganizationStructuredData(),
+      getItemListStructuredData(page),
     ],
   }
   const breadcrumbs = [
