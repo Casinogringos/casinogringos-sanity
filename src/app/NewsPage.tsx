@@ -18,6 +18,7 @@ import NewsPageService from '@/src/services/NewsPageService'
 import { HeadingObjectSchemaType } from '../schemas/headingObject'
 import { slugify } from '@/src/lib/helpers'
 import ArticleCard from '../components/article/ArticleCard'
+import { getFeaturedImageStructuredData } from '@/src/structured-data/featuredImageStructuredData'
 
 const newsPageService = new NewsPageService()
 
@@ -33,7 +34,8 @@ export default function NewsPage({
     '@context': 'https://schema.org',
     '@graph': [
       getNewsArticleStructuredData({ page }),
-      getWebPageStructuredData({ webPage: page }),
+      getWebPageStructuredData({ page }),
+      getFeaturedImageStructuredData({ page }),
       getWebSiteStructuredData(),
       getOrganizationStructuredData(),
     ],

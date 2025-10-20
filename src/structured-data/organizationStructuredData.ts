@@ -8,7 +8,7 @@ export const getOrganizationStructuredData = () => {
       '@type': 'ImageObject',
       inLanguage: 'sv-SE',
       '@id': 'https://casinogringos.se/#logo',
-      url: `${process.env.SITE_URL}/casinogringos.png`,
+      url: `${process.env.SITE_URL}/casinogringos.webp`,
       width: 250,
       height: 118,
       caption: 'Casinogringos',

@@ -17,43 +17,35 @@ const getProductStructuredData = ({
   return {
     '@context': 'https://schema.org',
     '@type': 'Product',
+    "@id": `https://casinogringos.se${productPage.slug.current}#product`,
     name: casino.name,
-    image: urlFor(productPage.seoImage),
+    image: productPage.seoImage.src,
     description: productPage.seoDescription,
     brand: {
-      '@type': 'Brand',
+      '@type': 'Organization',
+      "@id": `https://casinogringos.se${productPage.slug.current}#brand`,
       name: casino.name,
     },
-    review: {
-      '@type': 'Review',
-      author: {
-        '@type': 'Person',
-        name: productPage.reviewer?.firstName ?? '' + ' ' + productPage.reviewer?.lastName ?? '',
-        url: `https://casinogringos.se/om-oss/${productPage.reviewer?.slug?.current}`,
-      },
-      datePublished: productPage.originalPublishedAt ?? productPage._createdAt,
-      dateModified: productPage._updatedAt ?? productPage.originalModifiedAt,
-      // reviewBody: productPage.review,
-      reviewRating: {
-        '@type': 'Rating',
-        ratingValue: finalRating,
-        bestRating: '5',
-        worstRating: '1',
-      },
+    "positiveNotes": {
+      "@type": "ItemList",
+      "itemListElement": casino.advantages.map((advantage: string, i: number) => {
+        return { "@type": "ListItem", "position": i + 1, "name": advantage }
+      })
     },
-    author: {
-      '@type': 'Person',
-      name: productPage.author?.firstName ?? '' + ' ' + productPage.author?.lastName ?? '',
+    "negativeNotes": {
+      "@type": "ItemList",
+      "itemListElement": casino.disadvantages.map((disadvantage: string, i: number) => {
+        return { "@type": "ListItem", "position": i + 1, "name": disadvantage }
+      })
     },
-    publisher: {
-      '@type': 'Organization',
-      name: 'Casinogringos',
-      url: 'https://casinogringos.se',
-      logo: {
-        '@type': 'ImageObject',
-        url: 'https://casinogringos.se/casinogringos.webp',
-      },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": casino.overallRating,
+      "bestRating": 5,
+      "worstRating": 1,
+      "reviewCount": 1
     },
+    "isPartOf": { "@id": "https://casinogringos.se/#website" }
   }
 }
 

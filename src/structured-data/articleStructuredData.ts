@@ -1,7 +1,9 @@
 import { SubPageSchemaType } from '@/src/schemas/subPage'
 import { portableTextToPlainText } from '@/src/lib/utils'
+import { GuidePageSchemaType } from '@/src/schemas/guidePage'
+import { NewsPageSchemaType } from '@/src/schemas/newsPage'
 
-const getArticleStructuredData = (page: SubPageSchemaType) => {
+const getArticleStructuredData = (page: SubPageSchemaType | GuidePageSchemaType | NewsPageSchemaType) => {
   if (!page.author) return null
   const dev = process.env.DEV === 'true'
   let seoImage

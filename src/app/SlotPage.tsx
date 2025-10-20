@@ -23,6 +23,8 @@ import SlotCard from '@/src/components/slot/SlotCard'
 import { HeadingObjectSchemaType } from '../schemas/headingObject'
 import { slugify } from '../lib/helpers'
 import Placeholder from '../components/utils/Placeholder'
+import { getFeaturedImageStructuredData } from '../structured-data/featuredImageStructuredData'
+import getReviewStructuredData from '../structured-data/casinoReviewStructuredData'
 
 const slotPageService = new SlotPageService()
 const casinoPageService = new CasinoPageService()
@@ -42,8 +44,11 @@ const SlotPage = ({
   const schema = {
     '@context': 'https://schema.org',
     '@graph': [
-      getSlotReviewStructuredData({ page: slotPage }),
       getWebPageStructuredData({ page: slotPage }),
+      getFeaturedImageStructuredData(slotPage),
+      getSlotReviewStructuredData({ page: slotPage }),
+      getGameStructuredData(slotPage),
+      getReviewStructuredData({ reviewPage: slotPage }),
       getWebSiteStructuredData(),
       getOrganizationStructuredData(),
     ],

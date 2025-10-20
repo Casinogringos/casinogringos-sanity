@@ -16,6 +16,8 @@ import { getWebSiteStructuredData } from '@/src/structured-data/webSiteStructure
 import { getOrganizationStructuredData } from '@/src/structured-data/organizationStructuredData'
 import { HeadingObjectSchemaType } from '../schemas/headingObject'
 import { slugify } from '../lib/helpers'
+import { getFeaturedImageStructuredData } from '../structured-data/featuredImageStructuredData'
+import getArticleStructuredData from '../structured-data/articleStructuredData'
 
 const guidePageService = new GuidePageService()
 
@@ -32,7 +34,9 @@ export default function GuidePage({
     '@context': 'https://schema.org',
     '@graph': [
       getBlogPostingStructuredData({ page }),
+      getArticleStructuredData(page),
       getWebPageStructuredData({ webPage: page }),
+      getFeaturedImageStructuredData({ page }),
       getWebSiteStructuredData(),
       getOrganizationStructuredData(),
     ],

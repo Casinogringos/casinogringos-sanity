@@ -6,7 +6,7 @@ import { SubPageSchemaType } from '@/src/schemas/subPage'
 const pageService = new PageService()
 
 export const getWebPageStructuredData = (
-  page: SubPageSchemaType
+  page: SubPageSchemaType | NewsPageSchemaType
 ) => {
   if (!page.reviewer) return null
   const pageService = new PageService()

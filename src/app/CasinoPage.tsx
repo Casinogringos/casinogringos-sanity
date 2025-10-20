@@ -36,7 +36,7 @@ const CasinoPage = ({
     '@context': 'https://schema.org',
     '@graph': [
       getProductStructuredData({ productPage: casinoPage }),
-      getWebPageStructuredData({ webPage: casinoPage }),
+      getReviewStructuredData({ reviewPage: casinoPage }),
       getWebSiteStructuredData(),
       getOrganizationStructuredData(),
     ],

@@ -1,43 +1,41 @@
 import { CasinoPageSchemaType } from '@/src/schemas/casinoPage'
+import { GuidePageSchemaType } from '@/src/schemas/guidePage'
+import { NewsPageSchemaType } from '@/src/schemas/newsPage'
+import { SlotPageSchemaType } from '@/src/schemas/slotPage'
 import CasinoService from '@/src/services/CasinoService'
 import fs from 'fs'
 
 const casinoService = new CasinoService()
 
-const getReviewStructuredData = ({ page }: { page: CasinoPageSchemaType }) => {
-  const { finalRating } = casinoService.getCasinoRatings({
-    casino: page.casino,
-  })
+const getReviewStructuredData = ({ reviewPage }: { reviewPage: CasinoPageSchemaType | GuidePageSchemaType | NewsPageSchemaType | SlotPageSchemaType }) => {
 
   return {
     '@context': 'https://schema.org/',
     '@type': 'Review',
-    itemReviewed: {
-      '@type': 'Organization',
-      image: page.featuredImage.image.asset.url,
-      name: page.title,
-    },
+    "@id": `https://casinogringos.se${reviewPage.slug.current}#review`,
+    name: reviewPage.title,
     reviewRating: {
       '@type': 'Rating',
-      ratingValue: finalRating,
+      ratingValue: reviewPage.casino.overallRating,
       bestRating: '5',
       worstRating: '1',
     },
     author: {
       '@type': 'Person',
-      name: page.author.name,
-      url: `https://casinogringos.se/om-oss/${page.author.slug.current}`,
+      name: reviewPage.author.firstName + ' ' + reviewPage.author.lastName,
+      url: `https://casinogringos.se/om-oss/${reviewPage.author.slug.current}`,
       email: null,
       jobTitle: 'Skribent',
-      sameAs: page.author.linkedIn,
+      sameAs: reviewPage.author.linkedIn,
       image: {
         '@type': 'ImageObject',
         inLanguage: 'sv-SE',
         id: 'https://casinogringos.se/#/schema/person/image/',
-        url: page.author.avatar.image.asset.url,
+        url: reviewPage.author.avatar.src,
       },
     },
     publisher: {
+      "@id": "https://casinogringos.se/#organization",
       '@type': 'Organization',
       name: 'Casinogringos',
       url: 'https://casinogringos.se',
