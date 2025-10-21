@@ -178,13 +178,13 @@ export const replaceInternalLinkBaseUrls = (str) => {
 }
 
 export const slugify = (str) => {
-  return str
+  return str ? str
     .toLowerCase()
     .replace(/ /g, '-')
     .replace(/[^a-z0-9-]/g, '')
     .replaceAll('ä', 'a')
     .replaceAll('ö', 'o')
-    .replaceAll('å', 'a')
+    .replaceAll('å', 'a') : ''
 }
 
 export const isValidSlug = (slug) => {

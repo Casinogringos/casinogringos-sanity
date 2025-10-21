@@ -79,7 +79,7 @@ const CasinoPage = ({
         {headings.length > 1 && (
           <Container narrow>
             <TableOfContents
-              headings={headings.map((heading: HeadingObjectSchemaType) => {
+              headings={headings.filter((heading) => heading.text || heading.title).map((heading: HeadingObjectSchemaType) => {
                 switch (heading._type) {
                   case 'heading-object': {
                     return {
