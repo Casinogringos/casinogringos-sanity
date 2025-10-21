@@ -54,6 +54,7 @@ const getArticleStructuredData = (page: SubPageSchemaType | GuidePageSchemaType 
       sameAs: [page.reviewer.linkedIn],
     }
   }
+  return structuredData
 }
 
 export default getArticleStructuredData
