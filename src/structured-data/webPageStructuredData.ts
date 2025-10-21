@@ -11,6 +11,7 @@ export const getWebPageStructuredData = (
 ) => {
   const publishedAt = pageService.getPagePublishedAtTimestamp(page)
   const modifiedAt = pageService.getPageModifiedAtTimestamp(page)
+  if (!publishedAt || !modifiedAt) throw Error
 
   const structuredData = {
     '@type': 'WebPage',
@@ -26,12 +27,9 @@ export const getWebPageStructuredData = (
     primaryImageOfPage: {
       '@id': 'https://casinogringos.se/#primaryimage',
     },
-    image: {
-      '@id': 'https://casinogringos.se/#primaryimage',
-    },
     thumbnailUrl: page.seoImage?.src,
-    datePublished: publishedAt,
-    dateModified: modifiedAt,
+    datePublished: new Date(publishedAt).toISOString(),
+    dateModified: new Date(modifiedAt).toISOString(),
     description: page.seoDescription,
     inLanguage: 'sv-SE',
     potentialAction: [
@@ -41,6 +39,10 @@ export const getWebPageStructuredData = (
       },
     ],
   }
-
+  if (page.featuredImage) {
+    structuredData.image = {
+      '@id': 'https://casinogringos.se/#primaryimage',
+    }
+  }
   return structuredData
 }

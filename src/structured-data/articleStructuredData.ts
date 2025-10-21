@@ -2,8 +2,15 @@ import { SubPageSchemaType } from '@/src/schemas/subPage'
 import { portableTextToPlainText } from '@/src/lib/utils'
 import { GuidePageSchemaType } from '@/src/schemas/guidePage'
 import { NewsPageSchemaType } from '@/src/schemas/newsPage'
+import PageService from '@/src/services/SubPageService'
+
+const pageService = new PageService()
 
 const getArticleStructuredData = (page: SubPageSchemaType | GuidePageSchemaType | NewsPageSchemaType) => {
+  const publishedAt = pageService.getPagePublishedAtTimestamp(page)
+  const modifiedAt = pageService.getPageModifiedAtTimestamp(page)
+  if (!publishedAt || !modifiedAt) throw Error
+
   const dev = process.env.DEV === 'true'
   let seoImage
   if (dev) {
@@ -21,7 +28,7 @@ const getArticleStructuredData = (page: SubPageSchemaType | GuidePageSchemaType 
     },
     headline: page.seoTitle,
     description: page.seoDescription,
-    image: seoImage,
+    image: { "@id": "https://casinogringos.se/#primaryimage" },
     publisher: {
       '@type': 'Organization',
       name: 'Casinogringos',
@@ -30,8 +37,8 @@ const getArticleStructuredData = (page: SubPageSchemaType | GuidePageSchemaType 
         url: 'https://casinogringos.se/casinogringos.webp',
       },
     },
-    datePublished: page.originalPublishedAt,
-    dateModified: page._updatedAt ?? page.originalModifiedAt,
+    datePublished: new Date(publishedAt).toISOString(),
+    dateModified: new Date(modifiedAt).toISOString(),
     author: {
       '@type': 'Person',
       name: page.author.firstName + ' ' + page.author.lastName,
