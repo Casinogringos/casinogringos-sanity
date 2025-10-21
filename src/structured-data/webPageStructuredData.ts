@@ -34,7 +34,6 @@ export const getWebPageStructuredData = (
     dateModified: modifiedAt,
     description: page.seoDescription,
     inLanguage: 'sv-SE',
-    breadcrumb: { "@id": "https://casinogringos.se/#breadcrumb" },
     potentialAction: [
       {
         '@type': 'ReadAction',
