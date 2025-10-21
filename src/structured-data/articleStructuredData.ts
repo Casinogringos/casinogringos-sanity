@@ -50,17 +50,7 @@ const getArticleStructuredData = (page: SubPageSchemaType | GuidePageSchemaType 
       sameAs: [page.author.linkedIn],
     }
   }
-  if (page.reviewer) {
-    structuredData.reviewedBy = {
-      '@type': 'Person',
-      name: page.reviewer.firstName + ' ' + page.reviewer.lastName,
-      email: page.reviewer.email,
-      jobTitle: page.reviewer.role,
-      description: portableTextToPlainText(page.reviewer.description),
-      url: `https://casinogringos.se/om-oss/${page.reviewer.slug}`,
-      sameAs: [page.reviewer.linkedIn],
-    }
-  }
+
   return structuredData
 }
 
