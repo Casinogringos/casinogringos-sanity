@@ -11,7 +11,7 @@ export const getWebPageStructuredData = (
 ) => {
   const publishedAt = pageService.getPagePublishedAtTimestamp(page)
   const modifiedAt = pageService.getPageModifiedAtTimestamp(page)
-  if (!publishedAt || !modifiedAt) throw Error
+  if (!publishedAt || !modifiedAt) return null
 
   const structuredData = {
     '@type': 'WebPage',
