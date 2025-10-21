@@ -4,7 +4,6 @@ import { GuidePageSchemaType } from '@/src/schemas/guidePage'
 import { NewsPageSchemaType } from '@/src/schemas/newsPage'
 
 const getArticleStructuredData = (page: SubPageSchemaType | GuidePageSchemaType | NewsPageSchemaType) => {
-  if (!page.author) return null
   const dev = process.env.DEV === 'true'
   let seoImage
   if (dev) {

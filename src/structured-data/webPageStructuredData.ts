@@ -2,14 +2,13 @@ import { portableTextToPlainText } from '@/src/lib/utils'
 import PageService from '@/src/services/SubPageService'
 import { urlFor } from '@/src/lib/client'
 import { SubPageSchemaType } from '@/src/schemas/subPage'
+import { NewsPageSchemaType } from '@/src/schemas/newsPage'
 
 const pageService = new PageService()
 
 export const getWebPageStructuredData = (
   page: SubPageSchemaType | NewsPageSchemaType
 ) => {
-  if (!page.reviewer) return null
-  const pageService = new PageService()
   const publishedAt = pageService.getPagePublishedAtTimestamp(page)
   const modifiedAt = pageService.getPageModifiedAtTimestamp(page)
 
