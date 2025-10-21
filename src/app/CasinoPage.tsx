@@ -1,5 +1,5 @@
 import ModularContent from '@/src/components/content/ModularContent'
-import getReviewStructuredData from '@/src/structured-data/casinoReviewStructuredData'
+import getReviewStructuredData from '@/src/structured-data/reviewStructuredData'
 import { CasinoPageSchemaType } from '@/src/schemas/casinoPage'
 import getProductStructuredData from '@/src/structured-data/productStructuredData'
 import CasinoHero from '@/src/components/casino/CasinoHero'

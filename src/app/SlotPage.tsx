@@ -24,7 +24,7 @@ import { HeadingObjectSchemaType } from '../schemas/headingObject'
 import { slugify } from '../lib/helpers'
 import Placeholder from '../components/utils/Placeholder'
 import { getFeaturedImageStructuredData } from '../structured-data/featuredImageStructuredData'
-import getReviewStructuredData from '../structured-data/casinoReviewStructuredData'
+import getReviewStructuredData from '../structured-data/reviewStructuredData'
 import getGameStructuredData from '../structured-data/gameStructuredData'
 
 const slotPageService = new SlotPageService()

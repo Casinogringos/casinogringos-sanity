@@ -8,6 +8,14 @@ import fs from 'fs'
 const casinoService = new CasinoService()
 
 const getReviewStructuredData = ({ reviewPage }: { reviewPage: CasinoPageSchemaType | GuidePageSchemaType | NewsPageSchemaType | SlotPageSchemaType }) => {
+  let rating
+  if (reviewPage._type === 'slot-pages') {
+    const page = reviewPage as SlotPageSchemaType
+    rating = page.slot.rating
+  } else if (reviewPage._type === 'casino-pages') {
+    const page = reviewPage as CasinoPageSchemaType
+    rating = page.casino.overallRating
+  }
 
   return {
     '@context': 'https://schema.org/',
@@ -16,8 +24,7 @@ const getReviewStructuredData = ({ reviewPage }: { reviewPage: CasinoPageSchemaT
     name: reviewPage.title,
     reviewRating: {
       '@type': 'Rating',
-      ratingValue: reviewPage.casino.overallRating,
-      bestRating: '5',
+      ratingValue: rating,
       worstRating: '1',
     },
     author: {

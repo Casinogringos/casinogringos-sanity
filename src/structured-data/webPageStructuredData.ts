@@ -30,7 +30,7 @@ export const getWebPageStructuredData = (
     image: {
       '@id': 'https://casinogringos.se/#primaryimage',
     },
-    thumbnailUrl: page.seoImage.src,
+    thumbnailUrl: page.seoImage?.src,
     datePublished: publishedAt,
     dateModified: modifiedAt,
     description: page.seoDescription,
