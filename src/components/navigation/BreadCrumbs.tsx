@@ -25,7 +25,6 @@ const BreadCrumbs = ({
             className="flex items-center gap-x-2 whitespace-nowrap lg:gap-x-3"
           >
             <li
-              itemProp="itemListElement"
               itemID='/'
               itemScope
               itemType="https://schema.org/ListItem"
@@ -44,7 +43,6 @@ const BreadCrumbs = ({
             {items.map((item, i) => (
               <li
                 key={`breadcrumb-${item.text}`}
-                itemProp="itemListElement"
                 itemScope
                 itemType="https://schema.org/ListItem"
                 itemID={item.url}
