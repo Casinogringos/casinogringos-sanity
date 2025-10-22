@@ -30,6 +30,7 @@ const Author = ({ author }: { author: AuthorSchemaType }) => {
     },
     {
       text: author.firstName + ' ' + author.lastName,
+      url: `${process.env.SITE_URL}/om-oss${author.slug.current}`,
     },
   ]
 

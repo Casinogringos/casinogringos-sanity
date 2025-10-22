@@ -30,6 +30,7 @@ export default function SlotIndex({
   const breadcrumbItems = [
     {
       text: 'Slots',
+      url: `${process.env.SITE_URL}/slots`,
     },
   ]
   const headings = subPageService.getHeadingObjects(page)

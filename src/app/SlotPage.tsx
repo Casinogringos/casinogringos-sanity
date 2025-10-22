@@ -66,6 +66,7 @@ const SlotPage = ({
     },
     {
       text: slotPage.title,
+      url: `${process.env.SITE_URL}${slotPage.slug.current}`,
     },
   ]
   const createdAt =

@@ -44,6 +44,7 @@ const CasinoPage = ({
   const breadcrumbs = [
     {
       text: casinoPage.title,
+      url: `${process.env.SITE_URL}${casinoPage.slug.current}`,
     },
   ]
   const headings = getHeadingObjectsByPage({ objects: casinoPage.content })

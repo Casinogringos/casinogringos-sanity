@@ -48,6 +48,7 @@ export default function GuidePage({
     },
     {
       text: page.title,
+      url: `${process.env.SITE_URL}${page.slug.current}`,
     },
   ]
 
