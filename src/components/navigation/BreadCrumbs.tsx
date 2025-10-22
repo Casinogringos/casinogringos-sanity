@@ -27,6 +27,7 @@ const BreadCrumbs = ({
             <li
               itemID='/'
               itemScope
+              itemProp='itemListElement'
               itemType="https://schema.org/ListItem"
             >
               <Link
@@ -44,6 +45,7 @@ const BreadCrumbs = ({
               <li
                 key={`breadcrumb-${item.text}`}
                 itemScope
+                itemProp='itemListElement'
                 itemType="https://schema.org/ListItem"
                 itemID={item.url}
                 className="flex items-center gap-x-2 lg:gap-x-2"
