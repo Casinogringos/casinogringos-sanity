@@ -34,7 +34,7 @@ export default function NewsPage({
     '@context': 'https://schema.org',
     '@graph': [
       getNewsArticleStructuredData({ page }),
-      getWebPageStructuredData({ page }),
+      getWebPageStructuredData(page),
       getFeaturedImageStructuredData({ page }),
       getWebSiteStructuredData(),
       getOrganizationStructuredData(),
