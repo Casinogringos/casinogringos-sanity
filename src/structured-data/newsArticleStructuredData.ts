@@ -1,11 +1,7 @@
-import { NewsPageSchemaType } from '@/src/schemas'
+import { NewsPageSchemaType } from '@/src/schemas/newsPage'
 import { urlFor } from '@/src/lib/client'
 
 const getNewsArticleStructuredData = (page: NewsPageSchemaType) => {
-  if (!page.author || !page.reviewer) {
-    return null
-  }
-
   return {
     '@context': 'https://schema.org',
     '@type': 'NewsArticle',
