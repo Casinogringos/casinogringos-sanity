@@ -7,7 +7,7 @@ const getNewsArticleStructuredData = (page: NewsPageSchemaType) => {
     '@type': 'NewsArticle',
     headline: page.seoTitle,
     description: page.seoDescription,
-    image: urlFor(page.seoImage),
+    image: page.featuredImage.src,
     datePublished: page.originalPublishedAt ?? page._createdAt,
     dateModified: page._updatedAt ?? page.originalModifiedAt,
     author: {
