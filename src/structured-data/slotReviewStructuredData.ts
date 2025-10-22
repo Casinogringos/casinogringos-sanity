@@ -19,8 +19,6 @@ const getSlotReviewStructuredData = ({
         name: slot.name,
       },
       genre: ['Slot', 'Online Casino Game'],
-      applicationCategory: 'Gambling',
-      operatingSystem: 'Web, iOS, Android',
     },
     reviewRating: {
       '@type': 'Rating',

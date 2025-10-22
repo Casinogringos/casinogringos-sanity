@@ -4,11 +4,12 @@ import { urlFor } from '@/src/lib/client'
 import { SubPageSchemaType } from '@/src/schemas/subPage'
 import { NewsPageSchemaType } from '@/src/schemas/newsPage'
 import { GuidePageSchemaType } from '@/src/schemas/guidePage'
+import { SlotPageSchemaType } from '@/src/schemas/slotPage'
 
 const pageService = new PageService()
 
 export const getWebPageStructuredData = (
-  page: SubPageSchemaType | NewsPageSchemaType | GuidePageSchemaType
+  page: SubPageSchemaType | NewsPageSchemaType | GuidePageSchemaType | SlotPageSchemaType
 ) => {
   const publishedAt = pageService.getPagePublishedAtTimestamp(page)
   const modifiedAt = pageService.getPageModifiedAtTimestamp(page)
