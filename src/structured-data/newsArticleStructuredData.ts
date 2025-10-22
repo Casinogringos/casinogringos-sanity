@@ -27,7 +27,7 @@ const getNewsArticleStructuredData = (page: NewsPageSchemaType) => {
     },
     mainEntityOfPage: {
       '@type': 'WebPage',
-      '@id': `https://casinogringos.se/nyheter/${page.slug.current}`,
+      '@id': `https://casinogringos.se${page.slug.current}`,
     },
   }
 }
