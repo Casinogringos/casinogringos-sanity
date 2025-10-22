@@ -57,6 +57,7 @@ const BreadCrumbs = ({
                 {item.url ? (
                   <Link
                     href={item.url}
+                    itemID={item.url}
                     itemProp="item"
                     itemType="https://schema.org/WebPage"
                     prefetch={false}
