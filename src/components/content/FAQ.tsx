@@ -7,6 +7,25 @@ import ToggleItem from '@/src/components/interactivity/ToggleItem'
 import { FaqItemObjectSchemaType } from '@/src/schemas/faqItemObject'
 import { PortableTextBlockSchemaType } from '@/src/schemas/portableTextBlock'
 import Container from '@/src/components/layout/Container'
+import { portableTextToPlainText } from '@/src/lib/utils'
+
+const getFAQPageStructuredData = (items: FaqItemObjectSchemaType[], title?: string) => {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    'mainEntity': items.map((item) => ({
+      '@type': 'Question',
+      'name': item.question,
+      'acceptedAnswer': {
+        '@type': 'Answer',
+        'text': Array.isArray(item.answer)
+          ? portableTextToPlainText(item.answer)
+          : '',
+      },
+    })),
+    ...(title ? { name: title } : {}),
+  }
+}
 
 const FAQ = ({
   items,
@@ -17,8 +36,14 @@ const FAQ = ({
   title?: string
   description?: PortableTextBlockSchemaType
 }) => {
+  const structuredData = getFAQPageStructuredData(items, title)
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+        key="faq-structured-data"
+      />
       <div className={`mb-6 text-white text-center ${description ? 'pb-6' : 'pb-1'}`}>
         <Heading
           className="mb-5 font-bold"
