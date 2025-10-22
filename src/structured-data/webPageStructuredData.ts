@@ -53,7 +53,7 @@ export const getWebPageStructuredData = (
       email: page.reviewer.email,
       jobTitle: page.reviewer.role,
       description: portableTextToPlainText(page.reviewer.description),
-      url: `https://casinogringos.se/om-oss/${page.reviewer.slug}`,
+      url: `https://casinogringos.se/om-oss/${page.reviewer.slug.current}`,
       sameAs: [page.reviewer.linkedIn],
     }
   }
