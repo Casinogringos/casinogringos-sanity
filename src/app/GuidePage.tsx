@@ -35,7 +35,7 @@ export default function GuidePage({
     '@graph': [
       getBlogPostingStructuredData({ page }),
       getArticleStructuredData(page),
-      getWebPageStructuredData({ webPage: page }),
+      getWebPageStructuredData(page),
       getFeaturedImageStructuredData({ page }),
       getWebSiteStructuredData(),
       getOrganizationStructuredData(),

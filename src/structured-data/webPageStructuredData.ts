@@ -3,11 +3,12 @@ import PageService from '@/src/services/SubPageService'
 import { urlFor } from '@/src/lib/client'
 import { SubPageSchemaType } from '@/src/schemas/subPage'
 import { NewsPageSchemaType } from '@/src/schemas/newsPage'
+import { GuidePageSchemaType } from '@/src/schemas/guidePage'
 
 const pageService = new PageService()
 
 export const getWebPageStructuredData = (
-  page: SubPageSchemaType | NewsPageSchemaType
+  page: SubPageSchemaType | NewsPageSchemaType | GuidePageSchemaType
 ) => {
   const publishedAt = pageService.getPagePublishedAtTimestamp(page)
   const modifiedAt = pageService.getPageModifiedAtTimestamp(page)
