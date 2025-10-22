@@ -65,13 +65,14 @@ const BreadCrumbs = ({
                     <span itemProp="name">{item.text}</span>
                   </Link>
                 ) : (
-                  <div
+                  <Link
+                    href={item.url}
                     itemProp="item"
                     itemType="https://schema.org/WebPage"
                     className="lg:m-l3 hover:text-slate-500 text-xs text-gray-500"
                   >
                     <span itemProp="name">{item.text}</span>
-                  </div>
+                  </Link>
                 )}
                 <meta itemProp="position" content={`${i + 2}`} />
               </li>
