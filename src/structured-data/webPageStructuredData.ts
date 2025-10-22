@@ -17,8 +17,8 @@ export const getWebPageStructuredData = (
 
   const structuredData = {
     '@type': 'WebPage',
-    '@id': 'https://casinogringos.se/',
-    url: 'https://casinogringos.se/',
+    '@id': 'https://casinogringos.se',
+    url: 'https://casinogringos.se',
     name: page.seoTitle,
     isPartOf: {
       '@id': 'https://casinogringos.se/#website',
@@ -37,7 +37,7 @@ export const getWebPageStructuredData = (
     potentialAction: [
       {
         '@type': 'ReadAction',
-        target: ['https://casinogringos.se/'],
+        target: ['https://casinogringos.se'],
       },
     ],
   }

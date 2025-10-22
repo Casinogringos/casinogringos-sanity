@@ -3,7 +3,7 @@ export const getOrganizationStructuredData = () => {
     '@type': 'Organization',
     '@id': 'https://casinogringos.se/#organization',
     name: 'Casinogringos',
-    url: 'https://casinogringos.se/',
+    url: 'https://casinogringos.se',
     logo: {
       '@type': 'ImageObject',
       inLanguage: 'sv-SE',

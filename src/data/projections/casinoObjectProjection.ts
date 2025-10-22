@@ -6,7 +6,7 @@ export const casinoObjectProjection = `
     _id,
     _key,
     casinoPage-> {
-        ${casinoPagePreviewProjection}
+      ${casinoPagePreviewProjection}
     },
     message,
     offer,

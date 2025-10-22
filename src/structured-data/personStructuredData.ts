@@ -10,7 +10,7 @@ export const getPersonStructuredData = (author: AuthorSchemaType) => {
     image: {
       '@type': 'ImageObject',
       inLanguage: 'sv-SE',
-      '@id': 'https://casinogringos.se/#/schema/person/image/',
+      '@id': 'https://casinogringos.se/#/schema/person/image',
       url: author.avatar?.src,
       contentUrl: author.avatar?.src,
       caption: author.firstName + ' ' + author.lastName,

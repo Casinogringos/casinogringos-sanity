@@ -45,7 +45,7 @@ const SlotPage = ({
   const schema = {
     '@context': 'https://schema.org',
     '@graph': [
-      getWebPageStructuredData({ page: slotPage }),
+      getWebPageStructuredData(slotPage),
       getFeaturedImageStructuredData(slotPage),
       getSlotReviewStructuredData({ page: slotPage }),
       getGameStructuredData(slotPage),

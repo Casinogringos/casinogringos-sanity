@@ -18,7 +18,7 @@ const getReviewStructuredData = ({ reviewPage }: { reviewPage: CasinoPageSchemaT
   }
 
   return {
-    '@context': 'https://schema.org/',
+    '@context': 'https://schema.org',
     '@type': 'Review',
     "@id": `https://casinogringos.se${reviewPage.slug.current}#review`,
     name: reviewPage.title,
@@ -37,7 +37,7 @@ const getReviewStructuredData = ({ reviewPage }: { reviewPage: CasinoPageSchemaT
       image: {
         '@type': 'ImageObject',
         inLanguage: 'sv-SE',
-        id: 'https://casinogringos.se/#/schema/person/image/',
+        id: 'https://casinogringos.se/#/schema/person/image',
         url: reviewPage.author.avatar.src,
       },
     },
@@ -48,7 +48,7 @@ const getReviewStructuredData = ({ reviewPage }: { reviewPage: CasinoPageSchemaT
       url: 'https://casinogringos.se',
       sameAs: [
         'https://www.facebook.com/Casinogringos',
-        'https://www.instagram.com/casinogringos/',
+        'https://www.instagram.com/casinogringos',
         'https://www.youtube.com/channel/UCeFbFMkDfTlLayuZmk_aXiA',
         'https://www.twitch.tv/casinogringos',
         'https://twitter.com/CasinoGringos',
