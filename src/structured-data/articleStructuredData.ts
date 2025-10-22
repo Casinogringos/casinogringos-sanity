@@ -45,7 +45,7 @@ const getArticleStructuredData = (page: SubPageSchemaType | GuidePageSchemaType 
       email: page.author.email,
       jobTitle: page.author.role,
       description: portableTextToPlainText(page.author.description),
-      url: `https://casinogringos.se/om-oss/${page.author.slug}`,
+      url: `https://casinogringos.se/om-oss/${page.author.slug.current}`,
       image: page.author.avatar.src,
       sameAs: [page.author.linkedIn],
     }

@@ -20,6 +20,7 @@ import { NewsPageSchemaType } from '@/src/schemas/newsPage'
 import { BreadcrumbsSchemaType } from '@/src/schemas/breadcrumbs'
 import { slugify } from '@/src/lib/helpers'
 import { HeadingObjectSchemaType } from '../schemas/headingObject'
+import { getItemListStructuredData } from '../structured-data/itemListStructuredData'
 
 const pageService = new PageService()
 
@@ -42,6 +43,7 @@ const HomePage = ({
       getWebSiteStructuredData(),
       getWebPageStructuredData(page),
       getOrganizationStructuredData(),
+      getItemListStructuredData(page),
       getArticleStructuredData(page),
     ],
   }
