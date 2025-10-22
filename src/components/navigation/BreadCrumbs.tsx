@@ -47,7 +47,6 @@ const BreadCrumbs = ({
                 itemScope
                 itemProp='itemListElement'
                 itemType="https://schema.org/ListItem"
-                itemID={item.url}
                 className="flex items-center gap-x-2 lg:gap-x-2"
               >
                 <ChevronRight
@@ -68,7 +67,6 @@ const BreadCrumbs = ({
                   <div
                     itemProp="item"
                     itemType="https://schema.org/WebPage"
-                    itemID={item.text}
                     className="lg:m-l3 hover:text-slate-500 text-xs text-gray-500"
                   >
                     <span itemProp="name">{item.text}</span>
