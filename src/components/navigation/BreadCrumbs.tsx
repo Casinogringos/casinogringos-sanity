@@ -47,7 +47,7 @@ const BreadCrumbs = ({
                 itemScope
                 itemProp='itemListElement'
                 itemType="https://schema.org/ListItem"
-                itemID={item.text}
+                itemID={`breadcrumb-${i}`}
                 className="flex items-center gap-x-2 lg:gap-x-2"
               >
                 <ChevronRight
