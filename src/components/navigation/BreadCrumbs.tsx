@@ -46,7 +46,6 @@ const BreadCrumbs = ({
                 key={`breadcrumb-${item.text}`}
                 itemScope
                 itemProp='itemListElement'
-                itemID={item.url}
                 itemType="https://schema.org/ListItem"
                 className="flex items-center gap-x-2 lg:gap-x-2"
               >
@@ -58,21 +57,18 @@ const BreadCrumbs = ({
                   <Link
                     href={item.url}
                     itemProp="item"
-                    itemType="https://schema.org/WebPage"
                     prefetch={false}
-                    className="lg:m-l3 hover:text-primary text-xs text-gray-500"
+                    className="hover:text-primary text-xs text-gray-500"
                   >
                     <span itemProp="name">{item.text}</span>
                   </Link>
                 ) : (
-                  <Link
-                    href={item.url}
+                  <span
                     itemProp="item"
-                    itemType="https://schema.org/WebPage"
-                    className="lg:m-l3 hover:text-slate-500 text-xs text-gray-500"
+                    className="hover:text-slate-500 text-xs text-gray-500"
                   >
                     <span itemProp="name">{item.text}</span>
-                  </Link>
+                  </span>
                 )}
                 <meta itemProp="position" content={`${i + 2}`} />
               </li>
