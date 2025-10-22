@@ -12,7 +12,6 @@ export const getItemListStructuredData = (page: SubPageSchemaType) => {
     "name": "Nya casinon 2025",
     "itemListOrder": "http://schema.org/ItemListOrderAscending",
     "numberOfItems": 15,
-    "isPartOf": { "@id": "https://casinogringos.se/#website" },
     "itemListElement": toplist.casinos.map((casino: CasinoPagePreviewSchemaType, i: number) => {
       return {
         "@type": "ListItem",
