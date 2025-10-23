@@ -47,6 +47,11 @@ export default function SlotIndex({
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+        key="slot-index-structured-data"
+      />
       <SubPageHero page={page} />
       <BreadCrumbs narrow={false} items={breadcrumbItems} />
       <div className="pb-12 pt-8 lg:pt-10 bg-slate-100">
