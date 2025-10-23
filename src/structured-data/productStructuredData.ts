@@ -45,7 +45,6 @@ const getProductStructuredData = ({
       "worstRating": 1,
       "reviewCount": 1
     },
-    "isPartOf": { "@id": "https://casinogringos.se/#website" }
   }
 }
 
