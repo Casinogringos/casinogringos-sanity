@@ -1,4 +1,5 @@
 import { AuthorSchemaType } from '@/src/schemas/author'
+import { portableTextToPlainText } from '@/src/lib/utils'
 
 export const getPersonStructuredData = (author: AuthorSchemaType) => {
   if (!author) return null
@@ -15,7 +16,7 @@ export const getPersonStructuredData = (author: AuthorSchemaType) => {
       contentUrl: author.avatar?.src,
       caption: author.firstName + ' ' + author.lastName,
     },
-    description: author.description,
+    description: portableTextToPlainText(author.description),
     url: `https://casinogringos.se/om-oss/${author.slug.current}`,
   }
 }

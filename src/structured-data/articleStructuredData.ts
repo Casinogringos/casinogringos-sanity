@@ -9,7 +9,6 @@ const pageService = new PageService()
 const getArticleStructuredData = (page: SubPageSchemaType | GuidePageSchemaType | NewsPageSchemaType) => {
   const publishedAt = pageService.getPagePublishedAtTimestamp(page)
   const modifiedAt = pageService.getPageModifiedAtTimestamp(page)
-  if (!publishedAt || !modifiedAt) return null
 
   const dev = process.env.DEV === 'true'
   let seoImage

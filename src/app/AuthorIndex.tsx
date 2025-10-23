@@ -26,6 +26,7 @@ const AuthorIndex = ({
   const breadcrumbs: BreadcrumbsSchemaType = [
     {
       text: 'Om Oss',
+      url: `${process.env.SITE_URL}/om-oss`,
     },
   ]
   const schema = {
