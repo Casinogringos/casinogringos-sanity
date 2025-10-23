@@ -13,6 +13,10 @@ import ToggleObject from '@/src/components/objects/ToggleObject'
 import { PaymentMethodPageSchemaType } from '@/src/schemas/paymentMethodPage'
 import { GameProviderSchemaType } from '@/src/schemas/gameProvider'
 import { useState } from 'react'
+import { Mail, MessageCircle } from 'lucide-react'
+import { Phone } from 'lucide-react'
+import { Globe } from 'lucide-react'
+
 
 const CasinoInfo = ({ casinoPage }: { casinoPage: CasinoPageSchemaType }) => {
   const { title } = casinoPage
@@ -54,6 +58,12 @@ const CasinoInfo = ({ casinoPage }: { casinoPage: CasinoPageSchemaType }) => {
   }, [] as PaymentMethodPageSchemaType[])
   const initGameProviders = casinoPage.casino.gameProviders.slice(0, 20)
   const remainingGameProviders = casinoPage.casino.gameProviders.slice(20)
+  const getContactMethodIcon = (label: string) => {
+    if (label.toLowerCase().includes('email')) return <Mail size={15} />
+    if (label.toLowerCase().includes('telefon')) return <Phone size={15} />
+    if (label.toLowerCase().includes('chatt')) return <MessageCircle size={15} />
+    return null
+  }
 
   return (
     <div>
@@ -315,7 +325,10 @@ const CasinoInfo = ({ casinoPage }: { casinoPage: CasinoPageSchemaType }) => {
                 key={`contact-method-${contactMethod.label}`}
                 className="flex items-center py-2 border-b border-gray-200"
               >
-                <span className="font-medium">{contactMethod.label}</span>
+                <div className='flex items-center gap-2'>
+                  {getContactMethodIcon(contactMethod.label)}
+                  <span className="font-medium">{contactMethod.label}</span>
+                </div>
                 <div className="ml-auto text-blue-600">
                   {contactMethod.value}
                 </div>
