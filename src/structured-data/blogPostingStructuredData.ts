@@ -12,7 +12,7 @@ export const getBlogPostingStructuredData = ({
     '@type': 'BlogPosting',
     headline: page.seoTitle,
     description: page.seoDescription,
-    image: urlFor(page.seoImage),
+    image: page.seoImage.src,
     author: {
       '@type': 'Person',
       name: page.author.firstName + ' ' + page.author.lastName,
