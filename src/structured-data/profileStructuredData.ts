@@ -1,4 +1,5 @@
 import { AuthorSchemaType } from '@/src/schemas/author'
+import { portableTextToPlainText } from '@/src/lib/utils'
 
 const getProfileStructuredData = (author: AuthorSchemaType) => {
 
@@ -10,7 +11,7 @@ const getProfileStructuredData = (author: AuthorSchemaType) => {
     "isPartOf": {
       "@id": "https://casinogringos.se/#website"
     },
-    "description": author.description,
+    "description": portableTextToPlainText(author.description),
     "inLanguage": "sv-SE",
     "potentialAction": [
       {
