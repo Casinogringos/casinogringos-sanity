@@ -38,7 +38,7 @@ export default function SlotIndex({
   const schema = {
     '@context': 'https://schema.org',
     '@graph': [
-      getWebPageStructuredData({ webPage: page }),
+      getWebPageStructuredData(page),
       getWebSiteStructuredData(),
       getOrganizationStructuredData(),
     ],
