@@ -6,9 +6,6 @@ export const getBlogPostingStructuredData = ({
 }: {
   page: GuidePageSchemaType
 }) => {
-  if (!page.author || !page.reviewer) {
-    return null
-  }
 
   const structuredData = {
     '@context': 'https://schema.org',
