@@ -7,7 +7,7 @@ import AffLinkSchema from './affLink';
 
 export const FreeSpinsPageSchema = z.object({
   _type: z.literal('free-spins'),
-  freeSpins: FreeSpinsSchema,
+  freeSpinsBonus: FreeSpinsSchema,
   affLink: AffLinkSchema,
 });
 

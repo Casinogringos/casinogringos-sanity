@@ -47,7 +47,8 @@ const CasinoCard = ({
     return prev
   }, { value: '' })
   console.log('category', category)
-  const freespinsPage = casinoService.getFreespinsPage({ casinoPage })
+  console.log('hello', casinoPage.freeSpinsPages)
+  // const freespinsPage = casinoService.getFreespinsPage({ casinoPage })
   const getAffLinkSlug = () => {
     switch (category.value) {
       case 'casino-bonus':
@@ -80,23 +81,17 @@ const CasinoCard = ({
         return casinoPage.oddsBonusPages?.[0].oddsBonus.wageringRequirements ?? null
       case 'live-casino-bonus':
         return casinoPage.liveCasinoBonusPages?.[0].liveCasinoBonus.wageringRequirements ?? null
-      case 'freespins':
-        return casinoPage.freeSpinsPages?.[0].freeSpins.wageringRequirements ?? null
       default:
         return null
     }
   }
-  const getFreeSpins = () => {
-    return casinoPage.freeSpinsPages?.[0].freeSpins.numberOfFreeSpins ?? null
-  }
+  const numberOfFreeSpins = casinoPage.freeSpinsPages?.[0].freeSpinsBonus.numberOfFreeSpins ?? null
+  const wageringRequirements = casinoPage.freeSpinsPages?.[0].freeSpinsBonus.wageringRequirements ?? null
   console.log('CATEGORY', category)
   const affLinkSlug = getAffLinkSlug()
   const bonus = getBonus()
   console.log('BONUS', bonus)
-  const wageringRequirements = getWageringRequirements()
   console.log('wageringRequirements', wageringRequirements)
-  const freeSpins = getFreeSpins()
-  console.log('freeSpins', freeSpins)
 
   return (
     <>
@@ -130,7 +125,7 @@ const CasinoCard = ({
           </div>
           <div className="block text-xs text-black">
             <div className="grid grid-cols-2 gap-2">
-              {bonus || freeSpins ? (
+              {bonus || numberOfFreeSpins ? (
                 <>
                   {bonus ? <div className="uppercase flex min-h-[84px] font-medium flex-col items-center justify-center rounded-md border border-green-200 bg-green-100 p-2 text-lg leading-6">
                     <div className="-mb-1 block text-xs text-gray-700">Bonus</div>
@@ -144,17 +139,17 @@ const CasinoCard = ({
                       </div>
                     )}
                   </div> : <div className={"uppercase flex min-h-[84px] font-medium flex-col items-center justify-center rounded-md border border-green-200 bg-green-100 p-2 text-lg leading-6"}>-</div>}
-                  {freespinsPage ? <div className="uppercase flex min-h-[84px] flex-col items-center justify-center rounded-md border border-blue-100 bg-blue-50 p-2 text-lg leading-6">
+                  {numberOfFreeSpins ? <div className="uppercase flex min-h-[84px] flex-col items-center justify-center rounded-md border border-blue-100 bg-blue-50 p-2 text-lg leading-6">
                     <div className="-mb-1 block text-xs text-gray-700">
                       Freespins
                     </div>
-                    {freespinsPage ? (
+                    {numberOfFreeSpins ? (
                       <>
-                        {freespinsPage.numberOfFreeSpins ?? '-'}
+                        {numberOfFreeSpins}
                         <div className="-mt-0.5 flex items-center text-xs font-medium text-gray-700">
                           Omsättning:{' '}
                           <span className="ml-0.5 inline-block text-black">
-                            {freespinsPage.wageringRequirements}x
+                            {wageringRequirements}x
                           </span>
                         </div>
                       </>

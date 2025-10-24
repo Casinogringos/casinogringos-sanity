@@ -5,7 +5,7 @@ export const freeSpinsPageProjection = `
     _type,
     _id,
     _key,
-    freeSpins-> {
+    freeSpinsBonus-> {
       ${freeSpinsProjection}
     },
     affLink-> {
