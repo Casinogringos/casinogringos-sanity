@@ -1,13 +1,13 @@
-import { AlertCircle } from 'lucide-react'
-import Link from 'next/link'
-import Heading from '@/src/components/content/Heading'
 import CasinoCard from '@/src/components/casino/CasinoCard'
+import Heading from '@/src/components/content/Heading'
 import CheckBadgeIcon from '@/src/components/icons/CheckBadgeIcon'
-import ToggleObject from '@/src/components/objects/ToggleObject'
-import { PortableTextBlock } from 'next-sanity'
 import ToggleButton from '@/src/components/interactivity/ToggleButton'
 import ToggleItem from '@/src/components/interactivity/ToggleItem'
+import ToggleObject from '@/src/components/objects/ToggleObject'
 import { CasinoPagePreviewSchemaType } from '@/src/schemas/casinoPagePreview'
+import { AlertCircle } from 'lucide-react'
+import { PortableTextBlock } from 'next-sanity'
+import Link from 'next/link'
 import Button from '../content/Button'
 
 export default function CasinoList({
@@ -36,13 +36,13 @@ export default function CasinoList({
           role={'button'}
           label={'Annonsinformation'}
         >
-          <div className="ml-auto flex cursor-pointer justify-end text-sm items-center gap-1 py-2 text-2xs text-slate-600">
+          <div className="ml-auto flex cursor-pointer justify-end text-sm items-center gap-1 pt-3 text-2xs text-slate-600">
             <AlertCircle className="size-3" />
             Annonsinformation
           </div>
         </ToggleButton>
         <ToggleItem id={'toplist-ad-information'}>
-          <p className="rounded-md bg-white px-3 py-4 text-xs italic text-gray-700">
+          <p className="rounded-md bg-white px-3 py-4 mt-3 text-xs italic text-gray-700">
             Casinogringos.se är en jämförelsetjänst för online casinon och sidan
             innehåller reklamlänkar. När du klickar dig vidare till ett casino
             via oss kan vi därför komma att erhålla provision för detta från

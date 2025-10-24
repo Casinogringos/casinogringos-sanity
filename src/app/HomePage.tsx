@@ -1,24 +1,21 @@
-import ModularContent from '@/src/components/content/ModularContent'
-import HomePageHero from '@/src/components/content/HomePageHero'
-import CasinoList from '@/src/components/casino/CasinoList'
 import CasinoCard from '@/src/components/casino/CasinoCard'
-import NewsList from '@/src/components/news/NewsList'
+import CasinoList from '@/src/components/casino/CasinoList'
+import AuthorBox from '@/src/components/content/AuthorBox'
+import FAQ from '@/src/components/content/FAQ'
+import HomePageHero from '@/src/components/content/HomePageHero'
+import ModularContent from '@/src/components/content/ModularContent'
 import Container from '@/src/components/layout/Container'
 import TableOfContents from '@/src/components/navigation/TableOfContents'
+import NewsList from '@/src/components/news/NewsList'
+import { getHeadingObjectsByPage, slugify } from '@/src/lib/helpers'
+import { NewsPageSchemaType } from '@/src/schemas/newsPage'
+import { SubPageSchemaType } from '@/src/schemas/subPage'
+import PageService from '@/src/services/SubPageService'
 import getArticleStructuredData from '@/src/structured-data/articleStructuredData'
+import { getOrganizationStructuredData } from '@/src/structured-data/organizationStructuredData'
 import { getWebPageStructuredData } from '@/src/structured-data/webPageStructuredData'
 import { getWebSiteStructuredData } from '@/src/structured-data/webSiteStructuredData'
-import { getOrganizationStructuredData } from '@/src/structured-data/organizationStructuredData'
-import FAQ from '@/src/components/content/FAQ'
-import AuthorBox from '@/src/components/content/AuthorBox'
-import NewsCard from '@/src/components/news/NewsCard'
-import { getHeadingObjectsByPage } from '@/src/lib/helpers'
-import PageService from '@/src/services/SubPageService'
 import ArticleCard from '../components/article/ArticleCard'
-import { SubPageSchemaType } from '@/src/schemas/subPage'
-import { NewsPageSchemaType } from '@/src/schemas/newsPage'
-import { BreadcrumbsSchemaType } from '@/src/schemas/breadcrumbs'
-import { slugify } from '@/src/lib/helpers'
 import { HeadingObjectSchemaType } from '../schemas/headingObject'
 import { getItemListStructuredData } from '../structured-data/itemListStructuredData'
 
@@ -74,7 +71,7 @@ const HomePage = ({
       <NewsList itemComponent={ArticleCard} items={news} cardBackground />
       {headingObjects && headingObjects.length > 0 && (
         <Container narrow>
-          <div className="pt-12 lg:pt-16">
+          <div className="pt-6 lg:pt-16">
             <TableOfContents
               headings={headingObjects.map(
                 (heading: HeadingObjectSchemaType) => ({
@@ -86,7 +83,12 @@ const HomePage = ({
           </div>
         </Container>
       )}
-      <ModularContent className="py-10" narrow objects={page.content} bonusCategories={toplistCategories} />
+      <ModularContent
+        className="pt-4 pb-10"
+        narrow
+        objects={page.content}
+        bonusCategories={toplistCategories}
+      />
       {author && (
         <Container narrow>
           <AuthorBox
