@@ -39,8 +39,9 @@ export default async function Page() {
   const homepage = await getPageBySlug({
     slug: '/',
   })
+  console.log('homepage', homepage)
   const news = await getNewsPagePreviews({ count: 3, offset: 0 })
 
   if (!homepage) return notFound()
-  return <HomePage page={homepage} news={news} toplistCategory={homepage.bonusCategory} />
+  return <HomePage page={homepage} news={news} toplistCategories={homepage.bonusCategory} />
 }

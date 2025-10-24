@@ -6,15 +6,15 @@ import CasinoService from '@/src/services/CasinoService'
 const CasinoTableRow = ({
   casinoPage,
   index,
-  bonusCategory,
+  bonusCategories,
 }: {
   casinoPage: CasinoPageSchemaType | CasinoPagePreviewSchemaType
   index: number
-  bonusCategory: string
+  bonusCategories: string[]
 }) => {
   const { casino } = casinoPage
   const casinoService = new CasinoService()
-  const bonus = casinoService.getBonus({ casinoPage, category: bonusCategory })
+  const bonus = casinoService.getBonus({ casinoPage, category: bonusCategories })
   const freespinsPage = casinoService.getFreespinsPage({ casinoPage })
   // console.log('CASINOPAGE', casinoPage)
   // console.log('bonus', bonus)

@@ -207,6 +207,6 @@ export const getHeadingObjectsByPage = ({
   objects: ModularContentSchemaType
 }) => {
   return objects.filter((object) => {
-    return object._type === 'heading-object' || object._type === 'rating-object'
+    return (object._type === 'heading-object' && object.level === 2) || object._type === 'rating-object'
   })
 }

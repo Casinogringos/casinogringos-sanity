@@ -27,11 +27,11 @@ const pageService = new PageService()
 const HomePage = ({
   page,
   news,
-  toplistCategory,
+  toplistCategories,
 }: {
   page: SubPageSchemaType
   news: NewsPageSchemaType[]
-  toplistCategory: string
+  toplistCategories: string[]
 }) => {
   const isValid = pageService.validatePage(page)
   if (!isValid) return null
@@ -66,7 +66,7 @@ const HomePage = ({
               title={page.toplist.title}
               description={page.toplist.description}
               itemComponent={CasinoCard}
-              category={toplistCategory}
+              categories={toplistCategories}
             />
           </Container>
         </div>
@@ -86,7 +86,7 @@ const HomePage = ({
           </div>
         </Container>
       )}
-      <ModularContent className="py-10" narrow objects={page.content} bonusCategory={toplistCategory} />
+      <ModularContent className="py-10" narrow objects={page.content} bonusCategories={toplistCategories} />
       {author && (
         <Container narrow>
           <AuthorBox

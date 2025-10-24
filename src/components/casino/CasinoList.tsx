@@ -15,13 +15,13 @@ export default function CasinoList({
   title,
   description,
   itemComponent,
-  category,
+  categories,
 }: {
   casinoPages: CasinoPagePreviewSchemaType[]
   title: string
   description: PortableTextBlock[]
   itemComponent: typeof CasinoCard
-  category: string
+  categories: string[]
 }) {
   const year = new Date().getFullYear()
   const ItemComponent = itemComponent
@@ -86,7 +86,7 @@ export default function CasinoList({
             key={`casino-${casinoPage._id}-${index}`}
             casinoPage={casinoPage}
             index={index}
-            category={category}
+            categories={categories}
           />
         ))}
         <ToggleItem id={'show-more-casinos'}>
@@ -95,7 +95,7 @@ export default function CasinoList({
               key={`casino-${casinoPage._id}-${index}`}
               casinoPage={casinoPage}
               index={index}
-              category={category}
+              categories={categories}
             />
           ))}
         </ToggleItem>

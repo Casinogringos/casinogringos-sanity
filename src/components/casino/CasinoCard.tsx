@@ -13,34 +13,55 @@ import { LiveCasinoBonusSchemaType } from '@/src/schemas/liveCasinoBonus'
 const CasinoCard = ({
   casinoPage,
   index,
-  category,
+  categories,
 }: {
   casinoPage: CasinoPagePreviewSchemaType
   index: number
-  category: string
+  categories: { value: string }[]
 }) => {
   if (!casinoPage) return null
   const casino = casinoPage.casino
   const casinoService = new CasinoService()
   const { finalRating } = casinoService.getCasinoRatings({ casino })
-  const bonusPage = casinoService.getBonus({ casinoPage, category })
+  const category = categories.reverse().reduce((prev: { value: string }, current: { value: string }) => {
+    let existing = ''
+    if (current.value === 'casino-bonus') {
+      const casinoBonus = casinoPage.casinoBonusPages?.length
+      if (casinoBonus) {
+        existing = 'casino-bonus'
+      }
+    } else if (current.value === 'odds-bonus') {
+      const oddsBonus = casinoPage.oddsBonusPages?.length
+      if (oddsBonus) {
+        existing = 'odds-bonus'
+      }
+    } else if (current.value === 'live-casino-bonus') {
+      const liveCasinoBonus = casinoPage.liveCasinoBonusPages?.length
+      if (liveCasinoBonus) {
+        existing = 'live-casino-bonus'
+      }
+    }
+    if (existing) {
+      return { value: existing }
+    }
+    return prev
+  }, { value: '' })
+  console.log('category', category)
   const freespinsPage = casinoService.getFreespinsPage({ casinoPage })
   const getAffLinkSlug = () => {
-    switch (category) {
+    switch (category.value) {
       case 'casino-bonus':
         return casinoPage.casinoBonusPages?.[0].affLink.slug.current ?? null
       case 'odds-bonus':
         return casinoPage.oddsBonusPages?.[0].affLink.slug.current ?? null
       case 'live-casino-bonus':
         return casinoPage.liveCasinoBonusPages?.[0].affLink.slug.current ?? null
-      case 'freespins':
-        return casinoPage.freeSpinsPages?.[0].affLink.slug.current ?? null
       default:
-        return null
+        return casinoPage.freeSpinsPages?.[0].affLink.slug.current ?? null
     }
   }
   const getBonus = () => {
-    switch (category) {
+    switch (category.value) {
       case 'casino-bonus':
         return casinoPage.casinoBonusPages?.[0].casinoBonus.bonusAmountRange[1] ?? null
       case 'odds-bonus':
@@ -52,7 +73,7 @@ const CasinoCard = ({
     }
   }
   const getWageringRequirements = () => {
-    switch (category) {
+    switch (category.value) {
       case 'casino-bonus':
         return casinoPage.casinoBonusPages?.[0].casinoBonus.wageringRequirements ?? null
       case 'odds-bonus':

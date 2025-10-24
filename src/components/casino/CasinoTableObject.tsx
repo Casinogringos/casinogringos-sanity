@@ -4,10 +4,10 @@ import { CasinoTableObjectSchemaType } from '@/src/schemas/casinoTableObject'
 
 const CasinoTableObject = ({
   object,
-  bonusCategory,
+  bonusCategories,
 }: {
   object: CasinoTableObjectSchemaType
-  bonusCategory: string
+  bonusCategories: string[]
 }) => {
   const { toplist } = object
   if (!toplist || !toplist.casinos || toplist.casinos.length === 0) {
@@ -32,7 +32,7 @@ const CasinoTableObject = ({
               key={`${casinoPage._id}-${index}`}
               casinoPage={casinoPage}
               index={index}
-              bonusCategory={bonusCategory}
+              bonusCategories={bonusCategories}
             />
           ))}
         </tbody>

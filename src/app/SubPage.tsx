@@ -64,7 +64,7 @@ export default function SubPage({ page }: { page: SubPageSchemaType }) {
             casinoPages={toplist.casinos}
             title={toplist.title}
             description={toplist.description}
-            category={page.bonusCategory ?? ''}
+            categories={page.bonusCategory?.map((category) => category.value) ?? []}
           />
         </Container>
       ) : <div className='mb-6' />}

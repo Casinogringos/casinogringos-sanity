@@ -39,7 +39,10 @@ export const pageProjection = `
   toplist-> {
     ${toplistProjection}
   },
-  bonusCategory,
+  bonusCategory[] {
+    _type,
+    value
+  },
   content[] {
     ${objectProjections}
   }
