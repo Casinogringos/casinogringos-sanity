@@ -14,37 +14,35 @@ const CasinoTableRow = ({
 }) => {
   const { casino } = casinoPage
   const casinoService = new CasinoService()
-  const bonus = casinoService.getBonus({ casinoPage, category: bonusCategories })
+  const bonus = casinoService.getBonus({ casinoPage, categories: bonusCategories })
   const freespinsPage = casinoService.getFreespinsPage({ casinoPage })
-  // console.log('CASINOPAGE', casinoPage)
-  // console.log('bonus', bonus)
+  console.log('CASINOPAGE', casinoPage)
+  console.log('bonus!', bonus)
   // console.log('bonusCategory', bonusCategory)
   const getBonusString = () => {
     if (!bonus) return
     switch (bonus._type) {
       case 'casino-bonus-pages': {
         const casinoBonus = bonus.casinoBonus.bonusAmountRange[1]
-        const freespins = freespinsPage?.numberOfFreeSpins
-        if (!casinoBonus && !freespins) return casino.defaultBonusText
-        return `${casinoBonus ? casinoBonus + ' kr bonus' : null}${freespins ? ' + ' + freespins + ' freespins' : null}`
+        if (!casinoBonus && !freespinsPage) return casino.defaultBonusText
+        return `${casinoBonus ? casinoBonus + ' kr bonus' : null}${freespinsPage ? ' + ' + freespinsPage + ' freespins' : 'error casino bonus'}`
       }
       case 'odds-bonus-pages': {
         const oddsBonus = bonus.oddsBonus.bonusAmountRange[1]
-        const freespins = freespinsPage?.numberOfFreeSpins
-        if (!oddsBonus && !freespins) return casino.defaultBonusText
-        return `${oddsBonus ? oddsBonus + ' kr bonus' : null}${freespins ? ' + ' + freespins + ' freespins' : null}`
+        if (!oddsBonus && !freespinsPage) return casino.defaultBonusText
+        return `${oddsBonus ? oddsBonus + ' kr bonus' : null}${freespinsPage ? ' + ' + freespinsPage + ' freespins' : 'error odds bonus'}`
       }
       case 'live-casino-bonus-pages': {
         const liveCasinoBonus = bonus.liveCasinoBonus.bonusPercentage
-        const freespins = freespinsPage?.numberOfFreeSpins
-        if (!liveCasinoBonus && !freespins) return casino.defaultBonusText
-        return `${liveCasinoBonus ? liveCasinoBonus + '%' : null}${freespins ? ' + ' + freespins + ' freespins' : null}`
+        if (!liveCasinoBonus && !freespinsPage) return casino.defaultBonusText
+        return `${liveCasinoBonus ? liveCasinoBonus + '%' : null}${freespinsPage ? ' + ' + freespinsPage + ' freespins' : 'error live casino bonus'}`
       }
       default:
-        return ''
+        return 'default'
     }
   }
   const bonusString = getBonusString()
+  console.log('bonusString', bonusString)
 
   return (
     <tr>

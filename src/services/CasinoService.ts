@@ -140,24 +140,24 @@ class CasinoService {
   //   return `${bonusString} ${bonusString && freeSpinsString ? ' + ' : ''} ${freeSpinsString}`
   // }
 
-  getBonus({ casinoPage, category }: { casinoPage: CasinoPageSchemaType | CasinoPagePreviewSchemaType; category: string }): CasinoBonusPageSchemaType | OddsBonusPageSchemaType | LiveCasinoBonusPageSchemaType | false {
-    if (!category) return false
-    console.log('category', category)
+  getBonus({ casinoPage, categories }: { casinoPage: CasinoPageSchemaType | CasinoPagePreviewSchemaType; categories: string[] }): CasinoBonusPageSchemaType | OddsBonusPageSchemaType | LiveCasinoBonusPageSchemaType | false {
+    if (!categories.length) return false
+    console.log('categories!', categories[0])
     console.log('casinoPage', casinoPage)
-    switch (category) {
+    switch (categories[0].value) {
       case 'casino-bonus':
-        return casinoPage.casinoBonusPages?.[0] ?? false
+        return casinoPage.casinoBonusPages?.[0] ?? 'error casino bonus'
       case 'odds-bonus':
-        return casinoPage.oddsBonusPages?.[0] ?? false
+        return casinoPage.oddsBonusPages?.[0] ?? 'error odds bonus'
       case 'live-casino-bonus':
-        return casinoPage.liveCasinoBonusPages?.[0] ?? false
+        return casinoPage.liveCasinoBonusPages?.[0] ?? 'error live casino bonus'
       default:
-        return false
+        return 'default'
     }
   }
 
   getFreespinsPage({ casinoPage }: { casinoPage: CasinoPageSchemaType | CasinoPagePreviewSchemaType }) {
-    return casinoPage.freeSpinsPages?.[0].freeSpins ?? false
+    return casinoPage.freeSpinsPages?.[0]?.freeSpinsBonus?.numberOfFreeSpins ?? false
   }
 }
 
