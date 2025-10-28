@@ -52,12 +52,8 @@ const renderObject = (
       )
     }
     case 'paragraph-object': {
-      const proseColorOverrides =
-        backgroundColor === 'blue' ? 'dark-bg' : 'light-bg'
       return (
-        <div className={'text-base leading-paragraph'}>
-          <PortableText value={object.content} />
-        </div>
+        <PortableText value={object.content} />
       )
     }
     case 'image-object': {
@@ -157,7 +153,7 @@ const ModularContent = async ({
   const Tag = nested ? 'div' : Container
   return (
     <Tag
-      className={`${className} ${prose ? 'prose lg:prose-lg' : ''}`}
+      className={`${className} ${prose ? 'prose lg:prose-lg' : ''} text-base leading-paragraph`}
       narrow={narrow}
     >
       {objects.map(

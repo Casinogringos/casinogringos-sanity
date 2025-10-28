@@ -116,7 +116,7 @@ const Link = ({
         runActions()
         if (!plausible) return
         plausibleMethod(plausible.eventName, {
-          props: { ...plausible.props, pathname },
+          props: { ...plausible.props, pathname, place },
         })
       }}
     >

@@ -59,7 +59,7 @@ const CasinoTableRow = ({
           rel="noopener noreferrer nofollow"
           prefetch={false}
           variant={'affiliate'}
-          size="sm"
+          size="md"
           className="ml-auto"
           plausible={{
             eventName: 'AffiliateClick',

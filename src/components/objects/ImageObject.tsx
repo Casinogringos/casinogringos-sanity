@@ -15,7 +15,7 @@ const ImageObject = ({
   return (
     <SanityImage
       image={object}
-      className={className}
+      className={className ?? ''}
       prose={prose}
       width={1200}
       height={600}
