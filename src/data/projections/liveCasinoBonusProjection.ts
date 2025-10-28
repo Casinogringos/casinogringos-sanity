@@ -13,7 +13,10 @@ export const liveCasinoBonusProjection = `
     bonusType-> {
         ${bonusTypeProjection}
     },
-    bonusAmountRange,
+    bonusAmountRange {
+        min,
+        max
+    },
     bonusPercentage,
     minimumDeposit,
     wageringRequirements,

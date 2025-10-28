@@ -10,35 +10,38 @@ const CasinoTableRow = ({
 }: {
   casinoPage: CasinoPageSchemaType | CasinoPagePreviewSchemaType
   index: number
-  bonusCategories: string[]
+  bonusCategories: { value: string }[]
 }) => {
-  const { casino } = casinoPage
   const casinoService = new CasinoService()
-  const bonus = casinoService.getBonus({ casinoPage, categories: bonusCategories })
-  const freespinsPage = casinoService.getFreespinsPage({ casinoPage })
-  console.log('CASINOPAGE', casinoPage)
-  console.log('bonus!', bonus)
-  // console.log('bonusCategory', bonusCategory)
+  const { casino } = casinoPage
+  const bonusCategory = casinoService.chooseBonusCategory({ categories: bonusCategories, casinoPage })
+  const bonusPage = casinoService.getBonusPage({ casinoPage, category: bonusCategory })
+  const numberOfFreeSpins = casinoPage.freeSpinsPages?.[0]?.freeSpinsBonus?.numberOfFreeSpins ?? false
   const getBonusString = () => {
-    if (!bonus) return
-    switch (bonus._type) {
+    if (!bonusPage) return
+    switch (bonusPage._type) {
       case 'casino-bonus-pages': {
-        const casinoBonus = bonus.casinoBonus.bonusAmountRange[1]
-        if (!casinoBonus && !freespinsPage) return casino.defaultBonusText
-        return `${casinoBonus ? casinoBonus + ' kr bonus' : null}${freespinsPage ? ' + ' + freespinsPage + ' freespins' : 'error casino bonus'}`
+        const casinoBonus = bonusPage.casinoBonus.bonusAmountRange[1]
+        if (!casinoBonus && !numberOfFreeSpins) {
+          return null
+        }
+        return `${casinoBonus ? casinoBonus + ' kr bonus' : null}${numberOfFreeSpins ? ' + ' + numberOfFreeSpins + ' freespins' : ''}`
       }
       case 'odds-bonus-pages': {
-        const oddsBonus = bonus.oddsBonus.bonusAmountRange[1]
-        if (!oddsBonus && !freespinsPage) return casino.defaultBonusText
-        return `${oddsBonus ? oddsBonus + ' kr bonus' : null}${freespinsPage ? ' + ' + freespinsPage + ' freespins' : 'error odds bonus'}`
+        const oddsBonus = bonusPage.oddsBonus.bonusAmountRange[1]
+        if (!oddsBonus && !numberOfFreeSpins) return null
+        return `${oddsBonus ? oddsBonus + ' kr bonus' : null}${numberOfFreeSpins ? ' + ' + numberOfFreeSpins + ' freespins' : ''}`
       }
       case 'live-casino-bonus-pages': {
-        const liveCasinoBonus = bonus.liveCasinoBonus.bonusPercentage
-        if (!liveCasinoBonus && !freespinsPage) return casino.defaultBonusText
-        return `${liveCasinoBonus ? liveCasinoBonus + '%' : null}${freespinsPage ? ' + ' + freespinsPage + ' freespins' : 'error live casino bonus'}`
+        const liveCasinoBonusPercentage = bonusPage.liveCasinoBonus.bonusPercentage
+        const upTo = bonusPage.liveCasinoBonus.maxWinLimit
+        if (!liveCasinoBonusPercentage && !numberOfFreeSpins) {
+          return null
+        }
+        return `${liveCasinoBonusPercentage ? liveCasinoBonusPercentage + '% up to ' + upTo : null}${numberOfFreeSpins ? ' + ' + numberOfFreeSpins + ' freespins' : ''}`
       }
       default:
-        return 'default'
+        return null
     }
   }
   const bonusString = getBonusString()
@@ -48,7 +51,7 @@ const CasinoTableRow = ({
     <tr>
       <td className="text-center text-slate-500 font-bold">{index + 1}</td>
       <td className="text-center">{casinoPage.title}</td>
-      <td className="text-center font-bold">{bonusString}</td>
+      <td className="text-center font-bold">{bonusString ?? casino.defaultBonusText}</td>
       <td className="text-center">
         {casinoPage.affLink?.slug.current && <Link
           href={`/go${casinoPage.affLink.slug.current}`}
