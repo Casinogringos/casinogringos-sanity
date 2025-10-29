@@ -21,24 +21,27 @@ const CasinoTableRow = ({
     if (!bonusPage) return
     switch (bonusPage._type) {
       case 'casino-bonus-pages': {
-        const casinoBonus = bonusPage.casinoBonus.bonusAmountRange[1]
-        if (!casinoBonus && !numberOfFreeSpins) {
+        const casinoBonusAmount = bonusPage.casinoBonus.bonusAmountRange[1]
+        const casinoBonusPercentage = bonusPage.casinoBonus.bonusPercentage
+        if ((!casinoBonusAmount || !casinoBonusPercentage) && !numberOfFreeSpins) {
           return null
         }
-        return `${casinoBonus ? casinoBonus + ' kr bonus' : null}${numberOfFreeSpins ? ' + ' + numberOfFreeSpins + ' freespins' : ''}`
+        return `${casinoBonusPercentage && casinoBonusAmount ? casinoBonusPercentage + '% up to ' + casinoBonusAmount : ''}${numberOfFreeSpins ? ' + ' + numberOfFreeSpins + ' freespins' : ''}`
       }
       case 'odds-bonus-pages': {
         const oddsBonus = bonusPage.oddsBonus.bonusAmountRange[1]
         if (!oddsBonus && !numberOfFreeSpins) return null
-        return `${oddsBonus ? oddsBonus + ' kr bonus' : null}${numberOfFreeSpins ? ' + ' + numberOfFreeSpins + ' freespins' : ''}`
+        return `${oddsBonus ? oddsBonus + ' kr bonus' : ''}${numberOfFreeSpins ? ' + ' + numberOfFreeSpins + ' freespins' : ''}`
       }
       case 'live-casino-bonus-pages': {
         const liveCasinoBonusPercentage = bonusPage.liveCasinoBonus.bonusPercentage
-        const upTo = bonusPage.liveCasinoBonus.maxWinLimit
-        if (!liveCasinoBonusPercentage && !numberOfFreeSpins) {
+        console.log('liveCasinoBonusPercentage', liveCasinoBonusPercentage)
+        const liveCasinoBonusAmount = bonusPage.liveCasinoBonus.bonusAmountRange.max
+        console.log('liveCasinoBonusAmount', liveCasinoBonusAmount)
+        if ((!liveCasinoBonusPercentage || !liveCasinoBonusAmount) && !numberOfFreeSpins) {
           return null
         }
-        return `${liveCasinoBonusPercentage ? liveCasinoBonusPercentage + '% up to ' + upTo : null}${numberOfFreeSpins ? ' + ' + numberOfFreeSpins + ' freespins' : ''}`
+        return `${liveCasinoBonusPercentage && liveCasinoBonusAmount ? liveCasinoBonusPercentage + '% up to ' + liveCasinoBonusAmount : ''}${numberOfFreeSpins ? ' + ' + numberOfFreeSpins + ' freespins' : ''}`
       }
       default:
         return null
