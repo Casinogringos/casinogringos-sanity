@@ -234,7 +234,7 @@ const SlotPage = ({
               <div className="mt-6 grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-3">
                 {relatedCasinos.slice(0, 3).map((casino, i) => (
                   <div key={`casino-${casino._id}`}>
-                    <CasinoCard casinoPage={casino} index={i} />
+                    <CasinoCard casinoPage={casino} index={i} categories={[{ value: 'casino-bonus' }, { value: 'odds-bonus' }, { value: 'live-casino-bonus' }]} />
                   </div>
                 ))}
               </div>

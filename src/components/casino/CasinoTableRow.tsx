@@ -35,9 +35,7 @@ const CasinoTableRow = ({
       }
       case 'live-casino-bonus-pages': {
         const liveCasinoBonusPercentage = bonusPage.liveCasinoBonus.bonusPercentage
-        console.log('liveCasinoBonusPercentage', liveCasinoBonusPercentage)
         const liveCasinoBonusAmount = bonusPage.liveCasinoBonus.bonusAmountRange.max
-        console.log('liveCasinoBonusAmount', liveCasinoBonusAmount)
         if ((!liveCasinoBonusPercentage || !liveCasinoBonusAmount) && !numberOfFreeSpins) {
           return null
         }
@@ -48,7 +46,6 @@ const CasinoTableRow = ({
     }
   }
   const bonusString = getBonusString()
-  console.log('bonusString', bonusString)
 
   return (
     <tr>

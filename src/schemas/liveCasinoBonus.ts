@@ -12,7 +12,10 @@ export const LiveCasinoBonusSchema = z.object({
         current: z.string(),
     }),
     bonusType: BonusTypeSchema,
-    bonusAmountRange: z.array(z.number()),
+    bonusAmountRange: z.object({
+        min: z.number(),
+        max: z.number(),
+    }),
     bonusPercentage: z.number(),
     minimumDeposit: z.number(),
     wageringRequirements: z.number(),
