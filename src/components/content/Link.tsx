@@ -1,17 +1,17 @@
 'use client'
 
-import Placeholder from '@/src/components/utils/Placeholder'
+import { usePlausible } from 'next-plausible'
+import { ReactNode, useCallback } from 'react'
+import NextLink from 'next/link'
+import { usePathname } from 'next/navigation'
 import { isCurrentPath } from '@/src/lib/helpers'
-import { useAppDispatch } from '@/src/store/hooks'
+import Placeholder from '@/src/components/utils/Placeholder'
 import {
   closedMainMenu,
   closeMainMenu,
   closingMainMenu,
 } from '@/src/store/menuSlice'
-import { usePlausible } from 'next-plausible'
-import NextLink from 'next/link'
-import { usePathname } from 'next/navigation'
-import { ReactNode, useCallback } from 'react'
+import { useAppDispatch } from '@/src/store/hooks'
 
 const Link = ({
   href,

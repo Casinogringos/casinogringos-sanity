@@ -1,8 +1,8 @@
 import HomePage from '@/src/app/HomePage'
 import { getNewsPagePreviews, getPageBySlug } from '@/src/lib/api'
+import { notFound } from 'next/navigation'
 import { SubPageSchemaType } from '@/src/schemas/subPage'
 import { Metadata } from 'next'
-import { notFound } from 'next/navigation'
 
 export async function generateMetadata() {
   const homepage = (await getPageBySlug({
@@ -20,7 +20,7 @@ export async function generateMetadata() {
       description: homepage.seoDescription,
       url: siteURL,
       locale: 'sv_SE',
-      siteName: 'CasinoGringos',
+      siteName: 'Casino Gringos',
       images: [
         {
           url: homepage.seoImage.src,
@@ -43,11 +43,5 @@ export default async function Page() {
   const news = await getNewsPagePreviews({ count: 3, offset: 0 })
 
   if (!homepage) return notFound()
-  return (
-    <HomePage
-      page={homepage}
-      news={news}
-      toplistCategories={homepage.bonusCategory}
-    />
-  )
+  return <HomePage page={homepage} news={news} toplistCategories={homepage.bonusCategory} />
 }
