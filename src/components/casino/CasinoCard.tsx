@@ -32,7 +32,7 @@ const CasinoCard = ({
       case 'odds-bonus':
         return casinoPage.oddsBonusPages?.[0].oddsBonus.bonusAmountRange[1] ?? null
       case 'live-casino-bonus':
-        return casinoPage.liveCasinoBonusPages?.[0].liveCasinoBonus.bonusPercentage ?? null
+        return casinoPage.liveCasinoBonusPages?.[0].liveCasinoBonus.bonusAmountRange.max ?? null
       default:
         return null
     }
