@@ -10,38 +10,39 @@ const CasinoTableRow = ({
 }: {
   casinoPage: CasinoPageSchemaType | CasinoPagePreviewSchemaType
   index: number
-  bonusCategories: string[]
+  bonusCategories: { value: string }[]
 }) => {
-  const { casino } = casinoPage
   const casinoService = new CasinoService()
-  const bonus = casinoService.getBonus({ casinoPage, category: bonusCategories })
-  const freespinsPage = casinoService.getFreespinsPage({ casinoPage })
-  // console.log('CASINOPAGE', casinoPage)
-  // console.log('bonus', bonus)
-  // console.log('bonusCategory', bonusCategory)
+  const { casino } = casinoPage
+  const bonusCategory = casinoService.chooseBonusCategory({ categories: bonusCategories, casinoPage })
+  const bonusPage = casinoService.getBonusPage({ casinoPage, category: bonusCategory })
+  const numberOfFreeSpins = casinoPage.freeSpinsPages?.[0]?.freeSpinsBonus?.numberOfFreeSpins ?? false
   const getBonusString = () => {
-    if (!bonus) return
-    switch (bonus._type) {
+    if (!bonusPage) return
+    switch (bonusPage._type) {
       case 'casino-bonus-pages': {
-        const casinoBonus = bonus.casinoBonus.bonusAmountRange[1]
-        const freespins = freespinsPage?.numberOfFreeSpins
-        if (!casinoBonus && !freespins) return casino.defaultBonusText
-        return `${casinoBonus ? casinoBonus + ' kr bonus' : null}${freespins ? ' + ' + freespins + ' freespins' : null}`
+        const casinoBonusAmount = bonusPage.casinoBonus.bonusAmountRange[1]
+        const casinoBonusPercentage = bonusPage.casinoBonus.bonusPercentage
+        if ((!casinoBonusAmount || !casinoBonusPercentage) && !numberOfFreeSpins) {
+          return null
+        }
+        return `${casinoBonusPercentage && casinoBonusAmount ? casinoBonusPercentage + '% up to ' + casinoBonusAmount : ''}${numberOfFreeSpins ? ' + ' + numberOfFreeSpins + ' freespins' : ''}`
       }
       case 'odds-bonus-pages': {
-        const oddsBonus = bonus.oddsBonus.bonusAmountRange[1]
-        const freespins = freespinsPage?.numberOfFreeSpins
-        if (!oddsBonus && !freespins) return casino.defaultBonusText
-        return `${oddsBonus ? oddsBonus + ' kr bonus' : null}${freespins ? ' + ' + freespins + ' freespins' : null}`
+        const oddsBonus = bonusPage.oddsBonus.bonusAmountRange[1]
+        if (!oddsBonus && !numberOfFreeSpins) return null
+        return `${oddsBonus ? oddsBonus + ' kr bonus' : ''}${numberOfFreeSpins ? ' + ' + numberOfFreeSpins + ' freespins' : ''}`
       }
       case 'live-casino-bonus-pages': {
-        const liveCasinoBonus = bonus.liveCasinoBonus.bonusPercentage
-        const freespins = freespinsPage?.numberOfFreeSpins
-        if (!liveCasinoBonus && !freespins) return casino.defaultBonusText
-        return `${liveCasinoBonus ? liveCasinoBonus + '%' : null}${freespins ? ' + ' + freespins + ' freespins' : null}`
+        const liveCasinoBonusPercentage = bonusPage.liveCasinoBonus.bonusPercentage
+        const liveCasinoBonusAmount = bonusPage.liveCasinoBonus.bonusAmountRange.max
+        if ((!liveCasinoBonusPercentage || !liveCasinoBonusAmount) && !numberOfFreeSpins) {
+          return null
+        }
+        return `${liveCasinoBonusPercentage && liveCasinoBonusAmount ? liveCasinoBonusPercentage + '% up to ' + liveCasinoBonusAmount : ''}${numberOfFreeSpins ? ' + ' + numberOfFreeSpins + ' freespins' : ''}`
       }
       default:
-        return ''
+        return null
     }
   }
   const bonusString = getBonusString()
@@ -50,7 +51,7 @@ const CasinoTableRow = ({
     <tr>
       <td className="text-center text-slate-500 font-bold">{index + 1}</td>
       <td className="text-center">{casinoPage.title}</td>
-      <td className="text-center font-bold">{bonusString}</td>
+      <td className="text-center font-bold">{bonusString ?? casino.defaultBonusText}</td>
       <td className="text-center">
         {casinoPage.affLink?.slug.current && <Link
           href={`/go${casinoPage.affLink.slug.current}`}
@@ -58,7 +59,7 @@ const CasinoTableRow = ({
           rel="noopener noreferrer nofollow"
           prefetch={false}
           variant={'affiliate'}
-          size="sm"
+          size="md"
           className="ml-auto"
           plausible={{
             eventName: 'AffiliateClick',

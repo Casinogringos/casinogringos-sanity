@@ -23,46 +23,10 @@ const CasinoCard = ({
   const casino = casinoPage.casino
   const casinoService = new CasinoService()
   const { finalRating } = casinoService.getCasinoRatings({ casino })
-  const category = categories.reverse().reduce((prev: { value: string }, current: { value: string }) => {
-    let existing = ''
-    if (current.value === 'casino-bonus') {
-      const casinoBonus = casinoPage.casinoBonusPages?.length
-      if (casinoBonus) {
-        existing = 'casino-bonus'
-      }
-    } else if (current.value === 'odds-bonus') {
-      const oddsBonus = casinoPage.oddsBonusPages?.length
-      if (oddsBonus) {
-        existing = 'odds-bonus'
-      }
-    } else if (current.value === 'live-casino-bonus') {
-      const liveCasinoBonus = casinoPage.liveCasinoBonusPages?.length
-      if (liveCasinoBonus) {
-        existing = 'live-casino-bonus'
-      }
-    }
-    if (existing) {
-      return { value: existing }
-    }
-    return prev
-  }, { value: '' })
-  console.log('category', category)
-  console.log('hello', casinoPage.freeSpinsPages)
-  // const freespinsPage = casinoService.getFreespinsPage({ casinoPage })
-  const getAffLinkSlug = () => {
-    switch (category.value) {
-      case 'casino-bonus':
-        return casinoPage.casinoBonusPages?.[0].affLink.slug.current ?? null
-      case 'odds-bonus':
-        return casinoPage.oddsBonusPages?.[0].affLink.slug.current ?? null
-      case 'live-casino-bonus':
-        return casinoPage.liveCasinoBonusPages?.[0].affLink.slug.current ?? null
-      default:
-        return casinoPage.freeSpinsPages?.[0].affLink.slug.current ?? null
-    }
-  }
+  const bonusCategory = casinoService.chooseBonusCategory({ categories, casinoPage })
+  const affLinkSlug = casinoService.getAffLinkSlug({ bonusCategory, casinoPage })
   const getBonus = () => {
-    switch (category.value) {
+    switch (bonusCategory.value) {
       case 'casino-bonus':
         return casinoPage.casinoBonusPages?.[0].casinoBonus.bonusAmountRange[1] ?? null
       case 'odds-bonus':
@@ -73,8 +37,8 @@ const CasinoCard = ({
         return null
     }
   }
-  const getWageringRequirements = () => {
-    switch (category.value) {
+  const getWageringRequirementsBonus = () => {
+    switch (bonusCategory.value) {
       case 'casino-bonus':
         return casinoPage.casinoBonusPages?.[0].casinoBonus.wageringRequirements ?? null
       case 'odds-bonus':
@@ -86,12 +50,9 @@ const CasinoCard = ({
     }
   }
   const numberOfFreeSpins = casinoPage.freeSpinsPages?.[0].freeSpinsBonus.numberOfFreeSpins ?? null
-  const wageringRequirements = casinoPage.freeSpinsPages?.[0].freeSpinsBonus.wageringRequirements ?? null
-  console.log('CATEGORY', category)
-  const affLinkSlug = getAffLinkSlug()
+  const wageringRequirementsFreespins = casinoPage.freeSpinsPages?.[0].freeSpinsBonus.wageringRequirements ?? null
   const bonus = getBonus()
-  console.log('BONUS', bonus)
-  console.log('wageringRequirements', wageringRequirements)
+  const wageringRequirementsBonus = getWageringRequirementsBonus()
 
   return (
     <>
@@ -130,11 +91,11 @@ const CasinoCard = ({
                   {bonus ? <div className="uppercase flex min-h-[84px] font-medium flex-col items-center justify-center rounded-md border border-green-200 bg-green-100 p-2 text-lg leading-6">
                     <div className="-mb-1 block text-xs text-gray-700">Bonus</div>
                     {bonus ? bonus + ' kr' : '-'}
-                    {wageringRequirements && (
+                    {wageringRequirementsBonus && (
                       <div className="-mt-0.5 flex items-center text-xs font-medium text-gray-700">
                         Omsättning:
                         <span className="ml-0.5 inline-block text-black">
-                          {wageringRequirements}x{' '}
+                          {wageringRequirementsBonus}x{' '}
                         </span>
                       </div>
                     )}
@@ -149,7 +110,7 @@ const CasinoCard = ({
                         <div className="-mt-0.5 flex items-center text-xs font-medium text-gray-700">
                           Omsättning:{' '}
                           <span className="ml-0.5 inline-block text-black">
-                            {wageringRequirements}x
+                            {wageringRequirementsFreespins}x
                           </span>
                         </div>
                       </>

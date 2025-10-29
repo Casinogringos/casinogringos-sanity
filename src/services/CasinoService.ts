@@ -140,24 +140,64 @@ class CasinoService {
   //   return `${bonusString} ${bonusString && freeSpinsString ? ' + ' : ''} ${freeSpinsString}`
   // }
 
-  getBonus({ casinoPage, category }: { casinoPage: CasinoPageSchemaType | CasinoPagePreviewSchemaType; category: string }): CasinoBonusPageSchemaType | OddsBonusPageSchemaType | LiveCasinoBonusPageSchemaType | false {
-    if (!category) return false
-    console.log('category', category)
+  getBonusPage({ casinoPage, category }: { casinoPage: CasinoPageSchemaType | CasinoPagePreviewSchemaType; category: { value: string } }): CasinoBonusPageSchemaType | OddsBonusPageSchemaType | LiveCasinoBonusPageSchemaType | null {
+    if (!category) return null
+    console.log('category!', category)
     console.log('casinoPage', casinoPage)
-    switch (category) {
+    switch (category.value) {
       case 'casino-bonus':
-        return casinoPage.casinoBonusPages?.[0] ?? false
+        return casinoPage.casinoBonusPages?.[0] ?? null
       case 'odds-bonus':
-        return casinoPage.oddsBonusPages?.[0] ?? false
+        return casinoPage.oddsBonusPages?.[0] ?? null
       case 'live-casino-bonus':
-        return casinoPage.liveCasinoBonusPages?.[0] ?? false
+        return casinoPage.liveCasinoBonusPages?.[0] ?? null
       default:
-        return false
+        return null
     }
   }
 
-  getFreespinsPage({ casinoPage }: { casinoPage: CasinoPageSchemaType | CasinoPagePreviewSchemaType }) {
-    return casinoPage.freeSpinsPages?.[0].freeSpins ?? false
+  getFreeSpinsString({ casinoPage }: { casinoPage: CasinoPageSchemaType | CasinoPagePreviewSchemaType }) {
+    return casinoPage.freeSpinsPages?.[0]?.freeSpinsBonus?.numberOfFreeSpins ?? false
+  }
+
+  chooseBonusCategory({ categories, casinoPage }: { categories: { value: string }[], casinoPage: CasinoPageSchemaType | CasinoPagePreviewSchemaType }) {
+    const category = categories.reverse().reduce((prev: { value: string }, current: { value: string }) => {
+      let existing = ''
+      if (current.value === 'casino-bonus') {
+        const casinoBonus = casinoPage.casinoBonusPages?.length
+        if (casinoBonus) {
+          existing = 'casino-bonus'
+        }
+      } else if (current.value === 'odds-bonus') {
+        const oddsBonus = casinoPage.oddsBonusPages?.length
+        if (oddsBonus) {
+          existing = 'odds-bonus'
+        }
+      } else if (current.value === 'live-casino-bonus') {
+        const liveCasinoBonus = casinoPage.liveCasinoBonusPages?.length
+        if (liveCasinoBonus) {
+          existing = 'live-casino-bonus'
+        }
+      }
+      if (existing) {
+        return { value: existing }
+      }
+      return prev
+    }, { value: '' })
+    return category
+  }
+
+  getAffLinkSlug({ bonusCategory, casinoPage }: { bonusCategory: { value: string }, casinoPage: CasinoPageSchemaType | CasinoPagePreviewSchemaType }) {
+    switch (bonusCategory.value) {
+      case 'casino-bonus':
+        return casinoPage.casinoBonusPages?.[0].affLink.slug.current ?? null
+      case 'odds-bonus':
+        return casinoPage.oddsBonusPages?.[0].affLink.slug.current ?? null
+      case 'live-casino-bonus':
+        return casinoPage.liveCasinoBonusPages?.[0].affLink.slug.current ?? null
+      default:
+        return casinoPage.freeSpinsPages?.[0].affLink.slug.current ?? null
+    }
   }
 }
 
