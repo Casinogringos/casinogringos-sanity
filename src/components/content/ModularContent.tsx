@@ -28,6 +28,7 @@ import BonusObject from '@/src/components/objects/BonusObject'
 import SliderObject from '@/src/components/objects/SliderObject'
 import SectionObject from '../objects/SectionObject'
 import { difference } from 'lodash'
+import ToggleObject from '../objects/ToggleObject'
 
 const renderObject = (
   object: ModularContentItemSchemaType,
@@ -124,12 +125,15 @@ const renderObject = (
     case 'slider-object': {
       return <SliderObject object={object} />
     }
+    case 'toggle-object': {
+      return <ToggleObject object={object} />
+    }
     default:
       return null
   }
 }
 
-const ModularContent = async ({
+const ModularContent = ({
   objects,
   className = '',
   bonusCategories,
@@ -153,7 +157,7 @@ const ModularContent = async ({
   const Tag = nested ? 'div' : Container
   return (
     <Tag
-      className={`${className} ${prose ? 'prose lg:prose-lg' : ''} text-base leading-paragraph`}
+      className={`${className} ${prose ? 'prose lg:prose-lg' : ''} text-base leading-paragraph pb-10`}
       narrow={narrow}
     >
       {objects.map(
