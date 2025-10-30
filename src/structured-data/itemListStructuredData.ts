@@ -9,7 +9,7 @@ export const getItemListStructuredData = (page: SubPageSchemaType) => {
   return {
     "@type": "ItemList",
     "@id": "https://casinogringos.se/nya-casinon#itemlist",
-    "name": "Nya casinon 2025",
+    "name": page.title,
     "itemListOrder": "http://schema.org/ItemListOrderAscending",
     "numberOfItems": 15,
     "itemListElement": toplist.casinos.map((casino: CasinoPagePreviewSchemaType, i: number) => {
@@ -20,6 +20,7 @@ export const getItemListStructuredData = (page: SubPageSchemaType) => {
         "url": `https://casinogringos.se${casino.slug.current}`,
         "item": {
           "@id": `https://casinogringos.se${casino.slug.current}`,
+          "url": `https://casinogringos.se${casino.slug.current}`,
         },
       }
     })
