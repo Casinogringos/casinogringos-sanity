@@ -89,10 +89,10 @@ const CasinoCard = ({
               {bonus || numberOfFreeSpins ? (
                 <>
                   {bonus ? <div className="uppercase flex min-h-[84px] font-medium flex-col items-center justify-center rounded-md border border-green-200 bg-green-100 p-2 text-lg leading-6">
-                    <div className="-mb-1 block text-xs text-gray-700">Bonus</div>
+                    <div className="-mb-1 block text-[10px] text-gray-700">Bonus</div>
                     {bonus ? bonus + ' kr' : '-'}
                     {wageringRequirementsBonus && (
-                      <div className="-mt-0.5 flex items-center text-xs font-medium text-gray-700">
+                      <div className="-mt-0.5 flex items-center text-[10px] font-medium text-gray-700">
                         Omsättning:
                         <span className="ml-0.5 inline-block text-black">
                           {wageringRequirementsBonus}x{' '}
@@ -101,13 +101,13 @@ const CasinoCard = ({
                     )}
                   </div> : <div className={"uppercase flex min-h-[84px] font-medium flex-col items-center justify-center rounded-md border border-green-200 bg-green-100 p-2 text-lg leading-6"}>-</div>}
                   {numberOfFreeSpins ? <div className="uppercase flex min-h-[84px] flex-col items-center justify-center rounded-md border border-blue-100 bg-blue-50 p-2 text-lg leading-6">
-                    <div className="-mb-1 block text-xs text-gray-700">
+                    <div className="-mb-1 block text-[10px] text-gray-700">
                       Freespins
                     </div>
                     {numberOfFreeSpins ? (
                       <>
                         {numberOfFreeSpins}
-                        <div className="-mt-0.5 flex items-center text-xs font-medium text-gray-700">
+                        <div className="-mt-0.5 flex items-center text-[10px] font-medium text-gray-700">
                           Omsättning:{' '}
                           <span className="ml-0.5 inline-block text-black">
                             {wageringRequirementsFreespins}x
@@ -121,7 +121,7 @@ const CasinoCard = ({
                 </>
               ) : (
                 <div className='col-span-2 min-h-[84px] font-medium flex flex-col items-center justify-center rounded-md border border-blue-100 bg-blue-50 p-2 text-lg leading-6'>
-                  <span className="text-gray-700 text-xs">
+                  <span className="text-gray-700 text-sm">
                     {casino.defaultBonusText}
                   </span>
                 </div>
