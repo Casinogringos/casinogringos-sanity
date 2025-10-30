@@ -9,6 +9,10 @@ export const casinoBonusProjection = `
       ${bonusTypeProjection}
     },
     bonusPercentage,
+    bonusAmountRange {
+      min,
+      max
+    },
     minimumDeposit,
     wageringOn,
     validityPeriod,

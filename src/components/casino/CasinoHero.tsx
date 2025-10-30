@@ -17,7 +17,7 @@ export default function CasinoHero({
   const { finalRating } = casinoService.getCasinoRatings({
     casino: casinoPage.casino,
   })
-  const bonus = casinoPage.casinoBonusPages?.[0].casinoBonus.bonusAmountRange[1] ?? null
+  const bonus = casinoPage.casinoBonusPages?.[0].casinoBonus.bonusAmountRange.max ?? null
   const wageringRequirements = casinoPage.casinoBonusPages?.[0].casinoBonus.wageringRequirements ?? null
   const freeSpins = casinoPage.freeSpinsPages?.[0].freeSpinsBonus.numberOfFreeSpins ?? null
 
@@ -63,7 +63,7 @@ export default function CasinoHero({
                         </span>
                       </div>
                     )}
-                  </div> : <div className={"uppercase flex min-h-[84px] font-medium flex-col items-center justify-center rounded-md border border-green-200 bg-green-100 p-2 text-lg leading-6"}>-</div>}
+                  </div> : <div className={"uppercase flex min-h-[84px] font-medium flex-col items-center justify-center rounded-md border border-green-200 bg-green-100 p-2 text-lg leading-6"}>{casino.defaultBonusText}</div>}
                   {freeSpins ? <div className="uppercase flex min-h-[84px] flex-col items-center justify-center rounded-md border border-blue-100 bg-blue-50 p-2 text-lg leading-6">
                     <div className="-mb-1 block text-xs text-gray-700">
                       Freespins
