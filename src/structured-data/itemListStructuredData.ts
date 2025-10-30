@@ -16,9 +16,9 @@ export const getItemListStructuredData = (page: SubPageSchemaType) => {
       return {
         "@type": "ListItem",
         "position": i + 1,
-        "name": casino.title,
-        "url": `https://casinogringos.se${casino.slug.current}`,
         "item": {
+          "@type": "WebPage",
+          "name": casino.title,
           "@id": `https://casinogringos.se${casino.slug.current}`,
           "url": `https://casinogringos.se${casino.slug.current}`,
         },
