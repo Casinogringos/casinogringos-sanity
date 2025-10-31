@@ -135,7 +135,7 @@ const CasinoInfo = ({ casinoPage }: { casinoPage: CasinoPageSchemaType }) => {
             )
           })}
         </div>
-        <ToggleObject
+        {/* <ToggleObject
           title={'Så fungerar vår betygsättning'}
           className="mx-5 mt-6 lg:mx-0"
         >
@@ -153,7 +153,7 @@ const CasinoInfo = ({ casinoPage }: { casinoPage: CasinoPageSchemaType }) => {
             här
           </Link>
           .
-        </ToggleObject>
+        </ToggleObject> */}
       </div>
       <Heading
         level={2}
