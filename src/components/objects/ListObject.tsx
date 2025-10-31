@@ -19,7 +19,7 @@ const ListObject = ({
               key={item._key}
               className="flex items-center gap-2 my-2 relative"
             >
-              <div className="rounded-full w-6 h-6 items-center justify-center flex items-center bg-green-500 text-white">
+              <div className="rounded-full w-6 h-6 flex-shrink-0 items-center justify-center flex items-center bg-green-500 text-white">
                 <span className="text-xs">{index + 1}</span>
               </div>
               <ModularContent objects={item.content} nested={true} />

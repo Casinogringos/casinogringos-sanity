@@ -9,10 +9,12 @@ const ToggleBox = ({
   buttonTextOpen,
   buttonTextClose,
   innerBlocks,
+  className
 }: {
-  buttonTextOpen: string
-  buttonTextClose: string
+  buttonTextOpen?: string
+  buttonTextClose?: string
   innerBlocks: Array<HeadingObject | ImageObject | ParagraphObject>
+  className?: string
 }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false)
   const [isClosing, setIsClosing] = useState<boolean>(false)
@@ -26,7 +28,7 @@ const ToggleBox = ({
   }, [isOpen])
 
   return (
-    <section>
+    <section className={className}>
       <div
         className={`${isOpen ? 'max-h-[500000px]' : 'max-h-[100px]'} transform transition overflow-hidden relative`}
       >
@@ -41,17 +43,17 @@ const ToggleBox = ({
         onClick={() => setIsOpen(!isOpen)}
         className={'flex items-center w-full relative'}
       >
-        <div className={'h-[1px] bg-slate100 w-full'} />
-        {buttonTextOpen === '' && buttonTextClose === '' ? (
+        <div className={'h-[1px] bg-slate-100 w-full'} />
+        {!buttonTextOpen && !buttonTextClose ? (
           <div
-            className={`${isOpen ? 'rotate-180' : ''} transition rounded-full bg-slate100 absolute left-1/2 -translate-x-1/2 -top-[18px] w-[36px] h-[36px] flex items-center justify-center`}
+            className={`${isOpen ? 'rotate-180' : ''} transition rounded-full bg-slate-100 absolute left-1/2 -translate-x-1/2 -top-[18px] w-[36px] h-[36px] flex items-center justify-center`}
           >
             <ChevronDown className={'stroke-black'} />
           </div>
         ) : (
           <span
             className={
-              'bg-slate100 rounded-md text-dark absolute left-1/2 -translate-x-1/2 -top-[18px] px-5 py-1 block'
+              'bg-slate-100 rounded-md text-dark absolute left-1/2 -translate-x-1/2 -top-[18px] px-5 py-1 block'
             }
           >
             {isOpen ? buttonTextClose : buttonTextOpen}

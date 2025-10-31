@@ -9,13 +9,11 @@ import StarIcon from '@/src/components/icons/StarIcon'
 import { CasinoPageSchemaType } from '@/src/schemas/casinoPage'
 import CasinoService from '@/src/services/CasinoService'
 import { PortableText } from 'next-sanity'
-import ToggleObject from '@/src/components/objects/ToggleObject'
 import { PaymentMethodPageSchemaType } from '@/src/schemas/paymentMethodPage'
-import { GameProviderSchemaType } from '@/src/schemas/gameProvider'
 import { useState } from 'react'
 import { Mail, MessageCircle } from 'lucide-react'
 import { Phone } from 'lucide-react'
-import { Globe } from 'lucide-react'
+import QuestionMark from '../icons/QuestionMark'
 
 
 const CasinoInfo = ({ casinoPage }: { casinoPage: CasinoPageSchemaType }) => {
@@ -62,6 +60,7 @@ const CasinoInfo = ({ casinoPage }: { casinoPage: CasinoPageSchemaType }) => {
     if (label.toLowerCase().includes('email')) return <Mail size={15} />
     if (label.toLowerCase().includes('telefon')) return <Phone size={15} />
     if (label.toLowerCase().includes('chatt')) return <MessageCircle size={15} />
+    if (label.toLowerCase().includes('faq')) return <QuestionMark size={15} />
     return null
   }
 
@@ -135,7 +134,7 @@ const CasinoInfo = ({ casinoPage }: { casinoPage: CasinoPageSchemaType }) => {
             )
           })}
         </div>
-        <ToggleObject
+        {/* <ToggleObject
           title={'Så fungerar vår betygsättning'}
           className="mx-5 mt-6 lg:mx-0"
         >
@@ -153,11 +152,11 @@ const CasinoInfo = ({ casinoPage }: { casinoPage: CasinoPageSchemaType }) => {
             här
           </Link>
           .
-        </ToggleObject>
+        </ToggleObject> */}
       </div>
       <Heading
         level={2}
-        size={5}
+        sizes={[5, 5, 6]}
         className="mb-3 font-bold"
         text={`Snabbfakta om ${title}`}
       />
@@ -182,7 +181,7 @@ const CasinoInfo = ({ casinoPage }: { casinoPage: CasinoPageSchemaType }) => {
       {paymentMethodPages && paymentMethodPages.length > 0 && (
         <div>
           <Heading
-            size={5}
+            sizes={[5, 5, 6]}
             level={2}
             className="mb-3 mt-5 font-bold"
             text="Betalningsmetoder"
@@ -223,8 +222,8 @@ const CasinoInfo = ({ casinoPage }: { casinoPage: CasinoPageSchemaType }) => {
       {casinoPage.casino.gameProviders && (
         <>
           <Heading
+            sizes={[5, 5, 6]}
             level={2}
-            size={5}
             className="mb-3 mt-5 font-bold"
             text="Spelleverantörer"
           />

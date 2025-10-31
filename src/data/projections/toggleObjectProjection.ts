@@ -1,6 +1,7 @@
 import { imageObjectProjection } from '@/src/data/projections/imageObjectProjection'
 import { headingObjectProjection } from '@/src/data/projections/headingObjectProjection'
 import { paragraphObjectProjection } from '@/src/data/projections/paragraphObjectProjection'
+import { oldTableObjectProjection } from '@/src/data/projections/oldTableObjectProjection'
 
 export const toggleObjectProjection = `
   _type == 'toggle-object' => {
@@ -13,7 +14,8 @@ export const toggleObjectProjection = `
     content[] {
         ${headingObjectProjection},
         ${paragraphObjectProjection},
-        ${imageObjectProjection}
+        ${imageObjectProjection},
+        ${oldTableObjectProjection}
     }
   }
 `

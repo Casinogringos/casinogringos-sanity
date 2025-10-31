@@ -5,6 +5,7 @@ import { imageObjectProjection } from '@/src/data/projections/imageObjectProject
 import { buttonObjectProjection } from '@/src/data/projections/buttonObjectProjection'
 import { buttonsObjectProjection } from '@/src/data/projections/buttonsObjectProjection'
 import { columnsObjectProjection } from './columnsObjectProjection'
+import { casinoObjectProjection } from './casinoObjectProjection'
 
 export const groupObjectProjection = `
   _type == 'group-object' => {
@@ -20,7 +21,8 @@ export const groupObjectProjection = `
          ${imageObjectProjection},
          ${buttonObjectProjection},
          ${buttonsObjectProjection},
-         ${columnsObjectProjection}
+         ${columnsObjectProjection},
+         ${casinoObjectProjection}
     },
     message
   }

@@ -133,7 +133,7 @@ export default function CasinoHero({
           <Avatar author={author} />
         </div>
       </div> */}
-        <div className="rounded-b-md pt-4 text-xs text-gray-400 shadow-2xl">
+        <div className="rounded-b-md pt-4 text-2xs text-gray-400 shadow-2xl">
           18+ | Spela ansvarsfullt | Stödlinjen.se | Spelpaus.se | Regler och
           villkor gäller
         </div>
