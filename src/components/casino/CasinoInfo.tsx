@@ -13,6 +13,7 @@ import { PaymentMethodPageSchemaType } from '@/src/schemas/paymentMethodPage'
 import { useState } from 'react'
 import { Mail, MessageCircle } from 'lucide-react'
 import { Phone } from 'lucide-react'
+import QuestionMark from '../icons/QuestionMark'
 
 
 const CasinoInfo = ({ casinoPage }: { casinoPage: CasinoPageSchemaType }) => {
@@ -59,6 +60,7 @@ const CasinoInfo = ({ casinoPage }: { casinoPage: CasinoPageSchemaType }) => {
     if (label.toLowerCase().includes('email')) return <Mail size={15} />
     if (label.toLowerCase().includes('telefon')) return <Phone size={15} />
     if (label.toLowerCase().includes('chatt')) return <MessageCircle size={15} />
+    if (label.toLowerCase().includes('faq')) return <QuestionMark size={15} />
     return null
   }
 

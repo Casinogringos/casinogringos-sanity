@@ -58,7 +58,7 @@ const GuideIndex = ({
           className="font-bold mb-4"
           text={page.title}
         />
-        <div className="text-slate-500">
+        <div className="text-slate-600">
           <PortableText value={page.intro} />
         </div>
         <div className="mx-auto mt-8 grid max-w-2xl grid-cols-2 gap-x-4 gap-y-6 lg:mx-0 lg:max-w-none lg:grid-cols-3 lg:gap-x-8 lg:gap-y-10">
