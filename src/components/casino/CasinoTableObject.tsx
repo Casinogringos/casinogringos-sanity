@@ -7,7 +7,7 @@ const CasinoTableObject = ({
   bonusCategories,
 }: {
   object: CasinoTableObjectSchemaType
-  bonusCategories: string[]
+  bonusCategories?: string[]
 }) => {
   const { toplist } = object
   if (!toplist || !toplist.casinos || toplist.casinos.length === 0) {

@@ -30,17 +30,29 @@ import SectionObject from '../objects/SectionObject'
 import { difference } from 'lodash'
 import ToggleObject from '../objects/ToggleObject'
 
-const renderObject = (
-  object: ModularContentItemSchemaType,
-  outerIndex: number,
+const renderObject = ({
+  object,
+  outerIndex,
   padding = false,
-  casino?: CasinoSchemaType,
-  backgroundColor?: string,
-  narrow?: boolean,
-  prose?: boolean,
-  nested?: boolean,
-  bonusCategories?: string[],
-) => {
+  casino,
+  backgroundColor,
+  narrow,
+  prose,
+  nested,
+  bonusCategories,
+  last
+}: {
+  object: ModularContentItemSchemaType
+  outerIndex: number
+  padding?: boolean
+  casino?: CasinoSchemaType
+  backgroundColor?: string
+  narrow?: boolean
+  prose?: boolean
+  nested?: boolean
+  bonusCategories?: string[]
+  last?: boolean
+}) => {
   if (!object) return null
   switch (object._type) {
     case 'heading-object': {
@@ -157,7 +169,7 @@ const ModularContent = ({
   const Tag = nested ? 'div' : Container
   return (
     <Tag
-      className={`${className} ${prose ? 'prose lg:prose-lg' : ''} text-base leading-paragraph pb-10`}
+      className={`${className} ${prose ? 'prose lg:prose-lg prose:last:mb-0' : ''} text-base leading-paragraph ${nested ? 'max-w-none' : 'pb-10'}`}
       narrow={narrow}
     >
       {objects.map(
@@ -165,17 +177,17 @@ const ModularContent = ({
           if (!object._key) return null
           return (
             <Fragment key={`object-${object._key}`}>
-              {renderObject(
+              {renderObject({
                 object,
                 outerIndex,
-                nested,
                 casino,
                 backgroundColor,
                 narrow,
                 prose,
                 nested,
-                bonusCategories
-              )}
+                bonusCategories,
+                last: outerIndex === objects.length - 1,
+              })}
             </Fragment>
           )
         }
