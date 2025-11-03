@@ -23,7 +23,7 @@ const getReviewStructuredData = ({ reviewPage }: { reviewPage: CasinoPageSchemaT
     name: reviewPage.title,
     reviewRating: {
       '@type': 'Rating',
-      ratingValue: rating ?? "1",
+      ratingValue: rating || '1',
       bestRating: '5',
       worstRating: '1',
     },
