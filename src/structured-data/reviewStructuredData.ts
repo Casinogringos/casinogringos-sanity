@@ -21,6 +21,10 @@ const getReviewStructuredData = ({ reviewPage }: { reviewPage: CasinoPageSchemaT
     '@context': 'https://schema.org',
     '@type': 'Review',
     "@id": `https://casinogringos.se${reviewPage.slug.current}#review`,
+    itemReviewed: {
+      '@type': 'Product',
+      "@id": `https://casinogringos.se${reviewPage.slug.current}#product`,
+    },
     name: reviewPage.title,
     reviewRating: {
       '@type': 'Rating',
