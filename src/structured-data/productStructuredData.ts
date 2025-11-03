@@ -42,7 +42,7 @@ const getProductStructuredData = ({
       "@type": "AggregateRating",
       "ratingValue": casino.overallRating,
       "bestRating": 5,
-      "worstRating": 1,
+      "worstRating": 0,
       "reviewCount": 1
     },
   }

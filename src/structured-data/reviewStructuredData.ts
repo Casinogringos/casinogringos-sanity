@@ -25,7 +25,8 @@ const getReviewStructuredData = ({ reviewPage }: { reviewPage: CasinoPageSchemaT
     reviewRating: {
       '@type': 'Rating',
       ratingValue: rating,
-      worstRating: '1',
+      worstRating: '0',
+      bestRating: '5',
     },
     author: {
       '@type': 'Person',
