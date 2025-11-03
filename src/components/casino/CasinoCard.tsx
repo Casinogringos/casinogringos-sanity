@@ -1,14 +1,9 @@
+import Link from '@/src/components/content/Link'
+import Paragraph from '@/src/components/content/Paragraph'
 import Star from '@/src/components/icons/StarIcon'
+import { CasinoPagePreviewSchemaType } from '@/src/schemas/casinoPagePreview'
 import CasinoService from '@/src/services/CasinoService'
 import Image from 'next/image'
-import Link from '@/src/components/content/Link'
-import CheckBadgeIcon from '@/src/components/icons/CheckBadgeIcon'
-import Paragraph from '@/src/components/content/Paragraph'
-import { CasinoPagePreviewSchemaType } from '@/src/schemas/casinoPagePreview'
-import { divide } from 'lodash'
-import { CasinoBonusSchemaType } from '@/src/schemas/casinoBonus'
-import { OddsBonusSchemaType } from '@/src/schemas/oddsBonus'
-import { LiveCasinoBonusSchemaType } from '@/src/schemas/liveCasinoBonus'
 
 const CasinoCard = ({
   casinoPage,
@@ -23,16 +18,30 @@ const CasinoCard = ({
   const casino = casinoPage.casino
   const casinoService = new CasinoService()
   const { finalRating } = casinoService.getCasinoRatings({ casino })
-  const bonusCategory = casinoService.chooseBonusCategory({ categories, casinoPage })
-  const affLinkSlug = casinoService.getAffLinkSlug({ bonusCategory, casinoPage })
+  const bonusCategory = casinoService.chooseBonusCategory({
+    categories,
+    casinoPage,
+  })
+  const affLinkSlug = casinoService.getAffLinkSlug({
+    bonusCategory,
+    casinoPage,
+  })
   const getBonus = () => {
     switch (bonusCategory.value) {
       case 'casino-bonus':
-        return casinoPage.casinoBonusPages?.[0].casinoBonus.bonusAmountRange[1] ?? null
+        return (
+          casinoPage.casinoBonusPages?.[0].casinoBonus.bonusAmountRange[1] ??
+          null
+        )
       case 'odds-bonus':
-        return casinoPage.oddsBonusPages?.[0].oddsBonus.bonusAmountRange[1] ?? null
+        return (
+          casinoPage.oddsBonusPages?.[0].oddsBonus.bonusAmountRange[1] ?? null
+        )
       case 'live-casino-bonus':
-        return casinoPage.liveCasinoBonusPages?.[0].liveCasinoBonus.bonusAmountRange.max ?? null
+        return (
+          casinoPage.liveCasinoBonusPages?.[0].liveCasinoBonus.bonusAmountRange
+            .max ?? null
+        )
       default:
         return null
     }
@@ -40,17 +49,27 @@ const CasinoCard = ({
   const getWageringRequirementsBonus = () => {
     switch (bonusCategory.value) {
       case 'casino-bonus':
-        return casinoPage.casinoBonusPages?.[0].casinoBonus.wageringRequirements ?? null
+        return (
+          casinoPage.casinoBonusPages?.[0].casinoBonus.wageringRequirements ??
+          null
+        )
       case 'odds-bonus':
-        return casinoPage.oddsBonusPages?.[0].oddsBonus.wageringRequirements ?? null
+        return (
+          casinoPage.oddsBonusPages?.[0].oddsBonus.wageringRequirements ?? null
+        )
       case 'live-casino-bonus':
-        return casinoPage.liveCasinoBonusPages?.[0].liveCasinoBonus.wageringRequirements ?? null
+        return (
+          casinoPage.liveCasinoBonusPages?.[0].liveCasinoBonus
+            .wageringRequirements ?? null
+        )
       default:
         return null
     }
   }
-  const numberOfFreeSpins = casinoPage.freeSpinsPages?.[0].freeSpinsBonus.numberOfFreeSpins ?? null
-  const wageringRequirementsFreespins = casinoPage.freeSpinsPages?.[0].freeSpinsBonus.wageringRequirements ?? null
+  const numberOfFreeSpins =
+    casinoPage.freeSpinsPages?.[0].freeSpinsBonus.numberOfFreeSpins ?? null
+  const wageringRequirementsFreespins =
+    casinoPage.freeSpinsPages?.[0].freeSpinsBonus.wageringRequirements ?? null
   const bonus = getBonus()
   const wageringRequirementsBonus = getWageringRequirementsBonus()
 
@@ -88,8 +107,10 @@ const CasinoCard = ({
             <div className="grid grid-cols-2 gap-2">
               {bonus || numberOfFreeSpins ? (
                 <>
-                  {bonus ? <div className="uppercase flex min-h-[84px] font-medium flex-col items-center justify-center rounded-md border border-green-200 bg-green-100 p-2 text-lg leading-6">
-                    <div className="-mb-1 block text-[10px] text-gray-700">Bonus</div>
+                  <div className="uppercase flex min-h-[84px] font-bold flex-col items-center justify-center rounded-md border border-green-200 bg-green-100 p-2 text-lg leading-6">
+                    <div className="-mb-1 block text-[10px] text-gray-700">
+                      Bonus
+                    </div>
                     {bonus ? bonus + ' kr' : '-'}
                     {wageringRequirementsBonus && (
                       <div className="-mt-0.5 flex items-center text-[10px] font-medium text-gray-700">
@@ -99,8 +120,8 @@ const CasinoCard = ({
                         </span>
                       </div>
                     )}
-                  </div> : <div className={"uppercase flex min-h-[84px] font-medium flex-col items-center justify-center rounded-md border border-green-200 bg-green-100 p-2 text-lg leading-6"}>-</div>}
-                  {numberOfFreeSpins ? <div className="uppercase flex min-h-[84px] flex-col items-center justify-center rounded-md border border-blue-100 bg-blue-50 p-2 text-lg leading-6">
+                  </div>
+                  <div className="uppercase flex min-h-[84px] flex-col font-bold items-center justify-center rounded-md border border-blue-100 bg-blue-50 p-2 text-lg leading-6">
                     <div className="-mb-1 block text-[10px] text-gray-700">
                       Freespins
                     </div>
@@ -117,27 +138,15 @@ const CasinoCard = ({
                     ) : (
                       '-'
                     )}
-                  </div> : <div className={"uppercase flex min-h-[84px] font-medium flex-col items-center justify-center rounded-md border border-blue-100 bg-blue-50 p-2 text-lg leading-6"}>-</div>}
+                  </div>
                 </>
               ) : (
-                <div className='col-span-2 min-h-[84px] font-medium flex flex-col items-center justify-center rounded-md border border-blue-100 bg-blue-50 p-2 text-lg leading-6'>
-                  <span className="text-gray-700 text-sm">
-                    {casino.defaultBonusText}
-                  </span>
+                <div className="col-span-2 min-h-[84px] text-center font-medium flex flex-col items-center justify-center rounded-md border border-blue-100 bg-blue-50 py-2 px-4 text-base leading-6">
+                  {casino.defaultBonusText}
                 </div>
               )}
             </div>
-            <div className="mt-2 rounded-md border border-slate-100 bg-slate-50 p-2.5">
-              {casino.advantages.map((advantage: string, index: number) => (
-                <div
-                  key={`${casino._id}-advantage-${index}`}
-                  className="mb-1 flex items-center gap-2 text-sm text-gray-700"
-                >
-                  <CheckBadgeIcon className="h-4 w-4 text-button" />
-                  {advantage}
-                </div>
-              ))}
-            </div>
+
             <div className="mt-2 flex flex-col-reverse items-center justify-center gap-2">
               <Link
                 href={`/${casino.slug.current}`}
@@ -153,7 +162,7 @@ const CasinoCard = ({
                   prefetch={false}
                   variant="affiliate"
                   className="w-full"
-                  target='_blank'
+                  target="_blank"
                 >
                   Till {casino.name}
                 </Link>
