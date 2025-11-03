@@ -1,5 +1,4 @@
 import { GuidePageSchemaType } from '@/src/schemas/guidePage'
-import { urlFor } from '@/src/lib/client'
 import NewsPageService from '@/src/services/NewsPageService'
 import { NewsPageSchemaType } from '@/src/schemas/newsPage'
 
@@ -9,10 +8,14 @@ export const getBlogPostingStructuredData = ({
   page: GuidePageSchemaType | NewsPageSchemaType
 }) => {
   const newsPageService = new NewsPageService()
-  const publishedAt = newsPageService.getPagePublishedAtTimestamp(page as NewsPageSchemaType)
-  const modifiedAt = newsPageService.getPageModifiedAtTimestamp(page as NewsPageSchemaType)
+  const publishedAt = newsPageService.getPagePublishedAtTimestamp(
+    page as NewsPageSchemaType
+  )
+  const modifiedAt = newsPageService.getPageModifiedAtTimestamp(
+    page as NewsPageSchemaType
+  )
 
-  const structuredData = {
+  const structuredData: Record<string, object | string> = {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
     headline: page.seoTitle,

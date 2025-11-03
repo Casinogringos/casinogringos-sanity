@@ -6,9 +6,15 @@ import NewsPageService from '@/src/services/NewsPageService'
 
 const newsPageService = new NewsPageService()
 
-const getArticleStructuredData = (page: GuidePageSchemaType | NewsPageSchemaType) => {
-  const publishedAt = newsPageService.getPagePublishedAtTimestamp(page as NewsPageSchemaType)
-  const modifiedAt = newsPageService.getPageModifiedAtTimestamp(page as NewsPageSchemaType)
+const getArticleStructuredData = (
+  page: GuidePageSchemaType | NewsPageSchemaType | SubPageSchemaType
+) => {
+  const publishedAt = newsPageService.getPagePublishedAtTimestamp(
+    page as NewsPageSchemaType
+  )
+  const modifiedAt = newsPageService.getPageModifiedAtTimestamp(
+    page as NewsPageSchemaType
+  )
 
   const dev = process.env.DEV === 'true'
   let seoImage
@@ -20,14 +26,14 @@ const getArticleStructuredData = (page: GuidePageSchemaType | NewsPageSchemaType
 
   const structuredData = {
     '@type': 'Article',
-    "@id": "https://casinogringos.se/#article",
+    '@id': 'https://casinogringos.se/#article',
     mainEntityOfPage: {
       '@type': 'WebPage',
       '@id': `${process.env.SITE_URL}${page.slug.current}`,
     },
     headline: page.seoTitle,
     description: page.seoDescription,
-    image: { "@id": "https://casinogringos.se/#primaryimage" },
+    image: { '@id': 'https://casinogringos.se/#primaryimage' },
     publisher: {
       '@type': 'Organization',
       name: 'Casinogringos',
@@ -47,7 +53,7 @@ const getArticleStructuredData = (page: GuidePageSchemaType | NewsPageSchemaType
       url: `https://casinogringos.se/om-oss/${page.author.slug.current}`,
       image: page.author.avatar.src,
       sameAs: [page.author.linkedIn],
-    }
+    },
   }
 
   return structuredData

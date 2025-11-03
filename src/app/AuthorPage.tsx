@@ -1,4 +1,4 @@
-import Date from '@/src/components/content/Date'
+import DateComponent from '@/src/components/content/Date'
 import Link from '@/src/components/content/Link'
 import { Linkedin, Mail } from 'lucide-react'
 import BreadCrumbs from '@/src/components/navigation/BreadCrumbs'
@@ -57,7 +57,7 @@ const Author = ({ author }: { author: AuthorSchemaType }) => {
             <div className="lg:w-3/4">
               <Heading
                 level={1}
-                size={6}
+                sizes={[5, 5, 6]}
                 text={author.firstName + ' ' + author.lastName}
                 className="mb-1 font-bold"
               />
@@ -93,7 +93,7 @@ const Author = ({ author }: { author: AuthorSchemaType }) => {
                 <section>
                   <Heading
                     level={3}
-                    size={5}
+                    sizes={[4, 4, 5]}
                     className="mb-3 mt-5 font-bold"
                     text="Expertområden"
                   />
@@ -113,29 +113,35 @@ const Author = ({ author }: { author: AuthorSchemaType }) => {
                 <section>
                   <Heading
                     level={3}
-                    size={5}
+                    sizes={[4, 4, 5]}
                     className="mt-5 font-bold"
                     text="Erfarenhet och utbildning"
                   />
                   <ul>
-                    {author.experience?.map((item, index) => (
-                      <li
-                        key={`author-${author._id}-experience-${index}`}
-                        className="border-b border-b-blue-100 py-2"
-                      >
-                        <strong className="text-dark">
-                          {item.position} - {item.employer}
-                        </strong>
-                        <span className="block text-sm">
-                          <Date dateString={item.startDate} /> -{' '}
-                          {item.endDate ? (
-                            <Date dateString={item.endDate} />
-                          ) : (
-                            'Present'
-                          )}
-                        </span>
-                      </li>
-                    ))}
+                    {author.experience?.map((item, index) => {
+                      const startDate = new Date(item.startDate).getTime()
+                      const endDate = item.endDate
+                        ? new Date(item.endDate).getTime()
+                        : startDate
+                      return (
+                        <li
+                          key={`author-${author._id}-experience-${index}`}
+                          className="border-b border-b-blue-100 py-2"
+                        >
+                          <strong className="text-dark">
+                            {item.position} - {item.employer}
+                          </strong>
+                          <span className="block text-sm">
+                            <DateComponent timestamp={startDate} /> -{' '}
+                            {item.endDate ? (
+                              <DateComponent timestamp={endDate} />
+                            ) : (
+                              'Present'
+                            )}
+                          </span>
+                        </li>
+                      )
+                    })}
                   </ul>
                 </section>
               )}
@@ -149,7 +155,7 @@ const Author = ({ author }: { author: AuthorSchemaType }) => {
           <section>
             <Heading
               level={2}
-              size={7}
+              sizes={[6, 6, 7]}
               text="Artiklar som författaren bidgragit till"
             />
             <div className="grid grid-cols-2 gap-6 md:grid-cols-3 lg:grid-cols-4">
@@ -163,7 +169,7 @@ const Author = ({ author }: { author: AuthorSchemaType }) => {
             </div>
           </section>
           <section>
-            <Heading level={2} size={7} text="Senaste sidor" />
+            <Heading level={2} sizes={[6, 6, 7]} text="Senaste sidor" />
             <ul>
               {author.pagePreviews?.map((item) => (
                 <li key={`author-page-${item._id}`}>

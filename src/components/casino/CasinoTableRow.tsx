@@ -14,29 +14,44 @@ const CasinoTableRow = ({
 }) => {
   const casinoService = new CasinoService()
   const { casino } = casinoPage
-  const bonusCategory = casinoService.chooseBonusCategory({ categories: bonusCategories, casinoPage })
-  const bonusPage = casinoService.getBonusPage({ casinoPage, category: bonusCategory })
-  const numberOfFreeSpins = casinoPage.freeSpinsPages?.[0]?.freeSpinsBonus?.numberOfFreeSpins ?? false
+  const bonusCategory = casinoService.chooseBonusCategory({
+    categories: bonusCategories,
+    casinoPage,
+  })
+  const bonusPage = casinoService.getBonusPage({
+    casinoPage,
+    category: bonusCategory,
+  })
+  const numberOfFreeSpins =
+    casinoPage.freeSpinsPages?.[0]?.freeSpinsBonus?.numberOfFreeSpins ?? false
   const getBonusString = () => {
     if (!bonusPage) return
     switch (bonusPage._type) {
       case 'casino-bonus-pages': {
-        const casinoBonusAmount = bonusPage.casinoBonus.bonusAmountRange[1]
+        const casinoBonusAmount = bonusPage.casinoBonus.bonusAmountRange.max
         const casinoBonusPercentage = bonusPage.casinoBonus.bonusPercentage
-        if ((!casinoBonusAmount || !casinoBonusPercentage) && !numberOfFreeSpins) {
+        if (
+          (!casinoBonusAmount || !casinoBonusPercentage) &&
+          !numberOfFreeSpins
+        ) {
           return null
         }
         return `${casinoBonusPercentage && casinoBonusAmount ? casinoBonusPercentage + '% up to ' + casinoBonusAmount : ''}${numberOfFreeSpins ? ' + ' + numberOfFreeSpins + ' freespins' : ''}`
       }
       case 'odds-bonus-pages': {
-        const oddsBonus = bonusPage.oddsBonus.bonusAmountRange[1]
+        const oddsBonus = bonusPage.oddsBonus.bonusAmountRange.max
         if (!oddsBonus && !numberOfFreeSpins) return null
         return `${oddsBonus ? oddsBonus + ' kr bonus' : ''}${numberOfFreeSpins ? ' + ' + numberOfFreeSpins + ' freespins' : ''}`
       }
       case 'live-casino-bonus-pages': {
-        const liveCasinoBonusPercentage = bonusPage.liveCasinoBonus.bonusPercentage
-        const liveCasinoBonusAmount = bonusPage.liveCasinoBonus.bonusAmountRange.max
-        if ((!liveCasinoBonusPercentage || !liveCasinoBonusAmount) && !numberOfFreeSpins) {
+        const liveCasinoBonusPercentage =
+          bonusPage.liveCasinoBonus.bonusPercentage
+        const liveCasinoBonusAmount =
+          bonusPage.liveCasinoBonus.bonusAmountRange.max
+        if (
+          (!liveCasinoBonusPercentage || !liveCasinoBonusAmount) &&
+          !numberOfFreeSpins
+        ) {
           return null
         }
         return `${liveCasinoBonusPercentage && liveCasinoBonusAmount ? liveCasinoBonusPercentage + '% up to ' + liveCasinoBonusAmount : ''}${numberOfFreeSpins ? ' + ' + numberOfFreeSpins + ' freespins' : ''}`
@@ -51,26 +66,30 @@ const CasinoTableRow = ({
     <tr>
       <td className="text-center text-slate-500 font-bold">{index + 1}</td>
       <td className="text-center">{casinoPage.title}</td>
-      <td className="text-center font-bold">{bonusString ?? casino.defaultBonusText}</td>
+      <td className="text-center font-bold">
+        {bonusString ?? casino.defaultBonusText}
+      </td>
       <td className="text-center">
-        {casinoPage.affLink?.slug.current && <Link
-          href={`/go${casinoPage.affLink.slug.current}`}
-          target="_blank"
-          rel="noopener noreferrer nofollow"
-          prefetch={false}
-          variant={'affiliate'}
-          size="md"
-          className="ml-auto"
-          plausible={{
-            eventName: 'AffiliateClick',
-            props: {
-              buttonId: casinoPage.title,
-              place: 'Content',
-            },
-          }}
-        >
-          Till Casinot
-        </Link>}
+        {casinoPage.affLink?.slug.current && (
+          <Link
+            href={`/go${casinoPage.affLink.slug.current}`}
+            target="_blank"
+            rel="noopener noreferrer nofollow"
+            prefetch={false}
+            variant={'affiliate'}
+            size="md"
+            className="ml-auto"
+            plausible={{
+              eventName: 'AffiliateClick',
+              props: {
+                buttonId: casinoPage.title,
+                place: 'Content',
+              },
+            }}
+          >
+            Till Casinot
+          </Link>
+        )}
       </td>
     </tr>
   )

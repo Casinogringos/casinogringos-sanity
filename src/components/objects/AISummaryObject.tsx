@@ -1,7 +1,7 @@
-import { AISummaryObject as AISummaryObjectType } from '@/src/types'
 import { PortableText } from 'next-sanity'
+import { AISummaryObjectSchemaType } from '@/src/schemas/aiSummaryObject'
 
-const AISummaryObject = ({ object }: { object: AISummaryObjectType }) => {
+const AISummaryObject = ({ object }: { object: AISummaryObjectSchemaType }) => {
   return (
     <section>
       {object.content.map((content, index) => (

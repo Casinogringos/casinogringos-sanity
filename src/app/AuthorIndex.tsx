@@ -59,7 +59,7 @@ const AuthorIndex = ({
             level={2}
             text="Vi som jobbar på Casinogringos"
             className="mb-6 font-bold"
-            size={5}
+            sizes={[5, 5, 6]}
           />
           {authors.map((author) => (
             <div
