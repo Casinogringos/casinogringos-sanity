@@ -1,7 +1,7 @@
-import Image from 'next/image'
 import Placeholder from '@/src/components/utils/Placeholder'
 import { ImageObjectSchemaType } from '@/src/schemas/imageObject'
 import { PortableText } from 'next-sanity'
+import Image from 'next/image'
 
 const SanityImage = ({
   image,
@@ -34,13 +34,16 @@ const SanityImage = ({
     lg: 'rounded-lg',
   }
   return (
-    <div className={`${className} ${prose ? '' : 'not-prose'} flex items-center flex-col justify-center`}>
+    <div
+      className={`${className} ${prose ? '' : 'not-prose'} flex items-center flex-col justify-center`}
+    >
       <Image
         src={image.src}
         alt={image.alt}
         priority={priority}
         width={width}
         height={height}
+        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 1200px"
         className={`${roundedClasses[rounded]} ${image.caption ? '!mb-0' : ''}`}
         style={{ maxWidth: maxWidth ?? '100%' }}
       />

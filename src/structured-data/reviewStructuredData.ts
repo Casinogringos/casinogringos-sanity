@@ -16,6 +16,8 @@ const getReviewStructuredData = ({ reviewPage }: { reviewPage: CasinoPageSchemaT
     rating = page.casino.overallRating
   }
 
+  console.log("WEB URL:", `https://casinogringos.se${reviewPage.slug.current}`)
+
   return {
     '@context': 'https://schema.org',
     '@type': 'Review',
@@ -39,6 +41,13 @@ const getReviewStructuredData = ({ reviewPage }: { reviewPage: CasinoPageSchemaT
         '@id': 'https://casinogringos.se/#/schema/person/image',
         url: reviewPage.author.avatar.src,
       },
+    },
+    itemReviewed: {
+      '@id': `https://casinogringos.se${reviewPage.slug.current}#product`,
+    },
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': `https://casinogringos.se${reviewPage.slug.current}#webpage`,
     },
     publisher: {
       '@id': 'https://casinogringos.se/#organization',

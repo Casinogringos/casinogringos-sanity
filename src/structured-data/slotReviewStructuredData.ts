@@ -32,12 +32,16 @@ const getSlotReviewStructuredData = ({
       url: `https://casinogringos.se/om-oss/${page.author.slug.current}`,
       sameAs: [page.author.linkedIn],
     },
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': `${process.env.SITE_URL}${page.slug.current}#webpage`,
+    },
     publisher: {
-      '@id': 'https://casinogringos.se/#organization',
+      '@id': `${process.env.SITE_URL}/#organization`,
     },
     isPartOf: [
       {
-        '@id': 'https://casinogringos.se/#website',
+        '@id': `${process.env.SITE_URL}/#website`,
       },
     ],
     datePublished: page.originalPublishedAt ?? page._createdAt,

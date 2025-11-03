@@ -37,7 +37,7 @@ export const getWebPageStructuredData = (
         description: page.seoDescription,
         inLanguage: 'sv-SE',
         datePublished: new Date(publishedAt).toISOString(),
-        dateModified: new Date(modifiedAt).toISOString(),
+        ...(modifiedAt && {dateModified: new Date(modifiedAt).toISOString()}),
         isPartOf: { '@id': 'https://casinogringos.se/#website' },
         about: { '@id': 'https://casinogringos.se/#organization' },
         ...(page?.seoImage?.src && {

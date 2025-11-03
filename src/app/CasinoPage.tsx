@@ -1,5 +1,6 @@
 import CasinoHero from '@/src/components/casino/CasinoHero'
 import CasinoInfo from '@/src/components/casino/CasinoInfo'
+import AuthorBox from '@/src/components/content/AuthorBox'
 import Avatar from '@/src/components/content/Avatar'
 import Heading from '@/src/components/content/Heading'
 import Link from '@/src/components/content/Link'
@@ -110,15 +111,17 @@ const CasinoPage = ({
             narrow
           />
         )}
-        {/*{page?.author && (*/}
-        {/*  <div className="mx-4 lg:mx-0">*/}
-        {/*    <AuthorBox*/}
-        {/*      author={page?.author}*/}
-        {/*      modified={page?.modified}*/}
-        {/*      reviewedBy={page?.reviewer}*/}
-        {/*    />*/}
-        {/*  </div>*/}
-        {/*)}*/}
+        {casinoPage?.author && (
+          <Container narrow>
+            <AuthorBox
+              author={casinoPage?.author}
+              modified={casinoPageService.getPageModifiedAtTimestamp(
+                casinoPage
+              )}
+              reviewedBy={casinoPage?.reviewer}
+            />
+          </Container>
+        )}
         {similarCasinoPages && (
           <section className={'bg-gray-100 py-10'}>
             <Container>

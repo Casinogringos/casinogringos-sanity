@@ -1,7 +1,7 @@
-import { SubPageSchemaType } from '@/src/schemas/subPage'
 import { portableTextToPlainText } from '@/src/lib/utils'
 import { GuidePageSchemaType } from '@/src/schemas/guidePage'
 import { NewsPageSchemaType } from '@/src/schemas/newsPage'
+import { SubPageSchemaType } from '@/src/schemas/subPage'
 import PageService from '@/src/services/SubPageService'
 
 const pageService = new PageService()
@@ -23,7 +23,7 @@ const getArticleStructuredData = (page: SubPageSchemaType | GuidePageSchemaType 
     "@id": "https://casinogringos.se/#article",
     mainEntityOfPage: {
       '@type': 'WebPage',
-      '@id': `${process.env.SITE_URL}${page.slug.current}`,
+      '@id': `${process.env.SITE_URL}${page.slug.current}#webpage`,
     },
     headline: page.seoTitle,
     description: page.seoDescription,

@@ -1,24 +1,22 @@
+import ArticleHeader from '@/src/components/article/ArticleHeader'
+import AuthorBox from '@/src/components/content/AuthorBox'
+import Heading from '@/src/components/content/Heading'
 import ModularContent from '@/src/components/content/ModularContent'
 import Container from '@/src/components/layout/Container'
-import ArticleHeader from '@/src/components/article/ArticleHeader'
-import Heading from '@/src/components/content/Heading'
-import { getHeadingObjectsByPage } from '@/src/lib/helpers'
+import BreadCrumbs from '@/src/components/navigation/BreadCrumbs'
+import TableOfContents from '@/src/components/navigation/TableOfContents'
+import { getHeadingObjectsByPage, slugify } from '@/src/lib/helpers'
 import { NewsPageSchemaType } from '@/src/schemas/newsPage'
 import { NewsPagePreviewSchemaType } from '@/src/schemas/newsPagePreview'
-import TableOfContents from '@/src/components/navigation/TableOfContents'
-import AuthorBox from '@/src/components/content/AuthorBox'
-import NewsCard from '@/src/components/news/NewsCard'
+import NewsPageService from '@/src/services/NewsPageService'
+import { getFeaturedImageStructuredData } from '@/src/structured-data/featuredImageStructuredData'
 import getNewsArticleStructuredData from '@/src/structured-data/newsArticleStructuredData'
-import BreadCrumbs from '@/src/components/navigation/BreadCrumbs'
-import Image from 'next/image'
+import { getOrganizationStructuredData } from '@/src/structured-data/organizationStructuredData'
 import { getWebPageStructuredData } from '@/src/structured-data/webPageStructuredData'
 import { getWebSiteStructuredData } from '@/src/structured-data/webSiteStructuredData'
-import { getOrganizationStructuredData } from '@/src/structured-data/organizationStructuredData'
-import NewsPageService from '@/src/services/NewsPageService'
-import { HeadingObjectSchemaType } from '../schemas/headingObject'
-import { slugify } from '@/src/lib/helpers'
+import Image from 'next/image'
 import ArticleCard from '../components/article/ArticleCard'
-import { getFeaturedImageStructuredData } from '@/src/structured-data/featuredImageStructuredData'
+import { HeadingObjectSchemaType } from '../schemas/headingObject'
 
 const newsPageService = new NewsPageService()
 
@@ -95,7 +93,7 @@ export default function NewsPage({
           <AuthorBox
             author={page.author}
             modified={newsPageService.getPageModifiedAtTimestamp(page)}
-            reviewedBy={page.reviewer}
+            reviewedBy={page?.reviewer}
           />
         </Container>
       )}
