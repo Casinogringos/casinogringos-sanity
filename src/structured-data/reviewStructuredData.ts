@@ -20,36 +20,49 @@ const getReviewStructuredData = ({ reviewPage }: { reviewPage: CasinoPageSchemaT
   return {
     '@context': 'https://schema.org',
     '@type': 'Review',
-    "@id": `https://casinogringos.se${reviewPage.slug.current}#review`,
-    itemReviewed: {
-      '@type': 'Product',
-      "@id": `https://casinogringos.se${reviewPage.slug.current}#product`,
-    },
+    '@id': `https://casinogringos.se${reviewPage.slug.current}#review`,
     name: reviewPage.title,
     reviewRating: {
       '@type': 'Rating',
       ratingValue: rating,
-      worstRating: '0',
-      bestRating: '5',
+      worstRating: '1',
     },
     author: {
       '@type': 'Person',
-      name: reviewPage.author.firstName + ' ' + reviewPage.author.lastName,
-      url: `https://casinogringos.se/om-oss/${reviewPage.author.slug.current}`,
-      email: null,
+      name: `${reviewPage.author.firstName} ${reviewPage.author.lastName}`,
+      url: `https://casinogringos.se/om-oss${reviewPage.author.slug.current}`,
       jobTitle: 'Skribent',
       sameAs: reviewPage.author.linkedIn,
       image: {
         '@type': 'ImageObject',
         inLanguage: 'sv-SE',
-        id: 'https://casinogringos.se/#/schema/person/image',
+        '@id': 'https://casinogringos.se/#/schema/person/image',
         url: reviewPage.author.avatar.src,
       },
     },
-    "publisher": { "@id": "https://casinogringos.se/#organization" },
-    "inLanguage": "sv-SE",
-    "isPartOf": { "@id": "https://casinogringos.se/#website" }
-  }
+    publisher: {
+      '@id': 'https://casinogringos.se/#organization',
+      '@type': 'Organization',
+      name: 'Casinogringos',
+      url: 'https://casinogringos.se',
+      sameAs: [
+        'https://www.facebook.com/Casinogringos',
+        'https://www.instagram.com/casinogringos',
+        'https://www.youtube.com/channel/UCeFbFMkDfTlLayuZmk_aXiA',
+        'https://www.twitch.tv/casinogringos',
+        'https://twitter.com/CasinoGringos',
+      ],
+    },
+    isPartOf: [
+      {
+        '@id': 'https://casinogringos.se/#website',
+        '@type': 'WebSite',
+        name: 'Casinogringos.se',
+        url: 'https://casinogringos.se',
+        inLanguage: 'sv-SE',
+      },
+    ],
+  };
 }
 
 export default getReviewStructuredData
