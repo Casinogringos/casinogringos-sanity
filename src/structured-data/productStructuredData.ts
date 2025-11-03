@@ -1,6 +1,5 @@
 import { CasinoPageSchemaType } from '@/src/schemas/casinoPage'
 import CasinoService from '@/src/services/CasinoService'
-import { urlFor } from '@/src/lib/client'
 
 const casinoService = new CasinoService()
 
@@ -38,13 +37,8 @@ const getProductStructuredData = ({
         return { "@type": "ListItem", "position": i + 1, "name": disadvantage }
       })
     },
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": casino.overallRating,
-      "bestRating": 5,
-      "worstRating": 1,
-      "reviewCount": 1
-    },
+    review: { '@id': `https://casinogringos.se${productPage.slug.current}#review` },
+    isPartOf: [{ '@id': 'https://casinogringos.se/#website' }]
   }
 }
 
