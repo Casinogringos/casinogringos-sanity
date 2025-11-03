@@ -42,28 +42,9 @@ const getReviewStructuredData = ({ reviewPage }: { reviewPage: CasinoPageSchemaT
         url: reviewPage.author.avatar.src,
       },
     },
-    publisher: {
-      "@id": "https://casinogringos.se/#organization",
-      '@type': 'Organization',
-      name: 'Casinogringos',
-      url: 'https://casinogringos.se',
-      sameAs: [
-        'https://www.facebook.com/Casinogringos',
-        'https://www.instagram.com/casinogringos',
-        'https://www.youtube.com/channel/UCeFbFMkDfTlLayuZmk_aXiA',
-        'https://www.twitch.tv/casinogringos',
-        'https://twitter.com/CasinoGringos',
-      ],
-    },
-    isPartOf: [
-      {
-        id: 'https://casinogringos.se/#website',
-        '@type': 'WebSite',
-        name: 'Casinogringos.se',
-        url: 'https://casinogringos.se',
-        inLanguage: 'sv-se',
-      },
-    ],
+    "publisher": { "@id": "https://casinogringos.se/#organization" },
+    "inLanguage": "sv-SE",
+    "isPartOf": { "@id": "https://casinogringos.se/#website" }
   }
 }
 

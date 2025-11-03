@@ -19,6 +19,8 @@ import { getWebSiteStructuredData } from '@/src/structured-data/webSiteStructure
 import { getOrganizationStructuredData } from '@/src/structured-data/organizationStructuredData'
 import { slugify } from '@/src/lib/helpers'
 import Placeholder from '@/src/components/utils/Placeholder'
+import { HeadingObjectSchemaType } from '@/src/schemas/headingObject'
+import { RatingObjectSchemaType } from '@/src/schemas/ratingObject'
 
 const CasinoPage = ({
   casinoPage,
@@ -80,7 +82,15 @@ const CasinoPage = ({
         {headings.length > 1 && (
           <Container narrow>
             <TableOfContents
-              headings={headings.filter((heading) => heading.text || heading.title).map((heading: HeadingObjectSchemaType) => {
+              headings={headings.filter((heading: HeadingObjectSchemaType | RatingObjectSchemaType) => {
+                if (heading._type === 'heading-object') {
+                  return heading.text
+                }
+                if (heading._type === 'rating-object') {
+                  return heading.title
+                }
+                return false
+              }).map((heading: HeadingObjectSchemaType | RatingObjectSchemaType) => {
                 switch (heading._type) {
                   case 'heading-object': {
                     return {
