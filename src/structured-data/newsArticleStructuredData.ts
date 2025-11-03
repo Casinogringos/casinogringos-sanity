@@ -13,8 +13,8 @@ const getNewsArticleStructuredData = (page: NewsPageSchemaType) => {
     headline: page.seoTitle,
     description: page.seoDescription,
     image: page.featuredImage.src,
-    datePublished: publishedAt,
-    dateModified: modifiedAt,
+    datePublished: new Date(publishedAt ?? page._createdAt).toISOString(),
+    dateModified: new Date(modifiedAt ?? page._updatedAt).toISOString(),
     author: {
       '@type': 'Person',
       name: page.author.firstName + ' ' + page.author.lastName,

@@ -2,13 +2,13 @@ import { SubPageSchemaType } from '@/src/schemas/subPage'
 import { portableTextToPlainText } from '@/src/lib/utils'
 import { GuidePageSchemaType } from '@/src/schemas/guidePage'
 import { NewsPageSchemaType } from '@/src/schemas/newsPage'
-import PageService from '@/src/services/SubPageService'
+import NewsPageService from '@/src/services/NewsPageService'
 
-const pageService = new PageService()
+const newsPageService = new NewsPageService()
 
-const getArticleStructuredData = (page: SubPageSchemaType | GuidePageSchemaType | NewsPageSchemaType) => {
-  const publishedAt = pageService.getPagePublishedAtTimestamp(page)
-  const modifiedAt = pageService.getPageModifiedAtTimestamp(page)
+const getArticleStructuredData = (page: GuidePageSchemaType | NewsPageSchemaType) => {
+  const publishedAt = newsPageService.getPagePublishedAtTimestamp(page as NewsPageSchemaType)
+  const modifiedAt = newsPageService.getPageModifiedAtTimestamp(page as NewsPageSchemaType)
 
   const dev = process.env.DEV === 'true'
   let seoImage
@@ -36,8 +36,8 @@ const getArticleStructuredData = (page: SubPageSchemaType | GuidePageSchemaType 
         url: 'https://casinogringos.se/casinogringos.webp',
       },
     },
-    datePublished: new Date(publishedAt).toISOString(),
-    dateModified: new Date(modifiedAt).toISOString(),
+    datePublished: new Date(publishedAt ?? page._createdAt).toISOString(),
+    dateModified: new Date(modifiedAt ?? page._updatedAt).toISOString(),
     author: {
       '@type': 'Person',
       name: page.author.firstName + ' ' + page.author.lastName,

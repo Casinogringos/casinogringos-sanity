@@ -11,8 +11,8 @@ const pageService = new PageService()
 export const getWebPageStructuredData = (
   page: SubPageSchemaType | NewsPageSchemaType | GuidePageSchemaType | SlotPageSchemaType
 ) => {
-  const publishedAt = pageService.getPagePublishedAtTimestamp(page)
-  const modifiedAt = pageService.getPageModifiedAtTimestamp(page)
+  const publishedAt = pageService.getPagePublishedAtTimestamp(page as SubPageSchemaType)
+  const modifiedAt = pageService.getPageModifiedAtTimestamp(page as SubPageSchemaType)
 
   const structuredData = {
     '@type': 'WebPage',
@@ -29,8 +29,8 @@ export const getWebPageStructuredData = (
       '@id': 'https://casinogringos.se/#primaryimage',
     },
     thumbnailUrl: page.seoImage?.src,
-    datePublished: new Date(publishedAt).toISOString(),
-    dateModified: new Date(modifiedAt).toISOString(),
+    datePublished: new Date(publishedAt ?? page._createdAt).toISOString(),
+    dateModified: new Date(modifiedAt ?? page._updatedAt).toISOString(),
     description: page.seoDescription,
     inLanguage: 'sv-SE',
     potentialAction: [

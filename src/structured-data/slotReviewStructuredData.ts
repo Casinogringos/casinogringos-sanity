@@ -1,4 +1,5 @@
 import { SlotPageSchemaType } from "@/src/schemas/slotPage"
+import SlotPageService from "@/src/services/SlotPageService"
 
 const getSlotReviewStructuredData = ({
   page,
@@ -6,6 +7,9 @@ const getSlotReviewStructuredData = ({
   page: SlotPageSchemaType
 }) => {
   const { slot } = page
+  const slotPageService = new SlotPageService()
+  const publishedAt = slotPageService.getPagePublishedAtTimestamp(page)
+  const modifiedAt = slotPageService.getPageModifiedAtTimestamp(page)
 
   return {
     '@context': 'https://schema.org',
@@ -40,7 +44,8 @@ const getSlotReviewStructuredData = ({
         url: 'https://casinogringos.se/casinogringos.webp',
       },
     },
-    datePublished: page.originalPublishedAt ?? page._createdAt,
+    datePublished: new Date(publishedAt ?? page._createdAt).toISOString(),
+    dateModified: new Date(modifiedAt ?? page._updatedAt).toISOString(),
     reviewBody: page.review,
   }
 }
