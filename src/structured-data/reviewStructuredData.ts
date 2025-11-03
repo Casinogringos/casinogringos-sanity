@@ -31,7 +31,7 @@ const getReviewStructuredData = ({ reviewPage }: { reviewPage: CasinoPageSchemaT
       '@type': 'Person',
       name: `${reviewPage.author.firstName} ${reviewPage.author.lastName}`,
       url: `https://casinogringos.se/om-oss${reviewPage.author.slug.current}`,
-      jobTitle: 'Skribent',
+      jobTitle: reviewPage.author.role,
       sameAs: reviewPage.author.linkedIn,
       image: {
         '@type': 'ImageObject',
