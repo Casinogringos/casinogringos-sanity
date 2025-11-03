@@ -22,7 +22,7 @@ const getSlotReviewStructuredData = ({
     },
     reviewRating: {
       '@type': 'Rating',
-      ratingValue: slot.rating,
+      ratingValue: slot.rating || "1",
       bestRating: '5',
       worstRating: '1',
     },
@@ -33,13 +33,13 @@ const getSlotReviewStructuredData = ({
       sameAs: [page.author.linkedIn],
     },
     publisher: {
-      '@type': 'Organization',
-      name: 'Casinogringos',
-      logo: {
-        '@type': 'ImageObject',
-        url: 'https://casinogringos.se/casinogringos.webp',
-      },
+      '@id': 'https://casinogringos.se/#organization',
     },
+    isPartOf: [
+      {
+        '@id': 'https://casinogringos.se/#website',
+      },
+    ],
     datePublished: page.originalPublishedAt ?? page._createdAt,
     reviewBody: page.review,
   }
