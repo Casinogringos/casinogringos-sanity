@@ -1,8 +1,9 @@
 export const getWebSiteStructuredData = () => {
   return {
+    '@context': 'https://schema.org',
     '@type': 'WebSite',
     '@id': 'https://casinogringos.se/#website',
-    url: 'https://casinogringos.se',
+    url: 'https://casinogringos.se/',
     name: 'Casinogringos.se',
     description: 'Vi jämför och recenserar casino på nätet',
     inLanguage: 'sv-SE',
