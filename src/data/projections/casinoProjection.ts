@@ -17,6 +17,7 @@ import { casinoBonusProjection } from '@/src/data/projections/casinoBonusProject
 import { oddsBonusProjection } from '@/src/data/projections/oddsBonusProjection'
 import { freeSpinsProjection } from '@/src/data/projections/freeSpinsProjection'
 import { paymentMethodProjection } from '@/src/data/projections/paymentMethodProjection'
+import { affLinkProjection } from '@/src/data/projections/affLinkProjection'
 
 export const casinoProjection = `
     _type,
@@ -24,6 +25,9 @@ export const casinoProjection = `
     slug {
         _type,
         current
+    },
+    affLink-> {
+      ${affLinkProjection}
     },
     name,
     brandColor,

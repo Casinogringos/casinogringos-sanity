@@ -33,12 +33,12 @@ const CasinoTableRow = ({
         ) {
           return null
         }
-        return `${casinoBonusPercentage && casinoBonusAmount ? casinoBonusPercentage + '% up to ' + casinoBonusAmount : ''}${numberOfFreeSpins ? ' + ' + numberOfFreeSpins + ' freespins' : ''}`
+        return `${casinoBonusPercentage && casinoBonusAmount ? casinoBonusPercentage + '% up to ' + casinoBonusAmount : ''}${casinoBonusPercentage && casinoBonusAmount && numberOfFreeSpins ? ' + ' : ''}${numberOfFreeSpins ? numberOfFreeSpins + ' freespins' : ''}`
       }
       case 'odds-bonuses': {
         const oddsBonus = bonus.bonusAmountRange.max
         if (!oddsBonus && !numberOfFreeSpins) return null
-        return `${oddsBonus ? oddsBonus + ' kr bonus' : ''}${numberOfFreeSpins ? ' + ' + numberOfFreeSpins + ' freespins' : ''}`
+        return `${oddsBonus ? oddsBonus + ' kr bonus' : ''}${oddsBonus && numberOfFreeSpins ? ' + ' : ''}${numberOfFreeSpins ? numberOfFreeSpins + ' freespins' : ''}`
       }
       case 'live-casino-bonuses': {
         const liveCasinoBonusPercentage = bonus.bonusPercentage
@@ -49,7 +49,7 @@ const CasinoTableRow = ({
         ) {
           return null
         }
-        return `${liveCasinoBonusPercentage && liveCasinoBonusAmount ? liveCasinoBonusPercentage + '% up to ' + liveCasinoBonusAmount : ''}${numberOfFreeSpins ? ' + ' + numberOfFreeSpins + ' freespins' : ''}`
+        return `${liveCasinoBonusPercentage && liveCasinoBonusAmount ? liveCasinoBonusPercentage + '% up to ' + liveCasinoBonusAmount : ''}${liveCasinoBonusPercentage && liveCasinoBonusAmount && numberOfFreeSpins ? ' + ' : ''}${numberOfFreeSpins ? numberOfFreeSpins + ' freespins' : ''}`
       }
       default:
         return null
