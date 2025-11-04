@@ -16,6 +16,7 @@ import { liveCasinoBonusPageProjection } from './liveCasinoBonusPageProjection'
 import { casinoBonusProjection } from '@/src/data/projections/casinoBonusProjection'
 import { oddsBonusProjection } from '@/src/data/projections/oddsBonusProjection'
 import { freeSpinsProjection } from '@/src/data/projections/freeSpinsProjection'
+import { paymentMethodProjection } from '@/src/data/projections/paymentMethodProjection'
 
 export const casinoProjection = `
     _type,
@@ -27,14 +28,10 @@ export const casinoProjection = `
     name,
     brandColor,
     availableDepositMethods[]-> {
-      'depositMethodPages': *[paymentMethod._ref == ^._id] {
-        ${paymentMethodPageProjection}
-      },
+      ${paymentMethodProjection}
     },
     availableWithdrawalMethods[]-> {
-      'withdrawalMethodPages': *[paymentMethod._ref == ^._id] {
-        ${paymentMethodPageProjection}
-      },
+      ${paymentMethodProjection}
     },
     casinoBonuses[] -> {
       ${casinoBonusProjection}
@@ -54,18 +51,6 @@ export const casinoProjection = `
     overallRating,
     casinoRatings[]-> {
       ${casinoRatingProjection}
-    },
-    "casinoBonusPages": *[_type == "casinoBonusPage" && casino._ref == ^._id]{
-      ${casinoBonusPageProjection}
-    },
-    "oddsBonusPages": *[_type == "oddsBonusPage" && casino._ref == ^._id]{
-      ${oddsBonusPageProjection}
-    },
-    "liveCasinoBonusPages": *[_type == "liveCasinoBonusPage" && casino._ref == ^._id]{
-      ${liveCasinoBonusPageProjection}
-    },
-    "freeSpinsPages": *[_type == "freeSpinsPage" && casino._ref == ^._id]{
-      ${freeSpinsPageProjection}
     },
     defaultBonusText,
     gameProviders[]-> {

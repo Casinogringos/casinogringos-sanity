@@ -30,7 +30,7 @@ const CasinoTableObject = ({
           {casinoPages.map((casinoPage, index) => (
             <CasinoTableRow
               key={`${casinoPage._id}-${index}`}
-              casinoPage={casinoPage}
+              casino={casinoPage}
               index={index}
               bonusCategories={bonusCategories}
             />

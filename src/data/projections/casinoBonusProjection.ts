@@ -28,6 +28,5 @@ export const casinoBonusProjection = `
     },
     terms,
     slug,
-    bonusAmountRange[],
     wageringRequirements
 `

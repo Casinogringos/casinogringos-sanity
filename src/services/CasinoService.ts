@@ -160,10 +160,10 @@ class CasinoService {
   // }
 
   getBonus({
-    casinoPage,
+    casino,
     category,
   }: {
-    casinoPage: CasinoPageSchemaType | CasinoPagePreviewSchemaType
+    casino: CasinoSchemaType
     category: { value: string }
   }):
     | CasinoBonusSchemaType
@@ -172,14 +172,14 @@ class CasinoService {
     | null {
     if (!category) return null
     console.log('category!', category)
-    console.log('casinoPage', casinoPage)
+    console.log('casinoPage', casino)
     switch (category.value) {
       case 'casino-bonus':
-        return casinoPage.casino.casinoBonuses?.[0] ?? null
+        return casino.casinoBonuses?.[0] ?? null
       case 'odds-bonus':
-        return casinoPage.casino.oddsBonuses?.[0] ?? null
+        return casino.oddsBonuses?.[0] ?? null
       case 'live-casino-bonus':
-        return casinoPage.casino.liveCasinoBonuses?.[0] ?? null
+        return casino.liveCasinoBonuses?.[0] ?? null
       default:
         return null
     }
@@ -231,13 +231,13 @@ class CasinoService {
   }) {
     switch (bonusCategory.value) {
       case 'casino-bonus':
-        return casino.casinoBonuses?.[0].affLink.slug.current ?? null
+        return casino.casinoBonuses?.[0]?.affLink?.slug.current ?? null
       case 'odds-bonus':
-        return casino.oddsBonuses?.[0].affLink.slug.current ?? null
+        return casino.oddsBonuses?.[0]?.affLink?.slug.current ?? null
       case 'live-casino-bonus':
-        return casino.liveCasinoBonuses?.[0].affLink.slug.current ?? null
+        return casino.liveCasinoBonuses?.[0]?.affLink?.slug.current ?? null
       default:
-        return casino.freeSpins?.[0].affLink.slug.current ?? null
+        return casino.freeSpins?.[0]?.affLink?.slug.current ?? null
     }
   }
 }

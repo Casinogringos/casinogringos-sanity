@@ -13,6 +13,7 @@ import { GameProviderSchema } from './gameProvider'
 import { ContactMethodSchema } from './contactMethod'
 import { CasinoRatingSchema } from './casinoRating'
 import { PaymentMethodSchema } from '@/src/schemas/paymentMethod'
+import AffLinkSchema from '@/src/schemas/affLink'
 
 export const CasinoSchema = z.object({
   _type: z.literal('casinos'),
@@ -22,6 +23,7 @@ export const CasinoSchema = z.object({
     _type: z.literal('slug'),
     current: z.string(),
   }),
+  affLink: AffLinkSchema,
   name: z.string(),
   brandColor: z.string(),
   casinoBonuses: z.array(CasinoBonusSchema).optional(),

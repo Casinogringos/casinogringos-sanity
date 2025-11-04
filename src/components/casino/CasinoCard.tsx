@@ -4,7 +4,6 @@ import Image from 'next/image'
 import Link from '@/src/components/content/Link'
 import CheckBadgeIcon from '@/src/components/icons/CheckBadgeIcon'
 import Paragraph from '@/src/components/content/Paragraph'
-import { CasinoPagePreviewSchemaType } from '@/src/schemas/casinoPagePreview'
 import { CasinoSchemaType } from '@/src/schemas/casino'
 
 const CasinoCard = ({
@@ -32,11 +31,11 @@ const CasinoCard = ({
     console.log('CASINO', casino)
     switch (bonusCategory.value) {
       case 'casino-bonus':
-        return casino.casinoBonuses?.[0].bonusAmountRange.max ?? null
+        return casino.casinoBonuses?.[0]?.bonusAmountRange?.max ?? null
       case 'odds-bonus':
-        return casino.oddsBonuses?.[0].bonusAmountRange.max ?? null
+        return casino.oddsBonuses?.[0]?.bonusAmountRange?.max ?? null
       case 'live-casino-bonus':
-        return casino.liveCasinoBonuses?.[0].bonusAmountRange.max ?? null
+        return casino.liveCasinoBonuses?.[0]?.bonusAmountRange?.max ?? null
       default:
         return null
     }
@@ -53,9 +52,9 @@ const CasinoCard = ({
         return null
     }
   }
-  const numberOfFreeSpins = casino.freeSpins?.[0].numberOfFreeSpins ?? null
+  const numberOfFreeSpins = casino.freeSpins?.[0]?.numberOfFreeSpins ?? null
   const wageringRequirementsFreespins =
-    casino.freeSpins?.[0].wageringRequirements ?? null
+    casino.freeSpins?.[0]?.wageringRequirements ?? null
   const bonus = getBonus()
   const wageringRequirementsBonus = getWageringRequirementsBonus()
   console.log('bonus', bonus)
@@ -73,8 +72,8 @@ const CasinoCard = ({
             </span>
             <div className="-mb-4 -mt-1.5 flex h-full w-full items-center justify-center">
               <Image
-                src={casino.logo.src}
-                alt={casino.logo.altText}
+                src={casino.logo?.src}
+                alt={casino.logo?.altText}
                 width={288}
                 height={288}
                 className={'h-36 w-36'}
