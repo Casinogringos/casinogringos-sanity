@@ -31,7 +31,7 @@ const HomePage = ({
 }: {
   page: SubPageSchemaType
   news: NewsPageSchemaType[]
-  toplistCategories: string[]
+  toplistCategories: { value: string }[]
 }) => {
   const isValid = pageService.validatePage(page)
   if (!isValid) return null
@@ -62,7 +62,7 @@ const HomePage = ({
         <div className="bg-slate-100">
           <Container className="pb-16">
             <CasinoList
-              casinoPages={page.toplist.casinos}
+              casinos={page.toplist.casinos}
               title={page.toplist.title}
               description={page.toplist.description}
               itemComponent={CasinoCard}
@@ -86,7 +86,12 @@ const HomePage = ({
           </div>
         </Container>
       )}
-      <ModularContent className="py-10" narrow objects={page.content} bonusCategories={toplistCategories} />
+      <ModularContent
+        className="py-10"
+        narrow
+        objects={page.content}
+        bonusCategories={toplistCategories}
+      />
       {author && (
         <Container narrow>
           <AuthorBox

@@ -1,6 +1,7 @@
 import { bonusTypeProjection } from '@/src/data/projections/bonusTypeProjection'
 import { gameTypeProjection } from '@/src/data/projections/gameTypeProjection'
 import { paymentMethodProjection } from '@/src/data/projections/paymentMethodProjection'
+import { affLinkProjection } from '@/src/data/projections/affLinkProjection'
 
 export const liveCasinoBonusProjection = `
     _type,
@@ -16,6 +17,9 @@ export const liveCasinoBonusProjection = `
     bonusAmountRange {
         min,
         max
+    },
+    affLink-> {
+        ${affLinkProjection}
     },
     bonusPercentage,
     minimumDeposit,

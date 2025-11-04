@@ -5,48 +5,38 @@ import Link from '@/src/components/content/Link'
 import CheckBadgeIcon from '@/src/components/icons/CheckBadgeIcon'
 import Paragraph from '@/src/components/content/Paragraph'
 import { CasinoPagePreviewSchemaType } from '@/src/schemas/casinoPagePreview'
-import { divide } from 'lodash'
-import { CasinoBonusSchemaType } from '@/src/schemas/casinoBonus'
-import { OddsBonusSchemaType } from '@/src/schemas/oddsBonus'
-import { LiveCasinoBonusSchemaType } from '@/src/schemas/liveCasinoBonus'
+import { CasinoSchemaType } from '@/src/schemas/casino'
 
 const CasinoCard = ({
-  casinoPage,
+  casino,
   index,
   categories,
 }: {
-  casinoPage: CasinoPagePreviewSchemaType
+  casino: CasinoSchemaType
   index: number
   categories: { value: string }[]
 }) => {
-  if (!casinoPage) return null
-  const casino = casinoPage.casino
+  if (!casino) return null
   const casinoService = new CasinoService()
   const { finalRating } = casinoService.getCasinoRatings({ casino })
+  console.log('categories', categories)
   const bonusCategory = casinoService.chooseBonusCategory({
     categories,
-    casinoPage,
+    casino,
   })
   const affLinkSlug = casinoService.getAffLinkSlug({
     bonusCategory,
-    casinoPage,
+    casino,
   })
   const getBonus = () => {
+    console.log('CASINO', casino)
     switch (bonusCategory.value) {
       case 'casino-bonus':
-        return (
-          casinoPage.casinoBonusPages?.[0].casinoBonus.bonusAmountRange.max ??
-          null
-        )
+        return casino.casinoBonuses?.[0].bonusAmountRange.max ?? null
       case 'odds-bonus':
-        return (
-          casinoPage.oddsBonusPages?.[0].oddsBonus.bonusAmountRange.max ?? null
-        )
+        return casino.oddsBonuses?.[0].bonusAmountRange.max ?? null
       case 'live-casino-bonus':
-        return (
-          casinoPage.liveCasinoBonusPages?.[0].liveCasinoBonus.bonusAmountRange
-            .max ?? null
-        )
+        return casino.liveCasinoBonuses?.[0].bonusAmountRange.max ?? null
       default:
         return null
     }
@@ -54,30 +44,22 @@ const CasinoCard = ({
   const getWageringRequirementsBonus = () => {
     switch (bonusCategory.value) {
       case 'casino-bonus':
-        return (
-          casinoPage.casinoBonusPages?.[0].casinoBonus.wageringRequirements ??
-          null
-        )
+        return casino.casinoBonuses?.[0].wageringRequirements ?? null
       case 'odds-bonus':
-        return (
-          casinoPage.oddsBonusPages?.[0].oddsBonus.wageringRequirements ?? null
-        )
+        return casino.oddsBonuses?.[0].wageringRequirements ?? null
       case 'live-casino-bonus':
-        return (
-          casinoPage.liveCasinoBonusPages?.[0].liveCasinoBonus
-            .wageringRequirements ?? null
-        )
+        return casino.liveCasinoBonuses?.[0].wageringRequirements ?? null
       default:
         return null
     }
   }
-  const numberOfFreeSpins =
-    casinoPage.freeSpinsPages?.[0].freeSpinsBonus.numberOfFreeSpins ?? null
+  const numberOfFreeSpins = casino.freeSpins?.[0].numberOfFreeSpins ?? null
   const wageringRequirementsFreespins =
-    casinoPage.freeSpinsPages?.[0].freeSpinsBonus.wageringRequirements ?? null
+    casino.freeSpins?.[0].wageringRequirements ?? null
   const bonus = getBonus()
   const wageringRequirementsBonus = getWageringRequirementsBonus()
-
+  console.log('bonus', bonus)
+  console.log('bonusCategory', bonusCategory)
   return (
     <>
       <div className="rounded-md border-b border-b-gray-100 bg-white p-3.5 shadow-2xl">
@@ -193,9 +175,9 @@ const CasinoCard = ({
                 {' '}
                 Läs recension
               </Link>
-              {affLinkSlug || casinoPage.affLink ? (
+              {affLinkSlug || casino.affLink ? (
                 <Link
-                  href={`/go${affLinkSlug || casinoPage.affLink.slug.current}`}
+                  href={`/go${affLinkSlug || casino.affLink.slug.current}`}
                   prefetch={false}
                   variant="affiliate"
                   className="w-full"

@@ -6,6 +6,10 @@ import { casinoBonusPageProjection } from './casinoBonusPageProjection'
 import { oddsBonusPageProjection } from './oddsBonusPageProjection'
 import { liveCasinoBonusPageProjection } from './liveCasinoBonusPageProjection'
 import { freeSpinsPageProjection } from './freeSpinsPageProjection'
+import { casinoBonusProjection } from '@/src/data/projections/casinoBonusProjection'
+import { oddsBonusProjection } from '@/src/data/projections/oddsBonusProjection'
+import { liveCasinoBonusProjection } from '@/src/data/projections/liveCasinoBonusProjection'
+import { freeSpinsProjection } from '@/src/data/projections/freeSpinsProjection'
 
 export const casinoPagePreviewProjection = `
   _type,
@@ -18,17 +22,17 @@ export const casinoPagePreviewProjection = `
   affLink-> {
     ${affLinkProjection} 
   },
-  casinoBonusPages[] -> {
-    ${casinoBonusPageProjection}
+  casinoBonuses[] -> {
+    ${casinoBonusProjection}
   },
-  oddsBonusPages[] -> {
-    ${oddsBonusPageProjection}
+  oddsBonuses[] -> {
+    ${oddsBonusProjection}
   },
-  liveCasinoBonusPages[] -> {
-    ${liveCasinoBonusPageProjection}
+  liveCasinoBonuses[] -> {
+    ${liveCasinoBonusProjection}
   },
-  freeSpinsPages[] -> {
-    ${freeSpinsPageProjection}
+  freeSpins[] -> {
+    ${freeSpinsProjection}
   },
   featuredImage {
     ${imageProjection}
@@ -40,11 +44,19 @@ export const casinoPagePreviewProjection = `
   }
 `
 
-export const getCasinoPagePreviewProjection = ({ author }: { author?: boolean }): string => {
+export const getCasinoPagePreviewProjection = ({
+  author,
+}: {
+  author?: boolean
+}): string => {
   return `
     ${casinoPagePreviewProjection},
-    ${author ? `author-> {
+    ${
+      author
+        ? `author-> {
       ${authorProjection}
-    }` : ''}
+    }`
+        : ''
+    }
   `
 }

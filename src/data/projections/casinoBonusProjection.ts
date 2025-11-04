@@ -1,5 +1,6 @@
 import { bonusTypeProjection } from '@/src/data/projections/bonusTypeProjection'
 import { paymentMethodProjection } from '@/src/data/projections/paymentMethodProjection'
+import { affLinkProjection } from '@/src/data/projections/affLinkProjection'
 
 export const casinoBonusProjection = `
     _type,
@@ -7,6 +8,9 @@ export const casinoBonusProjection = `
     name,
     bonusType-> {
       ${bonusTypeProjection}
+    },
+    affLink-> {
+      ${affLinkProjection}
     },
     bonusPercentage,
     bonusAmountRange {

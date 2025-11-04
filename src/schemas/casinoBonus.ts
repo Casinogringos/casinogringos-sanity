@@ -1,10 +1,12 @@
 import { z } from 'zod'
 import { BonusTypeSchema } from './bonusType'
 import { PaymentMethodSchema } from './paymentMethod'
+import AffLinkSchema from '@/src/schemas/affLink'
 
 export const CasinoBonusSchema = z.object({
   _type: z.literal('casino-bonuses'),
   name: z.string(),
+  affLink: AffLinkSchema,
   bonusType: BonusTypeSchema,
   bonusAmountRange: z.object({
     min: z.number(),

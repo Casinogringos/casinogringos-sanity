@@ -10,15 +10,16 @@ import { CasinoPagePreviewSchemaType } from '@/src/schemas/casinoPagePreview'
 import Button from '../content/Button'
 import QuestionMark from '@/src/components/icons/QuestionMark'
 import ToggleSpin from '@/src/components/interactivity/ToggleSpin'
+import { CasinoSchemaType } from '@/src/schemas/casino'
 
 export default function CasinoList({
-  casinoPages,
+  casinos,
   title,
   description,
   itemComponent,
   categories,
 }: {
-  casinoPages: CasinoPagePreviewSchemaType[]
+  casinos: CasinoSchemaType[]
   title: string
   description: PortableTextBlock[]
   itemComponent: typeof CasinoCard
@@ -26,8 +27,8 @@ export default function CasinoList({
 }) {
   const year = new Date().getFullYear()
   const ItemComponent = itemComponent
-  const initialCasinoPages = casinoPages.slice(0, 24)
-  const remainingCasinoPages = casinoPages.slice(24)
+  const initialCasinos = casinos.slice(0, 24)
+  const remainingCasinos = casinos.slice(24)
 
   return (
     <>
@@ -97,19 +98,19 @@ export default function CasinoList({
         </div>
       </div>
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-        {initialCasinoPages.map((casinoPage, index) => (
+        {initialCasinos.map((casino, index) => (
           <ItemComponent
-            key={`casino-${casinoPage._id}-${index}`}
-            casinoPage={casinoPage}
+            key={`casino-${casino._id}-${index}`}
+            casino={casino}
             index={index}
             categories={categories}
           />
         ))}
         <ToggleItem id={'show-more-casinos'}>
-          {remainingCasinoPages.map((casinoPage, index) => (
+          {remainingCasinos.map((casinoPage, index) => (
             <ItemComponent
               key={`casino-${casinoPage._id}-${index}`}
-              casinoPage={casinoPage}
+              casino={casinoPage}
               index={index}
               categories={categories}
             />

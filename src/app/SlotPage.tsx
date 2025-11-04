@@ -56,9 +56,7 @@ const SlotPage = ({
   }
   const headings = slotPageService.getHeadingObjects(slotPage)
   const { slot } = slotPage
-  if (!slot) return (
-    <Placeholder message="No slot attached to slot page" />
-  )
+  if (!slot) return <Placeholder message="No slot attached to slot page" />
   const breadcrumbs = [
     {
       text: 'Slots',
@@ -163,7 +161,7 @@ const SlotPage = ({
                       <div className="text-2xl font-semibold text-primary">
                         {
                           slotVolatilityMap[
-                          slot.volatility as keyof typeof slotVolatilityMap
+                            slot.volatility as keyof typeof slotVolatilityMap
                           ]
                         }
                       </div>
@@ -234,7 +232,15 @@ const SlotPage = ({
               <div className="mt-6 grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-3">
                 {relatedCasinos.slice(0, 3).map((casino, i) => (
                   <div key={`casino-${casino._id}`}>
-                    <CasinoCard casinoPage={casino} index={i} categories={[{ value: 'casino-bonus' }, { value: 'odds-bonus' }, { value: 'live-casino-bonus' }]} />
+                    <CasinoCard
+                      casino={casino}
+                      index={i}
+                      categories={[
+                        { value: 'casino-bonus' },
+                        { value: 'odds-bonus' },
+                        { value: 'live-casino-bonus' },
+                      ]}
+                    />
                   </div>
                 ))}
               </div>

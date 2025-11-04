@@ -18,16 +18,16 @@ const CasinoTableRow = ({
     categories: bonusCategories,
     casinoPage,
   })
-  const bonusPage = casinoService.getBonusPage({
+  const bonus = casinoService.getBonus({
     casinoPage,
     category: bonusCategory,
   })
   const numberOfFreeSpins =
-    casinoPage.freeSpinsPages?.[0]?.freeSpinsBonus?.numberOfFreeSpins ?? false
+    casinoPage.casino.freeSpins?.[0]?.numberOfFreeSpins ?? false
   const getBonusString = () => {
-    if (!bonusPage) return
-    switch (bonusPage._type) {
-      case 'casino-bonus-pages': {
+    if (!bonus) return
+    switch (bonus._type) {
+      case 'casino-bonuses': {
         const casinoBonusAmount = bonusPage.casinoBonus.bonusAmountRange.max
         const casinoBonusPercentage = bonusPage.casinoBonus.bonusPercentage
         if (

@@ -61,13 +61,17 @@ export default function SubPage({ page }: { page: SubPageSchemaType }) {
         <Container className="mb-16">
           <CasinoList
             itemComponent={CasinoCard}
-            casinoPages={toplist.casinos}
+            casinos={toplist.casinos}
             title={toplist.title}
             description={toplist.description}
-            categories={page.bonusCategory?.map((category) => category.value) ?? []}
+            categories={
+              page.bonusCategory?.map((category) => category.value) ?? []
+            }
           />
         </Container>
-      ) : <div className='mb-6' />}
+      ) : (
+        <div className="mb-6" />
+      )}
       {/* {faqs && faqs.items.length && (
         <div className="mb-16 bg-dark pb-16 pt-10 mb-16">
           <Container>
