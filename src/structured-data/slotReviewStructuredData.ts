@@ -11,8 +11,6 @@ const getSlotReviewStructuredData = ({
   const publishedAt = slotPageService.getPagePublishedAtTimestamp(page)
   const modifiedAt = slotPageService.getPageModifiedAtTimestamp(page)
 
-  console.log("SLOT PAGE", page)
-
   return {
     '@context': 'https://schema.org',
     '@type': 'Review',

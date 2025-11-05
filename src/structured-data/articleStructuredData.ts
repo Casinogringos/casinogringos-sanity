@@ -8,7 +8,7 @@ const newsPageService = new NewsPageService()
 const getArticleStructuredData = (page: GuidePageSchemaType | NewsPageSchemaType) => {
   const publishedAt = newsPageService.getPagePublishedAtTimestamp(page as NewsPageSchemaType)
   const modifiedAt = newsPageService.getPageModifiedAtTimestamp(page as NewsPageSchemaType)
-
+  const wordCount = newsPageService.getWordCount(page as NewsPageSchemaType)
   const dev = process.env.DEV === 'true'
   let seoImage
   if (dev) {
@@ -16,8 +16,6 @@ const getArticleStructuredData = (page: GuidePageSchemaType | NewsPageSchemaType
   } else {
     seoImage = page.seoImage.src
   }
-
-  console.log("PAGE", page)
 
   const pagePath =
   typeof page.slug === 'string' ? page.slug : page.slug?.current || '';
@@ -48,6 +46,7 @@ const getArticleStructuredData = (page: GuidePageSchemaType | NewsPageSchemaType
       image: page.author.avatar.src,
       sameAs: [page.author.linkedIn],
     },
+    wordCount: wordCount,
     mainEntityOfPage: {
       '@type': 'WebPage',
       '@id': `${pageUrl}#webpage`,

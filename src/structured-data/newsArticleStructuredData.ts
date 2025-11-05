@@ -5,7 +5,7 @@ const getNewsArticleStructuredData = (page: NewsPageSchemaType) => {
   const newsPageService = new NewsPageService()
   const publishedAt = newsPageService.getPagePublishedAtTimestamp(page)
   const modifiedAt = newsPageService.getPageModifiedAtTimestamp(page)
-
+  const wordCount = newsPageService.getWordCount(page)
   return {
     '@context': 'https://schema.org',
     '@type': 'NewsArticle',
@@ -20,6 +20,7 @@ const getNewsArticleStructuredData = (page: NewsPageSchemaType) => {
       url: `https://casinogringos.se/om-oss/${page.author.slug.current}`,
       sameAs: [page.author.linkedIn],
     },
+    wordCount: wordCount,
     mainEntityOfPage: {
       '@type': 'WebPage',
       '@id': `https://casinogringos.se${page.slug.current}#webpage`,
