@@ -1,30 +1,28 @@
-import Link from 'next/link'
-import Star from '@/src/components/icons/StarIcon'
-import HalfStarIcon from '@/src/components/icons/HalfStarIcon'
-import ModularContent from '@/src/components/content/ModularContent'
+import CasinoCard from '@/src/components/casino/CasinoCard'
 import Avatar from '@/src/components/content/Avatar'
-import BreadCrumbs from '@/src/components/navigation/BreadCrumbs'
+import Heading from '@/src/components/content/Heading'
+import ModularContent from '@/src/components/content/ModularContent'
+import HalfStarIcon from '@/src/components/icons/HalfStarIcon'
+import Star from '@/src/components/icons/StarIcon'
 import Container from '@/src/components/layout/Container'
-import SlotHero from '@/src/components/slot/SlotHero'
+import BreadCrumbs from '@/src/components/navigation/BreadCrumbs'
 import TableOfContents from '@/src/components/navigation/TableOfContents'
+import SlotCard from '@/src/components/slot/SlotCard'
+import SlotHero from '@/src/components/slot/SlotHero'
 import { SlotPageSchemaType } from '@/src/schemas/slotPage'
 import { SlotPagePreviewSchemaType } from '@/src/schemas/slotPagePreview'
-import getSlotReviewStructuredData from '@/src/structured-data/slotReviewStructuredData'
-import SlotPageService from '@/src/services/SlotPageService'
 import CasinoPageService from '@/src/services/CasinoPageService'
-import Image from 'next/image'
-import Heading from '@/src/components/content/Heading'
-import { PortableText } from 'next-sanity'
-import CasinoCard from '@/src/components/casino/CasinoCard'
+import SlotPageService from '@/src/services/SlotPageService'
+import { getOrganizationStructuredData } from '@/src/structured-data/organizationStructuredData'
+import getSlotReviewStructuredData from '@/src/structured-data/slotReviewStructuredData'
 import { getWebPageStructuredData } from '@/src/structured-data/webPageStructuredData'
 import { getWebSiteStructuredData } from '@/src/structured-data/webSiteStructuredData'
-import { getOrganizationStructuredData } from '@/src/structured-data/organizationStructuredData'
-import SlotCard from '@/src/components/slot/SlotCard'
-import { HeadingObjectSchemaType } from '../schemas/headingObject'
-import { slugify } from '../lib/helpers'
+import { PortableText } from 'next-sanity'
+import Image from 'next/image'
 import Placeholder from '../components/utils/Placeholder'
+import { slugify } from '../lib/helpers'
+import { HeadingObjectSchemaType } from '../schemas/headingObject'
 import { getFeaturedImageStructuredData } from '../structured-data/featuredImageStructuredData'
-import getReviewStructuredData from '../structured-data/reviewStructuredData'
 import getGameStructuredData from '../structured-data/gameStructuredData'
 
 const slotPageService = new SlotPageService()
@@ -49,16 +47,13 @@ const SlotPage = ({
       getFeaturedImageStructuredData(slotPage),
       getSlotReviewStructuredData({ page: slotPage }),
       getGameStructuredData(slotPage),
-      getReviewStructuredData({ reviewPage: slotPage }),
       getWebSiteStructuredData(),
       getOrganizationStructuredData(),
     ],
   }
   const headings = slotPageService.getHeadingObjects(slotPage)
   const { slot } = slotPage
-  if (!slot) return (
-    <Placeholder message="No slot attached to slot page" />
-  )
+  if (!slot) return <Placeholder message="No slot attached to slot page" />
   const breadcrumbs = [
     {
       text: 'Slots',
@@ -163,7 +158,7 @@ const SlotPage = ({
                       <div className="text-2xl font-semibold text-primary">
                         {
                           slotVolatilityMap[
-                          slot.volatility as keyof typeof slotVolatilityMap
+                            slot.volatility as keyof typeof slotVolatilityMap
                           ]
                         }
                       </div>
@@ -234,7 +229,15 @@ const SlotPage = ({
               <div className="mt-6 grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-3">
                 {relatedCasinos.slice(0, 3).map((casino, i) => (
                   <div key={`casino-${casino._id}`}>
-                    <CasinoCard casinoPage={casino} index={i} categories={[{ value: 'casino-bonus' }, { value: 'odds-bonus' }, { value: 'live-casino-bonus' }]} />
+                    <CasinoCard
+                      casinoPage={casino}
+                      index={i}
+                      categories={[
+                        { value: 'casino-bonus' },
+                        { value: 'odds-bonus' },
+                        { value: 'live-casino-bonus' },
+                      ]}
+                    />
                   </div>
                 ))}
               </div>

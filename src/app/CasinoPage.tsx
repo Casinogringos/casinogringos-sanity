@@ -1,24 +1,22 @@
-import ModularContent from '@/src/components/content/ModularContent'
-import getReviewStructuredData from '@/src/structured-data/reviewStructuredData'
-import { CasinoPageSchemaType } from '@/src/schemas/casinoPage'
-import getProductStructuredData from '@/src/structured-data/productStructuredData'
 import CasinoHero from '@/src/components/casino/CasinoHero'
-import CasinoService from '@/src/services/CasinoService'
-import BreadCrumbs from '@/src/components/navigation/BreadCrumbs'
 import CasinoInfo from '@/src/components/casino/CasinoInfo'
+import AuthorBox from '@/src/components/content/AuthorBox'
 import Avatar from '@/src/components/content/Avatar'
-import TableOfContents from '@/src/components/navigation/TableOfContents'
-import { getHeadingObjectsByPage } from '@/src/lib/helpers'
-import Container from '@/src/components/layout/Container'
-import CasinoPageService from '@/src/services/CasinoPageService'
 import Heading from '@/src/components/content/Heading'
 import Link from '@/src/components/content/Link'
-import Image from 'next/image'
-import { getWebPageStructuredData } from '@/src/structured-data/webPageStructuredData'
-import { getWebSiteStructuredData } from '@/src/structured-data/webSiteStructuredData'
-import { getOrganizationStructuredData } from '@/src/structured-data/organizationStructuredData'
-import { slugify } from '@/src/lib/helpers'
+import ModularContent from '@/src/components/content/ModularContent'
+import Container from '@/src/components/layout/Container'
+import BreadCrumbs from '@/src/components/navigation/BreadCrumbs'
+import TableOfContents from '@/src/components/navigation/TableOfContents'
 import Placeholder from '@/src/components/utils/Placeholder'
+import { getHeadingObjectsByPage, slugify } from '@/src/lib/helpers'
+import { CasinoPageSchemaType } from '@/src/schemas/casinoPage'
+import CasinoPageService from '@/src/services/CasinoPageService'
+import { getOrganizationStructuredData } from '@/src/structured-data/organizationStructuredData'
+import getProductStructuredData from '@/src/structured-data/productStructuredData'
+import getReviewStructuredData from '@/src/structured-data/reviewStructuredData'
+import { getWebSiteStructuredData } from '@/src/structured-data/webSiteStructuredData'
+import Image from 'next/image'
 
 const CasinoPage = ({
   casinoPage,
@@ -27,18 +25,22 @@ const CasinoPage = ({
   casinoPage: CasinoPageSchemaType
   similarCasinoPages: CasinoPageSchemaType[]
 }) => {
-  if (!casinoPage.casino) return (
-    <Placeholder message="No casino attached to casino page" className="my-10" />
-  )
+  if (!casinoPage.casino)
+    return (
+      <Placeholder
+        message="No casino attached to casino page"
+        className="my-10"
+      />
+    )
   const casinoPageService = new CasinoPageService()
   const isValid = casinoPageService.validatePage(casinoPage)
   const schema = {
     '@context': 'https://schema.org',
     '@graph': [
-      getProductStructuredData({ productPage: casinoPage }),
-      getReviewStructuredData({ reviewPage: casinoPage }),
       getWebSiteStructuredData(),
       getOrganizationStructuredData(),
+      getProductStructuredData({ productPage: casinoPage }),
+      getReviewStructuredData({ reviewPage: casinoPage }),
     ],
   }
   const breadcrumbs = [
@@ -80,22 +82,24 @@ const CasinoPage = ({
         {headings.length > 1 && (
           <Container narrow>
             <TableOfContents
-              headings={headings.filter((heading) => heading.text || heading.title).map((heading: HeadingObjectSchemaType) => {
-                switch (heading._type) {
-                  case 'heading-object': {
-                    return {
-                      text: heading.text,
-                      slug: `${casinoPage.slug.current}#${slugify(heading.text)}`,
+              headings={headings
+                .filter((heading) => heading.text || heading.title)
+                .map((heading: HeadingObjectSchemaType) => {
+                  switch (heading._type) {
+                    case 'heading-object': {
+                      return {
+                        text: heading.text,
+                        slug: `${casinoPage.slug.current}#${slugify(heading.text)}`,
+                      }
+                    }
+                    case 'rating-object': {
+                      return {
+                        text: heading.title,
+                        slug: `${casinoPage.slug.current}#${slugify(heading.title)}`,
+                      }
                     }
                   }
-                  case 'rating-object': {
-                    return {
-                      text: heading.title,
-                      slug: `${casinoPage.slug.current}#${slugify(heading.title)}`,
-                    }
-                  }
-                }
-              })}
+                })}
             />
           </Container>
         )}
@@ -107,15 +111,17 @@ const CasinoPage = ({
             narrow
           />
         )}
-        {/*{page?.author && (*/}
-        {/*  <div className="mx-4 lg:mx-0">*/}
-        {/*    <AuthorBox*/}
-        {/*      author={page?.author}*/}
-        {/*      modified={page?.modified}*/}
-        {/*      reviewedBy={page?.reviewer}*/}
-        {/*    />*/}
-        {/*  </div>*/}
-        {/*)}*/}
+        {casinoPage?.author && (
+          <Container narrow>
+            <AuthorBox
+              author={casinoPage?.author}
+              modified={casinoPageService.getPageModifiedAtTimestamp(
+                casinoPage
+              )}
+              reviewedBy={casinoPage?.reviewer}
+            />
+          </Container>
+        )}
         {similarCasinoPages && (
           <section className={'bg-gray-100 py-10'}>
             <Container>

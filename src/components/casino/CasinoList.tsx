@@ -1,15 +1,15 @@
-import { AlertCircle, ChevronDown } from 'lucide-react'
-import Link from 'next/link'
-import Heading from '@/src/components/content/Heading'
 import CasinoCard from '@/src/components/casino/CasinoCard'
+import Heading from '@/src/components/content/Heading'
 import CheckBadgeIcon from '@/src/components/icons/CheckBadgeIcon'
-import { PortableTextBlock } from 'next-sanity'
+import QuestionMark from '@/src/components/icons/QuestionMark'
 import ToggleButton from '@/src/components/interactivity/ToggleButton'
 import ToggleItem from '@/src/components/interactivity/ToggleItem'
-import { CasinoPagePreviewSchemaType } from '@/src/schemas/casinoPagePreview'
-import Button from '../content/Button'
-import QuestionMark from '@/src/components/icons/QuestionMark'
 import ToggleSpin from '@/src/components/interactivity/ToggleSpin'
+import { CasinoPagePreviewSchemaType } from '@/src/schemas/casinoPagePreview'
+import { AlertCircle, ChevronDown } from 'lucide-react'
+import { PortableTextBlock } from 'next-sanity'
+import Link from 'next/link'
+import Button from '../content/Button'
 
 export default function CasinoList({
   casinoPages,
@@ -54,16 +54,12 @@ export default function CasinoList({
           </p>
         </ToggleItem>
       </div>
-      <div className='border border-slate-200 rounded-md mb-3'>
-        <ToggleButton
-          id={'varfor-oss'}
-          role={'button'}
-          label={'Varför oss?'}
-        >
-          <div className='flex items-center px-4 py-2'>
-            <div className='flex items-center gap-2 flex-grow'>
+      <div className="border border-slate-200 rounded-md mb-3">
+        <ToggleButton id={'varfor-oss'} role={'button'} label={'Varför oss?'}>
+          <div className="flex items-center px-4 py-2">
+            <div className="flex items-center gap-2 flex-grow">
               <QuestionMark size={15} />
-              <span className='font-semibold text-sm'>Varför oss?</span>
+              <span className="font-semibold text-sm">Varför oss?</span>
             </div>
             <ToggleSpin id={'varfor-oss'}>
               <ChevronDown />
@@ -71,18 +67,18 @@ export default function CasinoList({
           </div>
         </ToggleButton>
         <ToggleItem id={'varfor-oss'}>
-          <p className='p-4 pt-2 text-sm text-slate-600'>
-            Allt vårt innehåll genomgår en noggrann och detaljerad process för att
-            säkerställa att all information vi publicerar stämmer och är
+          <p className="p-4 pt-2 text-sm text-slate-600">
+            Allt vårt innehåll genomgår en noggrann och detaljerad process för
+            att säkerställa att all information vi publicerar stämmer och är
             tillförlitlig. Varje artikel, guide och recension granskas av våra{' '}
             <Link prefetch={false} href="/om-oss" className="text-blue-500">
               casinoexperter
             </Link>{' '}
-            med lång erfarenhet. Vi arbetar opartiskt och utan påverkan från externa
-            parter, vilket gör att vi kan erbjuda objektiva bedömningar och
-            rekommendationer som våra läsare kan lita på. Vi strävar efter att hålla
-            en hög standard för att ge den mest transparenta och uppdaterade
-            informationen inom området.
+            med lång erfarenhet. Vi arbetar opartiskt och utan påverkan från
+            externa parter, vilket gör att vi kan erbjuda objektiva bedömningar
+            och rekommendationer som våra läsare kan lita på. Vi strävar efter
+            att hålla en hög standard för att ge den mest transparenta och
+            uppdaterade informationen inom området.
           </p>
         </ToggleItem>
       </div>
@@ -90,7 +86,7 @@ export default function CasinoList({
         <div className="pr-8 lg:pr-0">
           <Heading
             level={2}
-            sizes={[6, 6, 7]}
+            sizes={[6]}
             className="mb-0 !mt-1 font-semibold"
             text={title}
           />

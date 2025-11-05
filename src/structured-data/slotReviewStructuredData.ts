@@ -22,7 +22,7 @@ const getSlotReviewStructuredData = ({
     },
     reviewRating: {
       '@type': 'Rating',
-      ratingValue: slot.rating,
+      ratingValue: slot.rating || "1",
       bestRating: '5',
       worstRating: '1',
     },
@@ -32,14 +32,18 @@ const getSlotReviewStructuredData = ({
       url: `https://casinogringos.se/om-oss/${page.author.slug.current}`,
       sameAs: [page.author.linkedIn],
     },
-    publisher: {
-      '@type': 'Organization',
-      name: 'Casinogringos',
-      logo: {
-        '@type': 'ImageObject',
-        url: 'https://casinogringos.se/casinogringos.webp',
-      },
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': `${process.env.SITE_URL}${page.slug.current}#webpage`,
     },
+    publisher: {
+      '@id': `${process.env.SITE_URL}/#organization`,
+    },
+    isPartOf: [
+      {
+        '@id': `${process.env.SITE_URL}/#website`,
+      },
+    ],
     datePublished: page.originalPublishedAt ?? page._createdAt,
     reviewBody: page.review,
   }
