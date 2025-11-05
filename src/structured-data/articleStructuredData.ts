@@ -18,6 +18,8 @@ const getArticleStructuredData = (page: SubPageSchemaType | GuidePageSchemaType 
     seoImage = page.seoImage.src
   }
 
+  console.log("PAGE", page)
+
   const pagePath =
   typeof page.slug === 'string' ? page.slug : page.slug?.current || '';
 
@@ -31,7 +33,7 @@ const getArticleStructuredData = (page: SubPageSchemaType | GuidePageSchemaType 
     '@context': 'https://schema.org',
     '@type': 'Article',
     '@id': `${pageUrl}#article`,
-    headline: page.seoTitle,
+    headline: page.title ?? page.seoTitle,
     description: page.seoDescription,
     image: { '@id': `${pageUrl}#primaryimage` },
     publisher: { '@id': 'https://casinogringos.se/#organization' },

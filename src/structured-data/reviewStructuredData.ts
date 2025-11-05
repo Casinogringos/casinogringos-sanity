@@ -16,13 +16,12 @@ const getReviewStructuredData = ({ reviewPage }: { reviewPage: CasinoPageSchemaT
     rating = page.casino.overallRating
   }
 
-  console.log("WEB URL:", `https://casinogringos.se${reviewPage.slug.current}`)
-
   return {
     '@context': 'https://schema.org',
     '@type': 'Review',
     '@id': `https://casinogringos.se${reviewPage.slug.current}#review`,
-    name: reviewPage.title,
+    name: reviewPage.seoTitle ?? reviewPage.title,
+    description: reviewPage.seoDescription,
     reviewRating: {
       '@type': 'Rating',
       ratingValue: rating || '1',
