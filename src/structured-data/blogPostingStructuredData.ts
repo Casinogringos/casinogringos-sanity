@@ -1,11 +1,16 @@
 import { GuidePageSchemaType } from '@/src/schemas/guidePage'
 import { urlFor } from '@/src/lib/client'
+import NewsPageService from '@/src/services/NewsPageService'
+import { NewsPageSchemaType } from '@/src/schemas/newsPage'
 
 export const getBlogPostingStructuredData = ({
   page,
 }: {
-  page: GuidePageSchemaType
+  page: GuidePageSchemaType | NewsPageSchemaType
 }) => {
+  const newsPageService = new NewsPageService()
+  const publishedAt = newsPageService.getPagePublishedAtTimestamp(page as NewsPageSchemaType)
+  const modifiedAt = newsPageService.getPageModifiedAtTimestamp(page as NewsPageSchemaType)
 
   const structuredData = {
     '@context': 'https://schema.org',
@@ -31,8 +36,8 @@ export const getBlogPostingStructuredData = ({
       '@type': 'WebPage',
       '@id': `https://casinogringos.se/${page._type === 'guide-page' ? 'guider' : 'nyheter'}/${page.slug.current}`,
     },
-    datePublished: page.originalPublishedAt ?? page._createdAt,
-    dateModified: page._updatedAt ?? page.originalModifiedAt,
+    datePublished: new Date(publishedAt ?? page._createdAt).toISOString(),
+    dateModified: new Date(modifiedAt ?? page._updatedAt).toISOString(),
   }
   if (page.reviewer) {
     structuredData.reviewedBy = {

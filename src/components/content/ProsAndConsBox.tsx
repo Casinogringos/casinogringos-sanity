@@ -64,7 +64,7 @@ const ProsAndConsBox = ({
           <Heading
             className={'!mt-0 mb-3 font-bold'}
             level={3}
-            size={5}
+            sizes={[5, 5, 6]}
             text={prosTitle}
           />
           {pros.map((item, index) => (
@@ -83,7 +83,7 @@ const ProsAndConsBox = ({
           <Heading
             className={'!mt-0 mb-3 font-bold'}
             level={3}
-            size={5}
+            sizes={[5, 5, 6]}
             text={consTitle}
           />
           {cons.map((item, index) => (

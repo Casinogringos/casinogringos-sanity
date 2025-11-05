@@ -1,14 +1,13 @@
 import { portableTextToPlainText } from '@/src/lib/utils'
 import { GuidePageSchemaType } from '@/src/schemas/guidePage'
 import { NewsPageSchemaType } from '@/src/schemas/newsPage'
-import { SubPageSchemaType } from '@/src/schemas/subPage'
-import PageService from '@/src/services/SubPageService'
+import NewsPageService from '@/src/services/NewsPageService'
 
-const pageService = new PageService()
+const newsPageService = new NewsPageService()
 
-const getArticleStructuredData = (page: SubPageSchemaType | GuidePageSchemaType | NewsPageSchemaType) => {
-  const publishedAt = pageService.getPagePublishedAtTimestamp(page)
-  const modifiedAt = pageService.getPageModifiedAtTimestamp(page)
+const getArticleStructuredData = (page: GuidePageSchemaType | NewsPageSchemaType) => {
+  const publishedAt = newsPageService.getPagePublishedAtTimestamp(page as NewsPageSchemaType)
+  const modifiedAt = newsPageService.getPageModifiedAtTimestamp(page as NewsPageSchemaType)
 
   const dev = process.env.DEV === 'true'
   let seoImage
@@ -35,8 +34,8 @@ const getArticleStructuredData = (page: SubPageSchemaType | GuidePageSchemaType 
     '@id': `${pageUrl}#article`,
     headline: page.title ?? page.seoTitle,
     description: page.seoDescription,
-    image: { '@id': `${pageUrl}#primaryimage` },
-    publisher: { '@id': 'https://casinogringos.se/#organization' },
+    image: { '@id': `${pageUrl}#primaryimage`},
+    publisher: { '@id': 'https://casinogringos.se/#organization'},
     datePublished: new Date(publishedAt).toISOString(),
     dateModified: new Date(modifiedAt).toISOString(),
     author: {

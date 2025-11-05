@@ -83,23 +83,33 @@ const CasinoPage = ({
           <Container narrow>
             <TableOfContents
               headings={headings
-                .filter((heading) => heading.text || heading.title)
-                .map((heading: HeadingObjectSchemaType) => {
-                  switch (heading._type) {
-                    case 'heading-object': {
-                      return {
-                        text: heading.text,
-                        slug: `${casinoPage.slug.current}#${slugify(heading.text)}`,
-                      }
+                .filter(
+                  (
+                    heading: HeadingObjectSchemaType | RatingObjectSchemaType
+                  ) => {
+                    if (heading._type === 'heading-object') {
+                      return heading.text
                     }
-                    case 'rating-object': {
-                      return {
-                        text: heading.title,
-                        slug: `${casinoPage.slug.current}#${slugify(heading.title)}`,
+                    if (heading._type === 'rating-object') {
+                      return heading.title
+                    }
+                    return false
+                  }
+                )
+                .map(
+                  (
+                    heading: HeadingObjectSchemaType | RatingObjectSchemaType
+                  ) => {
+                    switch (heading._type) {
+                      case 'heading-object': {
+                        return {
+                          text: heading.text,
+                          slug: `${casinoPage.slug.current}#${slugify(heading.text)}`,
+                        }
                       }
                     }
                   }
-                })}
+                )}
             />
           </Container>
         )}

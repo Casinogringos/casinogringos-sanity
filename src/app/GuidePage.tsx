@@ -33,7 +33,6 @@ export default function GuidePage({
   const schema = {
     '@context': 'https://schema.org',
     '@graph': [
-      getBlogPostingStructuredData({ page }),
       getArticleStructuredData(page),
       getWebPageStructuredData(page),
       getFeaturedImageStructuredData({ page }),

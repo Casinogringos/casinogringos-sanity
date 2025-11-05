@@ -2,9 +2,7 @@ import { CasinoPageSchemaType } from '@/src/schemas/casinoPage'
 import { GuidePageSchemaType } from '@/src/schemas/guidePage'
 import { NewsPageSchemaType } from '@/src/schemas/newsPage'
 import { SlotPageSchemaType } from '@/src/schemas/slotPage'
-import CasinoService from '@/src/services/CasinoService'
-
-const casinoService = new CasinoService()
+import { portableTextToPlainText } from '../utils/portableTextToPlainText'
 
 const getReviewStructuredData = ({ reviewPage }: { reviewPage: CasinoPageSchemaType | GuidePageSchemaType | NewsPageSchemaType | SlotPageSchemaType }) => {
   let rating
@@ -21,7 +19,7 @@ const getReviewStructuredData = ({ reviewPage }: { reviewPage: CasinoPageSchemaT
     '@type': 'Review',
     '@id': `https://casinogringos.se${reviewPage.slug.current}#review`,
     name: reviewPage.seoTitle ?? reviewPage.title,
-    description: reviewPage.seoDescription,
+    description: portableTextToPlainText(reviewPage.seoDescription),
     reviewRating: {
       '@type': 'Rating',
       ratingValue: rating || '1',
@@ -31,8 +29,8 @@ const getReviewStructuredData = ({ reviewPage }: { reviewPage: CasinoPageSchemaT
     author: {
       '@type': 'Person',
       name: `${reviewPage.author.firstName} ${reviewPage.author.lastName}`,
-      url: `https://casinogringos.se/om-oss/${reviewPage.author.slug.current}`,
-      jobTitle: 'Skribent',
+      url: `https://casinogringos.se/om-oss${reviewPage.author.slug.current}`,
+      jobTitle: reviewPage.author.role,
       sameAs: reviewPage.author.linkedIn,
       image: {
         '@type': 'ImageObject',

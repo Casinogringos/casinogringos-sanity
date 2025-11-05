@@ -1,4 +1,5 @@
 import { SlotPageSchemaType } from "@/src/schemas/slotPage"
+import SlotPageService from "@/src/services/SlotPageService"
 
 const getSlotReviewStructuredData = ({
   page,
@@ -6,6 +7,11 @@ const getSlotReviewStructuredData = ({
   page: SlotPageSchemaType
 }) => {
   const { slot } = page
+  const slotPageService = new SlotPageService()
+  const publishedAt = slotPageService.getPagePublishedAtTimestamp(page)
+  const modifiedAt = slotPageService.getPageModifiedAtTimestamp(page)
+
+  console.log("SLOT PAGE", page)
 
   return {
     '@context': 'https://schema.org',
@@ -44,8 +50,8 @@ const getSlotReviewStructuredData = ({
         '@id': `${process.env.SITE_URL}/#website`,
       },
     ],
-    datePublished: page.originalPublishedAt ?? page._createdAt,
-    reviewBody: page.review,
+    datePublished: publishedAt,
+    dateModified: modifiedAt,
   }
 }
 

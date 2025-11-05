@@ -1,9 +1,10 @@
-import { NewsPageSchemaType } from '@/src/schemas/newsPage';
+import { NewsPageSchemaType } from '@/src/schemas/newsPage'
+import NewsPageService from '@/src/services/NewsPageService'
 
 const getNewsArticleStructuredData = (page: NewsPageSchemaType) => {
-
-  const publishedAt = page.originalPublishedAt || page._createdAt;
-  const modifiedAt  = page._updatedAt || page.originalModifiedAt;
+  const newsPageService = new NewsPageService()
+  const publishedAt = newsPageService.getPagePublishedAtTimestamp(page)
+  const modifiedAt = newsPageService.getPageModifiedAtTimestamp(page)
 
   return {
     '@context': 'https://schema.org',
@@ -15,7 +16,7 @@ const getNewsArticleStructuredData = (page: NewsPageSchemaType) => {
     dateModified: new Date(modifiedAt).toISOString(),
     author: {
       '@type': 'Person',
-      name: page.author.name,
+      name: page.author.firstName + ' ' + page.author.lastName,
       url: `https://casinogringos.se/om-oss/${page.author.slug.current}`,
       sameAs: [page.author.linkedIn],
     },
@@ -26,8 +27,8 @@ const getNewsArticleStructuredData = (page: NewsPageSchemaType) => {
     publisher: {
       '@id': 'https://casinogringos.se/#organization',
     },
-    isPartOf: { '@id': 'https://casinogringos.se/#website' },
-    about: { '@id': 'https://casinogringos.se/#organization' },
+    isPartOf: { '@id': 'https://casinogringos.se/#website'},
+    about: { '@id': 'https://casinogringos.se/#organization'},
   }
 }
 

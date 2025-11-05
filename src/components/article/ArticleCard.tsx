@@ -61,7 +61,7 @@ const ArticleCard = ({
           className="text-gray-900 hover:text-gray-600 my-2 font-bold leading-6"
         />
         {item._type === 'news-pages' && item.excerpt && excerpt && (
-          <div className="text-gray-500">
+          <div className="text-gray-500 line-clamp-3">
             <PortableText value={item.excerpt} />
           </div>
         )}

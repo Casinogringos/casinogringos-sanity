@@ -1,7 +1,4 @@
 import { CasinoPageSchemaType } from '@/src/schemas/casinoPage'
-import CasinoService from '@/src/services/CasinoService'
-
-const casinoService = new CasinoService()
 
 const getProductStructuredData = ({
   productPage,
@@ -9,9 +6,6 @@ const getProductStructuredData = ({
   productPage: CasinoPageSchemaType
 }) => {
   const { casino } = productPage
-  const { finalRating } = casinoService.getCasinoRatings({
-    casino,
-  })
 
   return {
     '@context': 'https://schema.org',
@@ -37,8 +31,8 @@ const getProductStructuredData = ({
         return { "@type": "ListItem", "position": i + 1, "name": disadvantage }
       })
     },
-    review: { '@id': `https://casinogringos.se${productPage.slug.current}#review` },
-    isPartOf: [{ '@id': 'https://casinogringos.se/#website' }]
+    review: { '@id': `https://casinogringos.se${productPage.slug.current}#review`},
+    isPartOf: [{ '@id': 'https://casinogringos.se/#website'}]
   }
 }
 

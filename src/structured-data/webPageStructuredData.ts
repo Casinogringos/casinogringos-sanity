@@ -10,8 +10,8 @@ const pageService = new PageService()
 export const getWebPageStructuredData = (
   page: SubPageSchemaType | NewsPageSchemaType | GuidePageSchemaType | SlotPageSchemaType
 ) => {
-  const publishedAt = pageService.getPagePublishedAtTimestamp(page)
-  const modifiedAt = pageService.getPageModifiedAtTimestamp(page)
+  const publishedAt = pageService.getPagePublishedAtTimestamp(page as SubPageSchemaType)
+  const modifiedAt = pageService.getPageModifiedAtTimestamp(page as SubPageSchemaType)
 
   const pagePath = typeof page.slug === 'string' ? page.slug : page.slug?.current || '';
   const pageUrl  = `https://casinogringos.se/${pagePath}`.replace(/([^:]\/)\/+/g, '$1');
