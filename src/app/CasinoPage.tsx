@@ -3,21 +3,19 @@ import getReviewStructuredData from '@/src/structured-data/reviewStructuredData'
 import { CasinoPageSchemaType } from '@/src/schemas/casinoPage'
 import getProductStructuredData from '@/src/structured-data/productStructuredData'
 import CasinoHero from '@/src/components/casino/CasinoHero'
-import CasinoService from '@/src/services/CasinoService'
 import BreadCrumbs from '@/src/components/navigation/BreadCrumbs'
 import CasinoInfo from '@/src/components/casino/CasinoInfo'
 import Avatar from '@/src/components/content/Avatar'
 import TableOfContents from '@/src/components/navigation/TableOfContents'
-import { getHeadingObjectsByPage } from '@/src/lib/helpers'
+import { getHeadingObjectsByPage } from '@/src/lib/utils'
 import Container from '@/src/components/layout/Container'
 import CasinoPageService from '@/src/services/CasinoPageService'
 import Heading from '@/src/components/content/Heading'
 import Link from '@/src/components/content/Link'
 import Image from 'next/image'
-import { getWebPageStructuredData } from '@/src/structured-data/webPageStructuredData'
 import { getWebSiteStructuredData } from '@/src/structured-data/webSiteStructuredData'
 import { getOrganizationStructuredData } from '@/src/structured-data/organizationStructuredData'
-import { slugify } from '@/src/lib/helpers'
+import { slugify } from '@/src/lib/utils'
 import Placeholder from '@/src/components/utils/Placeholder'
 import { HeadingObjectSchemaType } from '@/src/schemas/headingObject'
 import { RatingObjectSchemaType } from '@/src/schemas/ratingObject'
@@ -29,9 +27,13 @@ const CasinoPage = ({
   casinoPage: CasinoPageSchemaType
   similarCasinoPages: CasinoPageSchemaType[]
 }) => {
-  if (!casinoPage.casino) return (
-    <Placeholder message="No casino attached to casino page" className="my-10" />
-  )
+  if (!casinoPage.casino)
+    return (
+      <Placeholder
+        message="No casino attached to casino page"
+        className="my-10"
+      />
+    )
   const casinoPageService = new CasinoPageService()
   const isValid = casinoPageService.validatePage(casinoPage)
   const schema = {
@@ -49,7 +51,7 @@ const CasinoPage = ({
       url: `${process.env.SITE_URL}${casinoPage.slug.current}`,
     },
   ]
-  const headings = getHeadingObjectsByPage({ objects: casinoPage.content })
+  const headings: Array<HeadingObjectSchemaType | RatingObjectSchemaType> = getHeadingObjectsByPage({ objects: casinoPage.content })
 
   return (
     <>
@@ -82,30 +84,40 @@ const CasinoPage = ({
         {headings.length > 1 && (
           <Container narrow>
             <TableOfContents
-              headings={headings.filter((heading: HeadingObjectSchemaType | RatingObjectSchemaType) => {
-                if (heading._type === 'heading-object') {
-                  return heading.text
-                }
-                if (heading._type === 'rating-object') {
-                  return heading.title
-                }
-                return false
-              }).map((heading: HeadingObjectSchemaType | RatingObjectSchemaType) => {
-                switch (heading._type) {
-                  case 'heading-object': {
-                    return {
-                      text: heading.text,
-                      slug: `${casinoPage.slug.current}#${slugify(heading.text)}`,
+              headings={headings
+                .filter(
+                  (
+                    heading: HeadingObjectSchemaType | RatingObjectSchemaType
+                  ) => {
+                    if (heading._type === 'heading-object') {
+                      return heading.text
+                    }
+                    if (heading._type === 'rating-object') {
+                      return heading.title
+                    }
+                    return false
+                  }
+                )
+                .map(
+                  (
+                    heading: HeadingObjectSchemaType | RatingObjectSchemaType
+                  ) => {
+                    switch (heading._type) {
+                      case 'heading-object': {
+                        return {
+                          text: heading.text,
+                          slug: `${casinoPage.slug.current}#${slugify(heading.text)}`,
+                        }
+                      }
+                      case 'rating-object': {
+                        return {
+                          text: heading.title,
+                          slug: `${casinoPage.slug.current}#${slugify(heading.title)}`,
+                        }
+                      }
                     }
                   }
-                  case 'rating-object': {
-                    return {
-                      text: heading.title,
-                      slug: `${casinoPage.slug.current}#${slugify(heading.title)}`,
-                    }
-                  }
-                }
-              })}
+                )}
             />
           </Container>
         )}

@@ -23,12 +23,14 @@ import { SlotListObjectSchema } from './slotListObject'
 import { CasinoTableObjectSchema } from './casinoTableObject'
 import { SliderObjectSchema } from './sliderObject'
 import { SectionObjectSchema } from './sectionObject'
+import { ButtonObjectSchema } from '@/src/schemas/buttonObject'
 
 // This is a discriminated union of all the possible content types
 export const ModularContentItemSchema = z.discriminatedUnion('_type', [
   AffiliateButtonObjectSchema,
   AISummaryObjectSchema,
   BonusObjectSchema,
+  ButtonObjectSchema,
   ButtonsObjectSchema,
   CasinoObjectSchema,
   FAQObjectSchema,

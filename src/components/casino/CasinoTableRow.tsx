@@ -9,11 +9,11 @@ const CasinoTableRow = ({
 }: {
   casino: CasinoSchemaType
   index: number
-  bonusCategories: { value: string }[]
+  bonusCategories?: { value: string }[]
 }) => {
   const casinoService = new CasinoService()
   const bonusCategory = casinoService.chooseBonusCategory({
-    categories: bonusCategories,
+    categories: bonusCategories ?? [],
     casino,
   })
   const bonus = casinoService.getBonus({

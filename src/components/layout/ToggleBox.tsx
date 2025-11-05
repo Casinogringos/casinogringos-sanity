@@ -1,19 +1,23 @@
 'use client'
 
-import { ParagraphObject, HeadingObject, ImageObject } from '@/src/types'
 import { ChevronDown } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import ModularContent from '@/src/components/content/ModularContent'
+import { HeadingObjectSchemaType } from '@/src/schemas/headingObject'
+import { ImageObjectSchemaType } from '@/src/schemas/imageObject'
+import { ParagraphObjectSchemaType } from '@/src/schemas/paragraphObject'
 
 const ToggleBox = ({
   buttonTextOpen,
   buttonTextClose,
   innerBlocks,
-  className
+  className,
 }: {
   buttonTextOpen?: string
   buttonTextClose?: string
-  innerBlocks: Array<HeadingObject | ImageObject | ParagraphObject>
+  innerBlocks: Array<
+    HeadingObjectSchemaType | ImageObjectSchemaType | ParagraphObjectSchemaType
+  >
   className?: string
 }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false)

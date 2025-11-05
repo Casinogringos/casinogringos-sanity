@@ -17,9 +17,11 @@ export default function CasinoHero({
   const { finalRating } = casinoService.getCasinoRatings({
     casino: casinoPage.casino,
   })
-  const bonus = casinoPage.casinoBonusPages?.[0].casinoBonus.bonusAmountRange.max ?? null
-  const wageringRequirements = casinoPage.casinoBonusPages?.[0].casinoBonus.wageringRequirements ?? null
-  const freeSpins = casinoPage.freeSpinsPages?.[0].freeSpinsBonus.numberOfFreeSpins ?? null
+  const bonus =
+    casinoPage.casino.casinoBonuses?.[0].bonusAmountRange.max ?? null
+  const wageringRequirements =
+    casinoPage.casino.casinoBonuses?.[0].wageringRequirements ?? null
+  const freeSpins = casinoPage.casino.freeSpins?.[0].numberOfFreeSpins ?? null
 
   return (
     <div className="bg-darklight py-5 lg:py-16 not-prose">
@@ -52,39 +54,61 @@ export default function CasinoHero({
             <div className="grid grid-cols-2 gap-2 mb-6">
               {bonus || freeSpins ? (
                 <>
-                  {bonus ? <div className="uppercase flex min-h-[84px] font-medium flex-col items-center justify-center rounded-md border border-green-200 bg-green-100 p-2 text-lg leading-6">
-                    <div className="-mb-1 block text-xs text-gray-700">Bonus</div>
-                    {bonus ? bonus + ' kr' : '-'}
-                    {wageringRequirements && (
-                      <div className="-mt-0.5 flex items-center text-xs font-medium text-gray-700">
-                        Omsättning:
-                        <span className="ml-0.5 inline-block text-black">
-                          {wageringRequirements}x{' '}
-                        </span>
+                  {bonus ? (
+                    <div className="uppercase flex min-h-[84px] font-medium flex-col items-center justify-center rounded-md border border-green-200 bg-green-100 p-2 text-lg leading-6">
+                      <div className="-mb-1 block text-xs text-gray-700">
+                        Bonus
                       </div>
-                    )}
-                  </div> : <div className={"uppercase flex min-h-[84px] font-medium flex-col items-center justify-center rounded-md border border-green-200 bg-green-100 p-2 text-lg leading-6"}>{casino.defaultBonusText}</div>}
-                  {freeSpins ? <div className="uppercase flex min-h-[84px] flex-col items-center justify-center rounded-md border border-blue-100 bg-blue-50 p-2 text-lg leading-6">
-                    <div className="-mb-1 block text-xs text-gray-700">
-                      Freespins
-                    </div>
-                    {freeSpins ? (
-                      <>
-                        {freeSpins ?? '-'}
+                      {bonus ? bonus + ' kr' : '-'}
+                      {wageringRequirements && (
                         <div className="-mt-0.5 flex items-center text-xs font-medium text-gray-700">
-                          Omsättning:{' '}
+                          Omsättning:
                           <span className="ml-0.5 inline-block text-black">
-                            {wageringRequirements}x
+                            {wageringRequirements}x{' '}
                           </span>
                         </div>
-                      </>
-                    ) : (
-                      '-'
-                    )}
-                  </div> : <div className={"uppercase flex min-h-[84px] font-medium flex-col items-center justify-center rounded-md border border-blue-100 bg-blue-50 p-2 text-lg leading-6"}>-</div>}
+                      )}
+                    </div>
+                  ) : (
+                    <div
+                      className={
+                        'uppercase flex min-h-[84px] font-medium flex-col items-center justify-center rounded-md border border-green-200 bg-green-100 p-2 text-lg leading-6'
+                      }
+                    >
+                      {casino.defaultBonusText}
+                    </div>
+                  )}
+                  {freeSpins ? (
+                    <div className="uppercase flex min-h-[84px] flex-col items-center justify-center rounded-md border border-blue-100 bg-blue-50 p-2 text-lg leading-6">
+                      <div className="-mb-1 block text-xs text-gray-700">
+                        Freespins
+                      </div>
+                      {freeSpins ? (
+                        <>
+                          {freeSpins ?? '-'}
+                          <div className="-mt-0.5 flex items-center text-xs font-medium text-gray-700">
+                            Omsättning:{' '}
+                            <span className="ml-0.5 inline-block text-black">
+                              {wageringRequirements}x
+                            </span>
+                          </div>
+                        </>
+                      ) : (
+                        '-'
+                      )}
+                    </div>
+                  ) : (
+                    <div
+                      className={
+                        'uppercase flex min-h-[84px] font-medium flex-col items-center justify-center rounded-md border border-blue-100 bg-blue-50 p-2 text-lg leading-6'
+                      }
+                    >
+                      -
+                    </div>
+                  )}
                 </>
               ) : (
-                <div className='col-span-2 min-h-[84px] font-medium flex flex-col items-center justify-center rounded-md border border-blue-100 bg-blue-50 p-2 text-lg leading-6'>
+                <div className="col-span-2 min-h-[84px] font-medium flex flex-col items-center justify-center rounded-md border border-blue-100 bg-blue-50 p-2 text-lg leading-6">
                   <span className="text-gray-700 text-xs">
                     {casino.defaultBonusText}
                   </span>
@@ -114,15 +138,17 @@ export default function CasinoHero({
                 <PortableText value={casinoPage.intro} />
               </div>
             )}
-            {casinoPage.affLink && <Link
-              href={`/go${casinoPage.affLink.slug.current}`}
-              title={casinoPage.title}
-              place="CasinoCard recension"
-              variant="affiliate"
-              className="w-full"
-            >
-              Till {casinoPage.title}
-            </Link>}
+            {casinoPage.affLink && (
+              <Link
+                href={`/go${casinoPage.affLink.slug.current}`}
+                title={casinoPage.title}
+                place="CasinoCard recension"
+                variant="affiliate"
+                className="w-full"
+              >
+                Till {casinoPage.title}
+              </Link>
+            )}
           </div>
         </div>
         {/* <div className="hidden md:mb-12 md:block">

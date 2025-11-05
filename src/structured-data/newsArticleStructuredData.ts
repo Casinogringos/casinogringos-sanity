@@ -1,5 +1,4 @@
 import { NewsPageSchemaType } from '@/src/schemas/newsPage'
-import { urlFor } from '@/src/lib/client'
 import NewsPageService from '@/src/services/NewsPageService'
 
 const getNewsArticleStructuredData = (page: NewsPageSchemaType) => {

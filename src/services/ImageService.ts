@@ -1,7 +1,3 @@
-import { ImageObjectSchemaType, ModularContentSchemaType, GuidePageSchemaType, SubPageSchemaType } from '@/src/schemas'
-import { urlFor } from '@/src/lib/client'
-import { getVanityStub } from '@sanity/asset-utils'
-
 class ImageService {
   getImagesXML = (images: string[]) => {
     return images.map((url) => {

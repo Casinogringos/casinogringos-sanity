@@ -1,7 +1,7 @@
-import { QuoteObject as QuoteObjectType } from '@/src/types'
+import { QuoteObjectSchemaType } from '@/src/schemas/quoteObject'
 import { PortableText } from 'next-sanity'
 
-const QuoteObject = ({ object }: { object: QuoteObjectType }) => {
+const QuoteObject = ({ object }: { object: QuoteObjectSchemaType }) => {
   return (
     <blockquote>
       {object.content.map((content, index) => (

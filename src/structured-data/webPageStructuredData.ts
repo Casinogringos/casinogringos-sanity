@@ -1,6 +1,5 @@
 import { portableTextToPlainText } from '@/src/lib/utils'
 import PageService from '@/src/services/SubPageService'
-import { urlFor } from '@/src/lib/client'
 import { SubPageSchemaType } from '@/src/schemas/subPage'
 import { NewsPageSchemaType } from '@/src/schemas/newsPage'
 import { GuidePageSchemaType } from '@/src/schemas/guidePage'
@@ -9,12 +8,20 @@ import { SlotPageSchemaType } from '@/src/schemas/slotPage'
 const pageService = new PageService()
 
 export const getWebPageStructuredData = (
-  page: SubPageSchemaType | NewsPageSchemaType | GuidePageSchemaType | SlotPageSchemaType
+  page:
+    | SubPageSchemaType
+    | NewsPageSchemaType
+    | GuidePageSchemaType
+    | SlotPageSchemaType
 ) => {
-  const publishedAt = pageService.getPagePublishedAtTimestamp(page as SubPageSchemaType)
-  const modifiedAt = pageService.getPageModifiedAtTimestamp(page as SubPageSchemaType)
+  const publishedAt = pageService.getPagePublishedAtTimestamp(
+    page as SubPageSchemaType
+  )
+  const modifiedAt = pageService.getPageModifiedAtTimestamp(
+    page as SubPageSchemaType
+  )
 
-  const structuredData = {
+  const structuredData: Record<string, any> = {
     '@type': 'WebPage',
     '@id': 'https://casinogringos.se',
     url: 'https://casinogringos.se',

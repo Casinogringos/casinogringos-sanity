@@ -1,5 +1,5 @@
-import { SlotPageSchemaType } from "@/src/schemas/slotPage"
-import SlotPageService from "@/src/services/SlotPageService"
+import { SlotPageSchemaType } from '@/src/schemas/slotPage'
+import SlotPageService from '@/src/services/SlotPageService'
 
 const getSlotReviewStructuredData = ({
   page,
@@ -46,7 +46,6 @@ const getSlotReviewStructuredData = ({
     },
     datePublished: new Date(publishedAt ?? page._createdAt).toISOString(),
     dateModified: new Date(modifiedAt ?? page._updatedAt).toISOString(),
-    reviewBody: page.review,
   }
 }
 

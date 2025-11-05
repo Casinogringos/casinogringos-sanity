@@ -1,11 +1,9 @@
 import ModularContent from '@/src/components/content/ModularContent'
 import { GuidePageSchemaType } from '@/src/schemas/guidePage'
-import { getBlogPostingStructuredData } from '@/src/structured-data/blogPostingStructuredData'
 import BreadCrumbs from '@/src/components/navigation/BreadCrumbs'
 import TableOfContents from '@/src/components/navigation/TableOfContents'
 import AuthorBox from '@/src/components/content/AuthorBox'
 import Container from '@/src/components/layout/Container'
-import Link from '@/src/components/content/Link'
 import Image from 'next/image'
 import ArticleHeader from '@/src/components/article/ArticleHeader'
 import GuidePageService from '@/src/services/GuidePageService'
@@ -15,9 +13,10 @@ import { getWebPageStructuredData } from '@/src/structured-data/webPageStructure
 import { getWebSiteStructuredData } from '@/src/structured-data/webSiteStructuredData'
 import { getOrganizationStructuredData } from '@/src/structured-data/organizationStructuredData'
 import { HeadingObjectSchemaType } from '../schemas/headingObject'
-import { slugify } from '../lib/helpers'
+import { slugify } from '@/src/lib/utils'
 import { getFeaturedImageStructuredData } from '../structured-data/featuredImageStructuredData'
 import getArticleStructuredData from '../structured-data/articleStructuredData'
+import { GuidePagePreviewSchemaType } from '@/src/schemas/guidePagePreview'
 
 const guidePageService = new GuidePageService()
 
@@ -26,7 +25,7 @@ export default function GuidePage({
   similarGuidePages,
 }: {
   page: GuidePageSchemaType
-  similarGuidePages: GuidePageSchemaType[]
+  similarGuidePages: GuidePagePreviewSchemaType[]
 }) {
   const isValid = guidePageService.validatePage(page, false)
   const headings = guidePageService.getHeadingObjects(page)
@@ -35,7 +34,7 @@ export default function GuidePage({
     '@graph': [
       getArticleStructuredData(page),
       getWebPageStructuredData(page),
-      getFeaturedImageStructuredData({ page }),
+      getFeaturedImageStructuredData(page),
       getWebSiteStructuredData(),
       getOrganizationStructuredData(),
     ],

@@ -10,6 +10,16 @@ export const paymentMethodProjection = `
         _type,
         current
     },
+    linkedPage-> {
+      _type,
+      _id,
+      _key,
+      title,
+      slug {
+        _type,
+        current
+      }
+    },
     logo {
         ${dashboardImageProjection}
     },

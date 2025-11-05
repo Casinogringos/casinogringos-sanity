@@ -1,4 +1,4 @@
-import { slugify } from '@/src/lib/helpers'
+import { slugify } from '@/src/lib/utils'
 import { ChevronDown } from 'lucide-react'
 import { Book, BookOpen } from 'lucide-react'
 import Link from 'next/link'
@@ -7,12 +7,11 @@ import ToggleSpin from '@/src/components/interactivity/ToggleSpin'
 import ToggleItem from '@/src/components/interactivity/ToggleItem'
 import Heading from '@/src/components/content/Heading'
 import ToggleSwitch from '@/src/components/interactivity/ToggleSwitch'
-import { HeadingObjectSchemaType } from '@/src/schemas/headingObject'
 
 const TableOfContents = ({
   headings,
 }: {
-  headings: (HeadingObjectSchemaType & { slug: string })[]
+  headings: { text: string; slug: string }[]
 }) => {
   return (
     <section

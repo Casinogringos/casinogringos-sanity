@@ -4,7 +4,7 @@ import { usePlausible } from 'next-plausible'
 import { ReactNode, useCallback } from 'react'
 import NextLink from 'next/link'
 import { usePathname } from 'next/navigation'
-import { isCurrentPath } from '@/src/lib/helpers'
+import { isCurrentPath } from '@/src/lib/utils'
 import Placeholder from '@/src/components/utils/Placeholder'
 import {
   closedMainMenu,

@@ -2,6 +2,7 @@ import { z } from 'zod'
 import { BonusTypeSchema } from './bonusType'
 import { PaymentMethodSchema } from './paymentMethod'
 import AffLinkSchema from '@/src/schemas/affLink'
+import { ImageObjectSchema } from '@/src/schemas/imageObject'
 
 export const CasinoBonusSchema = z.object({
   _type: z.literal('casino-bonuses'),
@@ -12,6 +13,16 @@ export const CasinoBonusSchema = z.object({
     min: z.number(),
     max: z.number(),
   }),
+  casino: z.object({
+    _type: z.string(),
+    _id: z.string(),
+    title: z.string(),
+    slug: z.object({
+      current: z.string(),
+    }),
+    logo: ImageObjectSchema,
+  }),
+  logo: ImageObjectSchema,
   bonusPercentage: z.number(),
   minimumDeposit: z.number(),
   wageringRequirements: z.number(),

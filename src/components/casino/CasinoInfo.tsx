@@ -41,7 +41,7 @@ const CasinoInfo = ({ casinoPage }: { casinoPage: CasinoPageSchemaType }) => {
       acc.push(item)
     }
     return acc
-  }, [] as PaymentMethodPageSchemaType[])
+  }, [] as PaymentMethodSchemaType[])
   const initGameProviders = casinoPage.casino.gameProviders.slice(0, 20)
   const remainingGameProviders = casinoPage.casino.gameProviders.slice(20)
   const getContactMethodIcon = (label: string) => {
@@ -178,7 +178,8 @@ const CasinoInfo = ({ casinoPage }: { casinoPage: CasinoPageSchemaType }) => {
             text="Betalningsmetoder"
           />
           <div className={'mb-5 flex flex-wrap items-center'}>
-            {paymentMethods.map(({ paymentMethod, linkedPage }, i) => {
+            {paymentMethods.map((paymentMethod) => {
+              const { linkedPage } = paymentMethod
               const Tag = linkedPage ? Link : 'div'
               return (
                 <Tag

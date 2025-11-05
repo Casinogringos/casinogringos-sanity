@@ -1,5 +1,5 @@
 // Placeholder or Skeleton components could be simple divs with styling
-const SkeletonBox = ({ className }) => (
+const SkeletonBox = ({ className }: { className: string }) => (
   <div className={`bg-gray200 animate-pulse ${className}`}></div>
 )
 

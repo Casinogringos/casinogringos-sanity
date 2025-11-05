@@ -11,7 +11,7 @@ import {
   closingNotificationMenu,
   openNotificationMenu,
 } from '@/src/store/menuSlice'
-import { getSessionToken, setSessionToken } from '@/src/lib/helpers'
+import { getSessionToken, setSessionToken } from '@/src/lib/utils'
 
 const NotificationButton = ({ count }: { count: number }) => {
   const dispatch = useAppDispatch()
