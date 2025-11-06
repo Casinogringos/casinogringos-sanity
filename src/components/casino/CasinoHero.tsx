@@ -18,12 +18,10 @@ export default function CasinoHero({
   const { finalRating } = casinoService.getCasinoRatings({
     casino: casinoPage.casino,
   })
-  const bonus =
-    casinoPage.casinoBonusPages?.[0].casinoBonus.bonusAmountRange[1] ?? null
+  const bonus = casino.casinoBonuses?.[0].bonusAmountRange.max ?? null
   const wageringRequirements =
-    casinoPage.casinoBonusPages?.[0].casinoBonus.wageringRequirements ?? null
-  const freeSpins =
-    casinoPage.freeSpinsPages?.[0].freeSpinsBonus.numberOfFreeSpins ?? null
+    casino.casinoBonuses?.[0].wageringRequirements ?? null
+  const freeSpins = casino.freeSpins?.[0].numberOfFreeSpins ?? null
 
   return (
     <div className="bg-darklight py-5 lg:py-16 not-prose">

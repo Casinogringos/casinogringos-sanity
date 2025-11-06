@@ -21,7 +21,7 @@ export const BasePageSchema = z.object({
     current: z.string(),
   }),
   seoImage: SanityImageSchema,
-  seoDescription: z.string(),
+  seoDescription: PortableTextBlockSchema,
   seoTitle: z.string(),
   canonical: z.string(),
   opengraphType: z.any(),

@@ -2,12 +2,19 @@ import { portableTextToPlainText } from '@/src/lib/utils'
 import { GuidePageSchemaType } from '@/src/schemas/guidePage'
 import { NewsPageSchemaType } from '@/src/schemas/newsPage'
 import NewsPageService from '@/src/services/NewsPageService'
+import { SubPageSchemaType } from '@/src/schemas/subPage'
 
 const newsPageService = new NewsPageService()
 
-const getArticleStructuredData = (page: GuidePageSchemaType | NewsPageSchemaType) => {
-  const publishedAt = newsPageService.getPagePublishedAtTimestamp(page as NewsPageSchemaType)
-  const modifiedAt = newsPageService.getPageModifiedAtTimestamp(page as NewsPageSchemaType)
+const getArticleStructuredData = (
+  page: GuidePageSchemaType | NewsPageSchemaType | SubPageSchemaType
+) => {
+  const publishedAt = newsPageService.getPagePublishedAtTimestamp(
+    page as NewsPageSchemaType
+  )
+  const modifiedAt = newsPageService.getPageModifiedAtTimestamp(
+    page as NewsPageSchemaType
+  )
   const wordCount = newsPageService.getWordCount(page as NewsPageSchemaType)
   const dev = process.env.DEV === 'true'
   let seoImage
@@ -18,24 +25,22 @@ const getArticleStructuredData = (page: GuidePageSchemaType | NewsPageSchemaType
   }
 
   const pagePath =
-  typeof page.slug === 'string' ? page.slug : page.slug?.current || '';
+    typeof page.slug === 'string' ? page.slug : page.slug?.current || ''
 
-  const isHome = pagePath === '' || pagePath === '/';
+  const isHome = pagePath === '' || pagePath === '/'
 
   const pageUrl = isHome
     ? 'https://casinogringos.se/'
-    : `https://casinogringos.se/${pagePath}`.replace(/([^:]\/)\/+/g, '$1');
+    : `https://casinogringos.se/${pagePath}`.replace(/([^:]\/)\/+/g, '$1')
 
-  const structuredData = {
+  const structuredData: Record<string, string | object | number> = {
     '@context': 'https://schema.org',
     '@type': 'Article',
     '@id': `${pageUrl}#article`,
     headline: page.title ?? page.seoTitle,
     description: page.seoDescription,
-    image: { '@id': `${pageUrl}#primaryimage`},
-    publisher: { '@id': 'https://casinogringos.se/#organization'},
-    datePublished: new Date(publishedAt).toISOString(),
-    dateModified: new Date(modifiedAt).toISOString(),
+    image: { '@id': `${pageUrl}#primaryimage` },
+    publisher: { '@id': 'https://casinogringos.se/#organization' },
     author: {
       '@type': 'Person',
       name: `${page.author.firstName} ${page.author.lastName}`,
@@ -51,7 +56,13 @@ const getArticleStructuredData = (page: GuidePageSchemaType | NewsPageSchemaType
       '@type': 'WebPage',
       '@id': `${pageUrl}#webpage`,
     },
-  };
+  }
+  if (publishedAt) {
+    structuredData['datePublished'] = new Date(publishedAt).toISOString()
+  }
+  if (modifiedAt) {
+    structuredData['dateModified'] = new Date(modifiedAt).toISOString()
+  }
 
   return structuredData
 }

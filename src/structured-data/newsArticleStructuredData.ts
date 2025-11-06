@@ -6,14 +6,12 @@ const getNewsArticleStructuredData = (page: NewsPageSchemaType) => {
   const publishedAt = newsPageService.getPagePublishedAtTimestamp(page)
   const modifiedAt = newsPageService.getPageModifiedAtTimestamp(page)
   const wordCount = newsPageService.getWordCount(page)
-  return {
+  const structuredData: Record<string, string | object | number> = {
     '@context': 'https://schema.org',
     '@type': 'NewsArticle',
     headline: page.seoTitle,
     description: page.seoDescription,
     image: page.featuredImage.src,
-    datePublished: new Date(publishedAt).toISOString(),
-    dateModified: new Date(modifiedAt).toISOString(),
     author: {
       '@type': 'Person',
       name: page.author.firstName + ' ' + page.author.lastName,
@@ -28,8 +26,14 @@ const getNewsArticleStructuredData = (page: NewsPageSchemaType) => {
     publisher: {
       '@id': 'https://casinogringos.se/#organization',
     },
-    isPartOf: { '@id': 'https://casinogringos.se/#website'},
-    about: { '@id': 'https://casinogringos.se/#organization'},
+    isPartOf: { '@id': 'https://casinogringos.se/#website' },
+    about: { '@id': 'https://casinogringos.se/#organization' },
+  }
+  if (publishedAt) {
+    structuredData['datePublished'] = new Date(publishedAt).toISOString()
+  }
+  if (modifiedAt) {
+    structuredData['dateModified'] = new Date(modifiedAt).toISOString()
   }
 }
 
