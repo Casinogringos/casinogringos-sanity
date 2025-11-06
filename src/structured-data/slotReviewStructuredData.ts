@@ -1,5 +1,5 @@
-import { SlotPageSchemaType } from '@/src/schemas/slotPage'
-import SlotPageService from '@/src/services/SlotPageService'
+import { SlotPageSchemaType } from "@/src/schemas/slotPage"
+import SlotPageService from "@/src/services/SlotPageService"
 
 const getSlotReviewStructuredData = ({
   page,
@@ -26,7 +26,7 @@ const getSlotReviewStructuredData = ({
     },
     reviewRating: {
       '@type': 'Rating',
-      ratingValue: slot.rating,
+      ratingValue: slot.rating || "1",
       bestRating: '5',
       worstRating: '1',
     },
@@ -36,16 +36,20 @@ const getSlotReviewStructuredData = ({
       url: `https://casinogringos.se/om-oss/${page.author.slug.current}`,
       sameAs: [page.author.linkedIn],
     },
-    publisher: {
-      '@type': 'Organization',
-      name: 'Casinogringos',
-      logo: {
-        '@type': 'ImageObject',
-        url: 'https://casinogringos.se/casinogringos.webp',
-      },
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': `${process.env.SITE_URL}${page.slug.current}#webpage`,
     },
-    datePublished: new Date(publishedAt ?? page._createdAt).toISOString(),
-    dateModified: new Date(modifiedAt ?? page._updatedAt).toISOString(),
+    publisher: {
+      '@id': `${process.env.SITE_URL}/#organization`,
+    },
+    isPartOf: [
+      {
+        '@id': `${process.env.SITE_URL}/#website`,
+      },
+    ],
+    datePublished: publishedAt,
+    dateModified: modifiedAt,
   }
 }
 

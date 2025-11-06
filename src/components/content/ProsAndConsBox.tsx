@@ -1,7 +1,7 @@
+import { CasinoPageSchemaType } from '@/src/schemas/casinoPage'
 import { Check, MinusCircleIcon } from 'lucide-react'
 import dynamic from 'next/dynamic'
 const Heading = dynamic(() => import('@/src/components/content/Heading'))
-import { CasinoPageSchemaType } from '@/src/schemas/casinoPage'
 
 const ProsAndConsBox = ({
   prosTitle,
@@ -18,45 +18,45 @@ const ProsAndConsBox = ({
   const { advantages: pros, disadvantages: cons } = casinoPage.casino
 
   if (!pros?.length || !cons?.length) return null
-  const prosAndConsStructuredData = {
-    '@context': 'https://schema.org',
-    '@type': 'Product',
-    name: title,
-    review: {
-      '@type': 'Review',
-      name: `Recension av ${title}`,
-      author: {
-        '@type': 'Person',
-        name: casinoPage.author.firstName + ' ' + casinoPage.author.lastName,
-      },
-      positiveNotes: {
-        '@type': 'ItemList',
-        itemListElement: pros.map((item, index) => ({
-          '@type': 'ListItem',
-          position: index + 1,
-          name: item,
-        })),
-      },
-      negativeNotes: {
-        '@type': 'ItemList',
-        itemListElement: cons.map((item, index) => ({
-          '@type': 'ListItem',
-          position: index + 1,
-          name: item,
-        })),
-      },
-    },
-  }
+  // const prosAndConsStructuredData = {
+  //   '@context': 'https://schema.org',
+  //   '@type': 'Product',
+  //   name: title,
+  //   review: {
+  //     '@type': 'Review',
+  //     name: `Recension av ${title}`,
+  //     author: {
+  //       '@type': 'Person',
+  //       name: casinoPage.author.firstName + ' ' + casinoPage.author.lastName,
+  //     },
+  //     positiveNotes: {
+  //       '@type': 'ItemList',
+  //       itemListElement: pros.map((item, index) => ({
+  //         '@type': 'ListItem',
+  //         position: index + 1,
+  //         name: item,
+  //       })),
+  //     },
+  //     negativeNotes: {
+  //       '@type': 'ItemList',
+  //       itemListElement: cons.map((item, index) => ({
+  //         '@type': 'ListItem',
+  //         position: index + 1,
+  //         name: item,
+  //       })),
+  //     },
+  //   },
+  // }
 
   return (
     <>
-      <script
+      {/* <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(prosAndConsStructuredData),
         }}
         key="casino-pros-and-cons-structured-data"
-      />
+      /> */}
       <section
         className={`grid grid-cols-1 not-prose lg:grid-cols-2 gap-3 lg:gap-6 ${className}`}
       >

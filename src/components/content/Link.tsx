@@ -1,17 +1,17 @@
 'use client'
 
-import { usePlausible } from 'next-plausible'
-import { ReactNode, useCallback } from 'react'
-import NextLink from 'next/link'
-import { usePathname } from 'next/navigation'
-import { isCurrentPath } from '@/src/lib/utils'
 import Placeholder from '@/src/components/utils/Placeholder'
+import { isCurrentPath } from '@/src/lib/utils'
+import { useAppDispatch } from '@/src/store/hooks'
 import {
   closedMainMenu,
   closeMainMenu,
   closingMainMenu,
 } from '@/src/store/menuSlice'
-import { useAppDispatch } from '@/src/store/hooks'
+import { usePlausible } from 'next-plausible'
+import NextLink from 'next/link'
+import { usePathname } from 'next/navigation'
+import { ReactNode, useCallback } from 'react'
 
 const Link = ({
   href,
@@ -52,7 +52,7 @@ const Link = ({
   }
   variant?: 'affiliate' | 'ghost' | 'primary'
   disabled?: boolean
-  size?: 'sm' | 'md' | 'lg'
+  size?: 'sm' | 'md' | 'lg' | 'xl'
   underline?: boolean
   onClick?: () => void
   actions?: string[]
@@ -64,11 +64,13 @@ const Link = ({
     sm: 'px-4 py-2',
     md: 'px-5 py-3',
     lg: 'px-6 py-4',
+    xl: 'px-6 py-4',
   }
   const sizeClasses = {
     sm: 'text-xs',
     md: 'text-sm',
     lg: 'text-base',
+    xl: 'text-lg',
   }
   const getClassName = () => {
     switch (variant) {

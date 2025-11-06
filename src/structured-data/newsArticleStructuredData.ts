@@ -5,34 +5,31 @@ const getNewsArticleStructuredData = (page: NewsPageSchemaType) => {
   const newsPageService = new NewsPageService()
   const publishedAt = newsPageService.getPagePublishedAtTimestamp(page)
   const modifiedAt = newsPageService.getPageModifiedAtTimestamp(page)
-
+  const wordCount = newsPageService.getWordCount(page)
   return {
     '@context': 'https://schema.org',
     '@type': 'NewsArticle',
     headline: page.seoTitle,
     description: page.seoDescription,
     image: page.featuredImage.src,
-    datePublished: new Date(publishedAt ?? page._createdAt).toISOString(),
-    dateModified: new Date(modifiedAt ?? page._updatedAt).toISOString(),
+    datePublished: new Date(publishedAt).toISOString(),
+    dateModified: new Date(modifiedAt).toISOString(),
     author: {
       '@type': 'Person',
       name: page.author.firstName + ' ' + page.author.lastName,
       url: `https://casinogringos.se/om-oss/${page.author.slug.current}`,
       sameAs: [page.author.linkedIn],
     },
-    publisher: {
-      '@type': 'Organization',
-      name: 'Casinogringos',
-      url: 'https://casinogringos.se',
-      logo: {
-        '@type': 'ImageObject',
-        url: 'https://casinogringos.se/casinogringos.webp',
-      },
-    },
+    wordCount: wordCount,
     mainEntityOfPage: {
       '@type': 'WebPage',
-      '@id': `https://casinogringos.se${page.slug.current}`,
+      '@id': `https://casinogringos.se${page.slug.current}#webpage`,
     },
+    publisher: {
+      '@id': 'https://casinogringos.se/#organization',
+    },
+    isPartOf: { '@id': 'https://casinogringos.se/#website'},
+    about: { '@id': 'https://casinogringos.se/#organization'},
   }
 }
 

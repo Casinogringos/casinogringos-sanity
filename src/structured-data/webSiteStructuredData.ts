@@ -1,17 +1,14 @@
 export const getWebSiteStructuredData = () => {
   return {
+    '@context': 'https://schema.org',
     '@type': 'WebSite',
     '@id': 'https://casinogringos.se/#website',
-    url: 'https://casinogringos.se',
+    url: 'https://casinogringos.se/',
     name: 'Casinogringos.se',
     description: 'Vi jämför och recenserar casino på nätet',
+    inLanguage: 'sv-SE',
     publisher: {
       '@id': 'https://casinogringos.se/#organization',
-    },
-    potentialAction: {
-      "@type": "SearchAction",
-      "target": "https://casinogringos.se/?s={search_term_string}",
-      "query-input": "required name=search_term_string"
     },
   }
 }

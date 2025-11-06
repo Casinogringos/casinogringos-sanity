@@ -123,7 +123,7 @@ export default function NewsPage({
           <AuthorBox
             author={page.author}
             modified={newsPageService.getPageModifiedAtTimestamp(page)}
-            reviewedBy={page.reviewer}
+            reviewedBy={page?.reviewer}
           />
         </Container>
       )}

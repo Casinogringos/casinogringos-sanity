@@ -1,67 +1,66 @@
 import { portableTextToPlainText } from '@/src/lib/utils'
-import PageService from '@/src/services/SubPageService'
-import { SubPageSchemaType } from '@/src/schemas/subPage'
-import { NewsPageSchemaType } from '@/src/schemas/newsPage'
 import { GuidePageSchemaType } from '@/src/schemas/guidePage'
+import { NewsPageSchemaType } from '@/src/schemas/newsPage'
 import { SlotPageSchemaType } from '@/src/schemas/slotPage'
+import { SubPageSchemaType } from '@/src/schemas/subPage'
+import PageService from '@/src/services/SubPageService'
 
 const pageService = new PageService()
 
 export const getWebPageStructuredData = (
-  page:
-    | SubPageSchemaType
-    | NewsPageSchemaType
-    | GuidePageSchemaType
-    | SlotPageSchemaType
+  page: SubPageSchemaType | NewsPageSchemaType | GuidePageSchemaType | SlotPageSchemaType
 ) => {
-  const publishedAt = pageService.getPagePublishedAtTimestamp(
-    page as SubPageSchemaType
-  )
-  const modifiedAt = pageService.getPageModifiedAtTimestamp(
-    page as SubPageSchemaType
-  )
+  const publishedAt = pageService.getPagePublishedAtTimestamp(page as SubPageSchemaType)
+  const modifiedAt = pageService.getPageModifiedAtTimestamp(page as SubPageSchemaType)
 
-  const structuredData: Record<string, any> = {
-    '@type': 'WebPage',
-    '@id': 'https://casinogringos.se',
-    url: 'https://casinogringos.se',
-    name: page.seoTitle,
-    isPartOf: {
-      '@id': 'https://casinogringos.se/#website',
-    },
-    about: {
-      '@id': 'https://casinogringos.se/#organization',
-    },
-    primaryImageOfPage: {
-      '@id': 'https://casinogringos.se/#primaryimage',
-    },
-    thumbnailUrl: page.seoImage?.src,
-    datePublished: new Date(publishedAt ?? page._createdAt).toISOString(),
-    dateModified: new Date(modifiedAt ?? page._updatedAt).toISOString(),
-    description: page.seoDescription,
-    inLanguage: 'sv-SE',
-    potentialAction: [
+  const pagePath = typeof page.slug === 'string' ? page.slug : page.slug?.current || '';
+  const pageUrl  = `https://casinogringos.se/${pagePath}`.replace(/([^:]\/)\/+/g, '$1');
+
+  const reviewedBy =
+  page.reviewer && {
+    '@type': 'Person',
+    name: `${page.reviewer.firstName} ${page.reviewer.lastName}`,
+    jobTitle: page.reviewer.role,
+    description: portableTextToPlainText(page.reviewer.description),
+    url: `https://casinogringos.se/om-oss/${page.reviewer.slug?.current || page.reviewer.slug}`,
+    ...(page.reviewer.linkedIn ? { sameAs: [page.reviewer.linkedIn] } : {})
+  };
+
+  const structuredData = {
+    '@context': 'https://schema.org',
+    '@graph': [
       {
-        '@type': 'ReadAction',
-        target: ['https://casinogringos.se'],
+        '@type': 'WebPage',
+        '@id': `${pageUrl}#webpage`,
+        url: pageUrl,
+        name: page.seoTitle,
+        description: page.seoDescription,
+        inLanguage: 'sv-SE',
+        datePublished: new Date(publishedAt).toISOString(),
+        ...(modifiedAt && {dateModified: new Date(modifiedAt).toISOString()}),
+        isPartOf: { '@id': 'https://casinogringos.se/#website' },
+        about: { '@id': 'https://casinogringos.se/#organization' },
+        ...(page?.seoImage?.src && {
+          primaryImageOfPage: { '@id': `${pageUrl}#primaryimage` },
+          image: { '@id': `${pageUrl}#primaryimage` },
+          thumbnailUrl: page.seoImage?.src,
+        }),
+        ...(reviewedBy && { reviewedBy }),
+        potentialAction: [{ '@type': 'ReadAction', target: [pageUrl] }],
       },
+      ...(page.seoImage?.src
+        ? [
+            {
+              '@type': 'ImageObject',
+              '@id': `${pageUrl}#primaryimage`,
+              url: page.seoImage?.src,
+              inLanguage: 'sv-SE',
+              ...(page.seoImage?.alt?.trim()
+              ? { alternateName: page.seoImage.alt.trim() }
+              : {})},
+          ]
+        : []),
     ],
-  }
-  if (page.featuredImage) {
-    structuredData.image = {
-      '@id': 'https://casinogringos.se/#primaryimage',
-    }
-  }
-  if (page.reviewer) {
-    structuredData.reviewedBy = {
-      '@type': 'Person',
-      name: page.reviewer.firstName + ' ' + page.reviewer.lastName,
-      email: page.reviewer.email,
-      jobTitle: page.reviewer.role,
-      description: portableTextToPlainText(page.reviewer.description),
-      url: `https://casinogringos.se/om-oss/${page.reviewer.slug.current}`,
-      sameAs: [page.reviewer.linkedIn],
-    }
-  }
+  };
   return structuredData
 }

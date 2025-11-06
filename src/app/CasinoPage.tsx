@@ -40,10 +40,10 @@ const CasinoPage = ({
   const schema = {
     '@context': 'https://schema.org',
     '@graph': [
-      getProductStructuredData({ productPage: casinoPage }),
-      getReviewStructuredData({ reviewPage: casinoPage }),
       getWebSiteStructuredData(),
       getOrganizationStructuredData(),
+      getProductStructuredData({ productPage: casinoPage }),
+      getReviewStructuredData({ reviewPage: casinoPage }),
     ],
   }
   const breadcrumbs = [
@@ -131,15 +131,17 @@ const CasinoPage = ({
             narrow
           />
         )}
-        {/*{page?.author && (*/}
-        {/*  <div className="mx-4 lg:mx-0">*/}
-        {/*    <AuthorBox*/}
-        {/*      author={page?.author}*/}
-        {/*      modified={page?.modified}*/}
-        {/*      reviewedBy={page?.reviewer}*/}
-        {/*    />*/}
-        {/*  </div>*/}
-        {/*)}*/}
+        {casinoPage?.author && (
+          <Container narrow>
+            <AuthorBox
+              author={casinoPage?.author}
+              modified={casinoPageService.getPageModifiedAtTimestamp(
+                casinoPage
+              )}
+              reviewedBy={casinoPage?.reviewer}
+            />
+          </Container>
+        )}
         {similarCasinoPages && (
           <section className={'bg-gray-100 py-10'}>
             <Container>

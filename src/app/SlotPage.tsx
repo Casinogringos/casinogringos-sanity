@@ -1,4 +1,3 @@
-import Link from 'next/link'
 import Star from '@/src/components/icons/StarIcon'
 import HalfStarIcon from '@/src/components/icons/HalfStarIcon'
 import ModularContent from '@/src/components/content/ModularContent'
@@ -23,7 +22,6 @@ import { HeadingObjectSchemaType } from '../schemas/headingObject'
 import { slugify } from '@/src/lib/utils'
 import Placeholder from '../components/utils/Placeholder'
 import { getFeaturedImageStructuredData } from '../structured-data/featuredImageStructuredData'
-import getReviewStructuredData from '../structured-data/reviewStructuredData'
 import getGameStructuredData from '../structured-data/gameStructuredData'
 
 const slotPageService = new SlotPageService()
@@ -47,7 +45,6 @@ const SlotPage = ({
       getFeaturedImageStructuredData(slotPage),
       getSlotReviewStructuredData({ page: slotPage }),
       getGameStructuredData(slotPage),
-      getReviewStructuredData({ reviewPage: slotPage }),
       getWebSiteStructuredData(),
       getOrganizationStructuredData(),
     ],
