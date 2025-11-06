@@ -20,6 +20,7 @@ import Placeholder from '@/src/components/utils/Placeholder'
 import { HeadingObjectSchemaType } from '@/src/schemas/headingObject'
 import { RatingObjectSchemaType } from '@/src/schemas/ratingObject'
 import CasinoSticky from '@/src/components/casino/CasinoSticky'
+import AuthorBox from '../components/content/AuthorBox'
 
 const CasinoPage = ({
   casinoPage,
