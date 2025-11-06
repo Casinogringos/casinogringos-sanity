@@ -88,18 +88,20 @@ const GoPage = ({ affLink }: { affLink: AffLinkSchemaType }) => {
                 }
               ></div>
             </div>
-            <div
-              className={
-                'h-28 w-28 md:h-32 md:w-32 relative rounded-md overflow-hidden'
-              }
-            >
-              <Image
-                src={affLink.logo.src}
-                alt={affLink.logo.alt}
-                width={160}
-                height={60}
-              />
-            </div>
+            {affLink.logo && (
+              <div
+                className={
+                  'h-28 w-28 md:h-32 md:w-32 relative rounded-md overflow-hidden'
+                }
+              >
+                <Image
+                  src={affLink.logo.src}
+                  alt={affLink.logo.alt}
+                  width={160}
+                  height={60}
+                />
+              </div>
+            )}
           </div>
           <p className={'text-center text-lg text-slate-400'}>
             Om du inte blir skickad vidare till{' '}

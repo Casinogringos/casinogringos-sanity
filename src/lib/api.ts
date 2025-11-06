@@ -182,7 +182,14 @@ export const getCasinoPagePreviews = async ({ count }: { count: number }) => {
 }
 
 export const getStaticParams = async (
-  type: 'pages' | 'casino-pages' | 'guide-pages' | 'news-pages' | 'authors' | 'slot-pages'
+  type:
+    | 'pages'
+    | 'casino-pages'
+    | 'guide-pages'
+    | 'news-pages'
+    | 'authors'
+    | 'slot-pages'
+    | 'aff-links'
 ) => {
   try {
     const data = await client.fetch(staticParamsQuery({ type }))
@@ -241,7 +248,15 @@ export const getSimilarNewsPages = async ({
   }
 }
 
-export const getSitemap = async (type: 'authors' | 'pages' | 'guide-pages' | 'news-pages' | 'casino-pages' | 'slot-pages') => {
+export const getSitemap = async (
+  type:
+    | 'authors'
+    | 'pages'
+    | 'guide-pages'
+    | 'news-pages'
+    | 'casino-pages'
+    | 'slot-pages'
+) => {
   try {
     const data = await client.fetch(sitemapQuery(type))
     return data
@@ -253,9 +268,7 @@ export const getSitemap = async (type: 'authors' | 'pages' | 'guide-pages' | 'ne
 
 export const getAllCasinoPages = async () => {
   try {
-    const data = await client.fetch(
-      casinoPagePreviewsQuery({ count: 1000 })
-    )
+    const data = await client.fetch(casinoPagePreviewsQuery({ count: 1000 }))
     return data
   } catch (e) {
     console.log(e)
@@ -303,11 +316,7 @@ export const getCasinoPagesByCasinos = async ({
   }
 }
 
-export const getToplistById = async ({
-  id,
-}: {
-  id: string
-}) => {
+export const getToplistById = async ({ id }: { id: string }) => {
   try {
     const data = await client.fetch(toplistByIdQuery({ id }))
     return data

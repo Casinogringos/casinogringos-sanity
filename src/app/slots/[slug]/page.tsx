@@ -1,18 +1,22 @@
-import { getSlotPageBySlug, getStaticParams, getSimilarSlotPages } from '@/src/lib/api'
+import {
+  getSlotPageBySlug,
+  getStaticParams,
+  getSimilarSlotPages,
+} from '@/src/lib/api'
 import { notFound } from 'next/navigation'
 import SlotPage from '@/src/app/SlotPage'
 import { SlotPageSchemaType } from '@/src/schemas/slotPage'
-import { formatPageSlug } from '@/src/lib/utility'
+import { formatPageSlug } from '@/src/lib/utils'
 import { Metadata } from 'next'
 
 type Params = Promise<{ slug: string }>
 
 export async function generateMetadata(props: { params: Params }) {
-  const params = await props.params;
-  const slotPage: SlotPageSchemaType = (await getSlotPageBySlug({
+  const params = await props.params
+  const slotPage: SlotPageSchemaType = await getSlotPageBySlug({
     slug: `/slots${formatPageSlug(params?.slug)}`,
-  }))
-  const siteURL = (process.env.SITE_URL as string) + slotPage.slug.current;
+  })
+  const siteURL = (process.env.SITE_URL as string) + slotPage.slug.current
   const metadata: Metadata = {
     title: slotPage.seoTitle,
     description: slotPage.seoDescription,
@@ -23,7 +27,7 @@ export async function generateMetadata(props: { params: Params }) {
       title: slotPage.seoTitle,
       description: slotPage.seoDescription,
       url: siteURL,
-      locale: "sv_SE",
+      locale: 'sv_SE',
       siteName: 'Casinogringos',
       type: slotPage.opengraphType ?? 'website',
       images: [
@@ -35,16 +39,16 @@ export async function generateMetadata(props: { params: Params }) {
         },
       ],
     },
-  };
+  }
 
   return metadata
 }
 
 export default async function Page(props: { params: Params }) {
   const params = await props.params
-  const slotPage: SlotPageSchemaType = (await getSlotPageBySlug({
+  const slotPage: SlotPageSchemaType = await getSlotPageBySlug({
     slug: `/slots${formatPageSlug(params?.slug)}`,
-  }))
+  })
   if (!slotPage || !slotPage.slot) return notFound()
   const similarSlotPages = await getSimilarSlotPages({
     id: slotPage._id,

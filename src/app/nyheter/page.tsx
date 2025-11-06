@@ -5,8 +5,7 @@ import {
   getNewsPagePreviews,
   getPageBySlug,
 } from '@/src/lib/api'
-import { urlFor } from '@/src/lib/client'
-import { SubPageSchemaType } from '@/src/schemas'
+import { SubPageSchemaType } from '@/src/schemas/subPage'
 import { Metadata } from 'next'
 
 export async function generateMetadata() {
@@ -14,7 +13,7 @@ export async function generateMetadata() {
     slug: '/nyheter',
   })
   const siteURL = (process.env.SITE_URL as string) + page.slug.current
-  let metadata: Metadata = {
+  const metadata: Metadata = {
     title: page.seoTitle,
     description: page.seoDescription,
     alternates: {

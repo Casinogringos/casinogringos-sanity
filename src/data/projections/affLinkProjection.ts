@@ -8,4 +8,7 @@ export const affLinkProjection = `
     current
   },
   link,
+  logo {
+    ${imageProjection}
+  }
 `

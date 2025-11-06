@@ -19,6 +19,7 @@ import { slugify } from '@/src/lib/utils'
 import Placeholder from '@/src/components/utils/Placeholder'
 import { HeadingObjectSchemaType } from '@/src/schemas/headingObject'
 import { RatingObjectSchemaType } from '@/src/schemas/ratingObject'
+import CasinoSticky from '@/src/components/casino/CasinoSticky'
 
 const CasinoPage = ({
   casinoPage,
@@ -51,7 +52,8 @@ const CasinoPage = ({
       url: `${process.env.SITE_URL}${casinoPage.slug.current}`,
     },
   ]
-  const headings: Array<HeadingObjectSchemaType | RatingObjectSchemaType> = getHeadingObjectsByPage({ objects: casinoPage.content })
+  const headings: Array<HeadingObjectSchemaType | RatingObjectSchemaType> =
+    getHeadingObjectsByPage({ objects: casinoPage.content })
 
   return (
     <>
@@ -180,7 +182,7 @@ const CasinoPage = ({
           </section>
         )}
       </article>
-      {/*{page?.postType?.affiliateLink && <StickyCasino item={page} />}*/}
+      <CasinoSticky casino={casinoPage.casino} />
     </>
   )
 }

@@ -1,10 +1,13 @@
 import { notFound } from 'next/navigation'
 import NewsPage from '@/src/app/NewsPage'
-import { getNewsPageBySlug, getStaticParams, getSimilarNewsPages } from '@/src/lib/api'
-import { formatPageSlug } from '@/src/lib/utility'
+import {
+  getNewsPageBySlug,
+  getStaticParams,
+  getSimilarNewsPages,
+} from '@/src/lib/api'
+import { formatPageSlug } from '@/src/lib/utils'
 import { NewsPageSchemaType } from '@/src/schemas/newsPage'
 import { NewsPagePreviewSchemaType } from '@/src/schemas/newsPagePreview'
-import { extractSlugFromUrl } from '@/src/lib/helpers'
 import { Metadata } from 'next'
 
 type Params = Promise<{ slug: string }>
@@ -58,7 +61,8 @@ export default async function Page(props: { params: Params }) {
 }
 
 export async function generateStaticParams() {
-  const allNewsPages: NewsPagePreviewSchemaType[] = await getStaticParams('news-pages')
+  const allNewsPages: NewsPagePreviewSchemaType[] =
+    await getStaticParams('news-pages')
 
   return allNewsPages.map((page) => {
     const slug = page.slug.current.replace('/nyheter/', '')
