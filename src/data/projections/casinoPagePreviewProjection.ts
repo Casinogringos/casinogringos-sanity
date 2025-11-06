@@ -22,18 +22,6 @@ export const casinoPagePreviewProjection = `
   affLink-> {
     ${affLinkProjection} 
   },
-  casinoBonuses[] -> {
-    ${casinoBonusProjection}
-  },
-  oddsBonuses[] -> {
-    ${oddsBonusProjection}
-  },
-  liveCasinoBonuses[] -> {
-    ${liveCasinoBonusProjection}
-  },
-  freeSpins[] -> {
-    ${freeSpinsProjection}
-  },
   featuredImage {
     ${imageProjection}
   },
