@@ -2,7 +2,6 @@
 
 import Image from 'next/image'
 import Link from '@/src/components/content/Link'
-import Container from '@/src/components/layout/Container'
 import Heading from '@/src/components/content/Heading'
 import ProsAndConsBox from '@/src/components/content/ProsAndConsBox'
 import StarIcon from '@/src/components/icons/StarIcon'
@@ -14,7 +13,7 @@ import { useState } from 'react'
 import { Mail, MessageCircle } from 'lucide-react'
 import { Phone } from 'lucide-react'
 import QuestionMark from '../icons/QuestionMark'
-
+import { PaymentMethodSchemaType } from '@/src/schemas/paymentMethod'
 
 const CasinoInfo = ({ casinoPage }: { casinoPage: CasinoPageSchemaType }) => {
   const { title } = casinoPage
@@ -27,39 +26,29 @@ const CasinoInfo = ({ casinoPage }: { casinoPage: CasinoPageSchemaType }) => {
   const { quickFacts } = casinoService.getQuickFacts({
     casino: casinoPage.casino,
   })
-  const depositMethodsPages = casinoPage.casino.availableDepositMethods.reduce(
-    (acc, item) => {
-      acc.push(item.depositMethodPages[0])
-      return acc
-    },
-    [] as PaymentMethodPageSchemaType[]
-  )
-  const withdrawalMethodsPages =
-    casinoPage.casino.availableWithdrawalMethods.reduce((acc, item) => {
-      acc.push(item.withdrawalMethodPages[0])
-      return acc
-    }, [] as PaymentMethodPageSchemaType[])
-  const paymentMethodPages: PaymentMethodPageSchemaType[] = [
-    ...depositMethodsPages,
-    ...withdrawalMethodsPages,
-  ].reduce((acc, page) => {
+  const depositMethods: PaymentMethodSchemaType[] =
+    casinoPage.casino.availableDepositMethods
+  const withdrawalMethods: PaymentMethodSchemaType[] =
+    casinoPage.casino.availableWithdrawalMethods
+  const paymentMethods: PaymentMethodSchemaType[] = [
+    ...depositMethods,
+    ...withdrawalMethods,
+  ].reduce((acc, item) => {
     if (
-      page &&
-      !acc.some(
-        (method) =>
-          method.paymentMethod.slug.current === page.paymentMethod.slug.current
-      )
+      item &&
+      !acc.some((method) => method.slug.current === item.slug.current)
     ) {
-      acc.push(page)
+      acc.push(item)
     }
     return acc
-  }, [] as PaymentMethodPageSchemaType[])
+  }, [] as PaymentMethodSchemaType[])
   const initGameProviders = casinoPage.casino.gameProviders.slice(0, 20)
   const remainingGameProviders = casinoPage.casino.gameProviders.slice(20)
   const getContactMethodIcon = (label: string) => {
     if (label.toLowerCase().includes('email')) return <Mail size={15} />
     if (label.toLowerCase().includes('telefon')) return <Phone size={15} />
-    if (label.toLowerCase().includes('chatt')) return <MessageCircle size={15} />
+    if (label.toLowerCase().includes('chatt'))
+      return <MessageCircle size={15} />
     if (label.toLowerCase().includes('faq')) return <QuestionMark size={15} />
     return null
   }
@@ -161,24 +150,26 @@ const CasinoInfo = ({ casinoPage }: { casinoPage: CasinoPageSchemaType }) => {
         text={`Snabbfakta om ${title}`}
       />
       <div className="mb-5 flex gap-3 overflow-x-auto">
-        {quickFacts.filter((item) => item.value).map((item) => (
-          <div
-            key={`quick-fact-${item.label}`}
-            className="flex flex-shrink-0 flex-col items-center justify-center gap-2 rounded-2xl border border-gray-300 px-6 py-4"
-          >
-            <div className="text-xs font-semibold uppercase text-slate-600">
-              {item.label}
-            </div>{' '}
-            {item.value ? <span className="block">{item.value}</span> : null}
-          </div>
-        ))}
+        {quickFacts
+          .filter((item) => item.value)
+          .map((item) => (
+            <div
+              key={`quick-fact-${item.label}`}
+              className="flex flex-shrink-0 flex-col items-center justify-center gap-2 rounded-2xl border border-gray-300 px-6 py-4"
+            >
+              <div className="text-xs font-semibold uppercase text-slate-600">
+                {item.label}
+              </div>{' '}
+              {item.value ? <span className="block">{item.value}</span> : null}
+            </div>
+          ))}
       </div>
       <ProsAndConsBox
         casinoPage={casinoPage}
         prosTitle="Vad du får"
         consTitle="Vad du inte får"
       />
-      {paymentMethodPages && paymentMethodPages.length > 0 && (
+      {paymentMethods && paymentMethods.length > 0 && (
         <div>
           <Heading
             sizes={[5, 5, 6]}
@@ -187,7 +178,8 @@ const CasinoInfo = ({ casinoPage }: { casinoPage: CasinoPageSchemaType }) => {
             text="Betalningsmetoder"
           />
           <div className={'mb-5 flex flex-wrap items-center'}>
-            {paymentMethodPages.map(({ paymentMethod, linkedPage }, i) => {
+            {paymentMethods.map((paymentMethod) => {
+              const { linkedPage } = paymentMethod
               const Tag = linkedPage ? Link : 'div'
               return (
                 <Tag
@@ -254,64 +246,67 @@ const CasinoInfo = ({ casinoPage }: { casinoPage: CasinoPageSchemaType }) => {
                 )}
               </div>
             ))}
-            {!showAllGameProviders && <div onClick={() => setShowAllGameProviders(true)} className="h-[40px] cursor-pointer w-[54px] relative bg-slate-100 border border-slate-300 rounded-md flex items-center justify-center">
-              <span
-                className={
-                  'text-xs block text-slate-700 px-2 py-1.5'
-                }
-              >
-                +{remainingGameProviders.length}
-              </span>
-            </div>}
-            {showAllGameProviders && remainingGameProviders.map((item) => (
+            {!showAllGameProviders && (
               <div
-                key={`game-provider-${item._id}`}
-                className="h-[40px] w-[54px] relative"
+                onClick={() => setShowAllGameProviders(true)}
+                className="h-[40px] cursor-pointer w-[54px] relative bg-slate-100 border border-slate-300 rounded-md flex items-center justify-center"
               >
-                {item.featuredImage.src ? (
-                  <Image
-                    src={item.featuredImage.src}
-                    alt={item.featuredImage.altText}
-                    width="54"
-                    height="40"
-                    className={
-                      'rounded-md border border-gray-300 h-full w-full absolute object-cover'
-                    }
-                  />
-                ) : (
-                  <span
-                    className={
-                      'text-xs rounded-md block text-slate-700 bg-slate-100 px-2 py-1.5 border border-slate-300'
-                    }
-                  >
-                    {item.name}
-                  </span>
-                )}
+                <span className={'text-xs block text-slate-700 px-2 py-1.5'}>
+                  +{remainingGameProviders.length}
+                </span>
               </div>
-            ))}
+            )}
+            {showAllGameProviders &&
+              remainingGameProviders.map((item) => (
+                <div
+                  key={`game-provider-${item._id}`}
+                  className="h-[40px] w-[54px] relative"
+                >
+                  {item.featuredImage.src ? (
+                    <Image
+                      src={item.featuredImage.src}
+                      alt={item.featuredImage.altText}
+                      width="54"
+                      height="40"
+                      className={
+                        'rounded-md border border-gray-300 h-full w-full absolute object-cover'
+                      }
+                    />
+                  ) : (
+                    <span
+                      className={
+                        'text-xs rounded-md block text-slate-700 bg-slate-100 px-2 py-1.5 border border-slate-300'
+                      }
+                    >
+                      {item.name}
+                    </span>
+                  )}
+                </div>
+              ))}
           </div>
         </>
       )}{' '}
-      {casinoPage.casino.typesOfGames && casinoPage.casino.typesOfGames.length > 0 && (
-        <>
-          <h2 className="mb-3 mt-6 text-xl font-bold">Spelkategorier</h2>
-          <div className={'mb-2 flex flex-wrap'}>
-            {casinoPage.casino.typesOfGames.map((category) => (
-              <div key={`brand-category-${category._id}`}>
-                <div
-                  className={
-                    'text-sm rounded-md bg-slate-100 border border-slate-300 px-3 py-1.5 mr-1 mb-1'
-                  }
-                >
-                  {category.name}
+      {casinoPage.casino.typesOfGames &&
+        casinoPage.casino.typesOfGames.length > 0 && (
+          <>
+            <h2 className="mb-3 mt-6 text-xl font-bold">Spelkategorier</h2>
+            <div className={'mb-2 flex flex-wrap'}>
+              {casinoPage.casino.typesOfGames.map((gameType) => (
+                <div key={`brand-category-${gameType._id}`}>
+                  <div
+                    className={
+                      'text-sm rounded-md bg-slate-100 border border-slate-300 px-3 py-1.5 mr-1 mb-1'
+                    }
+                  >
+                    {gameType.name}
+                  </div>
                 </div>
-              </div>
-            ))}
-          </div>
-        </>
-      )}
+              ))}
+            </div>
+          </>
+        )}
       {casinoPage.casino.contactMethods &&
-        casinoPage.casino.contactMethods.length > 0 ? (
+      casinoPage.casino.contactMethods.length > 0 ? (
         <>
           <Heading
             level={2}
@@ -324,7 +319,7 @@ const CasinoInfo = ({ casinoPage }: { casinoPage: CasinoPageSchemaType }) => {
                 key={`contact-method-${contactMethod.label}`}
                 className="flex items-center py-2 border-b border-gray-200"
               >
-                <div className='flex items-center gap-2'>
+                <div className="flex items-center gap-2">
                   {getContactMethodIcon(contactMethod.label)}
                   <span className="font-medium">{contactMethod.label}</span>
                 </div>

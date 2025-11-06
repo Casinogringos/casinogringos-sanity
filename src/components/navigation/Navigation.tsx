@@ -1,4 +1,4 @@
-import { isCurrentPath } from '@/src/lib/helpers'
+import { isCurrentPath } from '@/src/lib/utils'
 import Image from 'next/image'
 import Container from '@/src/components/layout/Container'
 import Link from 'next/link'
@@ -6,7 +6,6 @@ import NotificationButton from '@/src/components/navigation/NotificationButton'
 import Menu from '@/src/components/navigation/Menu'
 import MenuButton from '@/src/components/navigation/MenuButton'
 import SearchButton from '@/src/components/search/SearchButton'
-import { headers } from 'next/headers'
 import MenuModal from '@/src/components/navigation/MenuModal'
 import NotificationModal from '@/src/components/navigation/NotificationModal'
 import CasinoRow from '@/src/components/casino/CasinoRow'
@@ -24,7 +23,7 @@ export default async function Navigation({
   headerMenu: MenuSchemaType
   sidebarMenu: MenuSchemaType
   sidebarToplist: ToplistSchemaType
-  pathname: string | null
+  pathname: string
 }) {
   const parentRoute = pathname?.split('/')[1]
 
@@ -43,8 +42,9 @@ export default async function Navigation({
               href="/"
               prefetch={false}
               aria-current={isCurrentPath(pathname, '/') ? 'page' : undefined}
-              className={`${isCurrentPath(pathname, '/') ? 'text-primary' : 'text-white'
-                }`}
+              className={`${
+                isCurrentPath(pathname, '/') ? 'text-primary' : 'text-white'
+              }`}
             >
               <span className="sr-only">Casinogringos.se</span>
               <Image
@@ -71,10 +71,11 @@ export default async function Navigation({
                         ? 'page'
                         : undefined
                     }
-                    className={`text-nav text-sm uppercase tracking-wider font-medium font-inter hover:text-primary transition ${isCurrentPath(pathname, item.page.slug.current)
-                      ? 'text-primary'
-                      : 'text-white'
-                      }`}
+                    className={`text-nav text-sm uppercase tracking-wider font-medium font-inter hover:text-primary transition ${
+                      isCurrentPath(pathname, item.page.slug.current)
+                        ? 'text-primary'
+                        : 'text-white'
+                    }`}
                   >
                     {item.label ?? item.page.title}
                   </Link>
@@ -102,12 +103,8 @@ export default async function Navigation({
           <div className="relative mt-6 text-lg font-medium">
             Populära erbjudanden
           </div>
-          {sidebarToplist.casinos.map((casino, index) => (
-            <CasinoRow
-              casinoPage={casino}
-              key={`casino-${casino._id}`}
-              index={index}
-            />
+          {sidebarToplist.casinos.map((casino) => (
+            <CasinoRow casino={casino} key={`casino-${casino._id}`} />
           ))}
         </section>
       </NotificationModal>

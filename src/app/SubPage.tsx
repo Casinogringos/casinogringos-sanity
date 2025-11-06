@@ -12,12 +12,11 @@ import Container from '@/src/components/layout/Container'
 import FAQ from '@/src/components/content/FAQ'
 import TableOfContents from '@/src/components/navigation/TableOfContents'
 import AuthorBox from '@/src/components/content/AuthorBox'
-import { getHeadingObjectsByPage } from '@/src/lib/helpers'
 import PageService from '@/src/services/SubPageService'
-import { slugify } from '@/src/lib/helpers'
-import { divide } from 'lodash'
+import { slugify } from '@/src/lib/utils'
 import { getItemListStructuredData } from '@/src/structured-data/itemListStructuredData'
 import { getFeaturedImageStructuredData } from '@/src/structured-data/featuredImageStructuredData'
+import { HeadingObjectSchemaType } from '@/src/schemas/headingObject'
 
 const pageService = new PageService()
 
@@ -28,6 +27,7 @@ export default function SubPage({ page }: { page: SubPageSchemaType }) {
   // }
   const { toplist, faqs, author, _createdAt, reviewer } = page
   const headingObjects = pageService.getHeadingObjects(page)
+  const modifiedAt = pageService.getPageModifiedAtTimestamp(page)
   const schema = {
     '@context': 'https://schema.org',
     '@graph': [
@@ -61,13 +61,15 @@ export default function SubPage({ page }: { page: SubPageSchemaType }) {
         <Container className="mb-16">
           <CasinoList
             itemComponent={CasinoCard}
-            casinoPages={toplist.casinos}
+            casinos={toplist.casinos}
             title={toplist.title}
             description={toplist.description}
-            categories={page.bonusCategory?.map((category) => category.value) ?? []}
+            categories={page.bonusCategory ?? []}
           />
         </Container>
-      ) : <div className='mb-6' />}
+      ) : (
+        <div className="mb-6" />
+      )}
       {/* {faqs && faqs.items.length && (
         <div className="mb-16 bg-dark pb-16 pt-10 mb-16">
           <Container>
@@ -101,7 +103,7 @@ export default function SubPage({ page }: { page: SubPageSchemaType }) {
         <Container narrow>
           <AuthorBox
             author={author}
-            modified={page._updatedAt ?? page.originalModifiedAt}
+            modified={modifiedAt}
             reviewedBy={reviewer}
           />
         </Container>

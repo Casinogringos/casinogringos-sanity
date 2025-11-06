@@ -4,6 +4,7 @@ import { slotProjection } from '@/src/data/projections/slotProjection'
 import { authorProjection } from '@/src/data/projections/authorProjection'
 import { imageObjectProjection } from '@/src/data/projections/imageObjectProjection'
 import { casinoPagePreviewProjection } from '@/src/data/projections/casinoPagePreviewProjection'
+import { casinoProjection } from '@/src/data/projections/casinoProjection'
 
 export const slotPageProjection = `
   _type,
@@ -23,10 +24,10 @@ export const slotPageProjection = `
   },
   canonical,
   casinos[] -> {
-    ${casinoPagePreviewProjection}
+    ${casinoProjection}
   },
-  "latestCasinos": *[_type == 'casino-pages'][0...3] {
-    ${casinoPagePreviewProjection}
+  "latestCasinos": *[_type == 'casinos'][0...3] {
+    ${casinoProjection}
   },
   featuredImage {
     ${imageObjectProjection}

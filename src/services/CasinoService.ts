@@ -1,12 +1,12 @@
 import { CasinoSchemaType } from '@/src/schemas/casino'
 import { CasinoPageSchemaType } from '../schemas/casinoPage'
 import { CasinoPagePreviewSchemaType } from '../schemas/casinoPagePreview'
-import { CasinoBonusSchemaType } from '../schemas/casinoBonus'
-import { OddsBonusSchemaType } from '../schemas/oddsBonus'
-import { LiveCasinoBonusSchemaType } from '../schemas/liveCasinoBonus'
 import { CasinoBonusPageSchemaType } from '../schemas/casinoBonusPage'
 import { OddsBonusPageSchemaType } from '../schemas/oddsBonusPage'
 import { LiveCasinoBonusPageSchemaType } from '../schemas/liveCasinoBonusPage'
+import { CasinoBonusSchemaType } from '@/src/schemas/casinoBonus'
+import { OddsBonusSchemaType } from '@/src/schemas/oddsBonus'
+import { LiveCasinoBonusSchemaType } from '@/src/schemas/liveCasinoBonus'
 
 interface Ratings {
   bonus_rating: number
@@ -87,7 +87,13 @@ class CasinoService {
         : 0
     const finalRating =
       validRatings.length >= 5 ? overallScore : casino?.overallRating
-    return { finalRating: typeof finalRating === 'string' ? Number(finalRating) : finalRating, validRatings, ratings, ratingKeys: this.ratingKeys }
+    return {
+      finalRating:
+        typeof finalRating === 'string' ? Number(finalRating) : finalRating,
+      validRatings,
+      ratings,
+      ratingKeys: this.ratingKeys,
+    }
   }
   getQuickFacts({ casino }: { casino: CasinoSchemaType }): {
     quickFacts: {
@@ -102,22 +108,35 @@ class CasinoService {
       },
       {
         label: 'SWISH',
-        value: [casino.availableDepositMethods.depositMethodPages, casino.availableWithdrawalMethods.withdrawalMethodPages].some((methodType) => methodType?.some((method) => {
-          return method.paymentMethod.slug.current === 'swish'
-        })) ? 'Ja' : 'Nej',
+        value: [
+          casino.availableDepositMethods,
+          casino.availableWithdrawalMethods,
+        ].some((methodType) =>
+          methodType?.some((method) => {
+            return method.slug.current === 'swish'
+          })
+        )
+          ? 'Ja'
+          : 'Nej',
       },
       {
         label: 'LIVECHATT',
-        value: casino.contactMethods.some((method) => method.slug.current.includes('live-chat')) ? 'Ja' : 'Nej',
+        value: casino.contactMethods.some((method) =>
+          method.slug.current.includes('live-chat')
+        )
+          ? 'Ja'
+          : 'Nej',
       },
       {
         label: 'LANSERADES',
-        value: new Date(casino.launchDate).toLocaleDateString('sv-SE', { year: 'numeric' }),
+        value: new Date(casino.launchDate).toLocaleDateString('sv-SE', {
+          year: 'numeric',
+        }),
       },
       {
         label: 'Minsta insättning',
-        value: casino.minimumDeposit
-      }
+        value: casino.minimumDeposit,
+      },
     ]
     return { quickFacts }
   }
@@ -140,63 +159,85 @@ class CasinoService {
   //   return `${bonusString} ${bonusString && freeSpinsString ? ' + ' : ''} ${freeSpinsString}`
   // }
 
-  getBonusPage({ casinoPage, category }: { casinoPage: CasinoPageSchemaType | CasinoPagePreviewSchemaType; category: { value: string } }): CasinoBonusPageSchemaType | OddsBonusPageSchemaType | LiveCasinoBonusPageSchemaType | null {
+  getBonus({
+    casino,
+    category,
+  }: {
+    casino: CasinoSchemaType
+    category: { value: string }
+  }):
+    | CasinoBonusSchemaType
+    | OddsBonusSchemaType
+    | LiveCasinoBonusSchemaType
+    | null {
     if (!category) return null
     console.log('category!', category)
-    console.log('casinoPage', casinoPage)
+    console.log('casinoPage', casino)
     switch (category.value) {
       case 'casino-bonus':
-        return casinoPage.casinoBonusPages?.[0] ?? null
+        return casino.casinoBonuses?.[0] ?? null
       case 'odds-bonus':
-        return casinoPage.oddsBonusPages?.[0] ?? null
+        return casino.oddsBonuses?.[0] ?? null
       case 'live-casino-bonus':
-        return casinoPage.liveCasinoBonusPages?.[0] ?? null
+        return casino.liveCasinoBonuses?.[0] ?? null
       default:
         return null
     }
   }
 
-  getFreeSpinsString({ casinoPage }: { casinoPage: CasinoPageSchemaType | CasinoPagePreviewSchemaType }) {
-    return casinoPage.freeSpinsPages?.[0]?.freeSpinsBonus?.numberOfFreeSpins ?? false
-  }
-
-  chooseBonusCategory({ categories, casinoPage }: { categories: { value: string }[], casinoPage: CasinoPageSchemaType | CasinoPagePreviewSchemaType }) {
-    const category = categories.reverse().reduce((prev: { value: string }, current: { value: string }) => {
-      let existing = ''
-      if (current.value === 'casino-bonus') {
-        const casinoBonus = casinoPage.casinoBonusPages?.length
-        if (casinoBonus) {
-          existing = 'casino-bonus'
+  chooseBonusCategory({
+    categories,
+    casino,
+  }: {
+    categories: { value: string }[]
+    casino: CasinoSchemaType
+  }) {
+    const category = categories.reverse().reduce(
+      (prev: { value: string }, current: { value: string }) => {
+        let existing = ''
+        console.log('category', current.value)
+        if (current.value === 'casino-bonus') {
+          const casinoBonus = casino.casinoBonuses?.length
+          if (casinoBonus) {
+            existing = 'casino-bonus'
+          }
+        } else if (current.value === 'odds-bonus') {
+          const oddsBonus = casino.oddsBonuses?.length
+          if (oddsBonus) {
+            existing = 'odds-bonus'
+          }
+        } else if (current.value === 'live-casino-bonus') {
+          const liveCasinoBonus = casino.liveCasinoBonuses?.length
+          if (liveCasinoBonus) {
+            existing = 'live-casino-bonus'
+          }
         }
-      } else if (current.value === 'odds-bonus') {
-        const oddsBonus = casinoPage.oddsBonusPages?.length
-        if (oddsBonus) {
-          existing = 'odds-bonus'
+        if (existing) {
+          return { value: existing }
         }
-      } else if (current.value === 'live-casino-bonus') {
-        const liveCasinoBonus = casinoPage.liveCasinoBonusPages?.length
-        if (liveCasinoBonus) {
-          existing = 'live-casino-bonus'
-        }
-      }
-      if (existing) {
-        return { value: existing }
-      }
-      return prev
-    }, { value: '' })
+        return prev
+      },
+      { value: '' }
+    )
     return category
   }
 
-  getAffLinkSlug({ bonusCategory, casinoPage }: { bonusCategory: { value: string }, casinoPage: CasinoPageSchemaType | CasinoPagePreviewSchemaType }) {
+  getAffLinkSlug({
+    bonusCategory,
+    casino,
+  }: {
+    bonusCategory: { value: string }
+    casino: CasinoSchemaType
+  }) {
     switch (bonusCategory.value) {
       case 'casino-bonus':
-        return casinoPage.casinoBonusPages?.[0].affLink.slug.current ?? null
+        return casino.casinoBonuses?.[0]?.affLink?.slug.current ?? null
       case 'odds-bonus':
-        return casinoPage.oddsBonusPages?.[0].affLink.slug.current ?? null
+        return casino.oddsBonuses?.[0]?.affLink?.slug.current ?? null
       case 'live-casino-bonus':
-        return casinoPage.liveCasinoBonusPages?.[0].affLink.slug.current ?? null
+        return casino.liveCasinoBonuses?.[0]?.affLink?.slug.current ?? null
       default:
-        return casinoPage.freeSpinsPages?.[0].affLink.slug.current ?? null
+        return casino.freeSpins?.[0]?.affLink?.slug.current ?? null
     }
   }
 }

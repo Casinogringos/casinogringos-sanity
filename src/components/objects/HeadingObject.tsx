@@ -1,7 +1,7 @@
 'use client'
 
 import { JSX, createElement } from 'react'
-import { slugify } from '@/src/lib/helpers'
+import { slugify } from '@/src/lib/utils'
 import { jakarta } from '@/src/styles/fonts'
 
 const HeadingObject = ({

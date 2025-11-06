@@ -12,17 +12,13 @@ import { GuidePagePreviewSchemaType } from '@/src/schemas/guidePagePreview'
 import { NewsPagePreviewSchemaType } from '@/src/schemas/newsPagePreview'
 import { CasinoPagePreviewSchemaType } from '@/src/schemas/casinoPagePreview'
 import { SearchSchemaItemType, SearchSchemaType } from '@/src/schemas/search'
-import { id } from 'zod/v4/locales'
 import _ from 'lodash'
 import SubPageService from '@/src/services/SubPageService'
 import SlotPageService from '@/src/services/SlotPageService'
 import GuidePageService from '@/src/services/GuidePageService'
 import NewsPageService from '@/src/services/NewsPageService'
 import CasinoPageService from '@/src/services/CasinoPageService'
-import { ImageObjectSchemaType } from '@/src/schemas/imageObject'
 import Image from 'next/image'
-import { SubPageSchemaType } from '@/src/schemas/subPage'
-import { CasinoPageSchemaType } from '@/src/schemas/casinoPage'
 import { closedSearch, closeSearch, closingSearch } from '@/src/store/menuSlice'
 import { useAppSelector, useAppDispatch } from '@/src/store/hooks'
 
@@ -166,9 +162,14 @@ const SearchBox = () => {
         <div className="bg-white rounded-md max-h-[400px] p-4 overflow-y-scroll">
           <div className="mb-4">
             {resultGroups && resultGroups?.['casino-pages']?.length > 0 && (
-              <Heading text="Casinon" level={3} size={5} className="mb-3" />
+              <Heading
+                text="Casinon"
+                level={3}
+                sizes={[4, 4, 5]}
+                className="mb-3"
+              />
             )}
-            {resultGroups?.['casino-pages']?.map((item, index) => (
+            {resultGroups?.['casino-pages']?.map((item) => (
               <div
                 key={`${item.slug.current}`}
                 className="border-b border-slate-200 hover:bg-slate-100 pl-0"
@@ -193,7 +194,7 @@ const SearchBox = () => {
                     <Heading
                       text={item.title}
                       level={4}
-                      size={2}
+                      sizes={[1, 1, 2]}
                       className="!font-normal !text-md"
                     />
                     <Date
@@ -210,7 +211,12 @@ const SearchBox = () => {
           </div>
           <div className="mb-4">
             {resultGroups && resultGroups?.['guide-pages']?.length > 0 && (
-              <Heading text="Guidor" level={3} size={5} className="mb-3" />
+              <Heading
+                text="Guidor"
+                level={3}
+                sizes={[4, 4, 5]}
+                className="mb-3"
+              />
             )}
             {resultGroups?.['guide-pages']?.map((item, index) => (
               <div
@@ -237,7 +243,7 @@ const SearchBox = () => {
                     <Heading
                       text={item.title}
                       level={4}
-                      size={2}
+                      sizes={[1, 1, 2]}
                       className="!font-normal !text-md"
                     />
                     <Date
@@ -254,7 +260,12 @@ const SearchBox = () => {
           </div>
           <div className="mb-4">
             {resultGroups && resultGroups?.['news-pages']?.length > 0 && (
-              <Heading text="Nyheter" level={3} size={5} className="mb-3" />
+              <Heading
+                text="Nyheter"
+                level={3}
+                sizes={[4, 4, 5]}
+                className="mb-3"
+              />
             )}
             {resultGroups?.['news-pages']?.map((item, index) => (
               <div
@@ -281,7 +292,7 @@ const SearchBox = () => {
                     <Heading
                       text={item.title}
                       level={4}
-                      size={2}
+                      sizes={[1, 1, 2]}
                       className="!font-normal !text-md"
                     />
                     <Date
@@ -298,7 +309,12 @@ const SearchBox = () => {
           </div>
           <div className="mb-4">
             {resultGroups && resultGroups?.['slot-pages']?.length > 0 && (
-              <Heading text="Sloter" level={3} size={5} className="mb-3" />
+              <Heading
+                text="Sloter"
+                level={3}
+                sizes={[4, 4, 5]}
+                className="mb-3"
+              />
             )}
             {resultGroups?.['slot-pages']?.map((item, index) => (
               <div
@@ -325,7 +341,7 @@ const SearchBox = () => {
                     <Heading
                       text={item.title}
                       level={4}
-                      size={2}
+                      sizes={[1, 1, 2]}
                       className="!font-normal !text-md"
                     />
                     <Date
@@ -342,7 +358,12 @@ const SearchBox = () => {
           </div>
           <div className="mb-4">
             {resultGroups && resultGroups?.['pages']?.length > 0 && (
-              <Heading text="Sidor" level={3} size={5} className="mb-3" />
+              <Heading
+                text="Sidor"
+                level={3}
+                sizes={[4, 4, 5]}
+                className="mb-3"
+              />
             )}
             {resultGroups?.['pages']?.map((item, index) => (
               <div
@@ -369,7 +390,7 @@ const SearchBox = () => {
                     <Heading
                       text={item.title}
                       level={4}
-                      size={2}
+                      sizes={[1, 1, 2]}
                       className="!font-normal !text-md"
                     />
                     <Date

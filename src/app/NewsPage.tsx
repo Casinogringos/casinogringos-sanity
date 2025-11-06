@@ -1,22 +1,24 @@
-import ArticleHeader from '@/src/components/article/ArticleHeader'
-import AuthorBox from '@/src/components/content/AuthorBox'
-import Heading from '@/src/components/content/Heading'
 import ModularContent from '@/src/components/content/ModularContent'
 import Container from '@/src/components/layout/Container'
-import BreadCrumbs from '@/src/components/navigation/BreadCrumbs'
-import TableOfContents from '@/src/components/navigation/TableOfContents'
-import { getHeadingObjectsByPage, slugify } from '@/src/lib/helpers'
+import ArticleHeader from '@/src/components/article/ArticleHeader'
+import Heading from '@/src/components/content/Heading'
+import { getHeadingObjectsByPage } from '@/src/lib/utils'
 import { NewsPageSchemaType } from '@/src/schemas/newsPage'
 import { NewsPagePreviewSchemaType } from '@/src/schemas/newsPagePreview'
-import NewsPageService from '@/src/services/NewsPageService'
-import { getFeaturedImageStructuredData } from '@/src/structured-data/featuredImageStructuredData'
+import TableOfContents from '@/src/components/navigation/TableOfContents'
+import AuthorBox from '@/src/components/content/AuthorBox'
 import getNewsArticleStructuredData from '@/src/structured-data/newsArticleStructuredData'
-import { getOrganizationStructuredData } from '@/src/structured-data/organizationStructuredData'
+import BreadCrumbs from '@/src/components/navigation/BreadCrumbs'
+import Image from 'next/image'
 import { getWebPageStructuredData } from '@/src/structured-data/webPageStructuredData'
 import { getWebSiteStructuredData } from '@/src/structured-data/webSiteStructuredData'
-import Image from 'next/image'
-import ArticleCard from '../components/article/ArticleCard'
+import { getOrganizationStructuredData } from '@/src/structured-data/organizationStructuredData'
+import NewsPageService from '@/src/services/NewsPageService'
 import { HeadingObjectSchemaType } from '../schemas/headingObject'
+import { slugify } from '@/src/lib/utils'
+import ArticleCard from '../components/article/ArticleCard'
+import { getFeaturedImageStructuredData } from '@/src/structured-data/featuredImageStructuredData'
+import { RatingObjectSchemaType } from '@/src/schemas/ratingObject'
 
 const newsPageService = new NewsPageService()
 
@@ -77,12 +79,40 @@ export default function NewsPage({
         <Container narrow>
           <div className="mt-4 px-4 lg:mt-5 lg:px-0">
             <TableOfContents
-              headings={headingObjects.map(
-                (heading: HeadingObjectSchemaType) => ({
-                  text: heading.text,
-                  slug: `${page.slug.current}#${slugify(heading.text)}`,
-                })
-              )}
+              headings={headingObjects
+                .filter(
+                  (
+                    heading: HeadingObjectSchemaType | RatingObjectSchemaType
+                  ) => {
+                    if (heading._type === 'heading-object') {
+                      return heading.text
+                    }
+                    if (heading._type === 'rating-object') {
+                      return heading.title
+                    }
+                    return false
+                  }
+                )
+                .map(
+                  (
+                    heading: HeadingObjectSchemaType | RatingObjectSchemaType
+                  ) => {
+                    switch (heading._type) {
+                      case 'heading-object': {
+                        return {
+                          text: heading.text,
+                          slug: `${page.slug.current}#${slugify(heading.text)}`,
+                        }
+                      }
+                      case 'rating-object': {
+                        return {
+                          text: heading.title,
+                          slug: `${page.slug.current}#${slugify(heading.title)}`,
+                        }
+                      }
+                    }
+                  }
+                )}
             />
           </div>
         </Container>

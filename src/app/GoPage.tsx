@@ -4,17 +4,14 @@ import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 import { useEffect } from 'react'
 import Container from '@/src/components/layout/Container'
-import { AffiliateLinkSchemaType } from '@/src/schemas/affiliateLink'
+import { AffLinkSchemaType } from '@/src/schemas/affLink'
 import { getWebSiteStructuredData } from '@/src/structured-data/webSiteStructuredData'
 import { getOrganizationStructuredData } from '@/src/structured-data/organizationStructuredData'
 
-const GoPage = ({ affLink }: { affLink: AffiliateLinkSchemaType }) => {
+const GoPage = ({ affLink }: { affLink: AffLinkSchemaType }) => {
   const schema = {
     '@context': 'https://schema.org',
-    '@graph': [
-      getWebSiteStructuredData(),
-      getOrganizationStructuredData(),
-    ],
+    '@graph': [getWebSiteStructuredData(), getOrganizationStructuredData()],
   }
   const router = useRouter()
   const goToOperator = () => {
@@ -26,7 +23,6 @@ const GoPage = ({ affLink }: { affLink: AffiliateLinkSchemaType }) => {
     }, 1000)
     // document.body.classList.add('overflow-hidden')
   })
-  const { referencedBy } = affLink
 
   return (
     <>
@@ -92,22 +88,24 @@ const GoPage = ({ affLink }: { affLink: AffiliateLinkSchemaType }) => {
                 }
               ></div>
             </div>
-            <div
-              className={
-                'h-28 w-28 md:h-32 md:w-32 relative rounded-md overflow-hidden'
-              }
-            >
-              <Image
-                src={referencedBy.find((item: any) => item._type === 'casino-pages')?.featuredImage.src}
-                alt={referencedBy.find((item: any) => item._type === 'casino-pages')?.featuredImage.altText}
-                width={160}
-                height={60}
-              />
-            </div>
+            {affLink.logo && (
+              <div
+                className={
+                  'h-28 w-28 md:h-32 md:w-32 relative rounded-md overflow-hidden'
+                }
+              >
+                <Image
+                  src={affLink.logo.src}
+                  alt={affLink.logo.alt}
+                  width={160}
+                  height={60}
+                />
+              </div>
+            )}
           </div>
           <p className={'text-center text-lg text-slate-400'}>
             Om du inte blir skickad vidare till{' '}
-            <span className={'italic text-white'}>{referencedBy.title}</span> kan
+            <span className={'italic text-white'}>{affLink.title}</span> kan
             du&nbsp;
             <span
               className={'cursor-pointer text-primary'}

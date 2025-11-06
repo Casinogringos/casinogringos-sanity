@@ -1,7 +1,5 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { SubPageSchemaType } from '@/src/schemas/subPage'
-import { CasinoPageSchemaType } from '@/src/schemas/casinoPage'
 
 interface IconProps {
   className?: string
@@ -81,11 +79,17 @@ const navigation = {
 const Footer = ({
   siteLinks,
   popularCasinos,
-  latestReviews
+  latestReviews,
 }: {
-  siteLinks: { items: { page: { _id: string; slug: { current: string; }, title: string } }[] }
-  popularCasinos: { items: { page: { _id: string; slug: { current: string; }, title: string } }[] }
-  latestReviews: { items: { page: { _id: string; slug: { current: string; }, title: string } }[] }
+  siteLinks: {
+    items: { page: { _id: string; slug: { current: string }; title: string } }[]
+  }
+  popularCasinos: {
+    items: { page: { _id: string; slug: { current: string }; title: string } }[]
+  }
+  latestReviews: {
+    items: { page: { _id: string; slug: { current: string }; title: string } }[]
+  }
 }) => {
   const year = new Date().getFullYear()
 

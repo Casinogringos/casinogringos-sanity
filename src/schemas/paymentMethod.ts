@@ -1,6 +1,6 @@
-import { z } from 'zod';
-import { DashboardImageObjectSchema } from './dashboardImageObject';
-import { PaymentMethodTypeSchema } from './paymentMethodType';
+import { z } from 'zod'
+import { DashboardImageObjectSchema } from './dashboardImageObject'
+import { PaymentMethodTypeSchema } from './paymentMethodType'
 
 export const PaymentMethodSchema = z.object({
   _type: z.literal('payment-methods'),
@@ -12,11 +12,20 @@ export const PaymentMethodSchema = z.object({
   logo: DashboardImageObjectSchema,
   type: PaymentMethodTypeSchema,
   supportedTransactionTypes: z.string(),
+  linkedPage: z.object({
+    _type: z.string(),
+    _id: z.string(),
+    _key: z.string(),
+    title: z.string(),
+    slug: z.object({
+      current: z.string(),
+    }),
+  }),
   withdrawalTime: z.array(z.number()),
   advantages: z.array(z.string()),
   disadvantages: z.array(z.string()),
   _createdAt: z.string(),
   _updatedAt: z.string(),
-});
+})
 
-export type PaymentMethodSchemaType = z.infer<typeof PaymentMethodSchema>;
+export type PaymentMethodSchemaType = z.infer<typeof PaymentMethodSchema>

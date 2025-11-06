@@ -1,7 +1,7 @@
 'use client'
 
 import { JSX, createElement } from 'react'
-import { slugify } from '@/src/lib/helpers'
+import { slugify } from '@/src/lib/utils'
 import { jakarta } from '@/src/styles/fonts'
 
 const Heading = ({
@@ -10,7 +10,7 @@ const Heading = ({
   index,
   className = '',
   children,
-  sizes = [6, 8, 10]
+  sizes = [6, 8, 10],
 }: {
   text?: string
   level: number

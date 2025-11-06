@@ -12,11 +12,8 @@ import { SportSchema } from './sport'
 import { GameProviderSchema } from './gameProvider'
 import { ContactMethodSchema } from './contactMethod'
 import { CasinoRatingSchema } from './casinoRating'
-import { PaymentMethodPageSchema } from './paymentMethodPage'
-import { CasinoBonusPageSchema } from './casinoBonusPage'
-import { FreeSpinsPageSchema } from './freeSpinsPage'
-import { OddsBonusPageSchema } from './oddsBonusPage'
-import { LiveCasinoBonusPageSchema } from './liveCasinoBonusPage'
+import { PaymentMethodSchema } from '@/src/schemas/paymentMethod'
+import AffLinkSchema from '@/src/schemas/affLink'
 
 export const CasinoSchema = z.object({
   _type: z.literal('casinos'),
@@ -26,10 +23,11 @@ export const CasinoSchema = z.object({
     _type: z.literal('slug'),
     current: z.string(),
   }),
+  affLink: AffLinkSchema,
   name: z.string(),
   brandColor: z.string(),
-  casinoBonusPages: z.array(CasinoBonusPageSchema).optional(),
-  freeSpinsPages: z.array(FreeSpinsPageSchema),
+  casinoBonuses: z.array(CasinoBonusSchema).optional(),
+  freeSpins: z.array(FreeSpinsSchema),
   advantages: z.array(z.string()),
   disadvantages: z.array(z.string()),
   owner: OwnerSchema,
@@ -39,8 +37,8 @@ export const CasinoSchema = z.object({
   minimumDeposit: z.number(),
   terms: z.string().optional(),
   websiteAddress: z.string(),
-  oddsBonusPages: z.array(OddsBonusPageSchema),
-  liveCasinoBonusPages: z.array(LiveCasinoBonusPageSchema),
+  oddsBonuses: z.array(OddsBonusSchema),
+  liveCasinoBonuses: z.array(LiveCasinoBonusSchema),
   defaultBonusText: z.string(),
   app: z.boolean(),
   typesOfGames: z.array(GameTypeSchema),
@@ -57,12 +55,8 @@ export const CasinoSchema = z.object({
   openingHours: z.string(),
   contactMethods: z.array(ContactMethodSchema),
   overallRating: z.number(),
-  availableDepositMethods: z.array(z.object({
-    depositMethodPages: z.array(PaymentMethodPageSchema),
-  })),
-  availableWithdrawalMethods: z.array(z.object({
-    withdrawalMethodPages: z.array(PaymentMethodPageSchema),
-  })),
+  availableDepositMethods: z.array(PaymentMethodSchema),
+  availableWithdrawalMethods: z.array(PaymentMethodSchema),
   casinoRatings: z.array(CasinoRatingSchema),
 })
 

@@ -5,7 +5,6 @@ import GroupObject from '@/src/components/layout/GroupObject'
 import { PortableText } from 'next-sanity'
 import Container from '@/src/components/layout/Container'
 import ImageObject from '@/src/components/objects/ImageObject'
-import Heading from '@/src/components/content/Heading'
 import ListObject from '@/src/components/objects/ListObject'
 import ColumnsObject from '@/src/components/layout/ColumnsObject'
 import Placeholder from '@/src/components/utils/Placeholder'
@@ -18,7 +17,6 @@ import RatingObject from '@/src/components/objects/RatingObject'
 import FAQObject from '@/src/components/content/FAQObject'
 import { ModularContentSchemaType } from '@/src/schemas/modularContent'
 import { ModularContentItemSchemaType } from '@/src/schemas/modularContent'
-import CasinoListObject from '../casino/CasinoTableObject'
 import HTMLObject from '@/src/components/objects/HTMLObject'
 import SlotListObject from '@/src/components/objects/SlotListObject'
 import CasinoTableObject from '../casino/CasinoTableObject'
@@ -27,31 +25,24 @@ import HeadingObject from '@/src/components/objects/HeadingObject'
 import BonusObject from '@/src/components/objects/BonusObject'
 import SliderObject from '@/src/components/objects/SliderObject'
 import SectionObject from '../objects/SectionObject'
-import { difference } from 'lodash'
 import ToggleObject from '../objects/ToggleObject'
 
 const renderObject = ({
   object,
   outerIndex,
-  padding = false,
   casino,
-  backgroundColor,
   narrow,
   prose,
   nested,
   bonusCategories,
-  last
 }: {
   object: ModularContentItemSchemaType
   outerIndex: number
-  padding?: boolean
   casino?: CasinoSchemaType
-  backgroundColor?: string
   narrow?: boolean
   prose?: boolean
   nested?: boolean
-  bonusCategories?: string[]
-  last?: boolean
+  bonusCategories?: { value: string }[]
 }) => {
   if (!object) return null
   switch (object._type) {
@@ -65,9 +56,7 @@ const renderObject = ({
       )
     }
     case 'paragraph-object': {
-      return (
-        <PortableText value={object.content} />
-      )
+      return <PortableText value={object.content} />
     }
     case 'image-object': {
       return <ImageObject prose={prose} object={object} rounded="lg" />
@@ -88,7 +77,9 @@ const renderObject = ({
       return <CasinoObject object={object} />
     }
     case 'casino-table-object': {
-      return <CasinoTableObject object={object} bonusCategories={bonusCategories} />
+      return (
+        <CasinoTableObject object={object} bonusCategories={bonusCategories} />
+      )
     }
     case 'bonus-object': {
       if (!object.casino) {
@@ -98,9 +89,6 @@ const renderObject = ({
     }
     case 'section-object': {
       return <SectionObject object={object} />
-    }
-    case 'table-object': {
-      return <Placeholder message={'Table Object: Missing table'} />
     }
     case 'button-object': {
       return <ButtonObject object={object} />
@@ -129,7 +117,7 @@ const renderObject = ({
     }
     case 'old-table-object': {
       return (
-        <div className='overflow-x-auto'>
+        <div className="overflow-x-auto">
           <HTMLObject object={object} />
         </div>
       )
@@ -150,7 +138,6 @@ const ModularContent = ({
   className = '',
   bonusCategories,
   casino,
-  backgroundColor,
   narrow,
   prose = true,
   nested = false,
@@ -159,12 +146,10 @@ const ModularContent = ({
   className?: string
   nested?: boolean
   casino?: CasinoSchemaType
-  bonusCategories?: string[]
-  backgroundColor?: string
+  bonusCategories?: { value: string }[]
   narrow?: boolean
   prose?: boolean
 }) => {
-  // if (!nested) await writeDataToTestFile(objects)
   if (!objects) return null
   const Tag = nested ? 'div' : Container
   return (
@@ -181,12 +166,10 @@ const ModularContent = ({
                 object,
                 outerIndex,
                 casino,
-                backgroundColor,
                 narrow,
                 prose,
                 nested,
                 bonusCategories,
-                last: outerIndex === objects.length - 1,
               })}
             </Fragment>
           )

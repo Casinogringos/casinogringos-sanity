@@ -1,7 +1,7 @@
 'use client'
 
 import Placeholder from '@/src/components/utils/Placeholder'
-import { isCurrentPath } from '@/src/lib/helpers'
+import { isCurrentPath } from '@/src/lib/utils'
 import { useAppDispatch } from '@/src/store/hooks'
 import {
   closedMainMenu,

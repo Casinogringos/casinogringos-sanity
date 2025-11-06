@@ -1,4 +1,4 @@
-import { FAQObject as FAQObjectType } from '@/src/types'
+import { FAQObjectSchemaType } from '@/src/schemas/faqObject'
 import { PortableText } from 'next-sanity'
 import Heading from '@/src/components/content/Heading'
 import ToggleButton from '@/src/components/interactivity/ToggleButton'
@@ -6,7 +6,7 @@ import ToggleItem from '@/src/components/interactivity/ToggleItem'
 import { ChevronDown } from 'lucide-react'
 import ToggleSpin from '@/src/components/interactivity/ToggleSpin'
 
-const FAQObject = ({ object }: { object: FAQObjectType }) => {
+const FAQObject = ({ object }: { object: FAQObjectSchemaType }) => {
   return (
     <section>
       <PortableText value={object.description} />

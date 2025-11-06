@@ -1,6 +1,7 @@
 import { getServerSideSitemap } from 'next-sitemap'
 import { getPageBySlug, getSitemap } from '@/src/lib/api'
-import { GuidePageSchemaType, SubPageSchemaType } from '@/src/schemas'
+import { SubPageSchemaType } from '@/src/schemas/subPage'
+import { GuidePageSchemaType } from '@/src/schemas/guidePage'
 import ImageService from '@/src/services/ImageService'
 import { IImageEntry } from 'next-sitemap'
 import GuidePageService from '@/src/services/GuidePageService'
@@ -39,7 +40,9 @@ export async function GET() {
     if (contentImages?.length) {
       allImages.push(...contentImages)
     }
-    const imagesXML: IImageEntry[] = imageService.getImagesXML(allImages).filter((image) => image !== null)
+    const imagesXML: IImageEntry[] = imageService
+      .getImagesXML(allImages)
+      .filter((image) => image !== null)
 
     return {
       loc: `${process.env.SITE_URL}${guidesIndexPage.slug.current}`,

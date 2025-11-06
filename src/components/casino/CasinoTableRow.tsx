@@ -1,45 +1,55 @@
 import Link from '@/src/components/content/Link'
-import { CasinoPageSchemaType } from '@/src/schemas/casinoPage'
-import { CasinoPagePreviewSchemaType } from '@/src/schemas/casinoPagePreview'
 import CasinoService from '@/src/services/CasinoService'
+import { CasinoSchemaType } from '@/src/schemas/casino'
 
 const CasinoTableRow = ({
-  casinoPage,
+  casino,
   index,
   bonusCategories,
 }: {
-  casinoPage: CasinoPageSchemaType | CasinoPagePreviewSchemaType
+  casino: CasinoSchemaType
   index: number
-  bonusCategories: { value: string }[]
+  bonusCategories?: { value: string }[]
 }) => {
   const casinoService = new CasinoService()
-  const { casino } = casinoPage
-  const bonusCategory = casinoService.chooseBonusCategory({ categories: bonusCategories, casinoPage })
-  const bonusPage = casinoService.getBonusPage({ casinoPage, category: bonusCategory })
-  const numberOfFreeSpins = casinoPage.freeSpinsPages?.[0]?.freeSpinsBonus?.numberOfFreeSpins ?? false
+  const bonusCategory = casinoService.chooseBonusCategory({
+    categories: bonusCategories ?? [],
+    casino,
+  })
+  const bonus = casinoService.getBonus({
+    casino,
+    category: bonusCategory,
+  })
+  const numberOfFreeSpins = casino.freeSpins?.[0]?.numberOfFreeSpins ?? false
   const getBonusString = () => {
-    if (!bonusPage) return
-    switch (bonusPage._type) {
-      case 'casino-bonus-pages': {
-        const casinoBonusAmount = bonusPage.casinoBonus.bonusAmountRange[1]
-        const casinoBonusPercentage = bonusPage.casinoBonus.bonusPercentage
-        if ((!casinoBonusAmount || !casinoBonusPercentage) && !numberOfFreeSpins) {
+    if (!bonus) return
+    switch (bonus._type) {
+      case 'casino-bonuses': {
+        const casinoBonusAmount = bonus.bonusAmountRange.max
+        const casinoBonusPercentage = bonus.bonusPercentage
+        if (
+          (!casinoBonusAmount || !casinoBonusPercentage) &&
+          !numberOfFreeSpins
+        ) {
           return null
         }
-        return `${casinoBonusPercentage && casinoBonusAmount ? casinoBonusPercentage + '% up to ' + casinoBonusAmount : ''}${numberOfFreeSpins ? ' + ' + numberOfFreeSpins + ' freespins' : ''}`
+        return `${casinoBonusPercentage && casinoBonusAmount ? casinoBonusPercentage + '% up to ' + casinoBonusAmount : ''}${casinoBonusPercentage && casinoBonusAmount && numberOfFreeSpins ? ' + ' : ''}${numberOfFreeSpins ? numberOfFreeSpins + ' freespins' : ''}`
       }
-      case 'odds-bonus-pages': {
-        const oddsBonus = bonusPage.oddsBonus.bonusAmountRange[1]
+      case 'odds-bonuses': {
+        const oddsBonus = bonus.bonusAmountRange.max
         if (!oddsBonus && !numberOfFreeSpins) return null
-        return `${oddsBonus ? oddsBonus + ' kr bonus' : ''}${numberOfFreeSpins ? ' + ' + numberOfFreeSpins + ' freespins' : ''}`
+        return `${oddsBonus ? oddsBonus + ' kr bonus' : ''}${oddsBonus && numberOfFreeSpins ? ' + ' : ''}${numberOfFreeSpins ? numberOfFreeSpins + ' freespins' : ''}`
       }
-      case 'live-casino-bonus-pages': {
-        const liveCasinoBonusPercentage = bonusPage.liveCasinoBonus.bonusPercentage
-        const liveCasinoBonusAmount = bonusPage.liveCasinoBonus.bonusAmountRange.max
-        if ((!liveCasinoBonusPercentage || !liveCasinoBonusAmount) && !numberOfFreeSpins) {
+      case 'live-casino-bonuses': {
+        const liveCasinoBonusPercentage = bonus.bonusPercentage
+        const liveCasinoBonusAmount = bonus.bonusAmountRange.max
+        if (
+          (!liveCasinoBonusPercentage || !liveCasinoBonusAmount) &&
+          !numberOfFreeSpins
+        ) {
           return null
         }
-        return `${liveCasinoBonusPercentage && liveCasinoBonusAmount ? liveCasinoBonusPercentage + '% up to ' + liveCasinoBonusAmount : ''}${numberOfFreeSpins ? ' + ' + numberOfFreeSpins + ' freespins' : ''}`
+        return `${liveCasinoBonusPercentage && liveCasinoBonusAmount ? liveCasinoBonusPercentage + '% up to ' + liveCasinoBonusAmount : ''}${liveCasinoBonusPercentage && liveCasinoBonusAmount && numberOfFreeSpins ? ' + ' : ''}${numberOfFreeSpins ? numberOfFreeSpins + ' freespins' : ''}`
       }
       default:
         return null
@@ -50,27 +60,31 @@ const CasinoTableRow = ({
   return (
     <tr>
       <td className="text-center text-slate-500 font-bold">{index + 1}</td>
-      <td className="text-center">{casinoPage.title}</td>
-      <td className="text-center font-bold">{bonusString ?? casino.defaultBonusText}</td>
+      <td className="text-center">{casino.name}</td>
+      <td className="text-center font-bold">
+        {bonusString ?? casino.defaultBonusText}
+      </td>
       <td className="text-center">
-        {casinoPage.affLink?.slug.current && <Link
-          href={`/go${casinoPage.affLink.slug.current}`}
-          target="_blank"
-          rel="noopener noreferrer nofollow"
-          prefetch={false}
-          variant={'affiliate'}
-          size="md"
-          className="ml-auto"
-          plausible={{
-            eventName: 'AffiliateClick',
-            props: {
-              buttonId: casinoPage.title,
-              place: 'Content',
-            },
-          }}
-        >
-          Till Casinot
-        </Link>}
+        {casino.affLink?.slug.current && (
+          <Link
+            href={`/go${casino.affLink.slug.current}`}
+            target="_blank"
+            rel="noopener noreferrer nofollow"
+            prefetch={false}
+            variant={'affiliate'}
+            size="md"
+            className="ml-auto"
+            plausible={{
+              eventName: 'AffiliateClick',
+              props: {
+                buttonId: casino.name,
+                place: 'Content',
+              },
+            }}
+          >
+            Till Casinot
+          </Link>
+        )}
       </td>
     </tr>
   )

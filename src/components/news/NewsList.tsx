@@ -1,17 +1,14 @@
 import Heading from '@/src/components/content/Heading'
 import Link from '@/src/components/content/Link'
-import { NewsPageSchemaType } from '@/src/schemas/newsPage'
 import ArticleCard from '@/src/components/article/ArticleCard'
-import NewsPageService from '@/src/services/NewsPageService'
-
-const newsPageService = new NewsPageService()
+import { NewsPagePreviewSchemaType } from '@/src/schemas/newsPagePreview'
 
 const NewsList = ({
   items,
   itemComponent,
   cardBackground,
 }: {
-  items: NewsPageSchemaType[]
+  items: NewsPagePreviewSchemaType[]
   itemComponent: typeof ArticleCard
   cardBackground?: boolean
 }) => {
@@ -33,7 +30,13 @@ const NewsList = ({
           uppdaterad med det senaste inom casinovärlden.
         </p>
         <div className="mx-auto mt-8 grid max-w-2xl auto-rows-fr grid-cols-1 items-start gap-x-8 gap-y-6 lg:mx-0 lg:max-w-none lg:grid-cols-3 lg:gap-y-20">
-          {items.map((item) => <ItemComponent item={item} key={item._id} cardBackground={cardBackground} />)}
+          {items.map((item) => (
+            <ItemComponent
+              item={item}
+              key={item._id}
+              cardBackground={cardBackground}
+            />
+          ))}
         </div>
         <div className="flex">
           <Link

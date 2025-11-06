@@ -4,7 +4,7 @@ import {
   getStaticParams,
 } from '@/src/lib/api'
 import { notFound } from 'next/navigation'
-import { formatPageSlug } from '@/src/lib/utility'
+import { formatPageSlug } from '@/src/lib/utils'
 import GuidePage from '@/src/app/GuidePage'
 import { Metadata } from 'next'
 import { GuidePageSchemaType } from '@/src/schemas/guidePage'
@@ -64,5 +64,7 @@ export async function generateStaticParams() {
   const allGuidesPages: GuidePageSchemaType[] =
     await getStaticParams('guide-pages')
 
-  return allGuidesPages.map((page) => ({ slug: page.slug.current.replace('/guider/', '') }))
+  return allGuidesPages.map((page) => ({
+    slug: page.slug.current.replace('/guider/', ''),
+  }))
 }

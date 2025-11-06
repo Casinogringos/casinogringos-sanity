@@ -1,3 +1,5 @@
+import { imageProjection } from '@/src/data/projections/imageProjection'
+
 export const affLinkProjection = `
   _type,
   _id,
@@ -5,5 +7,8 @@ export const affLinkProjection = `
   slug {
     current
   },
-  link
+  link,
+  logo {
+    ${imageProjection}
+  }
 `

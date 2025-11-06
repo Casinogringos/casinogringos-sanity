@@ -1,5 +1,5 @@
 import { ChevronDown } from 'lucide-react'
-import { isCurrentPath } from '@/src/lib/helpers'
+import { isCurrentPath } from '@/src/lib/utils'
 import Link from '@/src/components/content/Link'
 import ToggleButton from '@/src/components/interactivity/ToggleButton'
 import ToggleItem from '@/src/components/interactivity/ToggleItem'
@@ -13,7 +13,7 @@ const Menu = ({
   pathname,
 }: {
   menu: MenuSchemaType
-  pathname: string | null
+  pathname: string
 }) => {
   return (
     <nav aria-labelledby="sidebarmenu">

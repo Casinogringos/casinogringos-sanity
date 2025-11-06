@@ -11,16 +11,15 @@ import { getWebSiteStructuredData } from '@/src/structured-data/webSiteStructure
 import { getOrganizationStructuredData } from '@/src/structured-data/organizationStructuredData'
 import FAQ from '@/src/components/content/FAQ'
 import AuthorBox from '@/src/components/content/AuthorBox'
-import NewsCard from '@/src/components/news/NewsCard'
-import { getHeadingObjectsByPage } from '@/src/lib/helpers'
+import { getHeadingObjectsByPage } from '@/src/lib/utils'
 import PageService from '@/src/services/SubPageService'
 import ArticleCard from '../components/article/ArticleCard'
 import { SubPageSchemaType } from '@/src/schemas/subPage'
-import { NewsPageSchemaType } from '@/src/schemas/newsPage'
-import { BreadcrumbsSchemaType } from '@/src/schemas/breadcrumbs'
-import { slugify } from '@/src/lib/helpers'
+import { slugify } from '@/src/lib/utils'
 import { HeadingObjectSchemaType } from '../schemas/headingObject'
 import { getItemListStructuredData } from '../structured-data/itemListStructuredData'
+import { NewsPagePreviewSchemaType } from '@/src/schemas/newsPagePreview'
+import { RatingObjectSchemaType } from '@/src/schemas/ratingObject'
 
 const pageService = new PageService()
 
@@ -30,13 +29,15 @@ const HomePage = ({
   toplistCategories,
 }: {
   page: SubPageSchemaType
-  news: NewsPageSchemaType[]
-  toplistCategories: string[]
+  news: NewsPagePreviewSchemaType[]
+  toplistCategories: { value: string }[]
 }) => {
   const isValid = pageService.validatePage(page)
   if (!isValid) return null
   const { faqs, author, _updatedAt, reviewer } = page
-  const headingObjects = getHeadingObjectsByPage({ objects: page.content })
+  const headingObjects: Array<
+    HeadingObjectSchemaType | RatingObjectSchemaType
+  > = getHeadingObjectsByPage({ objects: page.content })
   const schema = {
     '@context': 'https://schema.org',
     '@graph': [
@@ -62,7 +63,7 @@ const HomePage = ({
         <div className="bg-slate-100">
           <Container className="pb-16">
             <CasinoList
-              casinoPages={page.toplist.casinos}
+              casinos={page.toplist.casinos}
               title={page.toplist.title}
               description={page.toplist.description}
               itemComponent={CasinoCard}
@@ -76,17 +77,50 @@ const HomePage = ({
         <Container narrow>
           <div className="pt-12 lg:pt-16">
             <TableOfContents
-              headings={headingObjects.map(
-                (heading: HeadingObjectSchemaType) => ({
-                  text: heading.text,
-                  slug: `${page.slug.current}#${slugify(heading.text)}`,
-                })
-              )}
+              headings={headingObjects
+                .filter(
+                  (
+                    heading: HeadingObjectSchemaType | RatingObjectSchemaType
+                  ) => {
+                    if (heading._type === 'heading-object') {
+                      return heading.text
+                    }
+                    if (heading._type === 'rating-object') {
+                      return heading.title
+                    }
+                    return false
+                  }
+                )
+                .map(
+                  (
+                    heading: HeadingObjectSchemaType | RatingObjectSchemaType
+                  ) => {
+                    switch (heading._type) {
+                      case 'heading-object': {
+                        return {
+                          text: heading.text,
+                          slug: `${page.slug.current}#${slugify(heading.text)}`,
+                        }
+                      }
+                      case 'rating-object': {
+                        return {
+                          text: heading.title,
+                          slug: `${page.slug.current}#${slugify(heading.title)}`,
+                        }
+                      }
+                    }
+                  }
+                )}
             />
           </div>
         </Container>
       )}
-      <ModularContent className="py-10" narrow objects={page.content} bonusCategories={toplistCategories} />
+      <ModularContent
+        className="py-10"
+        narrow
+        objects={page.content}
+        bonusCategories={toplistCategories}
+      />
       {author && (
         <Container narrow>
           <AuthorBox

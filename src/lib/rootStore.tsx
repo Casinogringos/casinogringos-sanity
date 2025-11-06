@@ -1,6 +1,12 @@
 'use client'
 
-import { createContext, useState, Dispatch, SetStateAction } from 'react'
+import {
+  createContext,
+  useState,
+  Dispatch,
+  SetStateAction,
+  ReactNode,
+} from 'react'
 
 type StoreContextType = {
   menuSidebarOpen: boolean
@@ -24,7 +30,7 @@ const RootStore = createContext<StoreContextType>({
   setOpenToggleIds: () => {},
 })
 
-export const RootStoreProvider = ({ children }) => {
+export const RootStoreProvider = ({ children }: { children: ReactNode }) => {
   const [menuSidebarOpen, setMenuSidebarOpen] = useState(false)
   const [notificationSidebarOpen, setNotificationSidebarOpen] = useState(false)
   const [searchOpen, setSearchOpen] = useState(false)

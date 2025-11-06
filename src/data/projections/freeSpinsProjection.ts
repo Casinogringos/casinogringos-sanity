@@ -1,6 +1,7 @@
 import { freeSpinsTypeProjection } from '@/src/data/projections/freeSpinsTypeProjection'
 import { gameProjection } from '@/src/data/projections/gameProjection'
 import { paymentMethodProjection } from '@/src/data/projections/paymentMethodProjection'
+import { affLinkProjection } from '@/src/data/projections/affLinkProjection'
 
 export const freeSpinsProjection = `
     _type,
@@ -10,6 +11,9 @@ export const freeSpinsProjection = `
     name,
     freeSpinsType-> {
         ${freeSpinsTypeProjection}
+    },
+    affLink-> {
+        ${affLinkProjection}
     },
     numberOfFreeSpins,
     wageringRequirements,

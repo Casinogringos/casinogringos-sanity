@@ -1,22 +1,25 @@
+import ModularContent from '@/src/components/content/ModularContent'
+import getReviewStructuredData from '@/src/structured-data/reviewStructuredData'
+import { CasinoPageSchemaType } from '@/src/schemas/casinoPage'
+import getProductStructuredData from '@/src/structured-data/productStructuredData'
 import CasinoHero from '@/src/components/casino/CasinoHero'
+import BreadCrumbs from '@/src/components/navigation/BreadCrumbs'
 import CasinoInfo from '@/src/components/casino/CasinoInfo'
-import AuthorBox from '@/src/components/content/AuthorBox'
 import Avatar from '@/src/components/content/Avatar'
+import TableOfContents from '@/src/components/navigation/TableOfContents'
+import { getHeadingObjectsByPage } from '@/src/lib/utils'
+import Container from '@/src/components/layout/Container'
+import CasinoPageService from '@/src/services/CasinoPageService'
 import Heading from '@/src/components/content/Heading'
 import Link from '@/src/components/content/Link'
-import ModularContent from '@/src/components/content/ModularContent'
-import Container from '@/src/components/layout/Container'
-import BreadCrumbs from '@/src/components/navigation/BreadCrumbs'
-import TableOfContents from '@/src/components/navigation/TableOfContents'
-import Placeholder from '@/src/components/utils/Placeholder'
-import { getHeadingObjectsByPage, slugify } from '@/src/lib/helpers'
-import { CasinoPageSchemaType } from '@/src/schemas/casinoPage'
-import CasinoPageService from '@/src/services/CasinoPageService'
-import { getOrganizationStructuredData } from '@/src/structured-data/organizationStructuredData'
-import getProductStructuredData from '@/src/structured-data/productStructuredData'
-import getReviewStructuredData from '@/src/structured-data/reviewStructuredData'
-import { getWebSiteStructuredData } from '@/src/structured-data/webSiteStructuredData'
 import Image from 'next/image'
+import { getWebSiteStructuredData } from '@/src/structured-data/webSiteStructuredData'
+import { getOrganizationStructuredData } from '@/src/structured-data/organizationStructuredData'
+import { slugify } from '@/src/lib/utils'
+import Placeholder from '@/src/components/utils/Placeholder'
+import { HeadingObjectSchemaType } from '@/src/schemas/headingObject'
+import { RatingObjectSchemaType } from '@/src/schemas/ratingObject'
+import CasinoSticky from '@/src/components/casino/CasinoSticky'
 
 const CasinoPage = ({
   casinoPage,
@@ -49,7 +52,8 @@ const CasinoPage = ({
       url: `${process.env.SITE_URL}${casinoPage.slug.current}`,
     },
   ]
-  const headings = getHeadingObjectsByPage({ objects: casinoPage.content })
+  const headings: Array<HeadingObjectSchemaType | RatingObjectSchemaType> =
+    getHeadingObjectsByPage({ objects: casinoPage.content })
 
   return (
     <>
@@ -105,6 +109,12 @@ const CasinoPage = ({
                         return {
                           text: heading.text,
                           slug: `${casinoPage.slug.current}#${slugify(heading.text)}`,
+                        }
+                      }
+                      case 'rating-object': {
+                        return {
+                          text: heading.title,
+                          slug: `${casinoPage.slug.current}#${slugify(heading.title)}`,
                         }
                       }
                     }
@@ -174,7 +184,7 @@ const CasinoPage = ({
           </section>
         )}
       </article>
-      {/*{page?.postType?.affiliateLink && <StickyCasino item={page} />}*/}
+      <CasinoSticky casino={casinoPage.casino} />
     </>
   )
 }

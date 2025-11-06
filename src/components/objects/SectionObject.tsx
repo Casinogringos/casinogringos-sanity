@@ -17,10 +17,7 @@ const SectionObject = ({ object }: { object: SectionObjectSchemaType }) => {
 
   return (
     <section className={className}>
-      <ModularContent
-        objects={object.content}
-        backgroundColor={object.backgroundColor}
-      />
+      <ModularContent objects={object.content} />
     </section>
   )
 }

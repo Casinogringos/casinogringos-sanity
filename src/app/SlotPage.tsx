@@ -1,32 +1,30 @@
-import CasinoCard from '@/src/components/casino/CasinoCard'
-import Avatar from '@/src/components/content/Avatar'
-import Heading from '@/src/components/content/Heading'
-import ModularContent from '@/src/components/content/ModularContent'
-import HalfStarIcon from '@/src/components/icons/HalfStarIcon'
 import Star from '@/src/components/icons/StarIcon'
-import Container from '@/src/components/layout/Container'
+import HalfStarIcon from '@/src/components/icons/HalfStarIcon'
+import ModularContent from '@/src/components/content/ModularContent'
+import Avatar from '@/src/components/content/Avatar'
 import BreadCrumbs from '@/src/components/navigation/BreadCrumbs'
-import TableOfContents from '@/src/components/navigation/TableOfContents'
-import SlotCard from '@/src/components/slot/SlotCard'
+import Container from '@/src/components/layout/Container'
 import SlotHero from '@/src/components/slot/SlotHero'
+import TableOfContents from '@/src/components/navigation/TableOfContents'
 import { SlotPageSchemaType } from '@/src/schemas/slotPage'
 import { SlotPagePreviewSchemaType } from '@/src/schemas/slotPagePreview'
-import CasinoPageService from '@/src/services/CasinoPageService'
-import SlotPageService from '@/src/services/SlotPageService'
-import { getOrganizationStructuredData } from '@/src/structured-data/organizationStructuredData'
 import getSlotReviewStructuredData from '@/src/structured-data/slotReviewStructuredData'
+import SlotPageService from '@/src/services/SlotPageService'
+import Image from 'next/image'
+import Heading from '@/src/components/content/Heading'
+import { PortableText } from 'next-sanity'
+import CasinoCard from '@/src/components/casino/CasinoCard'
 import { getWebPageStructuredData } from '@/src/structured-data/webPageStructuredData'
 import { getWebSiteStructuredData } from '@/src/structured-data/webSiteStructuredData'
-import { PortableText } from 'next-sanity'
-import Image from 'next/image'
-import Placeholder from '../components/utils/Placeholder'
-import { slugify } from '../lib/helpers'
+import { getOrganizationStructuredData } from '@/src/structured-data/organizationStructuredData'
+import SlotCard from '@/src/components/slot/SlotCard'
 import { HeadingObjectSchemaType } from '../schemas/headingObject'
+import { slugify } from '@/src/lib/utils'
+import Placeholder from '../components/utils/Placeholder'
 import { getFeaturedImageStructuredData } from '../structured-data/featuredImageStructuredData'
 import getGameStructuredData from '../structured-data/gameStructuredData'
 
 const slotPageService = new SlotPageService()
-const casinoPageService = new CasinoPageService()
 
 const SlotPage = ({
   slotPage,
@@ -220,7 +218,7 @@ const SlotPage = ({
           </Container>
         )}
         <ModularContent className="py-5" objects={slotPage.content} narrow />
-        {relatedCasinos.filter((casino) => casino.casino) && (
+        {relatedCasinos.filter((casino) => casino) && (
           <section id="spela" className="bg-dark  py-12 lg:pb-16 lg:pt-20">
             <div className="mx-auto max-w-6xl px-4 text-left lg:px-8">
               <h2 className="mb-2 flex max-w-2xl items-start gap-4 text-xl font-bold text-white lg:max-w-full lg:items-center lg:text-2xl">
@@ -230,7 +228,7 @@ const SlotPage = ({
                 {relatedCasinos.slice(0, 3).map((casino, i) => (
                   <div key={`casino-${casino._id}`}>
                     <CasinoCard
-                      casinoPage={casino}
+                      casino={casino}
                       index={i}
                       categories={[
                         { value: 'casino-bonus' },

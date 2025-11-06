@@ -20,13 +20,13 @@ const ColumnsObject = ({ object }: { object: ColumnsObjectType }) => {
             style={
               column.width
                 ? // @ts-expect-error -- invalid css class
-                // @
-                { '--column-block-width': column.width }
+                  // @
+                  { '--column-block-width': column.width }
                 : {}
             }
             className={`column-block rounded-md pb-4 min-w-0 break-words lg:flex-grow lg:basis-0 ${column.className ?? ''} ${colorClasses[column.backgroundColor as keyof typeof colorClasses]}`}
           >
-            <ModularContent nested objects={column.column} nested={true} />
+            <ModularContent nested objects={column.column} />
           </div>
         )
       })}

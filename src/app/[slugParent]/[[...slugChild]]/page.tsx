@@ -8,10 +8,9 @@ import {
   getSimilarCasinoPages,
   getStaticParams,
 } from '@/src/lib/api'
-import { formatPageSlug } from '@/src/lib/utility'
+import { formatPageSlug } from '@/src/lib/utils'
 import { SubPageSchemaType } from '@/src/schemas/subPage'
 import { CasinoPageSchemaType } from '@/src/schemas/casinoPage'
-import { urlFor } from '@/src/lib/client'
 
 type Params = Promise<{
   slugParent: string

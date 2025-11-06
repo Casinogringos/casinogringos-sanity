@@ -1,7 +1,8 @@
-import { z } from 'zod';
-import { FreeSpinsTypeSchema } from './freeSpinsType';
-import { GameSchema } from './game';
-import { PaymentMethodSchema } from './paymentMethod';
+import { z } from 'zod'
+import { FreeSpinsTypeSchema } from './freeSpinsType'
+import { GameSchema } from './game'
+import { PaymentMethodSchema } from './paymentMethod'
+import AffLinkSchema from '@/src/schemas/affLink'
 
 export const FreeSpinsSchema = z.object({
   _type: z.literal('free-spins'),
@@ -9,6 +10,7 @@ export const FreeSpinsSchema = z.object({
   slug: z.object({
     current: z.string(),
   }),
+  affLink: AffLinkSchema,
   freeSpinsType: FreeSpinsTypeSchema,
   minimumDeposit: z.number(),
   numberOfFreeSpins: z.number(),
@@ -21,6 +23,6 @@ export const FreeSpinsSchema = z.object({
   excludedPaymentMethods: z.array(PaymentMethodSchema),
   _createdAt: z.string(),
   _updatedAt: z.string(),
-});
+})
 
-export type FreeSpinsSchemaType = z.infer<typeof FreeSpinsSchema>;
+export type FreeSpinsSchemaType = z.infer<typeof FreeSpinsSchema>

@@ -78,7 +78,7 @@ const Item = ({ item }: { item: ItemSchemaType }) => {
       <Heading
         text={item.title}
         level={2}
-        size={4}
+        sizes={[3, 3, 4]}
         className="font-bold not-prose"
       />
       <DateComponent
