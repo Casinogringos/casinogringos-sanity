@@ -88,15 +88,17 @@ const CasinoSticky = ({ casino }: { casino: CasinoSchemaType }) => {
             )}
           </div>
         </div>
-        <div className="w-full lg:w-3/6 flex items-center lg:pb-0">
-          <Link
-            href={`go${formatPageSlug(casino.affLink.slug.current)}`}
-            className="h-12 flex items-center lg:text-base w-full"
-            variant={'affiliate'}
-          >
-            Till {casino.name}
-          </Link>
-        </div>
+        {casino.affLink?.slug.current && (
+          <div className="w-full lg:w-3/6 flex items-center lg:pb-0">
+            <Link
+              href={`go${formatPageSlug(casino.affLink.slug.current)}`}
+              className="h-12 flex items-center lg:text-base w-full"
+              variant={'affiliate'}
+            >
+              Till {casino.name}
+            </Link>
+          </div>
+        )}
       </div>
     </div>
   )

@@ -21,7 +21,7 @@ export default function CasinoHero({
   const bonus = casino.casinoBonuses?.[0].bonusAmountRange.max ?? null
   const wageringRequirements =
     casino.casinoBonuses?.[0].wageringRequirements ?? null
-  const freeSpins = casino.freeSpins?.[0].numberOfFreeSpins ?? null
+  const freeSpins = casino.freeSpins?.[0]?.numberOfFreeSpins ?? null
 
   return (
     <div className="bg-darklight py-5 lg:py-16 not-prose">
