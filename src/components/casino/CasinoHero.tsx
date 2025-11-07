@@ -18,9 +18,9 @@ export default function CasinoHero({
   const { finalRating } = casinoService.getCasinoRatings({
     casino: casinoPage.casino,
   })
-  const bonus = casino.casinoBonuses?.[0].bonusAmountRange.max ?? null
+  const bonus = casino.casinoBonuses?.[0]?.bonusAmountRange.max ?? null
   const wageringRequirements =
-    casino.casinoBonuses?.[0].wageringRequirements ?? null
+    casino.casinoBonuses?.[0]?.wageringRequirements ?? null
   const freeSpins = casino.freeSpins?.[0]?.numberOfFreeSpins ?? null
 
   return (
