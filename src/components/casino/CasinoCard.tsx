@@ -55,7 +55,6 @@ const CasinoCard = ({
     casino.freeSpins?.[0]?.wageringRequirements ?? null
   const bonus = getBonus()
   const wageringRequirementsBonus = getWageringRequirementsBonus()
-  console.log('casinocard', casino)
   return (
     <>
       <div className="rounded-md border-b border-b-gray-100 bg-white p-3.5 shadow-2xl">

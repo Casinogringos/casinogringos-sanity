@@ -2,6 +2,7 @@ import Link from '@/src/components/content/Link'
 import Image from 'next/image'
 import CasinoService from '@/src/services/CasinoService'
 import { CasinoSchemaType } from '@/src/schemas/casino'
+import { formatSlug } from '@/src/lib/utils'
 
 const casinoService = new CasinoService()
 
@@ -77,7 +78,7 @@ const CasinoRow = ({ casino }: { casino: CasinoSchemaType }) => {
         </div>
         {casino.affLink && (
           <Link
-            href={`/go${casino.affLink?.slug.current}`}
+            href={`/go${formatSlug(casino.affLink.slug.current)}`}
             target="_blank"
             rel="noopener noreferrer nofollow"
             prefetch={false}

@@ -39,7 +39,6 @@ export default async function Page() {
   const homepage = await getPageBySlug({
     slug: '/',
   })
-  console.log('homepage', homepage)
   const news = await getNewsPagePreviews({ count: 3, offset: 0 })
 
   if (!homepage) return notFound()

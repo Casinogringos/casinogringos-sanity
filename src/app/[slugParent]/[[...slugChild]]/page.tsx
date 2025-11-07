@@ -104,7 +104,6 @@ export default async function Page(props: { params: Params }) {
   const page: SubPageSchemaType = await getPageBySlug({
     slug: formatSlug(pageUri),
   })
-  console.log('PAGE', page)
   if (page?._type === 'pages') {
     return <SubPage page={page} />
   }

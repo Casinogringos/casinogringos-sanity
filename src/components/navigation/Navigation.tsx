@@ -25,6 +25,7 @@ export default async function Navigation({
   sidebarToplist: ToplistSchemaType
   pathname: string
 }) {
+  console.log('sidebarMenu', sidebarMenu)
   const parentRoute = pathname?.split('/')[1]
 
   if (parentRoute === 'go') return null

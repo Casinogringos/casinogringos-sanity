@@ -171,8 +171,6 @@ class CasinoService {
     | LiveCasinoBonusSchemaType
     | null {
     if (!category) return null
-    console.log('category!', category)
-    console.log('casinoPage', casino)
     switch (category.value) {
       case 'casino-bonus':
         return casino.casinoBonuses?.[0] ?? null
@@ -195,7 +193,6 @@ class CasinoService {
     const category = categories.reverse().reduce(
       (prev: { value: string }, current: { value: string }) => {
         let existing = ''
-        console.log('category', current.value)
         if (current.value === 'casino-bonus') {
           const casinoBonus = casino.casinoBonuses?.length
           if (casinoBonus) {
