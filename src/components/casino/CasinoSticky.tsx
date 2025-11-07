@@ -6,7 +6,7 @@ import { CasinoSchemaType } from '@/src/schemas/casino'
 const Link = dynamic(() => import('@/src/components/content/Link'))
 import Image from 'next/image'
 import CasinoService from '@/src/services/CasinoService'
-import { formatPageSlug } from '@/src/lib/utils'
+import { formatSlug } from '@/src/lib/utils'
 
 const CasinoSticky = ({ casino }: { casino: CasinoSchemaType }) => {
   const [isVisible, setIsVisible] = useState(false)
@@ -91,7 +91,7 @@ const CasinoSticky = ({ casino }: { casino: CasinoSchemaType }) => {
         {casino.affLink?.slug.current && (
           <div className="w-full lg:w-3/6 flex items-center lg:pb-0">
             <Link
-              href={`go${formatPageSlug(casino.affLink.slug.current)}`}
+              href={`go${formatSlug(casino.affLink.slug.current)}`}
               className="h-12 flex items-center lg:text-base w-full"
               variant={'affiliate'}
             >

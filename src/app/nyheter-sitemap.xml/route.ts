@@ -21,7 +21,7 @@ export async function GET() {
       .filter((image) => image !== null)
 
     return {
-      loc: `${process.env.SITE_URL}/nyheter/${page.slug.current}`,
+      loc: `${process.env.NEXT_PUBLIC_SITE_URL}/nyheter/${page.slug.current}`,
       lastmod: `${page._updatedAt ?? page.originalModifiedAt}+01:00`,
       images: imagesXML,
     }
@@ -41,7 +41,7 @@ export async function GET() {
       .filter((image) => image !== null)
 
     return {
-      loc: `${process.env.SITE_URL}/nyheter`,
+      loc: `${process.env.NEXT_PUBLIC_SITE_URL}/nyheter`,
       lastmod: `${newsIndexPage._updatedAt ?? newsIndexPage.originalModifiedAt}+01:00`,
       images: imagesXML,
     }

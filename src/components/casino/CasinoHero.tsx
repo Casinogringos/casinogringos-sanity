@@ -7,6 +7,7 @@ import { CasinoPageSchemaType } from '@/src/schemas/casinoPage'
 import CasinoService from '@/src/services/CasinoService'
 import { PortableText } from 'next-sanity'
 import Image from 'next/image'
+import { formatSlug } from '@/src/lib/utils'
 
 export default function CasinoHero({
   casinoPage,
@@ -117,7 +118,7 @@ export default function CasinoHero({
             </div>
             {casinoPage.affLink && (
               <Link
-                href={`/go${casinoPage.affLink.slug.current}`}
+                href={`/go${formatSlug(casinoPage.affLink.slug.current)}`}
                 title={casinoPage.title}
                 place="CasinoCard recension"
                 variant="affiliate"

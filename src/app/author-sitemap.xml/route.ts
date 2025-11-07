@@ -13,7 +13,7 @@ export async function GET() {
     const pageImages = authorService.getImagesFromPage(page)
     const imagesXML: IImageEntry[] = imageService.getImagesXML(pageImages)
     return {
-      loc: `${process.env.SITE_URL}/om-oss/${page.slug.current}`,
+      loc: `${process.env.NEXT_PUBLIC_SITE_URL}/om-oss/${page.slug.current}`,
       images: imagesXML,
     }
   })

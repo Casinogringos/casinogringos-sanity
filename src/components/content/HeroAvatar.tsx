@@ -28,7 +28,7 @@ const HeroAvatar = ({
   shareTitle: string
 }) => {
   console.log('MODIFIED AT', modifiedAt)
-  const url = `${process.env.SITE_URL}${usePathname()}`
+  const url = `${process.env.NEXT_PUBLIC_SITE_URL}${usePathname()}`
 
   return (
     <>

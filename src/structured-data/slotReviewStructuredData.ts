@@ -38,14 +38,14 @@ const getSlotReviewStructuredData = ({
     },
     mainEntityOfPage: {
       '@type': 'WebPage',
-      '@id': `${process.env.SITE_URL}${page.slug.current}#webpage`,
+      '@id': `${process.env.NEXT_PUBLIC_SITE_URL}${page.slug.current}#webpage`,
     },
     publisher: {
-      '@id': `${process.env.SITE_URL}/#organization`,
+      '@id': `${process.env.NEXT_PUBLIC_SITE_URL}/#organization`,
     },
     isPartOf: [
       {
-        '@id': `${process.env.SITE_URL}/#website`,
+        '@id': `${process.env.NEXT_PUBLIC_SITE_URL}/#website`,
       },
     ],
     datePublished: publishedAt,

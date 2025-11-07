@@ -50,7 +50,7 @@ const CasinoPage = ({
   const breadcrumbs = [
     {
       text: casinoPage.title,
-      url: `${process.env.SITE_URL}${casinoPage.slug.current}`,
+      url: `${process.env.NEXT_PUBLIC_SITE_URL}${casinoPage.slug.current}`,
     },
   ]
   const headings: Array<HeadingObjectSchemaType | RatingObjectSchemaType> =
@@ -155,7 +155,7 @@ const CasinoPage = ({
               <div className={'grid grid-cols-2 gap-4 lg:grid-cols-4'}>
                 {similarCasinoPages.map((page) => (
                   <Link
-                    href={`${process.env.SITE_URL}${page.slug.current}`}
+                    href={`${process.env.NEXT_PUBLIC_SITE_URL}${page.slug.current}`}
                     key={`similar-post-${page._id}`}
                     className={'flex flex-col'}
                   >

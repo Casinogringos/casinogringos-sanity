@@ -8,7 +8,7 @@ import {
   getSimilarCasinoPages,
   getStaticParams,
 } from '@/src/lib/api'
-import { formatPageSlug } from '@/src/lib/utils'
+import { formatSlug } from '@/src/lib/utils'
 import { SubPageSchemaType } from '@/src/schemas/subPage'
 import { CasinoPageSchemaType } from '@/src/schemas/casinoPage'
 
@@ -46,7 +46,7 @@ export async function generateStaticParams() {
 const metadataObject = (
   page: CasinoPageSchemaType | SubPageSchemaType
 ): Metadata & { locale: string } => {
-  const siteURL = process.env.SITE_URL
+  const siteURL = process.env.NEXT_PUBLIC_SITE_URL
 
   return {
     title: page.seoTitle,
@@ -80,13 +80,13 @@ export async function generateMetadata(props: { params: Params }) {
     pageUri = `${pageUri}${slugChild.join('/')}/`
   }
   const page: SubPageSchemaType = await getPageBySlug({
-    slug: formatPageSlug(pageUri),
+    slug: formatSlug(pageUri),
   })
   if (page?._type === 'pages') {
     return metadataObject(page)
   }
   const casinoPage: CasinoPageSchemaType = await getCasinoPageBySlug({
-    slug: formatPageSlug(slugParent),
+    slug: formatSlug(slugParent),
   })
   if (casinoPage?._type === 'casino-pages') {
     return metadataObject(casinoPage)
@@ -102,14 +102,14 @@ export default async function Page(props: { params: Params }) {
     pageUri = `${pageUri}${slugChild.join('/')}/`
   }
   const page: SubPageSchemaType = await getPageBySlug({
-    slug: formatPageSlug(pageUri),
+    slug: formatSlug(pageUri),
   })
   console.log('PAGE', page)
   if (page?._type === 'pages') {
     return <SubPage page={page} />
   }
   const casinoPage: CasinoPageSchemaType = await getCasinoPageBySlug({
-    slug: formatPageSlug(slugParent),
+    slug: formatSlug(slugParent),
   })
   if (!casinoPage) {
     return notFound()

@@ -2,7 +2,7 @@
 
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
-import { useEffect } from 'react'
+import { useEffect, useMemo } from 'react'
 import Container from '@/src/components/layout/Container'
 import { AffLinkSchemaType } from '@/src/schemas/affLink'
 import { getWebSiteStructuredData } from '@/src/structured-data/webSiteStructuredData'
@@ -19,7 +19,7 @@ const GoPage = ({ affLink }: { affLink: AffLinkSchemaType }) => {
   }
   useEffect(() => {
     setTimeout(function () {
-      goToOperator()
+      // goToOperator()
     }, 1000)
     // document.body.classList.add('overflow-hidden')
   })

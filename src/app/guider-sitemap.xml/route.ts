@@ -27,7 +27,7 @@ export async function GET() {
     const imagesXML: IImageEntry[] = imageService.getImagesXML(allImages)
 
     return {
-      loc: `${process.env.SITE_URL}${page.slug.current}`,
+      loc: `${process.env.NEXT_PUBLIC_SITE_URL}${page.slug.current}`,
       lastmod: `${page._updatedAt ?? page.originalModifiedAt}+01:00`,
       images: imagesXML,
     }
@@ -45,7 +45,7 @@ export async function GET() {
       .filter((image) => image !== null)
 
     return {
-      loc: `${process.env.SITE_URL}${guidesIndexPage.slug.current}`,
+      loc: `${process.env.NEXT_PUBLIC_SITE_URL}${guidesIndexPage.slug.current}`,
       lastmod: `${guidesIndexPage._updatedAt ?? guidesIndexPage.originalModifiedAt}+01:00`,
       images: imagesXML,
     }

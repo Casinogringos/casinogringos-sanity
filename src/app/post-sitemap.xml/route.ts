@@ -15,10 +15,10 @@ export async function GET() {
     const contentImages = imageService.getImagesFromModularContent(page.content)
     const allImages = featuredImage
       ? [
-          featuredImage,
-          seoImage === featuredImage ? null : seoImage,
-          ...(contentImages ? contentImages : []),
-        ]
+        featuredImage,
+        seoImage === featuredImage ? null : seoImage,
+        ...(contentImages ? contentImages : []),
+      ]
       : contentImages
         ? contentImages
         : []
@@ -27,7 +27,7 @@ export async function GET() {
     ).filter((image) => image !== null)
 
     return {
-      loc: `${process.env.SITE_URL}${page.slug.current}`,
+      loc: `${process.env.NEXT_PUBLIC_SITE_URL}${page.slug.current}`,
       lastmod: `${page._updatedAt ?? page.originalModifiedAt}+01:00`,
       images: imagesXML,
     }

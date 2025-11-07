@@ -55,11 +55,11 @@ const SlotPage = ({
   const breadcrumbs = [
     {
       text: 'Slots',
-      url: `${process.env.SITE_URL}/slots`,
+      url: `${process.env.NEXT_PUBLIC_SITE_URL}/slots`,
     },
     {
       text: slotPage.title,
-      url: `${process.env.SITE_URL}${slotPage.slug.current}`,
+      url: `${process.env.NEXT_PUBLIC_SITE_URL}${slotPage.slug.current}`,
     },
   ]
   const createdAt = slotPageService.getPagePublishedAtTimestamp(slotPage)
@@ -152,7 +152,7 @@ const SlotPage = ({
                       <div className="text-2xl font-semibold text-primary">
                         {
                           slotVolatilityMap[
-                            slot.volatility as keyof typeof slotVolatilityMap
+                          slot.volatility as keyof typeof slotVolatilityMap
                           ]
                         }
                       </div>

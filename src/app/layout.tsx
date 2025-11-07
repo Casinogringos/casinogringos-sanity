@@ -32,7 +32,7 @@ const ScrollToTop = dynamicImport(
 // })
 
 // export const metadata = {
-//   metadataBase: new URL(process.env.SITE_URL as string),
+//   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL as string),
 // }
 
 export default async function RootLayout({

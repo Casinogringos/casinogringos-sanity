@@ -26,11 +26,11 @@ const Author = ({ author }: { author: AuthorSchemaType }) => {
   const breadcrumbs = [
     {
       text: 'Om Oss',
-      url: `${process.env.SITE_URL}/om-oss`,
+      url: `${process.env.NEXT_PUBLIC_SITE_URL}/om-oss`,
     },
     {
       text: author.firstName + ' ' + author.lastName,
-      url: `${process.env.SITE_URL}/om-oss${author.slug.current}`,
+      url: `${process.env.NEXT_PUBLIC_SITE_URL}/om-oss${author.slug.current}`,
     },
   ]
 

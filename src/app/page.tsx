@@ -8,7 +8,7 @@ export async function generateMetadata() {
   const homepage = (await getPageBySlug({
     slug: '/',
   })) as SubPageSchemaType
-  const siteURL = process.env.SITE_URL as string
+  const siteURL = process.env.NEXT_PUBLIC_SITE_URL as string
   const metadata: Metadata = {
     title: homepage.seoTitle ?? homepage.title,
     description: homepage.seoDescription,

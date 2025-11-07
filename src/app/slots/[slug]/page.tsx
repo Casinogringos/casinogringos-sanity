@@ -6,7 +6,7 @@ import {
 import { notFound } from 'next/navigation'
 import SlotPage from '@/src/app/SlotPage'
 import { SlotPageSchemaType } from '@/src/schemas/slotPage'
-import { formatPageSlug } from '@/src/lib/utils'
+import { formatSlug } from '@/src/lib/utils'
 import { Metadata } from 'next'
 
 type Params = Promise<{ slug: string }>
@@ -14,9 +14,9 @@ type Params = Promise<{ slug: string }>
 export async function generateMetadata(props: { params: Params }) {
   const params = await props.params
   const slotPage: SlotPageSchemaType = await getSlotPageBySlug({
-    slug: `/slots${formatPageSlug(params?.slug)}`,
+    slug: `/slots${formatSlug(params?.slug)}`,
   })
-  const siteURL = (process.env.SITE_URL as string) + slotPage.slug.current
+  const siteURL = (process.env.NEXT_PUBLIC_SITE_URL as string) + slotPage.slug.current
   const metadata: Metadata = {
     title: slotPage.seoTitle,
     description: slotPage.seoDescription,
@@ -47,7 +47,7 @@ export async function generateMetadata(props: { params: Params }) {
 export default async function Page(props: { params: Params }) {
   const params = await props.params
   const slotPage: SlotPageSchemaType = await getSlotPageBySlug({
-    slug: `/slots${formatPageSlug(params?.slug)}`,
+    slug: `/slots${formatSlug(params?.slug)}`,
   })
   if (!slotPage || !slotPage.slot) return notFound()
   const similarSlotPages = await getSimilarSlotPages({

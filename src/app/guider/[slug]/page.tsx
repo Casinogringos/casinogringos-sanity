@@ -4,7 +4,7 @@ import {
   getStaticParams,
 } from '@/src/lib/api'
 import { notFound } from 'next/navigation'
-import { formatPageSlug } from '@/src/lib/utils'
+import { formatSlug } from '@/src/lib/utils'
 import GuidePage from '@/src/app/GuidePage'
 import { Metadata } from 'next'
 import { GuidePageSchemaType } from '@/src/schemas/guidePage'
@@ -14,9 +14,9 @@ type Params = Promise<{ slug: string }>
 export async function generateMetadata(props: { params: Params }) {
   const params = await props.params
   const guidePage = await getGuidePageBySlug({
-    slug: `/guider${formatPageSlug(params?.slug)}`,
+    slug: `/guider${formatSlug(params?.slug)}`,
   })
-  const siteURL = (process.env.SITE_URL as string) + guidePage.slug.current
+  const siteURL = (process.env.NEXT_PUBLIC_SITE_URL as string) + guidePage.slug.current
   const metadata: Metadata = {
     title: guidePage.seoTitle,
     description: guidePage.seoDescription,
@@ -49,7 +49,7 @@ export default async function Page(props: {
 }) {
   const params = await props.params
   const guidePage = await getGuidePageBySlug({
-    slug: `/guider${formatPageSlug(params?.slug)}`,
+    slug: `/guider${formatSlug(params?.slug)}`,
   })
   if (!guidePage) return notFound()
   const similarGuidePages = await getSimilarGuidePages({

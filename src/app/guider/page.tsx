@@ -10,7 +10,7 @@ import { Metadata } from 'next'
 
 export async function generateMetadata() {
   const page = await getPageBySlug({ slug: '/guider' })
-  const siteURL = (process.env.SITE_URL as string) + page.slug.current
+  const siteURL = (process.env.NEXT_PUBLIC_SITE_URL as string) + page.slug.current
   const metadata: Metadata = {
     title: page.seoTitle,
     description: page.seoDescription,

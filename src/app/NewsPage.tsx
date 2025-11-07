@@ -47,7 +47,7 @@ export default function NewsPage({
     },
     {
       text: page.title,
-      url: `${process.env.SITE_URL}${page.slug.current}`,
+      url: `${process.env.NEXT_PUBLIC_SITE_URL}${page.slug.current}`,
     },
   ]
 

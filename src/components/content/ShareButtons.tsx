@@ -12,7 +12,7 @@ import { usePathname } from 'next/navigation'
 
 const ShareButtons = ({ title }: { title: string }) => {
   const pathname = usePathname()
-  const url = `${process.env.SITE_URL}${pathname}`
+  const url = `${process.env.NEXT_PUBLIC_SITE_URL}${pathname}`
 
   return (
     <>

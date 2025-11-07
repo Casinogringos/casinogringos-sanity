@@ -39,7 +39,7 @@ const GuideIndex = ({
   const breadcrumbItems = [
     {
       text: 'Guider',
-      url: `${process.env.SITE_URL}/guider`,
+      url: `${process.env.NEXT_PUBLIC_SITE_URL}/guider`,
     },
   ]
 

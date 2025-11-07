@@ -34,12 +34,12 @@ export const isCurrentPath = (currentPath: string, path: string) => {
 export const slugify = (str: string) => {
   return str
     ? str
-      .toLowerCase()
-      .replace(/ /g, '-')
-      .replace(/[^a-z0-9-]/g, '')
-      .replaceAll('ä', 'a')
-      .replaceAll('ö', 'o')
-      .replaceAll('å', 'a')
+        .toLowerCase()
+        .replace(/ /g, '-')
+        .replace(/[^a-z0-9-]/g, '')
+        .replaceAll('ä', 'a')
+        .replaceAll('ö', 'o')
+        .replaceAll('å', 'a')
     : ''
 }
 
@@ -66,7 +66,7 @@ export const getHeadingObjectsByPage = ({
   }) as Array<HeadingObjectSchemaType | RatingObjectSchemaType>
 }
 
-export const formatPageSlug = (slug: string) => {
+export const formatSlug = (slug: string) => {
   if (slug.startsWith('/') && !slug.endsWith('/')) {
     return slug
   }

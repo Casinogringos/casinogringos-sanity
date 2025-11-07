@@ -17,7 +17,7 @@ const NewsIndex = ({
   const breadcrumbItems = [
     {
       text: 'Nyheter',
-      url: `${process.env.SITE_URL}/nyheter`,
+      url: `${process.env.NEXT_PUBLIC_SITE_URL}/nyheter`,
     },
   ]
   const schema = {
