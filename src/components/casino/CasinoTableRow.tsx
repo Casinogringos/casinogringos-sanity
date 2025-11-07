@@ -1,6 +1,7 @@
 import Link from '@/src/components/content/Link'
 import CasinoService from '@/src/services/CasinoService'
 import { CasinoSchemaType } from '@/src/schemas/casino'
+import { formatSlug } from '@/src/lib/utils'
 
 const CasinoTableRow = ({
   casino,
@@ -67,7 +68,7 @@ const CasinoTableRow = ({
       <td className="text-center">
         {casino.affLink?.slug.current && (
           <Link
-            href={`/go${casino.affLink.slug.current}`}
+            href={`/go${formatSlug(casino.affLink.slug.current)}`}
             target="_blank"
             rel="noopener noreferrer nofollow"
             prefetch={false}

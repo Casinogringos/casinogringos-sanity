@@ -18,7 +18,6 @@ const CasinoCard = ({
   if (!casino) return null
   const casinoService = new CasinoService()
   const { finalRating } = casinoService.getCasinoRatings({ casino })
-  console.log('categories', categories)
   const bonusCategory = casinoService.chooseBonusCategory({
     categories,
     casino,
@@ -28,7 +27,6 @@ const CasinoCard = ({
     casino,
   })
   const getBonus = () => {
-    console.log('CASINO', casino)
     switch (bonusCategory.value) {
       case 'casino-bonus':
         return casino.casinoBonuses?.[0]?.bonusAmountRange?.max ?? null
@@ -57,8 +55,7 @@ const CasinoCard = ({
     casino.freeSpins?.[0]?.wageringRequirements ?? null
   const bonus = getBonus()
   const wageringRequirementsBonus = getWageringRequirementsBonus()
-  console.log('bonus', bonus)
-  console.log('bonusCategory', bonusCategory)
+  console.log('casinocard', casino)
   return (
     <>
       <div className="rounded-md border-b border-b-gray-100 bg-white p-3.5 shadow-2xl">

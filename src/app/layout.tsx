@@ -1,9 +1,4 @@
-import Navigation from '@/src/components/navigation/Navigation'
-import {
-  getCasinoPagePreviews,
-  getMenuById,
-  getToplistById,
-} from '@/src/lib/api'
+import { getMenuById, getToplistById } from '@/src/lib/api'
 import Provider from '@/src/store/provider'
 import '@/src/styles/index.css'
 import '@/src/styles/styles.scss'
@@ -14,6 +9,7 @@ import { headers } from 'next/headers'
 import { ReactNode } from 'react'
 import Footer from '@/src/components/navigation/Footer'
 import { inter } from '@/src/styles/fonts'
+import Navigation from '@/src/components/navigation/Navigation'
 
 const ScrollToTop = dynamicImport(
   () => import('@/src/components/navigation/ScrollToTop')
@@ -31,9 +27,9 @@ const ScrollToTop = dynamicImport(
 //   weight: ['700'],
 // })
 
-// export const metadata = {
-//   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL as string),
-// }
+export const metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL as string),
+}
 
 export default async function RootLayout({
   children,
@@ -46,9 +42,9 @@ export default async function RootLayout({
   const sidebarMenu = await getMenuById({
     id: '230ed636-9eb2-4a6f-bb24-f97f49907634',
   })
-  // const sidebarToplist = await getToplistById({
-  //   id: '719ca05f-52df-4062-9855-36a75c76c245',
-  // })
+  const sidebarToplist = await getToplistById({
+    id: '719ca05f-52df-4062-9855-36a75c76c245',
+  })
   const siteLinks = await getMenuById({
     id: 'd4fcd6b4-d5b4-40b9-97cc-db901ff1f261',
   })
@@ -61,16 +57,6 @@ export default async function RootLayout({
   const headersList = await headers()
   const pathname =
     headersList.get('x-pathname') || headersList.get('x-url') || ''
-  // const footerNav = await getMenuById({ id: 'dGVybToxNA==' })
-  // const footerSites = await getMenuById({
-  //   id: 'dGVybToxNzMx',
-  // })
-  // const footerCasinos = await getCasinoPreviews({
-  //   count: 8,
-  //   category: '10223',
-  // })
-  // const sidebarPosts = await getCasinoPreviews({ count: 6, category: '10223' })
-  // const searchData = await getSearchData() // im not sure about having this here as it might be slowing the site down or adding bloat
 
   return (
     <html lang="sv-SE">
@@ -78,19 +64,19 @@ export default async function RootLayout({
       <link rel="icon" href="/favicon.ico" sizes="any" />
       <body className={`${inter.className}`}>
         <Provider>
-          {/* <Navigation
+          <Navigation
             headerMenu={headerMenu}
             sidebarMenu={sidebarMenu}
             sidebarToplist={sidebarToplist}
             pathname={pathname}
-          /> */}
+          />
           <main className={'relative'}>{children}</main>
           <ScrollToTop />
-          {/* <Footer
+          <Footer
             siteLinks={siteLinks}
             popularCasinos={popularCasinos}
             latestReviews={latestReviews}
-          /> */}
+          />
         </Provider>
       </body>
     </html>

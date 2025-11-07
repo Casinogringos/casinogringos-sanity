@@ -106,7 +106,7 @@ const Footer = ({
                 Sidlänkar
               </span>
               <ul role="list" className="mt-6 space-y-4">
-                {siteLinks.items.map((item, i) => {
+                {siteLinks?.items?.map((item, i) => {
                   const { page } = item
                   if (!page) return null
                   return (
@@ -128,7 +128,7 @@ const Footer = ({
                 Populära casinosidor
               </span>
               <ul role="list" className="mt-6 space-y-4">
-                {popularCasinos.items.map(({ page }) => (
+                {popularCasinos?.items?.map(({ page }) => (
                   <li key={`site-${page.title}`}>
                     <Link
                       href={page.slug.current}
@@ -146,7 +146,7 @@ const Footer = ({
                 Senaste recensionerna
               </span>
               <ul role="list" className="mt-6 space-y-4">
-                {latestReviews.items.map(({ page }) => (
+                {latestReviews?.items?.map(({ page }) => (
                   <li key={`post-${page.title}`}>
                     <Link
                       href={page.slug.current}

@@ -4,6 +4,7 @@ import Link from '@/src/components/content/Link'
 import { PortableText } from 'next-sanity'
 import Placeholder from '@/src/components/utils/Placeholder'
 import Heading from '@/src/components/content/Heading'
+import { formatSlug } from '@/src/lib/utils'
 
 const CasinoObject = ({ object }: { object: CasinoObjectSchemaType }) => {
   const { casinoPage, buttonText, offer, description } = object
@@ -39,14 +40,16 @@ const CasinoObject = ({ object }: { object: CasinoObjectSchemaType }) => {
         <div className={'prose mb-6 mt-3'}>
           <PortableText value={description} />
         </div>
-        {casinoPage?.affLink?.slug?.current && <Link
-          variant="affiliate"
-          className="w-full"
-          href={`go${casinoPage?.affLink?.slug?.current}`}
-          place="CasinoCard block"
-        >
-          {buttonText}
-        </Link>}
+        {casino?.affLink?.slug?.current && (
+          <Link
+            variant="affiliate"
+            className="w-full"
+            href={`go${formatSlug(casino?.affLink?.slug?.current)}`}
+            place="CasinoCard block"
+          >
+            {buttonText}
+          </Link>
+        )}
       </div>
     </div>
   )

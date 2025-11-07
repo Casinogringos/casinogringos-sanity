@@ -1,8 +1,5 @@
 import { dashboardImageProjection } from '@/src/data/projections/dashboardImageProjection'
 import { casinoRatingProjection } from '@/src/data/projections/casinoRatingProjection'
-import { casinoBonusPageProjection } from '@/src/data/projections/casinoBonusPageProjection'
-import { oddsBonusPageProjection } from '@/src/data/projections/oddsBonusPageProjection'
-import { freeSpinsPageProjection } from '@/src/data/projections/freeSpinsPageProjection'
 import { gameProviderProjection } from '@/src/data/projections/gameProviderProjection'
 import { contactMethodProjection } from '@/src/data/projections/contactMethodProjection'
 import { ownerProjection } from '@/src/data/projections/ownerProjection'
@@ -11,13 +8,12 @@ import { gameTypeProjection } from '@/src/data/projections/gameTypeProjection'
 import { sportProjection } from '@/src/data/projections/sportProjection'
 import { liveCasinoBonusProjection } from '@/src/data/projections/liveCasinoBonusProjection'
 import { liveCasinoGameTypeProjection } from '@/src/data/projections/liveCasinoGameTypeProjection'
-import { paymentMethodPageProjection } from '@/src/data/projections/paymentMethodPageProjection'
-import { liveCasinoBonusPageProjection } from './liveCasinoBonusPageProjection'
 import { casinoBonusProjection } from '@/src/data/projections/casinoBonusProjection'
 import { oddsBonusProjection } from '@/src/data/projections/oddsBonusProjection'
 import { freeSpinsProjection } from '@/src/data/projections/freeSpinsProjection'
 import { paymentMethodProjection } from '@/src/data/projections/paymentMethodProjection'
 import { affLinkProjection } from '@/src/data/projections/affLinkProjection'
+import { imageObjectProjection } from '@/src/data/projections/imageObjectProjection'
 
 export const casinoProjection = `
     _type,
