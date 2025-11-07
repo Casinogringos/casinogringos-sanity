@@ -1,9 +1,9 @@
-import { imageProjection } from "./imageProjection"
-import { imageObjectProjection } from "./imageObjectProjection"
-import { authorProjection } from "./authorProjection"
-import { faqItemObjectProjection } from "./faqItemObjectProjection"
-import { toplistProjection } from "./toplistProjection"
-import { objectProjections } from "./objectProjections"
+import { imageProjection } from './imageProjection'
+import { imageObjectProjection } from './imageObjectProjection'
+import { authorProjection } from './authorProjection'
+import { faqItemObjectProjection } from './faqItemObjectProjection'
+import { toplistProjection } from './toplistProjection'
+import { objectProjections } from './objectProjections'
 
 export const pageProjection = `
   _type,
@@ -11,6 +11,8 @@ export const pageProjection = `
   _key,
   title,
   slug,
+  originalPublishedAt,
+  originalModifiedAt,
   _createdAt,
   _updatedAt,
   seoTitle,

@@ -62,12 +62,8 @@ const SlotPage = ({
       url: `${process.env.SITE_URL}${slotPage.slug.current}`,
     },
   ]
-  const createdAt =
-    new Date(slotPage.originalPublishedAt ?? ('' as string)).getTime() ??
-    new Date(slotPage._createdAt).getTime()
-  const modifiedAt =
-    new Date(slotPage._updatedAt).getTime() ??
-    new Date(slotPage.originalModifiedAt ?? ('' as string)).getTime()
+  const createdAt = slotPageService.getPagePublishedAtTimestamp(slotPage)
+  const modifiedAt = slotPageService.getPageModifiedAtTimestamp(slotPage)
   const { casinos, latestCasinos } = slotPage
   const relatedCasinos = casinos?.length > 0 ? casinos : latestCasinos
   const slotVolatilityMap = {

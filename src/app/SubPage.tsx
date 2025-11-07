@@ -28,6 +28,7 @@ export default function SubPage({ page }: { page: SubPageSchemaType }) {
   const { toplist, faqs, author, _createdAt, reviewer } = page
   const headingObjects = pageService.getHeadingObjects(page)
   const modifiedAt = pageService.getPageModifiedAtTimestamp(page)
+  const createdAt = pageService.getPagePublishedAtTimestamp(page)
   const schema = {
     '@context': 'https://schema.org',
     '@graph': [
@@ -55,7 +56,7 @@ export default function SubPage({ page }: { page: SubPageSchemaType }) {
         }}
         key="subpage-data"
       />
-      <SubPageHero page={page} />
+      <SubPageHero page={page} modifiedAt={modifiedAt} createdAt={createdAt} />
       {breadcrumbs && <BreadCrumbs items={breadcrumbs} />}
       {toplist?.casinos?.length ? (
         <Container className="mb-16">

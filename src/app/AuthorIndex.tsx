@@ -15,6 +15,9 @@ import { SubPageSchemaType } from '@/src/schemas/subPage'
 import { BreadcrumbsSchemaType } from '@/src/schemas/breadcrumbs'
 import Image from 'next/image'
 import Heading from '@/src/components/content/Heading'
+import SubPageService from '@/src/services/SubPageService'
+
+const subPageService = new SubPageService()
 
 const AuthorIndex = ({
   page,
@@ -23,6 +26,8 @@ const AuthorIndex = ({
   page: SubPageSchemaType
   authors: AuthorSchemaType[]
 }) => {
+  const publishedAt = subPageService.getPagePublishedAtTimestamp(page)
+  const modifiedAt = subPageService.getPageModifiedAtTimestamp(page)
   const breadcrumbs: BreadcrumbsSchemaType = [
     {
       text: 'Om Oss',
@@ -43,7 +48,11 @@ const AuthorIndex = ({
 
   return (
     <>
-      <SubPageHero page={page} />
+      <SubPageHero
+        page={page}
+        createdAt={publishedAt}
+        modifiedAt={modifiedAt}
+      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{

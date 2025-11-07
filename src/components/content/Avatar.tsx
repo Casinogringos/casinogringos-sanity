@@ -6,7 +6,6 @@ import ShareButtons from '@/src/components/content/ShareButtons'
 import Image from 'next/image'
 import Placeholder from '@/src/components/utils/Placeholder'
 import { PortableText } from 'next-sanity'
-import { create } from 'lodash'
 
 const Avatar = ({
   author,

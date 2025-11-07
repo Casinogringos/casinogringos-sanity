@@ -5,7 +5,15 @@ import Heading from '@/src/components/content/Heading'
 import { SubPageSchemaType } from '@/src/schemas/subPage'
 const HeroAvatar = dynamic(() => import('@/src/components/content/HeroAvatar'))
 
-const SubPageHero = ({ page }: { page: SubPageSchemaType }) => {
+const SubPageHero = ({
+  page,
+  modifiedAt,
+  createdAt,
+}: {
+  page: SubPageSchemaType
+  modifiedAt: number | null
+  createdAt: number | null
+}) => {
   const { title } = page
 
   return (
@@ -25,8 +33,8 @@ const SubPageHero = ({ page }: { page: SubPageSchemaType }) => {
             <div className="mt-6">
               <HeroAvatar
                 author={page.author}
-                date={page.originalPublishedAt ?? page._createdAt}
-                modified={page._updatedAt ?? page.originalModifiedAt}
+                createdAt={createdAt}
+                modifiedAt={modifiedAt}
                 shareTitle={page.seoTitle}
               />
             </div>

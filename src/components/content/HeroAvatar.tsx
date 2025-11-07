@@ -18,17 +18,16 @@ import { AuthorSchemaType } from '@/src/schemas/author'
 
 const HeroAvatar = ({
   author,
-  date,
-  modified,
+  createdAt,
+  modifiedAt,
   shareTitle,
 }: {
   author: AuthorSchemaType
-  date: string
-  modified: string
+  createdAt: number | null
+  modifiedAt: number | null
   shareTitle: string
 }) => {
-  const publishedAt = new Date(date).getTime()
-  const modifiedAt = new Date(modified).getTime()
+  console.log('MODIFIED AT', modifiedAt)
   const url = `${process.env.SITE_URL}${usePathname()}`
 
   return (
@@ -59,20 +58,20 @@ const HeroAvatar = ({
             </div>
           </Link>
           <div className="flex w-full items-center gap-x-4 text-slate-400">
-            {modified ? (
+            {modifiedAt ? (
               <div className="mt-0.5 flex items-center gap-2 text-xs">
                 <span>
                   Senast uppdaterad: <DateComponent timestamp={modifiedAt} />
                 </span>
               </div>
-            ) : (
+            ) : createdAt ? (
               <div className="flex items-center gap-2 text-xs font-medium text-slate-400">
                 <Calendar className="text-slate-200 h-4 w-4" />
                 <span>
-                  Publicerad: <DateComponent timestamp={publishedAt} />
+                  Publicerad: <DateComponent timestamp={createdAt} />
                 </span>
               </div>
-            )}
+            ) : null}
           </div>
         </div>
         <div className="ml-auto flex gap-2 pr-4">

@@ -27,6 +27,8 @@ export default function SlotIndex({
 }) {
   const isValidList = slotPageService.validateList(slotPages, true)
   const isValidPage = subPageService.validatePage(page, true)
+  const publishedAt = subPageService.getPagePublishedAtTimestamp(page)
+  const modifiedAt = subPageService.getPageModifiedAtTimestamp(page)
   const breadcrumbItems = [
     {
       text: 'Slots',
@@ -52,7 +54,11 @@ export default function SlotIndex({
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
         key="slot-index-structured-data"
       />
-      <SubPageHero page={page} />
+      <SubPageHero
+        page={page}
+        createdAt={publishedAt}
+        modifiedAt={modifiedAt}
+      />
       <BreadCrumbs narrow={false} items={breadcrumbItems} />
       <div className="pb-12 pt-8 lg:pt-10 bg-slate-100">
         <Container>
