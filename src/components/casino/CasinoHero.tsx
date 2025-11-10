@@ -20,9 +20,11 @@ export default function CasinoHero({
     casino: casinoPage.casino,
   })
   const bonus = casino.casinoBonuses?.[0]?.bonusAmountRange.max ?? null
-  const wageringRequirements =
+  const bonusWageringRequirements =
     casino.casinoBonuses?.[0]?.wageringRequirements ?? null
   const freeSpins = casino.freeSpins?.[0]?.numberOfFreeSpins ?? null
+  const freeSpinsWageringRequirements =
+    casino.freeSpins?.[0]?.wageringRequirements ?? null
 
   return (
     <div className="bg-darklight py-5 lg:py-16 not-prose">
@@ -82,11 +84,11 @@ export default function CasinoHero({
                       Bonus
                     </div>
                     {bonus ? bonus + ' kr' : '-'}
-                    {wageringRequirements && (
+                    {bonusWageringRequirements && (
                       <div className="-mt-0.5 flex items-center text-xs font-medium text-slate-400">
                         Omsättning:
                         <span className="ml-0.5 inline-block text-white">
-                          {wageringRequirements}x{' '}
+                          {bonusWageringRequirements}x{' '}
                         </span>
                       </div>
                     )}
@@ -101,7 +103,7 @@ export default function CasinoHero({
                         <div className="-mt-0.5 flex items-center text-xs font-medium text-slate-400">
                           Omsättning:{' '}
                           <span className="ml-0.5 inline-block text-white">
-                            {wageringRequirements}x
+                            {freeSpinsWageringRequirements}x
                           </span>
                         </div>
                       </>
