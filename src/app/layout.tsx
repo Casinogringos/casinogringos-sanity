@@ -37,22 +37,22 @@ export default async function RootLayout({
   children: ReactNode
 }) {
   const headerMenu = await getMenuById({
-    id: '02e7db71-3430-4108-bf0f-4b56dd557b39',
+    id: '2311e77d-7195-4996-9ef5-cdc1fa9d223e',
   })
   const sidebarMenu = await getMenuById({
-    id: '230ed636-9eb2-4a6f-bb24-f97f49907634',
+    id: '0cf352ee-76c4-4cb7-971e-8e9ce897b3f3',
   })
   const sidebarToplist = await getToplistById({
     id: '719ca05f-52df-4062-9855-36a75c76c245',
   })
   const siteLinks = await getMenuById({
-    id: 'd4fcd6b4-d5b4-40b9-97cc-db901ff1f261',
+    id: '09a5375d-b3de-46cd-b9ff-e8e1c20a1fea',
   })
   const popularCasinos = await getMenuById({
-    id: '4e9fe85c-071c-4227-b36a-3956689cbe9a',
+    id: '8b21bf53-d5ec-43d6-9190-796b0cbc71de',
   })
   const latestReviews = await getMenuById({
-    id: '6623a1bc-1bfa-465e-bd77-6c6283aa4ef0',
+    id: 'c32a298f-41e8-4633-9202-f38e9f5f0826',
   })
   const headersList = await headers()
   const pathname =

@@ -105,8 +105,8 @@ const SearchBox = () => {
         | CasinoPagePreviewSchemaType
         | null
         | undefined = pages?.find(
-        (item) => item.slug.current === result.item.slug.current
-      )
+          (item) => item.slug.current === result.item.slug.current
+        )
       if (record?.slug.current === '') return null
       const clonedRecord = _.cloneDeep(record)
       const featuredImage = clonedRecord?.featuredImage
@@ -226,7 +226,7 @@ const SearchBox = () => {
                 <Link
                   href={item.slug.current}
                   className="flex items-center justify-start p-4"
-                  onClick={() => closeSearch()}
+                  onClick={() => handleCloseSearch()}
                 >
                   {item.featuredImage.src && (
                     <div className="h-[50px] w-[50px] relative mr-2">
@@ -275,7 +275,7 @@ const SearchBox = () => {
                 <Link
                   href={item.slug.current}
                   className="flex items-center justify-start"
-                  onClick={() => closeSearch()}
+                  onClick={() => handleCloseSearch()}
                 >
                   {item.featuredImage.src && (
                     <div className="h-[50px] w-[50px] relative mr-2">
@@ -324,7 +324,7 @@ const SearchBox = () => {
                 <Link
                   href={item.slug.current}
                   className="flex items-center justify-start"
-                  onClick={() => closeSearch()}
+                  onClick={() => handleCloseSearch()}
                 >
                   {item.featuredImage.src && (
                     <div className="h-[50px] w-[50px] relative mr-2">
@@ -373,7 +373,7 @@ const SearchBox = () => {
                 <Link
                   href={item.slug.current}
                   className="flex items-center justify-start"
-                  onClick={() => closeSearch()}
+                  onClick={() => handleCloseSearch()}
                 >
                   {item.featuredImage.src && (
                     <div className="h-[50px] w-[50px] relative mr-2">
