@@ -43,7 +43,9 @@ const ListObject = ({
                 className="mt-3"
               />
             ) : (
-              <Dot />
+              <div className="w-[30px] h-[30px]">
+                <Dot size={30} />
+              </div>
             )}
             <ModularContent objects={item.content} nested={true} />
           </li>
