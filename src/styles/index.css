@@ -168,3 +168,9 @@ html {
 body::-webkit-scrollbar {
     display: none;
 }
+
+body {
+    p {
+        font-size: 16px;
+    }
+}
