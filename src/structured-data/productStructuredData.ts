@@ -32,7 +32,7 @@ const getProductStructuredData = ({
       })
     },
     review: { '@id': `https://casinogringos.se${productPage.slug.current}#review`},
-    isPartOf: [{ '@id': 'https://casinogringos.se/#website'}]
+    // isPartOf: [{ '@id': 'https://casinogringos.se/#website'}]
   }
 }
 
