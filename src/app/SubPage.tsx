@@ -72,13 +72,6 @@ export default function SubPage({ page }: { page: SubPageSchemaType }) {
       ) : (
         <div className="mb-6" />
       )}
-      {/* {faqs && faqs.items.length && (
-        <div className="mb-16 bg-dark pb-16 pt-10 mb-16">
-          <Container>
-            <FAQ items={faqs.items} title={faqs.title} />
-          </Container>
-        </div>
-      )} */}
       {faqs && faqs.items.length && (
         <div className="bg-dark pb-16 pt-10 mb-16">
           <Container width={6}>
