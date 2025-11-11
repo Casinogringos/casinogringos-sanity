@@ -17,6 +17,7 @@ import { slugify } from '@/src/lib/utils'
 import { getItemListStructuredData } from '@/src/structured-data/itemListStructuredData'
 import { getFeaturedImageStructuredData } from '@/src/structured-data/featuredImageStructuredData'
 import { HeadingObjectSchemaType } from '@/src/schemas/headingObject'
+import { RatingObjectSchemaType } from '../schemas/ratingObject'
 
 const pageService = new PageService()
 
@@ -89,12 +90,40 @@ export default function SubPage({ page }: { page: SubPageSchemaType }) {
         <div>
           <Container width={3}>
             <TableOfContents
-              headings={headingObjects.map(
-                (heading: HeadingObjectSchemaType) => ({
-                  text: heading.text,
-                  slug: `${page.slug.current}#${slugify(heading.text)}`,
-                })
-              )}
+              headings={headingObjects
+                .filter(
+                  (
+                    heading: HeadingObjectSchemaType | RatingObjectSchemaType
+                  ) => {
+                    if (heading._type === 'heading-object') {
+                      return heading.text
+                    }
+                    if (heading._type === 'rating-object') {
+                      return heading.title
+                    }
+                    return false
+                  }
+                )
+                .map(
+                  (
+                    heading: HeadingObjectSchemaType | RatingObjectSchemaType
+                  ) => {
+                    switch (heading._type) {
+                      case 'heading-object': {
+                        return {
+                          text: heading.text,
+                          slug: `${page.slug.current}#${slugify(heading.text)}`,
+                        }
+                      }
+                      case 'rating-object': {
+                        return {
+                          text: heading.title,
+                          slug: `${page.slug.current}#${slugify(heading.title)}`,
+                        }
+                      }
+                    }
+                  }
+                )}
             />
           </Container>
         </div>
