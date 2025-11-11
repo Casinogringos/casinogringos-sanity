@@ -59,7 +59,7 @@ export default function SubPage({ page }: { page: SubPageSchemaType }) {
       <SubPageHero page={page} modifiedAt={modifiedAt} createdAt={createdAt} />
       {breadcrumbs && <BreadCrumbs items={breadcrumbs} />}
       {toplist?.casinos?.length ? (
-        <Container className="mb-16">
+        <Container width={6} className="mb-16">
           <CasinoList
             itemComponent={CasinoCard}
             casinos={toplist.casinos}
@@ -80,14 +80,14 @@ export default function SubPage({ page }: { page: SubPageSchemaType }) {
       )} */}
       {faqs && faqs.items.length && (
         <div className="bg-dark pb-16 pt-10 mb-16">
-          <Container>
+          <Container width={6}>
             <FAQ items={faqs.items} title={faqs.title} />
           </Container>
         </div>
       )}
       {headingObjects.length > 1 && (
         <div>
-          <Container narrow>
+          <Container width={3}>
             <TableOfContents
               headings={headingObjects.map(
                 (heading: HeadingObjectSchemaType) => ({
@@ -99,9 +99,9 @@ export default function SubPage({ page }: { page: SubPageSchemaType }) {
           </Container>
         </div>
       )}
-      <ModularContent objects={page.content} className="py-5" narrow />
+      <ModularContent objects={page.content} className="py-5" width={3} />
       {author && (
-        <Container narrow>
+        <Container width={3}>
           <AuthorBox
             author={author}
             modified={modifiedAt}

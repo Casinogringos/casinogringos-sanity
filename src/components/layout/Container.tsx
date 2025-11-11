@@ -2,18 +2,26 @@ import { ReactNode } from 'react'
 
 export default function Container({
   children,
-  narrow = false,
+  width = 6,
   className = '',
   disabled = false,
 }: {
   children: ReactNode
-  narrow?: boolean
+  width?: number
   className?: string
   disabled?: boolean
 }) {
+  const widthClasses = {
+    6: 'max-w-6xl',
+    5: 'max-w-5xl',
+    4: 'max-w-4xl',
+    3: 'max-w-3xl',
+    2: 'max-w-2xl',
+    1: 'max-w-xl',
+  }
   const classNames = disabled
     ? ''
-    : `${narrow ? 'max-w-4xl' : 'max-w-6xl'} mx-auto w-full px-4 lg:px-8 relative ${className}`
+    : `${widthClasses[width as keyof typeof widthClasses]} mx-auto w-full px-4 lg:px-8 relative ${className}`
 
   return <div className={classNames}>{children}</div>
 }

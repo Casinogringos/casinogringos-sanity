@@ -61,7 +61,7 @@ export default function NewsPage({
         key="news-page-structured-data"
       />
       <BreadCrumbs items={breadcrumbs} narrow />
-      <Container narrow>
+      <Container width={3}>
         {page.featuredImage && (
           <div className="mb-4 flex h-auto items-start overflow-hidden rounded-md lg:mb-8 lg:mt-8 lg:h-96 relative">
             <Image
@@ -76,7 +76,7 @@ export default function NewsPage({
         <ArticleHeader article={page} />
       </Container>
       {headingObjects.length > 2 && (
-        <Container narrow>
+        <Container width={3}>
           <div className="mt-4 px-4 lg:mt-5 lg:px-0">
             <TableOfContents
               headings={headingObjects
@@ -117,9 +117,9 @@ export default function NewsPage({
           </div>
         </Container>
       )}
-      <ModularContent narrow objects={page.content} className={'py-5'} />
+      <ModularContent width={3} objects={page.content} className={'py-5'} />
       {page.author && (
-        <Container narrow>
+        <Container width={3}>
           <AuthorBox
             author={page.author}
             modified={newsPageService.getPageModifiedAtTimestamp(page)}
@@ -129,10 +129,8 @@ export default function NewsPage({
       )}
       {similarNews && (
         <section className={'bg-gray-100 py-10'}>
-          <Container>
-            <Heading level={3} className={'mb-4 text-2xl text-gray700'}>
-              <span>Fler nyheter</span>
-            </Heading>
+          <Container width={6}>
+            <Heading level={3} className={'mb-4 text-2xl text-gray-700'} text='Fler Nyheter' />
             <div className={'grid grid-cols-2 gap-4 lg:grid-cols-4'}>
               {similarNews.map((item) => (
                 <ArticleCard key={`news-card-${item._id}`} item={item} />

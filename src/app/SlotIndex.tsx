@@ -91,7 +91,7 @@ export default function SlotIndex({
       )}
       {headings.length > 1 && (
         <div className="mb-10">
-          <Container narrow>
+          <Container width={3}>
             <TableOfContents
               headings={headings.map((heading: HeadingObjectSchemaType) => ({
                 text: heading.text,
@@ -101,7 +101,7 @@ export default function SlotIndex({
           </Container>
         </div>
       )}
-      <ModularContent className="py-5" narrow objects={page.content} />
+      <ModularContent className="py-5" width={3} objects={page.content} />
     </>
   )
 }
