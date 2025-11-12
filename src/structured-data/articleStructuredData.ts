@@ -57,7 +57,6 @@ const getArticleStructuredData = (
     author: {
       '@type': 'Person',
       name: `${page.author.firstName} ${page.author.lastName}`,
-      email: page.author.email,
       jobTitle: page.author.role,
       description: portableTextToPlainText(page.author.description),
       url: `https://casinogringos.se/om-oss/${page.author.slug.current}`,
@@ -69,6 +68,8 @@ const getArticleStructuredData = (
       '@type': 'WebPage',
       '@id': `${pageUrl}#webpage`,
     },
+    isPartOf: { '@id': 'https://casinogringos.se/#website' },
+    about: { '@id': 'https://casinogringos.se/#organization' },
   }
   return structuredData
 }
