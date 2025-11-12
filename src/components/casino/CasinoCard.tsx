@@ -1,10 +1,10 @@
+import Link from '@/src/components/content/Link'
+import Paragraph from '@/src/components/content/Paragraph'
+import CheckBadgeIcon from '@/src/components/icons/CheckBadgeIcon'
 import Star from '@/src/components/icons/StarIcon'
+import { CasinoSchemaType } from '@/src/schemas/casino'
 import CasinoService from '@/src/services/CasinoService'
 import Image from 'next/image'
-import Link from '@/src/components/content/Link'
-import CheckBadgeIcon from '@/src/components/icons/CheckBadgeIcon'
-import Paragraph from '@/src/components/content/Paragraph'
-import { CasinoSchemaType } from '@/src/schemas/casino'
 
 const CasinoCard = ({
   casino,
@@ -89,62 +89,42 @@ const CasinoCard = ({
             <div className="grid grid-cols-2 gap-2">
               {bonus || numberOfFreeSpins ? (
                 <>
-                  {bonus ? (
-                    <div className="uppercase flex min-h-[84px] font-medium flex-col items-center justify-center rounded-md border border-green-200 bg-green-100 p-2 text-lg leading-6">
-                      <div className="-mb-1 block text-[10px] text-gray-700">
-                        Bonus
+                  <div className="uppercase flex min-h-[84px] font-bold flex-col items-center justify-center rounded-md border border-green-200 bg-green-100 p-2 text-lg leading-6">
+                    <div className="-mb-1 block font-semibold text-[10px] text-gray-700">
+                      Bonus
+                    </div>
+                    {bonus ? bonus + ' kr' : '-'}
+                    {wageringRequirementsBonus && (
+                      <div className="-mt-0.5 flex items-center text-[10px] font-medium text-gray-700">
+                        Omsättning:
+                        <span className="ml-0.5 inline-block text-black">
+                          {wageringRequirementsBonus}x{' '}
+                        </span>
                       </div>
-                      {bonus ? bonus + ' kr' : '-'}
-                      {wageringRequirementsBonus && (
+                    )}
+                  </div>
+                  <div className="uppercase flex min-h-[84px] flex-col font-bold items-center justify-center rounded-md border border-blue-100 bg-blue-50 p-2 text-lg leading-6">
+                    <div className="-mb-1 block font-semibold text-[10px] text-gray-700">
+                      Freespins
+                    </div>
+                    {numberOfFreeSpins ? (
+                      <>
+                        {numberOfFreeSpins}
                         <div className="-mt-0.5 flex items-center text-[10px] font-medium text-gray-700">
-                          Omsättning:
+                          Omsättning:{' '}
                           <span className="ml-0.5 inline-block text-black">
-                            {wageringRequirementsBonus}x{' '}
+                            {wageringRequirementsFreespins}x
                           </span>
                         </div>
-                      )}
-                    </div>
-                  ) : (
-                    <div
-                      className={
-                        'uppercase flex min-h-[84px] font-medium flex-col items-center justify-center rounded-md border border-green-200 bg-green-100 p-2 text-lg leading-6'
-                      }
-                    >
-                      -
-                    </div>
-                  )}
-                  {numberOfFreeSpins ? (
-                    <div className="uppercase flex min-h-[84px] flex-col items-center justify-center rounded-md border border-blue-100 bg-blue-50 p-2 text-lg leading-6">
-                      <div className="-mb-1 block text-[10px] text-gray-700">
-                        Freespins
-                      </div>
-                      {numberOfFreeSpins ? (
-                        <>
-                          {numberOfFreeSpins}
-                          <div className="-mt-0.5 flex items-center text-[10px] font-medium text-gray-700">
-                            Omsättning:{' '}
-                            <span className="ml-0.5 inline-block text-black">
-                              {wageringRequirementsFreespins}x
-                            </span>
-                          </div>
-                        </>
-                      ) : (
-                        '-'
-                      )}
-                    </div>
-                  ) : (
-                    <div
-                      className={
-                        'uppercase flex min-h-[84px] font-medium flex-col items-center justify-center rounded-md border border-blue-100 bg-blue-50 p-2 text-lg leading-6'
-                      }
-                    >
-                      -
-                    </div>
-                  )}
+                      </>
+                    ) : (
+                      '-'
+                    )}
+                  </div>
                 </>
               ) : (
-                <div className="col-span-2 min-h-[84px] font-medium flex flex-col items-center justify-center rounded-md border border-blue-100 bg-blue-50 p-2 text-lg leading-6">
-                  <span className="text-gray-700 text-sm">
+                <div className="col-span-2 min-h-[84px] font-semibold flex flex-col items-center justify-center rounded-md border border-blue-100 bg-blue-50 p-2 text-lg leading-6">
+                  <span className="text-gray-700 text-lg">
                     {casino.defaultBonusText}
                   </span>
                 </div>

@@ -3,11 +3,11 @@ import Link from '@/src/components/content/Link'
 import Paragraph from '@/src/components/content/Paragraph'
 import StarHalf from '@/src/components/icons/HalfStarIcon'
 import Star from '@/src/components/icons/StarIcon'
+import { formatSlug } from '@/src/lib/utils'
 import { CasinoPageSchemaType } from '@/src/schemas/casinoPage'
 import CasinoService from '@/src/services/CasinoService'
 import { PortableText } from 'next-sanity'
 import Image from 'next/image'
-import { formatSlug } from '@/src/lib/utils'
 
 export default function CasinoHero({
   casinoPage,
@@ -79,7 +79,7 @@ export default function CasinoHero({
             <div className="grid grid-cols-2 gap-4 mb-4">
               {bonus || freeSpins ? (
                 <>
-                  <div className="uppercase flex gap-y-2 min-h-[85px] font-bold flex-col items-center justify-center rounded-md bg-white/10 p-6 text-xl md:text-2xl text-primary leading-6">
+                  <div className="uppercase flex gap-y-2 min-h-[85px] font-bold flex-col items-center justify-center rounded-md bg-white/10 p-6 text-xl md:text-2xl text-white leading-6">
                     <div className="-mb-1 block text-xs text-slate-400">
                       Bonus
                     </div>
