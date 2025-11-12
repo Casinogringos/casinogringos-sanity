@@ -47,7 +47,8 @@ export const getWebPageStructuredData = (
         name: page.seoTitle,
         description: page.seoDescription,
         inLanguage: 'sv-SE',
-        ...(modifiedAt && { dateModified: new Date(modifiedAt).toISOString() }),
+        ...(publishedAt && { datePublished: new Date(publishedAt).toISOString()}),
+        ...(modifiedAt && { dateModified: new Date(modifiedAt).toISOString()}),
         isPartOf: { '@id': 'https://casinogringos.se/#website' },
         about: { '@id': 'https://casinogringos.se/#organization' },
         ...(page?.seoImage?.src && {
@@ -72,12 +73,6 @@ export const getWebPageStructuredData = (
           ]
         : []),
     ],
-  }
-  if (publishedAt) {
-    structuredData['datePublished'] = new Date(publishedAt).toISOString()
-  }
-  if (modifiedAt) {
-    structuredData['dateModified'] = new Date(modifiedAt).toISOString()
   }
   return structuredData
 }
