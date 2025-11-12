@@ -60,7 +60,7 @@ export default function GuidePage({
         key="guide-page-structured-data"
       />
       <BreadCrumbs items={breadcrumbs} />
-      <Container narrow>
+      <Container width={3}>
         {page.featuredImage.src && (
           <div className="mb-4 flex h-auto items-start overflow-hidden rounded-md lg:mb-8 lg:mt-8 lg:h-96">
             <Image
@@ -75,7 +75,7 @@ export default function GuidePage({
         <ArticleHeader article={page} />
       </Container>
       {headings.length > 1 && (
-        <Container narrow>
+        <Container width={3}>
           <div className="-mb-6 mt-4 px-4 lg:mt-5 lg:px-0">
             <TableOfContents
               headings={headings.map((heading: HeadingObjectSchemaType) => ({
@@ -86,9 +86,9 @@ export default function GuidePage({
           </div>
         </Container>
       )}
-      <ModularContent narrow objects={page.content} className={'py-5'} />
+      <ModularContent width={3} objects={page.content} className={'py-5'} />
       {(page?.author || page?.reviewer) && (
-        <Container narrow>
+        <Container width={3}>
           <AuthorBox
             author={page?.author}
             modified={guidePageService.getPageModifiedAtTimestamp(page)}

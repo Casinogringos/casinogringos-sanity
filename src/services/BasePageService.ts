@@ -17,16 +17,16 @@ import UtilityService from '@/src/services/UtilityService'
 
 abstract class BasePageService<
   PageType extends
-    | GuidePageSchemaType
-    | GuidePagePreviewSchemaType
-    | SubPageSchemaType
-    | SubPagePreviewSchemaType
-    | SlotPageSchemaType
-    | SlotPagePreviewSchemaType
-    | NewsPageSchemaType
-    | NewsPagePreviewSchemaType
-    | CasinoPageSchemaType
-    | CasinoPagePreviewSchemaType,
+  | GuidePageSchemaType
+  | GuidePagePreviewSchemaType
+  | SubPageSchemaType
+  | SubPagePreviewSchemaType
+  | SlotPageSchemaType
+  | SlotPagePreviewSchemaType
+  | NewsPageSchemaType
+  | NewsPagePreviewSchemaType
+  | CasinoPageSchemaType
+  | CasinoPagePreviewSchemaType,
 > {
   utilityService = new UtilityService()
 
@@ -37,7 +37,7 @@ abstract class BasePageService<
   getHeadingObjects(page: PageType) {
     const traverse: any = (data: any, acc: any = []) => {
       if (!data) return acc
-      if (data._type === 'heading-object') {
+      if (data._type === 'heading-object' && data.level < 3) {
         acc.push(data)
       }
       if (Array.isArray(data)) {

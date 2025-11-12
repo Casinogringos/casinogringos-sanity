@@ -248,7 +248,7 @@ const Footer = ({
           </div>
         </div>
         <div className="mt-8 border-t border-white/10 py-8 lg:pt-12">
-          <p className="text-center text-sm leading-6 text-gray-300">
+          <p className="text-center !text-sm leading-6 text-gray-300">
             Casinogringos.se är en oberoende jämförelsesida för casinon på nätet
             som ägs av Flamingo Media Limited, ett bolag baserat på Malta med
             organisationsnummer C93014. Informationen på sidan är ämnad för
@@ -274,7 +274,7 @@ const Footer = ({
               </Link>
             ))}
           </div>
-          <p className="mt-8 text-center text-xs leading-5 text-gray-400 md:order-1 md:mt-0 lg:text-left">
+          <p className="mt-8 text-center !text-xs leading-5 text-gray-400 md:order-1 md:mt-0 lg:text-left">
             &copy; 2019-{year} Casinogringos, Alla rättigheter reserverade.
           </p>
         </div>

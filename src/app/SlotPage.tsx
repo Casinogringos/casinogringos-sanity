@@ -194,7 +194,7 @@ const SlotPage = ({
           </Container>
         </div>
         {breadcrumbs && <BreadCrumbs items={breadcrumbs} narrow />}
-        <Container narrow className="mb-10 mt-12">
+        <Container width={3} className="mb-10 mt-12">
           <Avatar
             author={slotPage.author}
             createdAt={createdAt}
@@ -204,7 +204,7 @@ const SlotPage = ({
           />
         </Container>
         {headings.length > 1 && (
-          <Container narrow>
+          <Container width={3}>
             <TableOfContents
               headings={headings.map((heading: HeadingObjectSchemaType) => ({
                 text: heading.text,
@@ -213,7 +213,7 @@ const SlotPage = ({
             />
           </Container>
         )}
-        <ModularContent className="py-5" objects={slotPage.content} narrow />
+        <ModularContent className="py-5" objects={slotPage.content} width={3} />
         {relatedCasinos.filter((casino) => casino) && (
           <section id="spela" className="bg-dark  py-12 lg:pb-16 lg:pt-20">
             <div className="mx-auto max-w-6xl px-4 text-left lg:px-8">

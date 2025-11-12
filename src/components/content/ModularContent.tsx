@@ -31,7 +31,6 @@ const renderObject = ({
   object,
   outerIndex,
   casino,
-  narrow,
   prose,
   nested,
   bonusCategories,
@@ -39,7 +38,6 @@ const renderObject = ({
   object: ModularContentItemSchemaType
   outerIndex: number
   casino?: CasinoSchemaType
-  narrow?: boolean
   prose?: boolean
   nested?: boolean
   bonusCategories?: { value: string }[]
@@ -138,7 +136,7 @@ const ModularContent = ({
   className = '',
   bonusCategories,
   casino,
-  narrow,
+  width,
   prose = true,
   nested = false,
 }: {
@@ -147,15 +145,15 @@ const ModularContent = ({
   nested?: boolean
   casino?: CasinoSchemaType
   bonusCategories?: { value: string }[]
-  narrow?: boolean
+  width?: number
   prose?: boolean
 }) => {
   if (!objects) return null
   const Tag = nested ? 'div' : Container
   return (
     <Tag
-      className={`${className} ${prose ? 'prose lg:prose-lg prose:last:mb-0' : ''} text-base leading-paragraph ${nested ? 'max-w-none' : 'pb-10'}`}
-      narrow={narrow}
+      className={`${className} ${prose ? 'prose lg:prose-lg prose:last:mb-0' : ''} text-base md:px-0 leading-paragraph ${nested ? 'max-w-none' : 'pb-10'}`}
+      width={width}
     >
       {objects.map(
         (object: ModularContentItemSchemaType, outerIndex: number) => {
@@ -166,7 +164,6 @@ const ModularContent = ({
                 object,
                 outerIndex,
                 casino,
-                narrow,
                 prose,
                 nested,
                 bonusCategories,

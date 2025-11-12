@@ -67,11 +67,11 @@ const CasinoPage = ({
         <CasinoHero casinoPage={casinoPage} />
         <BreadCrumbs items={breadcrumbs} />
         <div className="border-b border-b-slate-100 bg-slate-50">
-          <Container className="py-6" narrow>
+          <Container className="py-6" width={3}>
             <CasinoInfo casinoPage={casinoPage} />
           </Container>
         </div>
-        <Container className="pt-10 pb-6" narrow>
+        <Container className="pt-10 pb-6" width={3}>
           <Avatar
             author={casinoPage.author}
             reviewer={casinoPage.reviewer}
@@ -85,7 +85,7 @@ const CasinoPage = ({
           />
         </Container>
         {headings.length > 1 && (
-          <Container narrow>
+          <Container width={3}>
             <TableOfContents
               headings={headings
                 .filter(
@@ -129,11 +129,11 @@ const CasinoPage = ({
             objects={casinoPage.content}
             casino={casinoPage.casino}
             className="py-5"
-            narrow
+            width={3}
           />
         )}
         {casinoPage?.author && (
-          <Container narrow>
+          <Container width={3}>
             <AuthorBox
               author={casinoPage?.author}
               modified={casinoPageService.getPageModifiedAtTimestamp(

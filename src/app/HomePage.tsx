@@ -61,7 +61,7 @@ const HomePage = ({
       <HomePageHero page={page} />
       {page.toplist?.casinos && page.toplist.casinos.length > 0 && (
         <div className="bg-slate-100">
-          <Container className="pb-16">
+          <Container width={6} className="pb-16">
             <CasinoList
               casinos={page.toplist.casinos}
               title={page.toplist.title}
@@ -74,7 +74,7 @@ const HomePage = ({
       )}
       <NewsList itemComponent={ArticleCard} items={news} cardBackground />
       {headingObjects && headingObjects.length > 0 && (
-        <Container narrow>
+        <Container width={3}>
           <div className="pt-12 lg:pt-16">
             <TableOfContents
               headings={headingObjects
@@ -117,12 +117,12 @@ const HomePage = ({
       )}
       <ModularContent
         className="py-10"
-        narrow
+        width={3}
         objects={page.content}
         bonusCategories={toplistCategories}
       />
       {author && (
-        <Container narrow>
+        <Container width={3}>
           <AuthorBox
             author={author}
             modified={pageService.getPageModifiedAtTimestamp(page)}
@@ -132,7 +132,7 @@ const HomePage = ({
       )}
       {faqs && (
         <div className="bg-dark pb-16 pt-16">
-          <Container>
+          <Container width={4}>
             <FAQ
               items={faqs.items}
               title={faqs.title}

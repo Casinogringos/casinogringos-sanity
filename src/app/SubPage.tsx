@@ -17,6 +17,7 @@ import { slugify } from '@/src/lib/utils'
 import { getItemListStructuredData } from '@/src/structured-data/itemListStructuredData'
 import { getFeaturedImageStructuredData } from '@/src/structured-data/featuredImageStructuredData'
 import { HeadingObjectSchemaType } from '@/src/schemas/headingObject'
+import { RatingObjectSchemaType } from '../schemas/ratingObject'
 
 const pageService = new PageService()
 
@@ -59,7 +60,7 @@ export default function SubPage({ page }: { page: SubPageSchemaType }) {
       <SubPageHero page={page} modifiedAt={modifiedAt} createdAt={createdAt} />
       {breadcrumbs && <BreadCrumbs items={breadcrumbs} />}
       {toplist?.casinos?.length ? (
-        <Container className="mb-16">
+        <Container width={6} className="mb-16">
           <CasinoList
             itemComponent={CasinoCard}
             casinos={toplist.casinos}
@@ -71,37 +72,58 @@ export default function SubPage({ page }: { page: SubPageSchemaType }) {
       ) : (
         <div className="mb-6" />
       )}
-      {/* {faqs && faqs.items.length && (
-        <div className="mb-16 bg-dark pb-16 pt-10 mb-16">
-          <Container>
-            <FAQ items={faqs.items} title={faqs.title} />
-          </Container>
-        </div>
-      )} */}
       {faqs && faqs.items.length && (
         <div className="bg-dark pb-16 pt-10 mb-16">
-          <Container>
+          <Container width={6}>
             <FAQ items={faqs.items} title={faqs.title} />
           </Container>
         </div>
       )}
       {headingObjects.length > 1 && (
         <div>
-          <Container narrow>
+          <Container width={3}>
             <TableOfContents
-              headings={headingObjects.map(
-                (heading: HeadingObjectSchemaType) => ({
-                  text: heading.text,
-                  slug: `${page.slug.current}#${slugify(heading.text)}`,
-                })
-              )}
+              headings={headingObjects
+                .filter(
+                  (
+                    heading: HeadingObjectSchemaType | RatingObjectSchemaType
+                  ) => {
+                    if (heading._type === 'heading-object') {
+                      return heading.text
+                    }
+                    if (heading._type === 'rating-object') {
+                      return heading.title
+                    }
+                    return false
+                  }
+                )
+                .map(
+                  (
+                    heading: HeadingObjectSchemaType | RatingObjectSchemaType
+                  ) => {
+                    switch (heading._type) {
+                      case 'heading-object': {
+                        return {
+                          text: heading.text,
+                          slug: `${page.slug.current}#${slugify(heading.text)}`,
+                        }
+                      }
+                      case 'rating-object': {
+                        return {
+                          text: heading.title,
+                          slug: `${page.slug.current}#${slugify(heading.title)}`,
+                        }
+                      }
+                    }
+                  }
+                )}
             />
           </Container>
         </div>
       )}
-      <ModularContent objects={page.content} className="py-5" narrow />
+      <ModularContent objects={page.content} className="py-5" width={3} />
       {author && (
-        <Container narrow>
+        <Container width={3}>
           <AuthorBox
             author={author}
             modified={modifiedAt}
