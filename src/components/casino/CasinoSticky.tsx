@@ -1,12 +1,12 @@
 'use client'
 
-import { useState, useEffect } from 'react'
-import dynamic from 'next/dynamic'
-import { CasinoSchemaType } from '@/src/schemas/casino'
-const Link = dynamic(() => import('@/src/components/content/Link'))
-import Image from 'next/image'
-import CasinoService from '@/src/services/CasinoService'
 import { formatSlug } from '@/src/lib/utils'
+import { CasinoSchemaType } from '@/src/schemas/casino'
+import CasinoService from '@/src/services/CasinoService'
+import dynamic from 'next/dynamic'
+import Image from 'next/image'
+import { useEffect, useState } from 'react'
+const Link = dynamic(() => import('@/src/components/content/Link'))
 
 const CasinoSticky = ({ casino }: { casino: CasinoSchemaType }) => {
   const [isVisible, setIsVisible] = useState(false)
@@ -38,7 +38,7 @@ const CasinoSticky = ({ casino }: { casino: CasinoSchemaType }) => {
         ) {
           return null
         }
-        return `${casinoBonusPercentage && casinoBonusAmount ? casinoBonusPercentage + '% up to ' + casinoBonusAmount : ''}${casinoBonusPercentage && casinoBonusAmount && numberOfFreeSpins ? ' + ' : ''}${numberOfFreeSpins ? numberOfFreeSpins + ' freespins' : ''}`
+        return `${casinoBonusPercentage && casinoBonusAmount ? casinoBonusPercentage + '% up till ' + casinoBonusAmount : ''}${casinoBonusPercentage && casinoBonusAmount && numberOfFreeSpins ? ' + ' : ''}${numberOfFreeSpins ? numberOfFreeSpins + ' freespins' : ''}`
       }
       case 'odds-bonuses': {
         const oddsBonus = bonus.bonusAmountRange.max
@@ -54,7 +54,7 @@ const CasinoSticky = ({ casino }: { casino: CasinoSchemaType }) => {
         ) {
           return null
         }
-        return `${liveCasinoBonusPercentage && liveCasinoBonusAmount ? liveCasinoBonusPercentage + '% up to ' + liveCasinoBonusAmount : ''}${liveCasinoBonusPercentage && liveCasinoBonusAmount && numberOfFreeSpins ? ' + ' : ''}${numberOfFreeSpins ? numberOfFreeSpins + ' freespins' : ''}`
+        return `${liveCasinoBonusPercentage && liveCasinoBonusAmount ? liveCasinoBonusPercentage + '% up till ' + liveCasinoBonusAmount : ''}${liveCasinoBonusPercentage && liveCasinoBonusAmount && numberOfFreeSpins ? ' + ' : ''}${numberOfFreeSpins ? numberOfFreeSpins + ' freespins' : ''}`
       }
       default:
         return null

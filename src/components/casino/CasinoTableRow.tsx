@@ -1,7 +1,7 @@
 import Link from '@/src/components/content/Link'
-import CasinoService from '@/src/services/CasinoService'
-import { CasinoSchemaType } from '@/src/schemas/casino'
 import { formatSlug } from '@/src/lib/utils'
+import { CasinoSchemaType } from '@/src/schemas/casino'
+import CasinoService from '@/src/services/CasinoService'
 
 const CasinoTableRow = ({
   casino,
@@ -34,7 +34,7 @@ const CasinoTableRow = ({
         ) {
           return null
         }
-        return `${casinoBonusPercentage && casinoBonusAmount ? casinoBonusPercentage + '% up to ' + casinoBonusAmount : ''}${casinoBonusPercentage && casinoBonusAmount && numberOfFreeSpins ? ' + ' : ''}${numberOfFreeSpins ? numberOfFreeSpins + ' freespins' : ''}`
+        return `${casinoBonusPercentage && casinoBonusAmount ? casinoBonusPercentage + '% up till' + casinoBonusAmount : ''}${casinoBonusPercentage && casinoBonusAmount && numberOfFreeSpins ? ' + ' : ''}${numberOfFreeSpins ? numberOfFreeSpins + ' freespins' : ''}`
       }
       case 'odds-bonuses': {
         const oddsBonus = bonus.bonusAmountRange.max
@@ -50,7 +50,7 @@ const CasinoTableRow = ({
         ) {
           return null
         }
-        return `${liveCasinoBonusPercentage && liveCasinoBonusAmount ? liveCasinoBonusPercentage + '% up to ' + liveCasinoBonusAmount : ''}${liveCasinoBonusPercentage && liveCasinoBonusAmount && numberOfFreeSpins ? ' + ' : ''}${numberOfFreeSpins ? numberOfFreeSpins + ' freespins' : ''}`
+        return `${liveCasinoBonusPercentage && liveCasinoBonusAmount ? liveCasinoBonusPercentage + '% up till ' + liveCasinoBonusAmount : ''}${liveCasinoBonusPercentage && liveCasinoBonusAmount && numberOfFreeSpins ? ' + ' : ''}${numberOfFreeSpins ? numberOfFreeSpins + ' freespins' : ''}`
       }
       default:
         return null
