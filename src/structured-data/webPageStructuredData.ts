@@ -39,40 +39,37 @@ export const getWebPageStructuredData = (
 
   const structuredData: Record<string, string | object | number> = {
     '@context': 'https://schema.org',
-    '@graph': [
-      {
-        '@type': 'WebPage',
-        '@id': `${pageUrl}#webpage`,
-        url: pageUrl,
-        name: page.seoTitle,
-        description: page.seoDescription,
-        inLanguage: 'sv-SE',
-        ...(publishedAt && { datePublished: new Date(publishedAt).toISOString()}),
-        ...(modifiedAt && { dateModified: new Date(modifiedAt).toISOString()}),
-        isPartOf: { '@id': 'https://casinogringos.se/#website' },
-        about: { '@id': 'https://casinogringos.se/#organization' },
-        ...(page?.seoImage?.src && {
-          primaryImageOfPage: { '@id': `${pageUrl}#primaryimage` },
-          image: { '@id': `${pageUrl}#primaryimage` },
-          thumbnailUrl: page.seoImage?.src,
-        }),
-        ...(reviewedBy && { reviewedBy }),
-        potentialAction: [{ '@type': 'ReadAction', target: [pageUrl] }],
-      },
-      ...(page.seoImage?.src
-        ? [
-            {
-              '@type': 'ImageObject',
-              '@id': `${pageUrl}#primaryimage`,
-              url: page.seoImage?.src,
-              inLanguage: 'sv-SE',
-              ...(page.seoImage?.alt?.trim()
-                ? { alternateName: page.seoImage.alt.trim() }
-                : {}),
-            },
-          ]
-        : []),
-    ],
+    '@type': 'WebPage',
+    '@id': `${pageUrl}#webpage`,
+    url: pageUrl,
+    name: page.seoTitle,
+    description: page.seoDescription,
+    inLanguage: 'sv-SE',
+    ...(publishedAt && { datePublished: new Date(publishedAt).toISOString()}),
+    ...(modifiedAt && { dateModified: new Date(modifiedAt).toISOString()}),
+    isPartOf: { '@id': 'https://casinogringos.se/#website' },
+    about: { '@id': 'https://casinogringos.se/#organization' },
+    ...(page?.seoImage?.src && {
+      primaryImageOfPage: { '@id': `${pageUrl}#primaryimage` },
+      image: { '@id': `${pageUrl}#primaryimage` },
+      thumbnailUrl: page.seoImage?.src,
+    }),
+    ...(reviewedBy && { reviewedBy }),
+    potentialAction: [{ '@type': 'ReadAction', target: [pageUrl] }],
+    ...(page.seoImage?.src
+      ? [
+          {
+            '@type': 'ImageObject',
+            '@id': `${pageUrl}#primaryimage`,
+            url: page.seoImage?.src,
+            inLanguage: 'sv-SE',
+            ...(page.seoImage?.alt?.trim()
+              ? { alternateName: page.seoImage.alt.trim() }
+              : {}),
+          },
+        ]
+      : []),
+    
   }
   return structuredData
 }

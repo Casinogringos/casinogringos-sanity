@@ -1,8 +1,8 @@
 import { portableTextToPlainText } from '@/src/lib/utils'
 import { GuidePageSchemaType } from '@/src/schemas/guidePage'
 import { NewsPageSchemaType } from '@/src/schemas/newsPage'
-import NewsPageService from '@/src/services/NewsPageService'
 import { SubPageSchemaType } from '@/src/schemas/subPage'
+import NewsPageService from '@/src/services/NewsPageService'
 
 const newsPageService = new NewsPageService()
 
@@ -39,6 +39,8 @@ const getArticleStructuredData = (
     '@id': `${pageUrl}#article`,
     headline: page.title ?? page.seoTitle,
     description: page.seoDescription,
+    ...(publishedAt && { datePublished: new Date(publishedAt).toISOString()}),
+    ...(modifiedAt && { dateModified: new Date(modifiedAt).toISOString()}),
     image: { '@id': `${pageUrl}#primaryimage` },
     publisher: { '@id': 'https://casinogringos.se/#organization' },
     author: {
@@ -57,13 +59,6 @@ const getArticleStructuredData = (
       '@id': `${pageUrl}#webpage`,
     },
   }
-  if (publishedAt) {
-    structuredData['datePublished'] = new Date(publishedAt).toISOString()
-  }
-  if (modifiedAt) {
-    structuredData['dateModified'] = new Date(modifiedAt).toISOString()
-  }
-
   return structuredData
 }
 
