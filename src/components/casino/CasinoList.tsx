@@ -1,16 +1,15 @@
-import { AlertCircle, ChevronDown } from 'lucide-react'
-import Link from 'next/link'
-import Heading from '@/src/components/content/Heading'
 import CasinoCard from '@/src/components/casino/CasinoCard'
+import Heading from '@/src/components/content/Heading'
 import CheckBadgeIcon from '@/src/components/icons/CheckBadgeIcon'
-import { PortableTextBlock } from 'next-sanity'
+import QuestionMark from '@/src/components/icons/QuestionMark'
 import ToggleButton from '@/src/components/interactivity/ToggleButton'
 import ToggleItem from '@/src/components/interactivity/ToggleItem'
-import { CasinoPagePreviewSchemaType } from '@/src/schemas/casinoPagePreview'
-import Button from '../content/Button'
-import QuestionMark from '@/src/components/icons/QuestionMark'
 import ToggleSpin from '@/src/components/interactivity/ToggleSpin'
 import { CasinoSchemaType } from '@/src/schemas/casino'
+import { AlertCircle, ChevronDown } from 'lucide-react'
+import { PortableTextBlock } from 'next-sanity'
+import Link from 'next/link'
+import Button from '../content/Button'
 
 export default function CasinoList({
   casinos,
@@ -87,7 +86,7 @@ export default function CasinoList({
         <div className="pr-8 lg:pr-0">
           <Heading
             level={2}
-            sizes={[6, 6, 7]}
+            sizes={[6, 6, 6]}
             className="mb-0 !mt-1 font-semibold"
             text={title}
           />
