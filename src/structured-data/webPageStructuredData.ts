@@ -50,26 +50,20 @@ export const getWebPageStructuredData = (
     isPartOf: { '@id': 'https://casinogringos.se/#website' },
     about: { '@id': 'https://casinogringos.se/#organization' },
     ...(page?.seoImage?.src && {
+      image: {
+        '@type': 'ImageObject',
+        '@id': `${pageUrl}#primaryimage`,
+        url: page.seoImage.src,
+        inLanguage: 'sv-SE',
+        ...(page.seoImage?.alt?.trim()
+          ? { alternateName: page.seoImage.alt.trim() }
+          : {}),
+      },
       primaryImageOfPage: { '@id': `${pageUrl}#primaryimage` },
-      image: { '@id': `${pageUrl}#primaryimage` },
-      thumbnailUrl: page.seoImage?.src,
+      thumbnailUrl: page.seoImage.src,
     }),
     ...(reviewedBy && { reviewedBy }),
     potentialAction: [{ '@type': 'ReadAction', target: [pageUrl] }],
-    ...(page.seoImage?.src
-      ? [
-          {
-            '@type': 'ImageObject',
-            '@id': `${pageUrl}#primaryimage`,
-            url: page.seoImage?.src,
-            inLanguage: 'sv-SE',
-            ...(page.seoImage?.alt?.trim()
-              ? { alternateName: page.seoImage.alt.trim() }
-              : {}),
-          },
-        ]
-      : []),
-    
   }
   return structuredData
 }

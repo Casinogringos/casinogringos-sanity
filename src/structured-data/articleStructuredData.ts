@@ -41,7 +41,18 @@ const getArticleStructuredData = (
     description: page.seoDescription,
     ...(publishedAt && { datePublished: new Date(publishedAt).toISOString()}),
     ...(modifiedAt && { dateModified: new Date(modifiedAt).toISOString()}),
-    image: { '@id': `${pageUrl}#primaryimage` },
+    ...(page.seoImage?.src && {
+      image: {
+        '@type': 'ImageObject',
+        '@id': `${pageUrl}#primaryimage`,
+        url: page.seoImage.src,
+        inLanguage: 'sv-SE',
+        ...(page.seoImage?.alt?.trim()
+          ? { alternateName: page.seoImage.alt.trim() }
+          : {}),
+      },
+    }),
+    inLanguage: 'sv-SE',
     publisher: { '@id': 'https://casinogringos.se/#organization' },
     author: {
       '@type': 'Person',
