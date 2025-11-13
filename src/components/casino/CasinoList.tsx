@@ -26,8 +26,12 @@ export default function CasinoList({
 }) {
   const year = new Date().getFullYear()
   const ItemComponent = itemComponent
-  const initialCasinos = casinos.filter((casino) => !casino.excludeFromToplists).slice(0, 24)
-  const remainingCasinos = casinos.filter((casino) => !casino.excludeFromToplists).slice(24)
+  const casinosWithIndexes = casinos.filter((casino) => !casino.excludeFromToplists).map((casino, index) => ({
+    ...casino,
+    index,
+  }))
+  const initialCasinos = casinosWithIndexes.slice(0, 12)
+  const remainingCasinos = casinosWithIndexes.slice(12)
 
   return (
     <>
@@ -96,26 +100,28 @@ export default function CasinoList({
           </p>
         </div>
       </div>
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
-        {initialCasinos.map((casino, index) => (
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 mb-4">
+        {initialCasinos.map((casino) => (
           <ItemComponent
-            key={`casino-${casino._id}-${index}`}
+            key={`casino-${casino._id}-${casino.index}`}
             casino={casino}
-            index={index}
+            index={casino.index}
             categories={categories}
           />
         ))}
-        <ToggleItem id={'show-more-casinos'}>
-          {remainingCasinos.map((casinoPage, index) => (
+      </div>
+      <ToggleItem id={'show-more-casinos'}>
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {remainingCasinos.map((casinoPage) => (
             <ItemComponent
-              key={`casino-${casinoPage._id}-${index}`}
+              key={`casino-${casinoPage._id}-${casinoPage.index}`}
               casino={casinoPage}
-              index={index}
+              index={casinoPage.index}
               categories={categories}
             />
           ))}
-        </ToggleItem>
-      </div>
+        </div>
+      </ToggleItem>
       <ToggleButton
         id={'show-more-casinos'}
         role={'button'}
