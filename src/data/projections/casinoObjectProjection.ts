@@ -5,7 +5,7 @@ export const casinoObjectProjection = `
     _type,
     _id,
     _key,
-    casinoPage-> {
+    casinoPage -> {
       ${casinoPagePreviewProjection}
     },
     message,

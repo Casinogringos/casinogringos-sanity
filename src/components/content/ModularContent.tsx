@@ -72,7 +72,7 @@ const renderObject = ({
       return <SlotListObject object={object} />
     }
     case 'casino-object': {
-      return <CasinoObject object={object} />
+      return <CasinoObject object={object} bonusCategories={bonusCategories} />
     }
     case 'casino-table-object': {
       return (

@@ -5,13 +5,70 @@ import { PortableText } from 'next-sanity'
 import Placeholder from '@/src/components/utils/Placeholder'
 import Heading from '@/src/components/content/Heading'
 import { formatSlug } from '@/src/lib/utils'
+import CasinoService from '@/src/services/CasinoService'
 
-const CasinoObject = ({ object }: { object: CasinoObjectSchemaType }) => {
+const CasinoObject = ({
+  object,
+  bonusCategories,
+}: {
+  object: CasinoObjectSchemaType
+  bonusCategories?: { value: string }[]
+}) => {
   const { casinoPage, buttonText, offer, description } = object
   const { casino } = casinoPage ?? {}
   if (!casino) {
     return <Placeholder message={'Casino Object: Missing casino'} />
   }
+  const casinoService = new CasinoService()
+  const bonusCategory = casinoService.chooseBonusCategory({
+    categories: bonusCategories ?? [],
+    casino,
+  })
+  const bonus = casinoService.getBonus({
+    casino,
+    category: bonusCategory,
+  })
+  const numberOfFreeSpins = casino.freeSpins?.[0]?.numberOfFreeSpins ?? false
+  const getBonusString = () => {
+    if (!bonus) return
+    switch (bonus._type) {
+      case 'casino-bonuses': {
+        const casinoBonusAmount = bonus.bonusAmountRange.max
+        const casinoBonusPercentage = bonus.bonusPercentage
+        if (
+          (!casinoBonusAmount || !casinoBonusPercentage) &&
+          !numberOfFreeSpins
+        ) {
+          return null
+        }
+        return `${casinoBonusPercentage && casinoBonusAmount ? casinoBonusPercentage + '% up to ' + casinoBonusAmount : ''}${casinoBonusPercentage && casinoBonusAmount && numberOfFreeSpins ? ' + ' : ''}${numberOfFreeSpins ? numberOfFreeSpins + ' freespins' : ''}`
+      }
+      case 'odds-bonuses': {
+        const oddsBonus = bonus.bonusAmountRange.max
+        if (!oddsBonus && !numberOfFreeSpins) return null
+        return `${oddsBonus ? oddsBonus + ' kr bonus' : ''}${oddsBonus && numberOfFreeSpins ? ' + ' : ''}${numberOfFreeSpins ? numberOfFreeSpins + ' freespins' : ''}`
+      }
+      case 'live-casino-bonuses': {
+        const liveCasinoBonusPercentage = bonus.bonusPercentage
+        const liveCasinoBonusAmount = bonus.bonusAmountRange.max
+        if (
+          (!liveCasinoBonusPercentage || !liveCasinoBonusAmount) &&
+          !numberOfFreeSpins
+        ) {
+          return null
+        }
+        return `${liveCasinoBonusPercentage && liveCasinoBonusAmount ? liveCasinoBonusPercentage + '% up to ' + liveCasinoBonusAmount : ''}${liveCasinoBonusPercentage && liveCasinoBonusAmount && numberOfFreeSpins ? ' + ' : ''}${numberOfFreeSpins ? numberOfFreeSpins + ' freespins' : ''}`
+      }
+      default:
+        return null
+    }
+  }
+  const bonusString = getBonusString()
+  const affLinkSlug = casinoService.getAffLinkSlug({
+    bonusCategory,
+    casino,
+  })
+
   return (
     <div
       className={
@@ -35,16 +92,16 @@ const CasinoObject = ({ object }: { object: CasinoObjectSchemaType }) => {
           className={'not-prose !mt-0 !mb-2'}
         />
         <span className={'block pb-0 not-prose font-bold leading-6 text-dark'}>
-          <PortableText value={offer} />
+          {offer ? <PortableText value={offer} /> : bonusString}
         </span>
-        <div className={'prose mb-6 mt-3'}>
+        <div className={'prose mb-6'}>
           <PortableText value={description} />
         </div>
-        {casino?.affLink?.slug?.current && (
+        {affLinkSlug && (
           <Link
             variant="affiliate"
             className="w-full"
-            href={`go${formatSlug(casino?.affLink?.slug?.current)}`}
+            href={`go${formatSlug(affLinkSlug)}`}
             place="CasinoCard block"
           >
             {buttonText}

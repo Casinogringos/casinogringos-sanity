@@ -179,7 +179,7 @@ class CasinoService {
       case 'live-casino-bonus':
         return casino.liveCasinoBonuses?.[0] ?? null
       default:
-        return null
+        return casino.casinoBonuses?.[0] ?? null
     }
   }
 
@@ -234,7 +234,7 @@ class CasinoService {
       case 'live-casino-bonus':
         return casino.liveCasinoBonuses?.[0]?.affLink?.slug.current ?? null
       default:
-        return casino.freeSpins?.[0]?.affLink?.slug.current ?? null
+        return casino.affLink?.slug.current ?? null
     }
   }
 }

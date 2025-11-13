@@ -39,12 +39,11 @@ export const getCasinoPagePreviewProjection = ({
 }): string => {
   return `
     ${casinoPagePreviewProjection},
-    ${
-      author
-        ? `author-> {
+    ${author
+      ? `author-> {
       ${authorProjection}
     }`
-        : ''
+      : ''
     }
   `
 }
