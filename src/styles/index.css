@@ -130,6 +130,7 @@
 
     --font-size-md: 16px;
     --font-size-2xs: 9px;
+    --font-size-xs: 12px;
 
     --leading-paragraph: 28px;
 }
@@ -172,6 +173,11 @@ body::-webkit-scrollbar {
 body {
     p {
         font-size: var(--font-size-md);
+    }
+
+    .text-xs p,
+    p.text-xs {
+        font-size: var(--font-size-xs) !important;
     }
 
     .text-sm p {
