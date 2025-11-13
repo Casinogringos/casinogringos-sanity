@@ -9,11 +9,12 @@ const CasinoTableObject = ({
   object: CasinoTableObjectSchemaType
   bonusCategories?: { value: string }[]
 }) => {
-  const { toplist } = object
+  const { toplist, count } = object
   if (!toplist || !toplist.casinos || toplist.casinos.length === 0) {
     return <Placeholder message="No toplist found" />
   }
   const { title, description, casinos } = toplist
+  const casinosToShow = count ? casinos.slice(0, count) : casinos
 
   return (
     <div>
@@ -27,7 +28,7 @@ const CasinoTableObject = ({
           </tr>
         </thead>
         <tbody>
-          {casinos.map((casino, index) => (
+          {casinosToShow.map((casino, index) => (
             <CasinoTableRow
               key={`${casino._id}-${index}`}
               casino={casino}

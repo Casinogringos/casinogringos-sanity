@@ -8,5 +8,6 @@ export const casinoTableObjectProjection = `
     toplist-> {
         ${toplistProjection}
     },
+    count
   }
 `

@@ -34,7 +34,7 @@ const CasinoTableRow = ({
         ) {
           return null
         }
-        return `${casinoBonusPercentage && casinoBonusAmount ? casinoBonusPercentage + '% up till' + casinoBonusAmount : ''}${casinoBonusPercentage && casinoBonusAmount && numberOfFreeSpins ? ' + ' : ''}${numberOfFreeSpins ? numberOfFreeSpins + ' freespins' : ''}`
+        return `${casinoBonusPercentage && casinoBonusAmount ? casinoBonusPercentage + '% up till ' + casinoBonusAmount : ''}${casinoBonusPercentage && casinoBonusAmount && numberOfFreeSpins ? ' + ' : ''}${numberOfFreeSpins ? numberOfFreeSpins + ' freespins' : ''}`
       }
       case 'odds-bonuses': {
         const oddsBonus = bonus.bonusAmountRange.max
