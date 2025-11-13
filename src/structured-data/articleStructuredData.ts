@@ -1,8 +1,8 @@
 import { portableTextToPlainText } from '@/src/lib/utils'
 import { GuidePageSchemaType } from '@/src/schemas/guidePage'
 import { NewsPageSchemaType } from '@/src/schemas/newsPage'
-import NewsPageService from '@/src/services/NewsPageService'
 import { SubPageSchemaType } from '@/src/schemas/subPage'
+import NewsPageService from '@/src/services/NewsPageService'
 
 const newsPageService = new NewsPageService()
 
@@ -39,12 +39,24 @@ const getArticleStructuredData = (
     '@id': `${pageUrl}#article`,
     headline: page.title ?? page.seoTitle,
     description: page.seoDescription,
-    image: { '@id': `${pageUrl}#primaryimage` },
+    ...(publishedAt && { datePublished: new Date(publishedAt).toISOString()}),
+    ...(modifiedAt && { dateModified: new Date(modifiedAt).toISOString()}),
+    ...(page.seoImage?.src && {
+      image: {
+        '@type': 'ImageObject',
+        '@id': `${pageUrl}#primaryimage`,
+        url: page.seoImage.src,
+        inLanguage: 'sv-SE',
+        ...(page.seoImage?.alt?.trim()
+          ? { alternateName: page.seoImage.alt.trim() }
+          : {}),
+      },
+    }),
+    inLanguage: 'sv-SE',
     publisher: { '@id': 'https://casinogringos.se/#organization' },
     author: {
       '@type': 'Person',
       name: `${page.author.firstName} ${page.author.lastName}`,
-      email: page.author.email,
       jobTitle: page.author.role,
       description: portableTextToPlainText(page.author.description),
       url: `https://casinogringos.se/om-oss/${page.author.slug.current}`,
@@ -56,14 +68,9 @@ const getArticleStructuredData = (
       '@type': 'WebPage',
       '@id': `${pageUrl}#webpage`,
     },
+    isPartOf: { '@id': 'https://casinogringos.se/#website' },
+    about: { '@id': 'https://casinogringos.se/#organization' },
   }
-  if (publishedAt) {
-    structuredData['datePublished'] = new Date(publishedAt).toISOString()
-  }
-  if (modifiedAt) {
-    structuredData['dateModified'] = new Date(modifiedAt).toISOString()
-  }
-
   return structuredData
 }
 

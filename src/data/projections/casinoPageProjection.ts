@@ -1,12 +1,12 @@
-import { casinoProjection } from '@/src/data/projections/casinoProjection'
-import { objectProjections } from '@/src/data/projections/objectProjections'
-import { imageObjectProjection } from '@/src/data/projections/imageObjectProjection'
-import { authorProjection } from '@/src/data/projections/authorProjection'
 import { affLinkProjection } from '@/src/data/projections/affLinkProjection'
+import { authorProjection } from '@/src/data/projections/authorProjection'
+import { casinoProjection } from '@/src/data/projections/casinoProjection'
+import { imageObjectProjection } from '@/src/data/projections/imageObjectProjection'
+import { objectProjections } from '@/src/data/projections/objectProjections'
 import { casinoBonusPageProjection } from './casinoBonusPageProjection'
-import { oddsBonusPageProjection } from './oddsBonusPageProjection'
-import { liveCasinoBonusPageProjection } from './liveCasinoBonusPageProjection'
 import { freeSpinsPageProjection } from './freeSpinsPageProjection'
+import { liveCasinoBonusPageProjection } from './liveCasinoBonusPageProjection'
+import { oddsBonusPageProjection } from './oddsBonusPageProjection'
 
 export const casinoPageProjection = `
   _type,
@@ -32,7 +32,10 @@ export const casinoPageProjection = `
     ${freeSpinsPageProjection}
   },
   intro,
-  publishedAt,
+  _createdAt,
+  _updatedAt,
+  originalPublishedAt,
+  originalModifiedAt,
   featuredImage {
     ${imageObjectProjection}
   },
@@ -52,6 +55,4 @@ export const casinoPageProjection = `
   author-> {
     ${authorProjection}
   },
-  _updatedAt,
-  _createdAt
 `

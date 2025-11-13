@@ -2,8 +2,8 @@ import { CasinoPageSchemaType } from '@/src/schemas/casinoPage'
 import { GuidePageSchemaType } from '@/src/schemas/guidePage'
 import { NewsPageSchemaType } from '@/src/schemas/newsPage'
 import { SlotPageSchemaType } from '@/src/schemas/slotPage'
+import CasinoPageService from '@/src/services/CasinoPageService'
 import { portableTextToPlainText } from '../utils/portableTextToPlainText'
-
 const getReviewStructuredData = ({ reviewPage }: { reviewPage: CasinoPageSchemaType | GuidePageSchemaType | NewsPageSchemaType | SlotPageSchemaType }) => {
   let rating
   if (reviewPage._type === 'slot-pages') {
@@ -13,6 +13,10 @@ const getReviewStructuredData = ({ reviewPage }: { reviewPage: CasinoPageSchemaT
     const page = reviewPage as CasinoPageSchemaType
     rating = page.casino.overallRating
   }
+
+  const casinoPageService = new CasinoPageService()
+  const publishedAt = casinoPageService.getPagePublishedAtTimestamp(reviewPage as CasinoPageSchemaType)
+  const modifiedAt = casinoPageService.getPageModifiedAtTimestamp(reviewPage as CasinoPageSchemaType)
 
   return {
     '@context': 'https://schema.org',
@@ -26,6 +30,8 @@ const getReviewStructuredData = ({ reviewPage }: { reviewPage: CasinoPageSchemaT
       bestRating: '5',
       worstRating: '1',
     },
+    ...(publishedAt && { datePublished: new Date(publishedAt).toISOString()}),
+    ...(modifiedAt && { dateModified: new Date(modifiedAt).toISOString()}),
     author: {
       '@type': 'Person',
       name: `${reviewPage.author.firstName} ${reviewPage.author.lastName}`,
