@@ -26,8 +26,8 @@ export default function CasinoList({
 }) {
   const year = new Date().getFullYear()
   const ItemComponent = itemComponent
-  const initialCasinos = casinos.slice(0, 24)
-  const remainingCasinos = casinos.slice(24)
+  const initialCasinos = casinos.filter((casino) => !casino.excludeFromToplists).slice(0, 24)
+  const remainingCasinos = casinos.filter((casino) => !casino.excludeFromToplists).slice(24)
 
   return (
     <>

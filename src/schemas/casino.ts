@@ -24,6 +24,7 @@ export const CasinoSchema = z.object({
     current: z.string(),
   }),
   affLink: AffLinkSchema,
+  excludeFromToplists: z.boolean(),
   name: z.string(),
   brandColor: z.string(),
   casinoBonuses: z.array(CasinoBonusSchema).optional(),

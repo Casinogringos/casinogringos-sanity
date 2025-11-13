@@ -25,6 +25,7 @@ export const casinoProjection = `
     affLink-> {
       ${affLinkProjection}
     },
+    excludeFromToplists,
     name,
     brandColor,
     availableDepositMethods[]-> {
