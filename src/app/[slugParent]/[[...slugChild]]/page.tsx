@@ -104,8 +104,14 @@ export default async function Page(props: { params: Params }) {
   const page: SubPageSchemaType = await getPageBySlug({
     slug: formatSlug(pageUri),
   })
+  let parentPage: SubPageSchemaType | undefined
+  if (Array.isArray(slugChild) && slugChild.length > 0) {
+    parentPage = await getPageBySlug({
+      slug: formatSlug(slugParent),
+    })
+  }
   if (page?._type === 'pages') {
-    return <SubPage page={page} />
+    return <SubPage page={page} parentPage={parentPage} />
   }
   const casinoPage: CasinoPageSchemaType = await getCasinoPageBySlug({
     slug: formatSlug(slugParent),

@@ -21,7 +21,7 @@ import { RatingObjectSchemaType } from '../schemas/ratingObject'
 
 const pageService = new PageService()
 
-export default function SubPage({ page }: { page: SubPageSchemaType }) {
+export default function SubPage({ page, parentPage }: { page: SubPageSchemaType, parentPage?: SubPageSchemaType }) {
   const isValid = pageService.validatePage(page)
   // if (!isValid) {
   //   return null
@@ -42,6 +42,12 @@ export default function SubPage({ page }: { page: SubPageSchemaType }) {
     ],
   }
   const breadcrumbs = [
+    ...parentPage ? [
+      {
+        text: parentPage.title,
+        url: `${process.env.NEXT_PUBLIC_SITE_URL}${parentPage.slug.current}`,
+      },
+    ] : [],
     {
       text: page.title,
       url: `${process.env.NEXT_PUBLIC_SITE_URL}${page.slug.current}`,
