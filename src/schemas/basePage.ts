@@ -1,10 +1,9 @@
-import { z, ZodAny } from 'zod'
+import { z } from 'zod'
 import { AuthorSchema } from './author'
+import { ModularContentSchema } from './modularContent'
 import { PortableTextBlockSchema } from './portableTextBlock'
 import { SanityImageSchema } from './sanityImage'
-import { ModularContentSchema } from './modularContent'
 import { ToplistSchema } from './toplist'
-import { CategorySchema } from './category'
 
 // We'll define Toplist schema later to avoid circular dependencies
 const ToplistPlaceholder = z.object({
@@ -20,7 +19,7 @@ export const BasePageSchema = z.object({
   slug: z.object({
     current: z.string(),
   }),
-  seoImage: SanityImageSchema,
+  seoImage: SanityImageSchema.optional(),
   seoDescription: PortableTextBlockSchema,
   seoTitle: z.string(),
   canonical: z.string(),
