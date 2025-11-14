@@ -1,19 +1,17 @@
 'use client'
 
-import Image from 'next/image'
-import Link from '@/src/components/content/Link'
 import Heading from '@/src/components/content/Heading'
+import Link from '@/src/components/content/Link'
 import ProsAndConsBox from '@/src/components/content/ProsAndConsBox'
 import StarIcon from '@/src/components/icons/StarIcon'
 import { CasinoPageSchemaType } from '@/src/schemas/casinoPage'
-import CasinoService from '@/src/services/CasinoService'
-import { PortableText } from 'next-sanity'
-import { PaymentMethodPageSchemaType } from '@/src/schemas/paymentMethodPage'
-import { useState } from 'react'
-import { Mail, MessageCircle } from 'lucide-react'
-import { Phone } from 'lucide-react'
-import QuestionMark from '../icons/QuestionMark'
 import { PaymentMethodSchemaType } from '@/src/schemas/paymentMethod'
+import CasinoService from '@/src/services/CasinoService'
+import { Mail, MessageCircle, Phone } from 'lucide-react'
+import { PortableText } from 'next-sanity'
+import Image from 'next/image'
+import { useState } from 'react'
+import QuestionMark from '../icons/QuestionMark'
 
 const CasinoInfo = ({ casinoPage }: { casinoPage: CasinoPageSchemaType }) => {
   const { title } = casinoPage
@@ -58,7 +56,7 @@ const CasinoInfo = ({ casinoPage }: { casinoPage: CasinoPageSchemaType }) => {
       <div className="mb-8 w-full rounded-2xl">
         <div className="relative mb-8 gap-6 overflow-hidden rounded-t-md bg-darklight p-5 md:overflow-visible md:rounded-md">
           <Heading
-            className={'!-mt-1 text-lg text-white'}
+            className={'!-mt-1 !text-lg text-white'}
             level={2}
             text="Vårt betyg"
           />
