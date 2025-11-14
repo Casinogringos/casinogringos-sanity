@@ -1,12 +1,11 @@
 'use client'
 
-import Image from 'next/image'
-import { useRouter } from 'next/navigation'
-import { useEffect, useMemo } from 'react'
 import Container from '@/src/components/layout/Container'
 import { AffLinkSchemaType } from '@/src/schemas/affLink'
-import { getWebSiteStructuredData } from '@/src/structured-data/webSiteStructuredData'
 import { getOrganizationStructuredData } from '@/src/structured-data/organizationStructuredData'
+import { getWebSiteStructuredData } from '@/src/structured-data/webSiteStructuredData'
+import Image from 'next/image'
+import { useRouter } from 'next/navigation'
 
 const GoPage = ({ affLink }: { affLink: AffLinkSchemaType }) => {
   const schema = {
@@ -14,6 +13,7 @@ const GoPage = ({ affLink }: { affLink: AffLinkSchemaType }) => {
     '@graph': [getWebSiteStructuredData(), getOrganizationStructuredData()],
   }
   const router = useRouter()
+
   const goToOperator = () => {
     router.push(affLink.link)
   }
@@ -45,14 +45,14 @@ const GoPage = ({ affLink }: { affLink: AffLinkSchemaType }) => {
         }
       >
         <Container>
-          <p className={'mb-12 text-center text-3xl lg:text-4xl'}>
+          <div className={'mb-12 text-3xl md:text-4xl text-center'}>
             <span className={'font-bold text-slate-400'}>
               Tack för att du besökte
             </span>
             <span className={'block font-bold text-white md:inline-block'}>
               &nbsp;Casinogringos.se
             </span>
-          </p>
+          </div>
           <div
             className={
               'flex items-center justify-center gap-x-2 md:gap-x-3 mb-12'

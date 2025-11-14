@@ -34,24 +34,25 @@ const getArticleStructuredData = (
     : `https://casinogringos.se/${pagePath}`.replace(/([^:]\/)\/+/g, '$1')
 
   const structuredData: Record<string, string | object | number> = {
-    '@context': 'https://schema.org',
     '@type': 'Article',
     '@id': `${pageUrl}#article`,
     headline: page.title ?? page.seoTitle,
     description: page.seoDescription,
     ...(publishedAt && { datePublished: new Date(publishedAt).toISOString()}),
     ...(modifiedAt && { dateModified: new Date(modifiedAt).toISOString()}),
-    ...(page.seoImage?.src && {
-      image: {
-        '@type': 'ImageObject',
-        '@id': `${pageUrl}#primaryimage`,
-        url: page.seoImage.src,
-        inLanguage: 'sv-SE',
-        ...(page.seoImage?.alt?.trim()
-          ? { alternateName: page.seoImage.alt.trim() }
-          : {}),
-      },
-    }),
+    ...(page.seoImage?.src || page.featuredImage?.src
+      ? {
+          image: {
+            '@type': 'ImageObject',
+            '@id': `${pageUrl}#primaryimage`,
+            url: page.seoImage?.src ?? page.featuredImage?.src,
+            inLanguage: 'sv-SE',
+            ...(page.seoImage?.alt?.trim()
+              ? { alternateName: page.seoImage.alt.trim() }
+              : {}),
+          },
+        }
+      : {}),
     inLanguage: 'sv-SE',
     publisher: { '@id': 'https://casinogringos.se/#organization' },
     author: {

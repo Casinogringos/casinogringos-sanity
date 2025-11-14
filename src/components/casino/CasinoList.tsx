@@ -26,10 +26,12 @@ export default function CasinoList({
 }) {
   const year = new Date().getFullYear()
   const ItemComponent = itemComponent
-  const casinosWithIndexes = casinos.filter((casino) => !casino.excludeFromToplists).map((casino, index) => ({
-    ...casino,
-    index,
-  }))
+  const casinosWithIndexes = casinos
+    .filter((casino) => !casino.excludeFromToplists)
+    .map((casino, index) => ({
+      ...casino,
+      index,
+    }))
   const initialCasinos = casinosWithIndexes.slice(0, 12)
   const remainingCasinos = casinosWithIndexes.slice(12)
 
@@ -92,7 +94,7 @@ export default function CasinoList({
             level={2}
             sizes={[6, 6, 6]}
             className="mb-0 !mt-1 font-semibold"
-            text={title}
+            text={`${title} ${year}`}
           />
           <p className="text-gray-600 mb-5 mt-1 text-sm lg:mb-6">
             Alla casinon är licenserade och granskade av våra experter

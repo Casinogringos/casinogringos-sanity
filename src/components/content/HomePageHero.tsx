@@ -1,10 +1,10 @@
-import { ArrowRight, Gift, Star, Vibrate, Zap } from 'lucide-react'
-import Image from 'next/image'
-import Container from '@/src/components/layout/Container'
-import Link from '@/src/components/content/Link'
-import { SubPageSchemaType } from '@/src/schemas/subPage'
-import { PortableText } from 'next-sanity'
 import Heading from '@/src/components/content/Heading'
+import Link from '@/src/components/content/Link'
+import Container from '@/src/components/layout/Container'
+import { SubPageSchemaType } from '@/src/schemas/subPage'
+import { ArrowRight, Gift, Star, Vibrate, Zap } from 'lucide-react'
+import { PortableText } from 'next-sanity'
+import Image from 'next/image'
 
 const HomePageHero = ({ page }: { page: SubPageSchemaType }) => {
   const menuItems = [
@@ -37,8 +37,7 @@ const HomePageHero = ({ page }: { page: SubPageSchemaType }) => {
           <section className="relative z-10">
             <Heading
               level={1}
-              sizes={[6, 8, 10]}
-              className="max-w-md text-4xl font-bold tracking-tight text-white sm:text-[45px] sm:leading-[52px]"
+              className="max-w-md font-bold tracking-tight text-white !text-3xl sm:!text-[45px] md:!text-[48px] sm:!leading-[52px]"
               text={page.title}
             >
               <span className="block">{page.title}</span>
