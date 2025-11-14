@@ -6,6 +6,7 @@ import { getOrganizationStructuredData } from '@/src/structured-data/organizatio
 import { getWebSiteStructuredData } from '@/src/structured-data/webSiteStructuredData'
 import Image from 'next/image'
 import { useRouter } from 'next/navigation'
+import { useEffect } from 'react'
 
 const GoPage = ({ affLink }: { affLink: AffLinkSchemaType }) => {
   const schema = {
