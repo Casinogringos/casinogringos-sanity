@@ -1,12 +1,11 @@
-import { slugify } from '@/src/lib/utils'
-import { ChevronDown } from 'lucide-react'
-import { Book, BookOpen } from 'lucide-react'
-import Link from 'next/link'
-import ToggleButton from '@/src/components/interactivity/ToggleButton'
-import ToggleSpin from '@/src/components/interactivity/ToggleSpin'
-import ToggleItem from '@/src/components/interactivity/ToggleItem'
 import Heading from '@/src/components/content/Heading'
+import ToggleButton from '@/src/components/interactivity/ToggleButton'
+import ToggleItem from '@/src/components/interactivity/ToggleItem'
+import ToggleSpin from '@/src/components/interactivity/ToggleSpin'
 import ToggleSwitch from '@/src/components/interactivity/ToggleSwitch'
+import { slugify } from '@/src/lib/utils'
+import { Book, BookOpen, ChevronDown } from 'lucide-react'
+import Link from 'next/link'
 
 const TableOfContents = ({
   headings,
@@ -35,7 +34,7 @@ const TableOfContents = ({
             />
             <Heading
               className={
-                'flex-grow flex items-center not-prose !mt-0 font-semibold text-left text-lg'
+                'flex-grow flex items-center not-prose !mt-0 font-semibold text-left !text-lg'
               }
               level={3}
               text={'Innehåll'}

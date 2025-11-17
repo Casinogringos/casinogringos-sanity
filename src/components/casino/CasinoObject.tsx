@@ -1,11 +1,11 @@
-import { CasinoObjectSchemaType } from '@/src/schemas/casinoObject'
-import Image from 'next/image'
-import Link from '@/src/components/content/Link'
-import { PortableText } from 'next-sanity'
-import Placeholder from '@/src/components/utils/Placeholder'
 import Heading from '@/src/components/content/Heading'
+import Link from '@/src/components/content/Link'
+import Placeholder from '@/src/components/utils/Placeholder'
 import { formatSlug } from '@/src/lib/utils'
+import { CasinoObjectSchemaType } from '@/src/schemas/casinoObject'
 import CasinoService from '@/src/services/CasinoService'
+import { PortableText } from 'next-sanity'
+import Image from 'next/image'
 
 const CasinoObject = ({
   object,
@@ -89,7 +89,7 @@ const CasinoObject = ({
         <Heading
           level={2}
           text={casino.name}
-          className={'not-prose !mt-0 !mb-2'}
+          className={'not-prose !mt-0 !mb-2 !text-2xl'}
         />
         <span className={'block pb-0 not-prose font-bold leading-6 text-dark'}>
           {offer ? <PortableText value={offer} /> : bonusString}

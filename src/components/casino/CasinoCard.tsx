@@ -55,6 +55,7 @@ const CasinoCard = ({
     casino.freeSpins?.[0]?.wageringRequirements ?? null
   const bonus = getBonus()
   const wageringRequirementsBonus = getWageringRequirementsBonus()
+
   return (
     <>
       <div className="rounded-md border-b border-b-gray-100 bg-white p-3.5 shadow-2xl">
@@ -131,15 +132,17 @@ const CasinoCard = ({
               )}
             </div>
             <div className="mt-2 rounded-md border border-slate-100 bg-slate-50 p-2.5">
-              {casino.advantages.map((advantage: string, index: number) => (
-                <div
-                  key={`${casino._id}-advantage-${index}`}
-                  className="mb-1 flex items-center gap-2 text-sm text-gray-700"
-                >
-                  <CheckBadgeIcon className="h-4 w-4 text-button" />
-                  {advantage}
-                </div>
-              ))}
+              {casino.advantages
+                .slice(0, 3)
+                .map((advantage: string, index: number) => (
+                  <div
+                    key={`${casino._id}-advantage-${index}`}
+                    className="mb-1 flex items-center gap-2 text-sm text-gray-700"
+                  >
+                    <CheckBadgeIcon className="h-4 w-4 text-button" />
+                    {advantage}
+                  </div>
+                ))}
             </div>
             <div className="mt-2 flex flex-col-reverse items-center justify-center gap-2">
               <Link
@@ -152,9 +155,10 @@ const CasinoCard = ({
               </Link>
               {affLinkSlug || casino.affLink ? (
                 <Link
-                  href={`/go${affLinkSlug || casino.affLink.slug.current}`}
+                  href={`/go/${affLinkSlug || casino.affLink.slug.current}`}
                   prefetch={false}
                   variant="affiliate"
+                  size="lg"
                   className="w-full"
                   target="_blank"
                 >

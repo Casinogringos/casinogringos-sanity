@@ -1,14 +1,13 @@
-import { notFound } from 'next/navigation'
-import { getAffiliateLinkBySlug } from '@/src/lib/api'
-import dynamicComponent from 'next/dynamic'
-import { getStaticParams } from '@/src/lib/api'
+import { getAffiliateLinkBySlug, getStaticParams } from '@/src/lib/api'
 import { AffLinkSchemaType } from '@/src/schemas/affLink'
+import dynamicComponent from 'next/dynamic'
+import { notFound } from 'next/navigation'
 const GoPage = dynamicComponent(() => import('@/src/app/GoPage'))
 
 const Page = async (props: { params: Promise<{ slug: string }> }) => {
   const params = await props.params
   const affLink = await getAffiliateLinkBySlug({
-    slug: `/${params?.slug}`,
+    slug: `${params?.slug}`,
   })
   if (!affLink) {
     return notFound()

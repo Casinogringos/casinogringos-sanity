@@ -35,7 +35,7 @@ const SanityImage = ({
   }
   return (
     <div
-      className={`${className} not-prose flex items-center flex-col justify-center`}
+      className={`${className} not-prose mt-5 flex items-center flex-col justify-center`}
     >
       <Image
         src={image.src}
