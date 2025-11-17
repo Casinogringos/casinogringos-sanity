@@ -1,8 +1,6 @@
 'use client'
 
-import { Menu, X } from 'lucide-react'
 import ClientFallback from '@/src/components/utils/ClientFallback'
-import { useCallback, useState } from 'react'
 import { useAppDispatch, useAppSelector } from '@/src/store/hooks'
 import {
   closedMainMenu,
@@ -12,6 +10,8 @@ import {
   closingMainMenu,
   openMainMenu,
 } from '@/src/store/menuSlice'
+import { Menu, X } from 'lucide-react'
+import { useCallback, useState } from 'react'
 
 const MenuButton = () => {
   const dispatch = useAppDispatch()
@@ -42,7 +42,7 @@ const MenuButton = () => {
     <ClientFallback
       content={
         <button
-          className="z-50 ml-auto flex cursor-pointer items-center rounded-full bg-darklight px-3 py-2 text-white lg:h-9 lg:px-4"
+          className="z-50 ml-auto flex cursor-pointer items-center rounded-full bg-blue-300/15 px-3 py-2 text-white lg:h-9 lg:px-4"
           onClick={handleToggleSidebar}
         >
           {isMainMenuOpen && !menuSidebarClosing ? (
