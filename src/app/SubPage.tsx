@@ -70,7 +70,7 @@ export default function SubPage({ page, parentPage }: { page: SubPageSchemaType,
           <CasinoList
             itemComponent={CasinoCard}
             casinos={toplist.casinos}
-            title={toplist.title}
+            title={page.toplistTitle}
             description={toplist.description}
             categories={page.bonusCategory ?? []}
           />

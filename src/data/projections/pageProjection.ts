@@ -38,6 +38,7 @@ export const pageProjection = `
       ${faqItemObjectProjection}
     }
   },
+  toplistTitle,
   toplist-> {
     ${toplistProjection}
   },

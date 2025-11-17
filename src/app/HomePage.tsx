@@ -63,7 +63,7 @@ const HomePage = ({
           <Container width={6} className="pb-16">
             <CasinoList
               casinos={page.toplist.casinos}
-              title={page.toplist.title}
+              title={page.toplistTitle ?? ''}
               description={page.toplist.description}
               itemComponent={CasinoCard}
               categories={toplistCategories}
