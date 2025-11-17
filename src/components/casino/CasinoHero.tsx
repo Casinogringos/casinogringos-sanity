@@ -118,9 +118,9 @@ export default function CasinoHero({
                 </div>
               )}
             </div>
-            {casinoPage.affLink && (
+            {casino.affLink && (
               <Link
-                href={`/go${formatSlug(casinoPage.affLink.slug.current)}`}
+                href={`/go${formatSlug(casino.affLink.slug.current)}`}
                 title={casinoPage.title}
                 place="CasinoCard recension"
                 variant="affiliate"

@@ -43,9 +43,8 @@ export default async function Navigation({
               href="/"
               prefetch={false}
               aria-current={isCurrentPath(pathname, '/') ? 'page' : undefined}
-              className={`${
-                isCurrentPath(pathname, '/') ? 'text-primary' : 'text-white'
-              }`}
+              className={`${isCurrentPath(pathname, '/') ? 'text-primary' : 'text-white'
+                }`}
             >
               <span className="sr-only">Casinogringos.se</span>
               <Image
@@ -72,11 +71,10 @@ export default async function Navigation({
                         ? 'page'
                         : undefined
                     }
-                    className={`text-nav text-sm uppercase tracking-wider font-medium font-inter hover:text-primary transition ${
-                      isCurrentPath(pathname, item.page.slug.current)
+                    className={`text-nav text-sm uppercase tracking-wider font-medium font-inter hover:text-primary transition ${isCurrentPath(pathname, item.page.slug.current)
                         ? 'text-primary'
                         : 'text-white'
-                    }`}
+                      }`}
                   >
                     {item.label ?? item.page.title}
                   </Link>
@@ -104,7 +102,7 @@ export default async function Navigation({
           <div className="relative mt-6 text-lg font-medium">
             Populära erbjudanden
           </div>
-          {sidebarToplist.casinos.map((casino) => (
+          {sidebarToplist.casinos?.map((casino) => (
             <CasinoRow casino={casino} key={`casino-${casino._id}`} />
           ))}
         </section>
