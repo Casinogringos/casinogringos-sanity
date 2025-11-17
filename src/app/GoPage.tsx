@@ -20,7 +20,7 @@ const GoPage = ({ affLink }: { affLink: AffLinkSchemaType }) => {
   }
   useEffect(() => {
     setTimeout(function () {
-      // goToOperator()
+      goToOperator()
     }, 1000)
     // document.body.classList.add('overflow-hidden')
   })
