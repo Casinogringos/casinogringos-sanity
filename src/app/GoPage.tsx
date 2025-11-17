@@ -20,7 +20,7 @@ const GoPage = ({ affLink }: { affLink: AffLinkSchemaType }) => {
   }
   useEffect(() => {
     setTimeout(function () {
-      goToOperator()
+      // goToOperator()
     }, 1000)
     // document.body.classList.add('overflow-hidden')
   })
@@ -59,19 +59,19 @@ const GoPage = ({ affLink }: { affLink: AffLinkSchemaType }) => {
               'flex items-center justify-center gap-x-2 md:gap-x-3 mb-12'
             }
           >
-            <div
+            {/* <div
               className={
                 'h-28 w-28 md:h-32 md:w-32 relative bg-white p-3 rounded-md overflow-hidden flex items-center'
               }
-            >
-              <Image
+            > */}
+            {/* <Image
                 src="/casinogringos.webp"
                 priority={true}
                 alt="Casinogringos"
                 width={160}
                 height={60}
-              />
-            </div>
+              /> */}
+            {/* </div> */}
             <div className={'mx-5 flex'}>
               <div
                 className={
