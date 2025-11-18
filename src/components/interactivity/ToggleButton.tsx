@@ -36,11 +36,10 @@ const ToggleButton = ({
   return (
     <button
       onClick={handleToggle}
-      className={`cursor-pointer w-full ${className}`}
+      className={`cursor-pointer w-full ${className ?? ''}`}
       aria-label={label}
-      aria-haspopup={isOpen}
-      aria-checked={isOpen}
       aria-expanded={isOpen}
+      aria-pressed={isOpen}
       role={role}>
       <div className={childClassName}>{children}</div>
     </button>
