@@ -212,7 +212,7 @@ const SearchBox = () => {
           <div className="mb-4">
             {resultGroups && resultGroups?.['guide-pages']?.length > 0 && (
               <Heading
-                text="Guidor"
+                text="Guider"
                 level={3}
                 sizes={[4, 4, 5]}
                 className="mb-3"

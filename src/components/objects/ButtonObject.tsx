@@ -24,7 +24,7 @@ const ButtonObject = ({ object }: { object: ButtonObjectSchemaType }) => {
   const href = getHref()
 
   return href ? (
-    <Link variant="affiliate" href={href}>
+    <Link variant="affiliate" target='_blank' href={href}>
       {object.title}
     </Link>
   ) : null
