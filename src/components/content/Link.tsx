@@ -108,7 +108,7 @@ const Link = ({
       href={href}
       rel={rel}
       replace={replace}
-      target={target}
+      target={variant === 'affiliate' ? '_blank' : ''}
       className={`${className} ${getClassName()}`}
       prefetch={prefetch}
       aria-label={label}

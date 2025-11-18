@@ -1,10 +1,11 @@
 import { ButtonObjectSchemaType } from '@/src/schemas/buttonObject'
 import Link from '@/src/components/content/Link'
+import { formatSlug } from '@/src/lib/utils'
 
 const ButtonObject = ({ object }: { object: ButtonObjectSchemaType }) => {
   const getHref = () => {
-    if (!object.page?.slug) {
-      return `${object.uri.current}`
+    if (!object.page?.slug?.current) {
+      return `/go${formatSlug(object.affLink?.slug?.current ?? '')}`
     }
     switch (object.page._type) {
       case 'casino-pages':
@@ -24,7 +25,7 @@ const ButtonObject = ({ object }: { object: ButtonObjectSchemaType }) => {
   const href = getHref()
 
   return href ? (
-    <Link variant="affiliate" target='_blank' href={href}>
+    <Link variant="affiliate" href={href}>
       {object.title}
     </Link>
   ) : null
