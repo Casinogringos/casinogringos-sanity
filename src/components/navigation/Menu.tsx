@@ -20,9 +20,8 @@ const Menu = ({
       <ul role={'menubar'}>
         {menu?.items?.map((level1Item: MenuItemSchemaType, i: number) => (
           <li
-            className={`border-b-gray-100 py-4 flex flex-wrap overflow-hidden ${
-              menu.items.length - 1 !== i ? 'border-b' : ''
-            }`}
+            className={`border-b-gray-100 py-4 flex flex-wrap overflow-hidden ${menu.items.length - 1 !== i ? 'border-b' : ''
+              }`}
             key={`level-1-item-${level1Item._key}`}
             role={'none'}
           >
@@ -46,7 +45,7 @@ const Menu = ({
                 <ToggleButton
                   id={`menu-toggle-${i}-${level1Item._key}`}
                   label={'Öppna undermeny'}
-                  role={'menuitemcheckbox'}
+                  role={'button'}
                   className="w-[34px] h-[34px] inline-flex items-center justify-center float-right"
                 >
                   <ToggleSpin id={`menu-toggle-${i}-${level1Item._key}`}>
