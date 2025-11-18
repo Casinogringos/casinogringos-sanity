@@ -34,21 +34,16 @@ const ToggleButton = ({
   }
 
   return (
-    <>
-      <input type="checkbox" className={'hidden'} id={id} />
-      <label
-        htmlFor={id}
-        className={`cursor-pointer ${className}`}
-        aria-label={label}
-        aria-haspopup={isOpen}
-        aria-checked={isOpen}
-        aria-expanded={isOpen}
-        role={role}
-        onClick={handleToggle}
-      >
-        <div className={childClassName}>{children}</div>
-      </label>
-    </>
+    <button
+      onClick={handleToggle}
+      className={`cursor-pointer w-full ${className}`}
+      aria-label={label}
+      aria-haspopup={isOpen}
+      aria-checked={isOpen}
+      aria-expanded={isOpen}
+      role={role}>
+      <div className={childClassName}>{children}</div>
+    </button>
   )
 }
 
