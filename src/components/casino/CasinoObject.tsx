@@ -103,6 +103,7 @@ const CasinoObject = ({
             className="w-full"
             href={`go${formatSlug(affLinkSlug)}`}
             place="CasinoCard block"
+            target='_blank'
           >
             {buttonText}
           </Link>
