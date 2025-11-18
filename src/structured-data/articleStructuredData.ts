@@ -21,7 +21,7 @@ const getArticleStructuredData = (
   if (dev) {
     seoImage = page.seoImage?.src ? page.seoImage.src : ''
   } else {
-    seoImage = page.seoImage.src
+    seoImage = page.seoImage?.src
   }
 
   const pagePath =

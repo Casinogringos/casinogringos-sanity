@@ -1,8 +1,6 @@
 'use client'
 
-import { Search as SearchIcon, X } from 'lucide-react'
-import { useCallback } from 'react'
-import { useAppSelector, useAppDispatch } from '@/src/store/hooks'
+import { useAppDispatch, useAppSelector } from '@/src/store/hooks'
 import {
   closedSearch,
   closeMainMenu,
@@ -11,6 +9,8 @@ import {
   closingSearch,
   openSearch as openSearchAction,
 } from '@/src/store/menuSlice'
+import { Search as SearchIcon, X } from 'lucide-react'
+import { useCallback } from 'react'
 
 const SearchButton = () => {
   const dispatch = useAppDispatch()
@@ -39,7 +39,7 @@ const SearchButton = () => {
 
   return (
     <button
-      className="z-50 ml-auto flex cursor-pointer items-center rounded-full bg-darklight px-3 py-2 text-white lg:h-9 lg:px-4"
+      className="z-50 ml-auto flex cursor-pointer items-center rounded-full bg-blue-300/15 px-3 py-2 text-white lg:h-9 lg:px-4"
       onClick={() => handleToggleSearch()}
     >
       {isSearchOpen ? (
