@@ -37,7 +37,7 @@ export default function CasinoList({
 
   return (
     <>
-      <div className="mb-4">
+      <div className="py-1">
         <ToggleButton
           id={'toplist-ad-information'}
           role={'button'}
@@ -49,7 +49,7 @@ export default function CasinoList({
           </div>
         </ToggleButton>
         <ToggleItem id={'toplist-ad-information'}>
-          <p className="rounded-md bg-white px-3 py-4 text-xs italic text-gray-700">
+          <p className="rounded-md bg-white mb-2 px-3 py-4 text-xs italic text-gray-700">
             Casinogringos.se är en jämförelsetjänst för online casinon och sidan
             innehåller reklamlänkar. När du klickar dig vidare till ett casino
             via oss kan vi därför komma att erhålla provision för detta från
@@ -73,7 +73,7 @@ export default function CasinoList({
           </div>
         </ToggleButton>
         <ToggleItem id={'varfor-oss'}>
-          <p className="p-4 pt-2 text-sm text-slate-600">
+          <p className="p-4 pt-2 !text-sm text-slate-600">
             Allt vårt innehåll genomgår en noggrann och detaljerad process för
             att säkerställa att all information vi publicerar stämmer och är
             tillförlitlig. Varje artikel, guide och recension granskas av våra{' '}

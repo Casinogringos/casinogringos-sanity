@@ -28,7 +28,7 @@ export default function CasinoHero({
 
   return (
     <div className="bg-darklight py-5 lg:py-16 not-prose">
-      <div className="mx-auto max-w-6xl px-4 lg:px-8">
+      <div className="mx-auto max-w-6xl px-4">
         <div className="flex h-full w-full flex-col gap-x-10 lg:flex-row">
           <div
             className="mb-4 flex items-center justify-center overflow-hidden rounded-md lg:mb-0 lg:min-h-full lg:w-1/4"

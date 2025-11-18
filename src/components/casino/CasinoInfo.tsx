@@ -53,11 +53,12 @@ const CasinoInfo = ({ casinoPage }: { casinoPage: CasinoPageSchemaType }) => {
 
   return (
     <div>
-      <div className="mb-8 w-full rounded-2xl">
+      <div className="mb-8 w-full rounded-2xl bg-slate-100 border border-blue-100 md:p-8">
         <div className="relative mb-8 gap-6 overflow-hidden rounded-t-md bg-darklight p-5 md:overflow-visible md:rounded-md">
           <Heading
-            className={'!-mt-1 !text-lg text-white'}
+            className={'!-mt-1 text-white'}
             level={2}
+            sizes={[5, 5, 5]}
             text="Vårt betyg"
           />
           <div className="mt-2 flex items-start text-white">
@@ -94,7 +95,7 @@ const CasinoInfo = ({ casinoPage }: { casinoPage: CasinoPageSchemaType }) => {
             </div>
           )}
         </div>
-        <div className="z-1 relative grid grid-cols-1 gap-x-8 gap-y-3 px-8 md:grid-cols-2 md:px-0">
+        <div className="z-1 relative grid grid-cols-1 gap-x-8 gap-y-3 md:grid-cols-2 px-4 md:px-0 mb-6 md:mb-0">
           {ratingKeys.map(({ key, label, imgSrc }) => {
             const rating = ratings[key] || 0
             return (
@@ -143,7 +144,7 @@ const CasinoInfo = ({ casinoPage }: { casinoPage: CasinoPageSchemaType }) => {
       </div>
       <Heading
         level={2}
-        sizes={[5, 5, 6]}
+        sizes={[5, 5, 5]}
         className="mb-3 font-bold"
         text={`Snabbfakta om ${title}`}
       />
@@ -164,18 +165,18 @@ const CasinoInfo = ({ casinoPage }: { casinoPage: CasinoPageSchemaType }) => {
       </div>
       <ProsAndConsBox
         casinoPage={casinoPage}
-        prosTitle="Vad du får"
-        consTitle="Vad du inte får"
+        prosTitle="Fördelar"
+        consTitle="Nackdelar"
       />
       {paymentMethods && paymentMethods.length > 0 && (
         <div>
           <Heading
-            sizes={[5, 5, 6]}
+            sizes={[5, 5, 5]}
             level={2}
             className="mb-3 mt-5 font-bold"
             text="Betalningsmetoder"
           />
-          <div className={'mb-5 flex flex-wrap items-center'}>
+          <div className={'mb-5 flex gap-1 flex-wrap items-center'}>
             {paymentMethods.map((paymentMethod) => {
               const { linkedPage } = paymentMethod
               const Tag = linkedPage ? Link : 'div'
@@ -212,7 +213,7 @@ const CasinoInfo = ({ casinoPage }: { casinoPage: CasinoPageSchemaType }) => {
       {casinoPage.casino.gameProviders && (
         <>
           <Heading
-            sizes={[5, 5, 6]}
+            sizes={[5, 5, 5]}
             level={2}
             className="mb-3 mt-5 font-bold"
             text="Spelleverantörer"
@@ -287,7 +288,12 @@ const CasinoInfo = ({ casinoPage }: { casinoPage: CasinoPageSchemaType }) => {
       {casinoPage.casino.typesOfGames &&
         casinoPage.casino.typesOfGames.length > 0 && (
           <>
-            <h2 className="mb-3 mt-6 text-xl font-bold">Spelkategorier</h2>
+            <Heading
+              level={2}
+              sizes={[5, 5, 5]}
+              className="mb-3 mt-6 font-bold"
+              text="Spelkategorier"
+            />
             <div className={'mb-2 flex flex-wrap'}>
               {casinoPage.casino.typesOfGames.map((gameType) => (
                 <div key={`brand-category-${gameType._id}`}>
@@ -308,7 +314,8 @@ const CasinoInfo = ({ casinoPage }: { casinoPage: CasinoPageSchemaType }) => {
         <>
           <Heading
             level={2}
-            className="mb-3 mt-6 text-xl font-bold"
+            sizes={[5, 5, 5]}
+            className="mb-3 mt-6 font-bold"
             text="Kundtjänst"
           />
           <ul className="mb-3">

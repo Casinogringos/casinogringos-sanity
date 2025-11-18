@@ -1,9 +1,9 @@
 'use client'
 
-import { type ReactNode } from 'react'
+import { toggleId as toggleIdFaq } from '@/src/store/faqSlice'
 import { useAppDispatch, useAppSelector } from '@/src/store/hooks'
 import { toggleId } from '@/src/store/toggleSlice'
-import { toggleId as toggleIdFaq } from '@/src/store/faqSlice'
+import { type ReactNode } from 'react'
 
 const ToggleButton = ({
   id,
@@ -25,7 +25,9 @@ const ToggleButton = ({
   group?: 'faq' | undefined
 }) => {
   const dispatch = useAppDispatch()
-  const { toggleIds } = useAppSelector((state) => group === 'faq' ? state.faq : state.toggle)
+  const { toggleIds } = useAppSelector((state) =>
+    group === 'faq' ? state.faq : state.toggle
+  )
   const isOpen = toggleIds.includes(id)
   const handleToggle = () => {
     dispatch(group === 'faq' ? toggleIdFaq(id) : toggleId(id))

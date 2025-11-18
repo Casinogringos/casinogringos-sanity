@@ -1,18 +1,18 @@
-import { isCurrentPath } from '@/src/lib/utils'
-import Image from 'next/image'
+import CasinoRow from '@/src/components/casino/CasinoRow'
 import Container from '@/src/components/layout/Container'
-import Link from 'next/link'
-import NotificationButton from '@/src/components/navigation/NotificationButton'
 import Menu from '@/src/components/navigation/Menu'
 import MenuButton from '@/src/components/navigation/MenuButton'
-import SearchButton from '@/src/components/search/SearchButton'
 import MenuModal from '@/src/components/navigation/MenuModal'
+import NotificationButton from '@/src/components/navigation/NotificationButton'
 import NotificationModal from '@/src/components/navigation/NotificationModal'
-import CasinoRow from '@/src/components/casino/CasinoRow'
+import SearchBox from '@/src/components/search/SearchBox'
+import SearchButton from '@/src/components/search/SearchButton'
+import SearchModal from '@/src/components/search/SearchModal'
+import { isCurrentPath } from '@/src/lib/utils'
 import { MenuItemSchemaType, MenuSchemaType } from '@/src/schemas/menu'
 import { ToplistSchemaType } from '@/src/schemas/toplist'
-import SearchModal from '@/src/components/search/SearchModal'
-import SearchBox from '@/src/components/search/SearchBox'
+import Image from 'next/image'
+import Link from 'next/link'
 
 export default async function Navigation({
   headerMenu,
@@ -43,8 +43,9 @@ export default async function Navigation({
               href="/"
               prefetch={false}
               aria-current={isCurrentPath(pathname, '/') ? 'page' : undefined}
-              className={`${isCurrentPath(pathname, '/') ? 'text-primary' : 'text-white'
-                }`}
+              className={`${
+                isCurrentPath(pathname, '/') ? 'text-primary' : 'text-white'
+              }`}
             >
               <span className="sr-only">Casinogringos.se</span>
               <Image
@@ -71,10 +72,11 @@ export default async function Navigation({
                         ? 'page'
                         : undefined
                     }
-                    className={`text-nav text-sm uppercase tracking-wider font-medium font-inter hover:text-primary transition ${isCurrentPath(pathname, item.page.slug.current)
+                    className={`text-nav text-[13px] uppercase tracking-wider font-medium font-inter hover:text-primary transition ${
+                      isCurrentPath(pathname, item.page.slug.current)
                         ? 'text-primary'
                         : 'text-white'
-                      }`}
+                    }`}
                   >
                     {item.label ?? item.page.title}
                   </Link>
