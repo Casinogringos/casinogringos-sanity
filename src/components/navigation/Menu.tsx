@@ -45,7 +45,7 @@ const Menu = ({
                 <ToggleButton
                   id={`menu-toggle-${i}-${level1Item._key}`}
                   label={'Öppna undermeny'}
-                  role={'button'}
+                  role={'menuitem'}
                   className="w-[34px] h-[34px] inline-flex items-center justify-center float-right"
                 >
                   <ToggleSpin id={`menu-toggle-${i}-${level1Item._key}`}>

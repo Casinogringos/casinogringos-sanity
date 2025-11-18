@@ -32,6 +32,7 @@ const ToggleButton = ({
   const handleToggle = () => {
     dispatch(group === 'faq' ? toggleIdFaq(id) : toggleId(id))
   }
+  const isMenuItemRole = role === 'menuitem' || role === 'menuitemcheckbox'
 
   return (
     <button
@@ -39,7 +40,8 @@ const ToggleButton = ({
       className={`cursor-pointer w-full ${className ?? ''}`}
       aria-label={label}
       aria-expanded={isOpen}
-      aria-pressed={isOpen}
+      aria-pressed={isMenuItemRole ? undefined : isOpen}
+      aria-haspopup={isMenuItemRole ? true : undefined}
       role={role}>
       <div className={childClassName}>{children}</div>
     </button>
