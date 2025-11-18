@@ -35,7 +35,7 @@ const CasinoCard = ({
       case 'live-casino-bonus':
         return casino.liveCasinoBonuses?.[0]?.bonusAmountRange?.max ?? null
       default:
-        return null
+        return casino.casinoBonuses?.[0]?.bonusAmountRange?.max ?? null
     }
   }
   const getWageringRequirementsBonus = () => {
@@ -47,7 +47,7 @@ const CasinoCard = ({
       case 'live-casino-bonus':
         return casino.liveCasinoBonuses?.[0].wageringRequirements ?? null
       default:
-        return null
+        return casino.casinoBonuses?.[0]?.wageringRequirements ?? null
     }
   }
   const numberOfFreeSpins = casino.freeSpins?.[0]?.numberOfFreeSpins ?? null
