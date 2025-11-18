@@ -148,7 +148,7 @@ const CasinoCard = ({
               <Link
                 href={`/${casino.slug.current}`}
                 prefetch={false}
-                className="flex w-full items-center justify-center rounded-md border border-gray-300 px-6 py-2.5 text-center text-xs font-medium text-gray-500 lg:hover:bg-gray-200"
+                className="flex w-full items-center justify-center rounded-md border border-gray-300 px-6 py-2.5 text-center text-xs font-medium !text-gray-500 lg:hover:bg-gray-100"
               >
                 {' '}
                 Läs recension

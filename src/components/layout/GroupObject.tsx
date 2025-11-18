@@ -1,5 +1,5 @@
-import { GroupObjectSchemaType as GroupObjectType } from '@/src/schemas/groupObject'
 import ModularContent from '@/src/components/content/ModularContent'
+import { GroupObjectSchemaType as GroupObjectType } from '@/src/schemas/groupObject'
 
 const GroupObject = ({
   object,
@@ -28,7 +28,7 @@ const GroupObject = ({
   }
 
   return (
-    <div className={`${classes()} mb-4 rounded-lg p-5 ${className}`}>
+    <div className={`${classes()} mb-4 rounded-lg p-6 ${className}`}>
       <ModularContent objects={object.content} nested={true} />
     </div>
   )

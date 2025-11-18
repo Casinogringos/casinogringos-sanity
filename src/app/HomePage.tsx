@@ -73,49 +73,43 @@ const HomePage = ({
       )}
       <NewsList itemComponent={ArticleCard} items={news} cardBackground />
       {headingObjects && headingObjects.length > 0 && (
-        <Container width={3}>
-          <div className="pt-12 lg:pt-16">
-            <TableOfContents
-              headings={headingObjects
-                .filter(
-                  (
-                    heading: HeadingObjectSchemaType | RatingObjectSchemaType
-                  ) => {
-                    if (heading._type === 'heading-object') {
-                      return heading.text
-                    }
-                    if (heading._type === 'rating-object') {
-                      return heading.title
-                    }
-                    return false
+        <Container width={3} className="lg:!px-0 pt-6 md:pt-10">
+          <TableOfContents
+            headings={headingObjects
+              .filter(
+                (heading: HeadingObjectSchemaType | RatingObjectSchemaType) => {
+                  if (heading._type === 'heading-object') {
+                    return heading.text
                   }
-                )
-                .map(
-                  (
-                    heading: HeadingObjectSchemaType | RatingObjectSchemaType
-                  ) => {
-                    switch (heading._type) {
-                      case 'heading-object': {
-                        return {
-                          text: heading.text,
-                          slug: `${page.slug.current}#${slugify(heading.text)}`,
-                        }
+                  if (heading._type === 'rating-object') {
+                    return heading.title
+                  }
+                  return false
+                }
+              )
+              .map(
+                (heading: HeadingObjectSchemaType | RatingObjectSchemaType) => {
+                  switch (heading._type) {
+                    case 'heading-object': {
+                      return {
+                        text: heading.text,
+                        slug: `${page.slug.current}#${slugify(heading.text)}`,
                       }
-                      case 'rating-object': {
-                        return {
-                          text: heading.title,
-                          slug: `${page.slug.current}#${slugify(heading.title)}`,
-                        }
+                    }
+                    case 'rating-object': {
+                      return {
+                        text: heading.title,
+                        slug: `${page.slug.current}#${slugify(heading.title)}`,
                       }
                     }
                   }
-                )}
-            />
-          </div>
+                }
+              )}
+          />
         </Container>
       )}
       <ModularContent
-        className="py-10"
+        className="py-4 pb-10"
         width={3}
         objects={page.content}
         bonusCategories={toplistCategories}
