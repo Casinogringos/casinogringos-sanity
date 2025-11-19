@@ -13,6 +13,7 @@ const ToggleButton = ({
   className,
   childClassName,
   children,
+  variant,
   group,
 }: {
   id: string
@@ -22,6 +23,7 @@ const ToggleButton = ({
   className?: string
   childClassName?: string
   children: ReactNode
+  variant?: 'primary' | 'affiliate'
   group?: 'faq' | undefined
 }) => {
   const dispatch = useAppDispatch()
@@ -33,6 +35,16 @@ const ToggleButton = ({
     dispatch(group === 'faq' ? toggleIdFaq(id) : toggleId(id))
   }
   const isMenuItemRole = role === 'menuitem' || role === 'menuitemcheckbox'
+  const getClassName = () => {
+    switch (variant) {
+      case 'affiliate':
+        return `bg-button hover:bg-button-hover not-prose inline-block justify-center lg:text-lg text-white no-underline text-center font-semibold rounded-md`
+      case 'primary':
+        return 'rounded-md border border-dark/20 bg-dark px-4 py-2 font-medium text-white transition hover:text-primary'
+      default:
+        return ''
+    }
+  }
 
   return (
     <button
@@ -43,7 +55,7 @@ const ToggleButton = ({
       aria-pressed={isMenuItemRole ? undefined : isOpen}
       aria-haspopup={isMenuItemRole ? true : undefined}
       role={role}>
-      <div className={childClassName}>{children}</div>
+      <div className={`${getClassName()} ${childClassName}`}>{children}</div>
     </button>
   )
 }

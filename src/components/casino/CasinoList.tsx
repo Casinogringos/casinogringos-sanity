@@ -130,15 +130,16 @@ export default function CasinoList({
           ))}
         </div>
       </ToggleItem>
-      <ToggleButton
-        id={'show-more-casinos'}
-        role={'button'}
-        label={'Visa fler casinon'}
-      >
-        <div className="text-center mt-10">
-          <Button variant="primary">Visa fler casinon</Button>
-        </div>
-      </ToggleButton>
+      <div className="flex items-center justify-center w-full mt-10">
+        <ToggleButton
+          id={'show-more-casinos'}
+          role={'button'}
+          label={'Visa fler casinon'}
+          variant="primary"
+        >
+          Visa fler casinon
+        </ToggleButton>
+      </div>
     </>
   )
 }

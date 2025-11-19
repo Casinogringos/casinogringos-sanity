@@ -60,12 +60,12 @@ const CasinoTableRow = ({
 
   return (
     <tr>
-      <td className="text-center text-slate-500 font-bold">{index + 1}</td>
-      <td className="text-center">{casino.name}</td>
-      <td className="text-center font-bold">
+      <td className="text-center text-slate-500 font-bold align-middle">{index + 1}</td>
+      <td className="text-center align-middle">{casino.name}</td>
+      <td className="text-center font-bold align-middle">
         {bonusString ?? casino.defaultBonusText}
       </td>
-      <td className="text-center">
+      <td className="text-center align-middle">
         {casino.affLink?.slug.current && (
           <Link
             href={`/go${formatSlug(casino.affLink.slug.current)}`}
@@ -74,7 +74,7 @@ const CasinoTableRow = ({
             prefetch={false}
             variant={'affiliate'}
             size="md"
-            className="ml-auto"
+            className="ml-auto whitespace-nowrap"
             plausible={{
               eventName: 'AffiliateClick',
               props: {
