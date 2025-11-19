@@ -1,6 +1,6 @@
 import CasinoObject from '@/src/components/casino/CasinoObject'
 import HowToObject from '@/src/components/objects/HowToObject'
-import { Fragment } from 'react'
+import { Fragment, ReactNode } from 'react'
 import GroupObject from '@/src/components/layout/GroupObject'
 import { PortableText } from 'next-sanity'
 import Container from '@/src/components/layout/Container'
@@ -26,6 +26,28 @@ import BonusObject from '@/src/components/objects/BonusObject'
 import SliderObject from '@/src/components/objects/SliderObject'
 import SectionObject from '../objects/SectionObject'
 import ToggleObject from '../objects/ToggleObject'
+
+const portableTextComponents = {
+  marks: {
+    link: ({ value, children }: { value?: { href?: string }; children: ReactNode }) => {
+      const href = value?.href || ''
+      const isExternal =
+        (href.startsWith('http://') ||
+          href.startsWith('https://') ||
+          href.startsWith('//') && !href.includes('casinogringos.com'))
+
+      if (isExternal) {
+        return (
+          <a href={href} target="_blank" rel="noopener noreferrer">
+            {children}
+          </a>
+        )
+      }
+
+      return <a href={href}>{children}</a>
+    },
+  },
+}
 
 const renderObject = ({
   object,
@@ -54,7 +76,7 @@ const renderObject = ({
       )
     }
     case 'paragraph-object': {
-      return <PortableText value={object.content} />
+      return <PortableText value={object.content} components={portableTextComponents} />
     }
     case 'image-object': {
       return <ImageObject prose={prose} object={object} rounded="lg" />
