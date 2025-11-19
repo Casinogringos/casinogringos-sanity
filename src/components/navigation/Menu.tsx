@@ -76,6 +76,7 @@ const Menu = ({
                             prefetch={false}
                             href={level2Item.page.slug.current}
                             role={'menuitem'}
+                            actions={['close-menu']}
                             aria-current={
                               isCurrentPath(
                                 pathname,

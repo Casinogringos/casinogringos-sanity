@@ -37,7 +37,7 @@ const ToggleButton = ({
   return (
     <button
       onClick={handleToggle}
-      className={`cursor-pointer w-full ${className ?? ''}`}
+      className={`cursor-pointer ${className ?? ''}`}
       aria-label={label}
       aria-expanded={isOpen}
       aria-pressed={isMenuItemRole ? undefined : isOpen}
