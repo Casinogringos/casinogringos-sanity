@@ -43,7 +43,7 @@ export default async function RootLayout({
     id: '0cf352ee-76c4-4cb7-971e-8e9ce897b3f3',
   })
   const sidebarToplist = await getToplistById({
-    id: '63a1fb96-042e-4470-808c-64510c24b172',
+    id: '719ca05f-52df-4062-9855-36a75c76c245',
   })
   const siteLinks = await getMenuById({
     id: '09a5375d-b3de-46cd-b9ff-e8e1c20a1fea',
