@@ -65,7 +65,7 @@ const SlotPage = ({
   const createdAt = slotPageService.getPagePublishedAtTimestamp(slotPage)
   const modifiedAt = slotPageService.getPageModifiedAtTimestamp(slotPage)
   const { casinos, latestCasinos } = slotPage
-  const relatedCasinos = casinos?.length > 0 ? casinos : latestCasinos.filter((casino) => casino.affLink.slug.current)
+  const relatedCasinos = casinos?.length > 0 ? casinos : latestCasinos.filter((casino) => casino.affLink?.slug?.current)
   const slotVolatilityMap = {
     low: 'Låg',
     medium: 'Medium',
