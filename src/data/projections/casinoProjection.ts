@@ -28,6 +28,7 @@ export const casinoProjection = `
     excludeFromToplists,
     name,
     brandColor,
+    minimumDeposit,
     availableDepositMethods[]-> {
       ${paymentMethodProjection}
     },
