@@ -118,7 +118,7 @@ export default function CasinoList({
           />
         ))}
       </div>
-      <ToggleItem id={'show-more-casinos'}>
+      <ToggleItem id={'show-more-casinos'} hideFromDom>
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
           {remainingCasinos.map((casinoPage) => (
             <ItemComponent
