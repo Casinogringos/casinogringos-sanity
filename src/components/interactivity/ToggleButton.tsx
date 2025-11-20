@@ -13,7 +13,9 @@ const ToggleButton = ({
   className,
   childClassName,
   children,
+  variant,
   group,
+  hide = false,
 }: {
   id: string
   rotate?: boolean
@@ -22,7 +24,9 @@ const ToggleButton = ({
   className?: string
   childClassName?: string
   children: ReactNode
+  variant?: 'primary' | 'affiliate'
   group?: 'faq' | undefined
+  hide?: boolean
 }) => {
   const dispatch = useAppDispatch()
   const { toggleIds } = useAppSelector((state) =>
@@ -32,22 +36,32 @@ const ToggleButton = ({
   const handleToggle = () => {
     dispatch(group === 'faq' ? toggleIdFaq(id) : toggleId(id))
   }
+  const isMenuItemRole = role === 'menuitem' || role === 'menuitemcheckbox'
+  const getClassName = () => {
+    switch (variant) {
+      case 'affiliate':
+        return `bg-button hover:bg-button-hover not-prose inline-block justify-center lg:text-lg text-white no-underline text-center font-semibold rounded-md`
+      case 'primary':
+        return 'rounded-md border border-dark/20 bg-dark px-4 py-2 font-medium text-white transition hover:text-primary'
+      default:
+        return ''
+    }
+  }
 
   return (
     <>
-      <input type="checkbox" className={'hidden'} id={id} />
-      <label
-        htmlFor={id}
-        className={`cursor-pointer ${className}`}
-        aria-label={label}
-        aria-haspopup={isOpen}
-        aria-checked={isOpen}
-        aria-expanded={isOpen}
-        role={role}
-        onClick={handleToggle}
-      >
-        <div className={childClassName}>{children}</div>
-      </label>
+      {
+        isOpen && hide ? null : <button
+          onClick={handleToggle}
+          className={`cursor-pointer ${className ?? ''}`}
+          aria-label={label}
+          aria-expanded={isOpen}
+          aria-pressed={isMenuItemRole ? undefined : isOpen}
+          aria-haspopup={isMenuItemRole ? true : undefined}
+          role={role}>
+          <div className={`${getClassName()} ${childClassName}`}>{children}</div>
+        </button>
+      }
     </>
   )
 }

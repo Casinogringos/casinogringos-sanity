@@ -10,6 +10,12 @@ const PageReferenceSchema = z.object({
   }).optional(),
 });
 
+const AffiliateLinkReferenceSchema = z.object({
+  slug: z.object({
+    current: z.string()
+  }).optional()
+})
+
 export const ButtonObjectSchema = z.object({
   _type: z.literal('button-object'),
   _key: z.string(),
@@ -18,6 +24,7 @@ export const ButtonObjectSchema = z.object({
     current: z.string(),
   }),
   page: PageReferenceSchema.optional(),
+  affLink: AffiliateLinkReferenceSchema.optional()
 });
 
 export type ButtonObjectSchemaType = z.infer<typeof ButtonObjectSchema>;

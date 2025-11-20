@@ -1,13 +1,13 @@
 import { guidePagePreviewProjection } from '@/src/data/projections/guidePagePreviewProjection'
 
 export const similarGuidePagesQuery = ({
-  id,
+  slug,
   count,
 }: {
-  id: string
+  slug: string
   count: number
 }) => `
-  *[_type == 'guide-pages' && id != ${id}][0...${count}] {
+  *[_type == 'guide-pages' && slug.current != "${slug}"] | order(select(originalPublishedAt, _createdAt) desc) [0...${count}] {
     ${guidePagePreviewProjection}
   }
 `

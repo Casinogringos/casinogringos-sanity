@@ -21,7 +21,7 @@ export default function Container({
   }
   const classNames = disabled
     ? ''
-    : `${widthClasses[width as keyof typeof widthClasses]} mx-auto w-full px-4 relative ${className}`
+    : `${widthClasses[width as keyof typeof widthClasses]} mx-auto md:px-0 w-full px-4 relative ${className}`
 
   return <div className={classNames}>{children}</div>
 }

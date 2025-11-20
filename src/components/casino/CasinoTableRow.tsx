@@ -35,7 +35,7 @@ const CasinoTableRow = ({
         ) {
           return null
         }
-        return `${casinoBonusPercentage && casinoBonusAmount ? casinoBonusPercentage + '% upp till ' + casinoBonusAmount + ' kr' : ''}${casinoBonusPercentage && casinoBonusAmount && numberOfFreeSpins ? ' + ' : ''}${numberOfFreeSpins ? numberOfFreeSpins + ' freespins' : ''}`
+        return `${casinoBonusPercentage && casinoBonusAmount ? casinoBonusPercentage + '% upp till ' + casinoBonusAmount : ''}${casinoBonusPercentage && casinoBonusAmount && numberOfFreeSpins ? ' + ' : ''}${numberOfFreeSpins ? numberOfFreeSpins + ' freespins' : ''}`
       }
       case 'odds-bonuses': {
         const oddsBonus = bonus.bonusAmountRange.max
@@ -61,12 +61,12 @@ const CasinoTableRow = ({
 
   return (
     <tr>
-      <td className="text-center text-slate-500 p-0 font-bold">{index + 1}</td>
-      <td className="text-center p-0 font-medium">{casino.name}</td>
-      <td className="text-center font-bold">
+      <td className="text-center text-slate-500 font-bold align-middle">{index + 1}</td>
+      <td className="text-center align-middle">{casino.name}</td>
+      <td className="text-center font-bold align-middle">
         {bonusString ?? casino.defaultBonusText}
       </td>
-      <td className="text-center">
+      <td className="text-center align-middle">
         {casino.affLink?.slug.current && (
           <Link
             href={`/go${formatSlug(casino.affLink.slug.current)}`}
@@ -75,7 +75,7 @@ const CasinoTableRow = ({
             prefetch={false}
             variant={'affiliate'}
             size="sm"
-            className="ml-auto !px-3.5 !py-2.5"
+            className="ml-auto whitespace-nowrap !px-3.5 !py-2.5"
             plausible={{
               eventName: 'AffiliateClick',
               props: {

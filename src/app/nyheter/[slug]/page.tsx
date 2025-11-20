@@ -53,7 +53,7 @@ export default async function Page(props: { params: Params }) {
   })
   if (!newsPage) return notFound()
   const similarNews: NewsPagePreviewSchemaType[] = await getSimilarNewsPages({
-    id: newsPage._id,
+    slug: newsPage.slug.current,
     count: 4,
   })
 

@@ -228,11 +228,11 @@ class CasinoService {
   }) {
     switch (bonusCategory.value) {
       case 'casino-bonus':
-        return casino.casinoBonuses?.[0]?.affLink?.slug.current ?? null
+        return casino.casinoBonuses?.[0]?.affLink?.slug.current ?? casino.affLink?.slug.current
       case 'odds-bonus':
-        return casino.oddsBonuses?.[0]?.affLink?.slug.current ?? null
+        return casino.oddsBonuses?.[0]?.affLink?.slug.current ?? casino.affLink?.slug.current
       case 'live-casino-bonus':
-        return casino.liveCasinoBonuses?.[0]?.affLink?.slug.current ?? null
+        return casino.liveCasinoBonuses?.[0]?.affLink?.slug.current ?? casino.affLink?.slug.current
       default:
         return casino.affLink?.slug.current ?? null
     }

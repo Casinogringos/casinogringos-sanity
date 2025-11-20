@@ -7,11 +7,16 @@ import StarIcon from '@/src/components/icons/StarIcon'
 import { CasinoPageSchemaType } from '@/src/schemas/casinoPage'
 import { PaymentMethodSchemaType } from '@/src/schemas/paymentMethod'
 import CasinoService from '@/src/services/CasinoService'
-import { Mail, MessageCircle, Phone } from 'lucide-react'
+import { ChevronDown, Mail, MessageCircle, Phone } from 'lucide-react'
 import { PortableText } from 'next-sanity'
 import Image from 'next/image'
 import { useState } from 'react'
 import QuestionMark from '../icons/QuestionMark'
+import ToggleObject from '../objects/ToggleObject'
+import ToggleBox from '../layout/ToggleBox'
+import ToggleButton from '../interactivity/ToggleButton'
+import ToggleSpin from '../interactivity/ToggleSpin'
+import ToggleItem from '../interactivity/ToggleItem'
 
 const CasinoInfo = ({ casinoPage }: { casinoPage: CasinoPageSchemaType }) => {
   const { title } = casinoPage
@@ -95,7 +100,7 @@ const CasinoInfo = ({ casinoPage }: { casinoPage: CasinoPageSchemaType }) => {
             </div>
           )}
         </div>
-        <div className="z-1 relative grid grid-cols-1 gap-x-8 gap-y-3 md:grid-cols-2 px-4 md:px-0 mb-6 md:mb-0">
+        <div className="z-1 relative grid grid-cols-1 gap-x-8 gap-y-3 md:grid-cols-2 px-4 md:px-0 mb-6">
           {ratingKeys.map(({ key, label, imgSrc }) => {
             const rating = ratings[key] || 0
             return (
@@ -122,25 +127,29 @@ const CasinoInfo = ({ casinoPage }: { casinoPage: CasinoPageSchemaType }) => {
             )
           })}
         </div>
-        {/* <ToggleObject
-          title={'Så fungerar vår betygsättning'}
-          className="mx-5 mt-6 lg:mx-0"
-        >
-          Det finns flera olika parametrar vi tittar på i samband med en
-          recension. För att få en komplett helhetsbild är vi alltid två som
-          provar casinot och sedan är det vår sammanlagda bild som gäller. Vi
-          verkar så opartiskt vi kan och baserar det mesta på data och fakta,
-          men användarupplevelsen är personlig och speglar hur sajten fungerar
-          från en användares perspektiv. Du kan läsa mer om vår betygsprocess{' '}
-          <Link
-            prefetch={false}
-            href="/hur-vi-recenserar"
-            className="text-blue500"
+        <div className="border border-slate-200 rounded-md">
+          <ToggleButton
+            id={'sa-fungerar'}
+            role={'button'}
+            className="w-full"
+            label={'Så fungerar vår betygsättning'}
           >
-            här
-          </Link>
-          .
-        </ToggleObject> */}
+            <div className="flex items-center px-4 py-2">
+              <div className="flex items-center gap-2 flex-grow">
+                <QuestionMark size={15} />
+                <span className="font-semibold text-sm">Så fungerar vår betygsättning</span>
+              </div>
+              <ToggleSpin id={'sa-fungerar'}>
+                <ChevronDown />
+              </ToggleSpin>
+            </div>
+          </ToggleButton>
+          <ToggleItem id={'sa-fungerar'}>
+            <p className="p-4 pt-2 !text-sm text-slate-600">
+              Det finns flera olika parametrar vi tittar på i samband med en recension. För att få en komplett helhetsbild är vi alltid två som provar casinot och sedan är det vår sammanlagda bild som gäller. Vi verkar så opartiskt vi kan och baserar det mesta på data och fakta, men användarupplevelsen är personlig och speglar hur sajten fungerar från en användares perspektiv. Du kan läsa mer om vår betygsprocess <Link className="text-blue-500" href="/hur-vi-recenserar">här</Link>.
+            </p>
+          </ToggleItem>
+        </div>
       </div>
       <Heading
         level={2}
@@ -310,7 +319,7 @@ const CasinoInfo = ({ casinoPage }: { casinoPage: CasinoPageSchemaType }) => {
           </>
         )}
       {casinoPage.casino.contactMethods &&
-      casinoPage.casino.contactMethods.length > 0 ? (
+        casinoPage.casino.contactMethods.length > 0 ? (
         <>
           <Heading
             level={2}

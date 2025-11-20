@@ -14,6 +14,11 @@ export const buttonObjectProjection = `
             current
         }
     },
-    message
+    affLink-> {
+      _type,
+      slug {
+        current
+      }
+    }
   }
 `

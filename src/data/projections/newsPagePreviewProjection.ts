@@ -5,7 +5,9 @@ export const newsPagePreviewProjection = `
   _type,
   _id,
   title,
-  slug,
+  slug {
+    current
+  },
   featuredImage {
     ${imageObjectProjection}
   },

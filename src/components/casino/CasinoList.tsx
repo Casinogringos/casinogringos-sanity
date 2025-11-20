@@ -41,6 +41,7 @@ export default function CasinoList({
         <ToggleButton
           id={'toplist-ad-information'}
           role={'button'}
+          className="w-full"
           label={'Annonsinformation'}
         >
           <div className="ml-auto flex cursor-pointer justify-end text-sm items-center gap-1 py-2 text-2xs text-slate-600">
@@ -61,7 +62,12 @@ export default function CasinoList({
         </ToggleItem>
       </div>
       <div className="border border-slate-200 rounded-md mb-3">
-        <ToggleButton id={'varfor-oss'} role={'button'} label={'Varför oss?'}>
+        <ToggleButton
+          id={'varfor-oss'}
+          role={'button'}
+          className="w-full"
+          label={'Varför oss?'}
+        >
           <div className="flex items-center px-4 py-2">
             <div className="flex items-center gap-2 flex-grow">
               <QuestionMark size={15} />
@@ -112,7 +118,7 @@ export default function CasinoList({
           />
         ))}
       </div>
-      <ToggleItem id={'show-more-casinos'}>
+      <ToggleItem id={'show-more-casinos'} hideFromDom>
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
           {remainingCasinos.map((casinoPage) => (
             <ItemComponent
@@ -124,15 +130,17 @@ export default function CasinoList({
           ))}
         </div>
       </ToggleItem>
-      <ToggleButton
-        id={'show-more-casinos'}
-        role={'button'}
-        label={'Visa fler casinon'}
-      >
-        <div className="text-center mt-10">
-          <Button variant="primary">Visa fler casinon</Button>
-        </div>
-      </ToggleButton>
+      <div className="flex items-center justify-center w-full mt-10">
+        <ToggleButton
+          id={'show-more-casinos'}
+          role={'button'}
+          label={'Visa fler casinon'}
+          variant="primary"
+          hide
+        >
+          Visa fler casinon
+        </ToggleButton>
+      </div>
     </>
   )
 }

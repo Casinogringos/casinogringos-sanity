@@ -10,7 +10,6 @@ const CasinoTableObject = ({
   bonusCategories?: { value: string }[]
 }) => {
   const { toplist, count } = object
-  console.log('toplist', toplist)
   if (!toplist || !toplist.casinos || toplist.casinos.length === 0) {
     return <Placeholder message="No toplist found" />
   }

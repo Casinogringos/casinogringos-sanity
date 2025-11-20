@@ -217,14 +217,14 @@ export const getSimilarCasinoPages = async ({
 }
 
 export const getSimilarGuidePages = async ({
-  id,
+  slug,
   count = 5,
 }: {
-  id: string
+  slug: string
   count?: number
 }) => {
   try {
-    const data = await client.fetch(similarGuidePagesQuery({ id, count }))
+    const data = await client.fetch(similarGuidePagesQuery({ slug, count }))
     return data
   } catch (e) {
     console.log(e)
@@ -233,14 +233,14 @@ export const getSimilarGuidePages = async ({
 }
 
 export const getSimilarNewsPages = async ({
-  id,
+  slug,
   count = 5,
 }: {
-  id: string
+  slug: string
   count?: number
 }) => {
   try {
-    const data = await client.fetch(similarNewsPagesQuery({ id, count }))
+    const data = await client.fetch(similarNewsPagesQuery({ slug, count }))
     return data
   } catch (e) {
     console.log(e)
