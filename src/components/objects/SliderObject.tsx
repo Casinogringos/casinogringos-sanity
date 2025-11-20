@@ -1,9 +1,9 @@
-import { SliderObjectSchemaType } from '@/src/schemas/sliderObject'
-import Heading from '@/src/components/content/Heading'
-import Image from 'next/image'
-import Link from '@/src/components/content/Link'
 import DateComponent from '@/src/components/content/Date'
+import Heading from '@/src/components/content/Heading'
+import Link from '@/src/components/content/Link'
+import { SliderObjectSchemaType } from '@/src/schemas/sliderObject'
 import UtilityService from '@/src/services/UtilityService'
+import Image from 'next/image'
 
 const utilityService = new UtilityService()
 
@@ -62,12 +62,12 @@ const Item = ({ item }: { item: ItemSchemaType }) => {
   return (
     <Link
       href={href}
-      className="w-[300px] p-3 block bg-blue-50 hover:bg-blue-50/50 transition-colors ease-in-out duration-200 h-full border border-blue-100 rounded-md"
+      className="w-[300px] p-3 pb-2 block bg-blue-50 hover:bg-blue-50/50 transition-colors ease-in-out duration-200 h-full border border-blue-100 rounded-md"
     >
       {item.featuredImage.src && (
-        <div className="h-[120px] relative mb-2">
+        <div className="h-[150px] relative mb-2">
           <Image
-            className="object-cover h-full w-full absolute"
+            className="object-cover h-full w-full absolute rounded-md"
             src={item.featuredImage.src}
             alt={item.featuredImage.alt}
             width={500}
@@ -79,7 +79,7 @@ const Item = ({ item }: { item: ItemSchemaType }) => {
         text={item.title}
         level={2}
         sizes={[3, 3, 4]}
-        className="font-bold not-prose"
+        className="font-bold not-prose leading-2.5 md:leading-2 mt-5"
       />
       <DateComponent
         className="text-xs text-slate-500"

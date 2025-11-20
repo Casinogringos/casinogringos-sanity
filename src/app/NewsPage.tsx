@@ -1,24 +1,23 @@
+import ArticleHeader from '@/src/components/article/ArticleHeader'
+import AuthorBox from '@/src/components/content/AuthorBox'
+import Heading from '@/src/components/content/Heading'
 import ModularContent from '@/src/components/content/ModularContent'
 import Container from '@/src/components/layout/Container'
-import ArticleHeader from '@/src/components/article/ArticleHeader'
-import Heading from '@/src/components/content/Heading'
-import { getHeadingObjectsByPage } from '@/src/lib/utils'
+import BreadCrumbs from '@/src/components/navigation/BreadCrumbs'
+import TableOfContents from '@/src/components/navigation/TableOfContents'
+import { getHeadingObjectsByPage, slugify } from '@/src/lib/utils'
 import { NewsPageSchemaType } from '@/src/schemas/newsPage'
 import { NewsPagePreviewSchemaType } from '@/src/schemas/newsPagePreview'
-import TableOfContents from '@/src/components/navigation/TableOfContents'
-import AuthorBox from '@/src/components/content/AuthorBox'
+import { RatingObjectSchemaType } from '@/src/schemas/ratingObject'
+import NewsPageService from '@/src/services/NewsPageService'
+import { getFeaturedImageStructuredData } from '@/src/structured-data/featuredImageStructuredData'
 import getNewsArticleStructuredData from '@/src/structured-data/newsArticleStructuredData'
-import BreadCrumbs from '@/src/components/navigation/BreadCrumbs'
-import Image from 'next/image'
+import { getOrganizationStructuredData } from '@/src/structured-data/organizationStructuredData'
 import { getWebPageStructuredData } from '@/src/structured-data/webPageStructuredData'
 import { getWebSiteStructuredData } from '@/src/structured-data/webSiteStructuredData'
-import { getOrganizationStructuredData } from '@/src/structured-data/organizationStructuredData'
-import NewsPageService from '@/src/services/NewsPageService'
-import { HeadingObjectSchemaType } from '../schemas/headingObject'
-import { slugify } from '@/src/lib/utils'
+import Image from 'next/image'
 import ArticleCard from '../components/article/ArticleCard'
-import { getFeaturedImageStructuredData } from '@/src/structured-data/featuredImageStructuredData'
-import { RatingObjectSchemaType } from '@/src/schemas/ratingObject'
+import { HeadingObjectSchemaType } from '../schemas/headingObject'
 
 const newsPageService = new NewsPageService()
 
@@ -61,7 +60,7 @@ export default function NewsPage({
         key="news-page-structured-data"
       />
       <BreadCrumbs items={breadcrumbs} narrow />
-      <Container width={3}>
+      <Container width={3} className="lg:px-0">
         {page.featuredImage && (
           <div className="mb-4 flex h-auto items-start overflow-hidden rounded-md lg:mb-8 lg:mt-8 lg:h-96 relative">
             <Image
@@ -76,45 +75,39 @@ export default function NewsPage({
         <ArticleHeader article={page} />
       </Container>
       {headingObjects.length > 2 && (
-        <Container width={3}>
-          <div className="mt-4 px-4 lg:mt-5 lg:px-0">
-            <TableOfContents
-              headings={headingObjects
-                .filter(
-                  (
-                    heading: HeadingObjectSchemaType | RatingObjectSchemaType
-                  ) => {
-                    if (heading._type === 'heading-object') {
-                      return heading.text
-                    }
-                    if (heading._type === 'rating-object') {
-                      return heading.title
-                    }
-                    return false
+        <Container width={3} className="mt-4 px-4 lg:mt-5 lg:px-0">
+          <TableOfContents
+            headings={headingObjects
+              .filter(
+                (heading: HeadingObjectSchemaType | RatingObjectSchemaType) => {
+                  if (heading._type === 'heading-object') {
+                    return heading.text
                   }
-                )
-                .map(
-                  (
-                    heading: HeadingObjectSchemaType | RatingObjectSchemaType
-                  ) => {
-                    switch (heading._type) {
-                      case 'heading-object': {
-                        return {
-                          text: heading.text,
-                          slug: `${page.slug.current}#${slugify(heading.text)}`,
-                        }
+                  if (heading._type === 'rating-object') {
+                    return heading.title
+                  }
+                  return false
+                }
+              )
+              .map(
+                (heading: HeadingObjectSchemaType | RatingObjectSchemaType) => {
+                  switch (heading._type) {
+                    case 'heading-object': {
+                      return {
+                        text: heading.text,
+                        slug: `${page.slug.current}#${slugify(heading.text)}`,
                       }
-                      case 'rating-object': {
-                        return {
-                          text: heading.title,
-                          slug: `${page.slug.current}#${slugify(heading.title)}`,
-                        }
+                    }
+                    case 'rating-object': {
+                      return {
+                        text: heading.title,
+                        slug: `${page.slug.current}#${slugify(heading.title)}`,
                       }
                     }
                   }
-                )}
-            />
-          </div>
+                }
+              )}
+          />
         </Container>
       )}
       <ModularContent width={3} objects={page.content} className={'py-5'} />
@@ -130,7 +123,12 @@ export default function NewsPage({
       {similarNews && (
         <section className={'bg-gray-100 py-10'}>
           <Container width={6}>
-            <Heading level={3} className={'mb-4 text-2xl text-gray-700'} text='Fler Nyheter' />
+            <Heading
+              level={3}
+              sizes={[6, 6, 6]}
+              className={'mb-6'}
+              text="Fler Nyheter"
+            />
             <div className={'grid grid-cols-2 gap-4 lg:grid-cols-4'}>
               {similarNews.map((item) => (
                 <ArticleCard key={`news-card-${item._id}`} item={item} />
