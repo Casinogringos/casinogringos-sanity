@@ -22,6 +22,7 @@ const CasinoTableRow = ({
     category: bonusCategory,
   })
   const numberOfFreeSpins = casino.freeSpins?.[0]?.numberOfFreeSpins ?? false
+
   const getBonusString = () => {
     if (!bonus) return
     switch (bonus._type) {
@@ -34,7 +35,7 @@ const CasinoTableRow = ({
         ) {
           return null
         }
-        return `${casinoBonusPercentage && casinoBonusAmount ? casinoBonusPercentage + '% up till ' + casinoBonusAmount : ''}${casinoBonusPercentage && casinoBonusAmount && numberOfFreeSpins ? ' + ' : ''}${numberOfFreeSpins ? numberOfFreeSpins + ' freespins' : ''}`
+        return `${casinoBonusPercentage && casinoBonusAmount ? casinoBonusPercentage + '% upp till ' + casinoBonusAmount + ' kr' : ''}${casinoBonusPercentage && casinoBonusAmount && numberOfFreeSpins ? ' + ' : ''}${numberOfFreeSpins ? numberOfFreeSpins + ' freespins' : ''}`
       }
       case 'odds-bonuses': {
         const oddsBonus = bonus.bonusAmountRange.max
@@ -50,7 +51,7 @@ const CasinoTableRow = ({
         ) {
           return null
         }
-        return `${liveCasinoBonusPercentage && liveCasinoBonusAmount ? liveCasinoBonusPercentage + '% up till ' + liveCasinoBonusAmount : ''}${liveCasinoBonusPercentage && liveCasinoBonusAmount && numberOfFreeSpins ? ' + ' : ''}${numberOfFreeSpins ? numberOfFreeSpins + ' freespins' : ''}`
+        return `${liveCasinoBonusPercentage && liveCasinoBonusAmount ? liveCasinoBonusPercentage + '% upp till ' + liveCasinoBonusAmount : ''}${liveCasinoBonusPercentage && liveCasinoBonusAmount && numberOfFreeSpins ? ' + ' : ''}${numberOfFreeSpins ? numberOfFreeSpins + ' freespins' : ''}`
       }
       default:
         return null
@@ -60,8 +61,8 @@ const CasinoTableRow = ({
 
   return (
     <tr>
-      <td className="text-center text-slate-500 font-bold">{index + 1}</td>
-      <td className="text-center">{casino.name}</td>
+      <td className="text-center text-slate-500 p-0 font-bold">{index + 1}</td>
+      <td className="text-center p-0 font-medium">{casino.name}</td>
       <td className="text-center font-bold">
         {bonusString ?? casino.defaultBonusText}
       </td>
@@ -73,8 +74,8 @@ const CasinoTableRow = ({
             rel="noopener noreferrer nofollow"
             prefetch={false}
             variant={'affiliate'}
-            size="md"
-            className="ml-auto"
+            size="sm"
+            className="ml-auto !px-3.5 !py-2.5"
             plausible={{
               eventName: 'AffiliateClick',
               props: {
@@ -83,7 +84,7 @@ const CasinoTableRow = ({
               },
             }}
           >
-            Till Casinot
+            Spela
           </Link>
         )}
       </td>
