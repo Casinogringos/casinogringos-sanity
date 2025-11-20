@@ -12,7 +12,7 @@ export default function Container({
   disabled?: boolean
 }) {
   const widthClasses = {
-    6: 'max-w-6xl',
+    6: 'max-w-6xl md:px-6',
     5: 'max-w-5xl',
     4: 'max-w-4xl',
     3: 'max-w-3xl',

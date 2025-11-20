@@ -8,6 +8,7 @@ import { CasinoPageSchemaType } from '@/src/schemas/casinoPage'
 import CasinoService from '@/src/services/CasinoService'
 import { PortableText } from 'next-sanity'
 import Image from 'next/image'
+import Container from '../layout/Container'
 
 export default function CasinoHero({
   casinoPage,
@@ -28,7 +29,7 @@ export default function CasinoHero({
 
   return (
     <div className="bg-darklight py-5 lg:py-16 not-prose">
-      <div className="mx-auto max-w-6xl px-4">
+      <Container>
         <div className="flex h-full w-full flex-col gap-x-10 lg:flex-row">
           <div
             className="mb-4 flex items-center justify-center overflow-hidden rounded-md lg:mb-0 lg:min-h-full lg:w-1/4"
@@ -167,7 +168,7 @@ export default function CasinoHero({
           <Avatar author={author} />
         </div>
       </div> */}
-      </div>
+      </Container>
     </div>
   )
 }

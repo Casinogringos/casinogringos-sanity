@@ -1,40 +1,48 @@
 import CasinoObject from '@/src/components/casino/CasinoObject'
-import HowToObject from '@/src/components/objects/HowToObject'
-import { Fragment, ReactNode } from 'react'
-import GroupObject from '@/src/components/layout/GroupObject'
-import { PortableText } from 'next-sanity'
-import Container from '@/src/components/layout/Container'
-import ImageObject from '@/src/components/objects/ImageObject'
-import ListObject from '@/src/components/objects/ListObject'
+import FAQObject from '@/src/components/content/FAQObject'
 import ColumnsObject from '@/src/components/layout/ColumnsObject'
-import Placeholder from '@/src/components/utils/Placeholder'
+import Container from '@/src/components/layout/Container'
+import GroupObject from '@/src/components/layout/GroupObject'
+import AISummaryObject from '@/src/components/objects/AISummaryObject'
+import BonusObject from '@/src/components/objects/BonusObject'
 import ButtonObject from '@/src/components/objects/ButtonObject'
 import ButtonsObject from '@/src/components/objects/ButtonsObject'
+import HeadingObject from '@/src/components/objects/HeadingObject'
+import HowToObject from '@/src/components/objects/HowToObject'
+import HTMLObject from '@/src/components/objects/HTMLObject'
+import ImageObject from '@/src/components/objects/ImageObject'
+import ListObject from '@/src/components/objects/ListObject'
 import ProsAndConsObject from '@/src/components/objects/ProsAndConsObject'
-import AISummaryObject from '@/src/components/objects/AISummaryObject'
 import QuoteObject from '@/src/components/objects/QuoteObject'
 import RatingObject from '@/src/components/objects/RatingObject'
-import FAQObject from '@/src/components/content/FAQObject'
-import { ModularContentSchemaType } from '@/src/schemas/modularContent'
-import { ModularContentItemSchemaType } from '@/src/schemas/modularContent'
-import HTMLObject from '@/src/components/objects/HTMLObject'
-import SlotListObject from '@/src/components/objects/SlotListObject'
-import CasinoTableObject from '../casino/CasinoTableObject'
-import { CasinoSchemaType } from '@/src/schemas/casino'
-import HeadingObject from '@/src/components/objects/HeadingObject'
-import BonusObject from '@/src/components/objects/BonusObject'
 import SliderObject from '@/src/components/objects/SliderObject'
+import SlotListObject from '@/src/components/objects/SlotListObject'
+import Placeholder from '@/src/components/utils/Placeholder'
+import { CasinoSchemaType } from '@/src/schemas/casino'
+import {
+  ModularContentItemSchemaType,
+  ModularContentSchemaType,
+} from '@/src/schemas/modularContent'
+import { PortableText } from 'next-sanity'
+import { Fragment, ReactNode } from 'react'
+import CasinoTableObject from '../casino/CasinoTableObject'
 import SectionObject from '../objects/SectionObject'
 import ToggleObject from '../objects/ToggleObject'
 
 const portableTextComponents = {
   marks: {
-    link: ({ value, children }: { value?: { href?: string }; children: ReactNode }) => {
+    link: ({
+      value,
+      children,
+    }: {
+      value?: { href?: string }
+      children: ReactNode
+    }) => {
       const href = value?.href || ''
       const isExternal =
-        (href.startsWith('http://') ||
-          href.startsWith('https://') ||
-          href.startsWith('//') && !href.includes('casinogringos.com'))
+        href.startsWith('http://') ||
+        href.startsWith('https://') ||
+        (href.startsWith('//') && !href.includes('casinogringos.se'))
 
       if (isExternal) {
         return (
@@ -76,7 +84,12 @@ const renderObject = ({
       )
     }
     case 'paragraph-object': {
-      return <PortableText value={object.content} components={portableTextComponents} />
+      return (
+        <PortableText
+          value={object.content}
+          components={portableTextComponents}
+        />
+      )
     }
     case 'image-object': {
       return <ImageObject prose={prose} object={object} rounded="lg" />

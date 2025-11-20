@@ -42,15 +42,16 @@ export default async function Navigation({
               href="/"
               prefetch={false}
               aria-current={isCurrentPath(pathname, '/') ? 'page' : undefined}
-              className={`${isCurrentPath(pathname, '/') ? 'text-primary' : 'text-white'
-                }`}
+              className={`${
+                isCurrentPath(pathname, '/') ? 'text-primary' : 'text-white'
+              }`}
             >
               <span className="sr-only">Casinogringos.se</span>
               <Image
                 src="/casinogringos.webp"
                 priority={true}
                 alt="Casinogringos"
-                className="w-18"
+                className="w-20"
                 width={80}
                 height={40}
                 id="logo"
@@ -70,10 +71,11 @@ export default async function Navigation({
                         ? 'page'
                         : undefined
                     }
-                    className={`text-nav text-[13px] uppercase tracking-wider font-medium font-inter hover:text-primary transition ${isCurrentPath(pathname, item.page.slug.current)
+                    className={`text-nav text-[13px] uppercase tracking-wider font-medium font-inter hover:text-primary transition ${
+                      isCurrentPath(pathname, item.page.slug.current)
                         ? 'text-primary'
                         : 'text-white'
-                      }`}
+                    }`}
                   >
                     {item.label ?? item.page.title}
                   </Link>
