@@ -53,7 +53,7 @@ export default async function Page(props: {
   })
   if (!guidePage) return notFound()
   const similarGuidePages = await getSimilarGuidePages({
-    id: guidePage.id,
+    slug: guidePage.slug.current,
     count: 4,
   })
 
