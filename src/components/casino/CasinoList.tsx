@@ -136,6 +136,7 @@ export default function CasinoList({
           role={'button'}
           label={'Visa fler casinon'}
           variant="primary"
+          hide
         >
           Visa fler casinon
         </ToggleButton>

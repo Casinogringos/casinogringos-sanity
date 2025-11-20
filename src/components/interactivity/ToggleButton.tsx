@@ -15,6 +15,7 @@ const ToggleButton = ({
   children,
   variant,
   group,
+  hide = false,
 }: {
   id: string
   rotate?: boolean
@@ -25,6 +26,7 @@ const ToggleButton = ({
   children: ReactNode
   variant?: 'primary' | 'affiliate'
   group?: 'faq' | undefined
+  hide?: boolean
 }) => {
   const dispatch = useAppDispatch()
   const { toggleIds } = useAppSelector((state) =>
@@ -47,16 +49,20 @@ const ToggleButton = ({
   }
 
   return (
-    <button
-      onClick={handleToggle}
-      className={`cursor-pointer ${className ?? ''}`}
-      aria-label={label}
-      aria-expanded={isOpen}
-      aria-pressed={isMenuItemRole ? undefined : isOpen}
-      aria-haspopup={isMenuItemRole ? true : undefined}
-      role={role}>
-      <div className={`${getClassName()} ${childClassName}`}>{children}</div>
-    </button>
+    <>
+      {
+        isOpen && hide ? null : <button
+          onClick={handleToggle}
+          className={`cursor-pointer ${className ?? ''}`}
+          aria-label={label}
+          aria-expanded={isOpen}
+          aria-pressed={isMenuItemRole ? undefined : isOpen}
+          aria-haspopup={isMenuItemRole ? true : undefined}
+          role={role}>
+          <div className={`${getClassName()} ${childClassName}`}>{children}</div>
+        </button>
+      }
+    </>
   )
 }
 
