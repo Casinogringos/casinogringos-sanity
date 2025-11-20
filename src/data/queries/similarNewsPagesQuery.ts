@@ -7,7 +7,7 @@ export const similarNewsPagesQuery = ({
   id: string
   count: number
 }) => `
-  *[_type == 'news-pages' && id != '${id}'][0...${count}] {
+  *[_type == 'news-pages' && id != '${id}'] | order(select(originalPublishedAt, _createdAt) desc) [0...${count}] {
     ${newsPagePreviewProjection}
   }
 `
