@@ -1,12 +1,7 @@
 import { CasinoSchemaType } from '@/src/schemas/casino'
-import { CasinoPageSchemaType } from '../schemas/casinoPage'
-import { CasinoPagePreviewSchemaType } from '../schemas/casinoPagePreview'
-import { CasinoBonusPageSchemaType } from '../schemas/casinoBonusPage'
-import { OddsBonusPageSchemaType } from '../schemas/oddsBonusPage'
-import { LiveCasinoBonusPageSchemaType } from '../schemas/liveCasinoBonusPage'
 import { CasinoBonusSchemaType } from '@/src/schemas/casinoBonus'
-import { OddsBonusSchemaType } from '@/src/schemas/oddsBonus'
 import { LiveCasinoBonusSchemaType } from '@/src/schemas/liveCasinoBonus'
+import { OddsBonusSchemaType } from '@/src/schemas/oddsBonus'
 
 interface Ratings {
   bonus_rating: number
@@ -135,7 +130,7 @@ class CasinoService {
       },
       {
         label: 'Minsta insättning',
-        value: casino.minimumDeposit,
+        value: casino.minimumDeposit + " kr",
       },
     ]
     return { quickFacts }

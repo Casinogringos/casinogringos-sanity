@@ -35,7 +35,7 @@ const SanityImage = ({
   }
   return (
     <div
-      className={`${className} not-prose mt-5 flex items-center flex-col justify-center`}
+      className={`${className} not-prose my-5 flex items-center flex-col justify-center`}
     >
       <Image
         src={image.src}
@@ -48,7 +48,7 @@ const SanityImage = ({
         style={{ maxWidth: maxWidth ?? '100%' }}
       />
       {image.caption && (
-        <div className="text-sm text-slate-500 text-center">
+        <div className="text-sm text-slate-500 pt-3 text-center">
           <PortableText value={image.caption} />
         </div>
       )}
