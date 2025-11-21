@@ -287,14 +287,14 @@ export const getAuthorBySlug = async ({ slug }: { slug: string }) => {
 }
 
 export const getSimilarSlotPages = async ({
-  id,
-  count = 5,
+  slug,
+  count = 4,
 }: {
-  id: string
+  slug: string
   count?: number
 }) => {
   try {
-    const data = await client.fetch(similarSlotPagesQuery({ id, count }))
+    const data = await client.fetch(similarSlotPagesQuery({ slug, count }))
     return data
   } catch (e) {
     console.log(e)

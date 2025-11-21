@@ -51,7 +51,7 @@ export default async function Page(props: { params: Params }) {
   })
   if (!slotPage || !slotPage.slot) return notFound()
   const similarSlotPages = await getSimilarSlotPages({
-    id: slotPage._id,
+    slug: slotPage.slug.current,
     count: 4,
   })
 
