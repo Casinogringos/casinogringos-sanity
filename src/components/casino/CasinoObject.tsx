@@ -101,7 +101,7 @@ const CasinoObject = ({
           <Link
             variant="affiliate"
             className="w-full"
-            href={`go${formatSlug(affLinkSlug)}`}
+            href={`/go${formatSlug(affLinkSlug)}`}
             place="CasinoCard block"
             target='_blank'
           >
