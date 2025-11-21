@@ -50,11 +50,11 @@ export default function SubPage({
   const breadcrumbs = [
     ...(parentPage
       ? [
-          {
-            text: parentPage.title,
-            url: `${process.env.NEXT_PUBLIC_SITE_URL}${parentPage.slug.current}`,
-          },
-        ]
+        {
+          text: parentPage.title,
+          url: `${process.env.NEXT_PUBLIC_SITE_URL}${parentPage.slug.current}`,
+        },
+      ]
       : []),
     {
       text: page.title,
@@ -88,12 +88,14 @@ export default function SubPage({
       ) : (
         <div className="mb-6" />
       )}
-      {faqs && faqs.items.length && (
+      {faqs && faqs.items.length ? (
         <div className="bg-dark pb-16 pt-10 mb-8 lg:mb-12">
           <Container width={6}>
             <FAQ items={faqs.items} title={faqs.title} />
           </Container>
         </div>
+      ) : (
+        <div className="mb-8" />
       )}
       {headingObjects.length > 1 && (
         <Container width={3} className="lg:px-0">
