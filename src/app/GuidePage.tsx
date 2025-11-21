@@ -42,11 +42,11 @@ export default function GuidePage({
   const breadcrumbs = [
     {
       text: 'Guider',
-      url: `/guider`,
+      url: `${process.env.NEXT_PUBLIC_SITE_URL}/guider`,
     },
     {
       text: page.title,
-      url: `${process.env.SITE_URL}${page.slug.current}`,
+      url: `${process.env.NEXT_PUBLIC_SITE_URL}${page.slug.current}`,
     },
   ]
 

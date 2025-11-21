@@ -106,9 +106,9 @@ const Link = ({
     <NextLink
       role={role}
       href={href}
-      rel={variant === 'affiliate' ? 'nofollow noreferrer noopener' : undefined}
+      rel={variant === 'affiliate' ? 'nofollow noreferrer noopener' : rel}
       replace={replace}
-      target={variant === 'affiliate' ? '_blank' : undefined}
+      target={variant === 'affiliate' ? '_blank' : target}
       className={`${className ?? ''} ${getClassName()} no-underline`}
       prefetch={prefetch}
       aria-label={label}
