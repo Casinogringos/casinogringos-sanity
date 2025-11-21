@@ -44,6 +44,12 @@ const SlotHero = ({ slotPage }: { slotPage: SlotPageSchemaType }) => {
                     </div>
                   </ToggleButton>
                 )}
+                <Link
+                  href="#spela"
+                  className="hover:bg-gray-500 ml-auto flex items-center justify-center rounded-sm bg-button px-4 py-1.5 font-medium text-white"
+                >
+                  Spela för riktiga pengar
+                </Link>
               </div>
             </div>
           </ToggleItem>
