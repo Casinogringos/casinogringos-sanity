@@ -5,6 +5,7 @@ import Star from '@/src/components/icons/StarIcon'
 import { formatSlug } from '@/src/lib/utils'
 import { CasinoSchemaType } from '@/src/schemas/casino'
 import CasinoService from '@/src/services/CasinoService'
+import { PortableText } from 'next-sanity'
 import Image from 'next/image'
 
 const CasinoCard = ({
@@ -170,7 +171,7 @@ const CasinoCard = ({
           </div>
           {casino.terms ? (
             <div className="h-[37px] overflow-y-auto rounded-b-md bg-white px-4 py-2 text-xs text-gray-400">
-              <Paragraph content={casino.terms} />
+              <PortableText value={casino.terms} />
             </div>
           ) : (
             <div className="rounded-b-md overflow-y-auto h-[37px] bg-white px-2 py-3 text-center text-2xs text-gray-400">

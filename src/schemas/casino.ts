@@ -14,6 +14,7 @@ import { ContactMethodSchema } from './contactMethod'
 import { CasinoRatingSchema } from './casinoRating'
 import { PaymentMethodSchema } from '@/src/schemas/paymentMethod'
 import AffLinkSchema from '@/src/schemas/affLink'
+import { PortableTextBlockSchema } from './portableTextBlock'
 
 export const CasinoSchema = z.object({
   _type: z.literal('casinos'),
@@ -36,7 +37,7 @@ export const CasinoSchema = z.object({
   swedishLicense: z.boolean(),
   license: LicenseSchema,
   minimumDeposit: z.number(),
-  terms: z.string().optional(),
+  terms: PortableTextBlockSchema.optional(),
   websiteAddress: z.string(),
   oddsBonuses: z.array(OddsBonusSchema),
   liveCasinoBonuses: z.array(LiveCasinoBonusSchema),
