@@ -19,7 +19,7 @@ const TableOfContents = ({
       }
     >
       <ToggleButton
-        id={'table-of-contents'}
+        id={`table-of-contents-${slugify(headings[0].text)}`}
         role={'button'}
         label={'Innehåll'}
         className={'w-full relative flex items-center px-4 py-2'}
@@ -28,7 +28,7 @@ const TableOfContents = ({
         <div className={'flex items-center justify-between'}>
           <div className={'flex items-center'}>
             <ToggleSwitch
-              id={'table-of-contents'}
+              id={`table-of-contents-${slugify(headings[0].text)}`}
               open={<BookOpen className="h-4 w-4 mr-2 mt-0.5 text-slate-500" />}
               close={<Book className="h-4 w-4 mr-2 text-slate-500" />}
             />
@@ -42,12 +42,12 @@ const TableOfContents = ({
               <>Innehåll</>
             </Heading>
           </div>
-          <ToggleSpin id={'table-of-contents'}>
+          <ToggleSpin id={`table-of-contents-${slugify(headings[0].text)}`}>
             <ChevronDown className={'stroke-black'} />
           </ToggleSpin>
         </div>
       </ToggleButton>
-      <ToggleItem id={'table-of-contents'}>
+      <ToggleItem id={`table-of-contents-${slugify(headings[0].text)}`}>
         <ol
           className={
             'border-solid border-t list-decimal not-prose ml-5 border-t-white p-4'
