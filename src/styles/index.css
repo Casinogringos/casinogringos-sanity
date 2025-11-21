@@ -108,6 +108,7 @@
     /* === MISC === */
 
 
+    --color-column-gray: oklch(0.98 0 0);
     --color-dark: oklch(0.1921 0.0912 272.12);
     /* #090b3c */
     --color-light: oklch(0.258 0.039 269.25);
@@ -190,51 +191,54 @@ body {
 }
 
 .numbered-list {
-  list-style: none;
-  padding-left: 0;
-  margin-bottom: 0;
-  counter-reset: numbered-list;
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 0;
+    counter-reset: numbered-list;
 }
 
 .numbered-list__item {
-  position: relative;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;          /* ~Tailwind gap-2 */
-  margin: 0.5rem 0;     /* ~Tailwind my-2 */
-  padding-left: 2rem;   /* space for the circle */
-  counter-increment: numbered-list;
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    /* ~Tailwind gap-2 */
+    margin: 0.5rem 0;
+    /* ~Tailwind my-2 */
+    padding-left: 2rem;
+    /* space for the circle */
+    counter-increment: numbered-list;
 }
 
 .numbered-list__item::before {
-  content: counter(numbered-list);
-  position: absolute;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 1.5rem;       
-  height: 1.5rem;     
-  border-radius: 9999px;
-  background-color: #22c55e; 
-  color: #ffffff;
-  font-size: 0.75rem;  
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    content: counter(numbered-list);
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 9999px;
+    background-color: #22c55e;
+    color: #ffffff;
+    font-size: 0.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .dot-list-item {
-  position: relative;
-  padding-left: 20px; 
+    position: relative;
+    padding-left: 20px;
 }
 
 .dot-list-item::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0.7rem;         
-  width: 5px;
-  height: 5px;
-  border-radius: 9999px;
-  background-color: #cad5e2;
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.7rem;
+    width: 5px;
+    height: 5px;
+    border-radius: 9999px;
+    background-color: #cad5e2;
 }

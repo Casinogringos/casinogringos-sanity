@@ -109,7 +109,7 @@ const Link = ({
       rel={variant === 'affiliate' ? 'nofollow noreferrer noopener' : undefined}
       replace={replace}
       target={variant === 'affiliate' ? '_blank' : undefined}
-      className={`${className ?? ''} ${getClassName()}`}
+      className={`${className ?? ''} ${getClassName()} no-underline`}
       prefetch={prefetch}
       aria-label={label}
       title={title}
