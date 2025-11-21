@@ -26,7 +26,9 @@ export const slotPageProjection = `
   casinos[] -> {
     ${casinoProjection}
   },
-  "latestCasinos": *[_type == 'casinos'][0...3] {
+  "latestCasinos": *[
+    _type == "casinos" && defined(affLink->slug.current)
+  ][0...3]{
     ${casinoProjection}
   },
   featuredImage {
