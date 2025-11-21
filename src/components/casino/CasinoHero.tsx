@@ -133,7 +133,7 @@ export default function CasinoHero({
             )}
             <div className="rounded-b-md pt-4 text-center text-2xs text-slate-400 shadow-2xl">
               {casino.terms ? (
-                <Paragraph content={casino.terms} />
+                <PortableText value={casino.terms} />
               ) : (
                 <>
                   18+ | Spela ansvarsfullt |{' '}
