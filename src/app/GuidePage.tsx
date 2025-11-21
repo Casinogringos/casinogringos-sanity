@@ -42,7 +42,7 @@ export default function GuidePage({
   const breadcrumbs = [
     {
       text: 'Guider',
-      url: `${process.env.SITE_URL}/guider`,
+      url: `/guider`,
     },
     {
       text: page.title,
