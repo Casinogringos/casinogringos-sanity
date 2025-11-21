@@ -2,6 +2,7 @@ import Link from '@/src/components/content/Link'
 import Paragraph from '@/src/components/content/Paragraph'
 import CheckBadgeIcon from '@/src/components/icons/CheckBadgeIcon'
 import Star from '@/src/components/icons/StarIcon'
+import { formatSlug } from '@/src/lib/utils'
 import { CasinoSchemaType } from '@/src/schemas/casino'
 import CasinoService from '@/src/services/CasinoService'
 import Image from 'next/image'
@@ -146,7 +147,7 @@ const CasinoCard = ({
             </div>
             <div className="mt-2 flex flex-col-reverse items-center justify-center gap-2">
               <Link
-                href={`/${casino.slug.current}`}
+                href={`${formatSlug(casino.parentCasinoPageSlug ?? '')}`}
                 prefetch={false}
                 className="flex w-full items-center justify-center rounded-md border border-gray-300 px-6 py-2.5 text-center text-xs font-medium !text-gray-500 lg:hover:bg-gray-100"
               >

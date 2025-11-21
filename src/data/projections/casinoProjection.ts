@@ -92,4 +92,7 @@ export const casinoProjection = `
     sports[]-> {
       ${sportProjection}
     },
+    "parentCasinoPageSlug": *[
+      _type == "casino-pages" && casino._ref == ^._id
+    ][0].slug.current,
 `

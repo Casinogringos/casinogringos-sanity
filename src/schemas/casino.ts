@@ -59,6 +59,7 @@ export const CasinoSchema = z.object({
   availableDepositMethods: z.array(PaymentMethodSchema),
   availableWithdrawalMethods: z.array(PaymentMethodSchema),
   casinoRatings: z.array(CasinoRatingSchema),
+  parentCasinoPageSlug: z.string().optional(),
 })
 
 export type CasinoSchemaType = z.infer<typeof CasinoSchema>
