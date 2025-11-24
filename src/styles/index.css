@@ -176,13 +176,24 @@ body {
         font-size: var(--font-size-md);
     }
 
+    .text-2xs p,
+    p.text-2xs {
+        font-size: var(--font-size-2xs) !important;
+    }
+
     .text-xs p,
     p.text-xs {
         font-size: var(--font-size-xs) !important;
     }
 
-    .text-sm p {
+    .text-sm p,
+    p.text-sm {
         font-size: var(--font-size-sm);
+    }
+
+    .text-base p,
+    p.text-base {
+        font-size: var(--font-size-md);
     }
 
     a {

@@ -170,7 +170,7 @@ const CasinoCard = ({
             </div>
           </div>
           {casino.terms ? (
-            <div className="h-[37px] overflow-y-auto rounded-b-md bg-white px-4 py-2 text-xs text-gray-400">
+            <div className="h-[37px] overflow-y-auto rounded-b-md bg-white px-4 py-2 text-2xs text-gray-400">
               <PortableText value={casino.terms} />
             </div>
           ) : (

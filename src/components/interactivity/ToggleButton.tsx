@@ -59,7 +59,7 @@ const ToggleButton = ({
           aria-pressed={isMenuItemRole ? undefined : isOpen}
           aria-haspopup={isMenuItemRole ? true : undefined}
           role={role}>
-          <div className={`${getClassName()} ${childClassName}`}>{children}</div>
+          <div className={`${getClassName()} ${childClassName ?? ''}`}>{children}</div>
         </button>
       }
     </>

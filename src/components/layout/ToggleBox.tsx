@@ -32,7 +32,7 @@ const ToggleBox = ({
   }, [isOpen])
 
   return (
-    <section className={className}>
+    <section className={className ?? ''}>
       <div
         className={`${isOpen ? 'max-h-[500000px]' : 'max-h-[100px]'} transform transition overflow-hidden relative`}
       >
