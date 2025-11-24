@@ -1,5 +1,4 @@
 import Link from '@/src/components/content/Link'
-import Paragraph from '@/src/components/content/Paragraph'
 import CheckBadgeIcon from '@/src/components/icons/CheckBadgeIcon'
 import Star from '@/src/components/icons/StarIcon'
 import { formatSlug } from '@/src/lib/utils'
@@ -75,6 +74,7 @@ const CasinoCard = ({
                 alt={casino.logo?.altText}
                 width={288}
                 height={288}
+                quality={50}
                 className={'h-36 w-36'}
               />
             </div>
