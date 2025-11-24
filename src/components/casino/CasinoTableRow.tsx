@@ -35,7 +35,7 @@ const CasinoTableRow = ({
         ) {
           return null
         }
-        return `${casinoBonusPercentage && casinoBonusAmount ? casinoBonusPercentage + '% upp till ' + casinoBonusAmount : ''}${casinoBonusPercentage && casinoBonusAmount && numberOfFreeSpins ? ' + ' : ''}${numberOfFreeSpins ? numberOfFreeSpins + ' freespins' : ''}`
+        return `${casinoBonusPercentage && casinoBonusAmount ? casinoBonusPercentage + '% upp till ' + casinoBonusAmount + ' kr' : ''}${casinoBonusPercentage && casinoBonusAmount && numberOfFreeSpins ? ' + ' : ''}${numberOfFreeSpins ? numberOfFreeSpins + ' freespins' : ''}`
       }
       case 'odds-bonuses': {
         const oddsBonus = bonus.bonusAmountRange.max
@@ -61,7 +61,9 @@ const CasinoTableRow = ({
 
   return (
     <tr>
-      <td className="text-center text-slate-500 font-bold align-middle">{index + 1}</td>
+      <td className="text-center text-slate-500 font-bold align-middle">
+        {index + 1}
+      </td>
       <td className="text-center align-middle">{casino.name}</td>
       <td className="text-center font-bold align-middle">
         {bonusString ?? casino.defaultBonusText}
