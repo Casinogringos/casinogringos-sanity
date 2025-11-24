@@ -80,7 +80,7 @@ const CasinoRow = ({ casino }: { casino: CasinoSchemaType }) => {
           <Link
             href={`/go${formatSlug(casino.affLink.slug.current)}`}
             target="_blank"
-            rel="noopener noreferrer nofollow"
+            rel="noopener noreferrer sponsored nofollow"
             prefetch={false}
             variant={'affiliate'}
             size="sm"

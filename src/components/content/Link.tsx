@@ -106,7 +106,9 @@ const Link = ({
     <NextLink
       role={role}
       href={href}
-      rel={variant === 'affiliate' ? 'nofollow noreferrer noopener' : rel}
+      rel={
+        variant === 'affiliate' ? 'nofollow noreferrer sponsored noopener' : rel
+      }
       replace={replace}
       target={variant === 'affiliate' ? '_blank' : target}
       className={`${className ?? ''} ${getClassName()} no-underline`}
