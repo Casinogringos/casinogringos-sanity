@@ -1,24 +1,26 @@
-import { PortableText } from 'next-sanity'
-import ToggleButton from '@/src/components/interactivity/ToggleButton'
 import Heading from '@/src/components/content/Heading'
-import ToggleSpin from '@/src/components/interactivity/ToggleSpin'
-import { ChevronDown } from 'lucide-react'
+import ToggleButton from '@/src/components/interactivity/ToggleButton'
 import ToggleItem from '@/src/components/interactivity/ToggleItem'
+import ToggleSpin from '@/src/components/interactivity/ToggleSpin'
+import { portableTextToPlainText } from '@/src/lib/utils'
 import { FaqItemObjectSchemaType } from '@/src/schemas/faqItemObject'
 import { PortableTextBlockSchemaType } from '@/src/schemas/portableTextBlock'
-import Container from '@/src/components/layout/Container'
-import { portableTextToPlainText } from '@/src/lib/utils'
+import { ChevronDown } from 'lucide-react'
+import { PortableText } from 'next-sanity'
 
-const getFAQPageStructuredData = (items: FaqItemObjectSchemaType[], title?: string) => {
+const getFAQPageStructuredData = (
+  items: FaqItemObjectSchemaType[],
+  title?: string
+) => {
   return {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
-    'mainEntity': items.map((item) => ({
+    mainEntity: items.map((item) => ({
       '@type': 'Question',
-      'name': item.question,
-      'acceptedAnswer': {
+      name: item.question,
+      acceptedAnswer: {
         '@type': 'Answer',
-        'text': Array.isArray(item.answer)
+        text: Array.isArray(item.answer)
           ? portableTextToPlainText(item.answer)
           : '',
       },
@@ -44,7 +46,9 @@ const FAQ = ({
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         key="faq-structured-data"
       />
-      <div className={`mb-6 text-white text-center ${description ? 'pb-6' : 'pb-1'}`}>
+      <div
+        className={`mb-6 text-white text-center ${description ? 'pb-6' : 'pb-1'}`}
+      >
         <Heading
           className="mb-5 font-bold"
           text={title ?? 'Frågor och svar'}
@@ -71,8 +75,8 @@ const FAQ = ({
                 <Heading
                   text={item.question}
                   level={3}
-                  className="text-white"
-                  sizes={[4, 4, 4]}
+                  className="text-white text-left"
+                  sizes={[2, 4, 4]}
                 />
                 <ToggleSpin id={item._key}>
                   <ChevronDown className={'stroke-white'} />
