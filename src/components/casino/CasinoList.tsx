@@ -9,12 +9,10 @@ import { CasinoSchemaType } from '@/src/schemas/casino'
 import { AlertCircle, ChevronDown } from 'lucide-react'
 import { PortableTextBlock } from 'next-sanity'
 import Link from 'next/link'
-import Button from '../content/Button'
 
 export default function CasinoList({
   casinos,
   title,
-  description,
   itemComponent,
   categories,
 }: {
@@ -24,7 +22,7 @@ export default function CasinoList({
   itemComponent: typeof CasinoCard
   categories: { value: string }[]
 }) {
-  const year = new Date().getFullYear()
+  // const year = new Date().getFullYear() - Currently not used but save for later
   const ItemComponent = itemComponent
   const casinosWithIndexes = casinos
     .filter((casino) => !casino.excludeFromToplists)
@@ -108,7 +106,7 @@ export default function CasinoList({
           </p>
         </div>
       </div>
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 mb-4">
+      <ol className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 mb-4">
         {initialCasinos.map((casino) => (
           <ItemComponent
             key={`casino-${casino._id}-${casino.index}`}
@@ -117,9 +115,9 @@ export default function CasinoList({
             categories={categories}
           />
         ))}
-      </div>
+      </ol>
       <ToggleItem id={'show-more-casinos'} hideFromDom>
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+        <ol className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
           {remainingCasinos.map((casinoPage) => (
             <ItemComponent
               key={`casino-${casinoPage._id}-${casinoPage.index}`}
@@ -128,7 +126,7 @@ export default function CasinoList({
               categories={categories}
             />
           ))}
-        </div>
+        </ol>
       </ToggleItem>
       <div className="flex items-center justify-center w-full mt-10">
         <ToggleButton

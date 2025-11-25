@@ -1,7 +1,7 @@
-import { getServerSideSitemap } from 'next-sitemap'
 import { getSitemap } from '@/src/lib/api'
 import { SubPageSchemaType } from '@/src/schemas/subPage'
 import ImageService from '@/src/services/ImageService'
+import { getServerSideSitemap } from 'next-sitemap'
 
 const imageService = new ImageService()
 
@@ -30,7 +30,7 @@ export async function GET() {
         .filter((image) => image !== null)
 
       return {
-        loc: `${process.env.NEXT_PUBLIC_SITE_URL}${page.slug.current !== '/' ? page.slug.current : ''}`,
+        loc: `${process.env.NEXT_PUBLIC_SITE_URL}${page.slug.current}`,
         lastmod: `${page._updatedAt ?? page.originalModifiedAt}+01:00`,
         images: imagesXML,
       }

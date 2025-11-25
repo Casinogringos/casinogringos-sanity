@@ -1,26 +1,26 @@
-import Star from '@/src/components/icons/StarIcon'
-import HalfStarIcon from '@/src/components/icons/HalfStarIcon'
-import ModularContent from '@/src/components/content/ModularContent'
+import CasinoCard from '@/src/components/casino/CasinoCard'
 import Avatar from '@/src/components/content/Avatar'
-import BreadCrumbs from '@/src/components/navigation/BreadCrumbs'
+import Heading from '@/src/components/content/Heading'
+import ModularContent from '@/src/components/content/ModularContent'
+import HalfStarIcon from '@/src/components/icons/HalfStarIcon'
+import Star from '@/src/components/icons/StarIcon'
 import Container from '@/src/components/layout/Container'
-import SlotHero from '@/src/components/slot/SlotHero'
+import BreadCrumbs from '@/src/components/navigation/BreadCrumbs'
 import TableOfContents from '@/src/components/navigation/TableOfContents'
+import SlotCard from '@/src/components/slot/SlotCard'
+import SlotHero from '@/src/components/slot/SlotHero'
+import { slugify } from '@/src/lib/utils'
 import { SlotPageSchemaType } from '@/src/schemas/slotPage'
 import { SlotPagePreviewSchemaType } from '@/src/schemas/slotPagePreview'
-import getSlotReviewStructuredData from '@/src/structured-data/slotReviewStructuredData'
 import SlotPageService from '@/src/services/SlotPageService'
-import Image from 'next/image'
-import Heading from '@/src/components/content/Heading'
-import { PortableText } from 'next-sanity'
-import CasinoCard from '@/src/components/casino/CasinoCard'
+import { getOrganizationStructuredData } from '@/src/structured-data/organizationStructuredData'
+import getSlotReviewStructuredData from '@/src/structured-data/slotReviewStructuredData'
 import { getWebPageStructuredData } from '@/src/structured-data/webPageStructuredData'
 import { getWebSiteStructuredData } from '@/src/structured-data/webSiteStructuredData'
-import { getOrganizationStructuredData } from '@/src/structured-data/organizationStructuredData'
-import SlotCard from '@/src/components/slot/SlotCard'
-import { HeadingObjectSchemaType } from '../schemas/headingObject'
-import { slugify } from '@/src/lib/utils'
+import { PortableText } from 'next-sanity'
+import Image from 'next/image'
 import Placeholder from '../components/utils/Placeholder'
+import { HeadingObjectSchemaType } from '../schemas/headingObject'
 import { getFeaturedImageStructuredData } from '../structured-data/featuredImageStructuredData'
 import getGameStructuredData from '../structured-data/gameStructuredData'
 
@@ -65,7 +65,10 @@ const SlotPage = ({
   const createdAt = slotPageService.getPagePublishedAtTimestamp(slotPage)
   const modifiedAt = slotPageService.getPageModifiedAtTimestamp(slotPage)
   const { casinos, latestCasinos } = slotPage
-  const relatedCasinos = casinos?.length > 0 ? casinos : latestCasinos.filter((casino) => casino.affLink?.slug?.current)
+  const relatedCasinos =
+    casinos?.length > 0
+      ? casinos
+      : latestCasinos.filter((casino) => casino.affLink?.slug?.current)
   const slotVolatilityMap = {
     low: 'Låg',
     medium: 'Medium',
@@ -133,7 +136,8 @@ const SlotPage = ({
                       RTP:
                     </span>
                     <div className="text-2xl font-semibold text-green-500">
-                      {slot.rtpRange[0]} - {slot.rtpRange[1]}
+                      {slot.rtpRange[0]}
+                      {slot.rtpRange[1] && ` - ${slot.rtpRange[1]}`}
                     </div>
                   </div>
                   <div className="rounded-md bg-normal px-4 py-3 bg-white/10">
@@ -152,7 +156,7 @@ const SlotPage = ({
                       <div className="text-2xl font-semibold text-primary">
                         {
                           slotVolatilityMap[
-                          slot.volatility as keyof typeof slotVolatilityMap
+                            slot.volatility as keyof typeof slotVolatilityMap
                           ]
                         }
                       </div>
