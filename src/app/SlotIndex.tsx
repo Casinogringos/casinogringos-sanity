@@ -1,20 +1,20 @@
-import ModularContent from '@/src/components/content/ModularContent'
-import TableOfContents from '@/src/components/navigation/TableOfContents'
-import Container from '@/src/components/layout/Container'
-import SubPageHero from '@/src/components/content/SubPageHero'
 import Heading from '@/src/components/content/Heading'
+import ModularContent from '@/src/components/content/ModularContent'
+import SubPageHero from '@/src/components/content/SubPageHero'
+import Container from '@/src/components/layout/Container'
+import BreadCrumbs from '@/src/components/navigation/BreadCrumbs'
+import TableOfContents from '@/src/components/navigation/TableOfContents'
 import SlotCard from '@/src/components/slot/SlotCard'
+import { slugify } from '@/src/lib/utils'
+import { HeadingObjectSchemaType } from '@/src/schemas/headingObject'
+import { SlotPagePreviewSchemaType } from '@/src/schemas/slotPagePreview'
+import { SubPageSchemaType } from '@/src/schemas/subPage'
 import SlotPageService from '@/src/services/SlotPageService'
 import SubPageService from '@/src/services/SubPageService'
-import BreadCrumbs from '@/src/components/navigation/BreadCrumbs'
-import { SubPageSchemaType } from '@/src/schemas/subPage'
-import { SlotPagePreviewSchemaType } from '@/src/schemas/slotPagePreview'
-import FAQ from '../components/content/FAQ'
+import { getOrganizationStructuredData } from '@/src/structured-data/organizationStructuredData'
 import { getWebPageStructuredData } from '@/src/structured-data/webPageStructuredData'
 import { getWebSiteStructuredData } from '@/src/structured-data/webSiteStructuredData'
-import { getOrganizationStructuredData } from '@/src/structured-data/organizationStructuredData'
-import { HeadingObjectSchemaType } from '@/src/schemas/headingObject'
-import { slugify } from '@/src/lib/utils'
+import FAQ from '../components/content/FAQ'
 const slotPageService = new SlotPageService()
 const subPageService = new SubPageService()
 
@@ -68,7 +68,7 @@ export default function SlotIndex({
             text={`Populära slots ${year}`}
             className="mb-6 text-2xl font-bold text-heading"
           />
-          <div className="mt-4 grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-4">
+          <div className="mt-4 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
             {slotPages
               .filter((slotPage: SlotPagePreviewSchemaType) => slotPage.slot)
               .sort(

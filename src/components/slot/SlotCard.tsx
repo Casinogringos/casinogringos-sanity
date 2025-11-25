@@ -1,6 +1,6 @@
+import Heading from '@/src/components/content/Heading'
 import Link from '@/src/components/content/Link'
 import { SlotPagePreviewSchemaType } from '@/src/schemas/slotPagePreview'
-import Heading from '@/src/components/content/Heading'
 import Image from 'next/image'
 
 const SlotCard = ({ slotPage }: { slotPage: SlotPagePreviewSchemaType }) => {
@@ -8,7 +8,7 @@ const SlotCard = ({ slotPage }: { slotPage: SlotPagePreviewSchemaType }) => {
 
   return (
     <Link
-      className="shadow-md not-prose block rounded-md overflow-hidden"
+      className="not-prose block bg-white rounded-md overflow-hidden"
       prefetch={false}
       href={`${slotPage.slug.current}`}
     >
@@ -30,12 +30,19 @@ const SlotCard = ({ slotPage }: { slotPage: SlotPagePreviewSchemaType }) => {
         />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm">
           <div className="flex flex-col items-center">
-            <span className="!text-slate-500">Lanserades</span>
-            <span className="!text-black">{slotPage.slot.launchDate}</span>
+            <span className="!text-slate-500 font-medium">Lanserades</span>
+            <span className="!text-black font-bold text-base">
+              {slotPage.slot.launchDate}
+            </span>
           </div>
           <div className="flex flex-col items-center">
-            <span className="!text-slate-500">RTP</span>
-            <span className="!text-black">{slotPage.slot.rtpRange[1]}%</span>
+            <span className="!text-slate-500 font-medium">RTP</span>
+            <span className="!text-black font-bold text-base">
+              {slotPage.slot.rtpRange[1]
+                ? slotPage.slot.rtpRange[1]
+                : slotPage.slot.rtpRange[0]}
+              %
+            </span>
           </div>
         </div>
       </div>
