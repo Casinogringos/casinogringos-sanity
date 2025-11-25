@@ -59,7 +59,7 @@ const CasinoCard = ({
 
   return (
     <>
-      <div className="rounded-md border-b border-b-gray-100 bg-white p-3.5 shadow-2xl">
+      <li className="rounded-md border-b border-b-gray-100 bg-white p-3.5 shadow-2xl">
         <div className="flex flex-col gap-x-8 gap-y-2">
           <div
             className="relative h-28 flex-col items-center overflow-hidden rounded-md p-4"
@@ -197,7 +197,7 @@ const CasinoCard = ({
             </div>
           )}
         </div>
-      </div>
+      </li>
     </>
   )
 }
