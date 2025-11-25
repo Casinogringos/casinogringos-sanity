@@ -117,7 +117,7 @@ export default function CasinoList({
         ))}
       </ol>
       <ToggleItem id={'show-more-casinos'} hideFromDom>
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+        <ol className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
           {remainingCasinos.map((casinoPage) => (
             <ItemComponent
               key={`casino-${casinoPage._id}-${casinoPage.index}`}
@@ -126,7 +126,7 @@ export default function CasinoList({
               categories={categories}
             />
           ))}
-        </div>
+        </ol>
       </ToggleItem>
       <div className="flex items-center justify-center w-full mt-10">
         <ToggleButton
