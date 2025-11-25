@@ -5,31 +5,19 @@ import '@/src/styles/styles.scss'
 import PlausibleProvider from 'next-plausible'
 import dynamicImport from 'next/dynamic'
 
+import Footer from '@/src/components/navigation/Footer'
+import Navigation from '@/src/components/navigation/Navigation'
+import { inter } from '@/src/styles/fonts'
 import { headers } from 'next/headers'
 import { ReactNode } from 'react'
-import Footer from '@/src/components/navigation/Footer'
-import { inter } from '@/src/styles/fonts'
-import Navigation from '@/src/components/navigation/Navigation'
 
 const ScrollToTop = dynamicImport(
   () => import('@/src/components/navigation/ScrollToTop')
 )
-// const inter = Inter({
-//   subsets: ['latin'],
-//   display: 'swap',
-//   variable: '--font-inter',
-//   weight: ['400', '500', '600'],
-// })
-// const jakarta = Plus_Jakarta_Sans({
-//   subsets: ['latin'],
-//   variable: '--font-jakarta',
-//   display: 'swap',
-//   weight: ['700'],
-// })
 
-export const metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL as string),
-}
+// export const metadata = {
+//   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL as string),
+// }
 
 export default async function RootLayout({
   children,
