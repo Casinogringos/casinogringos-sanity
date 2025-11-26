@@ -11,10 +11,12 @@ const CasinoCard = ({
   casino,
   index,
   categories,
+  pathname = '',
 }: {
   casino: CasinoSchemaType
   index: number
   categories: { value: string }[]
+  pathname?: string
 }) => {
   if (!casino) return null
   const casinoService = new CasinoService()
@@ -161,6 +163,14 @@ const CasinoCard = ({
                   prefetch={false}
                   variant="affiliate"
                   size="lg"
+                  plausible={{
+                    eventName: 'AffiliateClick',
+                    props: {
+                      casino: casino.name,
+                      place: 'Regular toplist',
+                      pathname: pathname,
+                    },
+                  }}
                   className="w-full"
                   target="_blank"
                   aria-label={`Öppna ${casino.name} i ett nytt fönster`}

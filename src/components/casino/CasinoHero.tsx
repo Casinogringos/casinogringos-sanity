@@ -1,6 +1,5 @@
 import Heading from '@/src/components/content/Heading'
 import Link from '@/src/components/content/Link'
-import Paragraph from '@/src/components/content/Paragraph'
 import StarHalf from '@/src/components/icons/HalfStarIcon'
 import Star from '@/src/components/icons/StarIcon'
 import { formatSlug } from '@/src/lib/utils'
@@ -41,6 +40,7 @@ export default function CasinoHero({
                 alt={casino.logo.altText}
                 width={150}
                 height={150}
+                priority={true}
                 className="rounded-full hover:shadow-medium"
               />
             </div>
@@ -126,6 +126,14 @@ export default function CasinoHero({
                 place="CasinoCard recension"
                 variant="affiliate"
                 size="xl"
+                plausible={{
+                  eventName: 'AffiliateClick',
+                  props: {
+                    casino: casino.name,
+                    place: 'Casino Hero',
+                    pathname: `/${casino.slug.current}`,
+                  },
+                }}
                 className="w-full"
               >
                 Till {casinoPage.title}

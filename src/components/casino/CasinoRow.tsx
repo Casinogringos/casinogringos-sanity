@@ -88,7 +88,7 @@ const CasinoRow = ({ casino }: { casino: CasinoSchemaType }) => {
             plausible={{
               eventName: 'AffiliateClick',
               props: {
-                buttonId: casino.name,
+                casino: casino.name,
                 place: 'Sidebar',
               },
             }}

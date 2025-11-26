@@ -15,10 +15,12 @@ export default function CasinoList({
   title,
   itemComponent,
   categories,
+  pathname,
 }: {
   casinos: CasinoSchemaType[]
-  title: string
+  title?: string
   description: PortableTextBlock[]
+  pathname?: string
   itemComponent: typeof CasinoCard
   categories: { value: string }[]
 }) {
@@ -111,6 +113,7 @@ export default function CasinoList({
           <ItemComponent
             key={`casino-${casino._id}-${casino.index}`}
             casino={casino}
+            pathname={pathname}
             index={casino.index}
             categories={categories}
           />
@@ -123,6 +126,7 @@ export default function CasinoList({
               key={`casino-${casinoPage._id}-${casinoPage.index}`}
               casino={casinoPage}
               index={casinoPage.index}
+              pathname={pathname}
               categories={categories}
             />
           ))}

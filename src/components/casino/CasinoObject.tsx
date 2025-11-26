@@ -103,7 +103,14 @@ const CasinoObject = ({
             className="w-full"
             href={`${process.env.NEXT_PUBLIC_SITE_URL}/go${formatSlug(affLinkSlug)}`}
             place="CasinoCard block"
-            target='_blank'
+            target="_blank"
+            plausible={{
+              eventName: 'AffiliateClick',
+              props: {
+                casino: casino.name,
+                place: 'Casino Block',
+              },
+            }}
           >
             {buttonText}
           </Link>

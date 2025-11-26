@@ -28,7 +28,7 @@ export default function SubPage({
   page: SubPageSchemaType
   parentPage?: SubPageSchemaType
 }) {
-  const isValid = pageService.validatePage(page)
+  // const isValid = pageService.validatePage(page)
   // if (!isValid) {
   //   return null
   // }
@@ -50,11 +50,11 @@ export default function SubPage({
   const breadcrumbs = [
     ...(parentPage
       ? [
-        {
-          text: parentPage.title,
-          url: `${process.env.NEXT_PUBLIC_SITE_URL}${parentPage.slug.current}`,
-        },
-      ]
+          {
+            text: parentPage.title,
+            url: `${process.env.NEXT_PUBLIC_SITE_URL}${parentPage.slug.current}`,
+          },
+        ]
       : []),
     {
       text: page.title,
@@ -78,6 +78,7 @@ export default function SubPage({
           <Container width={6}>
             <CasinoList
               itemComponent={CasinoCard}
+              pathname={page.slug.current}
               casinos={toplist.casinos}
               title={page.toplistTitle}
               description={toplist.description}

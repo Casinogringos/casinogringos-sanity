@@ -33,7 +33,7 @@ const HomePage = ({
 }) => {
   const isValid = pageService.validatePage(page)
   if (!isValid) return null
-  const { faqs, author, _updatedAt, reviewer } = page
+  const { faqs, author, reviewer } = page
   const headingObjects: Array<
     HeadingObjectSchemaType | RatingObjectSchemaType
   > = getHeadingObjectsByPage({ objects: page.content })
@@ -64,6 +64,7 @@ const HomePage = ({
             <CasinoList
               casinos={page.toplist.casinos}
               title={page.toplistTitle ?? ''}
+              pathname={page.slug.current}
               description={page.toplist.description}
               itemComponent={CasinoCard}
               categories={toplistCategories}

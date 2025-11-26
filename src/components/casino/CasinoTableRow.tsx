@@ -81,8 +81,8 @@ const CasinoTableRow = ({
             plausible={{
               eventName: 'AffiliateClick',
               props: {
-                buttonId: casino.name,
-                place: 'Content',
+                casino: casino.name,
+                place: 'Casino table',
               },
             }}
           >
