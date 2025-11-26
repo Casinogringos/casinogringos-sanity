@@ -1,7 +1,7 @@
-import Container from '../layout/Container'
-import Link from 'next/link'
-import { ChevronRight } from 'lucide-react'
 import { BreadcrumbsSchemaType } from '@/src/schemas/breadcrumbs'
+import { ChevronRight } from 'lucide-react'
+import Link from 'next/link'
+import Container from '../layout/Container'
 
 const BreadCrumbs = ({
   items,
@@ -25,9 +25,8 @@ const BreadCrumbs = ({
             className="flex items-center gap-x-2 whitespace-nowrap lg:gap-x-3"
           >
             <li
-              itemID='/'
               itemScope
-              itemProp='itemListElement'
+              itemProp="itemListElement"
               itemType="https://schema.org/ListItem"
             >
               <Link
@@ -45,7 +44,7 @@ const BreadCrumbs = ({
               <li
                 key={`breadcrumb-${item.text}`}
                 itemScope
-                itemProp='itemListElement'
+                itemProp="itemListElement"
                 itemType="https://schema.org/ListItem"
                 className="flex items-center gap-x-2 lg:gap-x-2"
               >
@@ -58,17 +57,17 @@ const BreadCrumbs = ({
                     href={item.url}
                     itemProp="item"
                     prefetch={false}
-                    className="hover:text-primary text-xs text-gray-500"
+                    className="hover:text-primary text-xs font-medium text-gray-700"
                   >
                     <span itemProp="name">{item.text}</span>
                   </Link>
                 ) : (
-                  <span
-                    itemProp="item"
-                    className="hover:text-slate-500 text-xs text-gray-500"
-                  >
-                    <span itemProp="name">{item.text}</span>
-                  </span>
+                  <>
+                    <span className="text-xs text-gray-500">
+                      <span itemProp="name">{item.text}</span>
+                    </span>
+                    <meta itemProp="item" content={item.url} />
+                  </>
                 )}
                 <meta itemProp="position" content={`${i + 2}`} />
               </li>
