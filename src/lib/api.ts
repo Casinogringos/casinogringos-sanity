@@ -23,8 +23,10 @@ import { toplistByIdQuery } from '@/src/data/queries/toplistById'
 import { casinoPagesByCasinosQuery } from '@/src/data/queries/casinoPagesByCasinos'
 import { searchPagePreviewsQuery } from '@/src/data/queries/searchPagePreviewsQuery'
 import { affLinkBySlugQuery } from '../data/queries/affLinkBySlugQuery'
+import UtilityService from '@/src/services/UtilityService'
 
 const client = getClient()
+const utilityService = new UtilityService()
 
 export const getPageBySlug = async ({ slug }: { slug: string }) => {
   try {
@@ -343,5 +345,39 @@ export const getAffiliateLinkBySlug = async ({ slug }: { slug: string }) => {
   } catch (e) {
     console.log(e)
     throw Error(`Failed to fetch affiliate link by slug: ${slug}`)
+  }
+}
+
+export async function getYoutubeMetaData({ url }: { url: string }) {
+  if (!url) return null
+  const searchParams = new URL(url).searchParams
+  const videoId = searchParams.get('v')
+  try {
+    const request = await fetch(
+      `https://www.googleapis.com/youtube/v3/videos?part=snippet,contentDetails,statistics,localizations,topicDetails&id=${videoId}&key=${process.env.YOUTUBE_API_KEY}`
+    )
+    const response = await request.json()
+    return response.items[0] ?? null
+  } catch (e) {
+    console.log(e)
+    throw Error('Failed to fetch youtube metadata')
+  }
+}
+
+export async function getVimeoMetaData({ url }: { url: string }) {
+  if (!url) return null
+  const videoId = utilityService.removeFirstSlash(new URL(url).pathname)
+  try {
+    const request = await fetch(`https://api.vimeo.com/videos/${videoId}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${process.env.VIMEO_API_KEY}`,
+      },
+    })
+    return (await request.json()) ?? null
+  } catch (e) {
+    console.log(e)
+    throw Error('Failed to fetch vimeo metadata')
   }
 }

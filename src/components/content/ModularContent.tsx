@@ -39,10 +39,14 @@ const portableTextComponents = {
       children: ReactNode
     }) => {
       const href = value?.href || ''
+      let url;
+      try {
+        url = new URL(href);
+      } catch (e) {
+        url = null;
+      }
       const isExternal =
-        href.startsWith('http://') ||
-        href.startsWith('https://') ||
-        (href.startsWith('//') && !href.includes('casinogringos.se'))
+        (url && url.hostname !== 'casinogringos.se' && url.hostname !== 'www.casinogringos.se')
 
       if (isExternal) {
         return (

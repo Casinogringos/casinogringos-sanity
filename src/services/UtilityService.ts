@@ -12,18 +12,28 @@ class UtilityService {
     }
     return newCreatedAt ?? null
   }
-  getUpdatedAtTimestamp({ originalModifiedAt, newUpdatedAt }: { originalModifiedAt: number | null, newUpdatedAt: number | null }) {
+  getUpdatedAtTimestamp({
+    originalModifiedAt,
+    newUpdatedAt,
+  }: {
+    originalModifiedAt: number | null
+    newUpdatedAt: number | null
+  }) {
     if (!originalModifiedAt && !newUpdatedAt) return null
     if (newUpdatedAt) {
       return newUpdatedAt ?? null
     }
     return originalModifiedAt ?? null
   }
-  getHref({ slug, type }: { slug: string, type: string }) {
+  getHref({ slug, type }: { slug: string; type: string }) {
     switch (type) {
       default:
         return `${slug}`
     }
+  }
+
+  removeFirstSlash(url: string) {
+    return url?.startsWith('/') ? url.slice(1) : url
   }
 }
 
