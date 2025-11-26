@@ -71,7 +71,7 @@ const CasinoCard = ({
             <div className="-mb-4 -mt-1.5 flex h-full w-full items-center justify-center">
               <Image
                 src={casino.logo?.src}
-                alt={casino.logo?.altText}
+                alt={casino.logo?.altText || casino.name}
                 width={288}
                 height={288}
                 quality={50}
@@ -163,6 +163,7 @@ const CasinoCard = ({
                   size="lg"
                   className="w-full"
                   target="_blank"
+                  aria-label={`Öppna ${casino.name} i ett nytt fönster`}
                 >
                   Till {casino.name}
                 </Link>
