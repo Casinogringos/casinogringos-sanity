@@ -98,11 +98,11 @@ export default function CasinoList({
         <div className="pr-8 lg:pr-0">
           <Heading
             level={2}
-            sizes={[6, 6, 6]}
+            sizes={[5, 6, 6]}
             className="mb-0 !mt-1 font-semibold"
             text={`${title}`}
           />
-          <p className="text-gray-600 mb-5 mt-1 text-sm lg:mb-6">
+          <p className="text-gray-600 mb-5 mt-1 !text-[14px] lg:mb-6">
             Alla casinon är licenserade och granskade av våra experter
             <CheckBadgeIcon className="ml-1 inline-block size-4 text-green-600" />
           </p>
