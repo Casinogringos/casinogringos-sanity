@@ -2,8 +2,10 @@ import { getPageBySlug, getSitemap } from '@/src/lib/api'
 import { NewsPageSchemaType } from '@/src/schemas/newsPage'
 import ImageService from '@/src/services/ImageService'
 import { getServerSideSitemap } from 'next-sitemap'
+import NewsPageService from '@/src/services/NewsPageService'
 
 const imageService = new ImageService()
+const newsPageService = new NewsPageService()
 
 export async function GET() {
   const newsIndexPage = await getPageBySlug({ slug: '/nyheter' })
@@ -19,10 +21,10 @@ export async function GET() {
     const imagesXML = imageService
       .getImagesXML(allImages)
       .filter((image) => image !== null)
-
+    const lastModTimestamp = newsPageService.getPageModifiedAtTimestamp(page)
     return {
       loc: `${process.env.NEXT_PUBLIC_SITE_URL}${page.slug.current}`,
-      lastmod: `${page._updatedAt ?? page.originalModifiedAt}+01:00`,
+      lastmod: `${new Date(lastModTimestamp ?? '').toISOString().slice(0, -1)}+01:00`,
       images: imagesXML,
     }
   })
@@ -39,10 +41,11 @@ export async function GET() {
     const imagesXML = imageService
       .getImagesXML(allImages)
       .filter((image) => image !== null)
-
+    const lastModTimestamp =
+      newsPageService.getPageModifiedAtTimestamp(newsIndexPage)
     return {
       loc: `${process.env.NEXT_PUBLIC_SITE_URL}/nyheter`,
-      lastmod: `${newsIndexPage._updatedAt ?? newsIndexPage.originalModifiedAt}+01:00`,
+      lastmod: `${new Date(lastModTimestamp ?? '').toISOString().slice(0, -1)}+01:00`,
       images: imagesXML,
     }
   }

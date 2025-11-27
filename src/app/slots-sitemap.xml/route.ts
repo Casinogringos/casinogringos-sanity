@@ -3,8 +3,12 @@ import { getPageBySlug, getSitemap } from '@/src/lib/api'
 import { SubPageSchemaType } from '@/src/schemas/subPage'
 import { SlotPageSchemaType } from '@/src/schemas/slotPage'
 import ImageService from '@/src/services/ImageService'
+import SlotPageService from '@/src/services/SlotPageService'
+import SubPageService from '@/src/services/SubPageService'
 
 const imageService = new ImageService()
+const slotPageService = new SlotPageService()
+const subPageService = new SubPageService()
 
 export async function GET() {
   const slotsIndexResponse = (await getPageBySlug({
@@ -21,10 +25,10 @@ export async function GET() {
     const imagesXML = imageService
       .getImagesXML(allImages)
       .filter((image) => image !== null)
-
+    const lastModTimestamp = slotPageService.getPageModifiedAtTimestamp(page)
     return {
       loc: `${process.env.NEXT_PUBLIC_SITE_URL}${page.slug.current}`,
-      lastmod: `${page._updatedAt ?? page.originalModifiedAt}+01:00`,
+      lastmod: `${new Date(lastModTimestamp ?? '').toISOString().slice(0, -1)}+01:00`,
       images: imagesXML,
     }
   })
@@ -40,10 +44,11 @@ export async function GET() {
     const imagesXML = imageService
       .getImagesXML(allImages)
       .filter((image) => image !== null)
-
+    const lastModTimestamp =
+      subPageService.getPageModifiedAtTimestamp(slotsIndexResponse)
     return {
       loc: `${process.env.NEXT_PUBLIC_SITE_URL}/slots`,
-      lastmod: `${slotsIndexResponse._updatedAt ?? slotsIndexResponse.originalModifiedAt}+01:00`,
+      lastmod: `${new Date(lastModTimestamp ?? '').toISOString().slice(0, -1)}+01:00`,
       images: imagesXML,
     }
   }

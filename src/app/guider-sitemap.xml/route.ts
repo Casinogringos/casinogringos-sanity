@@ -5,9 +5,11 @@ import { GuidePageSchemaType } from '@/src/schemas/guidePage'
 import ImageService from '@/src/services/ImageService'
 import { IImageEntry } from 'next-sitemap'
 import GuidePageService from '@/src/services/GuidePageService'
+import SubPageService from '@/src/services/SubPageService'
 
 const imageService = new ImageService()
 const guidePageService = new GuidePageService()
+const subPageService = new SubPageService()
 
 export async function GET() {
   const guidesIndexPage: SubPageSchemaType = await getPageBySlug({
@@ -25,10 +27,10 @@ export async function GET() {
       allImages.push(...pageImages)
     }
     const imagesXML: IImageEntry[] = imageService.getImagesXML(allImages)
-
+    const lastModTimestamp = guidePageService.getPageModifiedAtTimestamp(page)
     return {
       loc: `${process.env.NEXT_PUBLIC_SITE_URL}${page.slug.current}`,
-      lastmod: `${page._updatedAt ?? page.originalModifiedAt}+01:00`,
+      lastmod: `${new Date(lastModTimestamp ?? '').toISOString().slice(0, -1)}+01:00`,
       images: imagesXML,
     }
   })
@@ -43,10 +45,11 @@ export async function GET() {
     const imagesXML: IImageEntry[] = imageService
       .getImagesXML(allImages)
       .filter((image) => image !== null)
-
+    const lastModTimestamp =
+      subPageService.getPageModifiedAtTimestamp(guidesIndexPage)
     return {
       loc: `${process.env.NEXT_PUBLIC_SITE_URL}${guidesIndexPage.slug.current}`,
-      lastmod: `${guidesIndexPage._updatedAt ?? guidesIndexPage.originalModifiedAt}+01:00`,
+      lastmod: `${new Date(lastModTimestamp ?? '').toISOString().slice(0, -1)}+01:00`,
       images: imagesXML,
     }
   }

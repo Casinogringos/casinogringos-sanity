@@ -3,8 +3,10 @@ import { getSitemap } from '@/src/lib/api'
 import { sitemapImages } from '@/src/lib/utils'
 import { CasinoPageSchemaType } from '@/src/schemas/casinoPage'
 import ImageService from '@/src/services/ImageService'
+import CasinoPageService from '@/src/services/CasinoPageService'
 
 const imageService = new ImageService()
+const casinoPageService = new CasinoPageService()
 
 export async function GET() {
   const casinoPagesResponse: CasinoPageSchemaType[] =
@@ -15,20 +17,21 @@ export async function GET() {
     const contentImages = imageService.getImagesFromModularContent(page.content)
     const allImages = featuredImage
       ? [
-        featuredImage,
-        seoImage === featuredImage ? null : seoImage,
-        ...(contentImages ? contentImages : []),
-      ]
+          featuredImage,
+          seoImage === featuredImage ? null : seoImage,
+          ...(contentImages ? contentImages : []),
+        ]
       : contentImages
         ? contentImages
         : []
     const imagesXML = sitemapImages(
       allImages.filter((image) => image !== null)
     ).filter((image) => image !== null)
+    const lastModTimestamp = casinoPageService.getPageModifiedAtTimestamp(page)
 
     return {
       loc: `${process.env.NEXT_PUBLIC_SITE_URL}${page.slug.current}`,
-      lastmod: `${page._updatedAt ?? page.originalModifiedAt}+01:00`,
+      lastmod: `${new Date(lastModTimestamp ?? '').toISOString().slice(0, -1)}+01:00`,
       images: imagesXML,
     }
   })

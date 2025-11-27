@@ -2,8 +2,10 @@ import { getSitemap } from '@/src/lib/api'
 import { SubPageSchemaType } from '@/src/schemas/subPage'
 import ImageService from '@/src/services/ImageService'
 import { getServerSideSitemap } from 'next-sitemap'
+import SubPageService from '@/src/services/SubPageService'
 
 const imageService = new ImageService()
+const subPageService = new SubPageService()
 
 export async function GET() {
   const pagesResponse: SubPageSchemaType[] = await getSitemap('pages')
@@ -28,10 +30,10 @@ export async function GET() {
       const imagesXML = imageService
         .getImagesXML(allImages)
         .filter((image) => image !== null)
-
+      const lastModTimestamp = subPageService.getPageModifiedAtTimestamp(page)
       return {
         loc: `${process.env.NEXT_PUBLIC_SITE_URL}${page.slug.current}`,
-        lastmod: `${page._updatedAt ?? page.originalModifiedAt}+01:00`,
+        lastmod: `${new Date(lastModTimestamp ?? '').toISOString().slice(0, -1)}+01:00`,
         images: imagesXML,
       }
     })
