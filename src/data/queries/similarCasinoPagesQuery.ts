@@ -7,7 +7,7 @@ export const similarCasinoPagesQuery = ({
   id: string
   count: number
 }) => `
-  *[_type == 'casino-pages' && _id != "${id}"][0...${count}] {
+  *[_type == 'casino-pages' && !(_id match "drafts.*") && _id != "${id}"][0...${count}] {
     ${casinoPagePreviewProjection}
   }
 `

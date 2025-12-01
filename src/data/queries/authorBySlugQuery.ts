@@ -1,7 +1,7 @@
-import { authorProjection } from "@/src/data/projections/authorProjection";
+import { authorProjection } from '@/src/data/projections/authorProjection'
 
 export const authorBySlugQuery = ({ slug }: { slug: string }) => `
-  *[_type == 'authors' && slug.current == '${slug}'] {
+  *[_type == 'authors' && slug.current == '${slug}' && !(_id match "drafts.*")] {
     ${authorProjection}
   }
 `

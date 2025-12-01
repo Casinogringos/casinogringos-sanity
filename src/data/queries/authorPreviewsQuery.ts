@@ -1,7 +1,7 @@
-import { authorProjection } from "@/src/data/projections/authorProjection";
+import { authorProjection } from '@/src/data/projections/authorProjection'
 
 export const authorPreviewsQuery = () =>
-    `*[_type == 'authors'][0...100] {
+  `*[_type == 'authors' && !(_id match "drafts.*")][0...100] {
         ${authorProjection}
     }
 `
