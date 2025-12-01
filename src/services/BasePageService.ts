@@ -14,19 +14,21 @@ import { SlotPagePreviewSchemaType } from '@/src/schemas/slotPagePreview'
 import { NewsPagePreviewSchemaType } from '@/src/schemas/newsPagePreview'
 import { CasinoPagePreviewSchemaType } from '@/src/schemas/casinoPagePreview'
 import UtilityService from '@/src/services/UtilityService'
+import { BasePageSchemaType } from '@/src/schemas/basePage'
 
 abstract class BasePageService<
   PageType extends
-  | GuidePageSchemaType
-  | GuidePagePreviewSchemaType
-  | SubPageSchemaType
-  | SubPagePreviewSchemaType
-  | SlotPageSchemaType
-  | SlotPagePreviewSchemaType
-  | NewsPageSchemaType
-  | NewsPagePreviewSchemaType
-  | CasinoPageSchemaType
-  | CasinoPagePreviewSchemaType,
+    | GuidePageSchemaType
+    | BasePageSchemaType
+    | GuidePagePreviewSchemaType
+    | SubPageSchemaType
+    | SubPagePreviewSchemaType
+    | SlotPageSchemaType
+    | SlotPagePreviewSchemaType
+    | NewsPageSchemaType
+    | NewsPagePreviewSchemaType
+    | CasinoPageSchemaType
+    | CasinoPagePreviewSchemaType,
 > {
   utilityService = new UtilityService()
 
@@ -111,12 +113,18 @@ abstract class BasePageService<
       : null
   }
   getPagePublishedAtTimestamp(page: PageType): number | null {
+    const customPublishedAt = page.publishedAt
+      ? new Date(page.publishedAt).getTime()
+      : null
     const originalPublishedAt = page.originalPublishedAt
       ? new Date(page.originalPublishedAt).getTime()
       : null
     const newCreatedAt = page._createdAt
       ? new Date(page._createdAt).getTime()
       : null
+    if (customPublishedAt) {
+      return customPublishedAt
+    }
     return this.utilityService.getPublishedTimestamp({
       originalPublishedAt,
       newCreatedAt,

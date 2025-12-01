@@ -32,6 +32,7 @@ export const BasePageSchema = z.object({
   originalPublishedAt: z.string().optional(),
   _updatedAt: z.string(),
   originalModifiedAt: z.string().optional(),
+  publishedAt: z.string().optional(),
   reviewer: AuthorSchema.optional(),
   faqs: z
     .array(
