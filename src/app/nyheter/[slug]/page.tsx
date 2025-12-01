@@ -1,14 +1,14 @@
-import { notFound } from 'next/navigation'
 import NewsPage from '@/src/app/NewsPage'
 import {
   getNewsPageBySlug,
-  getStaticParams,
   getSimilarNewsPages,
+  getStaticParams,
 } from '@/src/lib/api'
 import { formatSlug } from '@/src/lib/utils'
 import { NewsPageSchemaType } from '@/src/schemas/newsPage'
 import { NewsPagePreviewSchemaType } from '@/src/schemas/newsPagePreview'
 import { Metadata } from 'next'
+import { notFound } from 'next/navigation'
 
 type Params = Promise<{ slug: string }>
 
@@ -19,12 +19,14 @@ export async function generateMetadata(props: { params: Params }) {
   })
   if (!newsPage) return null
 
-  const siteURL = (process.env.NEXT_PUBLIC_SITE_URL as string) + newsPage.slug.current
+  const siteURL =
+    (process.env.NEXT_PUBLIC_SITE_URL as string) + newsPage.slug.current
+
   const metadata: Metadata = {
     title: newsPage.seoTitle ?? newsPage.title,
     description: newsPage.seoDescription,
     alternates: {
-      canonical: newsPage.canonical,
+      canonical: newsPage.canonical ?? new URL(siteURL),
     },
     openGraph: {
       title: newsPage.seoTitle ?? newsPage.title,

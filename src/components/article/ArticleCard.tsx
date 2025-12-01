@@ -1,12 +1,12 @@
-import Link from 'next/link'
-import Image from 'next/image'
 import Date from '@/src/components/content/Date'
+import Heading from '@/src/components/content/Heading'
 import { GuidePagePreviewSchemaType } from '@/src/schemas/guidePagePreview'
 import { NewsPagePreviewSchemaType } from '@/src/schemas/newsPagePreview'
-import { PortableText } from 'next-sanity'
 import GuidePageService from '@/src/services/GuidePageService'
 import NewsPageService from '@/src/services/NewsPageService'
-import Heading from '@/src/components/content/Heading'
+import { PortableText } from 'next-sanity'
+import Image from 'next/image'
+import Link from 'next/link'
 
 const guidePageService = new GuidePageService()
 const newsPageService = new NewsPageService()
@@ -41,8 +41,8 @@ const ArticleCard = ({
     >
       <div className="relative flex h-36 w-full items-center overflow-hidden rounded-t-md">
         <Image
-          src={item.featuredImage.src}
-          alt={item.featuredImage.alt}
+          src={item.featuredImage?.src}
+          alt={item.featuredImage?.alt}
           width={400}
           height={200}
           className="object-cover absolute w-full h-full"

@@ -12,7 +12,9 @@ export async function generateMetadata() {
   const page: SubPageSchemaType = await getPageBySlug({
     slug: '/nyheter',
   })
-  const siteURL = (process.env.NEXT_PUBLIC_SITE_URL as string) + page.slug.current
+
+  const siteURL =
+    (process.env.NEXT_PUBLIC_SITE_URL as string) + page.slug.current
   const metadata: Metadata = {
     title: page.seoTitle,
     description: page.seoDescription,

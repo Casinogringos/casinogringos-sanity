@@ -1,7 +1,5 @@
-import SubPage from '@/src/app/SubPage'
-import { notFound } from 'next/navigation'
 import CasinoPage from '@/src/app/CasinoPage'
-import { Metadata } from 'next'
+import SubPage from '@/src/app/SubPage'
 import {
   getCasinoPageBySlug,
   getPageBySlug,
@@ -9,8 +7,10 @@ import {
   getStaticParams,
 } from '@/src/lib/api'
 import { formatSlug } from '@/src/lib/utils'
-import { SubPageSchemaType } from '@/src/schemas/subPage'
 import { CasinoPageSchemaType } from '@/src/schemas/casinoPage'
+import { SubPageSchemaType } from '@/src/schemas/subPage'
+import { Metadata } from 'next'
+import { notFound } from 'next/navigation'
 
 type Params = Promise<{
   slugParent: string
@@ -53,7 +53,9 @@ const metadataObject = (
     description: page.seoDescription,
     locale: 'sv_SE',
     alternates: {
-      canonical: page.canonical ? new URL(page.canonical) : undefined,
+      canonical: page.canonical
+        ? new URL(page.canonical)
+        : `${siteURL}${page.slug.current}`,
     },
     openGraph: {
       title: page.seoTitle,

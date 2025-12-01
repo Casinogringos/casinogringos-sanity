@@ -1,13 +1,13 @@
+import SlotPage from '@/src/app/SlotPage'
 import {
+  getSimilarSlotPages,
   getSlotPageBySlug,
   getStaticParams,
-  getSimilarSlotPages,
 } from '@/src/lib/api'
-import { notFound } from 'next/navigation'
-import SlotPage from '@/src/app/SlotPage'
-import { SlotPageSchemaType } from '@/src/schemas/slotPage'
 import { formatSlug } from '@/src/lib/utils'
+import { SlotPageSchemaType } from '@/src/schemas/slotPage'
 import { Metadata } from 'next'
+import { notFound } from 'next/navigation'
 
 type Params = Promise<{ slug: string }>
 
@@ -16,12 +16,13 @@ export async function generateMetadata(props: { params: Params }) {
   const slotPage: SlotPageSchemaType = await getSlotPageBySlug({
     slug: `/slots${formatSlug(params?.slug)}`,
   })
-  const siteURL = (process.env.NEXT_PUBLIC_SITE_URL as string) + slotPage.slug.current
+  const siteURL =
+    (process.env.NEXT_PUBLIC_SITE_URL as string) + slotPage.slug.current
   const metadata: Metadata = {
     title: slotPage.seoTitle,
     description: slotPage.seoDescription,
     alternates: {
-      canonical: slotPage.canonical,
+      canonical: slotPage.canonical ?? new URL(siteURL),
     },
     openGraph: {
       title: slotPage.seoTitle,
