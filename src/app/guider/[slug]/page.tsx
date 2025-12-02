@@ -50,10 +50,17 @@ export default async function Page(props: {
   params: Promise<{ slug: string }>
 }) {
   const params = await props.params
-  const guidePage = await getGuidePageBySlug({
+  let guidePage = await getGuidePageBySlug({
     slug: `/guider${formatSlug(params?.slug)}`,
   })
-  if (!guidePage) return notFound()
+  if (!guidePage) {
+    guidePage = await getGuidePageBySlug({
+      slug: `${formatSlug(params?.slug)}`,
+    })
+    if (!guidePage) {
+      return notFound()
+    }
+  }
   const similarGuidePages = await getSimilarGuidePages({
     slug: guidePage.slug.current,
     count: 4,

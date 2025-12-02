@@ -50,10 +50,17 @@ export async function generateMetadata(props: { params: Params }) {
 
 export default async function Page(props: { params: Params }) {
   const params = await props.params
-  const newsPage: NewsPageSchemaType = await getNewsPageBySlug({
+  let newsPage: NewsPageSchemaType = await getNewsPageBySlug({
     slug: `/nyheter${formatSlug(params?.slug)}`,
   })
-  if (!newsPage) return notFound()
+  if (!newsPage) {
+    newsPage = await getNewsPageBySlug({
+      slug: `${formatSlug(params?.slug)}`,
+    })
+    if (!newsPage) {
+      return notFound()
+    }
+  }
   const similarNews: NewsPagePreviewSchemaType[] = await getSimilarNewsPages({
     slug: newsPage.slug.current,
     count: 4,
