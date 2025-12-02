@@ -66,7 +66,9 @@ export async function generateStaticParams() {
   const allGuidesPages: GuidePageSchemaType[] =
     await getStaticParams('guide-pages')
 
-  return allGuidesPages.map((page) => ({
-    slug: page.slug.current.replace('/guider/', ''),
-  }))
+  return allGuidesPages
+    .filter((page) => page.slug?.current.includes('/guider/'))
+    .map((page) => ({
+      slug: page.slug.current.replace('/guider/', ''),
+    }))
 }

@@ -28,7 +28,9 @@ export async function generateStaticParams() {
         page.slug.current !== '/guider' &&
         page.slug.current !== '/nyheter' &&
         page.slug.current !== '/slots' &&
-        page.slug.current !== '/om-oss'
+        page.slug.current !== '/om-oss' &&
+        page.slug.current !== null &&
+        page.slug.current !== undefined
       )
     }),
     ...allCasinoPages,

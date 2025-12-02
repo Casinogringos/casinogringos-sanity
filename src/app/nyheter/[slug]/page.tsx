@@ -66,8 +66,10 @@ export async function generateStaticParams() {
   const allNewsPages: NewsPagePreviewSchemaType[] =
     await getStaticParams('news-pages')
 
-  return allNewsPages.map((page) => {
-    const slug = page.slug.current.replace('/nyheter/', '')
-    return { slug }
-  })
+  return allNewsPages
+    .filter((page) => page.slug.current.includes('/nyheter/'))
+    .map((page) => {
+      const slug = page.slug.current.replace('/nyheter/', '')
+      return { slug }
+    })
 }

@@ -61,8 +61,10 @@ export default async function Page(props: { params: Params }) {
 
 export async function generateStaticParams() {
   const allSlotPages: SlotPageSchemaType[] = await getStaticParams('slot-pages')
-  return allSlotPages.map((page) => {
-    const slug = page.slug.current.replace('/slots/', '')
-    return { slug }
-  })
+  return allSlotPages
+    .filter((page) => page.slug.current.includes('/slots/'))
+    .map((page) => {
+      const slug = page.slug.current.replace('/slots/', '')
+      return { slug }
+    })
 }
