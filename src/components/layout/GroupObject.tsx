@@ -13,7 +13,7 @@ const GroupObject = ({
       case 'gray':
         return 'bg-slate-100'
       case 'green':
-        return 'bg-green-50'
+        return 'bg-green-50 border border-green-200 before:bg-green-400'
       case 'red':
         return 'bg-red-200'
       case 'yellow':
@@ -23,12 +23,14 @@ const GroupObject = ({
       case 'transparent':
         return 'bg-transparent'
       default:
-        return 'bg-slate-100'
+        return 'bg-slate-100 border border-slate-200 before:bg-slate-300'
     }
   }
 
   return (
-    <div className={`${classes()} mb-4 rounded-lg p-6 ${className}`}>
+    <div
+      className={`${classes()} mb-4 p-6 rounded-lg !pt-14 before:text-base relative before:rounded-b-full dark:text-dark before:top-0 before:left-6 before:w-12 before:h-7 before:absolute before:text-center before:content-['↓'] [&>p]:mb-6 [&>h3]:mb-3 [&>h2]:mb-3 ${className}`}
+    >
       <ModularContent objects={object.content} nested={true} />
     </div>
   )

@@ -11,22 +11,30 @@ const HomePageHero = ({ page }: { page: SubPageSchemaType }) => {
     {
       label: 'Nya casinon',
       link: '/nya-casinon',
-      icon: <Star size={24} className="text-primary" />,
+      icon: (
+        <Star size={30} className="text-primary border p-1.5 rounded-full" />
+      ),
     },
     {
       label: 'Casino med Swish',
       link: '/casino-med-swish',
-      icon: <Vibrate size={26} className="text-primary" />,
+      icon: (
+        <Vibrate size={32} className="text-primary border p-1.5 rounded-full" />
+      ),
     },
     {
       label: 'Casino bonusar',
       link: '/casino-bonus',
-      icon: <Gift size={24} className="text-primary" />,
+      icon: (
+        <Gift size={30} className="text-primary border p-1.5 rounded-full" />
+      ),
     },
     {
       label: 'Snabba uttag',
       link: '/casino-med-snabba-uttag',
-      icon: <Zap size={24} className="text-primary" />,
+      icon: (
+        <Zap size={30} className="text-primary border p-1.5 rounded-full" />
+      ),
     },
   ]
 

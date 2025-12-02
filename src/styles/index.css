@@ -172,7 +172,7 @@ body::-webkit-scrollbar {
 }
 
 body {
-    p {
+    /* p {
         font-size: var(--font-size-md);
     }
 
@@ -194,7 +194,7 @@ body {
     .text-base p,
     p.text-base {
         font-size: var(--font-size-md);
-    }
+    } */
 
     a {
         overflow-wrap: anywhere;
@@ -252,10 +252,6 @@ body {
     height: 5px;
     border-radius: 9999px;
     background-color: #cad5e2;
-}
-
-ul, ol {
-    padding-left: 15px;
 }
 
 ul, ol li {

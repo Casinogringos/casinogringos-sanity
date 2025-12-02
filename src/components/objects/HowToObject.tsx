@@ -1,9 +1,8 @@
-import Image from 'next/image'
 import { HowToObjectSchemaType } from '@/src/schemas/howToObject'
 import { PortableTextBlockSchemaType } from '@/src/schemas/portableTextBlock'
 import { SanityImageSchemaType } from '@/src/schemas/sanityImage'
 import { PortableText } from 'next-sanity'
-
+import Image from 'next/image'
 
 const HowToObject = ({ object }: { object: HowToObjectSchemaType }) => {
   const {
@@ -18,7 +17,7 @@ const HowToObject = ({ object }: { object: HowToObjectSchemaType }) => {
   } = object
   const Tag = unorderedList ? 'ul' : 'ol'
   return (
-    <section className='not-prose'>
+    <section className="not-prose">
       <meta />
       <p>
         <span className={'font-bold'}>Tid som behövs: </span>
@@ -29,10 +28,10 @@ const HowToObject = ({ object }: { object: HowToObjectSchemaType }) => {
           {seconds && seconds !== 0 ? `${seconds} sekunder` : ''}
         </span>
       </p>
-      <div className='mb-3'>
+      <div className="my-4">
         <PortableText value={description} />
       </div>
-      <Tag className='p-0 m-0'>
+      <Tag className="p-0 m-0">
         {steps.map(
           (
             row: {
@@ -65,7 +64,7 @@ const HowToObject = ({ object }: { object: HowToObjectSchemaType }) => {
                     </strong>
                   )}
                   {row.description && (
-                    <div className='text-base'>
+                    <div className="text-base">
                       <PortableText
                         key={`how-to-paragraph-${rowIndex}`}
                         value={row.description}
@@ -81,7 +80,7 @@ const HowToObject = ({ object }: { object: HowToObjectSchemaType }) => {
                       alt={row.image.alt}
                       width={600}
                       height={600}
-                      className='rounded-sm'
+                      className="rounded-sm"
                     />
                   </div>
                 )}
@@ -90,7 +89,7 @@ const HowToObject = ({ object }: { object: HowToObjectSchemaType }) => {
           )
         )}
       </Tag>
-    </section >
+    </section>
   )
 }
 

@@ -4,6 +4,7 @@ import Placeholder from '@/src/components/utils/Placeholder'
 import { formatSlug } from '@/src/lib/utils'
 import { CasinoObjectSchemaType } from '@/src/schemas/casinoObject'
 import CasinoService from '@/src/services/CasinoService'
+import { Gift } from 'lucide-react'
 import { PortableText } from 'next-sanity'
 import Image from 'next/image'
 
@@ -72,10 +73,14 @@ const CasinoObject = ({
   return (
     <div
       className={
-        'grid grid-cols-1 md:grid-cols-[100px_1fr] bg-slate-100 rounded-lg lg:px-6 px-5 py-6 mb-4 lg:mb-6 lg:py-9 gap-6'
+        'grid grid-cols-1 md:grid-cols-[125px_1fr] bg-slate-100 border border-slate-200 rounded-lg mb-4 lg:mb-6'
       }
     >
-      <div className={'flex lg:justify-start lg:items-start not-prose'}>
+      <div
+        className={
+          'flex md:border-r pt-4 px-4 md:py-9 border-r-slate-300 lg:items-start lg:justify-center not-prose'
+        }
+      >
         <Image
           src={casino.logo.src}
           alt={casino.logo.altText}
@@ -85,22 +90,37 @@ const CasinoObject = ({
           className={'rounded-full'}
         />
       </div>
-      <div>
+      <div className="p-6">
         <Heading
           level={2}
           text={casino.name}
-          className={'not-prose !mt-0 !mb-2 !text-2xl'}
+          className={'not-prose text-slate-600 !mt-0 !mb-2 !text-xl'}
         />
-        <span className={'block pb-0 not-prose font-bold leading-6 text-dark'}>
-          {offer ? <PortableText value={offer} /> : bonusString}
+        <span
+          className={
+            'pb-0 flex gap-1 md:gap-2 items-center not-prose text-xl md:text-2xl font-bold leading-6 text-dark'
+          }
+        >
+          {offer ? (
+            <>
+              <Gift />
+              <PortableText value={offer} />
+            </>
+          ) : (
+            <>
+              <Gift />
+              {bonusString}
+            </>
+          )}
         </span>
-        <div className={'prose mb-6'}>
+        <div className={'prose mt-4 md:mt-0 mb-5'}>
           <PortableText value={description} />
         </div>
         {affLinkSlug && (
           <Link
             variant="affiliate"
             className="w-full"
+            size="lg"
             href={`${process.env.NEXT_PUBLIC_SITE_URL}/go${formatSlug(affLinkSlug)}`}
             place="CasinoCard block"
             target="_blank"

@@ -16,10 +16,12 @@ const ToggleButton = ({
   variant,
   group,
   hide = false,
+  controlsId,
 }: {
   id: string
+  controlsId?: string
   rotate?: boolean
-  role: string
+  role?: string
   label: string
   className?: string
   childClassName?: string
@@ -36,7 +38,6 @@ const ToggleButton = ({
   const handleToggle = () => {
     dispatch(group === 'faq' ? toggleIdFaq(id) : toggleId(id))
   }
-  const isMenuItemRole = role === 'menuitem' || role === 'menuitemcheckbox'
   const getClassName = () => {
     switch (variant) {
       case 'affiliate':
@@ -50,18 +51,21 @@ const ToggleButton = ({
 
   return (
     <>
-      {
-        isOpen && hide ? null : <button
+      {isOpen && hide ? null : (
+        <button
           onClick={handleToggle}
           className={`cursor-pointer ${className ?? ''}`}
           aria-label={label}
           aria-expanded={isOpen}
-          aria-pressed={isMenuItemRole ? undefined : isOpen}
-          aria-haspopup={isMenuItemRole ? true : undefined}
-          role={role}>
-          <div className={`${getClassName()} ${childClassName ?? ''}`}>{children}</div>
+          aria-controls={controlsId}
+          role={role}
+          id={id}
+        >
+          <div className={`${getClassName()} ${childClassName ?? ''}`}>
+            {children}
+          </div>
         </button>
-      }
+      )}
     </>
   )
 }

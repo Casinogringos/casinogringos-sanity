@@ -61,7 +61,7 @@ export default function CasinoList({
           </p>
         </ToggleItem>
       </div>
-      <div className="border border-slate-200 rounded-md mb-3">
+      <div className="border border-slate-200 rounded-md mb-4 md:mb-5">
         <ToggleButton
           id={'varfor-oss'}
           role={'button'}
@@ -102,7 +102,7 @@ export default function CasinoList({
             className="mb-0 !mt-1 font-semibold"
             text={`${title}`}
           />
-          <p className="text-gray-600 mb-5 mt-1 !text-[14px] lg:mb-6">
+          <p className="text-gray-600 mb-5 mt-1 !text-[14px] lg:mb-4">
             Alla casinon är licenserade och granskade av våra experter
             <CheckBadgeIcon className="ml-1 inline-block size-4 text-green-600" />
           </p>
