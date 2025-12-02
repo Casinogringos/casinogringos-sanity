@@ -7,7 +7,9 @@ export const guidePageProjection = `
   _type,
   _id,
   title,
-  slug,
+  slug {
+    current
+  },
   seoTitle,
   seoDescription,
   seoImage {

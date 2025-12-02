@@ -17,14 +17,23 @@ export const newsPagePreviewProjection = `
   originalPublishedAt,
   _createdAt,
   originalModifiedAt,
-  _updatedAt
+  _updatedAt,
+  publishedAt
 `
 
-export const getNewsPagePreviewProjection = ({ author }: { author?: boolean }): string => {
+export const getNewsPagePreviewProjection = ({
+  author,
+}: {
+  author?: boolean
+}): string => {
   return `
     ${newsPagePreviewProjection},
-    ${author ? `author-> {
+    ${
+      author
+        ? `author-> {
       ${authorProjection}
-    }` : ''}
+    }`
+        : ''
+    }
   `
 }

@@ -1,7 +1,7 @@
-import { imageProjection } from "@/src/data/projections/imageProjection";
+import { imageProjection } from '@/src/data/projections/imageProjection'
 
 export const searchPagePreviewsQuery = () => `
-  *[_type in ['news-pages', 'casino-pages', 'guide-pages', 'slot-pages', 'pages']] {
+  *[_type in ['news-pages', 'casino-pages', 'guide-pages', 'slot-pages', 'pages'] && !(_id match "drafts.*")] {
     _type,
     title,
     slug {
