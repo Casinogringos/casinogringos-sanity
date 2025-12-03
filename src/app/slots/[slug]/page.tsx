@@ -14,7 +14,7 @@ type Params = Promise<{ slug: string }>
 export async function generateMetadata(props: { params: Params }) {
   const params = await props.params
   const slotPage: SlotPageSchemaType = await getSlotPageBySlug({
-    slug: formatSlug(params?.slug),
+    slug: params?.slug,
   })
   const siteURL =
     (process.env.NEXT_PUBLIC_SITE_URL as string) + slotPage.slug.current
@@ -48,7 +48,7 @@ export async function generateMetadata(props: { params: Params }) {
 export default async function Page(props: { params: Params }) {
   const params = await props.params
   const slotPage: SlotPageSchemaType = await getSlotPageBySlug({
-    slug: formatSlug(params?.slug),
+    slug: params?.slug,
   })
   if (!slotPage || !slotPage.slot) return notFound()
   const similarSlotPages = await getSimilarSlotPages({
