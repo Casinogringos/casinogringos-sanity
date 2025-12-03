@@ -61,7 +61,7 @@ const Item = ({ item }: { item: ItemSchemaType }) => {
 
   return (
     <Link
-      href={href}
+      href={`${item._type === 'news-pages' ? '/nyheter' : item._type === 'guide-pages' ? '/guider' : item._type === 'slot-pages' ? '/slots' : ''}/${item.slug.current}`}
       className="w-[300px] p-3 pb-2 block bg-blue-50 hover:bg-blue-50/50 transition-colors ease-in-out duration-200 h-full border border-blue-100 rounded-md"
     >
       {item.featuredImage.src && (
