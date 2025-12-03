@@ -18,6 +18,9 @@ import { getOrganizationStructuredData } from '@/src/structured-data/organizatio
 import { getWebPageStructuredData } from '@/src/structured-data/webPageStructuredData'
 import { getWebSiteStructuredData } from '@/src/structured-data/webSiteStructuredData'
 import { RatingObjectSchemaType } from '../schemas/ratingObject'
+import NewsList from '@/src/components/news/NewsList'
+import ArticleCard from '@/src/components/article/ArticleCard'
+import FeaturedNewsList from '@/src/components/news/FeaturedNewsList'
 
 const pageService = new PageService()
 
@@ -73,6 +76,17 @@ export default function SubPage({
       />
       <SubPageHero page={page} modifiedAt={modifiedAt} createdAt={createdAt} />
       {breadcrumbs && <BreadCrumbs items={breadcrumbs} />}
+      {page.featuredNews?.length ? (
+        <div className="bg-slate-100 pb-16">
+          <Container width={6}>
+            <FeaturedNewsList
+              itemComponent={ArticleCard}
+              items={page.featuredNews}
+              cardBackground
+            />
+          </Container>
+        </div>
+      ) : null}
       {toplist?.casinos?.length ? (
         <div className="bg-slate-100 pb-16">
           <Container width={6}>
