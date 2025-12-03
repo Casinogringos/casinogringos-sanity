@@ -30,10 +30,10 @@ export const authorProjection = `
       ${getCategoryProjection({ items: false, author: false })}
     },
     description,
-    "newsPagePreviews": *[_type == "news-pages" && author._ref == ^._id] | order(coalesce(publishedAt, originalPublishedAt, _createdAt) desc) {
+    "newsPagePreviews": *[_type == "news-pages" && author._ref == ^._id && !(_id match "drafts.*")] | order(coalesce(publishedAt, originalPublishedAt, _createdAt) desc) {
       ${getNewsPagePreviewProjection({ author: false })}
     },
-    "pagePreviews": *[_type == "pages" && author._ref == ^._id] | order(coalesce(publishedAt, originalPublishedAt, _createdAt) desc) {
+    "pagePreviews": *[_type == "pages" && author._ref == ^._id && !(_id match "drafts.*")] | order(coalesce(publishedAt, originalPublishedAt, _createdAt) desc) {
       ${getPagePreviewProjection({ author: false })}
     },
 `
