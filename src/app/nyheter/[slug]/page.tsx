@@ -15,7 +15,7 @@ type Params = Promise<{ slug: string }>
 export async function generateMetadata(props: { params: Params }) {
   const params = await props.params
   const newsPage: NewsPageSchemaType = await getNewsPageBySlug({
-    slug: `/nyheter${formatSlug(params?.slug)}`,
+    slug: formatSlug(params?.slug),
   })
   if (!newsPage) return null
 
@@ -51,7 +51,7 @@ export async function generateMetadata(props: { params: Params }) {
 export default async function Page(props: { params: Params }) {
   const params = await props.params
   const newsPage: NewsPageSchemaType = await getNewsPageBySlug({
-    slug: `/nyheter${formatSlug(params?.slug)}`,
+    slug: formatSlug(params?.slug),
   })
   if (!newsPage) return notFound()
   const similarNews: NewsPagePreviewSchemaType[] = await getSimilarNewsPages({
@@ -67,9 +67,10 @@ export async function generateStaticParams() {
     await getStaticParams('news-pages')
 
   return allNewsPages
-    .filter((page) => page.slug.current.includes('/nyheter/'))
+    .filter(
+      (page) => page.slug?.current !== null && page.slug?.current !== undefined
+    )
     .map((page) => {
-      const slug = page.slug.current.replace('/nyheter/', '')
-      return { slug }
+      return { slug: page.slug.current }
     })
 }

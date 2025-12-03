@@ -14,7 +14,7 @@ type Params = Promise<{ slug: string }>
 export async function generateMetadata(props: { params: Params }) {
   const params = await props.params
   const slotPage: SlotPageSchemaType = await getSlotPageBySlug({
-    slug: `/slots${formatSlug(params?.slug)}`,
+    slug: formatSlug(params?.slug),
   })
   const siteURL =
     (process.env.NEXT_PUBLIC_SITE_URL as string) + slotPage.slug.current
@@ -48,7 +48,7 @@ export async function generateMetadata(props: { params: Params }) {
 export default async function Page(props: { params: Params }) {
   const params = await props.params
   const slotPage: SlotPageSchemaType = await getSlotPageBySlug({
-    slug: `/slots${formatSlug(params?.slug)}`,
+    slug: formatSlug(params?.slug),
   })
   if (!slotPage || !slotPage.slot) return notFound()
   const similarSlotPages = await getSimilarSlotPages({
@@ -62,7 +62,9 @@ export default async function Page(props: { params: Params }) {
 export async function generateStaticParams() {
   const allSlotPages: SlotPageSchemaType[] = await getStaticParams('slot-pages')
   return allSlotPages
-    .filter((page) => page.slug.current.includes('/slots/'))
+    .filter(
+      (page) => page.slug?.current !== null && page.slug?.current !== undefined
+    )
     .map((page) => {
       const slug = page.slug.current.replace('/slots/', '')
       return { slug }

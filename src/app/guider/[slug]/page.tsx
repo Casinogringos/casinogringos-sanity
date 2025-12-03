@@ -14,7 +14,7 @@ type Params = Promise<{ slug: string }>
 export async function generateMetadata(props: { params: Params }) {
   const params = await props.params
   const guidePage = await getGuidePageBySlug({
-    slug: `/guider${formatSlug(params?.slug)}`,
+    slug: formatSlug(params?.slug),
   })
   const siteURL =
     (process.env.NEXT_PUBLIC_SITE_URL as string) + guidePage.slug.current
@@ -51,7 +51,7 @@ export default async function Page(props: {
 }) {
   const params = await props.params
   const guidePage = await getGuidePageBySlug({
-    slug: `/guider${formatSlug(params?.slug)}`,
+    slug: formatSlug(params?.slug),
   })
   if (!guidePage) return notFound()
   const similarGuidePages = await getSimilarGuidePages({
@@ -67,8 +67,10 @@ export async function generateStaticParams() {
     await getStaticParams('guide-pages')
 
   return allGuidesPages
-    .filter((page) => page.slug?.current.includes('/guider/'))
+    .filter(
+      (page) => page.slug?.current !== null && page.slug?.current !== undefined
+    )
     .map((page) => ({
-      slug: page.slug.current.replace('/guider/', ''),
+      slug: page.slug.current,
     }))
 }
