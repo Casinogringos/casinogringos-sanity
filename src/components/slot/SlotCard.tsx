@@ -10,7 +10,7 @@ const SlotCard = ({ slotPage }: { slotPage: SlotPagePreviewSchemaType }) => {
     <Link
       className="not-prose block bg-white rounded-md overflow-hidden"
       prefetch={false}
-      href={`slots/${slotPage.slug.current}`}
+      href={`${process.env.NEXT_PUBLIC_SITE_URL}/slots/${slotPage.slug.current}`}
     >
       <div className="relative flex h-28 w-full overflow-hidden lg:h-40">
         <Image
