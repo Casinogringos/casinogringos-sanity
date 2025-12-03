@@ -15,12 +15,14 @@ type Params = Promise<{ slug: string }>
 export async function generateMetadata(props: { params: Params }) {
   const params = await props.params
   const newsPage: NewsPageSchemaType = await getNewsPageBySlug({
-    slug: formatSlug(params?.slug),
+    slug: params?.slug,
   })
   if (!newsPage) return null
 
   const siteURL =
-    (process.env.NEXT_PUBLIC_SITE_URL as string) + newsPage.slug.current
+    (process.env.NEXT_PUBLIC_SITE_URL as string) +
+    '/nyheter/' +
+    newsPage.slug.current
 
   const metadata: Metadata = {
     title: newsPage.seoTitle ?? newsPage.title,
@@ -51,7 +53,7 @@ export async function generateMetadata(props: { params: Params }) {
 export default async function Page(props: { params: Params }) {
   const params = await props.params
   const newsPage: NewsPageSchemaType = await getNewsPageBySlug({
-    slug: formatSlug(params?.slug),
+    slug: params?.slug,
   })
   if (!newsPage) return notFound()
   const similarNews: NewsPagePreviewSchemaType[] = await getSimilarNewsPages({

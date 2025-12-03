@@ -39,7 +39,7 @@ const ArticleCard = ({
 
   return (
     <Link
-      href={item.slug.current}
+      href={`/${item._type === 'news-pages' ? 'nyheter' : 'guider'}/${item.slug.current}`}
       prefetch={false}
       className={`${className} flex h-full pb-4 rounded-md flex-col items-start not-prose ${cardBackground ? 'bg-white' : ''}`}
     >
