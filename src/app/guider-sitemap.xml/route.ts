@@ -15,7 +15,9 @@ export async function GET() {
   const guidesIndexPage: SubPageSchemaType = await getPageBySlug({
     slug: '/guider',
   })
-  const guidePages: GuidePageSchemaType[] = await getSitemap('guide-pages')
+  const guidePages: GuidePageSchemaType[] = (
+    await getSitemap('guide-pages')
+  ).filter((page) => page.slug?.current)
   const itemsPages = guidePages.map((page) => {
     const contentImages = imageService.getImagesFromModularContent(page.content)
     const pageImages = guidePageService.getImagesFromPage(page)
@@ -29,7 +31,7 @@ export async function GET() {
     const imagesXML: IImageEntry[] = imageService.getImagesXML(allImages)
     const lastModTimestamp = guidePageService.getPageModifiedAtTimestamp(page)
     return {
-      loc: `${process.env.NEXT_PUBLIC_SITE_URL}${page.slug.current}`,
+      loc: `${process.env.NEXT_PUBLIC_SITE_URL}/guider/${page.slug.current}`,
       lastmod: `${new Date(lastModTimestamp ?? '').toISOString().slice(0, -1)}+01:00`,
       images: imagesXML,
     }

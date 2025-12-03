@@ -23,7 +23,7 @@ export async function GET() {
       .filter((image) => image !== null)
     const lastModTimestamp = newsPageService.getPageModifiedAtTimestamp(page)
     return {
-      loc: `${process.env.NEXT_PUBLIC_SITE_URL}${page.slug.current}`,
+      loc: `${process.env.NEXT_PUBLIC_SITE_URL}/nyheter/${page.slug.current}`,
       lastmod: `${new Date(lastModTimestamp ?? '').toISOString().slice(0, -1)}+01:00`,
       images: imagesXML,
     }
