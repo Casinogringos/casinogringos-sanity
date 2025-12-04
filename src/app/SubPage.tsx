@@ -71,14 +71,13 @@ export default function SubPage({
           __html: JSON.stringify(schema),
         }}
         key="subpage-data"
-      />
+      />{' '}
       <SubPageHero page={page} modifiedAt={modifiedAt} createdAt={createdAt} />
-      {breadcrumbs && <BreadCrumbs items={breadcrumbs} />}
       {page.featuredNews?.length ? (
-        <div className="bg-slate-100">
+        <div className="bg-dark border-t overflow-x-auto md:overflow-visible border-darklight">
           <Container
             width={6}
-            className="overflow-x-auto grid md:grid-cols-4 gap-3 py-6"
+            className="flex md:grid md:grid-cols-4 gap-6 md:gap-3 py-3"
           >
             {page.featuredNews.map((item) => (
               <CampaignCard key={`campaign-item-${item._id}`} item={item} />
@@ -86,6 +85,7 @@ export default function SubPage({
           </Container>
         </div>
       ) : null}
+      {breadcrumbs && <BreadCrumbs items={breadcrumbs} />}
       {toplist?.casinos?.length ? (
         <div className="bg-slate-100 pb-16">
           <Container width={6}>

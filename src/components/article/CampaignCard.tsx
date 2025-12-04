@@ -18,17 +18,6 @@ const CampaignCard = ({
   className?: string
   cardBackground?: boolean
 }) => {
-  const getPublishedDate = () => {
-    if (item._type === 'news-pages') {
-      return newsPageService.getPagePublishedAtTimestamp(item)
-    }
-    if (item._type === 'guide-pages') {
-      return guidePageService.getPagePublishedAtTimestamp(item)
-    }
-    return null
-  }
-  const publishedAt = getPublishedDate()
-
   if (!item.slug?.current) {
     return null
   }
@@ -37,7 +26,7 @@ const CampaignCard = ({
     <Link
       href={`/nyheter/${item.slug.current}`}
       prefetch={false}
-      className={`${className} md:first:pl-0 flex h-full md:last:border-0 md:pr-2 md:pl-1 gap-x-3 items-center not-prose md:border-r md:border-slate-200 ${cardBackground ? 'bg-white' : ''}`}
+      className={`${className} flex-shrink-0  md:w-auto md:first:pl-0 flex h-full md:last:border-0 md:pr-2 md:pl-1 gap-x-3 items-center not-prose md:border-r md:border-darklight ${cardBackground ? 'bg-white' : ''}`}
     >
       <div className="relative flex size-[55px] min-w-[55px] items-center rounded-full overflow-hidden">
         <Image
@@ -49,13 +38,13 @@ const CampaignCard = ({
         />
       </div>
       <div className="py-2">
-        <span className="block mb-0.5 text-xs text-slate-500">Kampanj</span>
+        <span className="block mb-0.5 text-xs text-primary">Nyhet</span>
         <Heading
           level={3}
           text={
-            item.title?.length > 50 ? `${item.title.slice(0, 45)}…` : item.title
+            item.title?.length > 55 ? `${item.title.slice(0, 55)}…` : item.title
           }
-          className="text-gray-900 hover:text-gray-600 !text-sm font-bold"
+          className="text-slate-100 hover:text-gray-600 !text-[13px] leading-4 font-bold"
         />
       </div>
     </Link>
