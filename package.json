@@ -6,7 +6,7 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "eslint .",
     "madge": "npx madge src --ts-config=tsconfig.json --extensions ts,tsx --circular"
   },
   "dependencies": {
@@ -20,32 +20,35 @@
     "fuse.js": "^7.1.0",
     "lodash": "^4.17.21",
     "lucide-react": "^0.511.0",
-    "next": "15.3.3",
+    "next": "16.0.7",
     "next-plausible": "^3.12.4",
     "next-sanity": "^9.12.0",
     "next-sanity-image": "^6.2.0",
     "next-share": "^0.27.0",
     "next-sitemap": "^4.2.3",
     "postcss": "^8.5.4",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
+    "react": "19.2.1",
+    "react-dom": "19.2.1",
     "react-player": "^2.16.0",
     "react-redux": "^9.2.0",
     "zod": "^3.25.72"
   },
   "devDependencies": {
-    "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
     "@tailwindcss/typography": "^0.5.16",
     "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
+    "@types/react": "19.2.7",
+    "@types/react-dom": "19.2.3",
     "eslint": "^9",
-    "eslint-config-next": "15.3.2",
+    "eslint-config-next": "16.0.7",
     "madge": "^8.0.0",
     "prettier": "^3.5.3",
     "sass": "^1.89.0",
     "tailwindcss": "^4",
     "typescript": "^5"
+  },
+  "overrides": {
+    "@types/react": "19.2.7",
+    "@types/react-dom": "19.2.3"
   }
 }
