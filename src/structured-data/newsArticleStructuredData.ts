@@ -35,6 +35,8 @@ const getNewsArticleStructuredData = (page: NewsPageSchemaType) => {
   if (modifiedAt) {
     structuredData['dateModified'] = new Date(modifiedAt).toISOString()
   }
+
+  return structuredData
 }
 
 export default getNewsArticleStructuredData
