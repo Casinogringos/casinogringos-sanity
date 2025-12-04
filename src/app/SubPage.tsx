@@ -71,7 +71,7 @@ export default function SubPage({
           __html: JSON.stringify(schema),
         }}
         key="subpage-data"
-      />{' '}
+      />
       <SubPageHero page={page} modifiedAt={modifiedAt} createdAt={createdAt} />
       {page.featuredNews?.length ? (
         <div className="bg-dark border-t overflow-x-auto md:overflow-visible border-darklight">

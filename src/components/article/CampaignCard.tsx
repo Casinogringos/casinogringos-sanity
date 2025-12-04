@@ -1,20 +1,14 @@
 import Heading from '@/src/components/content/Heading'
-import { GuidePagePreviewSchemaType } from '@/src/schemas/guidePagePreview'
 import { NewsPagePreviewSchemaType } from '@/src/schemas/newsPagePreview'
-import GuidePageService from '@/src/services/GuidePageService'
-import NewsPageService from '@/src/services/NewsPageService'
 import Image from 'next/image'
 import Link from 'next/link'
-
-const guidePageService = new GuidePageService()
-const newsPageService = new NewsPageService()
 
 const CampaignCard = ({
   item,
   className = '',
   cardBackground = false,
 }: {
-  item: NewsPagePreviewSchemaType | GuidePagePreviewSchemaType
+  item: NewsPagePreviewSchemaType
   className?: string
   cardBackground?: boolean
 }) => {
