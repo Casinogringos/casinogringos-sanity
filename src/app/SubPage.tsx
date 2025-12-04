@@ -17,10 +17,8 @@ import { getItemListStructuredData } from '@/src/structured-data/itemListStructu
 import { getOrganizationStructuredData } from '@/src/structured-data/organizationStructuredData'
 import { getWebPageStructuredData } from '@/src/structured-data/webPageStructuredData'
 import { getWebSiteStructuredData } from '@/src/structured-data/webSiteStructuredData'
+import CampaignCard from '../components/article/CampaignCard'
 import { RatingObjectSchemaType } from '../schemas/ratingObject'
-import NewsList from '@/src/components/news/NewsList'
-import ArticleCard from '@/src/components/article/ArticleCard'
-import FeaturedNewsList from '@/src/components/news/FeaturedNewsList'
 
 const pageService = new PageService()
 
@@ -77,13 +75,14 @@ export default function SubPage({
       <SubPageHero page={page} modifiedAt={modifiedAt} createdAt={createdAt} />
       {breadcrumbs && <BreadCrumbs items={breadcrumbs} />}
       {page.featuredNews?.length ? (
-        <div className="bg-slate-100 pb-16">
-          <Container width={6}>
-            <FeaturedNewsList
-              itemComponent={ArticleCard}
-              items={page.featuredNews}
-              cardBackground
-            />
+        <div className="bg-slate-100">
+          <Container
+            width={6}
+            className="overflow-x-auto grid md:grid-cols-4 gap-3 py-6"
+          >
+            {page.featuredNews.map((item) => (
+              <CampaignCard key={`campaign-item-${item._id}`} item={item} />
+            ))}
           </Container>
         </div>
       ) : null}
