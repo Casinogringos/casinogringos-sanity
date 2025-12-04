@@ -50,7 +50,7 @@ export default async function Page(props: { params: Params }) {
   const slotPage: SlotPageSchemaType = await getSlotPageBySlug({
     slug: params?.slug,
   })
-  if (!slotPage || !slotPage.slot) return notFound()
+  if (!slotPage || !slotPage.slot || !slotPage.slug?.current) return notFound()
   const similarSlotPages = await getSimilarSlotPages({
     slug: slotPage.slug.current,
     count: 4,

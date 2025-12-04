@@ -20,7 +20,7 @@ import NewsPageService from '@/src/services/NewsPageService'
 import CasinoPageService from '@/src/services/CasinoPageService'
 import Image from 'next/image'
 import { closedSearch, closeSearch, closingSearch } from '@/src/store/menuSlice'
-import { useAppSelector, useAppDispatch } from '@/src/store/hooks'
+import { useAppDispatch } from '@/src/store/hooks'
 
 const pageService = new SubPageService()
 const slotPageService = new SlotPageService()
@@ -105,8 +105,8 @@ const SearchBox = () => {
         | CasinoPagePreviewSchemaType
         | null
         | undefined = pages?.find(
-          (item) => item.slug.current === result.item.slug.current
-        )
+        (item) => item.slug.current === result.item.slug.current
+      )
       if (record?.slug.current === '') return null
       const clonedRecord = _.cloneDeep(record)
       const featuredImage = clonedRecord?.featuredImage

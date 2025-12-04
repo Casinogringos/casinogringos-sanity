@@ -4,7 +4,6 @@ import {
   getSimilarGuidePages,
   getStaticParams,
 } from '@/src/lib/api'
-import { formatSlug } from '@/src/lib/utils'
 import { GuidePageSchemaType } from '@/src/schemas/guidePage'
 import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
@@ -53,7 +52,7 @@ export default async function Page(props: {
   const guidePage = await getGuidePageBySlug({
     slug: params?.slug,
   })
-  if (!guidePage) return notFound()
+  if (!guidePage.slug?.current) return notFound()
   const similarGuidePages = await getSimilarGuidePages({
     slug: guidePage.slug.current,
     count: 4,

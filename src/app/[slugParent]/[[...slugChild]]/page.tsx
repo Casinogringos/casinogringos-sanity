@@ -24,13 +24,13 @@ export async function generateStaticParams() {
   const allParams = [
     ...allPages.filter((page) => {
       return (
-        page.slug.current !== '/' &&
-        page.slug.current !== '/guider' &&
-        page.slug.current !== '/nyheter' &&
-        page.slug.current !== '/slots' &&
-        page.slug.current !== '/om-oss' &&
-        page.slug.current !== null &&
-        page.slug.current !== undefined
+        page.slug?.current !== '/' &&
+        page.slug?.current !== '/guider' &&
+        page.slug?.current !== '/nyheter' &&
+        page.slug?.current !== '/slots' &&
+        page.slug?.current !== '/om-oss' &&
+        page.slug?.current !== null &&
+        page.slug?.current !== undefined
       )
     }),
     ...allCasinoPages,
@@ -120,7 +120,7 @@ export default async function Page(props: { params: Params }) {
   const casinoPage: CasinoPageSchemaType = await getCasinoPageBySlug({
     slug: formatSlug(slugParent),
   })
-  if (!casinoPage) {
+  if (!casinoPage.slug?.current) {
     return notFound()
   }
   const similarCasinoPages: CasinoPageSchemaType[] =
