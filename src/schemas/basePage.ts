@@ -4,6 +4,7 @@ import { ModularContentSchema } from './modularContent'
 import { PortableTextBlockSchema } from './portableTextBlock'
 import { SanityImageSchema } from './sanityImage'
 import { ToplistSchema } from './toplist'
+import { NewsPagePreviewSchema } from '@/src/schemas/newsPagePreview'
 
 // We'll define Toplist schema later to avoid circular dependencies
 const ToplistPlaceholder = z.object({
@@ -45,6 +46,7 @@ export const BasePageSchema = z.object({
     .optional(),
   content: ModularContentSchema,
   toplist: ToplistSchema.optional(),
+  featuredNews: z.array(NewsPagePreviewSchema),
 })
 
 export type BasePageSchemaType = z.infer<typeof BasePageSchema>

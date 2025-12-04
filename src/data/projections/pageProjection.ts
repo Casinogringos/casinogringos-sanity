@@ -4,6 +4,7 @@ import { authorProjection } from './authorProjection'
 import { faqItemObjectProjection } from './faqItemObjectProjection'
 import { toplistProjection } from './toplistProjection'
 import { objectProjections } from './objectProjections'
+import { newsPagePreviewProjection } from '@/src/data/projections/newsPagePreviewProjection'
 
 export const pageProjection = `
   _type,
@@ -48,5 +49,8 @@ export const pageProjection = `
   },
   content[] {
     ${objectProjections}
+  },
+  featuredNews[] -> {
+    ${newsPagePreviewProjection}
   }
 `
