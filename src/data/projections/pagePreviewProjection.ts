@@ -1,5 +1,5 @@
-import { imageObjectProjection } from "./imageObjectProjection"
-import { authorProjection } from "./authorProjection"
+import { imageObjectProjection } from './imageObjectProjection'
+import { authorProjection } from './authorProjection'
 
 export const pagePreviewProjection = `
   _type,
@@ -9,6 +9,7 @@ export const pagePreviewProjection = `
   slug,
   _createdAt,
   _updatedAt,
+  publishedAt,
   seoTitle,
   seoDescription,
   seoImage {
@@ -21,11 +22,19 @@ export const pagePreviewProjection = `
   }
 `
 
-export const getPagePreviewProjection = ({ author }: { author?: boolean }): string => {
+export const getPagePreviewProjection = ({
+  author,
+}: {
+  author?: boolean
+}): string => {
   return `
     ${pagePreviewProjection},
-    ${author ? `author-> {
+    ${
+      author
+        ? `author-> {
       ${authorProjection}
-    }` : ''}
+    }`
+        : ''
+    }
   `
 }

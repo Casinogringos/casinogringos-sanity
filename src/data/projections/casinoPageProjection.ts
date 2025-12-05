@@ -36,6 +36,7 @@ export const casinoPageProjection = `
   _updatedAt,
   originalPublishedAt,
   originalModifiedAt,
+  publishedAt,
   featuredImage {
     ${imageObjectProjection}
   },

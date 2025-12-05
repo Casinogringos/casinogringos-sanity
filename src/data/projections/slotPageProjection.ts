@@ -19,6 +19,7 @@ export const slotPageProjection = `
   originalModifiedAt,
   seoTitle,
   seoDescription,
+  publishedAt,
   seoImage {
     ${imageObjectProjection}
   },

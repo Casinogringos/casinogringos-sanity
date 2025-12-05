@@ -32,6 +32,7 @@ export const guidePageProjection = `
   content[] {
     ${objectProjections}
   },
+  publishedAt,
   originalPublishedAt,
   originalModifiedAt,
   _createdAt,

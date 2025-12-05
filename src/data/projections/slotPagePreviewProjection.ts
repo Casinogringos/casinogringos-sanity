@@ -1,6 +1,6 @@
-import { imageObjectProjection } from "@/src/data/projections/imageObjectProjection";
-import { slotProjection } from "@/src/data/projections/slotProjection";
-import { authorProjection } from "@/src/data/projections/authorProjection";
+import { imageObjectProjection } from '@/src/data/projections/imageObjectProjection'
+import { slotProjection } from '@/src/data/projections/slotProjection'
+import { authorProjection } from '@/src/data/projections/authorProjection'
 
 export const slotPagePreviewProjection = `
     _type,
@@ -15,6 +15,7 @@ export const slotPagePreviewProjection = `
     _createdAt,
     _updatedAt,
     originalModifiedAt,
+    publishedAt,
     seoTitle,
     seoDescription,
     seoImage {
@@ -29,11 +30,19 @@ export const slotPagePreviewProjection = `
     }
 `
 
-export const getSlotPagePreviewProjection = ({ author }: { author?: boolean }): string => {
+export const getSlotPagePreviewProjection = ({
+  author,
+}: {
+  author?: boolean
+}): string => {
   return `
     ${slotPagePreviewProjection},
-    ${author ? `author-> {
+    ${
+      author
+        ? `author-> {
       ${authorProjection}
-    }` : ''}
+    }`
+        : ''
+    }
   `
 }

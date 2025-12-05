@@ -9,6 +9,7 @@ export const guidePagePreviewProjection = `
   slug,
   _createdAt,
   _updatedAt,
+  publishedAt,
   originalPublishedAt,
   originalModifiedAt,
   featuredImage {
@@ -18,11 +19,19 @@ export const guidePagePreviewProjection = `
   seoDescription
 `
 
-export const getGuidePagePreviewProjection = ({ author }: { author?: boolean }): string => {
+export const getGuidePagePreviewProjection = ({
+  author,
+}: {
+  author?: boolean
+}): string => {
   return `
     ${guidePagePreviewProjection},
-    ${author ? `author-> {
+    ${
+      author
+        ? `author-> {
       ${authorProjection}
-    }` : ''}
+    }`
+        : ''
+    }
   `
 }

@@ -25,6 +25,7 @@ export const casinoPagePreviewProjection = `
   featuredImage {
     ${imageProjection}
   },
+  publishedAt,
   seoTitle,
   seoDescription,
   casino-> {
@@ -39,11 +40,12 @@ export const getCasinoPagePreviewProjection = ({
 }): string => {
   return `
     ${casinoPagePreviewProjection},
-    ${author
-      ? `author-> {
+    ${
+      author
+        ? `author-> {
       ${authorProjection}
     }`
-      : ''
+        : ''
     }
   `
 }

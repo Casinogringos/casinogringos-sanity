@@ -16,6 +16,7 @@ export const pageProjection = `
   originalModifiedAt,
   _createdAt,
   _updatedAt,
+  publishedAt,
   seoTitle,
   seoDescription,
   seoImage {
