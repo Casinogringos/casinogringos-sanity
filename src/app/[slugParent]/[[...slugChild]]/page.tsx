@@ -120,7 +120,7 @@ export default async function Page(props: { params: Params }) {
   const casinoPage: CasinoPageSchemaType = await getCasinoPageBySlug({
     slug: formatSlug(slugParent),
   })
-  if (!casinoPage.slug?.current) {
+  if (!casinoPage?.slug?.current) {
     return notFound()
   }
   const similarCasinoPages: CasinoPageSchemaType[] =
