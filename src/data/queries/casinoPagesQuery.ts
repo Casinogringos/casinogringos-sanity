@@ -8,7 +8,7 @@ export const casinoPagesQuery = ({
   count: number
   content?: boolean
 }) => `
-  *[_type == 'casino-pages' && !(_id match "drafts.*") && [0...${count}] {
+  *[_type == 'casino-pages' && (!defined(publishedAt) || publishedAt <= now()) && !(_id match "drafts.*") && [0...${count}] {
     ...${casinoPageProjection}
     content[] {
       ${content ? objectProjections : ''}
