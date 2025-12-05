@@ -9,7 +9,7 @@ export const sitemapQuery = (
     | 'casino-pages'
     | 'slot-pages'
 ) => `
-  *[_type == '${type}' && !(_id match "drafts.*")] {
+  *[_type == '${type}' && (!defined(publishedAt) || publishedAt <= now()) && !(_id match "drafts.*")] {
     slug {
       current
     },

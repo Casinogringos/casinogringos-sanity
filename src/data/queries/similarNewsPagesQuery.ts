@@ -7,7 +7,7 @@ export const similarNewsPagesQuery = ({
   slug: string
   count: number
 }) => `
-  *[_type == 'news-pages' && !(_id match "drafts.*") && slug.current != "${slug}"] | order(coalesce(originalPublishedAt, publishedAt, _createdAt) desc) [0...${count}] {
+  *[_type == 'news-pages' && (!defined(publishedAt) || publishedAt <= now()) && !(_id match "drafts.*") && slug.current != "${slug}"] | order(coalesce(originalPublishedAt, publishedAt, _createdAt) desc) [0...${count}] {
     ${newsPagePreviewProjection}
   }
 `

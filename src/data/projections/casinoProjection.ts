@@ -93,6 +93,6 @@ export const casinoProjection = `
       ${sportProjection}
     },
     "parentCasinoPageSlug": *[
-      _type == "casino-pages" && casino._ref == ^._id
+      _type == "casino-pages" && (!defined(publishedAt) || publishedAt <= now()) && casino._ref == ^._id
     ][0].slug.current,
 `

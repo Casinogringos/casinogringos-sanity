@@ -10,7 +10,7 @@ export const staticParamsQuery = ({
     | 'slot-pages'
     | 'aff-links'
 }) => `
-    *[_type == "${type}" && !(_id match "drafts.*")] {
+    *[_type == "${type}" && (!defined(publishedAt) || publishedAt <= now()) && !(_id match "drafts.*")] {
       slug {
         current
       }
