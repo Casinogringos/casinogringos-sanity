@@ -20,7 +20,7 @@ const CampaignCard = ({
     <Link
       href={`/nyheter/${item.slug.current}`}
       prefetch={false}
-      className={`${className} flex-shrink-0  md:w-auto md:first:pl-0 flex h-full md:last:border-0 md:pr-2 md:pl-1 gap-x-3 items-center not-prose md:border-r md:border-darklight ${cardBackground ? 'bg-white' : ''}`}
+      className={`${className} flex-shrink-0 md:w-auto md:first:pl-0 flex h-full md:last:border-0 md:pr-2 md:pl-1 gap-x-3 items-center not-prose md:border-r md:border-darklight ${cardBackground ? 'bg-white' : ''}`}
     >
       <div className="relative flex size-[55px] min-w-[55px] items-center rounded-full overflow-hidden">
         <Image
@@ -38,7 +38,7 @@ const CampaignCard = ({
           text={
             item.title?.length > 55 ? `${item.title.slice(0, 55)}…` : item.title
           }
-          className="text-slate-100 hover:text-gray-600 !text-[13px] leading-4 font-bold"
+          className="text-slate-100 hover:underline !text-[13px] leading-4 font-bold"
         />
       </div>
     </Link>

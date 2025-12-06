@@ -74,10 +74,10 @@ export default function SubPage({
       />
       <SubPageHero page={page} modifiedAt={modifiedAt} createdAt={createdAt} />
       {page.featuredNews?.length ? (
-        <div className="bg-dark border-t overflow-x-auto md:overflow-visible border-darklight">
+        <div className="bg-dark overflow-x-hidden lg:overflow-visible">
           <Container
             width={6}
-            className="flex md:grid md:grid-cols-4 gap-6 md:gap-3 py-3"
+            className="overflow-x-auto lg:overflow-visible flex lg:grid lg:grid-cols-4 gap-x-6 lg:gap-3 py-3"
           >
             {page.featuredNews.map((item) => (
               <CampaignCard key={`campaign-item-${item._id}`} item={item} />
