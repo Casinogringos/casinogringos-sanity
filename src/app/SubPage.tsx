@@ -77,7 +77,7 @@ export default function SubPage({
         <div className="bg-dark overflow-x-hidden lg:overflow-visible">
           <Container
             width={6}
-            className="overflow-x-auto lg:overflow-visible flex lg:grid lg:grid-cols-4 gap-x-6 lg:gap-3 py-3"
+            className="overflow-x-auto lg:overflow-visible flex lg:grid lg:grid-cols-4 gap-x-6 lg:gap-3"
           >
             {page.featuredNews.map((item) => (
               <CampaignCard key={`campaign-item-${item._id}`} item={item} />
