@@ -31,7 +31,7 @@ export default async function Navigation({
   return (
     <>
       <nav
-        aria-labelledby="Header menu"
+        aria-label="Toppnavigation"
         itemScope
         itemType="https://schema.org/SiteNavigationElement"
         className="sticky top-0 z-[100] flex h-14 w-full items-center bg-dark lg:h-16"
@@ -57,15 +57,12 @@ export default async function Navigation({
                 id="logo"
               />
             </Link>
-            <ul
-              role="menubar"
-              className="ml-auto hidden space-x-8 lg:-mt-[3px] lg:flex lg:items-center"
-            >
+            <ul className="ml-auto hidden space-x-8 lg:-mt-[3px] lg:flex lg:items-center">
               {headerMenu.items?.map((item: MenuItemSchemaType) => (
-                <li key={`menu-item-${item._key}`} role="none">
+                <li key={`menu-item-${item._key}`} itemProp="name">
                   <Link
                     href={item.page.slug.current}
-                    role="menuitem"
+                    itemProp="url"
                     aria-current={
                       isCurrentPath(pathname, item.page.slug.current)
                         ? 'page'
