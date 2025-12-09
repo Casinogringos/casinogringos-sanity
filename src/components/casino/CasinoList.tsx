@@ -24,7 +24,7 @@ export default function CasinoList({
   itemComponent: typeof CasinoCard
   categories: { value: string }[]
 }) {
-  // const year = new Date().getFullYear() - Currently not used but save for later
+  const year = new Date().getFullYear()
   const ItemComponent = itemComponent
   const casinosWithIndexes = casinos
     .filter((casino) => !casino.excludeFromToplists)
@@ -100,7 +100,7 @@ export default function CasinoList({
             level={2}
             sizes={[5, 6, 6]}
             className="mb-0 !mt-1 font-semibold"
-            text={`${title}`}
+            text={`${title} ${year}`}
           />
           <p className="text-gray-600 mb-5 mt-1 !text-[14px] lg:mb-4">
             Alla casinon är licenserade och granskade av våra experter
