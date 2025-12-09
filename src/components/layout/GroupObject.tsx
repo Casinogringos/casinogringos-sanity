@@ -15,7 +15,7 @@ const GroupObject = ({
       case 'green':
         return 'bg-green-50 border border-green-200 before:bg-green-400'
       case 'red':
-        return 'bg-red-200'
+        return 'bg-red-50 border border-red-200 before:bg-red-400'
       case 'yellow':
         return 'bg-yellow'
       case 'green':
