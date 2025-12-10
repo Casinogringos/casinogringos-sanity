@@ -1,19 +1,18 @@
-import { dashboardImageProjection } from '@/src/data/projections/dashboardImageProjection'
+import { affLinkProjection } from '@/src/data/projections/affLinkProjection'
+import { casinoBonusProjection } from '@/src/data/projections/casinoBonusProjection'
 import { casinoRatingProjection } from '@/src/data/projections/casinoRatingProjection'
-import { gameProviderProjection } from '@/src/data/projections/gameProviderProjection'
 import { contactMethodProjection } from '@/src/data/projections/contactMethodProjection'
-import { ownerProjection } from '@/src/data/projections/ownerProjection'
-import { licenseProjection } from '@/src/data/projections/licenseProjection'
+import { dashboardImageProjection } from '@/src/data/projections/dashboardImageProjection'
+import { freeSpinsProjection } from '@/src/data/projections/freeSpinsProjection'
+import { gameProviderProjection } from '@/src/data/projections/gameProviderProjection'
 import { gameTypeProjection } from '@/src/data/projections/gameTypeProjection'
-import { sportProjection } from '@/src/data/projections/sportProjection'
+import { licenseProjection } from '@/src/data/projections/licenseProjection'
 import { liveCasinoBonusProjection } from '@/src/data/projections/liveCasinoBonusProjection'
 import { liveCasinoGameTypeProjection } from '@/src/data/projections/liveCasinoGameTypeProjection'
-import { casinoBonusProjection } from '@/src/data/projections/casinoBonusProjection'
 import { oddsBonusProjection } from '@/src/data/projections/oddsBonusProjection'
-import { freeSpinsProjection } from '@/src/data/projections/freeSpinsProjection'
+import { ownerProjection } from '@/src/data/projections/ownerProjection'
 import { paymentMethodProjection } from '@/src/data/projections/paymentMethodProjection'
-import { affLinkProjection } from '@/src/data/projections/affLinkProjection'
-import { imageObjectProjection } from '@/src/data/projections/imageObjectProjection'
+import { sportProjection } from '@/src/data/projections/sportProjection'
 
 export const casinoProjection = `
     _type,
@@ -26,6 +25,7 @@ export const casinoProjection = `
       ${affLinkProjection}
     },
     excludeFromToplists,
+    roiRank,
     name,
     brandColor,
     minimumDeposit,

@@ -27,11 +27,15 @@ export default function CasinoList({
   const year = new Date().getFullYear()
   const ItemComponent = itemComponent
   const casinosWithIndexes = casinos
-    .filter((casino) => !casino.excludeFromToplists)
-    .map((casino, index) => ({
-      ...casino,
-      index,
-    }))
+    .map((casino, originalIndex) => ({ casino, originalIndex }))
+    .filter(({ casino }) => !casino.excludeFromToplists)
+    .sort((a, b) => {
+      const aRank = a.casino.roiRank ?? Number.MAX_SAFE_INTEGER
+      const bRank = b.casino.roiRank ?? Number.MAX_SAFE_INTEGER
+      if (aRank !== bRank) return aRank - bRank
+      return a.originalIndex - b.originalIndex
+    })
+    .map(({ casino }, index) => ({ ...casino, index }))
   const initialCasinos = casinosWithIndexes.slice(0, 12)
   const remainingCasinos = casinosWithIndexes.slice(12)
 

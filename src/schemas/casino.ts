@@ -1,20 +1,20 @@
-import { z } from 'zod'
-import { DashboardImageObjectSchema } from './dashboardImageObject'
-import { OwnerSchema } from './owner'
-import { LiveCasinoBonusSchema } from './liveCasinoBonus'
-import { FreeSpinsSchema } from './freeSpins'
-import { CasinoBonusSchema } from './casinoBonus'
-import { LicenseSchema } from './license'
-import { OddsBonusSchema } from './oddsBonus'
-import { GameTypeSchema } from './gameType'
-import { LiveCasinoGameTypeSchema } from './liveCasinoGameType'
-import { SportSchema } from './sport'
-import { GameProviderSchema } from './gameProvider'
-import { ContactMethodSchema } from './contactMethod'
-import { CasinoRatingSchema } from './casinoRating'
-import { PaymentMethodSchema } from '@/src/schemas/paymentMethod'
 import AffLinkSchema from '@/src/schemas/affLink'
+import { PaymentMethodSchema } from '@/src/schemas/paymentMethod'
+import { z } from 'zod'
+import { CasinoBonusSchema } from './casinoBonus'
+import { CasinoRatingSchema } from './casinoRating'
+import { ContactMethodSchema } from './contactMethod'
+import { DashboardImageObjectSchema } from './dashboardImageObject'
+import { FreeSpinsSchema } from './freeSpins'
+import { GameProviderSchema } from './gameProvider'
+import { GameTypeSchema } from './gameType'
+import { LicenseSchema } from './license'
+import { LiveCasinoBonusSchema } from './liveCasinoBonus'
+import { LiveCasinoGameTypeSchema } from './liveCasinoGameType'
+import { OddsBonusSchema } from './oddsBonus'
+import { OwnerSchema } from './owner'
 import { PortableTextBlockSchema } from './portableTextBlock'
+import { SportSchema } from './sport'
 
 export const CasinoSchema = z.object({
   _type: z.literal('casinos'),
@@ -26,6 +26,7 @@ export const CasinoSchema = z.object({
   }),
   affLink: AffLinkSchema,
   excludeFromToplists: z.boolean(),
+  roiRank: z.number().optional(),
   name: z.string(),
   brandColor: z.string(),
   casinoBonuses: z.array(CasinoBonusSchema).optional(),
