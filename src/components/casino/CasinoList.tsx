@@ -26,6 +26,10 @@ export default function CasinoList({
 }) {
   const year = new Date().getFullYear()
   const ItemComponent = itemComponent
+  const showMoreId = `show-more-casinos-${(pathname ?? 'default').replace(
+    /[^a-zA-Z0-9-_]/g,
+    '-'
+  )}`
   const casinosWithIndexes = casinos
     .map((casino, originalIndex) => ({ casino, originalIndex }))
     .filter(({ casino }) => !casino.excludeFromToplists)
@@ -38,6 +42,8 @@ export default function CasinoList({
     .map(({ casino }, index) => ({ ...casino, index }))
   const initialCasinos = casinosWithIndexes.slice(0, 12)
   const remainingCasinos = casinosWithIndexes.slice(12)
+
+  console.log('PATHNAME', pathname)
 
   return (
     <>
@@ -123,7 +129,7 @@ export default function CasinoList({
           />
         ))}
       </ol>
-      <ToggleItem id={'show-more-casinos'} hideFromDom>
+      <ToggleItem id={showMoreId} hideFromDom>
         <ol className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
           {remainingCasinos.map((casinoPage) => (
             <ItemComponent
@@ -138,7 +144,7 @@ export default function CasinoList({
       </ToggleItem>
       <div className="flex items-center justify-center w-full mt-10">
         <ToggleButton
-          id={'show-more-casinos'}
+          id={showMoreId}
           role={'button'}
           label={'Visa fler casinon'}
           variant="primary"
