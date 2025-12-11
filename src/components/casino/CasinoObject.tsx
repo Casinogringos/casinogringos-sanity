@@ -94,7 +94,7 @@ const CasinoObject = ({
         <Heading
           level={2}
           text={casino.name}
-          className={'not-prose text-slate-600 !mt-0 !mb-2 !text-xl'}
+          className={'not-prose text-slate-600 !mt-0 !mb-2 !text-lg'}
         />
         <span
           className={
@@ -103,12 +103,12 @@ const CasinoObject = ({
         >
           {offer ? (
             <>
-              <Gift />
+              <Gift className="flex-shrink-0" />
               <PortableText value={offer} />
             </>
           ) : (
             <>
-              <Gift />
+              <Gift className="flex-shrink-0" />
               {bonusString}
             </>
           )}
