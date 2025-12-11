@@ -49,7 +49,7 @@ const ArticleCard = ({
           alt={item.featuredImage?.alt}
           width={400}
           height={200}
-          className="object-cover absolute w-full h-full"
+          className="object-cover object-top absolute w-full h-full"
         />
       </div>
       <div className={`${cardBackground ? 'px-4' : ''}`}>

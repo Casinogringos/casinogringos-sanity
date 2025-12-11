@@ -62,13 +62,13 @@ export default function NewsPage({
       <BreadCrumbs items={breadcrumbs} narrow />
       <Container width={3} className="lg:px-0">
         {page.featuredImage && (
-          <div className="mb-4 flex h-auto items-start overflow-hidden rounded-md lg:mb-8 lg:mt-8 lg:h-96 relative">
+          <div className="mb-4 flex h-auto overflow-hidden rounded-md lg:mb-8 lg:mt-8 lg:h-[400px] relative">
             <Image
               src={page.featuredImage.src}
               alt={page.featuredImage.alt}
               width={768}
               height={400}
-              className={'object-cover h-full w-full'}
+              className={'object-cover object-top h-full w-full'}
             />{' '}
           </div>
         )}
