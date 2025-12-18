@@ -19,6 +19,7 @@ export async function middleware(request: NextRequest) {
         string,
         { destination: string; type: number }
     >
+    console.log('redirects', redirects)
     const path = removeFirstSlash(request.nextUrl.pathname) as string
     if (!redirects || !redirects[path]) {
         return NextResponse.next()
