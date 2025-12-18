@@ -17,6 +17,7 @@
     "@sanity/client": "^7.4.0",
     "@sanity/image-url": "^1.1.0",
     "@tailwindcss/cli": "^4.1.8",
+    "@vercel/edge-config": "^1.4.3",
     "fuse.js": "^7.1.0",
     "lodash": "^4.17.21",
     "lucide-react": "^0.511.0",
