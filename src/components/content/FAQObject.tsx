@@ -1,10 +1,10 @@
-import { FAQObjectSchemaType } from '@/src/schemas/faqObject'
-import { PortableText } from 'next-sanity'
 import Heading from '@/src/components/content/Heading'
 import ToggleButton from '@/src/components/interactivity/ToggleButton'
 import ToggleItem from '@/src/components/interactivity/ToggleItem'
-import { ChevronDown } from 'lucide-react'
 import ToggleSpin from '@/src/components/interactivity/ToggleSpin'
+import { FAQObjectSchemaType } from '@/src/schemas/faqObject'
+import { ChevronDown } from 'lucide-react'
+import { PortableText } from 'next-sanity'
 
 const FAQObject = ({ object }: { object: FAQObjectSchemaType }) => {
   return (
@@ -18,6 +18,7 @@ const FAQObject = ({ object }: { object: FAQObjectSchemaType }) => {
                 id={item._key}
                 role={'button'}
                 label={item.question}
+                className="w-full"
               >
                 <div className={'flex items-center justify-between'}>
                   <Heading
