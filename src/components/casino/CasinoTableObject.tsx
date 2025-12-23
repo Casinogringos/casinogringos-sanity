@@ -14,7 +14,19 @@ const CasinoTableObject = ({
     return <Placeholder message="No toplist found" />
   }
   const { title, description, casinos } = toplist
-  const casinosToShow = count ? casinos.slice(0, count) : casinos
+  const casinosWithIndexes = casinos
+    .map((casino, originalIndex) => ({ casino, originalIndex }))
+    .filter(({ casino }) => !casino.excludeFromToplists)
+    .sort((a, b) => {
+      const aRank = a.casino.roiRank ?? Number.MAX_SAFE_INTEGER
+      const bRank = b.casino.roiRank ?? Number.MAX_SAFE_INTEGER
+      if (aRank !== bRank) return aRank - bRank
+      return a.originalIndex - b.originalIndex
+    })
+    .map(({ casino }) => casino)
+  const casinosToShow = count
+    ? casinosWithIndexes.slice(0, count)
+    : casinosWithIndexes
 
   return (
     <div>
@@ -28,16 +40,14 @@ const CasinoTableObject = ({
           </tr>
         </thead>
         <tbody>
-          {casinosToShow
-            .filter((casino) => !casino.excludeFromToplists)
-            .map((casino, index) => (
-              <CasinoTableRow
-                key={`${casino._id}-${index}`}
-                casino={casino}
-                index={index}
-                bonusCategories={bonusCategories}
-              />
-            ))}
+          {casinosToShow.map((casino, index) => (
+            <CasinoTableRow
+              key={`${casino._id}-${index}`}
+              casino={casino}
+              index={index}
+              bonusCategories={bonusCategories}
+            />
+          ))}
         </tbody>
       </table>
     </div>
