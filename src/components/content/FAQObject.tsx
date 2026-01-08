@@ -25,7 +25,7 @@ const FAQObject = ({ object }: { object: FAQObjectSchemaType }) => {
                     text={item.question}
                     level={3}
                     sizes={[3, 3, 4]}
-                    className="font-bold"
+                    className="font-bold text-left"
                   />
                   <ToggleSpin id={item._key}>
                     <ChevronDown className={'stroke-dark'} />

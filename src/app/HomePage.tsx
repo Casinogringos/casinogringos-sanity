@@ -1,4 +1,3 @@
-import CasinoCard from '@/src/components/casino/CasinoCard'
 import CasinoList from '@/src/components/casino/CasinoList'
 import AuthorBox from '@/src/components/content/AuthorBox'
 import FAQ from '@/src/components/content/FAQ'
@@ -48,6 +47,8 @@ const HomePage = ({
     ],
   }
 
+  console.log('TOPLIST CATEGORIES', toplistCategories)
+
   return (
     <>
       <script
@@ -66,7 +67,6 @@ const HomePage = ({
               title={page.toplistTitle ?? ''}
               pathname={page.slug.current}
               description={page.toplist.description}
-              itemComponent={CasinoCard}
               categories={toplistCategories}
             />
           </Container>

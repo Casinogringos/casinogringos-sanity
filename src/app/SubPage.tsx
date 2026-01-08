@@ -1,4 +1,3 @@
-import CasinoCard from '@/src/components/casino/CasinoCard'
 import CasinoList from '@/src/components/casino/CasinoList'
 import AuthorBox from '@/src/components/content/AuthorBox'
 import FAQ from '@/src/components/content/FAQ'
@@ -25,9 +24,11 @@ const pageService = new PageService()
 export default function SubPage({
   page,
   parentPage,
+  toplistCategories,
 }: {
   page: SubPageSchemaType
   parentPage?: SubPageSchemaType
+  toplistCategories: { value: string }[]
 }) {
   // const isValid = pageService.validatePage(page)
   // if (!isValid) {
@@ -90,12 +91,17 @@ export default function SubPage({
         <div className="bg-slate-100 pb-16">
           <Container width={6}>
             <CasinoList
-              itemComponent={CasinoCard}
               pathname={page.slug.current}
               casinos={toplist.casinos}
               title={page.toplistTitle}
               description={toplist.description}
-              categories={page.bonusCategory ?? []}
+              categories={
+                page.bonusCategory?.length
+                  ? page.bonusCategory
+                  : toplist.bonusCategory
+                    ? [{ value: toplist.bonusCategory }]
+                    : [{ value: 'casino-bonus' }]
+              }
             />
           </Container>
         </div>

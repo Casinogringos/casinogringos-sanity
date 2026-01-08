@@ -5,8 +5,10 @@ import '@/src/styles/styles.scss'
 import PlausibleProvider from 'next-plausible'
 import dynamicImport from 'next/dynamic'
 
+import ClarityClient from '@/src/components/analytics/ClarityClient'
 import Footer from '@/src/components/navigation/Footer'
 import Navigation from '@/src/components/navigation/Navigation'
+import CookieNotice from '@/src/components/privacy/CookieNotice'
 import { inter } from '@/src/styles/fonts'
 import { headers } from 'next/headers'
 import { ReactNode } from 'react'
@@ -52,6 +54,7 @@ export default async function RootLayout({
       <link rel="icon" href="/favicon.ico" sizes="any" />
       <body className={`${inter.className}`}>
         <Provider>
+          <ClarityClient />
           <Navigation
             headerMenu={headerMenu}
             sidebarMenu={sidebarMenu}
@@ -65,6 +68,7 @@ export default async function RootLayout({
             popularCasinos={popularCasinos}
             latestReviews={latestReviews}
           />
+          <CookieNotice />
         </Provider>
       </body>
     </html>
