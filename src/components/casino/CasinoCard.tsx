@@ -186,7 +186,7 @@ const CasinoCard = ({
                   className={`flex flex-col items-center gap-1 rounded-md border border-slate-200 bg-white p-2 text-[10px] text-dark font-medium ${
                     item.available
                       ? 'text-slate-700'
-                      : 'text-slate-400 !bg-slate-100'
+                      : 'text-slate-400 !bg-gray-100'
                   }`}
                 >
                   <div className="relative h-8 w-20 flex justify-center items-center">

@@ -57,7 +57,6 @@ export default function CasinoList({
   const [selectedPaymentMethods, setSelectedPaymentMethods] = useState<
     string[]
   >([])
-  const [selectedProviders, setSelectedProviders] = useState<string[]>([])
   const [selectedMinimumDeposits, setSelectedMinimumDeposits] = useState<
     string[]
   >([])
@@ -76,7 +75,6 @@ export default function CasinoList({
         casino: CasinoSchemaType
         originalIndex: number
         methodSlugs: Set<string>
-        providerSlugs: Set<string>
         minimumDeposit: number | null
       }[]
     >((acc, casino, originalIndex) => {
@@ -89,11 +87,6 @@ export default function CasinoList({
           .map((method) => method?.slug?.current)
           .filter((slug): slug is string => Boolean(slug))
       )
-      const providerSlugs = new Set(
-        (casino.gameProviders ?? [])
-          .map((provider) => provider?.slug?.current)
-          .filter((slug): slug is string => Boolean(slug))
-      )
       const minimumDeposit = Number.isFinite(casino.minimumDeposit)
         ? casino.minimumDeposit
         : null
@@ -101,7 +94,6 @@ export default function CasinoList({
         casino,
         originalIndex,
         methodSlugs,
-        providerSlugs,
         minimumDeposit,
       })
       return acc
@@ -129,23 +121,6 @@ export default function CasinoList({
     })).sort((a, b) => a.label.localeCompare(b.label))
   }, [baseCasinos])
 
-  const providerOptions = useMemo(() => {
-    const providerMap = new Map<string, string>()
-    baseCasinos.forEach(({ casino }) => {
-      ;(casino.gameProviders ?? []).forEach((provider) => {
-        const slug = provider?.slug?.current
-        if (!slug || providerMap.has(slug)) return
-        const label = provider?.name?.trim()
-        providerMap.set(slug, label && label.length > 0 ? label : slug)
-      })
-    })
-
-    return Array.from(providerMap, ([slug, label]) => ({
-      slug,
-      label,
-    })).sort((a, b) => a.label.localeCompare(b.label))
-  }, [baseCasinos])
-
   const minimumDepositRanges = useMemo(() => {
     return new Map(MINIMUM_DEPOSIT_OPTIONS.map((option) => [option.id, option]))
   }, [])
@@ -153,11 +128,6 @@ export default function CasinoList({
   const selectedMethodSet = useMemo(
     () => new Set(selectedPaymentMethods),
     [selectedPaymentMethods]
-  )
-
-  const selectedProviderSet = useMemo(
-    () => new Set(selectedProviders),
-    [selectedProviders]
   )
 
   const selectedMinimumDepositSet = useMemo(
@@ -175,17 +145,9 @@ export default function CasinoList({
     })
   }, [paymentMethodOptions])
 
-  useEffect(() => {
-    const allowedSlugs = new Set(providerOptions.map((option) => option.slug))
-    setSelectedProviders((current) => {
-      const next = current.filter((slug) => allowedSlugs.has(slug))
-      return next.length === current.length ? current : next
-    })
-  }, [providerOptions])
-
   const filteredCasinos = useMemo(() => {
     return baseCasinos.filter(
-      ({ methodSlugs, providerSlugs, minimumDeposit }) => {
+      ({ methodSlugs, minimumDeposit }) => {
         if (selectedMethodSet.size > 0) {
           let matchesPaymentMethods = false
           for (const slug of selectedMethodSet) {
@@ -195,17 +157,6 @@ export default function CasinoList({
             }
           }
           if (!matchesPaymentMethods) return false
-        }
-
-        if (selectedProviderSet.size > 0) {
-          let matchesProvider = false
-          for (const slug of selectedProviderSet) {
-            if (providerSlugs.has(slug)) {
-              matchesProvider = true
-              break
-            }
-          }
-          if (!matchesProvider) return false
         }
 
         if (selectedMinimumDepositSet.size > 0) {
@@ -238,7 +189,6 @@ export default function CasinoList({
     minimumDepositRanges,
     selectedMethodSet,
     selectedMinimumDepositSet,
-    selectedProviderSet,
   ])
 
   const casinosWithIndexes = useMemo(
@@ -371,6 +321,7 @@ export default function CasinoList({
   const initialCasinos = sortedCasinos.slice(0, 12)
   const remainingCasinos = sortedCasinos.slice(12)
   const skeletonCount = Math.min(initialCasinos.length || 12, 12)
+  const hasResults = sortedCasinos.length > 0
 
   const handleFilterChange = (nextFilter: FilterKey) => {
     if (nextFilter === activeFilter) return
@@ -380,16 +331,6 @@ export default function CasinoList({
   const handlePaymentMethodToggle = (slug: string) => {
     startTransition(() =>
       setSelectedPaymentMethods((current) =>
-        current.includes(slug)
-          ? current.filter((item) => item !== slug)
-          : [...current, slug]
-      )
-    )
-  }
-
-  const handleProviderToggle = (slug: string) => {
-    startTransition(() =>
-      setSelectedProviders((current) =>
         current.includes(slug)
           ? current.filter((item) => item !== slug)
           : [...current, slug]
@@ -410,22 +351,18 @@ export default function CasinoList({
   const handleClearFilters = () => {
     if (
       selectedPaymentMethods.length === 0 &&
-      selectedProviders.length === 0 &&
       selectedMinimumDeposits.length === 0
     ) {
       return
     }
     startTransition(() => {
       setSelectedPaymentMethods([])
-      setSelectedProviders([])
       setSelectedMinimumDeposits([])
     })
   }
 
   const activeFilterCount =
-    selectedPaymentMethods.length +
-    selectedProviders.length +
-    selectedMinimumDeposits.length
+    selectedPaymentMethods.length + selectedMinimumDeposits.length
 
   return (
     <>
@@ -592,7 +529,7 @@ export default function CasinoList({
                     <CreditCard className="size-4" />
                     Betalningsmetoder
                   </div>
-                  <div className="mt-2 grid gap-x-4 gap-y-2 sm:grid-cols-2 lg:grid-cols-3">
+                  <div className="mt-2 grid grid-cols-2 gap-x-4 gap-y-2 sm:grid-cols-2 lg:grid-cols-3">
                     {paymentMethodOptions.length > 0 ? (
                       paymentMethodOptions.map((method) => (
                         <label
@@ -619,34 +556,6 @@ export default function CasinoList({
                     )}
                   </div>
                 </div>
-                {/* <div className="border-t border-dashed border-slate-200 pt-4">
-                  <div className="flex items-center gap-2 text-xs font-semibold uppercase text-slate-500">
-                    <Gamepad2 className="size-4" />
-                    Spelleverantörer
-                  </div>
-                  <div className="mt-2 grid gap-x-4 gap-y-2 sm:grid-cols-2 lg:grid-cols-3">
-                    {providerOptions.length > 0 ? (
-                      providerOptions.map((provider) => (
-                        <label
-                          key={provider.slug}
-                          className="flex items-center gap-2 text-sm text-slate-700"
-                        >
-                          <input
-                            type="checkbox"
-                            className="h-4 w-4 rounded border-slate-300 text-darklight focus:ring-slate-400"
-                            checked={selectedProviders.includes(provider.slug)}
-                            onChange={() => handleProviderToggle(provider.slug)}
-                          />
-                          {provider.label}
-                        </label>
-                      ))
-                    ) : (
-                      <span className="text-sm text-slate-500">
-                        Inga spelleverantörer hittades.
-                      </span>
-                    )}
-                  </div>
-                </div> */}
                 <div className="border-t border-dashed border-slate-200 pt-4">
                   <div className="flex items-center gap-2 text-xs font-semibold uppercase text-slate-500">
                     <Coins className="size-4" />
@@ -695,7 +604,7 @@ export default function CasinoList({
               </li>
             ))}
           </ol>
-        ) : (
+        ) : hasResults ? (
           <>
             <ol className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 mb-4">
               {initialCasinos.map((casino) => (
@@ -733,6 +642,19 @@ export default function CasinoList({
               </ToggleButton>
             </div>
           </>
+        ) : (
+          <div className="rounded-md border border-slate-200 bg-white p-6 text-center text-sm text-slate-600">
+            <p>Inga casinon matchar dina filter.</p>
+            {activeFilterCount > 0 ? (
+              <button
+                type="button"
+                onClick={handleClearFilters}
+                className="mt-3 inline-flex items-center justify-center rounded-md border border-slate-200 px-4 py-2 text-xs font-semibold text-slate-700 transition hover:bg-slate-50"
+              >
+                Rensa filter
+              </button>
+            ) : null}
+          </div>
         )}
       </div>
     </>
