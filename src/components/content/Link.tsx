@@ -12,6 +12,7 @@ import { usePlausible } from 'next-plausible'
 import NextLink from 'next/link'
 import { usePathname } from 'next/navigation'
 import { ReactNode, useCallback } from 'react'
+import { twMerge } from 'tailwind-merge'
 
 const Link = ({
   href,
@@ -111,7 +112,7 @@ const Link = ({
       }
       replace={replace}
       target={variant === 'affiliate' ? '_blank' : target}
-      className={`${className ?? ''} ${getClassName()} no-underline`}
+      className={twMerge(getClassName(), 'no-underline', className)}
       prefetch={prefetch}
       aria-label={label}
       title={title}

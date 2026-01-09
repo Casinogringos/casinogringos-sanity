@@ -115,7 +115,13 @@ export default async function Page(props: { params: Params }) {
     })
   }
   if (page?._type === 'pages') {
-    return <SubPage page={page} parentPage={parentPage} />
+    return (
+      <SubPage
+        page={page}
+        parentPage={parentPage}
+        toplistCategories={page.bonusCategory}
+      />
+    )
   }
   const casinoPage: CasinoPageSchemaType = await getCasinoPageBySlug({
     slug: formatSlug(slugParent),

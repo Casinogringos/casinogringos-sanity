@@ -1,26 +1,26 @@
 'use client'
 
-import { useCallback, useEffect, useMemo, useState } from 'react'
-import { ArrowRight, Search } from 'lucide-react'
-import Fuse from 'fuse.js'
-import Link from '@/src/components/content/Link'
-import Heading from '@/src/components/content/Heading'
 import Date from '@/src/components/content/Date'
-import { SubPagePreviewSchemaType } from '@/src/schemas/subPagePreview'
-import { SlotPagePreviewSchemaType } from '@/src/schemas/slotPagePreview'
+import Heading from '@/src/components/content/Heading'
+import Link from '@/src/components/content/Link'
+import { CasinoPagePreviewSchemaType } from '@/src/schemas/casinoPagePreview'
 import { GuidePagePreviewSchemaType } from '@/src/schemas/guidePagePreview'
 import { NewsPagePreviewSchemaType } from '@/src/schemas/newsPagePreview'
-import { CasinoPagePreviewSchemaType } from '@/src/schemas/casinoPagePreview'
 import { SearchSchemaItemType, SearchSchemaType } from '@/src/schemas/search'
-import _ from 'lodash'
-import SubPageService from '@/src/services/SubPageService'
-import SlotPageService from '@/src/services/SlotPageService'
+import { SlotPagePreviewSchemaType } from '@/src/schemas/slotPagePreview'
+import { SubPagePreviewSchemaType } from '@/src/schemas/subPagePreview'
+import CasinoPageService from '@/src/services/CasinoPageService'
 import GuidePageService from '@/src/services/GuidePageService'
 import NewsPageService from '@/src/services/NewsPageService'
-import CasinoPageService from '@/src/services/CasinoPageService'
-import Image from 'next/image'
-import { closedSearch, closeSearch, closingSearch } from '@/src/store/menuSlice'
+import SlotPageService from '@/src/services/SlotPageService'
+import SubPageService from '@/src/services/SubPageService'
 import { useAppDispatch } from '@/src/store/hooks'
+import { closedSearch, closeSearch, closingSearch } from '@/src/store/menuSlice'
+import Fuse from 'fuse.js'
+import _ from 'lodash'
+import { ArrowRight, Search } from 'lucide-react'
+import Image from 'next/image'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 
 const pageService = new SubPageService()
 const slotPageService = new SlotPageService()
@@ -172,15 +172,15 @@ const SearchBox = () => {
             {resultGroups?.['casino-pages']?.map((item) => (
               <div
                 key={`${item.slug.current}`}
-                className="border-b border-slate-200 hover:bg-slate-100 pl-0"
+                className="border-b border-slate-200 hover:bg-slate-100"
               >
                 <Link
-                  className="flex items-center justify-start p-4"
+                  className="flex items-center justify-start p-4 hover:text-dark"
                   href={item.slug.current}
                   onClick={handleCloseSearch}
                 >
                   {item.featuredImage.src && (
-                    <div className="h-[50px] w-[50px] relative mr-2">
+                    <div className="h-[50px] w-[50px] relative mr-4">
                       <Image
                         src={item.featuredImage.src}
                         alt={item.featuredImage.alt}
@@ -194,7 +194,7 @@ const SearchBox = () => {
                     <Heading
                       text={item.title}
                       level={4}
-                      sizes={[1, 1, 2]}
+                      sizes={[1, 1, 3]}
                       className="!font-normal !text-md"
                     />
                     <Date
@@ -224,12 +224,12 @@ const SearchBox = () => {
                 className="border-b border-slate-200 hover:bg-slate-100 pl-0"
               >
                 <Link
-                  href={item.slug.current}
-                  className="flex items-center justify-start p-4"
+                  href={`/guider/${item.slug.current}`}
+                  className="flex items-center justify-start p-4 hover:text-dark"
                   onClick={() => handleCloseSearch()}
                 >
                   {item.featuredImage.src && (
-                    <div className="h-[50px] w-[50px] relative mr-2">
+                    <div className="h-[50px] w-[50px] relative mr-4">
                       <Image
                         src={item.featuredImage.src}
                         alt={item.featuredImage.alt}
@@ -243,7 +243,7 @@ const SearchBox = () => {
                     <Heading
                       text={item.title}
                       level={4}
-                      sizes={[1, 1, 2]}
+                      sizes={[1, 1, 3]}
                       className="!font-normal !text-md"
                     />
                     <Date
@@ -270,15 +270,15 @@ const SearchBox = () => {
             {resultGroups?.['news-pages']?.map((item, index) => (
               <div
                 key={`${item.slug}-${index}`}
-                className="border-b border-slate-200 hover:bg-slate-100 p-4 pl-0"
+                className="border-b border-slate-200 hover:bg-slate-100 p-4"
               >
                 <Link
-                  href={item.slug.current}
-                  className="flex items-center justify-start"
+                  href={`/nyheter/${item.slug.current}`}
+                  className="flex items-center justify-start hover:text-dark"
                   onClick={() => handleCloseSearch()}
                 >
                   {item.featuredImage.src && (
-                    <div className="h-[50px] w-[50px] relative mr-2">
+                    <div className="h-[50px] w-[50px] relative mr-4">
                       <Image
                         src={item.featuredImage.src}
                         alt={item.featuredImage.alt}
@@ -292,7 +292,7 @@ const SearchBox = () => {
                     <Heading
                       text={item.title}
                       level={4}
-                      sizes={[1, 1, 2]}
+                      sizes={[1, 1, 3]}
                       className="!font-normal !text-md"
                     />
                     <Date
@@ -310,7 +310,7 @@ const SearchBox = () => {
           <div className="mb-4">
             {resultGroups && resultGroups?.['slot-pages']?.length > 0 && (
               <Heading
-                text="Sloter"
+                text="Slots"
                 level={3}
                 sizes={[4, 4, 5]}
                 className="mb-3"
@@ -319,15 +319,15 @@ const SearchBox = () => {
             {resultGroups?.['slot-pages']?.map((item, index) => (
               <div
                 key={`${item.slug}-${index}`}
-                className="border-b border-slate-200 hover:bg-slate-100 p-4 pl-0"
+                className="border-b border-slate-200 hover:bg-slate-100 p-4"
               >
                 <Link
-                  href={item.slug.current}
-                  className="flex items-center justify-start"
+                  href={`/slots/${item.slug.current}`}
+                  className="flex items-center justify-start hover:text-dark"
                   onClick={() => handleCloseSearch()}
                 >
                   {item.featuredImage.src && (
-                    <div className="h-[50px] w-[50px] relative mr-2">
+                    <div className="h-[50px] w-[50px] relative mr-4">
                       <Image
                         src={item.featuredImage.src}
                         alt={item.featuredImage.alt}
@@ -341,7 +341,7 @@ const SearchBox = () => {
                     <Heading
                       text={item.title}
                       level={4}
-                      sizes={[1, 1, 2]}
+                      sizes={[1, 1, 3]}
                       className="!font-normal !text-md"
                     />
                     <Date
@@ -368,7 +368,7 @@ const SearchBox = () => {
             {resultGroups?.['pages']?.map((item, index) => (
               <div
                 key={`${item.slug}-${index}`}
-                className="border-b border-slate-200 hover:bg-slate-100 p-4 pl-0"
+                className="border-b border-slate-200 hover:bg-slate-100 p-4"
               >
                 <Link
                   href={item.slug.current}
@@ -376,7 +376,7 @@ const SearchBox = () => {
                   onClick={() => handleCloseSearch()}
                 >
                   {item.featuredImage.src && (
-                    <div className="h-[50px] w-[50px] relative mr-2">
+                    <div className="h-[50px] w-[50px] relative mr-4">
                       <Image
                         src={item.featuredImage.src}
                         alt={item.featuredImage.alt}
@@ -390,7 +390,7 @@ const SearchBox = () => {
                     <Heading
                       text={item.title}
                       level={4}
-                      sizes={[1, 1, 2]}
+                      sizes={[1, 1, 3]}
                       className="!font-normal !text-md"
                     />
                     <Date

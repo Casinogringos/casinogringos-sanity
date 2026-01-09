@@ -185,7 +185,7 @@ class CasinoService {
     categories: { value: string }[]
     casino: CasinoSchemaType
   }) {
-    const category = categories.reverse().reduce(
+    const category = categories.reduceRight(
       (prev: { value: string }, current: { value: string }) => {
         let existing = ''
         if (current.value === 'casino-bonus') {
