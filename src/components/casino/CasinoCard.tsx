@@ -85,7 +85,7 @@ const CasinoCard = ({
     {
       key: 'swedish-license',
       label: 'Svensk licens',
-      icon: '/spelinspektionen.png',
+      icon: '/svensk-licens.webp',
       available: casino.swedishLicense,
     },
   ]
@@ -189,7 +189,7 @@ const CasinoCard = ({
                       : 'text-slate-400 !bg-slate-100'
                   }`}
                 >
-                  <div className="relative h-9 w-20 flex justify-center items-center">
+                  <div className="relative h-8 w-20 flex justify-center items-center">
                     <Image
                       src={item.icon}
                       alt={item.label}

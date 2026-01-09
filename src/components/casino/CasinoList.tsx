@@ -53,6 +53,7 @@ export default function CasinoList({
   const casinoService = useMemo(() => new CasinoService(), [])
   const [activeFilter, setActiveFilter] = useState<FilterKey>('roi')
   const [showFilters, setShowFilters] = useState(false)
+  const [showSortButtons, setShowSortButtons] = useState(false)
   const [selectedPaymentMethods, setSelectedPaymentMethods] = useState<
     string[]
   >([])
@@ -502,10 +503,16 @@ export default function CasinoList({
       <div className="mb-4 rounded-md border border-slate-200 bg-white px-3 pt-3 pb-0 md:px-3 md:pt-3">
         <div className="flex flex-col gap-x-3 md:flex-row md:items-center md:justify-between">
           <div className="flex items-center justify-between gap-3 md:order-2 md:ml-auto md:justify-end">
-            <div className="flex items-center gap-2 text-sm font-semibold text-slate-700 md:hidden">
+            <button
+              type="button"
+              onClick={() => setShowSortButtons((open) => !open)}
+              className="flex items-center gap-2 rounded-md border border-slate-200 px-3 py-1.5 text-sm font-semibold text-slate-700 transition hover:bg-slate-50 md:hidden"
+              aria-expanded={showSortButtons}
+              aria-controls={filterButtonsId}
+            >
               <ArrowUpDown className="size-4 text-slate-500" />
               Sortera
-            </div>
+            </button>
             <button
               type="button"
               onClick={() => setShowFilters((open) => !open)}
@@ -528,12 +535,12 @@ export default function CasinoList({
             </button>
           </div>
           <div
-            className={`overflow-hidden ${showFilters ? 'mt-3' : 'mt-0'} md:order-1 md:mt-0`}
+            className={`overflow-hidden ${showSortButtons ? 'mt-3' : 'mt-0'} md:order-1 md:mt-0`}
           >
             <div
               id={filterButtonsId}
               className={`flex flex-wrap items-center gap-2 transition-[max-height,opacity] duration-300 ease-in-out ${
-                showFilters
+                showSortButtons
                   ? 'max-h-[400px] opacity-100'
                   : 'max-h-0 opacity-0 pointer-events-none md:max-h-none md:opacity-100 md:pointer-events-auto'
               }`}
