@@ -507,7 +507,7 @@ export default function CasinoList({
             }`}
           >
             <div
-              className={`mt-3 max-h-[420px] overflow-y-auto rounded-md border border-dashed border-slate-200 bg-slate-50/60 p-3 transition-[opacity,transform] duration-200 ease-out ${
+              className={`mt-3 max-h-[370px] overflow-y-auto rounded-md border border-dashed border-slate-200 bg-slate-50/60 p-3 transition-[opacity,transform] duration-200 ease-out ${
                 showFilters
                   ? 'opacity-100 translate-y-0'
                   : 'opacity-0 -translate-y-1 pointer-events-none'
