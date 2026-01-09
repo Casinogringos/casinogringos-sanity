@@ -5,11 +5,13 @@ export const CONSENT_MAX_AGE_SECONDS = 60 * 60 * 24 * 180
 
 export type ConsentValue = 'accepted' | 'rejected'
 
-const parseConsentValue = (rawValue: string | undefined): ConsentValue | null => {
+const parseConsentValue = (
+  rawValue: string | undefined
+): ConsentValue | null => {
   if (!rawValue) return null
-  const [, value] = rawValue.split(':')
+  const [version, value] = rawValue.split(':')
+  if (version !== CONSENT_VERSION) return null
   if (value === 'accepted' || value === 'rejected') return value
-  if (rawValue === 'accepted' || rawValue === 'rejected') return rawValue
   return null
 }
 
