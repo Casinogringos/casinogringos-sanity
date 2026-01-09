@@ -437,7 +437,7 @@ export default function CasinoList({
           </p>
         </div>
       </div>
-      <div className="mb-4 rounded-md border border-slate-200 bg-white px-3 pt-3 pb-0 md:px-3 md:pt-3">
+      <div className="mb-4 rounded-md border border-slate-200 bg-white px-3 pt-3 pb-3 md:px-3 md:pt-3 md:pb-3">
         <div className="flex flex-col gap-x-3 md:flex-row md:items-center md:justify-between">
           <div className="flex items-center justify-between gap-3 md:order-2 md:ml-auto md:justify-end">
             <button
@@ -471,111 +471,119 @@ export default function CasinoList({
               />
             </button>
           </div>
-          <div
-            className={`overflow-hidden ${showSortButtons ? 'mt-3' : 'mt-0'} md:order-1 md:mt-0`}
-          >
+          <div className="overflow-hidden md:order-1 md:mt-0">
             <div
               id={filterButtonsId}
-              className={`flex flex-wrap items-center gap-2 transition-[max-height,opacity] duration-300 ease-in-out ${
-                showSortButtons
-                  ? 'max-h-[400px] opacity-100'
-                  : 'max-h-0 opacity-0 pointer-events-none md:max-h-none md:opacity-100 md:pointer-events-auto'
-              }`}
+              className={`grid transition-[grid-template-rows] duration-300 ease-in-out md:block ${
+                showSortButtons ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'
+              } md:grid-rows-none`}
             >
-              {FILTER_OPTIONS.map((option) => (
-                <button
-                  key={option.value}
-                  type="button"
-                  onClick={() => handleFilterChange(option.value)}
-                  className={`rounded-md border px-3 py-1.5 md:py-2 text-sm transition cursor-pointer ${
-                    activeFilter === option.value
-                      ? 'border-slate-500 bg-slate-100 text-darklight shadow-[0_4px_12px_rgba(59,130,246,0.15)]'
-                      : 'border-slate-200 bg-white text-slate-700 hover:border-blue-200 hover:bg-slate-50'
-                  }`}
-                >
-                  {option.label}
-                </button>
-              ))}
+              <div
+                className={`min-h-0 overflow-hidden transition-[opacity,transform] duration-200 ease-out md:opacity-100 md:translate-y-0 md:pointer-events-auto ${
+                  showSortButtons
+                    ? 'opacity-100 translate-y-0'
+                    : 'opacity-0 -translate-y-1 pointer-events-none'
+                }`}
+              >
+                <div className="flex flex-wrap items-center gap-2 pt-3 md:pt-0">
+                  {FILTER_OPTIONS.map((option) => (
+                    <button
+                      key={option.value}
+                      type="button"
+                      onClick={() => handleFilterChange(option.value)}
+                      className={`rounded-md border px-3 py-1.5 md:py-2 text-sm transition cursor-pointer ${
+                        activeFilter === option.value
+                          ? 'border-slate-500 bg-slate-100 text-darklight shadow-[0_4px_12px_rgba(59,130,246,0.15)]'
+                          : 'border-slate-200 bg-white text-slate-700 hover:border-blue-200 hover:bg-slate-50'
+                      }`}
+                    >
+                      {option.label}
+                    </button>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         </div>
         <div className="overflow-hidden">
           <div
             id={filterPanelId}
-            className={`transition-[max-height] duration-300 ease-in-out ${
-              showFilters ? 'max-h-[500px] pb-3' : 'max-h-0'
+            className={`grid transition-[grid-template-rows] duration-300 ease-in-out ${
+              showFilters ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'
             }`}
           >
             <div
-              className={`mt-3 max-h-[370px] overflow-y-auto rounded-md border border-dashed border-slate-200 bg-slate-50/60 p-3 transition-[opacity,transform] duration-200 ease-out ${
+              className={`min-h-0 overflow-hidden transition-[opacity,transform] duration-200 ease-out ${
                 showFilters
                   ? 'opacity-100 translate-y-0'
                   : 'opacity-0 -translate-y-1 pointer-events-none'
               }`}
             >
-              <div className="space-y-4">
-                <div className="flex items-center justify-end">
-                  <button
-                    type="button"
-                    onClick={handleClearFilters}
-                    disabled={activeFilterCount === 0}
-                    className="text-xs font-semibold text-slate-600 transition hover:text-slate-800 hover:underline disabled:cursor-not-allowed disabled:opacity-50"
-                  >
-                    Rensa filter
-                  </button>
-                </div>
-                <div>
-                  <div className="flex items-center gap-2 text-xs font-semibold uppercase text-slate-500">
-                    <CreditCard className="size-4" />
-                    Betalningsmetoder
+              <div className="mt-3 max-h-[370px] overflow-y-auto rounded-md border border-dashed border-slate-200 bg-slate-50/60 p-3 pb-4">
+                <div className="space-y-4">
+                  <div className="flex items-center justify-end">
+                    <button
+                      type="button"
+                      onClick={handleClearFilters}
+                      disabled={activeFilterCount === 0}
+                      className="text-xs font-semibold text-slate-600 transition hover:text-slate-800 hover:underline disabled:cursor-not-allowed disabled:opacity-50"
+                    >
+                      Rensa filter
+                    </button>
                   </div>
-                  <div className="mt-2 grid grid-cols-2 gap-x-4 gap-y-2 sm:grid-cols-2 lg:grid-cols-3">
-                    {paymentMethodOptions.length > 0 ? (
-                      paymentMethodOptions.map((method) => (
+                  <div>
+                    <div className="flex items-center gap-2 text-xs font-semibold uppercase text-slate-500">
+                      <CreditCard className="size-4" />
+                      Betalningsmetoder
+                    </div>
+                    <div className="mt-2 grid grid-cols-2 gap-x-4 gap-y-2 sm:grid-cols-2 lg:grid-cols-3">
+                      {paymentMethodOptions.length > 0 ? (
+                        paymentMethodOptions.map((method) => (
+                          <label
+                            key={method.slug}
+                            className="flex items-center gap-2 text-sm text-slate-700"
+                          >
+                            <input
+                              type="checkbox"
+                              className="h-4 w-4 rounded border-slate-300 text-darklight focus:ring-slate-400"
+                              checked={selectedPaymentMethods.includes(
+                                method.slug
+                              )}
+                              onChange={() =>
+                                handlePaymentMethodToggle(method.slug)
+                              }
+                            />
+                            {method.label}
+                          </label>
+                        ))
+                      ) : (
+                        <span className="text-sm text-slate-500">
+                          Inga betalningsmetoder hittades.
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                  <div className="border-t border-dashed border-slate-200 pt-4">
+                    <div className="flex items-center gap-2 text-xs font-semibold uppercase text-slate-500">
+                      <Coins className="size-4" />
+                      Minsta insättning
+                    </div>
+                    <div className="mt-2 grid gap-x-4 gap-y-2 sm:grid-cols-2 lg:grid-cols-3">
+                      {MINIMUM_DEPOSIT_OPTIONS.map((option) => (
                         <label
-                          key={method.slug}
+                          key={option.id}
                           className="flex items-center gap-2 text-sm text-slate-700"
                         >
                           <input
                             type="checkbox"
                             className="h-4 w-4 rounded border-slate-300 text-darklight focus:ring-slate-400"
-                            checked={selectedPaymentMethods.includes(
-                              method.slug
-                            )}
-                            onChange={() =>
-                              handlePaymentMethodToggle(method.slug)
-                            }
+                            checked={selectedMinimumDeposits.includes(option.id)}
+                            onChange={() => handleMinimumDepositToggle(option.id)}
                           />
-                          {method.label}
+                          {option.label}
                         </label>
-                      ))
-                    ) : (
-                      <span className="text-sm text-slate-500">
-                        Inga betalningsmetoder hittades.
-                      </span>
-                    )}
-                  </div>
-                </div>
-                <div className="border-t border-dashed border-slate-200 pt-4">
-                  <div className="flex items-center gap-2 text-xs font-semibold uppercase text-slate-500">
-                    <Coins className="size-4" />
-                    Minsta insättning
-                  </div>
-                  <div className="mt-2 grid gap-x-4 gap-y-2 sm:grid-cols-2 lg:grid-cols-3">
-                    {MINIMUM_DEPOSIT_OPTIONS.map((option) => (
-                      <label
-                        key={option.id}
-                        className="flex items-center gap-2 text-sm text-slate-700"
-                      >
-                        <input
-                          type="checkbox"
-                          className="h-4 w-4 rounded border-slate-300 text-darklight focus:ring-slate-400"
-                          checked={selectedMinimumDeposits.includes(option.id)}
-                          onChange={() => handleMinimumDepositToggle(option.id)}
-                        />
-                        {option.label}
-                      </label>
-                    ))}
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>
