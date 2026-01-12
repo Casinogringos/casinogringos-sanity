@@ -5,7 +5,7 @@ const sanityConfig = {
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID as string,
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET as string,
   token: process.env.SANITY_TOKEN as string,
-  apiVersion: new Date().toISOString().split('T')[0],
+  apiVersion: process.env.NEXT_PUBLIC_SANITY_API_VERSION ?? '2024-01-01',
 }
 
 export function getClient() {
