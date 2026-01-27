@@ -43,7 +43,7 @@ const Menu = ({
               href={level1Item.page.slug.current}
               actions={['close-menu']}
             >
-              {level1Item.page.title}
+              {level1Item.label || level1Item.page.title}
             </Link>
             {level1Item.children?.length ? (
               <>
@@ -101,7 +101,7 @@ const Menu = ({
                                 : undefined
                             }
                           >
-                            {level2Item.page.title}
+                            {level2Item.label || level2Item.page.title}
                           </Link>
                         </li>
                       ))}

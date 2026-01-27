@@ -47,8 +47,6 @@ const HomePage = ({
     ],
   }
 
-  console.log('TOPLIST CATEGORIES', toplistCategories)
-
   return (
     <>
       <script
