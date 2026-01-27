@@ -10,6 +10,7 @@ interface CustomModalProps {
   children: ReactNode
   direction: 'left' | 'right' | 'top' | 'bottom'
   isClosing: boolean
+  isOpening?: boolean
   close: () => void
   isOpen: boolean
   background?: string
@@ -23,6 +24,7 @@ const ModalCenter = ({
   direction,
   close,
   isClosing,
+  isOpening = false,
   isOpen,
   background,
   position,
@@ -47,7 +49,7 @@ const ModalCenter = ({
       {removeFromDom && !isOpen && !isClosing ? null : (
         <div
           className={`${
-            isOpen && !isClosing
+            isOpen && !isClosing && !isOpening
               ? 'translate-y-0 translate-x-0 opacity-100'
               : hide()
           } ${

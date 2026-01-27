@@ -22,8 +22,8 @@ const Menu = ({
       <ul>
         {menu?.items?.map((level1Item: MenuItemSchemaType, i: number) => (
           <li
-            className={`border-b-gray-100 py-4 flex flex-wrap items-center overflow-hidden ${
-              menu.items.length - 1 !== i ? 'border-b' : ''
+            className={`flex flex-wrap items-center overflow-hidden ${
+              menu.items.length - 1 !== i ? 'mb-4' : ''
             }`}
             key={`level-1-item-${level1Item._key}`}
           >
@@ -35,7 +35,11 @@ const Menu = ({
                   ? 'page'
                   : undefined
               }
-              className={`truncate ellipsis float-left flex-grow font-medium text-lg whitespace-nowrap hover:text-primary max-w-[calc(100%-34px)]`}
+              className={`truncate ellipsis float-left flex-grow text-[16px] whitespace-nowrap transition-colors duration-150 max-w-[calc(100%-40px)] py-2 ${
+                isCurrentPath(pathname, level1Item.page.slug.current)
+                  ? 'text-dark font-semibold'
+                  : 'text-slate-800 font-medium hover:text-dark'
+              }`}
               href={level1Item.page.slug.current}
               actions={['close-menu']}
             >
@@ -47,14 +51,15 @@ const Menu = ({
                   id={`menu-toggle-${i}-${level1Item._key}`}
                   label={'Öppna undermeny'}
                   controlsId={`submenu-${i}-${level1Item._key}`}
-                  className="w-[34px] h-[34px] inline-flex items-center justify-center float-right"
+                  className="w-8 h-8 inline-flex items-center justify-center float-right transition-colors duration-150"
                 >
                   <ToggleSpin id={`menu-toggle-${i}-${level1Item._key}`}>
                     <ChevronDown
                       aria-hidden="true"
                       focusable="false"
-                      size={24}
-                      className={'stroke-dark'}
+                      size={18}
+                      strokeWidth={1.5}
+                      className={'stroke-gray-400'}
                     />
                   </ToggleSpin>
                 </ToggleButton>
@@ -64,7 +69,9 @@ const Menu = ({
                 >
                   <ul
                     id={`submenu-${i}-${level1Item._key}`}
-                    className={'basis-full pl-3 mt-1'}
+                    className={
+                      'basis-full mt-2 px-4 py-1 space-y-0.5 border-l border-slate-200/60 bg-gradient-to-r from-slate-50/30 to-transparent rounded-r-md'
+                    }
                   >
                     {level1Item.children
                       .filter((child) => {
@@ -74,7 +81,14 @@ const Menu = ({
                         <li key={`level-2-item-${level2Item._key}`}>
                           <Link
                             variant={'ghost'}
-                            className={`mt-3 block text-dark lg:hover:text-primary`}
+                            className={`block py-2 px-2 -mx-2 text-[14px] rounded-md transition-all duration-200 ${
+                              isCurrentPath(
+                                pathname,
+                                level2Item.page.slug.current
+                              )
+                                ? 'text-dark font-medium bg-white/80 shadow-sm'
+                                : 'text-gray-500 font-normal hover:text-dark hover:bg-white/60'
+                            }`}
                             prefetch={false}
                             href={level2Item.page.slug.current}
                             actions={['close-menu']}
