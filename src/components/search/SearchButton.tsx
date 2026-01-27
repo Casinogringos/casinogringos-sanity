@@ -7,7 +7,7 @@ import {
   closeNotificationMenu,
   closeSearch as closeSearchAction,
   closingSearch,
-  openSearch as openSearchAction,
+  openingSearch,
 } from '@/src/store/menuSlice'
 import { Search as SearchIcon, X } from 'lucide-react'
 import { useCallback } from 'react'
@@ -16,7 +16,7 @@ const SearchButton = () => {
   const dispatch = useAppDispatch()
   const { isSearchOpen } = useAppSelector((state) => state.menu)
   const openSearch = useCallback(() => {
-    dispatch(openSearchAction())
+    dispatch(openingSearch())
     dispatch(closeMainMenu())
     dispatch(closeNotificationMenu())
   }, [dispatch])

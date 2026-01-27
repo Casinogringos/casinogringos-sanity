@@ -22,7 +22,7 @@ const CampaignCard = ({
       prefetch={false}
       className={`${className} flex-shrink-0 py-3 lg:w-auto first:pl-0 flex h-full last:border-0 pr-3 lg:pr-2 pl-1 gap-x-3 items-center not-prose border-r border-darklight ${cardBackground ? 'bg-white' : ''}`}
     >
-      <div className="relative flex size-[55px] min-w-[55px] items-center rounded-full overflow-hidden">
+      <div className="relative flex size-[40px] min-w-[40px] md:size-[52px] md:min-w-[52px] items-center rounded-full overflow-hidden">
         <Image
           src={item.featuredImage?.src}
           alt={item.featuredImage?.alt}

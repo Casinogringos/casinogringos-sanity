@@ -1,15 +1,41 @@
 'use client'
 
-import { ReactNode, useCallback } from 'react'
+import { ReactNode, useCallback, useEffect } from 'react'
 import { useAppSelector, useAppDispatch } from '@/src/store/hooks'
-import { closedSearch, closeSearch, closingSearch } from '@/src/store/menuSlice'
+import {
+  closedSearch,
+  closeSearch,
+  closingSearch,
+  openedSearch,
+} from '@/src/store/menuSlice'
 import ModalCenter from '@/src/components/layout/ModalCenter'
 
 const SearchModel = ({ children }: { children: ReactNode }) => {
   const dispatch = useAppDispatch()
-  const { isSearchOpen: isOpen, isSearchClosing: isClosing } = useAppSelector(
-    (state) => state.menu
-  )
+  const {
+    isSearchOpen: isOpen,
+    isSearchClosing: isClosing,
+    isSearchOpening: isOpening,
+  } = useAppSelector((state) => state.menu)
+
+  // Handle opening animation
+  useEffect(() => {
+    if (isOpening) {
+      let cancelled = false
+      // Use requestAnimationFrame to ensure the initial state is rendered first
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          if (!cancelled) {
+            dispatch(openedSearch())
+          }
+        })
+      })
+      return () => {
+        cancelled = true
+      }
+    }
+  }, [isOpening, dispatch])
+
   const close = useCallback(() => {
     dispatch(closingSearch())
     setTimeout(() => {
@@ -24,6 +50,7 @@ const SearchModel = ({ children }: { children: ReactNode }) => {
       direction="bottom"
       isOpen={isOpen}
       isClosing={isClosing}
+      isOpening={isOpening}
       close={close}
       removeFromDom={true}
     >

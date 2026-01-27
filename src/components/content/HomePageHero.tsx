@@ -51,7 +51,7 @@ const HomePageHero = ({ page }: { page: SubPageSchemaType }) => {
                   <Link
                     href={item.link}
                     prefetch={false}
-                    className="group relative flex font-semibold text-sm items-center gap-3 overflow-hidden rounded-xl lg:text-[15px] bg-gradient-to-br from-white via-white to-slate-50 p-4 shadow-md transition-all duration-300 hover:shadow-xl hover:-translate-y-0.5 md:gap-3 lg:h-[62px] lg:p-4"
+                    className="group relative flex font-semibold text-base md:text-sm items-center gap-3 overflow-hidden rounded-xl lg:text-[15px] bg-gradient-to-br from-white via-white to-slate-50 p-2.5 md:p-4 shadow-md transition-all duration-300 hover:shadow-xl hover:-translate-y-0.5 md:gap-3 lg:h-[62px] lg:p-4"
                   >
                     <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-primary/10 group-hover:bg-primary/15 transition-colors duration-300">
                       {item.icon}

@@ -10,6 +10,7 @@ export type ReduxState = {
     isNotificationMenuClosing: boolean
     isSearchOpen: boolean
     isSearchClosing: boolean
+    isSearchOpening: boolean
     toggleIds: string[]
   }
 }
@@ -21,6 +22,7 @@ const initialState: ReduxState['menu'] = {
   isNotificationMenuClosing: false,
   isSearchOpen: false,
   isSearchClosing: false,
+  isSearchOpening: false,
   toggleIds: [],
 }
 
@@ -64,6 +66,13 @@ const menuSlice = createSlice({
     openSearch: (state) => {
       state.isSearchOpen = true
     },
+    openingSearch: (state) => {
+      state.isSearchOpening = true
+      state.isSearchOpen = true
+    },
+    openedSearch: (state) => {
+      state.isSearchOpening = false
+    },
   },
 })
 
@@ -80,5 +89,7 @@ export const {
   closingSearch,
   closedSearch,
   openSearch,
+  openingSearch,
+  openedSearch,
 } = menuSlice.actions
 export default menuSlice.reducer
