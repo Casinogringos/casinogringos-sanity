@@ -220,7 +220,7 @@ const Footer = ({
             >
               <Image
                 className="brightnessinvert"
-                src="/spelinspektionen.webp"
+                src="/spelinspektionen.png"
                 width={50}
                 height={50}
                 alt="Spelinspektionen"
@@ -233,7 +233,7 @@ const Footer = ({
               rel="nofollow noopener noreferrer"
             >
               <Image
-                src="/stodlinjen.png"
+                src="/stodlinjen.webp"
                 width={150}
                 height={50}
                 alt="Stödlinjen.se"
