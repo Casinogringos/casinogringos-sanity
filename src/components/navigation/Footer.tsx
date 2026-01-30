@@ -220,7 +220,7 @@ const Footer = ({
             >
               <Image
                 className="brightnessinvert"
-                src="/spelinspektionen.png"
+                src="/spelinspektionen.webp"
                 width={50}
                 height={50}
                 alt="Spelinspektionen"

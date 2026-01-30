@@ -18,6 +18,7 @@ const SlotCard = ({ slotPage }: { slotPage: SlotPagePreviewSchemaType }) => {
           height={500}
           src={slotPage.featuredImage.src}
           alt={slotPage.featuredImage.alt}
+          sizes="(max-width: 768px) 100vw, 600px"
           className={'min-h-full min-w-full object-cover'}
         />
       </div>

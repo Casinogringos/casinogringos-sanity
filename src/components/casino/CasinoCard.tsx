@@ -108,6 +108,7 @@ const CasinoCard = ({
                 width={288}
                 height={288}
                 quality={50}
+                sizes="(max-width: 768px) 144px, 288px"
                 className={'h-36 w-36'}
               />
             </div>
