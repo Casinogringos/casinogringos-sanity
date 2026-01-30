@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@apollo/client": "^3.13.8",
+    "@microsoft/clarity": "^1.0.0",
     "@portabletext/react": "^3.2.1",
     "@reduxjs/toolkit": "^2.8.2",
     "@sanity/asset-utils": "^2.2.1",
@@ -18,7 +19,6 @@
     "@sanity/image-url": "^1.1.0",
     "@tailwindcss/cli": "^4.1.8",
     "@vercel/edge-config": "^1.4.3",
-    "@microsoft/clarity": "^1.0.0",
     "fuse.js": "^7.1.0",
     "lodash": "^4.17.21",
     "lucide-react": "^0.511.0",
@@ -48,6 +48,7 @@
     "madge": "^8.0.0",
     "prettier": "^3.5.3",
     "sass": "^1.89.0",
+    "sharp": "^0.34.5",
     "tailwindcss": "^4",
     "typescript": "^5"
   }

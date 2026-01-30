@@ -22,6 +22,7 @@ const NewsCard = ({ item, cardBackground }: { item: NewsPagePreviewSchemaType, c
           alt={item.featuredImage.alt}
           width={400}
           height={200}
+          sizes="(max-width: 768px) 100vw, 400px"
           className="object-cover h-full w-full absolute"
         />
       </div>

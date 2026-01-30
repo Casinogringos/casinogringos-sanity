@@ -33,7 +33,7 @@ const GoPage = ({ affLink }: { affLink: AffLinkSchemaType }) => {
         key="go-page-structured-data"
       />
       <Image
-        src={'/fade.png'}
+        src={'/fade.webp'}
         alt={'Background Image'}
         width={1920}
         height={1080}

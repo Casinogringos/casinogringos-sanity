@@ -233,7 +233,7 @@ const Footer = ({
               rel="nofollow noopener noreferrer"
             >
               <Image
-                src="/stodlinjen.png"
+                src="/stodlinjen.webp"
                 width={150}
                 height={50}
                 alt="Stödlinjen.se"
