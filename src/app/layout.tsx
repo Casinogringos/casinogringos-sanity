@@ -1,4 +1,4 @@
-import { getMenuById, getToplistById } from '@/src/lib/api'
+import { getMenuById } from '@/src/lib/api'
 import Provider from '@/src/store/provider'
 import '@/src/styles/index.css'
 import '@/src/styles/styles.scss'
@@ -29,7 +29,6 @@ export default async function RootLayout({
   const [
     headerMenu,
     sidebarMenu,
-    sidebarToplist,
     siteLinks,
     popularCasinos,
     latestReviews,
@@ -37,7 +36,6 @@ export default async function RootLayout({
   ] = await Promise.all([
     getMenuById({ id: '2311e77d-7195-4996-9ef5-cdc1fa9d223e' }),
     getMenuById({ id: '0cf352ee-76c4-4cb7-971e-8e9ce897b3f3' }),
-    getToplistById({ id: '719ca05f-52df-4062-9855-36a75c76c245' }),
     getMenuById({ id: '09a5375d-b3de-46cd-b9ff-e8e1c20a1fea' }),
     getMenuById({ id: '8b21bf53-d5ec-43d6-9190-796b0cbc71de' }),
     getMenuById({ id: 'c32a298f-41e8-4633-9202-f38e9f5f0826' }),
@@ -57,7 +55,6 @@ export default async function RootLayout({
           <Navigation
             headerMenu={headerMenu}
             sidebarMenu={sidebarMenu}
-            sidebarToplist={sidebarToplist}
             pathname={pathname}
           />
           <main className={'relative'}>{children}</main>

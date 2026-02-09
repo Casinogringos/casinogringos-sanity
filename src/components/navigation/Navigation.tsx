@@ -1,28 +1,21 @@
-import CasinoRow from '@/src/components/casino/CasinoRow'
 import Container from '@/src/components/layout/Container'
+import { LazySearchModal } from '@/src/components/navigation/LazyModals'
 import Menu from '@/src/components/navigation/Menu'
 import MenuButton from '@/src/components/navigation/MenuButton'
 import MenuModal from '@/src/components/navigation/MenuModal'
-import NotificationButton from '@/src/components/navigation/NotificationButton'
-import NotificationModal from '@/src/components/navigation/NotificationModal'
-import SearchBox from '@/src/components/search/SearchBox'
 import SearchButton from '@/src/components/search/SearchButton'
-import SearchModal from '@/src/components/search/SearchModal'
 import { isCurrentPath } from '@/src/lib/utils'
 import { MenuItemSchemaType, MenuSchemaType } from '@/src/schemas/menu'
-import { ToplistSchemaType } from '@/src/schemas/toplist'
 import Image from 'next/image'
 import Link from 'next/link'
 
 export default async function Navigation({
   headerMenu,
   sidebarMenu,
-  sidebarToplist,
   pathname,
 }: {
   headerMenu: MenuSchemaType
   sidebarMenu: MenuSchemaType
-  sidebarToplist: ToplistSchemaType
   pathname: string
 }) {
   const parentRoute = pathname?.split('/')[1]
@@ -80,31 +73,16 @@ export default async function Navigation({
               ))}
             </ul>
             <div className="ml-auto flex items-center gap-3">
-              {sidebarToplist.casinos?.length > 0 ? (
-                <NotificationButton count={sidebarToplist.casinos.length} />
-              ) : null}
               <SearchButton />
               <MenuButton />
             </div>
           </div>
         </Container>
       </nav>
-      <SearchModal>
-        <SearchBox />
-      </SearchModal>
+      <LazySearchModal />
       <MenuModal>
         <Menu menu={sidebarMenu} pathname={pathname} />
       </MenuModal>
-      <NotificationModal>
-        <section>
-          <div className="relative mt-6 text-lg font-medium">
-            Populära erbjudanden
-          </div>
-          {sidebarToplist.casinos?.map((casino) => (
-            <CasinoRow casino={casino} key={`casino-${casino._id}`} />
-          ))}
-        </section>
-      </NotificationModal>
     </>
   )
 }

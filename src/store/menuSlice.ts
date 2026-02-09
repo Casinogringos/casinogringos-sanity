@@ -6,8 +6,6 @@ export type ReduxState = {
   menu: {
     isMainMenuOpen: boolean
     isMainMenuClosing: boolean
-    isNotificationMenuOpen: boolean
-    isNotificationMenuClosing: boolean
     isSearchOpen: boolean
     isSearchClosing: boolean
     isSearchOpening: boolean
@@ -18,8 +16,6 @@ export type ReduxState = {
 const initialState: ReduxState['menu'] = {
   isMainMenuOpen: false,
   isMainMenuClosing: false,
-  isNotificationMenuOpen: false,
-  isNotificationMenuClosing: false,
   isSearchOpen: false,
   isSearchClosing: false,
   isSearchOpening: false,
@@ -42,19 +38,7 @@ const menuSlice = createSlice({
     openMainMenu: (state) => {
       state.isMainMenuOpen = true
     },
-    closeNotificationMenu: (state) => {
-      state.isNotificationMenuOpen = false
-    },
-    closingNotificationMenu: (state) => {
-      state.isNotificationMenuClosing = true
-    },
-    closedNotificationMenu: (state) => {
-      state.isNotificationMenuClosing = false
-    },
-    openNotificationMenu: (state) => {
-      state.isNotificationMenuOpen = true
-    },
-    closeSearch: (state) => {
+closeSearch: (state) => {
       state.isSearchOpen = false
     },
     closingSearch: (state) => {
@@ -81,10 +65,6 @@ export const {
   closeMainMenu,
   closingMainMenu,
   closedMainMenu,
-  openNotificationMenu,
-  closeNotificationMenu,
-  closingNotificationMenu,
-  closedNotificationMenu,
   closeSearch,
   closingSearch,
   closedSearch,

@@ -21,8 +21,11 @@ const toggleSlice = createSlice({
         state.toggleIds.push(action.payload)
       }
     },
+    removeToggleId: (state, action) => {
+      state.toggleIds = state.toggleIds.filter((id) => id !== action.payload)
+    },
   },
 })
 
-export const { toggleId } = toggleSlice.actions
+export const { toggleId, removeToggleId } = toggleSlice.actions
 export default toggleSlice.reducer
