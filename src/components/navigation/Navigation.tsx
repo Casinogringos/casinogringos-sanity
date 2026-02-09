@@ -1,5 +1,5 @@
 import Container from '@/src/components/layout/Container'
-import { LazySearchModal } from '@/src/components/navigation/LazyModals'
+import { LazySearchModal } from '@/src/components/lazy/LazyComponents'
 import Menu from '@/src/components/navigation/Menu'
 import MenuButton from '@/src/components/navigation/MenuButton'
 import MenuModal from '@/src/components/navigation/MenuModal'

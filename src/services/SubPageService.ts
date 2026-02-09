@@ -1,6 +1,5 @@
 import { SubPageSchema, SubPageSchemaType } from '@/src/schemas/subPage'
 import BasePageService from '@/src/services/BasePageService'
-import _ from 'lodash'
 import { SubPagePreviewSchemaType } from '../schemas/subPagePreview'
 
 class SubPageService extends BasePageService<SubPageSchemaType | SubPagePreviewSchemaType> {
@@ -13,7 +12,6 @@ class SubPageService extends BasePageService<SubPageSchemaType | SubPagePreviewS
       // console.log(`Invalid page:\n${page.title}\n`, parse.error.format())
       for (const err of parse.error.errors) {
         if (err.code === 'invalid_union_discriminator') {
-          const offendingObject = _.get(page, err.path);
         }
       }
       // return false

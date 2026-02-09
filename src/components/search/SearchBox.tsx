@@ -17,7 +17,6 @@ import SubPageService from '@/src/services/SubPageService'
 import { useAppDispatch } from '@/src/store/hooks'
 import { closedSearch, closeSearch, closingSearch } from '@/src/store/menuSlice'
 import Fuse from 'fuse.js'
-import _ from 'lodash'
 import { ArrowRight, Search } from 'lucide-react'
 import Image from 'next/image'
 import { useCallback, useEffect, useMemo, useState } from 'react'
@@ -108,7 +107,7 @@ const SearchBox = () => {
         (item) => item.slug.current === result.item.slug.current
       )
       if (record?.slug.current === '') return null
-      const clonedRecord = _.cloneDeep(record)
+      const clonedRecord = structuredClone(record)
       const featuredImage = clonedRecord?.featuredImage
       let modifiedAt = null
       if (clonedRecord && clonedRecord?._type === 'pages') {

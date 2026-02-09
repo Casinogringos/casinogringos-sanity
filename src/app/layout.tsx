@@ -3,19 +3,17 @@ import Provider from '@/src/store/provider'
 import '@/src/styles/index.css'
 import '@/src/styles/styles.scss'
 import PlausibleProvider from 'next-plausible'
-import dynamicImport from 'next/dynamic'
 
 import ClarityClient from '@/src/components/analytics/ClarityClient'
 import Footer from '@/src/components/navigation/Footer'
 import Navigation from '@/src/components/navigation/Navigation'
-import CookieNotice from '@/src/components/privacy/CookieNotice'
+import {
+  LazyCookieNotice,
+  LazyScrollToTop,
+} from '@/src/components/lazy/LazyComponents'
 import { inter } from '@/src/styles/fonts'
 import { headers } from 'next/headers'
 import { ReactNode } from 'react'
-
-const ScrollToTop = dynamicImport(
-  () => import('@/src/components/navigation/ScrollToTop')
-)
 
 // export const metadata = {
 //   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL as string),
@@ -58,13 +56,13 @@ export default async function RootLayout({
             pathname={pathname}
           />
           <main className={'relative'}>{children}</main>
-          <ScrollToTop />
+          <LazyScrollToTop />
           <Footer
             siteLinks={siteLinks}
             popularCasinos={popularCasinos}
             latestReviews={latestReviews}
           />
-          <CookieNotice />
+          <LazyCookieNotice />
         </Provider>
       </body>
     </html>
