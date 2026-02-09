@@ -5,6 +5,7 @@ import ModularContent from '@/src/components/content/ModularContent'
 import HalfStarIcon from '@/src/components/icons/HalfStarIcon'
 import Star from '@/src/components/icons/StarIcon'
 import Container from '@/src/components/layout/Container'
+import { mapCasinoToDTO } from '@/src/lib/mapCasinoToDTO'
 import BreadCrumbs from '@/src/components/navigation/BreadCrumbs'
 import TableOfContents from '@/src/components/navigation/TableOfContents'
 import SlotCard from '@/src/components/slot/SlotCard'
@@ -65,10 +66,16 @@ const SlotPage = ({
   const createdAt = slotPageService.getPagePublishedAtTimestamp(slotPage)
   const modifiedAt = slotPageService.getPageModifiedAtTimestamp(slotPage)
   const { casinos, latestCasinos } = slotPage
-  const relatedCasinos =
+  const slotCategories = [
+    { value: 'casino-bonus' },
+    { value: 'odds-bonus' },
+    { value: 'live-casino-bonus' },
+  ]
+  const relatedCasinos = (
     casinos?.length > 0
       ? casinos
       : latestCasinos.filter((casino) => casino.affLink?.slug?.current)
+  ).map((casino) => mapCasinoToDTO(casino, slotCategories))
   const slotVolatilityMap = {
     low: 'Låg',
     medium: 'Medium',
@@ -230,11 +237,6 @@ const SlotPage = ({
                     <CasinoCard
                       casino={casino}
                       index={i}
-                      categories={[
-                        { value: 'casino-bonus' },
-                        { value: 'odds-bonus' },
-                        { value: 'live-casino-bonus' },
-                      ]}
                     />
                   </div>
                 ))}

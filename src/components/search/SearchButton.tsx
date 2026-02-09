@@ -4,7 +4,6 @@ import { useAppDispatch, useAppSelector } from '@/src/store/hooks'
 import {
   closedSearch,
   closeMainMenu,
-  closeNotificationMenu,
   closeSearch as closeSearchAction,
   closingSearch,
   openingSearch,
@@ -18,7 +17,6 @@ const SearchButton = () => {
   const openSearch = useCallback(() => {
     dispatch(openingSearch())
     dispatch(closeMainMenu())
-    dispatch(closeNotificationMenu())
   }, [dispatch])
 
   const closeSearch = useCallback(() => {
