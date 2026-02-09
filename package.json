@@ -10,7 +10,6 @@
     "madge": "npx madge src --ts-config=tsconfig.json --extensions ts,tsx --circular"
   },
   "dependencies": {
-    "@apollo/client": "^3.13.8",
     "@microsoft/clarity": "^1.0.0",
     "@portabletext/react": "^3.2.1",
     "@reduxjs/toolkit": "^2.8.2",
@@ -20,7 +19,6 @@
     "@tailwindcss/cli": "^4.1.8",
     "@vercel/edge-config": "^1.4.3",
     "fuse.js": "^7.1.0",
-    "lodash": "^4.17.21",
     "lucide-react": "^0.511.0",
     "next": "^15.5.7",
     "next-plausible": "^3.12.4",
