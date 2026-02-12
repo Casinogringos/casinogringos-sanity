@@ -1,5 +1,3 @@
-'use client'
-
 const RawHTML = ({ html, className }: { html: string; className?: string }) => {
   return (
     <div

@@ -1,5 +1,3 @@
-'use client'
-
 import { slugify } from '@/src/lib/utils'
 import { jakarta } from '@/src/styles/fonts'
 import { JSX, createElement } from 'react'
