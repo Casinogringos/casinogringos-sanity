@@ -1,7 +1,6 @@
 import { getMenuById } from '@/src/lib/api'
 import Provider from '@/src/store/provider'
 import '@/src/styles/index.css'
-import '@/src/styles/styles.scss'
 import PlausibleProvider from 'next-plausible'
 
 import ClarityClient from '@/src/components/analytics/ClarityClient'

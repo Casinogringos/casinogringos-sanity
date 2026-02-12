@@ -257,3 +257,119 @@ body {
 ul, ol li {
     font-size: 16px;
 }
+
+/* === Migrated from styles.scss === */
+
+.list-success {
+    background: #f5f5f5;
+    border-radius: 8px;
+    overflow: hidden;
+    padding: 15px 30px !important;
+
+    &.green {
+        background: #d7f9e3;
+        color: #000;
+
+        strong,
+        a {
+            color: #000;
+        }
+
+        ul {
+            li:before {
+                background: #1b54bb;
+            }
+
+            li::marker {
+                color: #166434;
+            }
+        }
+    }
+
+    &.blue {
+        background: #7caef521;
+
+        ol,
+        ul {
+            li:before {
+                background: #1b54bb;
+            }
+
+            li::marker {
+                color: #1b54bb;
+            }
+        }
+    }
+
+    @media (max-width: 600px) {
+        padding: 10px 20px;
+    }
+
+    h2,
+    h3 {
+        padding: 15px 0px 5px;
+        margin: 0;
+        font-size: 24px;
+    }
+
+    ol {
+        list-style-type: none;
+        counter-reset: item;
+    }
+
+    ul {
+        padding-left: 15px;
+    }
+
+    ol {
+        padding: 0 0 0;
+        padding-left: 32px;
+
+        li {
+            position: relative;
+            counter-increment: item;
+
+            &:before {
+                content: counter(item);
+                background: #5acd00;
+                border-radius: 100%;
+                color: #fff;
+                width: 26px;
+                height: 26px;
+                font-size: 15px;
+                text-align: center;
+                display: inline-block;
+                margin-right: 0;
+                position: absolute;
+                left: -32px;
+                top: 1px;
+
+                @media (max-width: 600px) {
+                    width: 22px;
+                    height: 22px;
+                    font-size: 12px;
+                }
+            }
+        }
+
+        li::marker {
+            font-weight: bold;
+        }
+    }
+}
+
+.dark-bg {
+    p {
+        color: var(--color-white);
+    }
+}
+
+.light-bg {
+    p {
+        color: var(--color-black);
+    }
+}
+
+li.bullets::before {
+    content: "\2022";
+}
