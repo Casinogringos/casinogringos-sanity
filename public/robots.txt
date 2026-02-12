@@ -2,4 +2,13 @@ User-agent: *
 Disallow: /go/
 Disallow: /api/
 Disallow: /proxy/
+
+# Block old WordPress paths + common WP attack endpoints
+Disallow: /wp-admin/
+Disallow: /wp-login.php
+Disallow: /wp-json/
+Disallow: /wp-includes/
+Disallow: /wp-content/
+Disallow: /xmlrpc.php
+
 Sitemap: https://casinogringos.se/sitemap_index.xml
