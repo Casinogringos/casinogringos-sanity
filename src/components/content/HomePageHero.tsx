@@ -37,7 +37,7 @@ const HomePageHero = ({ page }: { page: SubPageSchemaType }) => {
           <section className="relative z-10">
             <Heading
               level={1}
-              className="max-w-md font-bold tracking-tight text-white !text-3xl sm:!text-[45px] md:!text-[45px] sm:!leading-[52px]"
+              className="max-w-2xl font-bold tracking-tight text-white !text-3xl sm:!text-[45px] md:!text-[45px] sm:!leading-[52px]"
               text={page.title}
             >
               <span className="block">{page.title}</span>
