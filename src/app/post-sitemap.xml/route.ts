@@ -25,16 +25,18 @@ export async function GET() {
         ? contentImages
         : []
     const imagesXML = sitemapImages(
-      allImages.filter((image) => image !== null)
-    ).filter((image) => image !== null)
+      allImages.filter((image): image is string => image !== null)
+    )
     const lastModTimestamp = casinoPageService.getPageModifiedAtTimestamp(page)
 
     return {
       loc: `${process.env.NEXT_PUBLIC_SITE_URL}${page.slug.current}`,
-      lastmod: `${new Date(lastModTimestamp ?? '').toISOString().slice(0, -1)}+01:00`,
+      ...(lastModTimestamp ? { lastmod: new Date(lastModTimestamp).toISOString() } : {}),
       images: imagesXML,
     }
   })
 
   return getServerSideSitemap(casinoPages)
 }
+
+export const dynamic = 'force-static'

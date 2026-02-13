@@ -1,4 +1,5 @@
 import { getPageBySlug, getSitemap } from '@/src/lib/api'
+import { sitemapImages } from '@/src/lib/utils'
 import { NewsPageSchemaType } from '@/src/schemas/newsPage'
 import ImageService from '@/src/services/ImageService'
 import { getServerSideSitemap } from 'next-sitemap'
@@ -18,13 +19,11 @@ export async function GET() {
       : contentImages
         ? contentImages
         : []
-    const imagesXML = imageService
-      .getImagesXML(allImages)
-      .filter((image) => image !== null)
+    const imagesXML = sitemapImages(allImages)
     const lastModTimestamp = newsPageService.getPageModifiedAtTimestamp(page)
     return {
       loc: `${process.env.NEXT_PUBLIC_SITE_URL}/nyheter/${page.slug.current}`,
-      lastmod: `${new Date(lastModTimestamp ?? '').toISOString().slice(0, -1)}+01:00`,
+      ...(lastModTimestamp ? { lastmod: new Date(lastModTimestamp).toISOString() } : {}),
       images: imagesXML,
     }
   })
@@ -38,17 +37,17 @@ export async function GET() {
       : contentImages
         ? contentImages
         : []
-    const imagesXML = imageService
-      .getImagesXML(allImages)
-      .filter((image) => image !== null)
+    const imagesXML = sitemapImages(allImages)
     const lastModTimestamp =
       newsPageService.getPageModifiedAtTimestamp(newsIndexPage)
     return {
       loc: `${process.env.NEXT_PUBLIC_SITE_URL}/nyheter`,
-      lastmod: `${new Date(lastModTimestamp ?? '').toISOString().slice(0, -1)}+01:00`,
+      ...(lastModTimestamp ? { lastmod: new Date(lastModTimestamp).toISOString() } : {}),
       images: imagesXML,
     }
   }
 
   return getServerSideSitemap([indexPage(), ...newsPages])
 }
+
+export const dynamic = 'force-static'
