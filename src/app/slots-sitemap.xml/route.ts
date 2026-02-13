@@ -1,5 +1,6 @@
 import { getServerSideSitemap } from 'next-sitemap'
 import { getPageBySlug, getSitemap } from '@/src/lib/api'
+import { sitemapImages } from '@/src/lib/utils'
 import { SubPageSchemaType } from '@/src/schemas/subPage'
 import { SlotPageSchemaType } from '@/src/schemas/slotPage'
 import ImageService from '@/src/services/ImageService'
@@ -22,13 +23,11 @@ export async function GET() {
     const allImages = featuredImage
       ? [featuredImage, ...contentImages]
       : contentImages
-    const imagesXML = imageService
-      .getImagesXML(allImages)
-      .filter((image) => image !== null)
+    const imagesXML = sitemapImages(allImages)
     const lastModTimestamp = slotPageService.getPageModifiedAtTimestamp(page)
     return {
       loc: `${process.env.NEXT_PUBLIC_SITE_URL}/slots/${page.slug.current}`,
-      lastmod: `${new Date(lastModTimestamp ?? '').toISOString().slice(0, -1)}+01:00`,
+      ...(lastModTimestamp ? { lastmod: new Date(lastModTimestamp).toISOString() } : {}),
       images: imagesXML,
     }
   })
@@ -41,17 +40,17 @@ export async function GET() {
     const allImages = featuredImage
       ? [featuredImage, ...contentImages]
       : contentImages
-    const imagesXML = imageService
-      .getImagesXML(allImages)
-      .filter((image) => image !== null)
+    const imagesXML = sitemapImages(allImages)
     const lastModTimestamp =
       subPageService.getPageModifiedAtTimestamp(slotsIndexResponse)
     return {
       loc: `${process.env.NEXT_PUBLIC_SITE_URL}/slots`,
-      lastmod: `${new Date(lastModTimestamp ?? '').toISOString().slice(0, -1)}+01:00`,
+      ...(lastModTimestamp ? { lastmod: new Date(lastModTimestamp).toISOString() } : {}),
       images: imagesXML,
     }
   }
 
   return getServerSideSitemap([indexPage(), ...slotsPages])
 }
+
+export const dynamic = 'force-static'

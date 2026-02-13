@@ -1,25 +1,4 @@
 class ImageService {
-  getImagesXML = (images: string[]) => {
-    return images.map((url) => {
-      return { loc: new URL(url) }
-    })
-  }
-  // vanityImageLoader = ({
-  //   image,
-  //   width,
-  //   quality,
-  // }: {
-  //   image: SanityImageSchemaType,
-  //   width: number,
-  //   quality?: number,
-  // }): string => {
-  //   if (!image) return ''
-  //   const originalFileName = urlFor(image).url().split('/').pop()?.split('.')[0]
-  //   const stub = getVanityStub(originalFileName, image.vanityFileName)
-  //   console.log('stub', stub)
-  //   const url = `https://cdn.sanity.io/images/your-project-id/production/${stub}?w=${width}&q=${quality || 75}`
-  //   return url
-  // }
   getImagesFromModularContent = (
     modularContent: unknown,
     images: string[] = []

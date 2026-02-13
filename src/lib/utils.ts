@@ -16,14 +16,7 @@ export function portableTextToPlainText(blocks: any[]): string {
 }
 
 export const sitemapImages = (images: string[]) => {
-  return images.map((image) => {
-    try {
-      return { loc: new URL(image) }
-    } catch (e) {
-      console.error('Image url is not valid', image, e)
-      return null
-    }
-  })
+  return images.map((image) => ({ loc: new URL(image) }))
 }
 
 export const isCurrentPath = (currentPath: string, path: string) => {
