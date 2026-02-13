@@ -10,3 +10,5 @@ export async function GET() {
         `${process.env.NEXT_PUBLIC_SITE_URL}/post-sitemap.xml`,
     ])
 }
+
+export const dynamic = 'force-static'
